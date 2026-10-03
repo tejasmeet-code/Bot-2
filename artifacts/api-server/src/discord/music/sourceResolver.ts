@@ -231,13 +231,13 @@ export async function getDirectMediaStreamUrl(targetUrl: string, trackSearchTitl
 
   const searchQuery = trackSearchTitle || targetUrl;
 
-  // 1. Try High-Fidelity SoundCloud Audio Stream (Full Length Master Stream)
-  const scStream = await getSoundCloudAudioStream(searchQuery);
-  if (scStream) return scStream;
-
-  // 2. Try JioSaavn High-Bitrate Master Stream
+  // 1. Try JioSaavn 320kbps Studio Master Stream (Highest Fidelity 320kbps AAC)
   const saavnStream = await getJioSaavnAudioStream(searchQuery);
   if (saavnStream) return saavnStream;
+
+  // 2. Try High-Fidelity SoundCloud Audio Stream
+  const scStream = await getSoundCloudAudioStream(searchQuery);
+  if (scStream) return scStream;
 
   // 3. Try @distube/ytdl-core format extraction
   const match = YOUTUBE_URL_REGEX.exec(targetUrl);
@@ -260,11 +260,6 @@ export async function getDirectMediaStreamUrl(targetUrl: string, trackSearchTitl
     }
   }
 
-  // 4. Try Apple Music / iTunes audio stream
-  const itunesStream = await getITunesAudioStream(searchQuery);
-  if (itunesStream) return itunesStream;
-
-  // Safety fallback - Return empty if no valid stream found, letting caller handle it
   return "";
 }
 export async function resolveFullStreamUrl(title: string, artist: string, currentStreamUrl?: string): Promise<string> {

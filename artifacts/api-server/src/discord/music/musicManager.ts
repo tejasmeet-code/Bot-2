@@ -285,6 +285,13 @@ export class MusicManager {
       if (this.currentTrack) {
         const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
         this.updateVoiceStatus(statusText, true).catch(() => {});
+        try {
+          const clientUser = (this.voiceChannel.client as any).user;
+          clientUser?.setPresence({
+            activities: [{ name: `${this.currentTrack.title}`, type: 2 /* Listening */ }],
+            status: "online",
+          });
+        } catch {}
       }
     });
 
@@ -835,6 +842,19 @@ export class MusicManager {
       this.currentTrack = null;
       this.isPlaying = false;
       this.updateVoiceStatus("", true).catch(() => {});
+      try {
+        const clientUser = (this.voiceChannel.client as any).user;
+        clientUser?.setPresence({
+          activities: [
+            {
+              name: ".help | Server Guard",
+              type: 4,
+              state: ".help | Server Guard",
+            },
+          ],
+          status: "online",
+        });
+      } catch {}
     } finally {
       this.isEnding = false;
     }

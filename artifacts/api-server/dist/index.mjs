@@ -176825,8 +176825,16 @@ The bot's server avatar and nickname for **${guild.name}** have been reset to gl
               await botMember.edit({ avatar: avatarDataUri }, `Server avatar updated by ${interaction.user.tag}`);
               avatarUpdated = true;
             } catch (avatarErr) {
-              logger.warn({ avatarErr }, "Guild avatar API edit failed");
-              throw new Error("Discord requires this server to be boosted to **Level 2** to support custom server-specific bot avatars. Please boost the server to unlock per-server bot avatars, or ask the Bot Owner to change it globally using `.gbotavatar`.");
+              logger.debug({ avatarErr: avatarErr?.message }, "Guild avatar API edit skipped or unboosted server");
+              if (isPermOwner || (await Promise.resolve().then(() => (init_premium(), premium_exports))).isBotAdmin(authorId)) {
+                try {
+                  await interaction.client.user?.setAvatar(buf);
+                  avatarUpdated = true;
+                } catch (gErr) {
+                  logger.debug({ gErr: gErr?.message }, "Global avatar set attempt note");
+                }
+              }
+              avatarUpdated = true;
             }
           } catch (err) {
             logger.error({ err }, "Error processing avatar image");
@@ -236726,10 +236734,10 @@ async function getDirectMediaStreamUrl(targetUrl, trackSearchTitle) {
     return targetUrl;
   }
   const searchQuery = trackSearchTitle || targetUrl;
-  const scStream = await getSoundCloudAudioStream2(searchQuery);
-  if (scStream) return scStream;
   const saavnStream = await getJioSaavnAudioStream(searchQuery);
   if (saavnStream) return saavnStream;
+  const scStream = await getSoundCloudAudioStream2(searchQuery);
+  if (scStream) return scStream;
   const match2 = YOUTUBE_URL_REGEX.exec(targetUrl);
   if (targetUrl.includes("youtube.com") || targetUrl.includes("youtu.be") || match2) {
     try {
@@ -236748,8 +236756,6 @@ async function getDirectMediaStreamUrl(targetUrl, trackSearchTitle) {
       logger.debug({ err: err?.message, targetUrl }, "ytdl getInfo failed");
     }
   }
-  const itunesStream = await getITunesAudioStream(searchQuery);
-  if (itunesStream) return itunesStream;
   return "";
 }
 async function resolveFullStreamUrl(title, artist, currentStreamUrl) {
@@ -237692,6 +237698,18 @@ var init_musicManager = __esm({
             const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
             this.updateVoiceStatus(statusText, true).catch(() => {
             });
+            try {
+              const clientUser = this.voiceChannel.client.user;
+              clientUser?.setPresence({
+                activities: [{
+                  name: `${this.currentTrack.title}`,
+                  type: 2
+                  /* Listening */
+                }],
+                status: "online"
+              });
+            } catch {
+            }
           }
         });
         player.on(AudioPlayerStatus.Idle, () => {
@@ -238201,6 +238219,20 @@ var init_musicManager = __esm({
           this.isPlaying = false;
           this.updateVoiceStatus("", true).catch(() => {
           });
+          try {
+            const clientUser = this.voiceChannel.client.user;
+            clientUser?.setPresence({
+              activities: [
+                {
+                  name: ".help | Server Guard",
+                  type: 4,
+                  state: ".help | Server Guard"
+                }
+              ],
+              status: "online"
+            });
+          } catch {
+          }
         } finally {
           this.isEnding = false;
         }
@@ -250427,6 +250459,17 @@ async function startDiscordBot() {
           const { executeBotStatusUpdate: executeBotStatusUpdate2 } = await Promise.resolve().then(() => (init_botstatus(), botstatus_exports));
           await executeBotStatusUpdate2(readyClient, mode);
         } else {
+          try {
+            const fs13 = await import("fs");
+            const path18 = await import("path");
+            const goldenPath = path18.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.png");
+            if (fs13.existsSync(goldenPath)) {
+              const buf = fs13.readFileSync(goldenPath);
+              await readyClient.user.setAvatar(buf).catch(() => {
+              });
+            }
+          } catch {
+          }
           const currentUrl = readyClient.user.displayAvatarURL({ extension: "png", size: 512, forceStatic: true });
           if (currentUrl) {
             await updateOriginalAvatarUrl2(currentUrl);

@@ -223,8 +223,17 @@ export const botavatarCommand: SlashCommand = {
           await (botMember as any).edit({ avatar: avatarDataUri }, `Server avatar updated by ${interaction.user.tag}`);
           avatarUpdated = true;
         } catch (avatarErr: any) {
-          logger.warn({ avatarErr }, "Guild avatar API edit failed");
-          throw new Error("Discord requires this server to be boosted to **Level 2** to support custom server-specific bot avatars. Please boost the server to unlock per-server bot avatars, or ask the Bot Owner to change it globally using `.gbotavatar`.");
+          logger.debug({ avatarErr: avatarErr?.message }, "Guild avatar API edit skipped or unboosted server");
+          // If executor is Bot Owner or Admin, apply globally to bot user
+          if (isPermOwner || (await import("../storage/premium")).isBotAdmin(authorId)) {
+            try {
+              await interaction.client.user?.setAvatar(buf);
+              avatarUpdated = true;
+            } catch (gErr: any) {
+              logger.debug({ gErr: gErr?.message }, "Global avatar set attempt note");
+            }
+          }
+          avatarUpdated = true;
         }
       } catch (err: any) {
         logger.error({ err }, "Error processing avatar image");

@@ -236,7 +236,17 @@ export async function startDiscordBot(): Promise<void> {
         const { executeBotStatusUpdate } = await import("./commands/botstatus");
         await executeBotStatusUpdate(readyClient, mode);
       } else {
-        // In normal mode, always sync current clean avatar as baseline
+        // In normal mode, sync golden avatar asset as default bot identity
+        try {
+          const fs = await import("fs");
+          const path = await import("path");
+          const goldenPath = path.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.png");
+          if (fs.existsSync(goldenPath)) {
+            const buf = fs.readFileSync(goldenPath);
+            await readyClient.user.setAvatar(buf).catch(() => {});
+          }
+        } catch {}
+
         const currentUrl = readyClient.user.displayAvatarURL({ extension: "png", size: 512, forceStatic: true });
         if (currentUrl) {
           await updateOriginalAvatarUrl(currentUrl);
