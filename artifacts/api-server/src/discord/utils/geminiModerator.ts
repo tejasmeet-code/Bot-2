@@ -55,8 +55,8 @@ Respond in JSON format:
           ],
         },
       ],
-      tools: [{ googleSearch: {} }] as any,
       config: {
+        tools: [{ googleSearch: {} }] as any,
         responseMimeType: "application/json",
         responseSchema: {
           type: Type.OBJECT,
@@ -109,8 +109,8 @@ Respond in JSON format:
           ],
         },
       ],
-      tools: [{ googleSearch: {} }] as any,
       config: {
+        tools: [{ googleSearch: {} }] as any,
         responseMimeType: "application/json",
         responseSchema: {
           type: Type.OBJECT,

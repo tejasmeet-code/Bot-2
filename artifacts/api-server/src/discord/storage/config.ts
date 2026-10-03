@@ -357,6 +357,7 @@ export interface SpecializedBotEntry {
 // ── Defaults ────────────────────────────────────────────────────────────────
 
 const DEFAULTS: GuildConfig = {
+  guildId: "",
   managers: { roleIds: [], userIds: [] },
   modules: {
     staffMgmt: false,
@@ -541,6 +542,7 @@ async function persist(data: Record<string, GuildConfig>): Promise<void> {
 
 function withDefaults(c: Partial<GuildConfig> | undefined): GuildConfig {
   return {
+    guildId: c?.guildId ?? "",
     managers: {
       roleIds: c?.managers?.roleIds ?? [],
       userIds: c?.managers?.userIds ?? [],

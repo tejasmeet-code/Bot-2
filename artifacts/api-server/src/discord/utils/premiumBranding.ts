@@ -108,9 +108,20 @@ export async function applyServerPremiumBranding(guild: Guild): Promise<void> {
 
       appliedGuildBranding.set(guild.id, { isPremium: true, timestamp: now });
     } else {
-      // Non-premium server: Reset to default "Zenith Bot" unless custom name set
+      // Non-premium server: Reset to default "Zenith Bot" and clear any guild-level avatar
       if (!customProfile?.name && me.nickname && me.nickname !== "Zenith Bot") {
-        await me.setNickname("Zenith Bot").catch(() => {});
+        await me.setNickname(null).catch(() => {});
+      }
+      if (token) {
+        try {
+          const rest = new REST({ version: "10" }).setToken(token);
+          await rest.patch(Routes.guildMember(guild.id, "@me"), {
+            body: {
+              avatar: null,
+              nick: customProfile?.name || null,
+            },
+          }).catch(() => {});
+        } catch {}
       }
       appliedGuildBranding.set(guild.id, { isPremium: false, timestamp: now });
     }

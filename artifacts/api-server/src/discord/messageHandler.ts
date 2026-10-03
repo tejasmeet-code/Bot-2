@@ -378,22 +378,34 @@ export async function handlePrefixMessage(message: Message): Promise<boolean> {
   // ── No-Prefix execution support for all commands and aliases ──
   if (!rawInput) {
     const firstWord = content.trim().split(/\s+/)[0]?.toLowerCase();
-    if (firstWord) {
-      const { COMMAND_ALIASES } = await import("./utils/commandAliases");
-      const { getCommandMap } = await import("./registry");
-      const cmdMap = getCommandMap();
-      if (COMMAND_ALIASES[firstWord] || cmdMap.has(firstWord)) {
-        rawInput = content.trim();
-        isExplicitPrefix = false;
+    // Single-letter words (k, b, m, p, etc.) must NEVER be treated as no-prefix commands to prevent accidental kicks/bans/etc.
+    if (firstWord && firstWord.length > 1) {
+      const { isNoPrefixEnabled } = await import("./storage/profile");
+      const npAllowed = await isNoPrefixEnabled(message.author.id, guild.id);
+      if (npAllowed) {
+        const { COMMAND_ALIASES } = await import("./utils/commandAliases");
+        const { getCommandMap } = await import("./registry");
+        const cmdMap = getCommandMap();
+        if (COMMAND_ALIASES[firstWord] || cmdMap.has(firstWord)) {
+          rawInput = content.trim();
+          isExplicitPrefix = false;
+        }
       }
     }
   }
 
   // ── Direct Bot Mention Handler: Single instant sleek response ──
-  const isDirectBotMention = message.client.user && (
-    content.trim() === `<@${message.client.user.id}>` ||
-    content.trim() === `<@!${message.client.user.id}>` ||
-    (!rawInput && message.mentions.users.has(message.client.user.id))
+  // ONLY trigger if the message text explicitly contains a direct ping of the bot (<@botId> or <@!botId>),
+  // NOT when simply replying to a bot message with reply-mention enabled.
+  const botId = message.client.user?.id;
+  const isDirectBotMention = Boolean(
+    botId &&
+    !rawInput &&
+    (content.trim() === `<@${botId}>` ||
+     content.trim() === `<@!${botId}>` ||
+     content.startsWith(`<@${botId}>`) ||
+     content.startsWith(`<@!${botId}>`)) &&
+    (content.includes(`<@${botId}>`) || content.includes(`<@!${botId}>`))
   );
 
   if (isDirectBotMention) {

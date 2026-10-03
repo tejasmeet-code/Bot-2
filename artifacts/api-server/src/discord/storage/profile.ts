@@ -1,6 +1,6 @@
 import path from "node:path";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
-import { isUserPremium, isGuildPremium } from "./premium";
+import { isUserPremium, isGuildPremium, isPermanentOwner } from "./premium";
 import { logger } from "../../lib/logger";
 import { DATA_DIR } from "../../lib/paths";
 import { loadPersistentJson, persistPersistentJson } from "./persistentJson";
@@ -145,15 +145,20 @@ export function setUserBio(userId: string, bio: string): string {
 export async function isNoPrefixEnabled(userId: string, guildId?: string): Promise<boolean> {
   await ensureLoaded();
   if (disabledNoPrefixUsers.has(userId)) return false;
-  if (noPrefixUsers.has(userId)) return true;
-  if (guildId && noPrefixGuilds.has(guildId)) return true;
-  const uPrem = await isUserPremium(userId);
-  if (uPrem) return true;
-  if (guildId) {
-    const gPrem = await isGuildPremium(guildId);
-    if (gPrem) return true;
+  const isOwner = isPermanentOwner(userId);
+  const { isBotAdmin } = await import("./premium");
+  const isAdmin = isBotAdmin(userId);
+  const { isBotStaff } = await import("./botStaff");
+  const isStaff = await isBotStaff(userId);
+  const uPrem = await isUserPremium(userId, guildId);
+
+  // Non-premium users are NOT permitted to use no-prefix
+  if (!isOwner && !isAdmin && !isStaff && !uPrem) {
+    return false;
   }
-  return false;
+
+  if (noPrefixUsers.has(userId)) return true;
+  return true;
 }
 
 export function setNoPrefix(targetId: string, type: "user" | "guild", enabled: boolean): void {

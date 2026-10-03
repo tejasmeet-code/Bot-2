@@ -54,25 +54,32 @@ import {
   getJioSaavnAudioStream,
   type AudioSourceOption,
 } from "./sourceResolver";
+import {
+  savePersistedSession,
+  removePersistedSession,
+  getAllPersistedSessions,
+} from "../storage/musicSessionStore";
 
-export function formatCleanVoiceStatus(track: Track | null): string {
+export function formatVoiceChannelStatus(track: Track | null, is247 = false): string {
+  if (!track && is247) {
+    return ":globe: 24/7 Voice Channel Radio";
+  }
   if (!track) return "";
+
   const rawTitle = track.title || "";
   const rawArtist = track.artist || "";
-  const cleanTitle = rawTitle
-    .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
-    .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "")
-    .replace(/\s+/g, " ")
-    .trim();
-  const cleanArtist = rawArtist
-    .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
-    .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "")
-    .replace(/\s+/g, " ")
-    .trim();
+  const cleanTitle = rawTitle.replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").trim();
+  const cleanArtist = rawArtist.replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").trim();
+  const songLabel = cleanTitle && cleanArtist ? `${cleanTitle} - ${cleanArtist}` : cleanTitle || "Music Playback";
 
-  if (cleanTitle && cleanArtist) return `${cleanTitle} - ${cleanArtist}`.slice(0, 500);
-  if (cleanTitle) return cleanTitle.slice(0, 500);
-  return "";
+  if (is247 || track.is247Radio) {
+    return `:globe: ${songLabel}`.slice(0, 500);
+  }
+  return `:playing: ${songLabel}`.slice(0, 500);
+}
+
+export function formatCleanVoiceStatus(track: Track | null, is247 = false): string {
+  return formatVoiceChannelStatus(track, is247);
 }
 
 export interface Track {
@@ -191,7 +198,12 @@ export class MusicManager {
       try {
         if (this.isDestroyed) return;
         if (this.isPlaying && this.currentTrack) {
-          const targetStatus = formatCleanVoiceStatus(this.currentTrack);
+          const targetStatus = formatVoiceChannelStatus(this.currentTrack, this.twentyFourSeven.enabled);
+          if (this.lastVcStatus !== targetStatus) {
+            this.updateVoiceStatus(targetStatus, false).catch(() => {});
+          }
+        } else if (this.twentyFourSeven.enabled) {
+          const targetStatus = ":globe: 24/7 Voice Channel Radio";
           if (this.lastVcStatus !== targetStatus) {
             this.updateVoiceStatus(targetStatus, false).catch(() => {});
           }
@@ -200,6 +212,28 @@ export class MusicManager {
         }
       } catch {}
     }, 1000);
+  }
+
+  public async persistSession(): Promise<void> {
+    if (!this.voiceChannel || this.isDestroyed) return;
+    if (!this.currentTrack && !this.twentyFourSeven.enabled && this.queue.length === 0) {
+      await removePersistedSession(this.guildId);
+      return;
+    }
+    await savePersistedSession({
+      guildId: this.guildId,
+      voiceChannelId: this.voiceChannel.id,
+      textChannelId: this.textChannel?.id,
+      currentTrack: this.currentTrack,
+      queue: this.queue,
+      volume: this.volume,
+      speed: this.speed,
+      equalizer: this.equalizer,
+      loopMode: this.loopMode,
+      autoplay: this.autoplay,
+      twentyFourSeven: this.twentyFourSeven,
+      savedAt: Date.now(),
+    });
   }
 
   constructor(guildId: string, voiceChannel: VoiceBasedChannel, textChannel?: GuildTextBasedChannel) {
@@ -411,7 +445,10 @@ export class MusicManager {
 
         if (encoded) {
           track.encodedTrack = encoded;
-          await this.lavalinkPlayer.playTrack({ track: { encoded }, options: seekSeconds > 0 ? { startTime: seekSeconds * 1000 } : undefined });
+          await (this.lavalinkPlayer as any).playTrack({
+            track: { encoded },
+            ...(seekSeconds > 0 ? { startTime: seekSeconds * 1000 } : {}),
+          });
           this.isPlaying = true;
           this.isPaused = false;
           await this.sendPlayerEmbed();
@@ -549,11 +586,12 @@ export class MusicManager {
       }
 
       if (this.currentTrack) {
-        const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+        const cleanStatus = formatVoiceChannelStatus(this.currentTrack, this.twentyFourSeven.enabled);
         this.updateVoiceStatus(cleanStatus, true).catch(() => {});
       }
 
       await this.sendPlayerEmbed();
+      this.persistSession().catch(() => {});
     } catch (err) {
       logger.error({ err, track: track.title }, "Failed to initiate track playback");
       this.handleStreamError();
@@ -566,6 +604,7 @@ export class MusicManager {
       return 0;
     }
     this.queue.push(track);
+    this.persistSession().catch(() => {});
     return this.queue.length;
   }
 
@@ -758,6 +797,7 @@ export class MusicManager {
     }
     this.fallbackConnection = undefined;
     this.updateVoiceStatus("", true).catch(() => {});
+    removePersistedSession(this.guildId).catch(() => {});
   }
 
   public async seek(seconds: number): Promise<boolean> {
@@ -927,10 +967,22 @@ export class MusicManager {
 
   public async resume247Stream(): Promise<void> {
     await this.ensureConnection();
+    if (this.twentyFourSeven.query) {
+      const tracks = await searchTracks(this.twentyFourSeven.query, {
+        id: "system",
+        username: "24/7 System",
+      });
+      if (tracks && tracks.length > 0) {
+        const t = tracks[0];
+        t.is247Radio = true;
+        await this.playTrack(t);
+        return;
+      }
+    }
     this.currentTrack = null;
     this.isPlaying = false;
     this.isPaused = false;
-    await this.updateVoiceStatus("Ready to play", true).catch(() => {});
+    await this.updateVoiceStatus("🌐 24/7 Voice Channel Radio", true).catch(() => {});
   }
 
   public async sendPlayerEmbed(): Promise<void> {
@@ -1705,9 +1757,51 @@ export async function searchTracks(
 
 export async function init247Sessions(client: Client): Promise<void> {
   try {
+    // 1. Restore all persisted active music sessions (current playing song, queue, volume, eq, 24/7)
+    const persistedSessions = await getAllPersistedSessions();
+    const restoredGuilds = new Set<string>();
+
+    for (const session of persistedSessions) {
+      try {
+        if (!session.guildId || !session.voiceChannelId) continue;
+        const guild = client.guilds.cache.get(session.guildId);
+        if (!guild) continue;
+        const vc = guild.channels.cache.get(session.voiceChannelId) as VoiceBasedChannel;
+        if (!vc) continue;
+        const tc = session.textChannelId ? (guild.channels.cache.get(session.textChannelId) as GuildTextBasedChannel) : undefined;
+
+        const manager = getOrCreateMusicManager(session.guildId, vc, tc);
+        if (session.volume) manager.volume = session.volume;
+        if (session.speed) manager.speed = session.speed;
+        if (session.equalizer) manager.equalizer = session.equalizer as EqualizerPreset;
+        if (session.loopMode) manager.loopMode = session.loopMode as LoopMode;
+        if (session.autoplay !== undefined) manager.autoplay = session.autoplay;
+        if (session.queue && Array.isArray(session.queue)) manager.queue = session.queue;
+
+        if (session.twentyFourSeven?.enabled) {
+          manager.twentyFourSeven = {
+            enabled: true,
+            query: session.twentyFourSeven.query,
+            type: session.twentyFourSeven.type as any,
+            artistName: session.twentyFourSeven.artistName,
+            songMode: session.twentyFourSeven.songMode as any,
+          };
+          await manager.resume247Stream().catch(() => {});
+        } else if (session.currentTrack) {
+          // Re-continue playing the song that was playing before restart
+          manager.currentTrack = session.currentTrack;
+          await manager.playTrack(session.currentTrack, 0).catch(() => {});
+        }
+        restoredGuilds.add(session.guildId);
+      } catch (sessErr) {
+        logger.debug({ sessErr, guildId: session.guildId }, "Could not restore individual music session");
+      }
+    }
+
+    // 2. Fallback check for any 24/7 configs not already restored
     const allConfigs = await getAll247Configs();
     for (const cfg of allConfigs) {
-      if (!cfg.enabled || !cfg.voiceChannelId) continue;
+      if (restoredGuilds.has(cfg.guildId) || !cfg.enabled || !cfg.voiceChannelId) continue;
       const guild = client.guilds.cache.get(cfg.guildId);
       if (!guild) continue;
       const vc = guild.channels.cache.get(cfg.voiceChannelId) as VoiceBasedChannel;
@@ -1719,6 +1813,6 @@ export async function init247Sessions(client: Client): Promise<void> {
       await manager.resume247Stream().catch(() => {});
     }
   } catch (err) {
-    logger.warn({ err }, "Error restoring 24/7 sessions");
+    logger.warn({ err }, "Error restoring 24/7 & active music sessions");
   }
 }

@@ -164,7 +164,10 @@ export async function handleNoPrefixNLPMessage(message: Message): Promise<boolea
   const firstWord = (tokens[0] || "").toLowerCase();
   const rawArgs = tokens.slice(1);
 
-  // Resolve aliases (e.g. an -> antinuke, p -> play, st -> setup, etc.) and info flag
+  // Single-letter words (k, b, p, etc.) must NEVER trigger as no-prefix commands
+  if (firstWord.length <= 1) return false;
+
+  // Resolve aliases (e.g. an -> antinuke, st -> setup, etc.) and info flag
   const { canonicalName, resolvedArgs, isInfo } = resolveCommandAndArgs(firstWord, rawArgs);
 
   const commandMap = getCommandMap();

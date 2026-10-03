@@ -53,6 +53,7 @@ import modhistory from "./commands/modhistory";
 import modstats from "./commands/modstats";
 import mute from "./commands/mute";
 import nickname from "./commands/nickname";
+import noprefix from "./commands/noprefix";
 import note from "./commands/note";
 import nuke from "./commands/nuke";
 import nukeAntiWhitelist from "./commands/nukeAntiWhitelist";
@@ -351,6 +352,7 @@ const allCommands: SlashCommand[] = [
   intro,
   meme,
   nickname,
+  noprefix,
   nukeAntiWhitelist,
   partnershipScore,
   postProof,
