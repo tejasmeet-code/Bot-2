@@ -237300,7 +237300,7 @@ function getWorkingFfmpegPath() {
 }
 function formatVoiceChannelStatus(track, is247 = false) {
   if (!track && is247) {
-    return "\u{1F310} 24/7 Voice Channel Radio";
+    return "<a:World:1555133905412030607> 24/7 Voice Channel Radio";
   }
   if (!track) return "";
   const rawTitle = track.title || "";
@@ -237309,9 +237309,9 @@ function formatVoiceChannelStatus(track, is247 = false) {
   const cleanArtist = rawArtist.replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").trim();
   const songLabel = cleanTitle && cleanArtist ? `${cleanTitle} - ${cleanArtist}` : cleanTitle || "Music Playback";
   if (is247 || track.is247Radio) {
-    return `\u{1F310} ${songLabel}`.slice(0, 500);
+    return `<a:World:1555133905412030607> ${songLabel}`.slice(0, 500);
   }
-  return `\u25B6\uFE0F ${songLabel}`.slice(0, 500);
+  return `<a:white_music:1555133730371407944> ${songLabel}`.slice(0, 500);
 }
 function formatCleanVoiceStatus(track, is247 = false) {
   return formatVoiceChannelStatus(track, is247);
@@ -237983,7 +237983,7 @@ var init_musicManager = __esm({
                 });
               }
             } else if (this.twentyFourSeven.enabled) {
-              const targetStatus = "\u{1F310} 24/7 Voice Channel Radio";
+              const targetStatus = "<a:World:1555133905412030607> 24/7 Voice Channel Radio";
               if (this.lastVcStatus !== targetStatus) {
                 this.updateVoiceStatus(targetStatus, false).catch(() => {
                 });
@@ -238621,7 +238621,7 @@ var init_musicManager = __esm({
           if (!channelId) return;
           let finalStatus = statusText ? statusText.trim() : "";
           if (finalStatus) {
-            finalStatus = finalStatus.replace(/:globe:/gi, "\u{1F310}").replace(/:playing:/gi, "\u25B6\uFE0F").replace(/:play:/gi, "\u25B6\uFE0F").replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").replace(/\s+/g, " ").trim();
+            finalStatus = finalStatus.replace(/:globe:/gi, "<a:World:1555133905412030607>").replace(/🌐/g, "<a:World:1555133905412030607>").replace(/:playing:/gi, "<a:white_music:1555133730371407944>").replace(/:play:/gi, "<a:white_music:1555133730371407944>").replace(/▶️/g, "<a:white_music:1555133730371407944>").replace(/\s+/g, " ").trim();
           }
           const sanitized = finalStatus.slice(0, 500);
           const now = Date.now();

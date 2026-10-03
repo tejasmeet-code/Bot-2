@@ -62,7 +62,7 @@ import {
 
 export function formatVoiceChannelStatus(track: Track | null, is247 = false): string {
   if (!track && is247) {
-    return "🌐 24/7 Voice Channel Radio";
+    return "<a:World:1555133905412030607> 24/7 Voice Channel Radio";
   }
   if (!track) return "";
 
@@ -73,9 +73,9 @@ export function formatVoiceChannelStatus(track: Track | null, is247 = false): st
   const songLabel = cleanTitle && cleanArtist ? `${cleanTitle} - ${cleanArtist}` : cleanTitle || "Music Playback";
 
   if (is247 || track.is247Radio) {
-    return `🌐 ${songLabel}`.slice(0, 500);
+    return `<a:World:1555133905412030607> ${songLabel}`.slice(0, 500);
   }
-  return `▶️ ${songLabel}`.slice(0, 500);
+  return `<a:white_music:1555133730371407944> ${songLabel}`.slice(0, 500);
 }
 
 export function formatCleanVoiceStatus(track: Track | null, is247 = false): string {
@@ -204,7 +204,7 @@ export class MusicManager {
             this.updateVoiceStatus(targetStatus, false).catch(() => {});
           }
         } else if (this.twentyFourSeven.enabled) {
-          const targetStatus = "🌐 24/7 Voice Channel Radio";
+          const targetStatus = "<a:World:1555133905412030607> 24/7 Voice Channel Radio";
           if (this.lastVcStatus !== targetStatus) {
             this.updateVoiceStatus(targetStatus, false).catch(() => {});
           }
@@ -887,12 +887,13 @@ export class MusicManager {
 
       let finalStatus = statusText ? statusText.trim() : "";
       if (finalStatus) {
-        // Convert emoji shortcodes to unicode so Discord Voice Channel status renders emoji icons
+        // Normalize globe & music emojis to the exact custom animated emojis requested
         finalStatus = finalStatus
-          .replace(/:globe:/gi, "🌐")
-          .replace(/:playing:/gi, "▶️")
-          .replace(/:play:/gi, "▶️")
-          .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
+          .replace(/:globe:/gi, "<a:World:1555133905412030607>")
+          .replace(/🌐/g, "<a:World:1555133905412030607>")
+          .replace(/:playing:/gi, "<a:white_music:1555133730371407944>")
+          .replace(/:play:/gi, "<a:white_music:1555133730371407944>")
+          .replace(/▶️/g, "<a:white_music:1555133730371407944>")
           .replace(/\s+/g, " ")
           .trim();
       }
