@@ -214,12 +214,12 @@ export const playCommand: SlashCommand = {
             `Remotely summoning music into a voice channel using channel ID or user mention without being in the VC is an exclusive **Zenith Premium** feature!\n\n` +
             `• **Free Usage**: Connect to any voice channel yourself and run \`.play <song>\` for free.\n` +
             `• **Premium Perks**: Summon the bot to any VC using channel ID/mention or user ID/mention without joining it!\n\n` +
-            `👑 **Unlock god-tier perks today:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
-          footer: "👑 Zenith Audio VIP Engine • Upgrade: discord.gg/gFgAfpSYdp",
+            `${CE.crown.str} **Unlock god-tier perks today:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
+          footer: "Zenith Audio VIP Engine • Upgrade: discord.gg/gFgAfpSYdp",
         });
         await interaction.reply({
           embeds: [premiumEmbed],
-          components: [buildSupportRow("⚡ Get VIP Pass")] as any,
+          components: [buildSupportRow("Get VIP Pass")] as any,
           ephemeral: true,
         });
         return;
@@ -306,12 +306,12 @@ export const playCommand: SlashCommand = {
             `> **Artist:** \`${track.artist}\` • **Duration:** \`${formatTime(track.durationSeconds)}\`\n` +
             `> **Queue Position:** \`#${player.queue.length}\` • **Target Channel:** <#${voiceChannel.id}>\n` +
             `> **Requested By:** <@${interaction.user.id}>\n\n` +
-            `💎 **Tired of random bot leaves and audio drops?**\n` +
+            `${CE.crown.str} **Tired of random bot leaves and audio drops?**\n` +
             `Upgrade to **Zenith Premium** for dedicated 24/7 Voice nodes, zero queue delays, and instantaneous song buffering.\n\n` +
-            `👑 **Join elite communities:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
+            `${CE.crown.str} **Join elite communities:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
           thumbnail: track.thumbnailUrl,
           color: COLORS.primary,
-          footer: "👑 Zenith High-Fidelity Audio • Upgrade: discord.gg/gFgAfpSYdp",
+          footer: "Zenith High-Fidelity Audio • Upgrade: discord.gg/gFgAfpSYdp",
         });
 
         const actionRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -601,7 +601,7 @@ export const shuffleCommand: SlashCommand = {
 
     const count = player.shuffle();
     await interaction.reply({
-      content: `🔀 **Shuffled \`${count}\` track(s) in the queue!**`,
+      content: `${CE.shuffle.str} **Shuffled \`${count}\` track(s) in the queue!**`,
     });
   },
 };
@@ -637,7 +637,7 @@ export const removeCommand: SlashCommand = {
     }
 
     await interaction.reply({
-      content: `🗑️ **Removed track #${pos}:** **${removed.title}** from the queue.`,
+      content: `${CE.white_cancel.str} **Removed track #${pos}:** **${removed.title}** from the queue.`,
     });
   },
 };

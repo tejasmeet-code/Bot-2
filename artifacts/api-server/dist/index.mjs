@@ -236564,7 +236564,7 @@ __export(sourceResolver_exports, {
   getDirectMediaStreamUrl: () => getDirectMediaStreamUrl,
   getITunesAudioStream: () => getITunesAudioStream,
   getJioSaavnAudioStream: () => getJioSaavnAudioStream,
-  getSoundCloudAudioStream: () => getSoundCloudAudioStream2,
+  getSoundCloudAudioStream: () => getSoundCloudAudioStream,
   getSoundCloudClientId: () => getSoundCloudClientId,
   resolveAllAudioSources: () => resolveAllAudioSources,
   resolveFullStreamUrl: () => resolveFullStreamUrl,
@@ -236630,7 +236630,7 @@ async function resolveYouTubeTitleFromUrl(url2) {
   }
   return null;
 }
-async function getSoundCloudAudioStream2(query) {
+async function getSoundCloudAudioStream(query) {
   if (!query || !query.trim()) return null;
   let trimmed = query.trim();
   if (trimmed.includes("youtube.com") || trimmed.includes("youtu.be")) {
@@ -236736,7 +236736,7 @@ async function getDirectMediaStreamUrl(targetUrl, trackSearchTitle) {
   const searchQuery = trackSearchTitle || targetUrl;
   const saavnStream = await getJioSaavnAudioStream(searchQuery);
   if (saavnStream) return saavnStream;
-  const scStream = await getSoundCloudAudioStream2(searchQuery);
+  const scStream = await getSoundCloudAudioStream(searchQuery);
   if (scStream) return scStream;
   const match2 = YOUTUBE_URL_REGEX.exec(targetUrl);
   if (targetUrl.includes("youtube.com") || targetUrl.includes("youtu.be") || match2) {
@@ -236954,6 +236954,7 @@ __export(musicManager_exports, {
   buildNowPlayingEmbed: () => buildNowPlayingEmbed,
   buildPlayerActionRows: () => buildPlayerActionRows,
   disconnectAllVoiceChannels: () => disconnectAllVoiceChannels,
+  formatCleanVoiceStatus: () => formatCleanVoiceStatus,
   formatTime: () => formatTime,
   getMusicManager: () => getMusicManager,
   getMusicPlayer: () => getMusicPlayer,
@@ -236992,6 +236993,16 @@ function getWorkingFfmpegPath() {
     }
   }
   return ffmpegStatic || "ffmpeg";
+}
+function formatCleanVoiceStatus(track) {
+  if (!track) return "";
+  const rawTitle = track.title || "";
+  const rawArtist = track.artist || "";
+  const cleanTitle = rawTitle.replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "").replace(/\s+/g, " ").trim();
+  const cleanArtist = rawArtist.replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "").replace(/\s+/g, " ").trim();
+  if (cleanTitle && cleanArtist) return `${cleanTitle} - ${cleanArtist}`.slice(0, 500);
+  if (cleanTitle) return cleanTitle.slice(0, 500);
+  return "";
 }
 function getMusicManager(guildId) {
   return musicManagers.get(guildId);
@@ -237293,9 +237304,12 @@ async function handleMusicSelectMenu(interaction) {
           content: `${CE.success.str} **Equalizer & Audio FX Updated**: Preset set to **${info.label}** (\`${preset.toUpperCase()}\`)!`,
           ephemeral: true
         });
+        await manager.sendPlayerEmbed();
         if (interaction.message) {
-          manager.lastPlayerMessage = interaction.message;
-          await manager.sendPlayerEmbed();
+          const embed = buildNowPlayingEmbed(manager);
+          const rows3 = buildPlayerActionRows(manager);
+          await interaction.message.edit({ embeds: [embed], components: rows3 }).catch(() => {
+          });
         }
         return;
       }
@@ -237310,11 +237324,31 @@ async function handleMusicSelectMenu(interaction) {
       const sources = userCache?.options || await resolveAllAudioSources("track", "artist");
       const sourceObj = sources[idx];
       if (manager && manager.currentTrack && sourceObj) {
+        manager.preferredSource = sourceObj;
+        const trackTitle = manager.currentTrack.title;
+        const trackArtist = manager.currentTrack.artist;
+        const trackSearch = `${trackTitle} ${trackArtist}`.trim();
+        let newStreamUrl = "";
+        if (sourceObj.id === "jio_saavan") {
+          newStreamUrl = await getJioSaavnAudioStream(trackSearch) || "";
+        } else if (sourceObj.id === "apple_music") {
+          newStreamUrl = await getITunesAudioStream(trackSearch) || "";
+        } else if (sourceObj.id === "amazon_music") {
+          newStreamUrl = await getSoundCloudAudioStream(trackSearch) || "";
+        } else {
+          newStreamUrl = await getDirectMediaStreamUrl(manager.currentTrack.url, trackSearch) || "";
+        }
+        if (newStreamUrl) {
+          manager.currentTrack.streamUrl = newStreamUrl;
+        }
         manager.currentTrack.sourceName = `${sourceObj.icon} ${sourceObj.sourceName}`;
+        const currentPos = manager.getEstimatedCurrentSeconds();
         await interaction.reply({
-          content: `${CE.success.str} **Stream Source Switched**: Active audio source changed to **${sourceObj.icon} ${sourceObj.sourceName}** (\`${sourceObj.quality}\`)!`,
+          content: `${CE.success.str} **Audio Stream Source Switched**: Active source changed to **${sourceObj.icon} ${sourceObj.sourceName}** (\`${sourceObj.quality}\`)!`,
           ephemeral: true
         });
+        await manager.playTrack(manager.currentTrack, currentPos);
+        await manager.sendPlayerEmbed();
         if (interaction.message) {
           const embed = buildNowPlayingEmbed(manager);
           const rows3 = buildPlayerActionRows(manager);
@@ -237375,9 +237409,10 @@ function buildPlayerActionRows(manager) {
     new import_discord163.ButtonBuilder().setCustomId("music:speed_up").setLabel(`Speed + (${manager.speed}x)`).setEmoji(CE.Speed_more.str).setStyle(manager.speed !== 1 ? import_discord163.ButtonStyle.Primary : import_discord163.ButtonStyle.Secondary),
     new import_discord163.ButtonBuilder().setCustomId("music:247").setLabel(`24/7: ${is247 ? "ON" : "OFF"}`).setEmoji(CE.white_mic.str).setStyle(is247 ? import_discord163.ButtonStyle.Success : import_discord163.ButtonStyle.Secondary)
   );
+  const activeSourceLabel = manager.currentTrack?.sourceName ? manager.currentTrack.sourceName.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").slice(0, 20) : "Source";
   const row3 = new import_discord163.ActionRowBuilder().addComponents(
     new import_discord163.ButtonBuilder().setCustomId("music:eq").setLabel(`Equalizer FX: ${manager.equalizer.toUpperCase()}`).setEmoji(CE.equalizer ? CE.equalizer.str : CE.music.str).setStyle(manager.equalizer !== "off" ? import_discord163.ButtonStyle.Success : import_discord163.ButtonStyle.Secondary),
-    new import_discord163.ButtonBuilder().setCustomId("music:source").setLabel("Audio Source").setEmoji(CE.link.str).setStyle(import_discord163.ButtonStyle.Secondary),
+    new import_discord163.ButtonBuilder().setCustomId("music:source").setLabel(`Source: ${activeSourceLabel}`).setEmoji(CE.link.str).setStyle(import_discord163.ButtonStyle.Secondary),
     new import_discord163.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord163.ButtonStyle.Secondary)
   );
   return [row1, row2, row3];
@@ -237577,12 +237612,33 @@ var init_musicManager = __esm({
       inactivityTimeout;
       lastSearchResults;
       lastSearchQuery;
+      preferredSource;
       twentyFourSeven = { enabled: false, songMode: "full" };
       lastVcStatus = "";
       lastVcStatusTime = 0;
       consecutiveFailures = 0;
       isEnding = false;
       isDestroyed = false;
+      statusWatchdogInterval;
+      startStatusWatchdog() {
+        if (this.statusWatchdogInterval) return;
+        this.statusWatchdogInterval = setInterval(() => {
+          try {
+            if (this.isDestroyed) return;
+            if (this.isPlaying && this.currentTrack) {
+              const targetStatus = formatCleanVoiceStatus(this.currentTrack);
+              if (this.lastVcStatus !== targetStatus) {
+                this.updateVoiceStatus(targetStatus, false).catch(() => {
+                });
+              }
+            } else if (!this.isPlaying && this.lastVcStatus !== "") {
+              this.updateVoiceStatus("", true).catch(() => {
+              });
+            }
+          } catch {
+          }
+        }, 1e3);
+      }
       constructor(guildId, voiceChannel, textChannel) {
         this.guildId = guildId;
         this.voiceChannel = voiceChannel;
@@ -237667,8 +237723,8 @@ var init_musicManager = __esm({
           this.isEnding = false;
           this.trackStartedAt = Date.now();
           if (this.currentTrack) {
-            const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-            this.updateVoiceStatus(statusText, true).catch(() => {
+            const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+            this.updateVoiceStatus(cleanStatus, true).catch(() => {
             });
           }
         });
@@ -237695,21 +237751,9 @@ var init_musicManager = __esm({
           this.isEnding = false;
           this.trackStartedAt = Date.now();
           if (this.currentTrack) {
-            const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-            this.updateVoiceStatus(statusText, true).catch(() => {
+            const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+            this.updateVoiceStatus(cleanStatus, true).catch(() => {
             });
-            try {
-              const clientUser = this.voiceChannel.client.user;
-              clientUser?.setPresence({
-                activities: [{
-                  name: `${this.currentTrack.title}`,
-                  type: 2
-                  /* Listening */
-                }],
-                status: "online"
-              });
-            } catch {
-            }
           }
         });
         player.on(AudioPlayerStatus.Idle, () => {
@@ -237753,14 +237797,20 @@ var init_musicManager = __esm({
       /**
        * Plays a target track across Lavalink or native voice stream
        */
-      async playTrack(track) {
+      async playTrack(track, seekSeconds = 0) {
         try {
           await this.ensureConnection();
-          if (this.currentTrack && !this.currentTrack.is247Radio) {
+          if (this.currentTrack && !this.currentTrack.is247Radio && seekSeconds === 0 && this.currentTrack !== track) {
             this.previousTracks.unshift(this.currentTrack);
             if (this.previousTracks.length > 20) this.previousTracks.pop();
           }
+          if (this.preferredSource && !track.sourceName) {
+            track.sourceName = `${this.preferredSource.icon} ${this.preferredSource.sourceName}`;
+          }
           this.currentTrack = track;
+          this.playbackOffsetSeconds = seekSeconds;
+          this.trackStartedAt = Date.now() - seekSeconds * 1e3;
+          this.startStatusWatchdog();
           if (this.lavalinkPlayer) {
             let encoded = track.encodedTrack;
             if (!encoded) {
@@ -237773,7 +237823,7 @@ var init_musicManager = __esm({
             }
             if (encoded) {
               track.encodedTrack = encoded;
-              await this.lavalinkPlayer.playTrack({ track: { encoded } });
+              await this.lavalinkPlayer.playTrack({ track: { encoded }, options: seekSeconds > 0 ? { startTime: seekSeconds * 1e3 } : void 0 });
               this.isPlaying = true;
               this.isPaused = false;
               await this.sendPlayerEmbed();
@@ -237821,21 +237871,22 @@ var init_musicManager = __esm({
             this.handleStreamError();
             return;
           }
-          logger.info({ targetStreamUrl: targetStreamUrl.substring(0, 60) + "...", track: track.title }, "Streaming direct media for native playback");
+          logger.info({ targetStreamUrl: targetStreamUrl.substring(0, 60) + "...", track: track.title, seekSeconds }, "Streaming direct media for native playback");
           const ffmpegBin = getWorkingFfmpegPath();
           const afFilters = [];
           if (this.speed !== 1) {
             afFilters.push(`atempo=${this.speed}`);
           }
-          if (this.equalizer === "bassboost") afFilters.push("bass=g=8:f=110:w=0.6");
-          else if (this.equalizer === "superbass") afFilters.push("bass=g=14:f=80:w=0.8");
-          else if (this.equalizer === "treble") afFilters.push("treble=g=8:f=4000:w=0.6");
+          if (this.equalizer === "bassboost") afFilters.push("equalizer=f=110:width_type=h:width=50:g=8");
+          else if (this.equalizer === "superbass") afFilters.push("equalizer=f=60:width_type=h:width=40:g=12,equalizer=f=100:width_type=h:width=50:g=8");
+          else if (this.equalizer === "treble") afFilters.push("equalizer=f=4000:width_type=h:width=1000:g=8");
           else if (this.equalizer === "nightcore") afFilters.push("asetrate=48000*1.25,aresample=48000");
           else if (this.equalizer === "vaporwave") afFilters.push("asetrate=48000*0.85,aresample=48000");
           else if (this.equalizer === "8d") afFilters.push("apulsator=hz=0.125");
-          else if (this.equalizer === "highpitch") afFilters.push("asetrate=48000*1.3,aresample=48000");
-          else if (this.equalizer === "lowpitch") afFilters.push("asetrate=48000*0.75,aresample=48000");
-          else if (this.equalizer === "pop") afFilters.push("equalizer=f=1000:width_type=h:width=200:g=3");
+          else if (this.equalizer === "highpitch") afFilters.push("asetrate=48000*1.25,aresample=48000,atempo=0.8");
+          else if (this.equalizer === "lowpitch") afFilters.push("asetrate=48000*0.8,aresample=48000,atempo=1.25");
+          else if (this.equalizer === "karaoke") afFilters.push("stereotools=mutel=0:muter=0:mlev=0.5:slev=0.5");
+          else if (this.equalizer === "pop") afFilters.push("equalizer=f=1000:width_type=h:width=200:g=3,equalizer=f=4000:width_type=h:width=1000:g=3");
           else if (this.equalizer === "rock") afFilters.push("equalizer=f=80:width_type=h:width=100:g=4,equalizer=f=8000:width_type=h:width=1000:g=4");
           else if (this.equalizer === "electronic") afFilters.push("equalizer=f=60:width_type=h:width=80:g=6,equalizer=f=12000:width_type=h:width=2000:g=4");
           else if (this.equalizer === "soft") afFilters.push("equalizer=f=3000:width_type=h:width=1000:g=-3");
@@ -237846,20 +237897,28 @@ var init_musicManager = __esm({
             "1",
             "-reconnect_streamed",
             "1",
-            "-reconnect_at_eof",
-            "1",
             "-reconnect_delay_max",
             "5",
+            "-thread_queue_size",
+            "4096",
             "-analyzeduration",
-            "10000000",
+            "2000000",
             "-probesize",
-            "10000000",
+            "2000000",
+            "-avoid_negative_ts",
+            "make_zero",
+            "-nostats"
+          ];
+          if (seekSeconds > 0) {
+            ffmpegArgs.push("-ss", String(Math.max(0, Math.floor(seekSeconds))));
+          }
+          ffmpegArgs.push(
             "-i",
             targetStreamUrl,
             "-loglevel",
             "warning",
             "-vn"
-          ];
+          );
           if (afFilters.length > 0) {
             ffmpegArgs.push("-af", afFilters.join(","));
           }
@@ -237882,7 +237941,7 @@ var init_musicManager = __esm({
             ff.stderr.resume();
           }
           const { PassThrough: PassThrough3 } = await import("stream");
-          const audioBufferStream = new PassThrough3({ highWaterMark: 1024 * 1024 });
+          const audioBufferStream = new PassThrough3({ highWaterMark: 8 * 1024 * 1024 });
           ff.stdout.pipe(audioBufferStream);
           const resource = createAudioResource(audioBufferStream, {
             inputType: StreamType.Raw,
@@ -237899,8 +237958,8 @@ var init_musicManager = __esm({
             this.isPaused = false;
           }
           if (this.currentTrack) {
-            const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-            this.updateVoiceStatus(statusText, true).catch(() => {
+            const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+            this.updateVoiceStatus(cleanStatus, true).catch(() => {
             });
           }
           await this.sendPlayerEmbed();
@@ -237931,7 +237990,8 @@ var init_musicManager = __esm({
         }
         this.isPaused = true;
         if (this.currentTrack) {
-          this.updateVoiceStatus(`Paused: ${this.currentTrack.title}`, true).catch(() => {
+          const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+          this.updateVoiceStatus(cleanStatus ? `Paused: ${cleanStatus}` : "", true).catch(() => {
           });
         }
         return true;
@@ -237945,8 +238005,8 @@ var init_musicManager = __esm({
         }
         this.isPaused = false;
         if (this.currentTrack) {
-          const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-          this.updateVoiceStatus(statusText, true).catch(() => {
+          const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+          this.updateVoiceStatus(cleanStatus, true).catch(() => {
           });
         }
         return true;
@@ -238036,11 +238096,12 @@ var init_musicManager = __esm({
         if (idx === -1) idx = 2;
         const next = speeds[Math.min(speeds.length - 1, idx + 1)];
         this.speed = next;
+        const currentPos = this.getEstimatedCurrentSeconds();
         if (this.lavalinkPlayer) {
           this.lavalinkPlayer.setFilters({ timescale: { speed: next } }).catch(() => {
           });
         } else if (this.currentTrack) {
-          this.playTrack(this.currentTrack).catch(() => {
+          this.playTrack(this.currentTrack, currentPos).catch(() => {
           });
         }
         return next;
@@ -238051,11 +238112,12 @@ var init_musicManager = __esm({
         if (idx === -1) idx = 2;
         const prev = speeds[Math.max(0, idx - 1)];
         this.speed = prev;
+        const currentPos = this.getEstimatedCurrentSeconds();
         if (this.lavalinkPlayer) {
           this.lavalinkPlayer.setFilters({ timescale: { speed: prev } }).catch(() => {
           });
         } else if (this.currentTrack) {
-          this.playTrack(this.currentTrack).catch(() => {
+          this.playTrack(this.currentTrack, currentPos).catch(() => {
           });
         }
         return prev;
@@ -238120,6 +238182,7 @@ var init_musicManager = __esm({
       }
       async setEqualizer(preset) {
         this.equalizer = preset;
+        const currentPos = this.getEstimatedCurrentSeconds();
         if (this.lavalinkPlayer) {
           if (preset === "bassboost") {
             await this.lavalinkPlayer.setFilters({ equalizer: [{ band: 0, gain: 0.2 }, { band: 1, gain: 0.15 }, { band: 2, gain: 0.1 }] });
@@ -238133,7 +238196,7 @@ var init_musicManager = __esm({
             await this.lavalinkPlayer.clearFilters();
           }
         } else if (this.currentTrack) {
-          await this.playTrack(this.currentTrack).catch(() => {
+          await this.playTrack(this.currentTrack, currentPos).catch(() => {
           });
         }
         return EQUALIZER_PRESETS[preset] || EQUALIZER_PRESETS.off;
@@ -238163,12 +238226,11 @@ var init_musicManager = __esm({
           if (!channelId) return;
           let finalStatus = statusText ? statusText.trim() : "";
           if (finalStatus) {
-            const cleanName = finalStatus.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").trim();
-            finalStatus = cleanName;
+            finalStatus = finalStatus.replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "").replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "").replace(/\s+/g, " ").trim();
           }
           const sanitized = finalStatus.slice(0, 500);
           const now = Date.now();
-          if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 15e3 && !force) {
+          if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 5e3 && !force) {
             return;
           }
           this.lastVcStatus = sanitized;
@@ -238633,12 +238695,12 @@ Remotely summoning music into a voice channel using channel ID or user mention w
 \u2022 **Free Usage**: Connect to any voice channel yourself and run \`.play <song>\` for free.
 \u2022 **Premium Perks**: Summon the bot to any VC using channel ID/mention or user ID/mention without joining it!
 
-\u{1F451} **Unlock god-tier perks today:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
-              footer: "\u{1F451} Zenith Audio VIP Engine \u2022 Upgrade: discord.gg/gFgAfpSYdp"
+${CE.crown.str} **Unlock god-tier perks today:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
+              footer: "Zenith Audio VIP Engine \u2022 Upgrade: discord.gg/gFgAfpSYdp"
             });
             await interaction.reply({
               embeds: [premiumEmbed],
-              components: [buildSupportRow("\u26A1 Get VIP Pass")],
+              components: [buildSupportRow("Get VIP Pass")],
               ephemeral: true
             });
             return;
@@ -238718,13 +238780,13 @@ Try different keywords, artist name, or provide a direct link!`,
 > **Queue Position:** \`#${player.queue.length}\` \u2022 **Target Channel:** <#${voiceChannel.id}>
 > **Requested By:** <@${interaction.user.id}>
 
-\u{1F48E} **Tired of random bot leaves and audio drops?**
+${CE.crown.str} **Tired of random bot leaves and audio drops?**
 Upgrade to **Zenith Premium** for dedicated 24/7 Voice nodes, zero queue delays, and instantaneous song buffering.
 
-\u{1F451} **Join elite communities:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
+${CE.crown.str} **Join elite communities:** [Claim VIP Access](https://discord.gg/gFgAfpSYdp)`,
               thumbnail: track.thumbnailUrl,
               color: COLORS.primary,
-              footer: "\u{1F451} Zenith High-Fidelity Audio \u2022 Upgrade: discord.gg/gFgAfpSYdp"
+              footer: "Zenith High-Fidelity Audio \u2022 Upgrade: discord.gg/gFgAfpSYdp"
             });
             const actionRow = new import_discord166.ActionRowBuilder().addComponents(
               new import_discord166.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord166.ButtonStyle.Secondary),
@@ -238929,7 +238991,7 @@ Skipped **${skipped?.title || "Current Track"}**.
         }
         const count = player.shuffle();
         await interaction.reply({
-          content: `\u{1F500} **Shuffled \`${count}\` track(s) in the queue!**`
+          content: `${CE.shuffle.str} **Shuffled \`${count}\` track(s) in the queue!**`
         });
       }
     };
@@ -238954,7 +239016,7 @@ Skipped **${skipped?.title || "Current Track"}**.
           return;
         }
         await interaction.reply({
-          content: `\u{1F5D1}\uFE0F **Removed track #${pos}:** **${removed.title}** from the queue.`
+          content: `${CE.white_cancel.str} **Removed track #${pos}:** **${removed.title}** from the queue.`
         });
       }
     };

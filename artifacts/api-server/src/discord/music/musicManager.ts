@@ -44,7 +44,36 @@ import { CE, COLORS, prettyEmbed } from "../utils/embedStyle";
 import { logger } from "../../lib/logger";
 import { set247Config, getAll247Configs } from "../storage/music247";
 import { getShoukaku, resolveLavalinkTracks, getLavalinkNode, waitForLavalinkNode } from "./lavalinkClient";
-import { resolveSpotifyUrl, resolveYouTubeUrl, resolveAllAudioSources, getDirectMediaStreamUrl, type AudioSourceOption } from "./sourceResolver";
+import {
+  resolveSpotifyUrl,
+  resolveYouTubeUrl,
+  resolveAllAudioSources,
+  getDirectMediaStreamUrl,
+  getSoundCloudAudioStream,
+  getITunesAudioStream,
+  getJioSaavnAudioStream,
+  type AudioSourceOption,
+} from "./sourceResolver";
+
+export function formatCleanVoiceStatus(track: Track | null): string {
+  if (!track) return "";
+  const rawTitle = track.title || "";
+  const rawArtist = track.artist || "";
+  const cleanTitle = rawTitle
+    .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
+    .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const cleanArtist = rawArtist
+    .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
+    .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (cleanTitle && cleanArtist) return `${cleanTitle} - ${cleanArtist}`.slice(0, 500);
+  if (cleanTitle) return cleanTitle.slice(0, 500);
+  return "";
+}
 
 export interface Track {
   title: string;
@@ -139,6 +168,7 @@ export class MusicManager {
   public inactivityTimeout?: NodeJS.Timeout;
   public lastSearchResults?: Track[];
   public lastSearchQuery?: string;
+  public preferredSource?: AudioSourceOption;
 
   public twentyFourSeven: {
     enabled: boolean;
@@ -153,6 +183,24 @@ export class MusicManager {
   private consecutiveFailures = 0;
   private isEnding = false;
   public isDestroyed = false;
+  private statusWatchdogInterval?: NodeJS.Timeout;
+
+  public startStatusWatchdog(): void {
+    if (this.statusWatchdogInterval) return;
+    this.statusWatchdogInterval = setInterval(() => {
+      try {
+        if (this.isDestroyed) return;
+        if (this.isPlaying && this.currentTrack) {
+          const targetStatus = formatCleanVoiceStatus(this.currentTrack);
+          if (this.lastVcStatus !== targetStatus) {
+            this.updateVoiceStatus(targetStatus, false).catch(() => {});
+          }
+        } else if (!this.isPlaying && this.lastVcStatus !== "") {
+          this.updateVoiceStatus("", true).catch(() => {});
+        }
+      } catch {}
+    }, 1000);
+  }
 
   constructor(guildId: string, voiceChannel: VoiceBasedChannel, textChannel?: GuildTextBasedChannel) {
     this.guildId = guildId;
@@ -252,8 +300,8 @@ export class MusicManager {
       this.trackStartedAt = Date.now();
 
       if (this.currentTrack) {
-        const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-        this.updateVoiceStatus(statusText, true).catch(() => {});
+        const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+        this.updateVoiceStatus(cleanStatus, true).catch(() => {});
       }
     });
 
@@ -283,15 +331,8 @@ export class MusicManager {
       this.trackStartedAt = Date.now();
 
       if (this.currentTrack) {
-        const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-        this.updateVoiceStatus(statusText, true).catch(() => {});
-        try {
-          const clientUser = (this.voiceChannel.client as any).user;
-          clientUser?.setPresence({
-            activities: [{ name: `${this.currentTrack.title}`, type: 2 /* Listening */ }],
-            status: "online",
-          });
-        } catch {}
+        const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+        this.updateVoiceStatus(cleanStatus, true).catch(() => {});
       }
     });
 
@@ -338,16 +379,23 @@ export class MusicManager {
   /**
    * Plays a target track across Lavalink or native voice stream
    */
-  public async playTrack(track: Track): Promise<void> {
+  public async playTrack(track: Track, seekSeconds = 0): Promise<void> {
     try {
       await this.ensureConnection();
 
-      if (this.currentTrack && !this.currentTrack.is247Radio) {
+      if (this.currentTrack && !this.currentTrack.is247Radio && seekSeconds === 0 && this.currentTrack !== track) {
         this.previousTracks.unshift(this.currentTrack);
         if (this.previousTracks.length > 20) this.previousTracks.pop();
       }
 
+      if (this.preferredSource && !track.sourceName) {
+        track.sourceName = `${this.preferredSource.icon} ${this.preferredSource.sourceName}`;
+      }
+
       this.currentTrack = track;
+      this.playbackOffsetSeconds = seekSeconds;
+      this.trackStartedAt = Date.now() - (seekSeconds * 1000);
+      this.startStatusWatchdog();
 
       // 1. Play via Lavalink if player is active
       if (this.lavalinkPlayer) {
@@ -363,7 +411,7 @@ export class MusicManager {
 
         if (encoded) {
           track.encodedTrack = encoded;
-          await this.lavalinkPlayer.playTrack({ track: { encoded } });
+          await this.lavalinkPlayer.playTrack({ track: { encoded }, options: seekSeconds > 0 ? { startTime: seekSeconds * 1000 } : undefined });
           this.isPlaying = true;
           this.isPaused = false;
           await this.sendPlayerEmbed();
@@ -415,7 +463,7 @@ export class MusicManager {
         return;
       }
 
-      logger.info({ targetStreamUrl: targetStreamUrl.substring(0, 60) + "...", track: track.title }, "Streaming direct media for native playback");
+      logger.info({ targetStreamUrl: targetStreamUrl.substring(0, 60) + "...", track: track.title, seekSeconds }, "Streaming direct media for native playback");
       const ffmpegBin = getWorkingFfmpegPath();
 
       const afFilters: string[] = [];
@@ -423,15 +471,16 @@ export class MusicManager {
         afFilters.push(`atempo=${this.speed}`);
       }
 
-      if (this.equalizer === "bassboost") afFilters.push("bass=g=8:f=110:w=0.6");
-      else if (this.equalizer === "superbass") afFilters.push("bass=g=14:f=80:w=0.8");
-      else if (this.equalizer === "treble") afFilters.push("treble=g=8:f=4000:w=0.6");
+      if (this.equalizer === "bassboost") afFilters.push("equalizer=f=110:width_type=h:width=50:g=8");
+      else if (this.equalizer === "superbass") afFilters.push("equalizer=f=60:width_type=h:width=40:g=12,equalizer=f=100:width_type=h:width=50:g=8");
+      else if (this.equalizer === "treble") afFilters.push("equalizer=f=4000:width_type=h:width=1000:g=8");
       else if (this.equalizer === "nightcore") afFilters.push("asetrate=48000*1.25,aresample=48000");
       else if (this.equalizer === "vaporwave") afFilters.push("asetrate=48000*0.85,aresample=48000");
       else if (this.equalizer === "8d") afFilters.push("apulsator=hz=0.125");
-      else if (this.equalizer === "highpitch") afFilters.push("asetrate=48000*1.3,aresample=48000");
-      else if (this.equalizer === "lowpitch") afFilters.push("asetrate=48000*0.75,aresample=48000");
-      else if (this.equalizer === "pop") afFilters.push("equalizer=f=1000:width_type=h:width=200:g=3");
+      else if (this.equalizer === "highpitch") afFilters.push("asetrate=48000*1.25,aresample=48000,atempo=0.8");
+      else if (this.equalizer === "lowpitch") afFilters.push("asetrate=48000*0.8,aresample=48000,atempo=1.25");
+      else if (this.equalizer === "karaoke") afFilters.push("stereotools=mutel=0:muter=0:mlev=0.5:slev=0.5");
+      else if (this.equalizer === "pop") afFilters.push("equalizer=f=1000:width_type=h:width=200:g=3,equalizer=f=4000:width_type=h:width=1000:g=3");
       else if (this.equalizer === "rock") afFilters.push("equalizer=f=80:width_type=h:width=100:g=4,equalizer=f=8000:width_type=h:width=1000:g=4");
       else if (this.equalizer === "electronic") afFilters.push("equalizer=f=60:width_type=h:width=80:g=6,equalizer=f=12000:width_type=h:width=2000:g=4");
       else if (this.equalizer === "soft") afFilters.push("equalizer=f=3000:width_type=h:width=1000:g=-3");
@@ -440,14 +489,23 @@ export class MusicManager {
         "-user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         "-reconnect", "1",
         "-reconnect_streamed", "1",
-        "-reconnect_at_eof", "1",
         "-reconnect_delay_max", "5",
-        "-analyzeduration", "10000000",
-        "-probesize", "10000000",
+        "-thread_queue_size", "4096",
+        "-analyzeduration", "2000000",
+        "-probesize", "2000000",
+        "-avoid_negative_ts", "make_zero",
+        "-nostats",
+      ];
+
+      if (seekSeconds > 0) {
+        ffmpegArgs.push("-ss", String(Math.max(0, Math.floor(seekSeconds))));
+      }
+
+      ffmpegArgs.push(
         "-i", targetStreamUrl,
         "-loglevel", "warning",
         "-vn",
-      ];
+      );
 
       if (afFilters.length > 0) {
         ffmpegArgs.push("-af", afFilters.join(","));
@@ -470,7 +528,7 @@ export class MusicManager {
       }
 
       const { PassThrough } = await import("stream");
-      const audioBufferStream = new PassThrough({ highWaterMark: 1024 * 1024 });
+      const audioBufferStream = new PassThrough({ highWaterMark: 8 * 1024 * 1024 });
       ff.stdout.pipe(audioBufferStream);
 
       const resource = createAudioResource(audioBufferStream, {
@@ -491,8 +549,8 @@ export class MusicManager {
       }
 
       if (this.currentTrack) {
-        const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-        this.updateVoiceStatus(statusText, true).catch(() => {});
+        const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+        this.updateVoiceStatus(cleanStatus, true).catch(() => {});
       }
 
       await this.sendPlayerEmbed();
@@ -526,7 +584,8 @@ export class MusicManager {
     }
     this.isPaused = true;
     if (this.currentTrack) {
-      this.updateVoiceStatus(`Paused: ${this.currentTrack.title}`, true).catch(() => {});
+      const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+      this.updateVoiceStatus(cleanStatus ? `Paused: ${cleanStatus}` : "", true).catch(() => {});
     }
     return true;
   }
@@ -540,8 +599,8 @@ export class MusicManager {
     }
     this.isPaused = false;
     if (this.currentTrack) {
-      const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
-      this.updateVoiceStatus(statusText, true).catch(() => {});
+      const cleanStatus = formatCleanVoiceStatus(this.currentTrack);
+      this.updateVoiceStatus(cleanStatus, true).catch(() => {});
     }
     return true;
   }
@@ -636,10 +695,11 @@ export class MusicManager {
     if (idx === -1) idx = 2;
     const next = speeds[Math.min(speeds.length - 1, idx + 1)];
     this.speed = next;
+    const currentPos = this.getEstimatedCurrentSeconds();
     if (this.lavalinkPlayer) {
       this.lavalinkPlayer.setFilters({ timescale: { speed: next } }).catch(() => {});
     } else if (this.currentTrack) {
-      this.playTrack(this.currentTrack).catch(() => {});
+      this.playTrack(this.currentTrack, currentPos).catch(() => {});
     }
     return next;
   }
@@ -650,10 +710,11 @@ export class MusicManager {
     if (idx === -1) idx = 2;
     const prev = speeds[Math.max(0, idx - 1)];
     this.speed = prev;
+    const currentPos = this.getEstimatedCurrentSeconds();
     if (this.lavalinkPlayer) {
       this.lavalinkPlayer.setFilters({ timescale: { speed: prev } }).catch(() => {});
     } else if (this.currentTrack) {
-      this.playTrack(this.currentTrack).catch(() => {});
+      this.playTrack(this.currentTrack, currentPos).catch(() => {});
     }
     return prev;
   }
@@ -722,6 +783,7 @@ export class MusicManager {
 
   public async setEqualizer(preset: EqualizerPreset): Promise<EqualizerInfo> {
     this.equalizer = preset;
+    const currentPos = this.getEstimatedCurrentSeconds();
     if (this.lavalinkPlayer) {
       if (preset === "bassboost") {
         await this.lavalinkPlayer.setFilters({ equalizer: [{ band: 0, gain: 0.2 }, { band: 1, gain: 0.15 }, { band: 2, gain: 0.1 }] });
@@ -735,7 +797,7 @@ export class MusicManager {
         await this.lavalinkPlayer.clearFilters();
       }
     } else if (this.currentTrack) {
-      await this.playTrack(this.currentTrack).catch(() => {});
+      await this.playTrack(this.currentTrack, currentPos).catch(() => {});
     }
     return EQUALIZER_PRESETS[preset] || EQUALIZER_PRESETS.off;
   }
@@ -776,15 +838,18 @@ export class MusicManager {
 
       let finalStatus = statusText ? statusText.trim() : "";
       if (finalStatus) {
-        // Strip custom emoji markdown tags so plain text status is clean on all clients
-        const cleanName = finalStatus.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").trim();
-        finalStatus = cleanName;
+        // Strip custom emoji markdown tags and unicode emojis so plain text status is completely clean on all clients
+        finalStatus = finalStatus
+          .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
+          .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "")
+          .replace(/\s+/g, " ")
+          .trim();
       }
 
       const sanitized = finalStatus.slice(0, 500);
       const now = Date.now();
 
-      if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 15000 && !force) {
+      if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 5000 && !force) {
         return;
       }
 
@@ -1291,9 +1356,12 @@ export async function handleMusicSelectMenu(interaction: AnySelectMenuInteractio
           ephemeral: true,
         });
 
+        await manager.sendPlayerEmbed();
+
         if (interaction.message) {
-          manager.lastPlayerMessage = interaction.message as any;
-          await manager.sendPlayerEmbed();
+          const embed = buildNowPlayingEmbed(manager);
+          const rows = buildPlayerActionRows(manager);
+          await interaction.message.edit({ embeds: [embed], components: rows as any }).catch(() => {});
         }
         return;
       }
@@ -1311,12 +1379,37 @@ export async function handleMusicSelectMenu(interaction: AnySelectMenuInteractio
       const sourceObj = sources[idx];
 
       if (manager && manager.currentTrack && sourceObj) {
+        manager.preferredSource = sourceObj;
+        const trackTitle = manager.currentTrack.title;
+        const trackArtist = manager.currentTrack.artist;
+        const trackSearch = `${trackTitle} ${trackArtist}`.trim();
+        let newStreamUrl = "";
+
+        if (sourceObj.id === "jio_saavan") {
+          newStreamUrl = (await getJioSaavnAudioStream(trackSearch)) || "";
+        } else if (sourceObj.id === "apple_music") {
+          newStreamUrl = (await getITunesAudioStream(trackSearch)) || "";
+        } else if (sourceObj.id === "amazon_music") {
+          newStreamUrl = (await getSoundCloudAudioStream(trackSearch)) || "";
+        } else {
+          newStreamUrl = (await getDirectMediaStreamUrl(manager.currentTrack.url, trackSearch)) || "";
+        }
+
+        if (newStreamUrl) {
+          manager.currentTrack.streamUrl = newStreamUrl;
+        }
+
         manager.currentTrack.sourceName = `${sourceObj.icon} ${sourceObj.sourceName}`;
-        
+        const currentPos = manager.getEstimatedCurrentSeconds();
+
         await interaction.reply({
-          content: `${CE.success.str} **Stream Source Switched**: Active audio source changed to **${sourceObj.icon} ${sourceObj.sourceName}** (\`${sourceObj.quality}\`)!`,
+          content: `${CE.success.str} **Audio Stream Source Switched**: Active source changed to **${sourceObj.icon} ${sourceObj.sourceName}** (\`${sourceObj.quality}\`)!`,
           ephemeral: true,
         });
+
+        // Seamlessly switch audio stream at current playback position without restarting
+        await manager.playTrack(manager.currentTrack, currentPos);
+        await manager.sendPlayerEmbed();
 
         if (interaction.message) {
           const embed = buildNowPlayingEmbed(manager);
@@ -1437,6 +1530,10 @@ export function buildPlayerActionRows(manager: MusicManager): ActionRowBuilder<B
   );
 
   // Row 3: Equalizer / Audio FX, Source Switcher, Search Results
+  const activeSourceLabel = manager.currentTrack?.sourceName
+    ? manager.currentTrack.sourceName.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").slice(0, 20)
+    : "Source";
+
   const row3 = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
       .setCustomId("music:eq")
@@ -1445,7 +1542,7 @@ export function buildPlayerActionRows(manager: MusicManager): ActionRowBuilder<B
       .setStyle(manager.equalizer !== "off" ? ButtonStyle.Success : ButtonStyle.Secondary),
     new ButtonBuilder()
       .setCustomId("music:source")
-      .setLabel("Audio Source")
+      .setLabel(`Source: ${activeSourceLabel}`)
       .setEmoji(CE.link.str)
       .setStyle(ButtonStyle.Secondary),
     new ButtonBuilder()
