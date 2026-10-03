@@ -257452,7 +257452,7 @@ function superRefine(fn, params) {
   return _superRefine(fn, params);
 }
 
-// lib/api-zod/src/generated/api.ts
+// node_modules/.bun/@workspace+api-zod@file+lib+api-zod/node_modules/@workspace/api-zod/src/generated/api.ts
 var HealthCheckResponse = object({
   status: string2()
 });
