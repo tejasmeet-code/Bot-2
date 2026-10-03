@@ -1,0 +1,8 @@
+{
+  "name": "Zenith Bot",
+  "description": "Zenith Bot is an advanced Discord bot supporting high-fidelity music streaming, automod security, and community engagement features.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
