@@ -500,7 +500,7 @@ export async function executeBotStatusUpdate(client: any, type: BotStatusMode) {
 
   // 4. Update Presence
   try {
-    const normalActivity = ".help | Server Guard from demonxtejas";
+    const normalActivity = ".help | Server Guard";
     client.user.setPresence({
       activities: [
         {

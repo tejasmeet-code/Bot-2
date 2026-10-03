@@ -245825,7 +245825,7 @@ ${premEmoji} Made by demonXtejas`;
     }
   }
   try {
-    const normalActivity = ".help | Server Guard from demonxtejas";
+    const normalActivity = ".help | Server Guard";
     client.user.setPresence({
       activities: [
         {
@@ -250281,9 +250281,9 @@ async function startDiscordBot() {
           readyClient.user.setPresence({
             activities: [
               {
-                name: ".help | Server Guard from demonxtejas",
+                name: ".help | Server Guard",
                 type: import_discord200.ActivityType.Custom,
-                state: ".help | Server Guard from demonxtejas"
+                state: ".help | Server Guard"
               }
             ],
             status: "online"
