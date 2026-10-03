@@ -1283,7 +1283,23 @@ export async function handleGenericPrefixCommand(
     mockInteraction.hasSucceeded = true;
   } catch (err: any) {
     const errCode = err?.code || err?.status || err?.statusCode;
-    const isHarmlessDiscordError = [10062, 40060, 10008, 50007, 50013].includes(errCode);
+    const isMissingPermissions = errCode === 50013 || String(err?.message || "").includes("Missing Permissions");
+
+    if (isMissingPermissions) {
+      try {
+        const { buildOwnerPermissionEmbed, buildOwnerPermissionActionRow, notifyOwnerMissingPermission } = await import("./utils/ownerPermissionPrompt");
+        notifyOwnerMissingPermission(guild, ["ManageRoles"], command.data.name).catch(() => {});
+        const permEmbed = buildOwnerPermissionEmbed(guild, ["ManageRoles"], `run command \`.${command.data.name}\``);
+        const actionRow = buildOwnerPermissionActionRow();
+        await (message.channel as GuildTextBasedChannel).send({
+          embeds: [permEmbed],
+          components: [actionRow as any],
+        }).catch(() => {});
+      } catch {}
+      return;
+    }
+
+    const isHarmlessDiscordError = [10062, 40060, 10008, 50007].includes(errCode);
 
     logger.error(
       {

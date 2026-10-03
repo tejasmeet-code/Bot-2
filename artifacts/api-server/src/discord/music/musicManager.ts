@@ -62,7 +62,7 @@ import {
 
 export function formatVoiceChannelStatus(track: Track | null, is247 = false): string {
   if (!track && is247) {
-    return ":globe: 24/7 Voice Channel Radio";
+    return "🌐 24/7 Voice Channel Radio";
   }
   if (!track) return "";
 
@@ -73,9 +73,9 @@ export function formatVoiceChannelStatus(track: Track | null, is247 = false): st
   const songLabel = cleanTitle && cleanArtist ? `${cleanTitle} - ${cleanArtist}` : cleanTitle || "Music Playback";
 
   if (is247 || track.is247Radio) {
-    return `:globe: ${songLabel}`.slice(0, 500);
+    return `🌐 ${songLabel}`.slice(0, 500);
   }
-  return `:playing: ${songLabel}`.slice(0, 500);
+  return `▶️ ${songLabel}`.slice(0, 500);
 }
 
 export function formatCleanVoiceStatus(track: Track | null, is247 = false): string {
@@ -190,6 +190,7 @@ export class MusicManager {
   private consecutiveFailures = 0;
   private isEnding = false;
   public isDestroyed = false;
+  private playNonce = 0;
   private statusWatchdogInterval?: NodeJS.Timeout;
 
   public startStatusWatchdog(): void {
@@ -203,7 +204,7 @@ export class MusicManager {
             this.updateVoiceStatus(targetStatus, false).catch(() => {});
           }
         } else if (this.twentyFourSeven.enabled) {
-          const targetStatus = ":globe: 24/7 Voice Channel Radio";
+          const targetStatus = "🌐 24/7 Voice Channel Radio";
           if (this.lastVcStatus !== targetStatus) {
             this.updateVoiceStatus(targetStatus, false).catch(() => {});
           }
@@ -414,8 +415,10 @@ export class MusicManager {
    * Plays a target track across Lavalink or native voice stream
    */
   public async playTrack(track: Track, seekSeconds = 0): Promise<void> {
+    const currentNonce = ++this.playNonce;
     try {
       await this.ensureConnection();
+      if (this.playNonce !== currentNonce || this.isDestroyed) return;
 
       if (this.currentTrack && !this.currentTrack.is247Radio && seekSeconds === 0 && this.currentTrack !== track) {
         this.previousTracks.unshift(this.currentTrack);
@@ -436,6 +439,7 @@ export class MusicManager {
         let encoded = track.encodedTrack;
         if (!encoded) {
           const res = await resolveLavalinkTracks(track.streamUrl || track.url || `${track.title} ${track.artist}`);
+          if (this.playNonce !== currentNonce || this.isDestroyed) return;
           if (res?.data) {
             if (Array.isArray(res.data) && res.data.length > 0) encoded = res.data[0].encoded;
             else if (res.data.encoded) encoded = res.data.encoded;
@@ -444,11 +448,13 @@ export class MusicManager {
         }
 
         if (encoded) {
+          if (this.playNonce !== currentNonce || this.isDestroyed) return;
           track.encodedTrack = encoded;
           await (this.lavalinkPlayer as any).playTrack({
             track: { encoded },
             ...(seekSeconds > 0 ? { startTime: seekSeconds * 1000 } : {}),
           });
+          if (this.playNonce !== currentNonce || this.isDestroyed) return;
           this.isPlaying = true;
           this.isPaused = false;
           await this.sendPlayerEmbed();
@@ -467,6 +473,7 @@ export class MusicManager {
 
       // 2. Play via Native Voice Resource with FFmpeg Ogg Opus streaming & audio filters
       await this.ensureNativeConnection();
+      if (this.playNonce !== currentNonce || this.isDestroyed) return;
 
       if (this.activeFfmpegProcess) {
         try {
@@ -478,9 +485,11 @@ export class MusicManager {
       const streamUrl = track.streamUrl || track.url;
       const trackSearchTitle = `${track.title} ${track.artist}`.trim();
       let targetStreamUrl = await getDirectMediaStreamUrl(streamUrl, trackSearchTitle);
+      if (this.playNonce !== currentNonce || this.isDestroyed) return;
 
       if (!targetStreamUrl) {
         targetStreamUrl = (await getSoundCloudAudioStream(trackSearchTitle)) || "";
+        if (this.playNonce !== currentNonce || this.isDestroyed) return;
       }
 
       if (!targetStreamUrl) {
@@ -878,10 +887,12 @@ export class MusicManager {
 
       let finalStatus = statusText ? statusText.trim() : "";
       if (finalStatus) {
-        // Strip custom emoji markdown tags and unicode emojis so plain text status is completely clean on all clients
+        // Convert emoji shortcodes to unicode so Discord Voice Channel status renders emoji icons
         finalStatus = finalStatus
+          .replace(/:globe:/gi, "🌐")
+          .replace(/:playing:/gi, "▶️")
+          .replace(/:play:/gi, "▶️")
           .replace(/<a?:[a-zA-Z0-9_]+:\d+>/g, "")
-          .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{200D}\u{FE0F}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, "")
           .replace(/\s+/g, " ")
           .trim();
       }

@@ -10,6 +10,7 @@ import {
 } from "discord.js";
 import type { SlashCommand } from "../types";
 import { CE, COLORS, prettyEmbed, buildSupportRow } from "../utils/embedStyle";
+import { ensureBotPermissions } from "../utils/ownerPermissionPrompt";
 
 export const channelCommand: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -140,20 +141,13 @@ export const channelCommand: SlashCommand = {
       return;
     }
 
-    const botMember = interaction.guild.members.me;
-    if (!botMember || !botMember.permissions.has(PermissionFlagsBits.ManageChannels)) {
-      await interaction.reply({
-        embeds: [
-          prettyEmbed({
-            title: "Bot Permission Required",
-            description: `${CE.failure.str} I require the **Manage Channels** permission to create or modify channels.`,
-            color: COLORS.danger,
-          }),
-        ],
-        ephemeral: true,
-      });
-      return;
-    }
+    const hasPerms = await ensureBotPermissions(
+      interaction,
+      [PermissionFlagsBits.ManageChannels],
+      ["ManageChannels"],
+      "create, edit, delete, or modify server channels",
+    );
+    if (!hasPerms) return;
 
     const sub = interaction.options.getSubcommand(false) || "list";
 

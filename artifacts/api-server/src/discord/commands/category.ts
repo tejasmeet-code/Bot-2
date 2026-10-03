@@ -8,6 +8,7 @@ import {
 } from "discord.js";
 import type { SlashCommand } from "../types";
 import { CE, COLORS, prettyEmbed, buildSupportRow } from "../utils/embedStyle";
+import { ensureBotPermissions } from "../utils/ownerPermissionPrompt";
 
 export const categoryCommand: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -86,20 +87,13 @@ export const categoryCommand: SlashCommand = {
       return;
     }
 
-    const botMember = interaction.guild.members.me;
-    if (!botMember || !botMember.permissions.has(PermissionFlagsBits.ManageChannels)) {
-      await interaction.reply({
-        embeds: [
-          prettyEmbed({
-            title: "Bot Permission Required",
-            description: `${CE.failure.str} I require the **Manage Channels** permission to manage categories.`,
-            color: COLORS.danger,
-          }),
-        ],
-        ephemeral: true,
-      });
-      return;
-    }
+    const hasPerms = await ensureBotPermissions(
+      interaction,
+      [PermissionFlagsBits.ManageChannels],
+      ["ManageChannels"],
+      "create, edit, delete, or manage server categories",
+    );
+    if (!hasPerms) return;
 
     const sub = interaction.options.getSubcommand(false) || "list";
 

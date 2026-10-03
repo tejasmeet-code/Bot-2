@@ -13,6 +13,8 @@ import { getGuildConfig, getModerationConfig, isTargetWhitelisted } from "../sto
 import { createCase } from "../storage/cases";
 import { sendPunishmentDM } from "../utils/punishDM";
 import { bumpModAction } from "../storage/quota";
+import { PermissionFlagsBits } from "discord.js";
+import { ensureBotPermissions } from "../utils/ownerPermissionPrompt";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -27,6 +29,14 @@ const command: SlashCommand = {
     if (!(await ensureWhitelisted(interaction, "kick"))) return;
     if (!interaction.guild || !interaction.guildId) return;
     await interaction.deferReply();
+
+    const hasPerms = await ensureBotPermissions(
+      interaction,
+      [PermissionFlagsBits.KickMembers],
+      ["KickMembers"],
+      "kick members from the server",
+    );
+    if (!hasPerms) return;
 
     const target = interaction.options.getUser("user", true);
     const reason = interaction.options.getString("reason") || "No reason provided";

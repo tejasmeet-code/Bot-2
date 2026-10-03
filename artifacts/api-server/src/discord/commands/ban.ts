@@ -16,6 +16,7 @@ import { logger } from "../../lib/logger";
 
 import { bumpModAction } from "../storage/quota";
 import { propagatePunishment, formatPropagationResults } from "../utils/crossServer";
+import { ensureBotPermissions } from "../utils/ownerPermissionPrompt";
 
 function modActionError(err: unknown): string {
   const code = (err as any)?.code;
@@ -91,12 +92,13 @@ const command: SlashCommand = {
     // Defer before async API calls to avoid the 3-second Discord timeout
     await interaction.deferReply();
 
-    // Always fetch fresh — stale guild.members.me cache causes false-positive bannable checks
-    const botMember = await interaction.guild.members.fetchMe().catch(() => interaction.guild?.members.me);
-    if (!botMember || !botMember.permissions.has(PermissionFlagsBits.BanMembers)) {
-      await interaction.editReply({ content: `${CE.error.str} I don't have the **Ban Members** permission. Grant it and try again.` });
-      return;
-    }
+    const hasPerms = await ensureBotPermissions(
+      interaction,
+      [PermissionFlagsBits.BanMembers],
+      ["BanMembers"],
+      "ban members from the server",
+    );
+    if (!hasPerms) return;
 
     const cfg = await getGuildConfig(interaction.guildId).catch(() => null);
     if (cfg && isTargetWhitelisted(target.id, interaction.guild, cfg)) {

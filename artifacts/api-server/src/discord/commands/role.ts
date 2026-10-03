@@ -8,6 +8,7 @@ import {
 } from "discord.js";
 import type { SlashCommand } from "../types";
 import { CE, COLORS, prettyEmbed, buildSupportRow } from "../utils/embedStyle";
+import { ensureBotPermissions } from "../utils/ownerPermissionPrompt";
 
 function parseHexColor(input: string): ColorResolvable | null {
   const clean = input.replace("#", "").trim();
@@ -99,20 +100,15 @@ export const roleCommand: SlashCommand = {
       return;
     }
 
-    const botMember = interaction.guild.members.me;
-    if (!botMember || !botMember.permissions.has(PermissionFlagsBits.ManageRoles)) {
-      await interaction.reply({
-        embeds: [
-          prettyEmbed({
-            title: "Bot Permission Required",
-            description: `${CE.failure.str} I require the **Manage Roles** permission to modify roles in this server.`,
-            color: COLORS.danger,
-          }),
-        ],
-        ephemeral: true,
-      });
-      return;
-    }
+    const hasPerms = await ensureBotPermissions(
+      interaction,
+      [PermissionFlagsBits.ManageRoles],
+      ["ManageRoles"],
+      "create, edit, delete, or assign server roles",
+    );
+    if (!hasPerms) return;
+
+    const botMember = interaction.guild.members.me || await interaction.guild.members.fetchMe();
 
     const sub = interaction.options.getSubcommand(false) || "list";
 
