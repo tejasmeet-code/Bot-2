@@ -34,28 +34,41 @@ export interface AudioSourceOption {
 
 const YOUTUBE_URL_REGEX = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
 
-let cachedScClientId = "";
+let cachedScClientId = "dkevB9EsY4jIoSm8RfddPNUKyn6hurXF";
+let lastScClientIdFetch = 0;
 
-async function getSoundCloudClientId(): Promise<string> {
-  if (cachedScClientId) return cachedScClientId;
+export async function getSoundCloudClientId(forceRefresh = false): Promise<string> {
+  const now = Date.now();
+  if (cachedScClientId && !forceRefresh && now - lastScClientIdFetch < 60 * 60 * 1000) {
+    return cachedScClientId;
+  }
   try {
-    const res = await fetch("https://soundcloud.com", { headers: { "User-Agent": "Mozilla/5.0" } });
-    const html = await res.text();
-    const scriptUrls = [...html.matchAll(/src=\"(https:\/\/a-v2\.sndcdn\.com\/assets\/[^\"]+\.js)\"/g)].map((m) => m[1]);
-    for (const scr of scriptUrls.slice(-4)) {
-      try {
-        const js = await (await fetch(scr)).text();
-        const m = js.match(/client_id[:=]\"([a-zA-Z0-9]{32})\"/);
-        if (m) {
-          cachedScClientId = m[1];
-          return cachedScClientId;
-        }
-      } catch {}
+    const res = await fetch("https://soundcloud.com", {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      },
+      signal: AbortSignal.timeout(5000),
+    });
+    if (res.ok) {
+      const html = await res.text();
+      const scriptUrls = [...html.matchAll(/src=\"(https:\/\/a-v2\.sndcdn\.com\/assets\/[^\"]+\.js)\"/g)].map((m) => m[1]);
+      for (const scr of scriptUrls.slice(-8)) {
+        try {
+          const js = await (await fetch(scr, { signal: AbortSignal.timeout(4000) })).text();
+          const m = js.match(/client_id[:=]\"([a-zA-Z0-9]{32})\"/);
+          if (m && m[1]) {
+            cachedScClientId = m[1];
+            lastScClientIdFetch = now;
+            logger.info({ scClientId: cachedScClientId }, "Scraped live SoundCloud Client ID");
+            return cachedScClientId;
+          }
+        } catch {}
+      }
     }
   } catch (err: any) {
     logger.debug({ err: err?.message }, "Failed to fetch SoundCloud Client ID dynamically");
   }
-  return "iZ8A8L262312213123";
+  return cachedScClientId || "dkevB9EsY4jIoSm8RfddPNUKyn6hurXF";
 }
 
 export async function resolveYouTubeTitleFromUrl(url: string): Promise<string | null> {
@@ -96,27 +109,34 @@ export async function getSoundCloudAudioStream(query: string): Promise<string | 
     .trim();
 
   try {
-    const cid = await getSoundCloudClientId();
+    let cid = await getSoundCloudClientId();
     const searchTerms = [cleanTitle, trimmed];
     
-    for (const term of searchTerms) {
-      if (!term) continue;
-      const searchUrl = `https://api-v2.soundcloud.com/search/tracks?q=${encodeURIComponent(term)}&client_id=${cid}&limit=5`;
-      const res = await fetch(searchUrl, { signal: AbortSignal.timeout(4000) });
-      if (!res.ok) continue;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      for (const term of searchTerms) {
+        if (!term) continue;
+        const searchUrl = `https://api-v2.soundcloud.com/search/tracks?q=${encodeURIComponent(term)}&client_id=${cid}&limit=5`;
+        const res = await fetch(searchUrl, { signal: AbortSignal.timeout(4000) });
+        
+        if (res.status === 401 && attempt === 0) {
+          cid = await getSoundCloudClientId(true);
+          break; // Retry outer loop with fresh client ID
+        }
+        if (!res.ok) continue;
 
-      const data: any = await res.json();
-      const tracks = data.collection || [];
-      if (!Array.isArray(tracks) || tracks.length === 0) continue;
+        const data: any = await res.json();
+        const tracks = data.collection || [];
+        if (!Array.isArray(tracks) || tracks.length === 0) continue;
 
-      for (const track of tracks) {
-        const media = track.media?.transcodings || [];
-        const prog = media.find((t: any) => t.format?.protocol === "progressive") || media.find((t: any) => t.format?.protocol === "hls") || media[0];
-        if (prog?.url) {
-          const streamRes = await fetch(`${prog.url}?client_id=${cid}`, { signal: AbortSignal.timeout(3000) });
-          if (streamRes.ok) {
-            const streamData: any = await streamRes.json();
-            if (streamData.url) return streamData.url;
+        for (const track of tracks) {
+          const media = track.media?.transcodings || [];
+          const prog = media.find((t: any) => t.format?.protocol === "progressive") || media.find((t: any) => t.format?.protocol === "hls") || media[0];
+          if (prog?.url) {
+            const streamRes = await fetch(`${prog.url}?client_id=${cid}`, { signal: AbortSignal.timeout(3000) });
+            if (streamRes.ok) {
+              const streamData: any = await streamRes.json();
+              if (streamData.url) return streamData.url;
+            }
           }
         }
       }
@@ -186,7 +206,7 @@ export async function getJioSaavnAudioStream(query: string): Promise<string | nu
 }
 
 /**
- * Extract raw playable audio stream URL (Apple Music, YouTube/SoundCloud, JioSaavn, icecast, etc.)
+ * Extract raw playable audio stream URL (SoundCloud lossless, YouTube, direct MP3/AAC, JioSaavn, etc.)
  */
 export async function getDirectMediaStreamUrl(targetUrl: string, trackSearchTitle?: string): Promise<string> {
   if (!targetUrl) return "";
@@ -195,7 +215,6 @@ export async function getDirectMediaStreamUrl(targetUrl: string, trackSearchTitl
   if (
     targetUrl.includes("googlevideo.com") ||
     targetUrl.includes("sndcdn.com") ||
-    targetUrl.includes("itunes.apple.com") ||
     targetUrl.includes("saavn.cdn") ||
     targetUrl.includes("saavn.com") ||
     targetUrl.includes(".mp3") ||
@@ -212,19 +231,15 @@ export async function getDirectMediaStreamUrl(targetUrl: string, trackSearchTitl
 
   const searchQuery = trackSearchTitle || targetUrl;
 
-  // 1. Try Apple Music / iTunes audio stream
-  const itunesStream = await getITunesAudioStream(searchQuery);
-  if (itunesStream) return itunesStream;
-
-  // 2. Try YouTube / SoundCloud Cloudflare CDN stream
+  // 1. Try High-Fidelity SoundCloud Audio Stream (Full Length Master Stream)
   const scStream = await getSoundCloudAudioStream(searchQuery);
   if (scStream) return scStream;
 
-  // 3. Try JioSaavn Indian & Regional audio stream
+  // 2. Try JioSaavn High-Bitrate Master Stream
   const saavnStream = await getJioSaavnAudioStream(searchQuery);
   if (saavnStream) return saavnStream;
 
-  // 4. Try @distube/ytdl-core as fallback
+  // 3. Try @distube/ytdl-core format extraction
   const match = YOUTUBE_URL_REGEX.exec(targetUrl);
   if (targetUrl.includes("youtube.com") || targetUrl.includes("youtu.be") || match) {
     try {
@@ -244,6 +259,10 @@ export async function getDirectMediaStreamUrl(targetUrl: string, trackSearchTitl
       logger.debug({ err: err?.message, targetUrl }, "ytdl getInfo failed");
     }
   }
+
+  // 4. Try Apple Music / iTunes audio stream
+  const itunesStream = await getITunesAudioStream(searchQuery);
+  if (itunesStream) return itunesStream;
 
   // Safety fallback - Return empty if no valid stream found, letting caller handle it
   return "";

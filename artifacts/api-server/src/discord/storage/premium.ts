@@ -295,16 +295,27 @@ export async function isUserPremium(userId: string, guildId?: string | null, mem
   return false;
 }
 
-export async function isGuildPremium(guildId: string): Promise<boolean> {
+export async function isGuildPremium(guildId: string, guild?: any): Promise<boolean> {
   const store = await load();
   const expiry = store.guildPremiums[guildId];
-  if (!expiry) return false;
-  if (Date.now() > expiry) {
+  if (expiry) {
+    if (Date.now() <= expiry) {
+      return true;
+    }
     delete store.guildPremiums[guildId];
     await save(store);
-    return false;
   }
-  return true;
+
+  // Check if guild owner is permanent bot owner or bot admin
+  try {
+    const client = (globalThis as any).__discordClient;
+    const g = guild || client?.guilds?.cache?.get(guildId);
+    if (g?.ownerId && (isPermanentOwner(g.ownerId) || isBotAdmin(g.ownerId))) {
+      return true;
+    }
+  } catch {}
+
+  return false;
 }
 
 export async function hasPremiumAccess(userId: string, guildId?: string | null, member?: any): Promise<boolean> {

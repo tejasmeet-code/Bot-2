@@ -21,6 +21,7 @@ import {
   VoiceConnectionStatus,
   StreamType,
   NoSubscriberBehavior,
+  entersState,
   type VoiceConnection,
   type AudioPlayer,
   type AudioResource,
@@ -193,7 +194,17 @@ export class MusicManager {
 
   public async ensureNativeConnection(): Promise<void> {
     try {
-      if (!this.fallbackConnection || this.fallbackConnection.state.status === VoiceConnectionStatus.Destroyed) {
+      const isDead = !this.fallbackConnection ||
+        this.fallbackConnection.state.status === VoiceConnectionStatus.Destroyed ||
+        this.fallbackConnection.state.status === VoiceConnectionStatus.Disconnected;
+
+      if (isDead) {
+        if (this.fallbackConnection) {
+          try {
+            this.fallbackConnection.destroy();
+          } catch {}
+        }
+
         const connection = joinVoiceChannel({
           channelId: this.voiceChannel.id,
           guildId: this.guildId,
@@ -203,6 +214,10 @@ export class MusicManager {
         });
         this.fallbackConnection = connection;
 
+        connection.on("stateChange", (oldState, newState) => {
+          logger.info({ guildId: this.guildId, from: oldState.status, to: newState.status }, "Voice connection state transition");
+        });
+
         if (!this.fallbackAudioPlayer) {
           this.fallbackAudioPlayer = createAudioPlayer({
             behaviors: { noSubscriber: NoSubscriberBehavior.Play },
@@ -210,7 +225,13 @@ export class MusicManager {
           this.attachFallbackAudioListeners(this.fallbackAudioPlayer);
         }
         connection.subscribe(this.fallbackAudioPlayer);
-        logger.info({ guildId: this.guildId, channelId: this.voiceChannel.id }, "Joined voice channel via Native Discord Gateway");
+
+        try {
+          await entersState(connection, VoiceConnectionStatus.Ready, 15_000);
+          logger.info({ guildId: this.guildId, channelId: this.voiceChannel.id }, "Joined voice channel and ready via Native Gateway");
+        } catch (readyErr) {
+          logger.warn({ err: readyErr, guildId: this.guildId }, "Voice connection ready timeout, retrying state");
+        }
       }
     } catch (nativeErr) {
       logger.error({ err: nativeErr, guildId: this.guildId }, "Failed to connect to Discord voice channel");
@@ -362,8 +383,30 @@ export class MusicManager {
 
       const streamUrl = track.streamUrl || track.url;
       const trackSearchTitle = `${track.title} ${track.artist}`.trim();
-      const mediaUrl = await getDirectMediaStreamUrl(streamUrl, trackSearchTitle);
-      logger.info({ mediaUrl, track: track.title }, "Resolved direct media stream URL for native playback");
+      let targetStreamUrl = await getDirectMediaStreamUrl(streamUrl, trackSearchTitle);
+
+      if (!targetStreamUrl) {
+        targetStreamUrl = (await getSoundCloudAudioStream(trackSearchTitle)) || "";
+      }
+
+      if (!targetStreamUrl) {
+        logger.warn({ track: track.title }, "Could not resolve direct playable audio stream URL");
+        if (this.textChannel) {
+          this.textChannel.send({
+            embeds: [
+              prettyEmbed({
+                title: `${CE.error.str} Stream Unavailable`,
+                description: `Could not resolve playable audio stream for **${track.title}**. Skipping to next track.`,
+                color: COLORS.danger,
+              }),
+            ],
+          }).catch(() => {});
+        }
+        this.handleStreamError();
+        return;
+      }
+
+      logger.info({ targetStreamUrl: targetStreamUrl.substring(0, 60) + "...", track: track.title }, "Streaming direct media for native playback");
       const ffmpegBin = getWorkingFfmpegPath();
 
       const afFilters: string[] = [];
@@ -383,9 +426,6 @@ export class MusicManager {
       else if (this.equalizer === "rock") afFilters.push("equalizer=f=80:width_type=h:width=100:g=4,equalizer=f=8000:width_type=h:width=1000:g=4");
       else if (this.equalizer === "electronic") afFilters.push("equalizer=f=60:width_type=h:width=80:g=6,equalizer=f=12000:width_type=h:width=2000:g=4");
       else if (this.equalizer === "soft") afFilters.push("equalizer=f=3000:width_type=h:width=1000:g=-3");
-
-      const targetStreamUrl = mediaUrl || streamUrl;
-      const isHttpStream = targetStreamUrl.startsWith("http");
 
       const ffmpegArgs = [
         "-user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",

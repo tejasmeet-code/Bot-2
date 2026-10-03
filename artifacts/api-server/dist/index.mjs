@@ -57317,7 +57317,7 @@ var require_dist7 = __commonJS({
       DiscordAPIError: () => DiscordAPIError,
       HTTPError: () => HTTPError,
       OverwrittenMimeTypes: () => OverwrittenMimeTypes,
-      REST: () => REST4,
+      REST: () => REST5,
       RESTEvents: () => RESTEvents,
       RateLimitError: () => RateLimitError2,
       RequestMethod: () => RequestMethod,
@@ -58462,7 +58462,7 @@ ${flattened}` : error2.message || flattened || "Unknown Error";
         }
       }
     };
-    var REST4 = class _REST extends import_async_event_emitter.AsyncEventEmitter {
+    var REST5 = class _REST extends import_async_event_emitter.AsyncEventEmitter {
       static {
         __name(this, "REST");
       }
@@ -60883,7 +60883,7 @@ var require_BaseChannel = __commonJS({
     "use strict";
     var { channelLink, channelMention } = require_dist9();
     var { DiscordSnowflake } = require_cjs();
-    var { ChannelType: ChannelType63, Routes: Routes5 } = require_v106();
+    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var ChannelFlagsBitField = require_ChannelFlagsBitField();
     var { ThreadChannelTypes } = require_Constants();
@@ -60954,7 +60954,7 @@ var require_BaseChannel = __commonJS({
        *   .catch(console.error);
        */
       async delete() {
-        await this.client.rest.delete(Routes5.channel(this.id));
+        await this.client.rest.delete(Routes6.channel(this.id));
         return this;
       }
       /**
@@ -61783,7 +61783,7 @@ var require_PermissionOverwriteManager = __commonJS({
     "use strict";
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
-    var { OverwriteType: OverwriteType2, Routes: Routes5 } = require_v106();
+    var { OverwriteType: OverwriteType2, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var PermissionOverwrites = require_PermissionOverwrites();
@@ -61864,7 +61864,7 @@ var require_PermissionOverwriteManager = __commonJS({
           type = userOrRole instanceof Role2 ? OverwriteType2.Role : OverwriteType2.Member;
         }
         const { allow, deny } = PermissionOverwrites.resolveOverwriteOptions(options, existing);
-        await this.client.rest.put(Routes5.channelPermission(this.channel.id, userOrRoleId), {
+        await this.client.rest.put(Routes6.channelPermission(this.channel.id, userOrRoleId), {
           body: { id: userOrRoleId, type, allow, deny },
           reason
         });
@@ -61916,7 +61916,7 @@ var require_PermissionOverwriteManager = __commonJS({
       async delete(userOrRole, reason) {
         const userOrRoleId = this.channel.guild.roles.resolveId(userOrRole) ?? this.client.users.resolveId(userOrRole);
         if (!userOrRoleId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "parameter", "User nor a Role");
-        await this.client.rest.delete(Routes5.channelPermission(this.channel.id, userOrRoleId), { reason });
+        await this.client.rest.delete(Routes6.channelPermission(this.channel.id, userOrRoleId), { reason });
         return this.channel;
       }
     };
@@ -62327,7 +62327,7 @@ var require_Util = __commonJS({
     var { parse: parse2 } = __require("node:path");
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
-    var { ChannelType: ChannelType63, RouteBases, Routes: Routes5 } = require_v106();
+    var { ChannelType: ChannelType63, RouteBases, Routes: Routes6 } = require_v106();
     var { fetch: fetch3 } = require_undici();
     var Colors = require_Colors();
     var { DiscordjsError: DiscordjsError2, DiscordjsRangeError: DiscordjsRangeError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
@@ -62358,7 +62358,7 @@ var require_Util = __commonJS({
     }
     async function fetchRecommendedShardCount(token, { guildsPerShard = 1e3, multipleOf = 1 } = {}) {
       if (!token) throw new DiscordjsError2(ErrorCodes2.TokenMissing);
-      const response = await fetch3(RouteBases.api + Routes5.gatewayBot(), {
+      const response = await fetch3(RouteBases.api + Routes6.gatewayBot(), {
         method: "GET",
         headers: { Authorization: `Bot ${token.replace(/^Bot\s*/i, "")}` }
       });
@@ -63016,8 +63016,8 @@ var require_BaseClient = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/client/BaseClient.js"(exports2, module2) {
     "use strict";
     var EventEmitter3 = __require("node:events");
-    var { REST: REST4 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { REST: REST5 } = require_dist7();
+    var { Routes: Routes6 } = require_v106();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var Options2 = require_Options();
     var { flatten } = require_Util();
@@ -63049,7 +63049,7 @@ var require_BaseClient = __commonJS({
             userAgentAppendix: options.rest?.userAgentAppendix ? `${Options2.userAgentAppendix} ${options.rest.userAgentAppendix}` : Options2.userAgentAppendix
           }
         };
-        this.rest = new REST4(this.options.rest);
+        this.rest = new REST5(this.options.rest);
       }
       /**
        * Destroys all assets used by the base client.
@@ -63072,7 +63072,7 @@ var require_BaseClient = __commonJS({
        * @returns {Promise<void>}
        */
       async deleteWebhook(id, { token, reason } = {}) {
-        await this.rest.delete(Routes5.webhook(id, token), { auth: !token, reason });
+        await this.rest.delete(Routes6.webhook(id, token), { auth: !token, reason });
       }
       /**
        * Increments max listeners by one, if they are not zero.
@@ -64390,7 +64390,7 @@ var require_BaseGuild = __commonJS({
     "use strict";
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
     var { DiscordSnowflake } = require_cjs();
-    var { Routes: Routes5, GuildFeature } = require_v106();
+    var { Routes: Routes6, GuildFeature } = require_v106();
     var Base = require_Base();
     var BaseGuild = class extends Base {
       constructor(client, data) {
@@ -64453,7 +64453,7 @@ var require_BaseGuild = __commonJS({
        * @returns {Promise<Guild>}
        */
       async fetch() {
-        const data = await this.client.rest.get(Routes5.guild(this.id), {
+        const data = await this.client.rest.get(Routes6.guild(this.id), {
           query: makeURLSearchParams2({ with_counts: true })
         });
         return this.client.guilds._add(data);
@@ -64614,7 +64614,7 @@ var require_InviteGuild = __commonJS({
 var require_Invite = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/Invite.js"(exports2, module2) {
     "use strict";
-    var { RouteBases, Routes: Routes5, PermissionFlagsBits: PermissionFlagsBits61 } = require_v106();
+    var { RouteBases, Routes: Routes6, PermissionFlagsBits: PermissionFlagsBits61 } = require_v106();
     var Base = require_Base();
     var { GuildScheduledEvent } = require_GuildScheduledEvent();
     var IntegrationApplication = require_IntegrationApplication();
@@ -64789,7 +64789,7 @@ var require_Invite = __commonJS({
        * @returns {Promise<Invite>}
        */
       async delete(reason) {
-        await this.client.rest.delete(Routes5.invite(this.code), { reason });
+        await this.client.rest.delete(Routes6.invite(this.code), { reason });
         return this;
       }
       /**
@@ -64827,7 +64827,7 @@ var require_GuildTemplate = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/GuildTemplate.js"(exports2, module2) {
     "use strict";
     var { setTimeout: setTimeout2, clearTimeout: clearTimeout2 } = __require("node:timers");
-    var { RouteBases, Routes: Routes5 } = require_v106();
+    var { RouteBases, Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var { resolveImage } = require_DataResolver();
     var Events4 = require_Events();
@@ -64887,7 +64887,7 @@ var require_GuildTemplate = __commonJS({
        */
       async createGuild(name2, icon) {
         const { client } = this;
-        const data = await client.rest.post(Routes5.template(this.code), {
+        const data = await client.rest.post(Routes6.template(this.code), {
           body: {
             name: name2,
             icon: await resolveImage(icon)
@@ -64923,7 +64923,7 @@ var require_GuildTemplate = __commonJS({
        * @returns {Promise<GuildTemplate>}
        */
       async edit({ name: name2, description } = {}) {
-        const data = await this.client.rest.patch(Routes5.guildTemplate(this.guildId, this.code), {
+        const data = await this.client.rest.patch(Routes6.guildTemplate(this.guildId, this.code), {
           body: { name: name2, description }
         });
         return this._patch(data);
@@ -64933,7 +64933,7 @@ var require_GuildTemplate = __commonJS({
        * @returns {Promise<GuildTemplate>}
        */
       async delete() {
-        await this.client.rest.delete(Routes5.guildTemplate(this.guildId, this.code));
+        await this.client.rest.delete(Routes6.guildTemplate(this.guildId, this.code));
         return this;
       }
       /**
@@ -64941,7 +64941,7 @@ var require_GuildTemplate = __commonJS({
        * @returns {Promise<GuildTemplate>}
        */
       async sync() {
-        const data = await this.client.rest.put(Routes5.guildTemplate(this.guildId, this.code));
+        const data = await this.client.rest.put(Routes6.guildTemplate(this.guildId, this.code));
         return this._patch(data);
       }
       /**
@@ -65508,7 +65508,7 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/ApplicationCommandPermissionsManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { ApplicationCommandPermissionType, RESTJSONErrorCodes, Routes: Routes5 } = require_v106();
+    var { ApplicationCommandPermissionType, RESTJSONErrorCodes, Routes: Routes6 } = require_v106();
     var BaseManager = require_BaseManager();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var ApplicationCommandPermissionsManager = class extends BaseManager {
@@ -65528,9 +65528,9 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
        */
       permissionsPath(guildId, commandId) {
         if (commandId) {
-          return Routes5.applicationCommandPermissions(this.client.application.id, guildId, commandId);
+          return Routes6.applicationCommandPermissions(this.client.application.id, guildId, commandId);
         }
-        return Routes5.guildApplicationCommandsPermissions(this.client.application.id, guildId);
+        return Routes6.guildApplicationCommandsPermissions(this.client.application.id, guildId);
       }
       /* eslint-disable max-len */
       /**
@@ -66356,7 +66356,7 @@ var require_ApplicationCommandManager = __commonJS({
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
     var { isJSONEncodable } = require_dist3();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var ApplicationCommandPermissionsManager = require_ApplicationCommandPermissionsManager();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
@@ -66386,14 +66386,14 @@ var require_ApplicationCommandManager = __commonJS({
       commandPath({ id, guildId } = {}) {
         if (this.guild ?? guildId) {
           if (id) {
-            return Routes5.applicationGuildCommand(this.client.application.id, this.guild?.id ?? guildId, id);
+            return Routes6.applicationGuildCommand(this.client.application.id, this.guild?.id ?? guildId, id);
           }
-          return Routes5.applicationGuildCommands(this.client.application.id, this.guild?.id ?? guildId);
+          return Routes6.applicationGuildCommands(this.client.application.id, this.guild?.id ?? guildId);
         }
         if (id) {
-          return Routes5.applicationCommand(this.client.application.id, id);
+          return Routes6.applicationCommand(this.client.application.id, id);
         }
-        return Routes5.applicationCommands(this.client.application.id);
+        return Routes6.applicationCommands(this.client.application.id);
       }
       /**
        * Data that resolves to give an ApplicationCommand object. This can be:
@@ -66671,7 +66671,7 @@ var require_ApplicationEmojiManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/ApplicationEmojiManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var ApplicationEmoji = require_ApplicationEmoji();
@@ -66709,7 +66709,7 @@ var require_ApplicationEmojiManager = __commonJS({
         attachment = await resolveImage(attachment);
         if (!attachment) throw new DiscordjsTypeError2(ErrorCodes2.ReqResourceType);
         const body = { image: attachment, name: name2 };
-        const emoji2 = await this.client.rest.post(Routes5.applicationEmojis(this.application.id), { body });
+        const emoji2 = await this.client.rest.post(Routes6.applicationEmojis(this.application.id), { body });
         return this._add(emoji2);
       }
       /**
@@ -66734,10 +66734,10 @@ var require_ApplicationEmojiManager = __commonJS({
             const existing = this.cache.get(id);
             if (existing) return existing;
           }
-          const emoji2 = await this.client.rest.get(Routes5.applicationEmoji(this.application.id, id));
+          const emoji2 = await this.client.rest.get(Routes6.applicationEmoji(this.application.id, id));
           return this._add(emoji2, cache43);
         }
-        const { items: data } = await this.client.rest.get(Routes5.applicationEmojis(this.application.id));
+        const { items: data } = await this.client.rest.get(Routes6.applicationEmojis(this.application.id));
         const emojis = new Collection2();
         for (const emoji2 of data) emojis.set(emoji2.id, this._add(emoji2, cache43));
         return emojis;
@@ -66750,7 +66750,7 @@ var require_ApplicationEmojiManager = __commonJS({
       async delete(emoji2) {
         const id = this.resolveId(emoji2);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "emoji", "EmojiResolvable", true);
-        await this.client.rest.delete(Routes5.applicationEmoji(this.application.id, id));
+        await this.client.rest.delete(Routes6.applicationEmoji(this.application.id, id));
       }
       /**
        * Edits an emoji.
@@ -66761,7 +66761,7 @@ var require_ApplicationEmojiManager = __commonJS({
       async edit(emoji2, options) {
         const id = this.resolveId(emoji2);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "emoji", "EmojiResolvable", true);
-        const newData = await this.client.rest.patch(Routes5.applicationEmoji(this.application.id, id), {
+        const newData = await this.client.rest.patch(Routes6.applicationEmoji(this.application.id, id), {
           body: {
             name: options.name
           }
@@ -66781,7 +66781,7 @@ var require_ApplicationEmojiManager = __commonJS({
       async fetchAuthor(emoji2) {
         const id = this.resolveId(emoji2);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "emoji", "EmojiResolvable", true);
-        const data = await this.client.rest.get(Routes5.applicationEmoji(this.application.id, id));
+        const data = await this.client.rest.get(Routes6.applicationEmoji(this.application.id, id));
         return this._add(data).author;
       }
     };
@@ -66913,7 +66913,7 @@ var require_EntitlementManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5, EntitlementOwnerType } = require_v106();
+    var { Routes: Routes6, EntitlementOwnerType } = require_v106();
     var CachedManager = require_CachedManager();
     var { ErrorCodes: ErrorCodes2, DiscordjsTypeError: DiscordjsTypeError2 } = require_errors2();
     var { Entitlement } = require_Entitlement();
@@ -66980,7 +66980,7 @@ var require_EntitlementManager = __commonJS({
             return existing;
           }
         }
-        const data = await this.client.rest.get(Routes5.entitlement(this.client.application.id, entitlement));
+        const data = await this.client.rest.get(Routes6.entitlement(this.client.application.id, entitlement));
         return this._add(data, cache43);
       }
       async _fetchMany({ limit, guild, user, skus, excludeEnded, excludeDeleted, cache: cache43, before, after } = {}) {
@@ -66994,7 +66994,7 @@ var require_EntitlementManager = __commonJS({
           before,
           after
         });
-        const entitlements = await this.client.rest.get(Routes5.entitlements(this.client.application.id), { query });
+        const entitlements = await this.client.rest.get(Routes6.entitlements(this.client.application.id), { query });
         return entitlements.reduce(
           (coll, entitlement) => coll.set(entitlement.id, this._add(entitlement, cache43)),
           new Collection2()
@@ -67025,7 +67025,7 @@ var require_EntitlementManager = __commonJS({
           const type = guild ? "GuildResolvable" : "UserResolvable";
           throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, name2, type);
         }
-        const entitlement = await this.client.rest.post(Routes5.entitlements(this.client.application.id), {
+        const entitlement = await this.client.rest.post(Routes6.entitlements(this.client.application.id), {
           body: {
             sku_id: skuId,
             owner_id: resolved,
@@ -67042,7 +67042,7 @@ var require_EntitlementManager = __commonJS({
       async deleteTest(entitlement) {
         const resolved = this.resolveId(entitlement);
         if (!resolved) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "entitlement", "EntitlementResolvable");
-        await this.client.rest.delete(Routes5.entitlement(this.client.application.id, resolved));
+        await this.client.rest.delete(Routes6.entitlement(this.client.application.id, resolved));
       }
       /**
        * Marks an entitlement as consumed
@@ -67051,7 +67051,7 @@ var require_EntitlementManager = __commonJS({
        * @returns {Promise<void>}
        */
       async consume(entitlementId) {
-        await this.client.rest.post(Routes5.consumeEntitlement(this.client.application.id, entitlementId));
+        await this.client.rest.post(Routes6.consumeEntitlement(this.client.application.id, entitlementId));
       }
     };
     exports2.EntitlementManager = EntitlementManager;
@@ -67125,7 +67125,7 @@ var require_SubscriptionManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { Subscription } = require_Subscription();
@@ -67166,7 +67166,7 @@ var require_SubscriptionManager = __commonJS({
         const skuId = resolveSKUId(sku);
         if (!skuId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "sku", "SKUResolvable");
         if (subscriptionId) {
-          const subscription = await this.client.rest.get(Routes5.skuSubscription(skuId, subscriptionId));
+          const subscription = await this.client.rest.get(Routes6.skuSubscription(skuId, subscriptionId));
           return this._add(subscription, cache43);
         }
         const query = makeURLSearchParams2({
@@ -67176,7 +67176,7 @@ var require_SubscriptionManager = __commonJS({
           before,
           after
         });
-        const subscriptions = await this.client.rest.get(Routes5.skuSubscriptions(skuId), { query });
+        const subscriptions = await this.client.rest.get(Routes6.skuSubscriptions(skuId), { query });
         return subscriptions.reduce(
           (coll, subscription) => coll.set(subscription.id, this._add(subscription, cache43)),
           new Collection2()
@@ -67210,7 +67210,7 @@ var require_ClientApplication = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/ClientApplication.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var { ActivityInstance } = require_ActivityInstance();
     var { ApplicationRoleConnectionMetadata } = require_ApplicationRoleConnectionMetadata();
     var { SKU } = require_SKU();
@@ -67384,7 +67384,7 @@ var require_ClientApplication = __commonJS({
         eventWebhooksTypes,
         tags
       } = {}) {
-        const data = await this.client.rest.patch(Routes5.currentApplication(), {
+        const data = await this.client.rest.patch(Routes6.currentApplication(), {
           body: {
             custom_install_url: customInstallURL,
             description,
@@ -67408,7 +67408,7 @@ var require_ClientApplication = __commonJS({
        * @returns {Promise<ClientApplication>}
        */
       async fetch() {
-        const data = await this.client.rest.get(Routes5.currentApplication());
+        const data = await this.client.rest.get(Routes6.currentApplication());
         this._patch(data);
         return this;
       }
@@ -67417,7 +67417,7 @@ var require_ClientApplication = __commonJS({
        * @returns {Promise<ApplicationRoleConnectionMetadata[]>}
        */
       async fetchRoleConnectionMetadataRecords() {
-        const metadata = await this.client.rest.get(Routes5.applicationRoleConnectionMetadata(this.client.user.id));
+        const metadata = await this.client.rest.get(Routes6.applicationRoleConnectionMetadata(this.client.user.id));
         return metadata.map((data) => new ApplicationRoleConnectionMetadata(data));
       }
       /**
@@ -67436,7 +67436,7 @@ var require_ClientApplication = __commonJS({
        * @returns {Promise<ApplicationRoleConnectionMetadata[]>}
        */
       async editRoleConnectionMetadataRecords(records) {
-        const newRecords = await this.client.rest.put(Routes5.applicationRoleConnectionMetadata(this.client.user.id), {
+        const newRecords = await this.client.rest.put(Routes6.applicationRoleConnectionMetadata(this.client.user.id), {
           body: records.map((record) => ({
             type: record.type,
             key: record.key,
@@ -67453,7 +67453,7 @@ var require_ClientApplication = __commonJS({
        * @returns {Promise<Collection<Snowflake, SKU>>}
        */
       async fetchSKUs() {
-        const skus = await this.client.rest.get(Routes5.skus(this.id));
+        const skus = await this.client.rest.get(Routes6.skus(this.id));
         return skus.reduce((coll, sku) => coll.set(sku.id, new SKU(this.client, sku)), new Collection2());
       }
       /**
@@ -67463,7 +67463,7 @@ var require_ClientApplication = __commonJS({
        * @returns {Promise<ActivityInstance>}
        */
       async fetchActivityInstance(instanceId) {
-        const data = await this.client.rest.get(Routes5.applicationActivityInstance(this.id, instanceId));
+        const data = await this.client.rest.get(Routes6.applicationActivityInstance(this.id, instanceId));
         return new ActivityInstance(this.client, data);
       }
     };
@@ -77214,7 +77214,7 @@ var require_Sticker = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/Sticker.js"(exports2) {
     "use strict";
     var { DiscordSnowflake } = require_cjs();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { StickerFormatExtensionMap } = require_Constants();
@@ -77319,7 +77319,7 @@ var require_Sticker = __commonJS({
        * @returns {Promise<Sticker>}
        */
       async fetch() {
-        const data = await this.client.rest.get(Routes5.sticker(this.id));
+        const data = await this.client.rest.get(Routes6.sticker(this.id));
         this._patch(data);
         return this;
       }
@@ -77664,7 +77664,7 @@ var require_ReactionUserManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { ReactionType, Routes: Routes5 } = require_v106();
+    var { ReactionType, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var User7 = require_User();
@@ -77694,7 +77694,7 @@ var require_ReactionUserManager = __commonJS({
         const message = this.reaction.message;
         const query = makeURLSearchParams2({ limit, after, type });
         const data = await this.client.rest.get(
-          Routes5.channelMessageReaction(message.channelId, message.id, this.reaction.emoji.identifier),
+          Routes6.channelMessageReaction(message.channelId, message.id, this.reaction.emoji.identifier),
           { query }
         );
         const users = new Collection2();
@@ -77714,7 +77714,7 @@ var require_ReactionUserManager = __commonJS({
         const userId = this.client.users.resolveId(user);
         if (!userId) throw new DiscordjsError2(ErrorCodes2.ReactionResolveUser);
         const message = this.reaction.message;
-        const route = userId === this.client.user.id ? Routes5.channelMessageOwnReaction(message.channelId, message.id, this.reaction.emoji.identifier) : Routes5.channelMessageUserReaction(message.channelId, message.id, this.reaction.emoji.identifier, userId);
+        const route = userId === this.client.user.id ? Routes6.channelMessageOwnReaction(message.channelId, message.id, this.reaction.emoji.identifier) : Routes6.channelMessageUserReaction(message.channelId, message.id, this.reaction.emoji.identifier, userId);
         await this.client.rest.delete(route);
         return this.reaction;
       }
@@ -77727,7 +77727,7 @@ var require_ReactionUserManager = __commonJS({
 var require_MessageReaction = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/MessageReaction.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var ApplicationEmoji = require_ApplicationEmoji();
     var GuildEmoji = require_GuildEmoji();
     var ReactionEmoji = require_ReactionEmoji();
@@ -77773,7 +77773,7 @@ var require_MessageReaction = __commonJS({
        */
       async remove() {
         await this.client.rest.delete(
-          Routes5.channelMessageReaction(this.message.channelId, this.message.id, this._emoji.identifier)
+          Routes6.channelMessageReaction(this.message.channelId, this.message.id, this._emoji.identifier)
         );
         return this;
       }
@@ -77866,7 +77866,7 @@ var require_MessageReaction = __commonJS({
 var require_ReactionManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/ReactionManager.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var MessageReaction = require_MessageReaction();
     var ReactionManager = class extends CachedManager {
@@ -77910,7 +77910,7 @@ var require_ReactionManager = __commonJS({
        * @returns {Promise<Message>}
        */
       async removeAll() {
-        await this.client.rest.delete(Routes5.channelMessageAllReactions(this.message.channelId, this.message.id));
+        await this.client.rest.delete(Routes6.channelMessageAllReactions(this.message.channelId, this.message.id));
         return this.message;
       }
     };
@@ -79689,7 +79689,7 @@ var require_Webhook = __commonJS({
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
     var { lazy } = require_dist3();
     var { DiscordSnowflake } = require_cjs();
-    var { Routes: Routes5, WebhookType } = require_v106();
+    var { Routes: Routes6, WebhookType } = require_v106();
     var MessagePayload = require_MessagePayload();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { resolveImage } = require_DataResolver();
@@ -79834,7 +79834,7 @@ var require_Webhook = __commonJS({
           thread_id: messagePayload.options.threadId,
           with_components: messagePayload.options.withComponents
         });
-        const d = await this.client.rest.post(Routes5.webhook(this.id, this.token), {
+        const d = await this.client.rest.post(Routes6.webhook(this.id, this.token), {
           body,
           files,
           query,
@@ -79863,7 +79863,7 @@ var require_Webhook = __commonJS({
        */
       async sendSlackMessage(body) {
         if (!this.token) throw new DiscordjsError2(ErrorCodes2.WebhookTokenUnavailable);
-        const data = await this.client.rest.post(Routes5.webhookPlatform(this.id, this.token, "slack"), {
+        const data = await this.client.rest.post(Routes6.webhookPlatform(this.id, this.token, "slack"), {
           query: makeURLSearchParams2({ wait: true }),
           auth: false,
           body
@@ -79889,7 +79889,7 @@ var require_Webhook = __commonJS({
           avatar = await resolveImage(avatar);
         }
         channel &&= channel.id ?? channel;
-        const data = await this.client.rest.patch(Routes5.webhook(this.id, channel ? void 0 : this.token), {
+        const data = await this.client.rest.patch(Routes6.webhook(this.id, channel ? void 0 : this.token), {
           body: { name: name2, avatar, channel_id: channel },
           reason,
           auth: !this.token || Boolean(channel)
@@ -79916,7 +79916,7 @@ var require_Webhook = __commonJS({
        */
       async fetchMessage(message, { threadId } = {}) {
         if (!this.token) throw new DiscordjsError2(ErrorCodes2.WebhookTokenUnavailable);
-        const data = await this.client.rest.get(Routes5.webhookMessage(this.id, this.token, message), {
+        const data = await this.client.rest.get(Routes6.webhookMessage(this.id, this.token, message), {
           query: threadId ? makeURLSearchParams2({ thread_id: threadId }) : void 0,
           auth: false
         });
@@ -79940,7 +79940,7 @@ var require_Webhook = __commonJS({
           with_components: messagePayload.options.withComponents
         });
         const d = await this.client.rest.patch(
-          Routes5.webhookMessage(this.id, this.token, typeof message === "string" ? message : message.id),
+          Routes6.webhookMessage(this.id, this.token, typeof message === "string" ? message : message.id),
           {
             body,
             files,
@@ -79975,7 +79975,7 @@ var require_Webhook = __commonJS({
       async deleteMessage(message, threadId) {
         if (!this.token) throw new DiscordjsError2(ErrorCodes2.WebhookTokenUnavailable);
         await this.client.rest.delete(
-          Routes5.webhookMessage(this.id, this.token, typeof message === "string" ? message : message.id),
+          Routes6.webhookMessage(this.id, this.token, typeof message === "string" ? message : message.id),
           {
             query: threadId ? makeURLSearchParams2({ thread_id: threadId }) : void 0,
             auth: false
@@ -80004,7 +80004,7 @@ var require_Webhook = __commonJS({
        * @readonly
        */
       get url() {
-        return this.client.options.rest.api + Routes5.webhook(this.id, this.token);
+        return this.client.options.rest.api + Routes6.webhook(this.id, this.token);
       }
       /**
        * A link to the webhook's avatar.
@@ -80166,7 +80166,7 @@ var require_WebhookClient = __commonJS({
 var require_VoiceState = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/VoiceState.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63, Routes: Routes5 } = require_v106();
+    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var VoiceState2 = class extends Base {
@@ -80321,7 +80321,7 @@ var require_VoiceState = __commonJS({
         if (!["boolean", "undefined"].includes(typeof options.suppressed)) {
           throw new DiscordjsTypeError2(ErrorCodes2.VoiceStateInvalidType, "suppressed");
         }
-        await this.client.rest.patch(Routes5.guildVoiceState(this.guild.id, target), {
+        await this.client.rest.patch(Routes6.guildVoiceState(this.guild.id, target), {
           body: {
             channel_id: this.channelId,
             request_to_speak_timestamp: options.requestToSpeak ? (/* @__PURE__ */ new Date()).toISOString() : options.requestToSpeak === false ? null : void 0,
@@ -80394,7 +80394,7 @@ var require_GuildMemberRoleManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/GuildMemberRoleManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var DataManager = require_DataManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { Role: Role2 } = require_Role();
@@ -80505,7 +80505,7 @@ var require_GuildMemberRoleManager = __commonJS({
               "Role, Snowflake or Array or Collection of Roles or Snowflakes"
             );
           }
-          await this.client.rest.put(Routes5.guildMemberRole(this.guild.id, this.member.id, roleOrRoles), { reason });
+          await this.client.rest.put(Routes6.guildMemberRole(this.guild.id, this.member.id, roleOrRoles), { reason });
           const clone3 = this.member._clone();
           clone3._roles = [...this.cache.keys(), roleOrRoles];
           return clone3;
@@ -80540,7 +80540,7 @@ var require_GuildMemberRoleManager = __commonJS({
               "Role, Snowflake or Array or Collection of Roles or Snowflakes"
             );
           }
-          await this.client.rest.delete(Routes5.guildMemberRole(this.guild.id, this.member.id, roleOrRoles), { reason });
+          await this.client.rest.delete(Routes6.guildMemberRole(this.guild.id, this.member.id, roleOrRoles), { reason });
           const clone3 = this.member._clone();
           const newRoles = this.cache.filter((role) => role.id !== roleOrRoles);
           clone3._roles = [...newRoles.keys()];
@@ -81050,7 +81050,7 @@ var require_MessageManager = __commonJS({
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { Message: Message2 } = require_Message();
@@ -81133,11 +81133,11 @@ var require_MessageManager = __commonJS({
           const existing = this.cache.get(message);
           if (existing && !existing.partial) return existing;
         }
-        const data = await this.client.rest.get(Routes5.channelMessage(this.channel.id, message));
+        const data = await this.client.rest.get(Routes6.channelMessage(this.channel.id, message));
         return this._add(data, cache43);
       }
       async _fetchMany({ cache: cache43, ...apiOptions } = {}) {
-        const data = await this.client.rest.get(Routes5.channelMessages(this.channel.id), {
+        const data = await this.client.rest.get(Routes6.channelMessages(this.channel.id), {
           query: makeURLSearchParams2(apiOptions)
         });
         return data.reduce((_data, message) => _data.set(message.id, this._add(message, cache43)), new Collection2());
@@ -81179,7 +81179,7 @@ var require_MessageManager = __commonJS({
        *   .catch(console.error);
        */
       async fetchPins({ cache: cache43, ...apiOptions } = {}) {
-        const data = await this.client.rest.get(Routes5.channelMessagesPins(this.channel.id), {
+        const data = await this.client.rest.get(Routes6.channelMessagesPins(this.channel.id), {
           query: makeURLSearchParams2({
             ...apiOptions,
             before: apiOptions.before && new Date(apiOptions.before).toISOString()
@@ -81212,7 +81212,7 @@ var require_MessageManager = __commonJS({
           );
           deprecationEmittedForFetchPinned = true;
         }
-        const data = await this.client.rest.get(Routes5.channelPins(this.channel.id));
+        const data = await this.client.rest.get(Routes6.channelPins(this.channel.id));
         const messages = new Collection2();
         for (const message of data) messages.set(message.id, this._add(message, cache43));
         return messages;
@@ -81256,7 +81256,7 @@ var require_MessageManager = __commonJS({
         const messageId = this.resolveId(message);
         if (!messageId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "message", "MessageResolvable");
         const { body, files } = await (options instanceof MessagePayload ? options : MessagePayload.create(message instanceof Message2 ? message : this, options)).resolveBody().resolveFiles();
-        const d = await this.client.rest.patch(Routes5.channelMessage(this.channel.id, messageId), { body, files });
+        const d = await this.client.rest.patch(Routes6.channelMessage(this.channel.id, messageId), { body, files });
         const existing = this.cache.get(messageId);
         if (existing) {
           const clone3 = existing._clone();
@@ -81273,7 +81273,7 @@ var require_MessageManager = __commonJS({
       async crosspost(message) {
         message = this.resolveId(message);
         if (!message) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "message", "MessageResolvable");
-        const data = await this.client.rest.post(Routes5.channelMessageCrosspost(this.channel.id, message));
+        const data = await this.client.rest.post(Routes6.channelMessageCrosspost(this.channel.id, message));
         return this.cache.get(data.id) ?? this._add(data);
       }
       /**
@@ -81285,7 +81285,7 @@ var require_MessageManager = __commonJS({
       async pin(message, reason) {
         message = this.resolveId(message);
         if (!message) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "message", "MessageResolvable");
-        await this.client.rest.put(Routes5.channelMessagesPin(this.channel.id, message), { reason });
+        await this.client.rest.put(Routes6.channelMessagesPin(this.channel.id, message), { reason });
       }
       /**
        * Unpins a message from the channel's pinned messages, even if it's not cached.
@@ -81296,7 +81296,7 @@ var require_MessageManager = __commonJS({
       async unpin(message, reason) {
         message = this.resolveId(message);
         if (!message) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "message", "MessageResolvable");
-        await this.client.rest.delete(Routes5.channelMessagesPin(this.channel.id, message), { reason });
+        await this.client.rest.delete(Routes6.channelMessagesPin(this.channel.id, message), { reason });
       }
       /**
        * Adds a reaction to a message, even if it's not cached.
@@ -81310,7 +81310,7 @@ var require_MessageManager = __commonJS({
         emoji2 = resolvePartialEmoji(emoji2);
         if (!emoji2) throw new DiscordjsTypeError2(ErrorCodes2.EmojiType, "emoji", "EmojiIdentifierResolvable");
         const emojiId = emoji2.id ? `${emoji2.animated ? "a:" : ""}${emoji2.name}:${emoji2.id}` : encodeURIComponent(emoji2.name);
-        await this.client.rest.put(Routes5.channelMessageOwnReaction(this.channel.id, message, emojiId));
+        await this.client.rest.put(Routes6.channelMessageOwnReaction(this.channel.id, message, emojiId));
       }
       /**
        * Deletes a message, even if it's not cached.
@@ -81320,7 +81320,7 @@ var require_MessageManager = __commonJS({
       async delete(message) {
         message = this.resolveId(message);
         if (!message) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "message", "MessageResolvable");
-        await this.client.rest.delete(Routes5.channelMessage(this.channel.id, message));
+        await this.client.rest.delete(Routes6.channelMessage(this.channel.id, message));
       }
       /**
        * Ends a poll.
@@ -81328,7 +81328,7 @@ var require_MessageManager = __commonJS({
        * @returns {Promise<Message>}
        */
       async endPoll(messageId) {
-        const message = await this.client.rest.post(Routes5.expirePoll(this.channel.id, messageId));
+        const message = await this.client.rest.post(Routes6.expirePoll(this.channel.id, messageId));
         return this._add(message, false);
       }
       /**
@@ -81343,7 +81343,7 @@ var require_MessageManager = __commonJS({
        * @returns {Promise<Collection<Snowflake, User>>}
        */
       async fetchPollAnswerVoters({ messageId, answerId, after, limit }) {
-        const voters = await this.client.rest.get(Routes5.pollAnswerVoters(this.channel.id, messageId, answerId), {
+        const voters = await this.client.rest.get(Routes6.pollAnswerVoters(this.channel.id, messageId, answerId), {
           query: makeURLSearchParams2({ limit, after })
         });
         return voters.users.reduce((acc, user) => acc.set(user.id, this.client.users._add(user, false)), new Collection2());
@@ -81704,7 +81704,7 @@ var require_TextBasedChannel = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { DiscordSnowflake } = require_cjs();
-    var { InteractionType, Routes: Routes5 } = require_v106();
+    var { InteractionType, Routes: Routes6 } = require_v106();
     var { DiscordjsTypeError: DiscordjsTypeError2, DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { MaxBulkDeletableMessageAge } = require_Constants();
     var InteractionCollector = require_InteractionCollector();
@@ -81858,7 +81858,7 @@ var require_TextBasedChannel = __commonJS({
           messagePayload = MessagePayload.create(this, options).resolveBody();
         }
         const { body, files } = await messagePayload.resolveFiles();
-        const d = await this.client.rest.post(Routes5.channelMessages(this.id), { body, files });
+        const d = await this.client.rest.post(Routes6.channelMessages(this.id), { body, files });
         return this.messages.cache.get(d.id) ?? this.messages._add(d);
       }
       /**
@@ -81869,7 +81869,7 @@ var require_TextBasedChannel = __commonJS({
        * channel.sendTyping();
        */
       async sendTyping() {
-        await this.client.rest.post(Routes5.channelTyping(this.id));
+        await this.client.rest.post(Routes6.channelTyping(this.id));
       }
       /**
        * Creates a Message Collector.
@@ -81984,10 +81984,10 @@ var require_TextBasedChannel = __commonJS({
               },
               this
             );
-            await this.client.rest.delete(Routes5.channelMessage(this.id, messageIds[0]));
+            await this.client.rest.delete(Routes6.channelMessage(this.id, messageIds[0]));
             return message ? new Collection2([[message.id, message]]) : new Collection2();
           }
-          await this.client.rest.post(Routes5.channelBulkDelete(this.id), { body: { messages: messageIds } });
+          await this.client.rest.post(Routes6.channelBulkDelete(this.id), { body: { messages: messageIds } });
           return messageIds.reduce(
             (col, id) => col.set(
               id,
@@ -82419,7 +82419,7 @@ var require_PollAnswerVoterManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var User7 = require_User();
     var PollAnswerVoterManager = class extends CachedManager {
@@ -82440,7 +82440,7 @@ var require_PollAnswerVoterManager = __commonJS({
       async fetch({ after, limit } = {}) {
         const poll = this.answer.poll;
         const query = makeURLSearchParams2({ limit, after });
-        const data = await this.client.rest.get(Routes5.pollAnswerVoters(poll.channelId, poll.messageId, this.answer.id), {
+        const data = await this.client.rest.get(Routes6.pollAnswerVoters(poll.channelId, poll.messageId, this.answer.id), {
           query
         });
         return data.users.reduce((coll, rawUser) => {
@@ -83231,7 +83231,7 @@ var require_DMChannel = __commonJS({
 var require_GuildForumThreadManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/GuildForumThreadManager.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var ThreadManager = require_ThreadManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var MessagePayload = require_MessagePayload();
@@ -83284,7 +83284,7 @@ var require_GuildForumThreadManager = __commonJS({
           throw new DiscordjsTypeError2(ErrorCodes2.GuildForumMessageRequired);
         }
         const { body, files } = await (message instanceof MessagePayload ? message : MessagePayload.create(this, message)).resolveBody().resolveFiles();
-        const data = await this.client.rest.post(Routes5.threads(this.channel.id), {
+        const data = await this.client.rest.post(Routes6.threads(this.channel.id), {
           body: {
             name: name2,
             auto_archive_duration: autoArchiveDuration,
@@ -83572,7 +83572,7 @@ var require_ThreadMemberManager = __commonJS({
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var ThreadMember = require_ThreadMember();
@@ -83659,7 +83659,7 @@ var require_ThreadMemberManager = __commonJS({
         }
         const id = member === "@me" ? member : this.client.users.resolveId(member);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "member", "UserResolvable");
-        await this.client.rest.put(Routes5.threadMembers(this.thread.id, id), { reason });
+        await this.client.rest.put(Routes6.threadMembers(this.thread.id, id), { reason });
         return id;
       }
       /**
@@ -83675,7 +83675,7 @@ var require_ThreadMemberManager = __commonJS({
         }
         const id = member === "@me" ? member : this.client.users.resolveId(member);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "member", "UserResolvable");
-        await this.client.rest.delete(Routes5.threadMembers(this.thread.id, id), { reason });
+        await this.client.rest.delete(Routes6.threadMembers(this.thread.id, id), { reason });
         return id;
       }
       /**
@@ -83723,13 +83723,13 @@ var require_ThreadMemberManager = __commonJS({
           const existing = this.cache.get(member);
           if (existing) return existing;
         }
-        const data = await this.client.rest.get(Routes5.threadMembers(this.thread.id, member), {
+        const data = await this.client.rest.get(Routes6.threadMembers(this.thread.id, member), {
           query: makeURLSearchParams2({ with_member: withMember })
         });
         return this._add(data, cache43);
       }
       async _fetchMany({ withMember, after, limit, cache: cache43 } = {}) {
-        const data = await this.client.rest.get(Routes5.threadMembers(this.thread.id), {
+        const data = await this.client.rest.get(Routes6.threadMembers(this.thread.id), {
           query: makeURLSearchParams2({ with_member: withMember, after, limit })
         });
         return data.reduce((col, member) => col.set(member.user_id, this._add(member, cache43)), new Collection2());
@@ -83745,7 +83745,7 @@ var require_ThreadChannel = __commonJS({
     "use strict";
     var { DiscordAPIError } = require_dist7();
     var { lazy } = require_dist3();
-    var { RESTJSONErrorCodes, ChannelFlags, ChannelType: ChannelType63, PermissionFlagsBits: PermissionFlagsBits61, Routes: Routes5 } = require_v106();
+    var { RESTJSONErrorCodes, ChannelFlags, ChannelType: ChannelType63, PermissionFlagsBits: PermissionFlagsBits61, Routes: Routes6 } = require_v106();
     var { BaseChannel } = require_BaseChannel();
     var getThreadOnlyChannel = lazy(() => require_ThreadOnlyChannel());
     var TextBasedChannel = require_TextBasedChannel();
@@ -83959,7 +83959,7 @@ var require_ThreadChannel = __commonJS({
        *   .catch(console.error);
        */
       async edit(options) {
-        const newData = await this.client.rest.patch(Routes5.channel(this.id), {
+        const newData = await this.client.rest.patch(Routes6.channel(this.id), {
           body: {
             name: options.name,
             archived: options.archived,
@@ -84198,7 +84198,7 @@ var require_ThreadManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var ThreadChannel = require_ThreadChannel();
@@ -84302,9 +84302,9 @@ var require_ThreadManager = __commonJS({
        * @returns {Promise<FetchedThreadsMore>}
        */
       async fetchArchived({ type = "public", fetchAll = false, before, limit } = {}, cache43 = true) {
-        let path18 = Routes5.channelThreads(this.channel.id, type);
+        let path18 = Routes6.channelThreads(this.channel.id, type);
         if (type === "private" && !fetchAll) {
-          path18 = Routes5.channelJoinedArchivedThreads(this.channel.id);
+          path18 = Routes6.channelJoinedArchivedThreads(this.channel.id);
         }
         let timestamp;
         let id;
@@ -84363,7 +84363,7 @@ var require_ThreadManager = __commonJS({
 var require_GuildTextThreadManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/GuildTextThreadManager.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63, Routes: Routes5 } = require_v106();
+    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
     var ThreadManager = require_ThreadManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var GuildTextThreadManager = class extends ThreadManager {
@@ -84427,7 +84427,7 @@ var require_GuildTextThreadManager = __commonJS({
         } else if (this.channel.type !== ChannelType63.GuildAnnouncement) {
           resolvedType = type ?? resolvedType;
         }
-        const data = await this.client.rest.post(Routes5.threads(this.channel.id, startMessageId), {
+        const data = await this.client.rest.post(Routes6.threads(this.channel.id, startMessageId), {
           body: {
             name: name2,
             auto_archive_duration: autoArchiveDuration,
@@ -84602,7 +84602,7 @@ var require_BaseGuildTextChannel = __commonJS({
 var require_NewsChannel = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/NewsChannel.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var BaseGuildTextChannel = require_BaseGuildTextChannel();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var NewsChannel = class extends BaseGuildTextChannel {
@@ -84621,7 +84621,7 @@ var require_NewsChannel = __commonJS({
       async addFollower(channel, reason) {
         const channelId = this.guild.channels.resolveId(channel);
         if (!channelId) throw new DiscordjsError2(ErrorCodes2.GuildChannelResolve);
-        await this.client.rest.post(Routes5.channelFollowers(this.id), { body: { webhook_channel_id: channelId }, reason });
+        await this.client.rest.post(Routes6.channelFollowers(this.id), { body: { webhook_channel_id: channelId }, reason });
         return this;
       }
     };
@@ -84890,7 +84890,7 @@ var require_TextChannel = __commonJS({
 var require_VoiceChannel = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/VoiceChannel.js"(exports2, module2) {
     "use strict";
-    var { PermissionFlagsBits: PermissionFlagsBits61, Routes: Routes5 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits61, Routes: Routes6 } = require_v106();
     var BaseGuildVoiceChannel = require_BaseGuildVoiceChannel();
     var VoiceChannel = class extends BaseGuildVoiceChannel {
       /**
@@ -84925,7 +84925,7 @@ var require_VoiceChannel = __commonJS({
        * @returns {Promise<void>}
        */
       async sendSoundboardSound(sound) {
-        await this.client.rest.post(Routes5.sendSoundboardSound(this.id), {
+        await this.client.rest.post(Routes6.sendSoundboardSound(this.id), {
           body: {
             sound_id: sound.soundId,
             source_guild_id: sound.guildId ?? void 0
@@ -85569,7 +85569,7 @@ var require_GuildOnboardingPrompt = __commonJS({
 var require_Integration = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/Integration.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var IntegrationApplication = require_IntegrationApplication();
     var Integration = class extends Base {
@@ -85663,7 +85663,7 @@ var require_Integration = __commonJS({
        * @param {string} [reason] Reason for deleting this integration
        */
       async delete(reason) {
-        await this.client.rest.delete(Routes5.guildIntegration(this.guild.id, this.id), { reason });
+        await this.client.rest.delete(Routes6.guildIntegration(this.guild.id, this.id), { reason });
         return this;
       }
       toJSON() {
@@ -87078,7 +87078,7 @@ var require_CommandInteractionOptionResolver = __commonJS({
 var require_AutocompleteInteraction = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/AutocompleteInteraction.js"(exports2, module2) {
     "use strict";
-    var { InteractionResponseType, Routes: Routes5 } = require_v106();
+    var { InteractionResponseType, Routes: Routes6 } = require_v106();
     var BaseInteraction = require_BaseInteraction();
     var CommandInteractionOptionResolver = require_CommandInteractionOptionResolver();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
@@ -87117,7 +87117,7 @@ var require_AutocompleteInteraction = __commonJS({
        */
       async respond(options) {
         if (this.responded) throw new DiscordjsError2(ErrorCodes2.InteractionAlreadyReplied);
-        await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.ApplicationCommandAutocompleteResult,
             data: {
@@ -87305,7 +87305,7 @@ var require_InteractionResponses = __commonJS({
     var { deprecate: deprecate3 } = __require("node:util");
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
     var { isJSONEncodable } = require_dist3();
-    var { InteractionResponseType, MessageFlags: MessageFlags2, Routes: Routes5, InteractionType } = require_v106();
+    var { InteractionResponseType, MessageFlags: MessageFlags2, Routes: Routes6, InteractionType } = require_v106();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var MessageFlagsBitField = require_MessageFlagsBitField();
     var InteractionCallbackResponse = require_InteractionCallbackResponse();
@@ -87401,7 +87401,7 @@ var require_InteractionResponses = __commonJS({
         if (options.ephemeral) {
           flags.add(MessageFlags2.Ephemeral);
         }
-        const response = await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        const response = await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.DeferredChannelMessageWithSource,
             data: {
@@ -87458,7 +87458,7 @@ var require_InteractionResponses = __commonJS({
         if (options instanceof MessagePayload) messagePayload = options;
         else messagePayload = MessagePayload.create(this, options);
         const { body: data, files } = await messagePayload.resolveBody().resolveFiles();
-        const response = await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        const response = await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.ChannelMessageWithSource,
             data
@@ -87554,7 +87554,7 @@ var require_InteractionResponses = __commonJS({
             deprecationEmittedForFetchReplyOption = true;
           }
         }
-        const response = await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        const response = await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.DeferredMessageUpdate
           },
@@ -87592,7 +87592,7 @@ var require_InteractionResponses = __commonJS({
         if (options instanceof MessagePayload) messagePayload = options;
         else messagePayload = MessagePayload.create(this, options);
         const { body: data, files } = await messagePayload.resolveBody().resolveFiles();
-        const response = await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        const response = await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.UpdateMessage,
             data
@@ -87611,7 +87611,7 @@ var require_InteractionResponses = __commonJS({
        */
       async launchActivity({ withResponse } = {}) {
         if (this.deferred || this.replied) throw new DiscordjsError2(ErrorCodes2.InteractionAlreadyReplied);
-        const response = await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        const response = await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           query: makeURLSearchParams2({ with_response: withResponse ?? false }),
           body: {
             type: InteractionResponseType.LaunchActivity
@@ -87629,7 +87629,7 @@ var require_InteractionResponses = __commonJS({
        */
       async showModal(modal, options = {}) {
         if (this.deferred || this.replied) throw new DiscordjsError2(ErrorCodes2.InteractionAlreadyReplied);
-        const response = await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        const response = await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.Modal,
             data: isJSONEncodable(modal) ? modal.toJSON() : this.client.options.jsonTransformer(modal)
@@ -87648,7 +87648,7 @@ var require_InteractionResponses = __commonJS({
        */
       async sendPremiumRequired() {
         if (this.deferred || this.replied) throw new DiscordjsError2(ErrorCodes2.InteractionAlreadyReplied);
-        await this.client.rest.post(Routes5.interactionCallback(this.id, this.token), {
+        await this.client.rest.post(Routes6.interactionCallback(this.id, this.token), {
           body: {
             type: InteractionResponseType.PremiumRequired
           },
@@ -95511,7 +95511,7 @@ var require_RATE_LIMITED = __commonJS({
 var require_ClientUser = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/ClientUser.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var User7 = require_User();
     var { resolveImage } = require_DataResolver();
     var ClientUser = class extends User7 {
@@ -95548,7 +95548,7 @@ var require_ClientUser = __commonJS({
        * @returns {Promise<ClientUser>}
        */
       async edit({ username, avatar, banner }) {
-        const data = await this.client.rest.patch(Routes5.user(), {
+        const data = await this.client.rest.patch(Routes6.user(), {
           body: {
             username,
             avatar: avatar && await resolveImage(avatar),
@@ -96436,7 +96436,7 @@ var require_ChannelManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/ChannelManager.js"(exports2, module2) {
     "use strict";
     var process2 = __require("node:process");
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { BaseChannel } = require_BaseChannel();
     var { createChannel } = require_Channels();
@@ -96537,7 +96537,7 @@ var require_ChannelManager = __commonJS({
           const existing = this.cache.get(id);
           if (existing && !existing.partial) return existing;
         }
-        const data = await this.client.rest.get(Routes5.channel(id));
+        const data = await this.client.rest.get(Routes6.channel(id));
         return this._add(data, null, { cache: cache43, allowUnknownGuild });
       }
     };
@@ -96913,7 +96913,7 @@ var require_GuildPreview = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { DiscordSnowflake } = require_cjs();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var GuildPreviewEmoji = require_GuildPreviewEmoji();
     var { Sticker: Sticker2 } = require_Sticker();
@@ -97009,7 +97009,7 @@ var require_GuildPreview = __commonJS({
        * @returns {Promise<GuildPreview>}
        */
       async fetch() {
-        const data = await this.client.rest.get(Routes5.guildPreview(this.id));
+        const data = await this.client.rest.get(Routes6.guildPreview(this.id));
         this._patch(data);
         return this;
       }
@@ -97039,7 +97039,7 @@ var require_AutoModerationRuleManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/AutoModerationRuleManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var AutoModerationRule2 = require_AutoModerationRule();
     var AutoModerationRuleManager = class extends CachedManager {
@@ -97138,7 +97138,7 @@ var require_AutoModerationRuleManager = __commonJS({
         exemptChannels,
         reason
       }) {
-        const data = await this.client.rest.post(Routes5.guildAutoModerationRules(this.guild.id), {
+        const data = await this.client.rest.post(Routes6.guildAutoModerationRules(this.guild.id), {
           body: {
             name: name2,
             event_type: eventType,
@@ -97190,7 +97190,7 @@ var require_AutoModerationRuleManager = __commonJS({
        */
       async edit(autoModerationRule, { name: name2, eventType, triggerMetadata, actions, enabled, exemptRoles, exemptChannels, reason }) {
         const autoModerationRuleId = this.resolveId(autoModerationRule);
-        const data = await this.client.rest.patch(Routes5.guildAutoModerationRule(this.guild.id, autoModerationRuleId), {
+        const data = await this.client.rest.patch(Routes6.guildAutoModerationRule(this.guild.id, autoModerationRuleId), {
           body: {
             name: name2,
             event_type: eventType,
@@ -97269,11 +97269,11 @@ var require_AutoModerationRuleManager = __commonJS({
           const existing = this.cache.get(autoModerationRule);
           if (existing) return existing;
         }
-        const data = await this.client.rest.get(Routes5.guildAutoModerationRule(this.guild.id, autoModerationRule));
+        const data = await this.client.rest.get(Routes6.guildAutoModerationRule(this.guild.id, autoModerationRule));
         return this._add(data, cache43);
       }
       async _fetchMany(options = {}) {
-        const data = await this.client.rest.get(Routes5.guildAutoModerationRules(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildAutoModerationRules(this.guild.id));
         return data.reduce(
           (col, autoModerationRule) => col.set(autoModerationRule.id, this._add(autoModerationRule, options.cache)),
           new Collection2()
@@ -97287,7 +97287,7 @@ var require_AutoModerationRuleManager = __commonJS({
        */
       async delete(autoModerationRule, reason) {
         const autoModerationRuleId = this.resolveId(autoModerationRule);
-        await this.client.rest.delete(Routes5.guildAutoModerationRule(this.guild.id, autoModerationRuleId), { reason });
+        await this.client.rest.delete(Routes6.guildAutoModerationRule(this.guild.id, autoModerationRuleId), { reason });
       }
     };
     module2.exports = AutoModerationRuleManager;
@@ -97318,7 +97318,7 @@ var require_GuildBanManager = __commonJS({
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var GuildBan = require_GuildBan();
@@ -97409,11 +97409,11 @@ var require_GuildBanManager = __commonJS({
           const existing = this.cache.get(user);
           if (existing && !existing.partial) return existing;
         }
-        const data = await this.client.rest.get(Routes5.guildBan(this.guild.id, user));
+        const data = await this.client.rest.get(Routes6.guildBan(this.guild.id, user));
         return this._add(data, cache43);
       }
       async _fetchMany({ cache: cache43, ...apiOptions } = {}) {
-        const data = await this.client.rest.get(Routes5.guildBans(this.guild.id), {
+        const data = await this.client.rest.get(Routes6.guildBans(this.guild.id), {
           query: makeURLSearchParams2(apiOptions)
         });
         return data.reduce((col, ban2) => col.set(ban2.user.id, this._add(ban2, cache43)), new Collection2());
@@ -97452,7 +97452,7 @@ var require_GuildBanManager = __commonJS({
           );
           deprecationEmittedForDeleteMessageDays = true;
         }
-        await this.client.rest.put(Routes5.guildBan(this.guild.id, id), {
+        await this.client.rest.put(Routes6.guildBan(this.guild.id, id), {
           body: {
             delete_message_seconds: options.deleteMessageSeconds ?? (options.deleteMessageDays ? options.deleteMessageDays * 24 * 60 * 60 : void 0)
           },
@@ -97479,7 +97479,7 @@ var require_GuildBanManager = __commonJS({
       async remove(user, reason) {
         const id = this.client.users.resolveId(user);
         if (!id) throw new DiscordjsError2(ErrorCodes2.BanResolveId);
-        await this.client.rest.delete(Routes5.guildBan(this.guild.id, id), { reason });
+        await this.client.rest.delete(Routes6.guildBan(this.guild.id, id), { reason });
         return this.client.users.resolve(user);
       }
       /**
@@ -97516,7 +97516,7 @@ var require_GuildBanManager = __commonJS({
         if (typeof options !== "object") throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "options", "object", true);
         const userIds = users.map((user) => this.client.users.resolveId(user));
         if (userIds.length === 0) throw new DiscordjsError2(ErrorCodes2.BulkBanUsersOptionEmpty);
-        const result = await this.client.rest.post(Routes5.guildBulkBan(this.guild.id), {
+        const result = await this.client.rest.post(Routes6.guildBulkBan(this.guild.id), {
           body: { delete_message_seconds: options.deleteMessageSeconds, user_ids: userIds },
           reason: options.reason
         });
@@ -97533,7 +97533,7 @@ var require_GuildChannelManager = __commonJS({
     "use strict";
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
-    var { ChannelType: ChannelType63, Routes: Routes5 } = require_v106();
+    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var GuildTextThreadManager = require_GuildTextThreadManager();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
@@ -97630,7 +97630,7 @@ var require_GuildChannelManager = __commonJS({
         if (!targetChannelId) {
           throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "targetChannel", "TextChannelResolvable");
         }
-        const { webhook_id } = await this.client.rest.post(Routes5.channelFollowers(channelId), {
+        const { webhook_id } = await this.client.rest.post(Routes6.channelFollowers(channelId), {
           body: { webhook_channel_id: targetChannelId },
           reason
         });
@@ -97686,7 +97686,7 @@ var require_GuildChannelManager = __commonJS({
       }) {
         parent &&= this.client.channels.resolveId(parent);
         permissionOverwrites &&= permissionOverwrites.map((overwrite) => PermissionOverwrites.resolve(overwrite, this.guild));
-        const data = await this.client.rest.post(Routes5.guildChannels(this.guild.id), {
+        const data = await this.client.rest.post(Routes6.guildChannels(this.guild.id), {
           body: {
             name: name2,
             topic,
@@ -97735,7 +97735,7 @@ var require_GuildChannelManager = __commonJS({
         const id = this.resolveId(channel);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "channel", "GuildChannelResolvable");
         const resolvedImage = await resolveImage(avatar);
-        const data = await this.client.rest.post(Routes5.channelWebhooks(id), {
+        const data = await this.client.rest.post(Routes6.channelWebhooks(id), {
           body: {
             name: name2,
             avatar: resolvedImage
@@ -97807,7 +97807,7 @@ var require_GuildChannelManager = __commonJS({
             );
           }
         }
-        const newData = await this.client.rest.patch(Routes5.channel(resolvedChannel.id), {
+        const newData = await this.client.rest.patch(Routes6.channel(resolvedChannel.id), {
           body: {
             name: options.name,
             type: options.type,
@@ -97854,7 +97854,7 @@ var require_GuildChannelManager = __commonJS({
           relative,
           this.guild._sortedChannels(channel),
           this.client,
-          Routes5.guildChannels(this.guild.id),
+          Routes6.guildChannels(this.guild.id),
           reason
         );
         this.client.actions.GuildChannelsPositionUpdate.handle({
@@ -97885,11 +97885,11 @@ var require_GuildChannelManager = __commonJS({
           if (existing) return existing;
         }
         if (id) {
-          const data2 = await this.client.rest.get(Routes5.channel(id));
+          const data2 = await this.client.rest.get(Routes6.channel(id));
           if (this.guild.id !== data2.guild_id) throw new DiscordjsError2(ErrorCodes2.GuildChannelUnowned);
           return this.client.channels._add(data2, this.guild, { cache: cache43 });
         }
-        const data = await this.client.rest.get(Routes5.guildChannels(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildChannels(this.guild.id));
         const channels = new Collection2();
         for (const channel of data) channels.set(channel.id, this.client.channels._add(channel, this.guild, { cache: cache43 }));
         return channels;
@@ -97907,7 +97907,7 @@ var require_GuildChannelManager = __commonJS({
       async fetchWebhooks(channel) {
         const id = this.resolveId(channel);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "channel", "GuildChannelResolvable");
-        const data = await this.client.rest.get(Routes5.channelWebhooks(id));
+        const data = await this.client.rest.get(Routes6.channelWebhooks(id));
         return data.reduce((hooks, hook) => hooks.set(hook.id, new Webhook2(this.client, hook)), new Collection2());
       }
       /**
@@ -97941,7 +97941,7 @@ var require_GuildChannelManager = __commonJS({
           lock_permissions: channelPosition.lockPermissions,
           parent_id: channelPosition.parent !== void 0 ? this.resolveId(channelPosition.parent) : void 0
         }));
-        await this.client.rest.patch(Routes5.guildChannels(this.guild.id), { body: channelPositions });
+        await this.client.rest.patch(Routes6.guildChannels(this.guild.id), { body: channelPositions });
         return this.client.actions.GuildChannelsPositionUpdate.handle({
           guild_id: this.guild.id,
           channels: channelPositions
@@ -97973,7 +97973,7 @@ var require_GuildChannelManager = __commonJS({
        * @returns {Promise<RESTGetAPIGuildThreadsResult>}
        */
       rawFetchGuildActiveThreads() {
-        return this.client.rest.get(Routes5.guildActiveThreads(this.guild.id));
+        return this.client.rest.get(Routes6.guildActiveThreads(this.guild.id));
       }
       /**
        * Deletes the channel.
@@ -97989,7 +97989,7 @@ var require_GuildChannelManager = __commonJS({
       async delete(channel, reason) {
         const id = this.resolveId(channel);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "channel", "GuildChannelResolvable");
-        await this.client.rest.delete(Routes5.channel(id), { reason });
+        await this.client.rest.delete(Routes6.channel(id), { reason });
         this.client.actions.ChannelDelete.handle({ id });
       }
     };
@@ -98002,7 +98002,7 @@ var require_GuildEmojiManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/GuildEmojiManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5, PermissionFlagsBits: PermissionFlagsBits61 } = require_v106();
+    var { Routes: Routes6, PermissionFlagsBits: PermissionFlagsBits61 } = require_v106();
     var BaseGuildEmojiManager2 = require_BaseGuildEmojiManager();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { resolveImage } = require_DataResolver();
@@ -98059,7 +98059,7 @@ var require_GuildEmojiManager = __commonJS({
             body.roles.push(resolvedRole);
           }
         }
-        const emoji2 = await this.client.rest.post(Routes5.guildEmojis(this.guild.id), { body, reason });
+        const emoji2 = await this.client.rest.post(Routes6.guildEmojis(this.guild.id), { body, reason });
         return this.client.actions.GuildEmojiCreate.handle(this.guild, emoji2).emoji;
       }
       /**
@@ -98084,10 +98084,10 @@ var require_GuildEmojiManager = __commonJS({
             const existing = this.cache.get(id);
             if (existing) return existing;
           }
-          const emoji2 = await this.client.rest.get(Routes5.guildEmoji(this.guild.id, id));
+          const emoji2 = await this.client.rest.get(Routes6.guildEmoji(this.guild.id, id));
           return this._add(emoji2, cache43);
         }
-        const data = await this.client.rest.get(Routes5.guildEmojis(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildEmojis(this.guild.id));
         const emojis = new Collection2();
         for (const emoji2 of data) emojis.set(emoji2.id, this._add(emoji2, cache43));
         return emojis;
@@ -98101,7 +98101,7 @@ var require_GuildEmojiManager = __commonJS({
       async delete(emoji2, reason) {
         const id = this.resolveId(emoji2);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "emoji", "EmojiResolvable", true);
-        await this.client.rest.delete(Routes5.guildEmoji(this.guild.id, id), { reason });
+        await this.client.rest.delete(Routes6.guildEmoji(this.guild.id, id), { reason });
       }
       /**
        * Edits an emoji.
@@ -98113,7 +98113,7 @@ var require_GuildEmojiManager = __commonJS({
         const id = this.resolveId(emoji2);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "emoji", "EmojiResolvable", true);
         const roles = options.roles?.map((role) => this.guild.roles.resolveId(role));
-        const newData = await this.client.rest.patch(Routes5.guildEmoji(this.guild.id, id), {
+        const newData = await this.client.rest.patch(Routes6.guildEmoji(this.guild.id, id), {
           body: {
             name: options.name,
             roles
@@ -98144,7 +98144,7 @@ var require_GuildEmojiManager = __commonJS({
         if (!me.permissions.any(PermissionFlagsBits61.CreateGuildExpressions | PermissionFlagsBits61.ManageGuildExpressions)) {
           throw new DiscordjsError2(ErrorCodes2.MissingManageGuildExpressionsPermission, this.guild);
         }
-        const data = await this.client.rest.get(Routes5.guildEmoji(this.guild.id, emoji2.id));
+        const data = await this.client.rest.get(Routes6.guildEmoji(this.guild.id, emoji2.id));
         emoji2._patch(data);
         return emoji2.author;
       }
@@ -98158,7 +98158,7 @@ var require_GuildInviteManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/GuildInviteManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var Invite2 = require_Invite();
@@ -98291,11 +98291,11 @@ var require_GuildInviteManager = __commonJS({
         return invite;
       }
       async _fetchMany(cache43) {
-        const data = await this.client.rest.get(Routes5.guildInvites(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildInvites(this.guild.id));
         return data.reduce((col, invite) => col.set(invite.code, this._add(invite, cache43)), new Collection2());
       }
       async _fetchChannelMany(channelId, cache43) {
-        const data = await this.client.rest.get(Routes5.channelInvites(channelId));
+        const data = await this.client.rest.get(Routes6.channelInvites(channelId));
         return data.reduce((col, invite) => col.set(invite.code, this._add(invite, cache43)), new Collection2());
       }
       /**
@@ -98312,7 +98312,7 @@ var require_GuildInviteManager = __commonJS({
       async create(channel, { temporary, maxAge, maxUses, unique, targetUser, targetApplication, targetType, reason } = {}) {
         const id = this.guild.channels.resolveId(channel);
         if (!id) throw new DiscordjsError2(ErrorCodes2.GuildChannelResolve);
-        const invite = await this.client.rest.post(Routes5.channelInvites(id), {
+        const invite = await this.client.rest.post(Routes6.channelInvites(id), {
           body: {
             temporary,
             max_age: maxAge,
@@ -98334,7 +98334,7 @@ var require_GuildInviteManager = __commonJS({
        */
       async delete(invite, reason) {
         const code = resolveInviteCode2(invite);
-        await this.client.rest.delete(Routes5.invite(code), { reason });
+        await this.client.rest.delete(Routes6.invite(code), { reason });
       }
     };
     module2.exports = GuildInviteManager;
@@ -98351,7 +98351,7 @@ var require_GuildMemberManager = __commonJS({
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
     var { GatewayRateLimitError } = require_dist3();
     var { DiscordSnowflake } = require_cjs();
-    var { Routes: Routes5, GatewayOpcodes, GatewayDispatchEvents } = require_v106();
+    var { Routes: Routes6, GatewayOpcodes, GatewayDispatchEvents } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, DiscordjsRangeError: DiscordjsRangeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var BaseGuildVoiceChannel = require_BaseGuildVoiceChannel();
@@ -98459,7 +98459,7 @@ var require_GuildMemberManager = __commonJS({
           }
           resolvedOptions.roles = resolvedRoles;
         }
-        const data = await this.client.rest.put(Routes5.guildMember(this.guild.id, userId), { body: resolvedOptions });
+        const data = await this.client.rest.put(Routes6.guildMember(this.guild.id, userId), { body: resolvedOptions });
         return data instanceof ArrayBuffer ? options.fetchWhenExisting === false ? null : this.fetch(userId) : this._add(data);
       }
       /**
@@ -98534,7 +98534,7 @@ var require_GuildMemberManager = __commonJS({
           const existing = this.cache.get(user);
           if (existing && !existing.partial) return existing;
         }
-        const data = await this.client.rest.get(Routes5.guildMember(this.guild.id, user));
+        const data = await this.client.rest.get(Routes6.guildMember(this.guild.id, user));
         return this._add(data, cache43);
       }
       async _fetchMany({
@@ -98618,7 +98618,7 @@ var require_GuildMemberManager = __commonJS({
        * @returns {Promise<Collection<Snowflake, GuildMember>>}
        */
       async search({ query, limit, cache: cache43 = true } = {}) {
-        const data = await this.client.rest.get(Routes5.guildMembersSearch(this.guild.id), {
+        const data = await this.client.rest.get(Routes6.guildMembersSearch(this.guild.id), {
           query: makeURLSearchParams2({ query, limit })
         });
         return data.reduce((col, member) => col.set(member.user.id, this._add(member, cache43)), new Collection2());
@@ -98637,7 +98637,7 @@ var require_GuildMemberManager = __commonJS({
        */
       async list({ after, limit, cache: cache43 = true } = {}) {
         const query = makeURLSearchParams2({ limit, after });
-        const data = await this.client.rest.get(Routes5.guildMembers(this.guild.id), { query });
+        const data = await this.client.rest.get(Routes6.guildMembers(this.guild.id), { query });
         return data.reduce((col, member) => col.set(member.user.id, this._add(member, cache43)), new Collection2());
       }
       /**
@@ -98687,7 +98687,7 @@ var require_GuildMemberManager = __commonJS({
         if (id === this.client.user.id) {
           const keys = Object.keys(options);
           if (keys.length === 1 && keys[0] === "nick") {
-            endpoint = Routes5.guildMember(this.guild.id, "@me");
+            endpoint = Routes6.guildMember(this.guild.id, "@me");
             if (!deprecatedEmittedForEditSoleNickname) {
               process2.emitWarning(
                 // eslint-disable-next-line max-len
@@ -98698,7 +98698,7 @@ var require_GuildMemberManager = __commonJS({
             }
           }
         }
-        endpoint ??= Routes5.guildMember(this.guild.id, id);
+        endpoint ??= Routes6.guildMember(this.guild.id, id);
         const d = await this.client.rest.patch(endpoint, { body: options, reason });
         const clone3 = this.cache.get(id)?._clone();
         clone3?._patch(d);
@@ -98721,7 +98721,7 @@ var require_GuildMemberManager = __commonJS({
        * @returns {Promise<GuildMember>}
        */
       async editMe({ reason, ...options }) {
-        const data = await this.client.rest.patch(Routes5.guildMember(this.guild.id, "@me"), {
+        const data = await this.client.rest.patch(Routes6.guildMember(this.guild.id, "@me"), {
           body: {
             ...options,
             banner: options.banner && await resolveImage(options.banner),
@@ -98778,7 +98778,7 @@ var require_GuildMemberManager = __commonJS({
         if (resolvedRoles.length) {
           query.include_roles = dry ? resolvedRoles.join(",") : resolvedRoles;
         }
-        const endpoint = Routes5.guildPrune(this.guild.id);
+        const endpoint = Routes6.guildPrune(this.guild.id);
         const { pruned } = await (dry ? this.client.rest.get(endpoint, { query: makeURLSearchParams2(query), reason }) : this.client.rest.post(endpoint, { body: { ...query, compute_prune_count }, reason }));
         return pruned;
       }
@@ -98799,7 +98799,7 @@ var require_GuildMemberManager = __commonJS({
       async kick(user, reason) {
         const id = this.client.users.resolveId(user);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "user", "UserResolvable");
-        await this.client.rest.delete(Routes5.guildMember(this.guild.id, id), { reason });
+        await this.client.rest.delete(Routes6.guildMember(this.guild.id, id), { reason });
         return this.resolve(user) ?? this.client.users.resolve(user) ?? id;
       }
       /**
@@ -98867,7 +98867,7 @@ var require_GuildMemberManager = __commonJS({
         const { user, role, reason } = options;
         const userId = this.resolveId(user);
         const roleId = this.guild.roles.resolveId(role);
-        await this.client.rest.put(Routes5.guildMemberRole(this.guild.id, userId, roleId), { reason });
+        await this.client.rest.put(Routes6.guildMemberRole(this.guild.id, userId, roleId), { reason });
         return this.resolve(user) ?? this.client.users.resolve(user) ?? userId;
       }
       /**
@@ -98879,7 +98879,7 @@ var require_GuildMemberManager = __commonJS({
         const { user, role, reason } = options;
         const userId = this.resolveId(user);
         const roleId = this.guild.roles.resolveId(role);
-        await this.client.rest.delete(Routes5.guildMemberRole(this.guild.id, userId, roleId), { reason });
+        await this.client.rest.delete(Routes6.guildMemberRole(this.guild.id, userId, roleId), { reason });
         return this.resolve(user) ?? this.client.users.resolve(user) ?? userId;
       }
     };
@@ -98893,7 +98893,7 @@ var require_GuildScheduledEventManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { GuildScheduledEventEntityType, Routes: Routes5 } = require_v106();
+    var { GuildScheduledEventEntityType, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { GuildScheduledEvent } = require_GuildScheduledEvent();
@@ -98982,7 +98982,7 @@ var require_GuildScheduledEventManager = __commonJS({
           if (!channel_id) throw new DiscordjsError2(ErrorCodes2.GuildVoiceChannelResolve);
           entity_metadata = entityMetadata === void 0 ? entityMetadata : null;
         }
-        const data = await this.client.rest.post(Routes5.guildScheduledEvents(this.guild.id), {
+        const data = await this.client.rest.post(Routes6.guildScheduledEvents(this.guild.id), {
           body: {
             channel_id,
             name: name2,
@@ -99025,12 +99025,12 @@ var require_GuildScheduledEventManager = __commonJS({
             const existing = this.cache.get(id);
             if (existing) return existing;
           }
-          const data2 = await this.client.rest.get(Routes5.guildScheduledEvent(this.guild.id, id), {
+          const data2 = await this.client.rest.get(Routes6.guildScheduledEvent(this.guild.id, id), {
             query: makeURLSearchParams2({ with_user_count: options.withUserCount ?? true })
           });
           return this._add(data2, options.cache);
         }
-        const data = await this.client.rest.get(Routes5.guildScheduledEvents(this.guild.id), {
+        const data = await this.client.rest.get(Routes6.guildScheduledEvents(this.guild.id), {
           query: makeURLSearchParams2({ with_user_count: options.withUserCount ?? true })
         });
         return data.reduce(
@@ -99088,7 +99088,7 @@ var require_GuildScheduledEventManager = __commonJS({
             location: entityMetadata.location
           };
         }
-        const data = await this.client.rest.patch(Routes5.guildScheduledEvent(this.guild.id, guildScheduledEventId), {
+        const data = await this.client.rest.patch(Routes6.guildScheduledEvent(this.guild.id, guildScheduledEventId), {
           body: {
             channel_id: channel === void 0 ? channel : this.guild.channels.resolveId(channel),
             name: name2,
@@ -99114,7 +99114,7 @@ var require_GuildScheduledEventManager = __commonJS({
       async delete(guildScheduledEvent) {
         const guildScheduledEventId = this.resolveId(guildScheduledEvent);
         if (!guildScheduledEventId) throw new DiscordjsError2(ErrorCodes2.GuildScheduledEventResolve);
-        await this.client.rest.delete(Routes5.guildScheduledEvent(this.guild.id, guildScheduledEventId));
+        await this.client.rest.delete(Routes6.guildScheduledEvent(this.guild.id, guildScheduledEventId));
       }
       /**
        * Options used to fetch subscribers of a guild scheduled event
@@ -99147,7 +99147,7 @@ var require_GuildScheduledEventManager = __commonJS({
           before: options.before,
           after: options.after
         });
-        const data = await this.client.rest.get(Routes5.guildScheduledEventUsers(this.guild.id, guildScheduledEventId), {
+        const data = await this.client.rest.get(Routes6.guildScheduledEventUsers(this.guild.id, guildScheduledEventId), {
           query
         });
         return data.reduce(
@@ -99305,7 +99305,7 @@ var require_GuildSoundboardSoundManager = __commonJS({
     "use strict";
     var { Collection: Collection2 } = require_dist8();
     var { lazy } = require_dist3();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { SoundboardSound: SoundboardSound2 } = require_SoundboardSound();
@@ -99374,7 +99374,7 @@ var require_GuildSoundboardSoundManager = __commonJS({
         const resolvedContentType = contentType ?? resolvedFile.contentType ?? fileTypeMime()(resolvedFile.data)[0];
         const sound = resolveBase64(resolvedFile.data, resolvedContentType);
         const body = { emoji_id: emojiId, emoji_name: emojiName, name: name2, sound, volume };
-        const soundboardSound = await this.client.rest.post(Routes5.guildSoundboardSounds(this.guild.id), {
+        const soundboardSound = await this.client.rest.post(Routes6.guildSoundboardSounds(this.guild.id), {
           body,
           reason
         });
@@ -99400,7 +99400,7 @@ var require_GuildSoundboardSoundManager = __commonJS({
         if (!soundId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "soundboardSound", "SoundboardSoundResolvable");
         const { emojiId, emojiName, name: name2, reason, volume } = options;
         const body = { emoji_id: emojiId, emoji_name: emojiName, name: name2, volume };
-        const data = await this.client.rest.patch(Routes5.guildSoundboardSound(this.guild.id, soundId), {
+        const data = await this.client.rest.patch(Routes6.guildSoundboardSound(this.guild.id, soundId), {
           body,
           reason
         });
@@ -99421,7 +99421,7 @@ var require_GuildSoundboardSoundManager = __commonJS({
       async delete(soundboardSound, reason) {
         const soundId = this.resolveId(soundboardSound);
         if (!soundId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "soundboardSound", "SoundboardSoundResolvable");
-        await this.client.rest.delete(Routes5.guildSoundboardSound(this.guild.id, soundId), { reason });
+        await this.client.rest.delete(Routes6.guildSoundboardSound(this.guild.id, soundId), { reason });
       }
       /**
        * Options used to fetch a soundboard sound.
@@ -99462,11 +99462,11 @@ var require_GuildSoundboardSoundManager = __commonJS({
           const existing = this.cache.get(soundboardSound);
           if (existing) return existing;
         }
-        const data = await this.client.rest.get(Routes5.guildSoundboardSound(this.guild.id, soundboardSound));
+        const data = await this.client.rest.get(Routes6.guildSoundboardSound(this.guild.id, soundboardSound));
         return this._add(data, cache43);
       }
       async _fetchMany({ cache: cache43 } = {}) {
-        const data = await this.client.rest.get(Routes5.guildSoundboardSounds(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildSoundboardSounds(this.guild.id));
         return data.items.reduce((coll, sound) => coll.set(sound.sound_id, this._add(sound, cache43)), new Collection2());
       }
     };
@@ -99479,7 +99479,7 @@ var require_GuildStickerManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/GuildStickerManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var MessagePayload = require_MessagePayload();
@@ -99526,7 +99526,7 @@ var require_GuildStickerManager = __commonJS({
         if (!resolvedFile) throw new DiscordjsTypeError2(ErrorCodes2.ReqResourceType);
         file = { ...resolvedFile, key: "file" };
         const body = { name: name2, tags, description: description ?? "" };
-        const sticker = await this.client.rest.post(Routes5.guildStickers(this.guild.id), {
+        const sticker = await this.client.rest.post(Routes6.guildStickers(this.guild.id), {
           appendToFormData: true,
           body,
           files: [file],
@@ -99565,7 +99565,7 @@ var require_GuildStickerManager = __commonJS({
       async edit(sticker, options = {}) {
         const stickerId = this.resolveId(sticker);
         if (!stickerId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "sticker", "StickerResolvable");
-        const d = await this.client.rest.patch(Routes5.guildSticker(this.guild.id, stickerId), {
+        const d = await this.client.rest.patch(Routes6.guildSticker(this.guild.id, stickerId), {
           body: options,
           reason: options.reason
         });
@@ -99586,7 +99586,7 @@ var require_GuildStickerManager = __commonJS({
       async delete(sticker, reason) {
         sticker = this.resolveId(sticker);
         if (!sticker) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "sticker", "StickerResolvable");
-        await this.client.rest.delete(Routes5.guildSticker(this.guild.id, sticker), { reason });
+        await this.client.rest.delete(Routes6.guildSticker(this.guild.id, sticker), { reason });
       }
       /**
        * Obtains one or more stickers from Discord, or the sticker cache if they're already available.
@@ -99610,10 +99610,10 @@ var require_GuildStickerManager = __commonJS({
             const existing = this.cache.get(id);
             if (existing) return existing;
           }
-          const sticker = await this.client.rest.get(Routes5.guildSticker(this.guild.id, id));
+          const sticker = await this.client.rest.get(Routes6.guildSticker(this.guild.id, id));
           return this._add(sticker, cache43);
         }
-        const data = await this.client.rest.get(Routes5.guildStickers(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildStickers(this.guild.id));
         return new Collection2(data.map((sticker) => [sticker.id, this._add(sticker, cache43)]));
       }
       /**
@@ -99624,7 +99624,7 @@ var require_GuildStickerManager = __commonJS({
       async fetchUser(sticker) {
         sticker = this.resolve(sticker);
         if (!sticker) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "sticker", "StickerResolvable");
-        const data = await this.client.rest.get(Routes5.guildSticker(this.guild.id, sticker.id));
+        const data = await this.client.rest.get(Routes6.guildSticker(this.guild.id, sticker.id));
         sticker._patch(data);
         return sticker.user;
       }
@@ -99881,7 +99881,7 @@ var require_RoleManager = __commonJS({
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist8();
     var { DiscordAPIError } = require_dist7();
-    var { RESTJSONErrorCodes, Routes: Routes5 } = require_v106();
+    var { RESTJSONErrorCodes, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { Role: Role2 } = require_Role();
@@ -99929,7 +99929,7 @@ var require_RoleManager = __commonJS({
        */
       async fetch(id, { cache: cache43 = true, force = false } = {}) {
         if (!id) {
-          const data = await this.client.rest.get(Routes5.guildRoles(this.guild.id));
+          const data = await this.client.rest.get(Routes6.guildRoles(this.guild.id));
           const roles = new Collection2();
           for (const role of data) roles.set(role.id, this._add(role, cache43));
           return roles;
@@ -99939,7 +99939,7 @@ var require_RoleManager = __commonJS({
           if (existing) return existing;
         }
         try {
-          const data = await this.client.rest.get(Routes5.guildRole(this.guild.id, id));
+          const data = await this.client.rest.get(Routes6.guildRole(this.guild.id, id));
           return this._add(data, cache43);
         } catch (error2) {
           if (error2 instanceof DiscordAPIError && error2.code === RESTJSONErrorCodes.UnknownRole) {
@@ -99955,7 +99955,7 @@ var require_RoleManager = __commonJS({
        * @returns {Promise<Collection<Snowflake, number>>} A collection mapping role ids to their respective member counts.
        */
       async fetchMemberCounts() {
-        const data = await this.client.rest.get(Routes5.guildRoleMemberCounts(this.guild.id));
+        const data = await this.client.rest.get(Routes6.guildRoleMemberCounts(this.guild.id));
         return new Collection2(Object.entries(data));
       }
       /**
@@ -100077,7 +100077,7 @@ var require_RoleManager = __commonJS({
             tertiary_color: null
           };
         }
-        const data = await this.client.rest.post(Routes5.guildRoles(this.guild.id), {
+        const data = await this.client.rest.post(Routes6.guildRoles(this.guild.id), {
           body: {
             name: name2,
             colors,
@@ -100150,7 +100150,7 @@ var require_RoleManager = __commonJS({
           icon,
           unicode_emoji: options.unicodeEmoji
         };
-        const d = await this.client.rest.patch(Routes5.guildRole(this.guild.id, role.id), { body, reason: options.reason });
+        const d = await this.client.rest.patch(Routes6.guildRole(this.guild.id, role.id), { body, reason: options.reason });
         const clone3 = role._clone();
         clone3._patch(d);
         return clone3;
@@ -100168,7 +100168,7 @@ var require_RoleManager = __commonJS({
        */
       async delete(role, reason) {
         const id = this.resolveId(role);
-        await this.client.rest.delete(Routes5.guildRole(this.guild.id, id), { reason });
+        await this.client.rest.delete(Routes6.guildRole(this.guild.id, id), { reason });
         this.client.actions.GuildRoleDelete.handle({ guild_id: this.guild.id, role_id: id });
       }
       /**
@@ -100192,7 +100192,7 @@ var require_RoleManager = __commonJS({
           relative,
           this.guild._sortedRoles(),
           this.client,
-          Routes5.guildRoles(this.guild.id),
+          Routes6.guildRoles(this.guild.id),
           reason
         );
         this.client.actions.GuildRolesPositionUpdate.handle({
@@ -100221,7 +100221,7 @@ var require_RoleManager = __commonJS({
           id: this.resolveId(rolePosition.role),
           position: rolePosition.position
         }));
-        await this.client.rest.patch(Routes5.guildRoles(this.guild.id), { body: rolePositions });
+        await this.client.rest.patch(Routes6.guildRoles(this.guild.id), { body: rolePositions });
         return this.client.actions.GuildRolesPositionUpdate.handle({
           guild_id: this.guild.id,
           roles: rolePositions
@@ -100291,7 +100291,7 @@ var require_RoleManager = __commonJS({
 var require_StageInstanceManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/StageInstanceManager.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { StageInstance } = require_StageInstance();
@@ -100340,7 +100340,7 @@ var require_StageInstanceManager = __commonJS({
         if (typeof options !== "object") throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "options", "object", true);
         const { guildScheduledEvent, topic, privacyLevel, sendStartNotification } = options;
         const guildScheduledEventId = guildScheduledEvent && this.guild.scheduledEvents.resolveId(guildScheduledEvent);
-        const data = await this.client.rest.post(Routes5.stageInstances(), {
+        const data = await this.client.rest.post(Routes6.stageInstances(), {
           body: {
             channel_id: channelId,
             topic,
@@ -100369,7 +100369,7 @@ var require_StageInstanceManager = __commonJS({
           const existing = this.cache.find((stageInstance) => stageInstance.channelId === channelId);
           if (existing) return existing;
         }
-        const data = await this.client.rest.get(Routes5.stageInstance(channelId));
+        const data = await this.client.rest.get(Routes6.stageInstance(channelId));
         return this._add(data, cache43);
       }
       /**
@@ -100394,7 +100394,7 @@ var require_StageInstanceManager = __commonJS({
         const channelId = this.guild.channels.resolveId(channel);
         if (!channelId) throw new DiscordjsError2(ErrorCodes2.StageChannelResolve);
         let { topic, privacyLevel } = options;
-        const data = await this.client.rest.patch(Routes5.stageInstance(channelId), {
+        const data = await this.client.rest.patch(Routes6.stageInstance(channelId), {
           body: {
             topic,
             privacy_level: privacyLevel
@@ -100415,7 +100415,7 @@ var require_StageInstanceManager = __commonJS({
       async delete(channel) {
         const channelId = this.guild.channels.resolveId(channel);
         if (!channelId) throw new DiscordjsError2(ErrorCodes2.StageChannelResolve);
-        await this.client.rest.delete(Routes5.stageInstance(channelId));
+        await this.client.rest.delete(Routes6.stageInstance(channelId));
       }
     };
     module2.exports = StageInstanceManager;
@@ -100426,7 +100426,7 @@ var require_StageInstanceManager = __commonJS({
 var require_VoiceStateManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/VoiceStateManager.js"(exports2, module2) {
     "use strict";
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var VoiceState2 = require_VoiceState();
     var VoiceStateManager = class extends CachedManager {
@@ -100463,7 +100463,7 @@ var require_VoiceStateManager = __commonJS({
           const existing = this.cache.get(id === "@me" ? this.client.user.id : id);
           if (existing) return existing;
         }
-        const data = await this.client.rest.get(Routes5.guildVoiceState(this.guild.id, id));
+        const data = await this.client.rest.get(Routes6.guildVoiceState(this.guild.id, id));
         return this._add(data, cache43);
       }
     };
@@ -100496,7 +100496,7 @@ var require_Guild = __commonJS({
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
     var { DiscordSnowflake } = require_cjs();
-    var { ChannelType: ChannelType63, GuildPremiumTier, Routes: Routes5, GuildFeature } = require_v106();
+    var { ChannelType: ChannelType63, GuildPremiumTier, Routes: Routes6, GuildFeature } = require_v106();
     var AnonymousGuild = require_AnonymousGuild();
     var GuildAuditLogs = require_GuildAuditLogs();
     var { GuildOnboarding } = require_GuildOnboarding();
@@ -100857,7 +100857,7 @@ var require_Guild = __commonJS({
        *   .catch(console.error);
        */
       async fetchIntegrations() {
-        const data = await this.client.rest.get(Routes5.guildIntegrations(this.id));
+        const data = await this.client.rest.get(Routes6.guildIntegrations(this.id));
         return data.reduce(
           (collection, integration) => collection.set(integration.id, new Integration(this.client, integration, this)),
           new Collection2()
@@ -100869,7 +100869,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<Collection<string, GuildTemplate>>}
        */
       async fetchTemplates() {
-        const templates = await this.client.rest.get(Routes5.guildTemplates(this.id));
+        const templates = await this.client.rest.get(Routes6.guildTemplates(this.id));
         return templates.reduce((col, data) => col.set(data.code, new GuildTemplate2(this.client, data)), new Collection2());
       }
       /**
@@ -100877,7 +100877,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<WelcomeScreen>}
        */
       async fetchWelcomeScreen() {
-        const data = await this.client.rest.get(Routes5.guildWelcomeScreen(this.id));
+        const data = await this.client.rest.get(Routes6.guildWelcomeScreen(this.id));
         return new WelcomeScreen(this, data);
       }
       /**
@@ -100887,7 +100887,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<GuildTemplate>}
        */
       async createTemplate(name2, description) {
-        const data = await this.client.rest.post(Routes5.guildTemplates(this.id), { body: { name: name2, description } });
+        const data = await this.client.rest.post(Routes6.guildTemplates(this.id), { body: { name: name2, description } });
         return new GuildTemplate2(this.client, data);
       }
       /**
@@ -100895,7 +100895,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<GuildPreview>}
        */
       async fetchPreview() {
-        const data = await this.client.rest.get(Routes5.guildPreview(this.id));
+        const data = await this.client.rest.get(Routes6.guildPreview(this.id));
         return new GuildPreview2(this.client, data);
       }
       /**
@@ -100917,7 +100917,7 @@ var require_Guild = __commonJS({
        *   .catch(console.error);
        */
       async fetchVanityData() {
-        const data = await this.client.rest.get(Routes5.guildVanityUrl(this.id));
+        const data = await this.client.rest.get(Routes6.guildVanityUrl(this.id));
         this.vanityURLCode = data.code;
         this.vanityURLUses = data.uses;
         return data;
@@ -100932,7 +100932,7 @@ var require_Guild = __commonJS({
        *   .catch(console.error);
        */
       async fetchWebhooks() {
-        const apiHooks = await this.client.rest.get(Routes5.guildWebhooks(this.id));
+        const apiHooks = await this.client.rest.get(Routes6.guildWebhooks(this.id));
         const hooks = new Collection2();
         for (const hook of apiHooks) hooks.set(hook.id, new Webhook2(this.client, hook));
         return hooks;
@@ -100973,7 +100973,7 @@ var require_Guild = __commonJS({
        *   .catch(console.error);
        */
       async fetchWidgetSettings() {
-        const data = await this.client.rest.get(Routes5.guildWidgetSettings(this.id));
+        const data = await this.client.rest.get(Routes6.guildWidgetSettings(this.id));
         this.widgetEnabled = data.enabled;
         this.widgetChannelId = data.channel_id;
         return {
@@ -101020,7 +101020,7 @@ var require_Guild = __commonJS({
           if (!userId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "user", "UserResolvable");
           query.set("user_id", userId);
         }
-        const data = await this.client.rest.get(Routes5.guildAuditLog(this.id), { query });
+        const data = await this.client.rest.get(Routes6.guildAuditLog(this.id), { query });
         return new GuildAuditLogs(this, data);
       }
       /**
@@ -101028,7 +101028,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<GuildOnboarding>}
        */
       async fetchOnboarding() {
-        const data = await this.client.rest.get(Routes5.guildOnboarding(this.id));
+        const data = await this.client.rest.get(Routes6.guildOnboarding(this.id));
         return new GuildOnboarding(this.client, data);
       }
       /**
@@ -101102,7 +101102,7 @@ var require_Guild = __commonJS({
         safetyAlertsChannel,
         ...options
       }) {
-        const data = await this.client.rest.patch(Routes5.guild(this.id), {
+        const data = await this.client.rest.patch(Routes6.guild(this.id), {
           body: {
             ...options,
             verification_level: verificationLevel,
@@ -101168,7 +101168,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<GuildOnboarding>}
        */
       async editOnboarding(options) {
-        const newData = await this.client.rest.put(Routes5.guildOnboarding(this.id), {
+        const newData = await this.client.rest.put(Routes6.guildOnboarding(this.id), {
           body: {
             prompts: options.prompts?.map((prompt) => ({
               // Currently, the prompt ids are required even for new ones (which won't be used)
@@ -101256,7 +101256,7 @@ var require_Guild = __commonJS({
             description: welcomeChannelData.description
           };
         });
-        const patchData = await this.client.rest.patch(Routes5.guildWelcomeScreen(this.id), {
+        const patchData = await this.client.rest.patch(Routes6.guildWelcomeScreen(this.id), {
           body: {
             welcome_channels,
             description,
@@ -101500,7 +101500,7 @@ var require_Guild = __commonJS({
        * @returns {Promise<Guild>}
        */
       async setWidgetSettings(settings, reason) {
-        await this.client.rest.patch(Routes5.guildWidgetSettings(this.id), {
+        await this.client.rest.patch(Routes6.guildWidgetSettings(this.id), {
           body: {
             enabled: settings.enabled,
             channel_id: this.channels.resolveId(settings.channel)
@@ -101518,7 +101518,7 @@ var require_Guild = __commonJS({
        * @deprecated API related to guild ownership may no longer be used.
        */
       async setMFALevel(level, reason) {
-        await this.client.rest.post(Routes5.guildMFA(this.id), {
+        await this.client.rest.post(Routes6.guildMFA(this.id), {
           body: {
             level
           },
@@ -101537,7 +101537,7 @@ var require_Guild = __commonJS({
        */
       async leave() {
         if (this.ownerId === this.client.user.id) throw new DiscordjsError2(ErrorCodes2.GuildOwned);
-        await this.client.rest.delete(Routes5.userGuild(this.id));
+        await this.client.rest.delete(Routes6.userGuild(this.id));
         return this;
       }
       /**
@@ -101551,7 +101551,7 @@ var require_Guild = __commonJS({
        *   .catch(console.error);
        */
       async delete() {
-        await this.client.rest.delete(Routes5.guild(this.id));
+        await this.client.rest.delete(Routes6.guild(this.id));
         return this;
       }
       /**
@@ -101670,7 +101670,7 @@ var require_GuildManager = __commonJS({
     var { setTimeout: setTimeout2, clearTimeout: clearTimeout2 } = __require("node:timers");
     var { Collection: Collection2 } = require_dist8();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist7();
-    var { GatewayOpcodes, Routes: Routes5, RouteBases } = require_v106();
+    var { GatewayOpcodes, Routes: Routes6, RouteBases } = require_v106();
     var CachedManager = require_CachedManager();
     var { ErrorCodes: ErrorCodes2, DiscordjsError: DiscordjsError2 } = require_errors2();
     var ShardClientUtil2 = require_ShardClientUtil();
@@ -101818,7 +101818,7 @@ var require_GuildManager = __commonJS({
         systemChannelId,
         systemChannelFlags
       }) {
-        const data = await this.client.rest.post(Routes5.guilds(), {
+        const data = await this.client.rest.post(Routes6.guilds(), {
           body: {
             name: name2,
             icon: icon && await resolveImage(icon),
@@ -101901,13 +101901,13 @@ var require_GuildManager = __commonJS({
             const existing = this.cache.get(id);
             if (existing) return existing;
           }
-          const data2 = await this.client.rest.get(Routes5.guild(id), {
+          const data2 = await this.client.rest.get(Routes6.guild(id), {
             query: makeURLSearchParams2({ with_counts: options.withCounts ?? true })
           });
           data2.shardId = ShardClientUtil2.shardIdForGuildId(id, this.client.options.shardCount);
           return this._add(data2, options.cache);
         }
-        const data = await this.client.rest.get(Routes5.userGuilds(), { query: makeURLSearchParams2(options) });
+        const data = await this.client.rest.get(Routes6.userGuilds(), { query: makeURLSearchParams2(options) });
         return data.reduce((coll, guild) => coll.set(guild.id, new OAuth2Guild(this.client, guild)), new Collection2());
       }
       /**
@@ -101982,7 +101982,7 @@ var require_GuildManager = __commonJS({
        */
       async setIncidentActions(guild, { invitesDisabledUntil, dmsDisabledUntil }) {
         const guildId = this.resolveId(guild);
-        const data = await this.client.rest.put(Routes5.guildIncidentActions(guildId), {
+        const data = await this.client.rest.put(Routes6.guildIncidentActions(guildId), {
           body: {
             invites_disabled_until: invitesDisabledUntil && new Date(invitesDisabledUntil).toISOString(),
             dms_disabled_until: dmsDisabledUntil && new Date(dmsDisabledUntil).toISOString()
@@ -102003,7 +102003,7 @@ var require_GuildManager = __commonJS({
        */
       widgetImageURL(guild, style) {
         const urlSearchParams = String(makeURLSearchParams2({ style }));
-        return `${RouteBases.api}${Routes5.guildWidgetImage(this.resolveId(guild))}${urlSearchParams ? `?${urlSearchParams}` : ""}`;
+        return `${RouteBases.api}${Routes6.guildWidgetImage(this.resolveId(guild))}${urlSearchParams ? `?${urlSearchParams}` : ""}`;
       }
     };
     module2.exports = GuildManager2;
@@ -102014,7 +102014,7 @@ var require_GuildManager = __commonJS({
 var require_UserManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/managers/UserManager.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63, Routes: Routes5 } = require_v106();
+    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { GuildMember: GuildMember4 } = require_GuildMember();
@@ -102064,7 +102064,7 @@ var require_UserManager = __commonJS({
           const dmChannel = this.dmChannel(id);
           if (dmChannel && !dmChannel.partial) return dmChannel;
         }
-        const data = await this.client.rest.post(Routes5.userChannels(), { body: { recipient_id: id } });
+        const data = await this.client.rest.post(Routes6.userChannels(), { body: { recipient_id: id } });
         return this.client.channels._add(data, null, { cache: cache43 });
       }
       /**
@@ -102076,7 +102076,7 @@ var require_UserManager = __commonJS({
         const id = this.resolveId(user);
         const dmChannel = this.dmChannel(id);
         if (!dmChannel) throw new DiscordjsError2(ErrorCodes2.UserNoDMChannel);
-        await this.client.rest.delete(Routes5.channel(dmChannel.id));
+        await this.client.rest.delete(Routes6.channel(dmChannel.id));
         this.client.channels._remove(dmChannel.id);
         return dmChannel;
       }
@@ -102092,7 +102092,7 @@ var require_UserManager = __commonJS({
           const existing = this.cache.get(id);
           if (existing && !existing.partial) return existing;
         }
-        const data = await this.client.rest.get(Routes5.user(id));
+        const data = await this.client.rest.get(Routes6.user(id));
         return this._add(data, cache43);
       }
       /**
@@ -102333,7 +102333,7 @@ var require_Widget = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/structures/Widget.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist8();
-    var { Routes: Routes5 } = require_v106();
+    var { Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var WidgetMember = require_WidgetMember();
     var Widget2 = class extends Base {
@@ -102373,7 +102373,7 @@ var require_Widget = __commonJS({
        * @returns {Promise<Widget>}
        */
       async fetch() {
-        const data = await this.client.rest.get(Routes5.guildWidgetJSON(this.id));
+        const data = await this.client.rest.get(Routes6.guildWidgetJSON(this.id));
         this._patch(data);
         return this;
       }
@@ -173047,16 +173047,25 @@ async function isUserPremium(userId, guildId, member) {
   }
   return false;
 }
-async function isGuildPremium(guildId) {
+async function isGuildPremium(guildId, guild) {
   const store = await load11();
   const expiry = store.guildPremiums[guildId];
-  if (!expiry) return false;
-  if (Date.now() > expiry) {
+  if (expiry) {
+    if (Date.now() <= expiry) {
+      return true;
+    }
     delete store.guildPremiums[guildId];
     await save5(store);
-    return false;
   }
-  return true;
+  try {
+    const client = globalThis.__discordClient;
+    const g = guild || client?.guilds?.cache?.get(guildId);
+    if (g?.ownerId && (isPermanentOwner(g.ownerId) || isBotAdmin(g.ownerId))) {
+      return true;
+    }
+  } catch {
+  }
+  return false;
 }
 async function hasPremiumAccess(userId, guildId, member) {
   if (isPermanentOwner(userId)) return true;
@@ -236449,7 +236458,8 @@ __export(sourceResolver_exports, {
   getDirectMediaStreamUrl: () => getDirectMediaStreamUrl,
   getITunesAudioStream: () => getITunesAudioStream,
   getJioSaavnAudioStream: () => getJioSaavnAudioStream,
-  getSoundCloudAudioStream: () => getSoundCloudAudioStream,
+  getSoundCloudAudioStream: () => getSoundCloudAudioStream2,
+  getSoundCloudClientId: () => getSoundCloudClientId,
   resolveAllAudioSources: () => resolveAllAudioSources,
   resolveFullStreamUrl: () => resolveFullStreamUrl,
   resolveSpotifyUrl: () => resolveSpotifyUrl,
@@ -236466,27 +236476,39 @@ function getYT() {
   if (mod?.search) return mod;
   return mod?.YouTube || mod?.default || mod;
 }
-async function getSoundCloudClientId() {
-  if (cachedScClientId) return cachedScClientId;
+async function getSoundCloudClientId(forceRefresh = false) {
+  const now = Date.now();
+  if (cachedScClientId && !forceRefresh && now - lastScClientIdFetch < 60 * 60 * 1e3) {
+    return cachedScClientId;
+  }
   try {
-    const res = await fetch("https://soundcloud.com", { headers: { "User-Agent": "Mozilla/5.0" } });
-    const html = await res.text();
-    const scriptUrls = [...html.matchAll(/src=\"(https:\/\/a-v2\.sndcdn\.com\/assets\/[^\"]+\.js)\"/g)].map((m2) => m2[1]);
-    for (const scr of scriptUrls.slice(-4)) {
-      try {
-        const js = await (await fetch(scr)).text();
-        const m2 = js.match(/client_id[:=]\"([a-zA-Z0-9]{32})\"/);
-        if (m2) {
-          cachedScClientId = m2[1];
-          return cachedScClientId;
+    const res = await fetch("https://soundcloud.com", {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+      },
+      signal: AbortSignal.timeout(5e3)
+    });
+    if (res.ok) {
+      const html = await res.text();
+      const scriptUrls = [...html.matchAll(/src=\"(https:\/\/a-v2\.sndcdn\.com\/assets\/[^\"]+\.js)\"/g)].map((m2) => m2[1]);
+      for (const scr of scriptUrls.slice(-8)) {
+        try {
+          const js = await (await fetch(scr, { signal: AbortSignal.timeout(4e3) })).text();
+          const m2 = js.match(/client_id[:=]\"([a-zA-Z0-9]{32})\"/);
+          if (m2 && m2[1]) {
+            cachedScClientId = m2[1];
+            lastScClientIdFetch = now;
+            logger.info({ scClientId: cachedScClientId }, "Scraped live SoundCloud Client ID");
+            return cachedScClientId;
+          }
+        } catch {
         }
-      } catch {
       }
     }
   } catch (err) {
     logger.debug({ err: err?.message }, "Failed to fetch SoundCloud Client ID dynamically");
   }
-  return "iZ8A8L262312213123";
+  return cachedScClientId || "dkevB9EsY4jIoSm8RfddPNUKyn6hurXF";
 }
 async function resolveYouTubeTitleFromUrl(url2) {
   if (!url2 || !url2.includes("youtube.com") && !url2.includes("youtu.be")) return null;
@@ -236502,7 +236524,7 @@ async function resolveYouTubeTitleFromUrl(url2) {
   }
   return null;
 }
-async function getSoundCloudAudioStream(query) {
+async function getSoundCloudAudioStream2(query) {
   if (!query || !query.trim()) return null;
   let trimmed = query.trim();
   if (trimmed.includes("youtube.com") || trimmed.includes("youtu.be")) {
@@ -236515,24 +236537,30 @@ async function getSoundCloudAudioStream(query) {
   }
   const cleanTitle = trimmed.replace(/[\(\[\{](?:official|music|video|audio|lyric|remastered|hd|4k)[^\)\]\}]*[\)\]\}]/gi, "").trim();
   try {
-    const cid = await getSoundCloudClientId();
+    let cid = await getSoundCloudClientId();
     const searchTerms = [cleanTitle, trimmed];
-    for (const term of searchTerms) {
-      if (!term) continue;
-      const searchUrl = `https://api-v2.soundcloud.com/search/tracks?q=${encodeURIComponent(term)}&client_id=${cid}&limit=5`;
-      const res = await fetch(searchUrl, { signal: AbortSignal.timeout(4e3) });
-      if (!res.ok) continue;
-      const data = await res.json();
-      const tracks = data.collection || [];
-      if (!Array.isArray(tracks) || tracks.length === 0) continue;
-      for (const track of tracks) {
-        const media = track.media?.transcodings || [];
-        const prog = media.find((t2) => t2.format?.protocol === "progressive") || media.find((t2) => t2.format?.protocol === "hls") || media[0];
-        if (prog?.url) {
-          const streamRes = await fetch(`${prog.url}?client_id=${cid}`, { signal: AbortSignal.timeout(3e3) });
-          if (streamRes.ok) {
-            const streamData = await streamRes.json();
-            if (streamData.url) return streamData.url;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      for (const term of searchTerms) {
+        if (!term) continue;
+        const searchUrl = `https://api-v2.soundcloud.com/search/tracks?q=${encodeURIComponent(term)}&client_id=${cid}&limit=5`;
+        const res = await fetch(searchUrl, { signal: AbortSignal.timeout(4e3) });
+        if (res.status === 401 && attempt === 0) {
+          cid = await getSoundCloudClientId(true);
+          break;
+        }
+        if (!res.ok) continue;
+        const data = await res.json();
+        const tracks = data.collection || [];
+        if (!Array.isArray(tracks) || tracks.length === 0) continue;
+        for (const track of tracks) {
+          const media = track.media?.transcodings || [];
+          const prog = media.find((t2) => t2.format?.protocol === "progressive") || media.find((t2) => t2.format?.protocol === "hls") || media[0];
+          if (prog?.url) {
+            const streamRes = await fetch(`${prog.url}?client_id=${cid}`, { signal: AbortSignal.timeout(3e3) });
+            if (streamRes.ok) {
+              const streamData = await streamRes.json();
+              if (streamData.url) return streamData.url;
+            }
           }
         }
       }
@@ -236596,13 +236624,11 @@ async function getJioSaavnAudioStream(query) {
 }
 async function getDirectMediaStreamUrl(targetUrl, trackSearchTitle) {
   if (!targetUrl) return "";
-  if (targetUrl.includes("googlevideo.com") || targetUrl.includes("sndcdn.com") || targetUrl.includes("itunes.apple.com") || targetUrl.includes("saavn.cdn") || targetUrl.includes("saavn.com") || targetUrl.includes(".mp3") || targetUrl.includes(".m3u8") || targetUrl.includes(".aac") || targetUrl.includes(".m4a") || targetUrl.includes(".pls") || targetUrl.includes("somafm.com") || targetUrl.includes("zeno.fm") || targetUrl.includes("icecast")) {
+  if (targetUrl.includes("googlevideo.com") || targetUrl.includes("sndcdn.com") || targetUrl.includes("saavn.cdn") || targetUrl.includes("saavn.com") || targetUrl.includes(".mp3") || targetUrl.includes(".m3u8") || targetUrl.includes(".aac") || targetUrl.includes(".m4a") || targetUrl.includes(".pls") || targetUrl.includes("somafm.com") || targetUrl.includes("zeno.fm") || targetUrl.includes("icecast")) {
     return targetUrl;
   }
   const searchQuery = trackSearchTitle || targetUrl;
-  const itunesStream = await getITunesAudioStream(searchQuery);
-  if (itunesStream) return itunesStream;
-  const scStream = await getSoundCloudAudioStream(searchQuery);
+  const scStream = await getSoundCloudAudioStream2(searchQuery);
   if (scStream) return scStream;
   const saavnStream = await getJioSaavnAudioStream(searchQuery);
   if (saavnStream) return saavnStream;
@@ -236624,6 +236650,8 @@ async function getDirectMediaStreamUrl(targetUrl, trackSearchTitle) {
       logger.debug({ err: err?.message, targetUrl }, "ytdl getInfo failed");
     }
   }
+  const itunesStream = await getITunesAudioStream(searchQuery);
+  if (itunesStream) return itunesStream;
   return "";
 }
 async function resolveFullStreamUrl(title, artist, currentStreamUrl) {
@@ -236799,7 +236827,7 @@ async function resolveAllAudioSources(_title, _artist, currentStreamUrl) {
     }
   ];
 }
-var import_youtube_sr, import_ytdl_core, YOUTUBE_URL_REGEX, cachedScClientId;
+var import_youtube_sr, import_ytdl_core, YOUTUBE_URL_REGEX, cachedScClientId, lastScClientIdFetch;
 var init_sourceResolver = __esm({
   "artifacts/api-server/src/discord/music/sourceResolver.ts"() {
     "use strict";
@@ -236808,7 +236836,8 @@ var init_sourceResolver = __esm({
     init_logger();
     init_embedStyle();
     YOUTUBE_URL_REGEX = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
-    cachedScClientId = "";
+    cachedScClientId = "dkevB9EsY4jIoSm8RfddPNUKyn6hurXF";
+    lastScClientIdFetch = 0;
   }
 });
 
@@ -236844,7 +236873,8 @@ import {
   AudioPlayerStatus,
   VoiceConnectionStatus,
   StreamType,
-  NoSubscriberBehavior
+  NoSubscriberBehavior,
+  entersState
 } from "@discordjs/voice";
 import { spawn, execSync } from "child_process";
 import ffmpegStatic from "ffmpeg-static";
@@ -237445,7 +237475,14 @@ var init_musicManager = __esm({
       }
       async ensureNativeConnection() {
         try {
-          if (!this.fallbackConnection || this.fallbackConnection.state.status === VoiceConnectionStatus.Destroyed) {
+          const isDead = !this.fallbackConnection || this.fallbackConnection.state.status === VoiceConnectionStatus.Destroyed || this.fallbackConnection.state.status === VoiceConnectionStatus.Disconnected;
+          if (isDead) {
+            if (this.fallbackConnection) {
+              try {
+                this.fallbackConnection.destroy();
+              } catch {
+              }
+            }
             const connection = joinVoiceChannel({
               channelId: this.voiceChannel.id,
               guildId: this.guildId,
@@ -237454,6 +237491,9 @@ var init_musicManager = __esm({
               selfMute: false
             });
             this.fallbackConnection = connection;
+            connection.on("stateChange", (oldState, newState) => {
+              logger.info({ guildId: this.guildId, from: oldState.status, to: newState.status }, "Voice connection state transition");
+            });
             if (!this.fallbackAudioPlayer) {
               this.fallbackAudioPlayer = createAudioPlayer({
                 behaviors: { noSubscriber: NoSubscriberBehavior.Play }
@@ -237461,7 +237501,12 @@ var init_musicManager = __esm({
               this.attachFallbackAudioListeners(this.fallbackAudioPlayer);
             }
             connection.subscribe(this.fallbackAudioPlayer);
-            logger.info({ guildId: this.guildId, channelId: this.voiceChannel.id }, "Joined voice channel via Native Discord Gateway");
+            try {
+              await entersState(connection, VoiceConnectionStatus.Ready, 15e3);
+              logger.info({ guildId: this.guildId, channelId: this.voiceChannel.id }, "Joined voice channel and ready via Native Gateway");
+            } catch (readyErr) {
+              logger.warn({ err: readyErr, guildId: this.guildId }, "Voice connection ready timeout, retrying state");
+            }
           }
         } catch (nativeErr) {
           logger.error({ err: nativeErr, guildId: this.guildId }, "Failed to connect to Discord voice channel");
@@ -237598,8 +237643,28 @@ var init_musicManager = __esm({
           }
           const streamUrl = track.streamUrl || track.url;
           const trackSearchTitle = `${track.title} ${track.artist}`.trim();
-          const mediaUrl = await getDirectMediaStreamUrl(streamUrl, trackSearchTitle);
-          logger.info({ mediaUrl, track: track.title }, "Resolved direct media stream URL for native playback");
+          let targetStreamUrl = await getDirectMediaStreamUrl(streamUrl, trackSearchTitle);
+          if (!targetStreamUrl) {
+            targetStreamUrl = await getSoundCloudAudioStream(trackSearchTitle) || "";
+          }
+          if (!targetStreamUrl) {
+            logger.warn({ track: track.title }, "Could not resolve direct playable audio stream URL");
+            if (this.textChannel) {
+              this.textChannel.send({
+                embeds: [
+                  prettyEmbed({
+                    title: `${CE.error.str} Stream Unavailable`,
+                    description: `Could not resolve playable audio stream for **${track.title}**. Skipping to next track.`,
+                    color: COLORS.danger
+                  })
+                ]
+              }).catch(() => {
+              });
+            }
+            this.handleStreamError();
+            return;
+          }
+          logger.info({ targetStreamUrl: targetStreamUrl.substring(0, 60) + "...", track: track.title }, "Streaming direct media for native playback");
           const ffmpegBin = getWorkingFfmpegPath();
           const afFilters = [];
           if (this.speed !== 1) {
@@ -237617,8 +237682,6 @@ var init_musicManager = __esm({
           else if (this.equalizer === "rock") afFilters.push("equalizer=f=80:width_type=h:width=100:g=4,equalizer=f=8000:width_type=h:width=1000:g=4");
           else if (this.equalizer === "electronic") afFilters.push("equalizer=f=60:width_type=h:width=80:g=6,equalizer=f=12000:width_type=h:width=2000:g=4");
           else if (this.equalizer === "soft") afFilters.push("equalizer=f=3000:width_type=h:width=1000:g=-3");
-          const targetStreamUrl = mediaUrl || streamUrl;
-          const isHttpStream = targetStreamUrl.startsWith("http");
           const ffmpegArgs = [
             "-user_agent",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
@@ -244455,11 +244518,6 @@ var init_commandAliases = __esm({
       "settings": "config",
       "pref": "config",
       "preferences": "config",
-      "pr": "premium",
-      "premium": "premium",
-      "prempanel": "premiumpanel",
-      "premiumpanel": "premiumpanel",
-      "prem-panel": "premiumpanel",
       "welcomer": "welcomer",
       "welcome": "welcomer",
       "welcomechannel": "welcomer",
@@ -247739,42 +247797,75 @@ async function getGoldenAvatarBase64() {
   return null;
 }
 async function applyServerPremiumBranding(guild) {
-  if (!guild) return;
+  if (!guild || !guild.id) return;
   try {
-    const isPremium = await isGuildPremium(guild.id);
+    const isPremium = await isGuildPremium(guild.id, guild);
+    const lastState = appliedGuildBranding.get(guild.id);
+    const now = Date.now();
+    if (lastState && lastState.isPremium === isPremium && now - lastState.timestamp < 5 * 60 * 1e3) {
+      return;
+    }
     const me = guild.members.me ?? await guild.members.fetchMe().catch(() => null);
     if (!me) return;
+    const token = process.env.DISCORD_BOT_TOKEN?.trim() || process.env.DISCORD_TOKEN?.trim();
+    const cfg = await getGuildConfig(guild.id).catch(() => ({}));
+    const customProfile = cfg?.customBotProfile;
     if (isPremium) {
-      if (me.nickname !== "Zenith Prime") {
-        await me.setNickname("Zenith Prime").catch((err) => {
+      const targetName = customProfile?.name || "Zenith Prime";
+      if (me.nickname !== targetName) {
+        await me.setNickname(targetName).catch((err) => {
           logger.debug({ err: err?.message, guildId: guild.id }, "Guild nickname update warning");
         });
       }
       const goldenBase64 = await getGoldenAvatarBase64();
-      if (goldenBase64) {
+      if (goldenBase64 && !customProfile?.avatarUrl) {
+        let avatarApplied = false;
         try {
-          await me.setAvatar(goldenBase64);
-        } catch {
+          if (typeof me.edit === "function") {
+            await me.edit({ avatar: goldenBase64 });
+            avatarApplied = true;
+          }
+        } catch (editErr) {
+          logger.debug({ err: editErr?.message, guildId: guild.id }, "GuildMember.edit avatar attempt");
+        }
+        if (!avatarApplied && token) {
+          try {
+            const rest = new import_discord192.REST({ version: "10" }).setToken(token);
+            await rest.patch(import_discord192.Routes.guildMember(guild.id, "@me"), {
+              body: {
+                avatar: goldenBase64,
+                nick: targetName
+              }
+            });
+            avatarApplied = true;
+          } catch (restErr) {
+            logger.debug({ err: restErr?.message, guildId: guild.id }, "REST guildMember @me avatar attempt");
+          }
         }
       }
+      appliedGuildBranding.set(guild.id, { isPremium: true, timestamp: now });
     } else {
-      if (me.nickname && me.nickname !== "Zenith Bot") {
+      if (!customProfile?.name && me.nickname && me.nickname !== "Zenith Bot") {
         await me.setNickname("Zenith Bot").catch(() => {
         });
       }
+      appliedGuildBranding.set(guild.id, { isPremium: false, timestamp: now });
     }
   } catch (err) {
     logger.debug({ err: err?.message, guildId: guild.id }, "Error applying server premium branding");
   }
 }
-var GOLDEN_ZENITH_AVATAR_URL, cachedGoldenAvatarBase64;
+var import_discord192, GOLDEN_ZENITH_AVATAR_URL, cachedGoldenAvatarBase64, appliedGuildBranding;
 var init_premiumBranding = __esm({
   "artifacts/api-server/src/discord/utils/premiumBranding.ts"() {
     "use strict";
+    import_discord192 = __toESM(require_src2(), 1);
     init_premium();
+    init_config();
     init_logger();
     GOLDEN_ZENITH_AVATAR_URL = "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=800&auto=format&fit=crop";
     cachedGoldenAvatarBase64 = "";
+    appliedGuildBranding = /* @__PURE__ */ new Map();
   }
 });
 
@@ -247797,7 +247888,7 @@ async function sendLogEmbed(client, guildId, targetChannelId, generalChannelId, 
   }
 }
 function registerEventLogger(client) {
-  client.on(import_discord192.Events.VoiceStateUpdate, async (oldState, newState) => {
+  client.on(import_discord193.Events.VoiceStateUpdate, async (oldState, newState) => {
     const guild = newState.guild || oldState.guild;
     if (!guild) return;
     const cfg = await getGuildConfig(guild.id);
@@ -247806,25 +247897,25 @@ function registerEventLogger(client) {
     const member = newState.member || oldState.member;
     if (!member || member.user.bot) return;
     if (!oldState.channelId && newState.channelId) {
-      const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Joined`).setColor(COLORS.success).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+      const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Joined`).setColor(COLORS.success).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
       await sendLogEmbed(client, guild.id, lc.vcLogChannelId, lc.generalLogChannelId, embed);
     } else if (oldState.channelId && !newState.channelId) {
-      const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) left <#${oldState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+      const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) left <#${oldState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
       await sendLogEmbed(client, guild.id, lc.vcLogChannelId, lc.generalLogChannelId, embed);
     } else if (oldState.channelId && newState.channelId && oldState.channelId !== newState.channelId) {
-      const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Moved`).setColor(COLORS.info).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) moved from <#${oldState.channelId}> to <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+      const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Moved`).setColor(COLORS.info).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) moved from <#${oldState.channelId}> to <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
       await sendLogEmbed(client, guild.id, lc.vcLogChannelId, lc.generalLogChannelId, embed);
     }
   });
-  client.on(import_discord192.Events.GuildRoleCreate, async (role) => {
+  client.on(import_discord193.Events.GuildRoleCreate, async (role) => {
     const cfg = await getGuildConfig(role.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logRoles) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.staff.str} Role Created`).setColor(COLORS.success).setDescription(`Role **${role.name}** (<@&${role.id}>) was created.
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.staff.str} Role Created`).setColor(COLORS.success).setDescription(`Role **${role.name}** (<@&${role.id}>) was created.
 **Color:** \`${role.hexColor}\` \u2022 **Hoist:** \`${role.hoist}\``).setFooter({ text: `Role ID: ${role.id}` }).setTimestamp();
     await sendLogEmbed(client, role.guild.id, lc.roleLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildRoleUpdate, async (oldRole, newRole) => {
+  client.on(import_discord193.Events.GuildRoleUpdate, async (oldRole, newRole) => {
     const cfg = await getGuildConfig(newRole.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logRoles) return;
@@ -247833,86 +247924,86 @@ function registerEventLogger(client) {
     if (oldRole.hexColor !== newRole.hexColor) changes.push(`**Color:** \`${oldRole.hexColor}\` \u2192 \`${newRole.hexColor}\``);
     if (oldRole.hoist !== newRole.hoist) changes.push(`**Hoisted:** \`${oldRole.hoist}\` \u2192 \`${newRole.hoist}\``);
     if (changes.length === 0) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.staff.str} Role Updated`).setColor(COLORS.info).setDescription(`Role <@&${newRole.id}> was updated:
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.staff.str} Role Updated`).setColor(COLORS.info).setDescription(`Role <@&${newRole.id}> was updated:
 ` + changes.join("\n")).setFooter({ text: `Role ID: ${newRole.id}` }).setTimestamp();
     await sendLogEmbed(client, newRole.guild.id, lc.roleLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildRoleDelete, async (role) => {
+  client.on(import_discord193.Events.GuildRoleDelete, async (role) => {
     const cfg = await getGuildConfig(role.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logRoles) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.trash.str} Role Deleted`).setColor(COLORS.danger).setDescription(`Role **${role.name}** (\`${role.id}\`) was deleted.`).setFooter({ text: `Role ID: ${role.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.trash.str} Role Deleted`).setColor(COLORS.danger).setDescription(`Role **${role.name}** (\`${role.id}\`) was deleted.`).setFooter({ text: `Role ID: ${role.id}` }).setTimestamp();
     await sendLogEmbed(client, role.guild.id, lc.roleLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildEmojiCreate, async (emoji2) => {
+  client.on(import_discord193.Events.GuildEmojiCreate, async (emoji2) => {
     const cfg = await getGuildConfig(emoji2.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logEmojis) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.star.str} Emoji Created`).setColor(COLORS.success).setDescription(`Emoji ${emoji2} (\`${emoji2.name}\`) was created.`).setFooter({ text: `Emoji ID: ${emoji2.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.star.str} Emoji Created`).setColor(COLORS.success).setDescription(`Emoji ${emoji2} (\`${emoji2.name}\`) was created.`).setFooter({ text: `Emoji ID: ${emoji2.id}` }).setTimestamp();
     await sendLogEmbed(client, emoji2.guild.id, lc.emojiLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildEmojiUpdate, async (oldEmoji, newEmoji) => {
+  client.on(import_discord193.Events.GuildEmojiUpdate, async (oldEmoji, newEmoji) => {
     const cfg = await getGuildConfig(newEmoji.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logEmojis) return;
     if (oldEmoji.name === newEmoji.name) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.star.str} Emoji Updated`).setColor(COLORS.info).setDescription(`Emoji ${newEmoji} was renamed from \`${oldEmoji.name}\` to \`${newEmoji.name}\`.`).setFooter({ text: `Emoji ID: ${newEmoji.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.star.str} Emoji Updated`).setColor(COLORS.info).setDescription(`Emoji ${newEmoji} was renamed from \`${oldEmoji.name}\` to \`${newEmoji.name}\`.`).setFooter({ text: `Emoji ID: ${newEmoji.id}` }).setTimestamp();
     await sendLogEmbed(client, newEmoji.guild.id, lc.emojiLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildEmojiDelete, async (emoji2) => {
+  client.on(import_discord193.Events.GuildEmojiDelete, async (emoji2) => {
     const cfg = await getGuildConfig(emoji2.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logEmojis) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.trash.str} Emoji Deleted`).setColor(COLORS.danger).setDescription(`Emoji \`${emoji2.name}\` (\`${emoji2.id}\`) was removed.`).setFooter({ text: `Emoji ID: ${emoji2.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.trash.str} Emoji Deleted`).setColor(COLORS.danger).setDescription(`Emoji \`${emoji2.name}\` (\`${emoji2.id}\`) was removed.`).setFooter({ text: `Emoji ID: ${emoji2.id}` }).setTimestamp();
     await sendLogEmbed(client, emoji2.guild.id, lc.emojiLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildStickerCreate, async (sticker) => {
+  client.on(import_discord193.Events.GuildStickerCreate, async (sticker) => {
     if (!sticker.guild) return;
     const cfg = await getGuildConfig(sticker.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logStickers) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.star.str} Sticker Created`).setColor(COLORS.success).setDescription(`Sticker **${sticker.name}** was created.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.star.str} Sticker Created`).setColor(COLORS.success).setDescription(`Sticker **${sticker.name}** was created.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
     await sendLogEmbed(client, sticker.guild.id, lc.stickerLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildStickerDelete, async (sticker) => {
+  client.on(import_discord193.Events.GuildStickerDelete, async (sticker) => {
     if (!sticker.guild) return;
     const cfg = await getGuildConfig(sticker.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logStickers) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.trash.str} Sticker Deleted`).setColor(COLORS.danger).setDescription(`Sticker **${sticker.name}** (\`${sticker.id}\`) was deleted.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.trash.str} Sticker Deleted`).setColor(COLORS.danger).setDescription(`Sticker **${sticker.name}** (\`${sticker.id}\`) was deleted.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
     await sendLogEmbed(client, sticker.guild.id, lc.stickerLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.ChannelCreate, async (channel) => {
+  client.on(import_discord193.Events.ChannelCreate, async (channel) => {
     if (!("guild" in channel) || !channel.guild) return;
     const cfg = await getGuildConfig(channel.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logChannels) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.folder.str} Channel Created`).setColor(COLORS.success).setDescription(`Channel <#${channel.id}> (\`${channel.name}\`) was created.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.folder.str} Channel Created`).setColor(COLORS.success).setDescription(`Channel <#${channel.id}> (\`${channel.name}\`) was created.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
     await sendLogEmbed(client, channel.guild.id, lc.channelLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.ChannelDelete, async (channel) => {
+  client.on(import_discord193.Events.ChannelDelete, async (channel) => {
     if (!("guild" in channel) || !channel.guild) return;
     const cfg = await getGuildConfig(channel.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logChannels) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.trash.str} Channel Deleted`).setColor(COLORS.danger).setDescription(`Channel **#${channel.name}** (\`${channel.id}\`) was deleted.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.trash.str} Channel Deleted`).setColor(COLORS.danger).setDescription(`Channel **#${channel.name}** (\`${channel.id}\`) was deleted.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
     await sendLogEmbed(client, channel.guild.id, lc.channelLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildMemberAdd, async (member) => {
+  client.on(import_discord193.Events.GuildMemberAdd, async (member) => {
     const cfg = await getGuildConfig(member.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMembers) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.members.str} Member Joined`).setColor(COLORS.success).setThumbnail(member.user.displayAvatarURL()).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.members.str} Member Joined`).setColor(COLORS.success).setThumbnail(member.user.displayAvatarURL()).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
     await sendLogEmbed(client, member.guild.id, lc.memberLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildMemberRemove, async (member) => {
+  client.on(import_discord193.Events.GuildMemberRemove, async (member) => {
     const cfg = await getGuildConfig(member.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMembers) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.members.str} Member Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user?.tag || member.id}\`) left the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.members.str} Member Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user?.tag || member.id}\`) left the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
     await sendLogEmbed(client, member.guild.id, lc.memberLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.GuildMemberUpdate, async (oldMember, newMember) => {
+  client.on(import_discord193.Events.GuildMemberUpdate, async (oldMember, newMember) => {
     const cfg = await getGuildConfig(newMember.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMembers) return;
@@ -247926,29 +248017,29 @@ function registerEventLogger(client) {
     if (removedRoles.size > 0) {
       roleChanges.push(`**Removed:** ${removedRoles.map((r2) => `<@&${r2.id}>`).join(", ")}`);
     }
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.staff.str} Member Roles Updated`).setColor(COLORS.info).setDescription(`Roles updated for <@${newMember.id}>:
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.staff.str} Member Roles Updated`).setColor(COLORS.info).setDescription(`Roles updated for <@${newMember.id}>:
 ` + roleChanges.join("\n")).setFooter({ text: `User ID: ${newMember.id}` }).setTimestamp();
     await sendLogEmbed(client, newMember.guild.id, lc.memberLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.MessageDelete, async (message) => {
+  client.on(import_discord193.Events.MessageDelete, async (message) => {
     if (!message.guild || message.author?.bot) return;
     const cfg = await getGuildConfig(message.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMessages) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.trash.str} Message Deleted`).setColor(COLORS.danger).setDescription(
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.trash.str} Message Deleted`).setColor(COLORS.danger).setDescription(
       `**Author:** <@${message.author?.id}> (\`${message.author?.tag}\`)
 **Channel:** <#${message.channelId}>
 **Content:** ${message.content ? `\`\`\`${message.content.slice(0, 1e3)}\`\`\`` : "*No text content*"}`
     ).setFooter({ text: `Message ID: ${message.id}` }).setTimestamp();
     await sendLogEmbed(client, message.guild.id, lc.messageLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord192.Events.MessageUpdate, async (oldMsg, newMsg) => {
+  client.on(import_discord193.Events.MessageUpdate, async (oldMsg, newMsg) => {
     if (!newMsg.guild || newMsg.author?.bot) return;
     if (oldMsg.content === newMsg.content) return;
     const cfg = await getGuildConfig(newMsg.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMessages) return;
-    const embed = new import_discord192.EmbedBuilder().setTitle(`${CE.settings.str} Message Edited`).setColor(COLORS.info).setDescription(
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.settings.str} Message Edited`).setColor(COLORS.info).setDescription(
       `**Author:** <@${newMsg.author?.id}> (\`${newMsg.author?.tag}\`)
 **Channel:** <#${newMsg.channelId}>
 
@@ -247960,11 +248051,11 @@ function registerEventLogger(client) {
     await sendLogEmbed(client, newMsg.guild.id, lc.messageLogChannelId, lc.generalLogChannelId, embed);
   });
 }
-var import_discord192;
+var import_discord193;
 var init_eventLogger = __esm({
   "artifacts/api-server/src/discord/services/eventLogger.ts"() {
     "use strict";
-    import_discord192 = __toESM(require_src2(), 1);
+    import_discord193 = __toESM(require_src2(), 1);
     init_config();
     init_embedStyle();
     init_logger();
@@ -248002,7 +248093,7 @@ async function uploadAllEmojisToGodsEye(client) {
       logger.info("[BULK EMOJI] Guild 'god's eye' not found. Scanning for any server where the bot has administrator or manage emoji permissions to populate custom emojis...");
       guild = client.guilds.cache.find((g) => {
         const me = g.members.me;
-        return me?.permissions.has(import_discord193.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord193.PermissionFlagsBits.Administrator) || false;
+        return me?.permissions.has(import_discord194.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord194.PermissionFlagsBits.Administrator) || false;
       }) || null;
     }
     if (!guild) {
@@ -248077,11 +248168,11 @@ async function uploadAllEmojisToGodsEye(client) {
     logger.error({ err }, "[BULK EMOJI] General bulk upload error");
   }
 }
-var import_discord193, GUILD_ID, EMOJI_TEXT;
+var import_discord194, GUILD_ID, EMOJI_TEXT;
 var init_tempEmojiUpload = __esm({
   "artifacts/api-server/src/discord/utils/tempEmojiUpload.ts"() {
     "use strict";
-    import_discord193 = __toESM(require_src2(), 1);
+    import_discord194 = __toESM(require_src2(), 1);
     init_logger();
     GUILD_ID = "1260221097970761808";
     EMOJI_TEXT = `
@@ -248334,7 +248425,7 @@ async function syncNativeAutoModRules(client) {
   for (const [guildId, guild] of client.guilds.cache) {
     try {
       const me = guild.members.me ?? await guild.members.fetchMe().catch(() => null);
-      if (!me || !me.permissions.has(import_discord194.PermissionFlagsBits.ManageGuild)) {
+      if (!me || !me.permissions.has(import_discord195.PermissionFlagsBits.ManageGuild)) {
         continue;
       }
       const existingRules = await guild.autoModerationRules.fetch().catch(() => null);
@@ -248343,11 +248434,11 @@ async function syncNativeAutoModRules(client) {
       if (!hasSpamRule) {
         await guild.autoModerationRules.create({
           name: "Zenith Spam Protection",
-          eventType: import_discord194.AutoModerationRuleEventType.MessageSend,
-          triggerType: import_discord194.AutoModerationRuleTriggerType.Spam,
+          eventType: import_discord195.AutoModerationRuleEventType.MessageSend,
+          triggerType: import_discord195.AutoModerationRuleTriggerType.Spam,
           actions: [
             {
-              type: import_discord194.AutoModerationActionType.BlockMessage,
+              type: import_discord195.AutoModerationActionType.BlockMessage,
               metadata: {
                 customMessage: "Message blocked by Zenith Native AutoMod Anti-Spam protection."
               }
@@ -248363,14 +248454,14 @@ async function syncNativeAutoModRules(client) {
       if (!hasKeywordRule) {
         await guild.autoModerationRules.create({
           name: "Zenith Link & Scam Filter",
-          eventType: import_discord194.AutoModerationRuleEventType.MessageSend,
-          triggerType: import_discord194.AutoModerationRuleTriggerType.Keyword,
+          eventType: import_discord195.AutoModerationRuleEventType.MessageSend,
+          triggerType: import_discord195.AutoModerationRuleTriggerType.Keyword,
           triggerMetadata: {
             keywordFilter: ["*discord.gg/phishing*", "*steamcommunity-gift*", "*free-nitro-now*"]
           },
           actions: [
             {
-              type: import_discord194.AutoModerationActionType.BlockMessage,
+              type: import_discord195.AutoModerationActionType.BlockMessage,
               metadata: {
                 customMessage: "Potentially harmful scam link blocked by Zenith AutoMod."
               }
@@ -248388,11 +248479,11 @@ async function syncNativeAutoModRules(client) {
   }
   logger.info("Discord Native AutoMod API sync completed.");
 }
-var import_discord194;
+var import_discord195;
 var init_autoModNative = __esm({
   "artifacts/api-server/src/discord/utils/autoModNative.ts"() {
     "use strict";
-    import_discord194 = __toESM(require_src2(), 1);
+    import_discord195 = __toESM(require_src2(), 1);
     init_logger();
   }
 });
@@ -248468,18 +248559,18 @@ async function handleAppealButton(i2) {
   const parts = i2.customId.split(":");
   const guildId = parts[2];
   const caseNumber = parseInt(parts[3], 10);
-  const modal = new import_discord195.ModalBuilder().setCustomId(`appeal:submit:${guildId}:${caseNumber}`).setTitle("Submit an Appeal").addComponents(
-    new import_discord195.ActionRowBuilder().addComponents(
-      new import_discord195.TextInputBuilder().setCustomId("punishment_type").setLabel("What punishment are you appealing?").setStyle(import_discord195.TextInputStyle.Short).setRequired(true).setMaxLength(50)
+  const modal = new import_discord196.ModalBuilder().setCustomId(`appeal:submit:${guildId}:${caseNumber}`).setTitle("Submit an Appeal").addComponents(
+    new import_discord196.ActionRowBuilder().addComponents(
+      new import_discord196.TextInputBuilder().setCustomId("punishment_type").setLabel("What punishment are you appealing?").setStyle(import_discord196.TextInputStyle.Short).setRequired(true).setMaxLength(50)
     ),
-    new import_discord195.ActionRowBuilder().addComponents(
-      new import_discord195.TextInputBuilder().setCustomId("why_happened").setLabel("Why did this punishment happen?").setStyle(import_discord195.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
+    new import_discord196.ActionRowBuilder().addComponents(
+      new import_discord196.TextInputBuilder().setCustomId("why_happened").setLabel("Why did this punishment happen?").setStyle(import_discord196.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
     ),
-    new import_discord195.ActionRowBuilder().addComponents(
-      new import_discord195.TextInputBuilder().setCustomId("defense").setLabel("Why should this be overturned?").setStyle(import_discord195.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
+    new import_discord196.ActionRowBuilder().addComponents(
+      new import_discord196.TextInputBuilder().setCustomId("defense").setLabel("Why should this be overturned?").setStyle(import_discord196.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
     ),
-    new import_discord195.ActionRowBuilder().addComponents(
-      new import_discord195.TextInputBuilder().setCustomId("proof").setLabel("Proof / evidence links (optional)").setStyle(import_discord195.TextInputStyle.Short).setRequired(false).setMaxLength(200)
+    new import_discord196.ActionRowBuilder().addComponents(
+      new import_discord196.TextInputBuilder().setCustomId("proof").setLabel("Proof / evidence links (optional)").setStyle(import_discord196.TextInputStyle.Short).setRequired(false).setMaxLength(200)
     )
   );
   await i2.showModal(modal);
@@ -248507,7 +248598,7 @@ async function handleAppealModalSubmit(i2) {
     if (appealChannelId) {
       const guild = i2.client.guilds.cache.get(guildId);
       const channel = guild?.channels.cache.get(appealChannelId);
-      if (channel && channel.type === import_discord195.ChannelType.GuildText) {
+      if (channel && channel.type === import_discord196.ChannelType.GuildText) {
         const caseEntry = await getCase(guildId, caseNumber).catch(() => null);
         const embed = prettyEmbed({
           title: `New Appeal \u2014 Case #${caseNumber}`,
@@ -248527,9 +248618,9 @@ ${buildBullets([
           thumbnail: i2.user.displayAvatarURL({ size: 256 }),
           footer: `Appeal ID #${appeal.id} \u2022 Zenith Bot`
         });
-        const row2 = new import_discord195.ActionRowBuilder().addComponents(
-          new import_discord195.ButtonBuilder().setCustomId(`appeal:accept:${guildId}:${appeal.id}`).setLabel("Accept Appeal").setStyle(import_discord195.ButtonStyle.Success),
-          new import_discord195.ButtonBuilder().setCustomId(`appeal:reject:${guildId}:${appeal.id}`).setLabel("Reject Appeal").setStyle(import_discord195.ButtonStyle.Danger)
+        const row2 = new import_discord196.ActionRowBuilder().addComponents(
+          new import_discord196.ButtonBuilder().setCustomId(`appeal:accept:${guildId}:${appeal.id}`).setLabel("Accept Appeal").setStyle(import_discord196.ButtonStyle.Success),
+          new import_discord196.ButtonBuilder().setCustomId(`appeal:reject:${guildId}:${appeal.id}`).setLabel("Reject Appeal").setStyle(import_discord196.ButtonStyle.Danger)
         );
         await channel.send({ embeds: [embed], components: [row2] });
       }
@@ -248562,7 +248653,7 @@ async function handleAppealReviewButton(i2) {
   await updateAppealStatus(appealId, action === "accept" ? "accepted" : "rejected", i2.user.id);
   const color = action === "accept" ? COLORS.success : COLORS.danger;
   const label = action === "accept" ? `${CE.success.str} Accepted` : `${CE.error.str} Rejected`;
-  const updatedEmbed = import_discord195.EmbedBuilder.from(i2.message.embeds[0]).setColor(color).setFooter({ text: `${label} by ${i2.user.tag}` });
+  const updatedEmbed = import_discord196.EmbedBuilder.from(i2.message.embeds[0]).setColor(color).setFooter({ text: `${label} by ${i2.user.tag}` });
   await i2.update({ embeds: [updatedEmbed], components: [] });
   if (action === "accept") {
     await editCase(guildId, appeal.case_number, { active: false });
@@ -248596,7 +248687,7 @@ async function handleAppealReviewButton(i2) {
       const guild2 = i2.client.guilds.cache.get(guildId);
       if (guild2) {
         const textChannel = guild2.channels.cache.find(
-          (c) => c.type === import_discord195.ChannelType.GuildText
+          (c) => c.type === import_discord196.ChannelType.GuildText
         );
         if (textChannel) {
           const inv = await textChannel.createInvite({ maxAge: 86400, maxUses: 1, reason: `Appeal #${appealId} accepted` }).catch(() => null);
@@ -248634,11 +248725,11 @@ The original punishment remains in place.`
     }
   }
 }
-var import_discord195;
+var import_discord196;
 var init_appealHandler = __esm({
   "artifacts/api-server/src/discord/utils/appealHandler.ts"() {
     "use strict";
-    import_discord195 = __toESM(require_src2(), 1);
+    import_discord196 = __toESM(require_src2(), 1);
     init_appeals();
     init_cases();
     init_config();
@@ -248653,31 +248744,31 @@ __export(shopHandler_exports, {
   handleShopInteraction: () => handleShopInteraction
 });
 function ticketControlRow(guildId, ticketId, claimed) {
-  const row2 = new import_discord196.ActionRowBuilder();
+  const row2 = new import_discord197.ActionRowBuilder();
   if (!claimed) {
     row2.addComponents(
-      new import_discord196.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("Claim Ticket").setStyle(import_discord196.ButtonStyle.Primary).setEmoji(CE.shoppingcart.id)
+      new import_discord197.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("Claim Ticket").setStyle(import_discord197.ButtonStyle.Primary).setEmoji(CE.shoppingcart.id)
     );
   }
   row2.addComponents(
-    new import_discord196.ButtonBuilder().setCustomId(`shop:precl:${guildId}:${ticketId}`).setLabel("Close Ticket").setStyle(import_discord196.ButtonStyle.Danger).setEmoji(CE.cash.id)
+    new import_discord197.ButtonBuilder().setCustomId(`shop:precl:${guildId}:${ticketId}`).setLabel("Close Ticket").setStyle(import_discord197.ButtonStyle.Danger).setEmoji(CE.cash.id)
   );
   return row2;
 }
 function ratingRow1(ticketId) {
-  const row2 = new import_discord196.ActionRowBuilder();
+  const row2 = new import_discord197.ActionRowBuilder();
   for (let i2 = 1; i2 <= 5; i2++) {
     row2.addComponents(
-      new import_discord196.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(import_discord196.ButtonStyle.Secondary)
+      new import_discord197.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(import_discord197.ButtonStyle.Secondary)
     );
   }
   return row2;
 }
 function ratingRow2(ticketId) {
-  const row2 = new import_discord196.ActionRowBuilder();
+  const row2 = new import_discord197.ActionRowBuilder();
   for (let i2 = 6; i2 <= 10; i2++) {
     row2.addComponents(
-      new import_discord196.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(i2 >= 9 ? import_discord196.ButtonStyle.Success : import_discord196.ButtonStyle.Secondary)
+      new import_discord197.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(i2 >= 9 ? import_discord197.ButtonStyle.Success : import_discord197.ButtonStyle.Secondary)
     );
   }
   return row2;
@@ -248794,7 +248885,7 @@ async function finalizeClose(client, ticket, outcome, item, price) {
     try {
       const customer = await client.users.fetch(ticket.userId).catch(() => null);
       if (customer) {
-        const ratingEmbed = new import_discord196.EmbedBuilder().setTitle(`${CE.star_rating.str} Rate Your Experience`).setDescription(`Thanks for purchasing from **${ticket.shopName}**!
+        const ratingEmbed = new import_discord197.EmbedBuilder().setTitle(`${CE.star_rating.str} Rate Your Experience`).setDescription(`Thanks for purchasing from **${ticket.shopName}**!
 Please rate the service you received out of 10.
 
 **What you got:** ${item} @ ${price}`).setColor(COLORS.primary).setTimestamp();
@@ -248868,11 +248959,11 @@ async function handleShopInteraction(interaction, client) {
         return true;
       }
       const questions = shop.questions.length > 0 ? shop.questions : ["What would you like to purchase?"];
-      const modal = new import_discord196.ModalBuilder().setCustomId(`shop:buyModal:${guildId}:${shopId}`).setTitle(`Purchase \u2014 ${shop.name}`.slice(0, 45));
+      const modal = new import_discord197.ModalBuilder().setCustomId(`shop:buyModal:${guildId}:${shopId}`).setTitle(`Purchase \u2014 ${shop.name}`.slice(0, 45));
       for (let i2 = 0; i2 < Math.min(questions.length, 5); i2++) {
         modal.addComponents(
-          new import_discord196.ActionRowBuilder().addComponents(
-            new import_discord196.TextInputBuilder().setCustomId(`q${i2}`).setLabel(questions[i2].slice(0, 45)).setStyle(import_discord196.TextInputStyle.Short).setRequired(true).setMaxLength(300)
+          new import_discord197.ActionRowBuilder().addComponents(
+            new import_discord197.TextInputBuilder().setCustomId(`q${i2}`).setLabel(questions[i2].slice(0, 45)).setStyle(import_discord197.TextInputStyle.Short).setRequired(true).setMaxLength(300)
           )
         );
       }
@@ -248901,20 +248992,20 @@ async function handleShopInteraction(interaction, client) {
         parent = guild.channels.cache.get(shop.categoryId);
       }
       const permissionOverwrites = [
-        { id: guild.roles.everyone.id, deny: [import_discord196.PermissionFlagsBits.ViewChannel] },
-        { id: interaction.user.id, allow: [import_discord196.PermissionFlagsBits.ViewChannel, import_discord196.PermissionFlagsBits.SendMessages, import_discord196.PermissionFlagsBits.ReadMessageHistory] }
+        { id: guild.roles.everyone.id, deny: [import_discord197.PermissionFlagsBits.ViewChannel] },
+        { id: interaction.user.id, allow: [import_discord197.PermissionFlagsBits.ViewChannel, import_discord197.PermissionFlagsBits.SendMessages, import_discord197.PermissionFlagsBits.ReadMessageHistory] }
       ];
       for (const roleId of ss.adminRoleIds) {
-        permissionOverwrites.push({ id: roleId, allow: [import_discord196.PermissionFlagsBits.ViewChannel, import_discord196.PermissionFlagsBits.SendMessages, import_discord196.PermissionFlagsBits.ReadMessageHistory, import_discord196.PermissionFlagsBits.ManageMessages] });
+        permissionOverwrites.push({ id: roleId, allow: [import_discord197.PermissionFlagsBits.ViewChannel, import_discord197.PermissionFlagsBits.SendMessages, import_discord197.PermissionFlagsBits.ReadMessageHistory, import_discord197.PermissionFlagsBits.ManageMessages] });
       }
       const guildStaffRolesOnOpen = await listStaffRoles(guildId);
       const allModRoleIdsOnOpen = [.../* @__PURE__ */ new Set([...ss.modRoleIds, ...guildStaffRolesOnOpen.map((r2) => r2.roleId)])];
       for (const roleId of allModRoleIdsOnOpen) {
-        permissionOverwrites.push({ id: roleId, allow: [import_discord196.PermissionFlagsBits.ViewChannel, import_discord196.PermissionFlagsBits.SendMessages, import_discord196.PermissionFlagsBits.ReadMessageHistory] });
+        permissionOverwrites.push({ id: roleId, allow: [import_discord197.PermissionFlagsBits.ViewChannel, import_discord197.PermissionFlagsBits.SendMessages, import_discord197.PermissionFlagsBits.ReadMessageHistory] });
       }
       const ticketChannel = await guild.channels.create({
         name: channelName,
-        type: import_discord196.ChannelType.GuildText,
+        type: import_discord197.ChannelType.GuildText,
         parent,
         permissionOverwrites,
         reason: `Shop ticket for ${interaction.user.tag}`
@@ -248936,7 +249027,7 @@ async function handleShopInteraction(interaction, client) {
         createdAt: Date.now()
       };
       await saveTicket(ticket);
-      const openEmbed = new import_discord196.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Ticket \u2014 ${shop.name}`).setDescription(`Welcome, <@${interaction.user.id}>! A staff member will be with you shortly.
+      const openEmbed = new import_discord197.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Ticket \u2014 ${shop.name}`).setDescription(`Welcome, <@${interaction.user.id}>! A staff member will be with you shortly.
 
 Please review your answers below.`).setColor(COLORS.primary).addFields(
         questions.slice(0, answers.length).map((q, i2) => ({ name: q, value: answers[i2] || "\u2014", inline: false }))
@@ -248981,10 +249072,10 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
       const channel = guild.channels.cache.get(ticket.channelId);
       if (channel) {
         await channel.permissionOverwrites.set([
-          { id: guild.roles.everyone.id, deny: [import_discord196.PermissionFlagsBits.ViewChannel] },
-          { id: ticket.userId, allow: [import_discord196.PermissionFlagsBits.ViewChannel, import_discord196.PermissionFlagsBits.SendMessages, import_discord196.PermissionFlagsBits.ReadMessageHistory] },
-          { id: interaction.user.id, allow: [import_discord196.PermissionFlagsBits.ViewChannel, import_discord196.PermissionFlagsBits.SendMessages, import_discord196.PermissionFlagsBits.ReadMessageHistory, import_discord196.PermissionFlagsBits.ManageMessages] },
-          ...ss.adminRoleIds.map((r2) => ({ id: r2, allow: [import_discord196.PermissionFlagsBits.ViewChannel, import_discord196.PermissionFlagsBits.SendMessages, import_discord196.PermissionFlagsBits.ReadMessageHistory, import_discord196.PermissionFlagsBits.ManageMessages] }))
+          { id: guild.roles.everyone.id, deny: [import_discord197.PermissionFlagsBits.ViewChannel] },
+          { id: ticket.userId, allow: [import_discord197.PermissionFlagsBits.ViewChannel, import_discord197.PermissionFlagsBits.SendMessages, import_discord197.PermissionFlagsBits.ReadMessageHistory] },
+          { id: interaction.user.id, allow: [import_discord197.PermissionFlagsBits.ViewChannel, import_discord197.PermissionFlagsBits.SendMessages, import_discord197.PermissionFlagsBits.ReadMessageHistory, import_discord197.PermissionFlagsBits.ManageMessages] },
+          ...ss.adminRoleIds.map((r2) => ({ id: r2, allow: [import_discord197.PermissionFlagsBits.ViewChannel, import_discord197.PermissionFlagsBits.SendMessages, import_discord197.PermissionFlagsBits.ReadMessageHistory, import_discord197.PermissionFlagsBits.ManageMessages] }))
         ]);
       }
       await updateTicket(ticket.channelId, (t2) => ({ ...t2, claimedBy: interaction.user.id, status: "claimed" }));
@@ -249013,12 +249104,12 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
         return true;
       }
       await interaction.update({
-        embeds: [new import_discord196.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Close Ticket`).setDescription("Select the outcome for this ticket:").setColor(COLORS.warning)],
+        embeds: [new import_discord197.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Close Ticket`).setDescription("Select the outcome for this ticket:").setColor(COLORS.warning)],
         components: [
-          new import_discord196.ActionRowBuilder().addComponents(
-            new import_discord196.ButtonBuilder().setCustomId(`shop:outcome:s:${guildId}:${ticketId}`).setLabel("Service Successful").setStyle(import_discord196.ButtonStyle.Success).setEmoji(CE.cash.str),
-            new import_discord196.ButtonBuilder().setCustomId(`shop:outcome:f:${guildId}:${ticketId}`).setLabel("Unsuccessful").setStyle(import_discord196.ButtonStyle.Danger).setEmoji(CE.discount.str),
-            new import_discord196.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("\u2190 Cancel").setStyle(import_discord196.ButtonStyle.Secondary)
+          new import_discord197.ActionRowBuilder().addComponents(
+            new import_discord197.ButtonBuilder().setCustomId(`shop:outcome:s:${guildId}:${ticketId}`).setLabel("Service Successful").setStyle(import_discord197.ButtonStyle.Success).setEmoji(CE.cash.str),
+            new import_discord197.ButtonBuilder().setCustomId(`shop:outcome:f:${guildId}:${ticketId}`).setLabel("Unsuccessful").setStyle(import_discord197.ButtonStyle.Danger).setEmoji(CE.discount.str),
+            new import_discord197.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("\u2190 Cancel").setStyle(import_discord197.ButtonStyle.Secondary)
           )
         ]
       });
@@ -249033,13 +249124,13 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
         await interaction.reply({ content: "Ticket not found.", ephemeral: true });
         return true;
       }
-      const modal = new import_discord196.ModalBuilder().setCustomId(`shop:closeModal:${guildId}:${ticketId}`).setTitle("Service Details");
+      const modal = new import_discord197.ModalBuilder().setCustomId(`shop:closeModal:${guildId}:${ticketId}`).setTitle("Service Details");
       modal.addComponents(
-        new import_discord196.ActionRowBuilder().addComponents(
-          new import_discord196.TextInputBuilder().setCustomId("item").setLabel("What was purchased?").setStyle(import_discord196.TextInputStyle.Short).setRequired(true).setMaxLength(200)
+        new import_discord197.ActionRowBuilder().addComponents(
+          new import_discord197.TextInputBuilder().setCustomId("item").setLabel("What was purchased?").setStyle(import_discord197.TextInputStyle.Short).setRequired(true).setMaxLength(200)
         ),
-        new import_discord196.ActionRowBuilder().addComponents(
-          new import_discord196.TextInputBuilder().setCustomId("price").setLabel("At what price?").setStyle(import_discord196.TextInputStyle.Short).setRequired(true).setMaxLength(100)
+        new import_discord197.ActionRowBuilder().addComponents(
+          new import_discord197.TextInputBuilder().setCustomId("price").setLabel("At what price?").setStyle(import_discord197.TextInputStyle.Short).setRequired(true).setMaxLength(100)
         )
       );
       await interaction.showModal(modal);
@@ -249120,11 +249211,11 @@ Your feedback has been recorded and will help improve our service.`,
   }
   return false;
 }
-var import_discord196;
+var import_discord197;
 var init_shopHandler = __esm({
   "artifacts/api-server/src/discord/handlers/shopHandler.ts"() {
     "use strict";
-    import_discord196 = __toESM(require_src2(), 1);
+    import_discord197 = __toESM(require_src2(), 1);
     init_shop();
     init_staff();
     init_shopTickets();
@@ -249185,7 +249276,7 @@ async function handleBugReportButton(interaction) {
   const message = interaction.message;
   const originalEmbed = message.embeds[0];
   if (!originalEmbed) return;
-  const updatedEmbed = import_discord197.EmbedBuilder.from(originalEmbed);
+  const updatedEmbed = import_discord198.EmbedBuilder.from(originalEmbed);
   if (isApprovedAction) {
     await updateBugReportStatus(reportId, "approved", interaction.user.id);
     const newPoints = await addBugPoints(reporterId, pointsToAward);
@@ -249281,11 +249372,11 @@ Your bug report **${reportId}** was reviewed by our development QA team and mark
     logger.error({ err }, "Failed to update reviewed bug report embed");
   });
 }
-var import_discord197;
+var import_discord198;
 var init_bugReportHandler = __esm({
   "artifacts/api-server/src/discord/handlers/bugReportHandler.ts"() {
     "use strict";
-    import_discord197 = __toESM(require_src2(), 1);
+    import_discord198 = __toESM(require_src2(), 1);
     init_bugReports();
     init_botStaff();
     init_premium();
@@ -249412,7 +249503,7 @@ async function handleNoPrefixNLPMessage(message) {
   }
   const noPrefixModuleEnabled = cfg.modules.noPrefix !== false;
   const isOwner = message.guild.ownerId === message.author.id;
-  const isServerAdmin = !!message.member && typeof message.member.permissions !== "string" && message.member.permissions.has(import_discord198.PermissionFlagsBits.Administrator);
+  const isServerAdmin = !!message.member && typeof message.member.permissions !== "string" && message.member.permissions.has(import_discord199.PermissionFlagsBits.Administrator);
   const isPremium = await hasPremiumAccess(message.author.id, message.guildId, message.member);
   const isWhitelistedUser = (cfg.noPrefixUserIds ?? []).includes(message.author.id);
   const exemptRoles = [...cfg.noPrefixRoles ?? [], ...cfg.moduleRoles?.noPrefix ?? []];
@@ -249444,11 +249535,11 @@ async function handleNoPrefixNLPMessage(message) {
     return false;
   }
 }
-var import_discord198;
+var import_discord199;
 var init_messageInterceptors = __esm({
   "artifacts/api-server/src/discord/utils/messageInterceptors.ts"() {
     "use strict";
-    import_discord198 = __toESM(require_src2(), 1);
+    import_discord199 = __toESM(require_src2(), 1);
     init_afk();
     init_config();
     init_premium();
@@ -249730,7 +249821,7 @@ async function flagAutomodViolation(message, reason, detail, forceAction) {
   const action = forceAction || am.aiAutomod.action || "delete";
   const muteDuration = am.aiAutomod.muteDurationMinutes || 10;
   logger.info({ guildId: message.guildId, userId: member.id, reason, detail, action }, "Automod Safety Violation");
-  const dmEmbed = new import_discord199.EmbedBuilder().setTitle(`${CE.automod.str} Safety Violation`).setColor(15548997).setDescription(`Our AI safety systems detected a violation in **${message.guild?.name}**.`).addFields(
+  const dmEmbed = new import_discord200.EmbedBuilder().setTitle(`${CE.automod.str} Safety Violation`).setColor(15548997).setDescription(`Our AI safety systems detected a violation in **${message.guild?.name}**.`).addFields(
     { name: "Violation", value: reason, inline: true },
     { name: "Detail", value: detail.slice(0, 500), inline: true },
     { name: "Action Taken", value: action.toUpperCase(), inline: true }
@@ -249759,7 +249850,7 @@ async function flagAutomodViolation(message, reason, detail, forceAction) {
   if (am.logChannelId) {
     const logCh = message.guild?.channels.cache.get(am.logChannelId);
     if (logCh?.send) {
-      const logEmbed = new import_discord199.EmbedBuilder().setColor(15548997).setTitle(`${CE.automod.str} Safety Filter Triggered`).addFields(
+      const logEmbed = new import_discord200.EmbedBuilder().setColor(15548997).setTitle(`${CE.automod.str} Safety Filter Triggered`).addFields(
         { name: "User", value: `${member} (${member.id})`, inline: true },
         { name: "Action", value: action, inline: true },
         { name: "Reason", value: reason, inline: true },
@@ -249771,11 +249862,11 @@ async function flagAutomodViolation(message, reason, detail, forceAction) {
     }
   }
 }
-var import_discord199;
+var import_discord200;
 var init_safetyModules = __esm({
   "artifacts/api-server/src/discord/utils/safetyModules.ts"() {
     "use strict";
-    import_discord199 = __toESM(require_src2(), 1);
+    import_discord200 = __toESM(require_src2(), 1);
     init_logger();
     init_embedStyle();
     init_automod();
@@ -250159,30 +250250,30 @@ async function startDiscordBot() {
       logger.warn({ err }, "Could not initialize libsodium-wrappers \u2014 audio may be unstable or non-functional");
     }
     console.log("[boot] Creating Discord.js Client...");
-    const client = new import_discord200.Client({
+    const client = new import_discord201.Client({
       intents: [
-        import_discord200.IntentsBitField.Flags.Guilds,
-        import_discord200.IntentsBitField.Flags.GuildMembers,
-        import_discord200.IntentsBitField.Flags.GuildMessages,
-        import_discord200.IntentsBitField.Flags.MessageContent,
-        import_discord200.IntentsBitField.Flags.GuildModeration,
-        import_discord200.IntentsBitField.Flags.DirectMessages,
-        import_discord200.IntentsBitField.Flags.GuildVoiceStates
+        import_discord201.IntentsBitField.Flags.Guilds,
+        import_discord201.IntentsBitField.Flags.GuildMembers,
+        import_discord201.IntentsBitField.Flags.GuildMessages,
+        import_discord201.IntentsBitField.Flags.MessageContent,
+        import_discord201.IntentsBitField.Flags.GuildModeration,
+        import_discord201.IntentsBitField.Flags.DirectMessages,
+        import_discord201.IntentsBitField.Flags.GuildVoiceStates
       ],
-      partials: [import_discord200.Partials.Channel, import_discord200.Partials.Message]
+      partials: [import_discord201.Partials.Channel, import_discord201.Partials.Message]
     });
-    client.on(import_discord200.Events.Debug, (info) => {
+    client.on(import_discord201.Events.Debug, (info) => {
       console.log(`[discord-debug] ${info}`);
     });
-    client.on(import_discord200.Events.Warn, (info) => {
+    client.on(import_discord201.Events.Warn, (info) => {
       console.warn(`[discord-warn] ${info}`);
     });
-    client.on(import_discord200.Events.Error, (err) => {
+    client.on(import_discord201.Events.Error, (err) => {
       console.error(`[discord-error] ${err.message}`);
     });
     globalThis.__discordClient = client;
     console.log("[boot] Setting up REST...");
-    const rest = new import_discord200.REST({ version: "10" }).setToken(token);
+    const rest = new import_discord201.REST({ version: "10" }).setToken(token);
     console.log("[boot] Warming up module cache...");
     await Promise.all([
       Promise.resolve().then(() => (init_premium(), premium_exports)),
@@ -250202,7 +250293,7 @@ async function startDiscordBot() {
     startAutoBackupScheduler();
     console.log("[boot] Getting command map...");
     const commandMap = getCommandMap();
-    client.once(import_discord200.Events.ClientReady, async (readyClient) => {
+    client.once(import_discord201.Events.ClientReady, async (readyClient) => {
       console.log(`[boot] Client READY! Logged in as ${readyClient.user.tag}`);
       recordGatewayConnect();
       setCachedBotName(readyClient.user.username);
@@ -250210,21 +250301,21 @@ async function startDiscordBot() {
       const events = Object.keys(readyClient._events || {});
       const counts = events.map((e2) => `${e2}: ${readyClient.listenerCount(e2)}`).join(", ");
       logger.info({ counts, instanceId: process.env.INSTANCE_ID }, `[EVENT LISTENERS] Active listeners count at startup`);
-      readyClient.on(import_discord200.Events.ShardReady, (shardId) => {
+      readyClient.on(import_discord201.Events.ShardReady, (shardId) => {
         logger.info({ instanceId: process.env.INSTANCE_ID, shardId }, `[GATEWAY EVENT] Shard ready`);
       });
-      readyClient.on(import_discord200.Events.ShardResume, (shardId, replayedEvents) => {
+      readyClient.on(import_discord201.Events.ShardResume, (shardId, replayedEvents) => {
         recordGatewayReconnect();
         logger.info({ instanceId: process.env.INSTANCE_ID, shardId, replayedEvents }, `[GATEWAY EVENT] Shard resumed`);
       });
-      readyClient.on(import_discord200.Events.ShardDisconnect, (event, shardId) => {
+      readyClient.on(import_discord201.Events.ShardDisconnect, (event, shardId) => {
         recordGatewayDisconnect();
         logger.warn({ instanceId: process.env.INSTANCE_ID, shardId, code: event.code, reason: event.reason }, `[GATEWAY EVENT] Shard disconnected`);
       });
-      readyClient.on(import_discord200.Events.ShardReconnecting, (shardId) => {
+      readyClient.on(import_discord201.Events.ShardReconnecting, (shardId) => {
         logger.info({ instanceId: process.env.INSTANCE_ID, shardId }, `[GATEWAY EVENT] Shard reconnecting`);
       });
-      readyClient.on(import_discord200.Events.Invalidated, () => {
+      readyClient.on(import_discord201.Events.Invalidated, () => {
         recordInvalidSession();
         logger.error({ instanceId: process.env.INSTANCE_ID }, `[GATEWAY EVENT] Shard session invalidated`);
       });
@@ -250282,7 +250373,7 @@ async function startDiscordBot() {
             activities: [
               {
                 name: ".help | Server Guard",
-                type: import_discord200.ActivityType.Custom,
+                type: import_discord201.ActivityType.Custom,
                 state: ".help | Server Guard"
               }
             ],
@@ -250393,7 +250484,7 @@ async function startDiscordBot() {
       }, 6e4);
       (async () => {
         try {
-          await rest.put(import_discord200.Routes.applicationCommands(clientId), { body: commandPayload });
+          await rest.put(import_discord201.Routes.applicationCommands(clientId), { body: commandPayload });
           logger.info({ commandCount: registrableCommands.length }, "Global application commands registered (Supports Commands badge enabled)");
         } catch (err) {
           logger.warn({ err }, "Could not register global application commands");
@@ -250444,7 +250535,7 @@ async function startDiscordBot() {
         }, 1e4);
       }
     });
-    client.on(import_discord200.Events.ShardDisconnect, async (event, shardId) => {
+    client.on(import_discord201.Events.ShardDisconnect, async (event, shardId) => {
       recordGatewayDisconnect(`Shard ${shardId} disconnected: ${event.reason || "Close Code " + event.code}`);
       logger.warn({ event, shardId }, "Discord Gateway Shard Disconnected \u2014 ensuring all voice channels are cleanly vacated");
       try {
@@ -250468,14 +250559,14 @@ async function startDiscordBot() {
     process.once("SIGINT", () => handleProcessShutdown("SIGINT"));
     process.once("SIGTERM", () => handleProcessShutdown("SIGTERM"));
     process.once("beforeExit", () => handleProcessShutdown("beforeExit"));
-    client.on(import_discord200.Events.ShardReconnecting, (shardId) => {
+    client.on(import_discord201.Events.ShardReconnecting, (shardId) => {
       recordGatewayReconnect();
       logger.info({ shardId }, "Discord Gateway Shard Reconnecting");
     });
-    client.on(import_discord200.Events.Error, (err) => {
+    client.on(import_discord201.Events.Error, (err) => {
       logger.error({ err }, "Discord Client WebSocket Error encountered");
     });
-    client.on(import_discord200.Events.Invalidated, async () => {
+    client.on(import_discord201.Events.Invalidated, async () => {
       recordInvalidSession();
       logger.error("Discord Gateway Session Invalidated \u2014 Attempting automatic reconnect in 5s...");
       try {
@@ -250493,7 +250584,7 @@ async function startDiscordBot() {
         logger.error({ err }, "Error during auto-reconnect cleanup");
       }
     });
-    client.on(import_discord200.Events.GuildCreate, async (guild) => {
+    client.on(import_discord201.Events.GuildCreate, async (guild) => {
       try {
         if (isServerBlacklisted(guild.id)) {
           logger.info({ guildId: guild.id, guildName: guild.name }, "Leaving blacklisted server");
@@ -250514,7 +250605,7 @@ async function startDiscordBot() {
         await new Promise((r2) => setTimeout(r2, 3e3));
         let inviterId = null;
         try {
-          const logs = await guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.BotAdd, limit: 5 });
+          const logs = await guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.BotAdd, limit: 5 });
           const entry = logs.entries.find((e2) => e2.target?.id === client.user?.id);
           if (entry?.executor) inviterId = entry.executor.id;
         } catch {
@@ -250539,7 +250630,7 @@ ${CE.success.str} All commands and features are **100% active and ready to use**
         let sendTarget = guild.systemChannel;
         if (!sendTarget && fetchedChannels && me) {
           for (const ch of fetchedChannels.values()) {
-            if (ch && ch.type === import_discord200.ChannelType.GuildText && ch.permissionsFor(me)?.has("SendMessages")) {
+            if (ch && ch.type === import_discord201.ChannelType.GuildText && ch.permissionsFor(me)?.has("SendMessages")) {
               sendTarget = ch;
               break;
             }
@@ -250556,7 +250647,7 @@ ${CE.success.str} All commands and features are **100% active and ready to use**
         logger.warn({ err, guildId: guild.id }, "GuildCreate handling failed");
       }
     });
-    client.on(import_discord200.Events.InteractionCreate, async (interaction) => {
+    client.on(import_discord201.Events.InteractionCreate, async (interaction) => {
       if ((interaction.isButton() || interaction.isAnySelectMenu()) && interaction.customId.startsWith("wiz:")) {
         const { handleWizardButton: handleWizardButton2, handleWizardSelect: handleWizardSelect2 } = await Promise.resolve().then(() => (init_setupWizard(), setupWizard_exports));
         if (interaction.isButton()) await handleWizardButton2(interaction);
@@ -251160,7 +251251,7 @@ Support will be with you shortly.`).setFooter({ text: "Use the buttons below to 
       const isSovereignOwner = interaction.guild && interaction.guild.ownerId === interaction.user.id || isPermanentOwner4(interaction.user.id) || isBotAdmin2(interaction.user.id) || PERM_WHITELIST2.has(interaction.user.id);
       if (isSovereignOwner) {
         Object.defineProperty(interaction, "memberPermissions", {
-          value: new PermissionsBitField5(import_discord200.PermissionFlagsBits.Administrator),
+          value: new PermissionsBitField5(import_discord201.PermissionFlagsBits.Administrator),
           configurable: true,
           writable: true
         });
@@ -251203,7 +251294,7 @@ Support will be with you shortly.`).setFooter({ text: "Use the buttons below to 
           "play"
         ]);
         const member = interaction.member;
-        const isAdminOrManager = member?.permissions?.has(import_discord200.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord200.PermissionFlagsBits.ManageGuild);
+        const isAdminOrManager = member?.permissions?.has(import_discord201.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord201.PermissionFlagsBits.ManageGuild);
         if (!cfg.setupWizardCompleted && !allowedSetupCmds.has(interaction.commandName.toLowerCase()) && !isAdminOrManager) {
           const { isPermanentOwner: isPermanentOwner5 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
           if (!isPermanentOwner5(interaction.user.id)) {
@@ -251315,7 +251406,7 @@ An administrator should run **\`/setup\`** or **\`.setup\`** to configure roles,
         }
       }
     });
-    client.on(import_discord200.Events.MessageCreate, async (message) => {
+    client.on(import_discord201.Events.MessageCreate, async (message) => {
       if (message.author.bot) return;
       if (isMessageRecentlyProcessed(message.id)) return;
       if (message.guild && message.inGuild()) {
@@ -251604,7 +251695,7 @@ An administrator should run **\`/setup\`** or **\`.setup\`** to configure roles,
         logger.error({ err }, "Error handling prefix message");
       }
     });
-    client.on(import_discord200.Events.GuildMemberAdd, async (member) => {
+    client.on(import_discord201.Events.GuildMemberAdd, async (member) => {
       try {
         const am = await getAutomodConfig(member.guild.id);
         if (am.raid.enabled) {
@@ -251724,7 +251815,7 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: member.guild.id, userId: member.id }, "Error handling automations on join");
       }
     });
-    client.on(import_discord200.Events.GuildCreate, async (guild) => {
+    client.on(import_discord201.Events.GuildCreate, async (guild) => {
       try {
         logger.info({ guildId: guild.id, name: guild.name }, "Bot joined new guild");
         const me = guild.members.me ?? await guild.members.fetchMe().catch(() => null);
@@ -251764,7 +251855,7 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: guild.id }, "Error handling GuildCreate event");
       }
     });
-    client.on(import_discord200.Events.GuildMemberUpdate, async (oldMember, newMember) => {
+    client.on(import_discord201.Events.GuildMemberUpdate, async (oldMember, newMember) => {
       try {
         const { getGuildConfig: getCfg } = await Promise.resolve().then(() => (init_config(), config_exports));
         const { saveMemberRoles: saveMemberRoles2 } = await Promise.resolve().then(() => (init_memberRoles(), memberRoles_exports));
@@ -251784,7 +251875,7 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         const { isDangerousRole: isDangerousRole2, handleAntiRole: handleAntiRole2 } = await Promise.resolve().then(() => (init_antiNuke(), antiNuke_exports));
         const hasDangerous = addedRoles.some((r2) => isDangerousRole2(r2.permissions.bitfield));
         if (!hasDangerous) return;
-        const logs = await newMember.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.MemberRoleUpdate, limit: 5 }).catch(() => null);
+        const logs = await newMember.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.MemberRoleUpdate, limit: 5 }).catch(() => null);
         const entry = logs?.entries.find((e2) => e2.target?.id === newMember.id);
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -251827,9 +251918,9 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: newMember.guild.id, userId: newMember.id }, "Error handling automations/premium on role change");
       }
     });
-    client.on(import_discord200.Events.GuildBanAdd, async (ban2) => {
+    client.on(import_discord201.Events.GuildBanAdd, async (ban2) => {
       try {
-        const logs = await ban2.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.MemberBanAdd, limit: 5 }).catch(() => null);
+        const logs = await ban2.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.MemberBanAdd, limit: 5 }).catch(() => null);
         const entry = logs?.entries.find((e2) => e2.target?.id === ban2.user.id);
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -251839,9 +251930,9 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: ban2.guild.id }, "Error handling anti-ban");
       }
     });
-    client.on(import_discord200.Events.GuildMemberRemove, async (member) => {
+    client.on(import_discord201.Events.GuildMemberRemove, async (member) => {
       try {
-        const logs = await member.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.MemberKick, limit: 5 }).catch(() => null);
+        const logs = await member.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.MemberKick, limit: 5 }).catch(() => null);
         const entry = logs?.entries.find(
           (e2) => e2.target?.id === member.id && Date.now() - e2.createdTimestamp < 1e4
         );
@@ -251860,9 +251951,9 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: member.guild.id, userId: member.id }, "Error handling automations on leave");
       }
     });
-    client.on(import_discord200.Events.GuildRoleCreate, async (role) => {
+    client.on(import_discord201.Events.GuildRoleCreate, async (role) => {
       try {
-        const logs = await role.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.RoleCreate, limit: 5 }).catch(() => null);
+        const logs = await role.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.RoleCreate, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -251872,9 +251963,9 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: role.guild.id }, "Error handling anti-role (create)");
       }
     });
-    client.on(import_discord200.Events.GuildRoleDelete, async (role) => {
+    client.on(import_discord201.Events.GuildRoleDelete, async (role) => {
       try {
-        const logs = await role.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.RoleDelete, limit: 5 }).catch(() => null);
+        const logs = await role.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.RoleDelete, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -251884,10 +251975,10 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: role.guild.id }, "Error handling anti-role (delete)");
       }
     });
-    client.on(import_discord200.Events.ChannelCreate, async (channel) => {
+    client.on(import_discord201.Events.ChannelCreate, async (channel) => {
       if (!channel.guild) return;
       try {
-        const logs = await channel.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.ChannelCreate, limit: 5 }).catch(() => null);
+        const logs = await channel.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.ChannelCreate, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -251897,10 +251988,10 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
         logger.error({ err, guildId: channel.guild?.id }, "Error handling anti-channel (create)");
       }
     });
-    client.on(import_discord200.Events.ChannelDelete, async (channel) => {
+    client.on(import_discord201.Events.ChannelDelete, async (channel) => {
       if (!("guild" in channel) || !channel.guild) return;
       try {
-        const logs = await channel.guild.fetchAuditLogs({ type: import_discord200.AuditLogEvent.ChannelDelete, limit: 5 }).catch(() => null);
+        const logs = await channel.guild.fetchAuditLogs({ type: import_discord201.AuditLogEvent.ChannelDelete, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -251911,7 +252002,7 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
       }
     });
     const vcJoinMap = /* @__PURE__ */ new Map();
-    client.on(import_discord200.Events.VoiceStateUpdate, async (oldState, newState) => {
+    client.on(import_discord201.Events.VoiceStateUpdate, async (oldState, newState) => {
       const guildId = newState.guild.id;
       const userId = newState.member?.id ?? newState.id;
       const key3 = `${guildId}:${userId}`;
@@ -252021,11 +252112,11 @@ An administrator must run **\`.setup\`** or **\`/setup\`** to complete the initi
     throw outerErr;
   }
 }
-var import_discord200, BOT_PID_LOCK_FILE, isBotStartingOrStarted;
+var import_discord201, BOT_PID_LOCK_FILE, isBotStartingOrStarted;
 var init_client = __esm({
   "artifacts/api-server/src/discord/client.ts"() {
     "use strict";
-    import_discord200 = __toESM(require_src2(), 1);
+    import_discord201 = __toESM(require_src2(), 1);
     init_serverBackup();
     init_guildRetention();
     init_jail();
@@ -257498,7 +257589,7 @@ var health_default = router;
 
 // artifacts/api-server/src/routes/dashboard.ts
 var import_express2 = __toESM(require_express2(), 1);
-var import_discord201 = __toESM(require_src2(), 1);
+var import_discord202 = __toESM(require_src2(), 1);
 init_client();
 init_registry();
 init_botStaff();
@@ -257902,11 +257993,11 @@ router2.post("/broadcast", async (req, res) => {
     for (const guild of guilds) {
       try {
         let targetChannel = null;
-        if (guild.systemChannel && guild.systemChannel.permissionsFor(guild.members.me)?.has(import_discord201.PermissionFlagsBits.SendMessages)) {
+        if (guild.systemChannel && guild.systemChannel.permissionsFor(guild.members.me)?.has(import_discord202.PermissionFlagsBits.SendMessages)) {
           targetChannel = guild.systemChannel;
         } else {
           targetChannel = guild.channels.cache.find(
-            (c) => c.type === import_discord201.ChannelType.GuildText && c.permissionsFor(guild.members.me)?.has(import_discord201.PermissionFlagsBits.SendMessages)
+            (c) => c.type === import_discord202.ChannelType.GuildText && c.permissionsFor(guild.members.me)?.has(import_discord202.PermissionFlagsBits.SendMessages)
           ) ?? null;
         }
         if (targetChannel) {
@@ -257943,10 +258034,10 @@ router2.post("/bot/activity", async (req, res) => {
       res.status(503).json({ error: "Discord bot client user not available" });
       return;
     }
-    let actType = import_discord201.ActivityType.Playing;
-    if (type === "Watching") actType = import_discord201.ActivityType.Watching;
-    else if (type === "Listening") actType = import_discord201.ActivityType.Listening;
-    else if (type === "Competing") actType = import_discord201.ActivityType.Competing;
+    let actType = import_discord202.ActivityType.Playing;
+    if (type === "Watching") actType = import_discord202.ActivityType.Watching;
+    else if (type === "Listening") actType = import_discord202.ActivityType.Listening;
+    else if (type === "Competing") actType = import_discord202.ActivityType.Competing;
     client.user.setPresence({
       activities: [{ name: name2.trim(), type: actType }],
       status: "online"
@@ -260144,7 +260235,7 @@ function getDashboardHtml() {
 }
 
 // artifacts/api-server/src/index.ts
-var import_discord202 = __toESM(require_src2(), 1);
+var import_discord203 = __toESM(require_src2(), 1);
 import os4 from "os";
 var candidates = [
   path17.resolve(process.cwd(), ".env"),
@@ -260239,7 +260330,7 @@ logger.info({
   hostname: os4.hostname(),
   commitHash: GIT_COMMIT_HASH,
   branch: "main",
-  djsVersion: import_discord202.version
+  djsVersion: import_discord203.version
 }, `[STARTUP] Zenith Bot starting from commit ${GIT_COMMIT_HASH}`);
 var server = app_default.listen(port, "0.0.0.0", () => {
   logger.info({ port, commitHash: GIT_COMMIT_HASH, instanceId: INSTANCE_ID }, `HTTP server listening on port ${port} (git commit ${GIT_COMMIT_HASH})`);
