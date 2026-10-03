@@ -433,11 +433,12 @@ export class MusicManager {
         "-user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         "-reconnect", "1",
         "-reconnect_streamed", "1",
+        "-reconnect_at_eof", "1",
         "-reconnect_delay_max", "5",
         "-analyzeduration", "10000000",
         "-probesize", "10000000",
         "-i", targetStreamUrl,
-        "-loglevel", "quiet",
+        "-loglevel", "warning",
         "-vn",
       ];
 
@@ -456,10 +457,16 @@ export class MusicManager {
       this.activeFfmpegProcess = ff;
       ff.on("error", (err) => logger.debug({ err: err.message }, "FFmpeg process warning"));
       ff.stdin.on("error", (err) => logger.debug({ err: err?.message }, "FFmpeg stdin write error handled cleanly"));
+      if (ff.stderr) {
+        ff.stderr.on("data", () => {});
+        ff.stderr.resume();
+      }
 
-      // FFmpeg handles targetStreamUrl directly for better network resilience
+      const { PassThrough } = await import("stream");
+      const audioBufferStream = new PassThrough({ highWaterMark: 1024 * 1024 });
+      ff.stdout.pipe(audioBufferStream);
 
-      const resource = createAudioResource(ff.stdout, {
+      const resource = createAudioResource(audioBufferStream, {
         inputType: StreamType.Raw,
         inlineVolume: true,
       });
@@ -469,10 +476,16 @@ export class MusicManager {
         resource.volume.setVolume(this.volume / 100);
       }
 
-      if (this.fallbackAudioPlayer) {
+      if (this.fallbackAudioPlayer && this.fallbackConnection) {
+        this.fallbackConnection.subscribe(this.fallbackAudioPlayer);
         this.fallbackAudioPlayer.play(resource);
         this.isPlaying = true;
         this.isPaused = false;
+      }
+
+      if (this.currentTrack) {
+        const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
+        this.updateVoiceStatus(statusText, true).catch(() => {});
       }
 
       await this.sendPlayerEmbed();
@@ -754,28 +767,38 @@ export class MusicManager {
       const channelId = this.voiceChannel?.id;
       if (!channelId) return;
 
-      const emoji = this.twentyFourSeven.enabled ? CE.world.str : CE.playing.str;
       let finalStatus = statusText ? statusText.trim() : "";
       if (finalStatus) {
-        finalStatus = `${emoji} ${finalStatus.replace(/^<a?:[a-zA-Z0-9_]+:\d+>\s*/, "")}`.trim();
+        // Strip custom emoji markdown tags so plain text status is clean on all clients
+        const cleanName = finalStatus.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").trim();
+        finalStatus = cleanName;
       }
 
       const sanitized = finalStatus.slice(0, 500);
       const now = Date.now();
 
-      if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 15000) {
-        return;
-      }
-      if (!force && now - this.lastVcStatusTime < 5000) {
+      if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 15000 && !force) {
         return;
       }
 
       this.lastVcStatus = sanitized;
       this.lastVcStatusTime = now;
 
-      await (this.voiceChannel.client.rest as any).put((Routes as any).channelVoiceStatus(channelId), {
-        body: { status: sanitized },
-      });
+      // Method 1: Discord.js VoiceChannel.setStatus
+      if (typeof (this.voiceChannel as any).setStatus === "function") {
+        await (this.voiceChannel as any).setStatus(sanitized).catch(() => {});
+      }
+
+      // Method 2: REST API PUT /channels/{channelId}/voice-status
+      try {
+        await (this.voiceChannel.client.rest as any).put((Routes as any).channelVoiceStatus(channelId), {
+          body: { status: sanitized },
+        });
+      } catch {
+        await (this.voiceChannel.client.rest as any).put(`/channels/${channelId}/voice-status`, {
+          body: { status: sanitized },
+        }).catch(() => {});
+      }
     } catch (err) {
       logger.debug({ err, channelId: this.voiceChannel?.id }, "Could not set VC status");
     }

@@ -237828,6 +237828,8 @@ var init_musicManager = __esm({
             "1",
             "-reconnect_streamed",
             "1",
+            "-reconnect_at_eof",
+            "1",
             "-reconnect_delay_max",
             "5",
             "-analyzeduration",
@@ -237837,7 +237839,7 @@ var init_musicManager = __esm({
             "-i",
             targetStreamUrl,
             "-loglevel",
-            "quiet",
+            "warning",
             "-vn"
           ];
           if (afFilters.length > 0) {
@@ -237856,7 +237858,15 @@ var init_musicManager = __esm({
           this.activeFfmpegProcess = ff;
           ff.on("error", (err) => logger.debug({ err: err.message }, "FFmpeg process warning"));
           ff.stdin.on("error", (err) => logger.debug({ err: err?.message }, "FFmpeg stdin write error handled cleanly"));
-          const resource = createAudioResource(ff.stdout, {
+          if (ff.stderr) {
+            ff.stderr.on("data", () => {
+            });
+            ff.stderr.resume();
+          }
+          const { PassThrough: PassThrough3 } = await import("stream");
+          const audioBufferStream = new PassThrough3({ highWaterMark: 1024 * 1024 });
+          ff.stdout.pipe(audioBufferStream);
+          const resource = createAudioResource(audioBufferStream, {
             inputType: StreamType.Raw,
             inlineVolume: true
           });
@@ -237864,10 +237874,16 @@ var init_musicManager = __esm({
           if (resource.volume) {
             resource.volume.setVolume(this.volume / 100);
           }
-          if (this.fallbackAudioPlayer) {
+          if (this.fallbackAudioPlayer && this.fallbackConnection) {
+            this.fallbackConnection.subscribe(this.fallbackAudioPlayer);
             this.fallbackAudioPlayer.play(resource);
             this.isPlaying = true;
             this.isPaused = false;
+          }
+          if (this.currentTrack) {
+            const statusText = `${CE.playing ? CE.playing.str : CE.play.str} ${this.currentTrack.title} - ${this.currentTrack.artist}`;
+            this.updateVoiceStatus(statusText, true).catch(() => {
+            });
           }
           await this.sendPlayerEmbed();
         } catch (err) {
@@ -238127,24 +238143,32 @@ var init_musicManager = __esm({
         try {
           const channelId = this.voiceChannel?.id;
           if (!channelId) return;
-          const emoji2 = this.twentyFourSeven.enabled ? CE.world.str : CE.playing.str;
           let finalStatus = statusText ? statusText.trim() : "";
           if (finalStatus) {
-            finalStatus = `${emoji2} ${finalStatus.replace(/^<a?:[a-zA-Z0-9_]+:\d+>\s*/, "")}`.trim();
+            const cleanName = finalStatus.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").trim();
+            finalStatus = cleanName;
           }
           const sanitized = finalStatus.slice(0, 500);
           const now = Date.now();
-          if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 15e3) {
-            return;
-          }
-          if (!force && now - this.lastVcStatusTime < 5e3) {
+          if (sanitized === this.lastVcStatus && now - this.lastVcStatusTime < 15e3 && !force) {
             return;
           }
           this.lastVcStatus = sanitized;
           this.lastVcStatusTime = now;
-          await this.voiceChannel.client.rest.put(import_discord163.Routes.channelVoiceStatus(channelId), {
-            body: { status: sanitized }
-          });
+          if (typeof this.voiceChannel.setStatus === "function") {
+            await this.voiceChannel.setStatus(sanitized).catch(() => {
+            });
+          }
+          try {
+            await this.voiceChannel.client.rest.put(import_discord163.Routes.channelVoiceStatus(channelId), {
+              body: { status: sanitized }
+            });
+          } catch {
+            await this.voiceChannel.client.rest.put(`/channels/${channelId}/voice-status`, {
+              body: { status: sanitized }
+            }).catch(() => {
+            });
+          }
         } catch (err) {
           logger.debug({ err, channelId: this.voiceChannel?.id }, "Could not set VC status");
         }
