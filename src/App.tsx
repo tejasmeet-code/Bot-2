@@ -231,73 +231,13 @@ export default function App() {
               </div>
 
               {/* Golden Logo Showcase */}
-              <div className="aspect-square w-full max-w-[360px] mx-auto rounded-3xl bg-gradient-to-br from-[#1c180d] via-[#121008] to-[#262010] p-8 flex items-center justify-center border border-amber-500/40 shadow-2xl shadow-amber-500/10 relative group">
-                {/* SVG 24K Gold Vector Logo */}
-                <svg
-                  viewBox="0 0 200 200"
-                  className="w-full h-full drop-shadow-[0_0_35px_rgba(245,158,11,0.5)] transition-transform duration-500 group-hover:scale-105"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="goldShield" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#451a03" />
-                      <stop offset="30%" stopColor="#1c1308" />
-                      <stop offset="100%" stopColor="#0a0703" />
-                    </linearGradient>
-                    <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#fef08a" />
-                      <stop offset="35%" stopColor="#eab308" />
-                      <stop offset="70%" stopColor="#ca8a04" />
-                      <stop offset="100%" stopColor="#fef08a" />
-                    </linearGradient>
-                    <linearGradient id="goldZ" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#fffbeb" />
-                      <stop offset="25%" stopColor="#fde047" />
-                      <stop offset="60%" stopColor="#eab308" />
-                      <stop offset="100%" stopColor="#a16207" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* Outer Luxury Shield */}
-                  <polygon
-                    points="100,12 178,56 178,144 100,188 22,144 22,56"
-                    fill="url(#goldShield)"
-                    stroke="url(#goldTrim)"
-                    strokeWidth="4"
-                    strokeLinejoin="round"
-                  />
-
-                  {/* Inner Gold Rings */}
-                  <polygon
-                    points="100,24 168,62 168,138 100,176 32,138 32,62"
-                    fill="none"
-                    stroke="url(#goldTrim)"
-                    strokeWidth="1.2"
-                    strokeOpacity="0.4"
-                  />
-
-                  {/* Crown Top Accent */}
-                  <path
-                    d="M85 36 L100 24 L115 36 L108 42 L100 34 L92 42 Z"
-                    fill="url(#goldTrim)"
-                  />
-
-                  {/* Prime 'Z' Holographic Glyph */}
-                  <path
-                    d="M62 60 H138 L142 70 L94 130 H142 L138 140 H60 L56 130 L104 70 H62 Z"
-                    fill="url(#goldZ)"
-                    filter="drop-shadow(0 2px 10px rgba(234,179,8,0.7))"
-                  />
-
-                  {/* Gold Gems */}
-                  <circle cx="100" cy="12" r="3.5" fill="#fef08a" />
-                  <circle cx="178" cy="56" r="3.5" fill="#eab308" />
-                  <circle cx="178" cy="144" r="3.5" fill="#eab308" />
-                  <circle cx="100" cy="188" r="3.5" fill="#fef08a" />
-                  <circle cx="22" cy="144" r="3.5" fill="#eab308" />
-                  <circle cx="22" cy="56" r="3.5" fill="#eab308" />
-                </svg>
+              <div className="aspect-square w-full max-w-[360px] mx-auto rounded-3xl bg-gradient-to-br from-[#1c180d] via-[#121008] to-[#262010] p-6 flex items-center justify-center border border-amber-500/40 shadow-2xl shadow-amber-500/10 relative group overflow-hidden">
+                <img
+                  src="/golden-zenith-avatar.png"
+                  alt="Zenith Prime 3D Gold Logo"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-contain drop-shadow-[0_0_35px_rgba(245,158,11,0.5)] transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
 
               {/* Action Buttons */}

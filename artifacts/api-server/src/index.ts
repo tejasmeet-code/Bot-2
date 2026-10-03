@@ -57,6 +57,38 @@ if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
 }
 
+app.get(["/golden-zenith-avatar.png", "/assets/golden-zenith-avatar.png", "/avatar/premium.png"], (_req, res) => {
+  const candidates = [
+    path.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.png"),
+    path.resolve(process.cwd(), "artifacts/api-server/public/golden-zenith-avatar.png"),
+    path.resolve(process.cwd(), "dist/golden-zenith-avatar.png"),
+    path.resolve(process.cwd(), "public/golden-zenith-avatar.png"),
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) {
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      return res.sendFile(c);
+    }
+  }
+  res.status(404).send("Avatar image not found");
+});
+
+app.get(["/golden-zenith-avatar.svg", "/assets/golden-zenith-avatar.svg"], (_req, res) => {
+  const candidates = [
+    path.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.svg"),
+    path.resolve(process.cwd(), "artifacts/api-server/public/golden-zenith-avatar.svg"),
+    path.resolve(process.cwd(), "dist/golden-zenith-avatar.svg"),
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) {
+      res.setHeader("Content-Type", "image/svg+xml");
+      return res.sendFile(c);
+    }
+  }
+  res.status(404).send("Avatar vector not found");
+});
+
 app.get(["/health", "/healthz", "/_health"], (_req, res) => {
   res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
 });

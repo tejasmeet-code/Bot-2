@@ -253,11 +253,17 @@ export async function startDiscordBot(): Promise<void> {
       }
     }, 15000);
 
-    // ── Permanent Bot Activity ("Listening to demonxtejas") ─────────────────
+    // ── Permanent Bot Activity (".help | Server Guard from demonxtejas") ─────────────────
     const setPermanentActivity = () => {
       try {
         readyClient.user.setPresence({
-          activities: [{ name: "demonxtejas", type: ActivityType.Listening }],
+          activities: [
+            {
+              name: ".help | Server Guard from demonxtejas",
+              type: ActivityType.Custom,
+              state: ".help | Server Guard from demonxtejas",
+            },
+          ],
           status: "online",
         });
       } catch (err) {

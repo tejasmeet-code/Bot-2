@@ -50,8 +50,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // node_modules/.bun/dotenv@17.4.2/node_modules/dotenv/lib/main.js
 var require_main = __commonJS({
   "node_modules/.bun/dotenv@17.4.2/node_modules/dotenv/lib/main.js"(exports2, module2) {
-    var fs12 = __require("fs");
-    var path17 = __require("path");
+    var fs13 = __require("fs");
+    var path18 = __require("path");
     var os5 = __require("os");
     var crypto2 = __require("crypto");
     var TIPS = [
@@ -182,7 +182,7 @@ var require_main = __commonJS({
       if (options && options.path && options.path.length > 0) {
         if (Array.isArray(options.path)) {
           for (const filepath of options.path) {
-            if (fs12.existsSync(filepath)) {
+            if (fs13.existsSync(filepath)) {
               possibleVaultPath = filepath.endsWith(".vault") ? filepath : `${filepath}.vault`;
             }
           }
@@ -190,15 +190,15 @@ var require_main = __commonJS({
           possibleVaultPath = options.path.endsWith(".vault") ? options.path : `${options.path}.vault`;
         }
       } else {
-        possibleVaultPath = path17.resolve(process.cwd(), ".env.vault");
+        possibleVaultPath = path18.resolve(process.cwd(), ".env.vault");
       }
-      if (fs12.existsSync(possibleVaultPath)) {
+      if (fs13.existsSync(possibleVaultPath)) {
         return possibleVaultPath;
       }
       return null;
     }
     function _resolveHome(envPath) {
-      return envPath[0] === "~" ? path17.join(os5.homedir(), envPath.slice(1)) : envPath;
+      return envPath[0] === "~" ? path18.join(os5.homedir(), envPath.slice(1)) : envPath;
     }
     function _configVault(options) {
       const debug = parseBoolean(process.env.DOTENV_CONFIG_DEBUG || options && options.debug);
@@ -215,7 +215,7 @@ var require_main = __commonJS({
       return { parsed };
     }
     function configDotenv(options) {
-      const dotenvPath = path17.resolve(process.cwd(), ".env");
+      const dotenvPath = path18.resolve(process.cwd(), ".env");
       let encoding = "utf8";
       let processEnv = process.env;
       if (options && options.processEnv != null) {
@@ -243,13 +243,13 @@ var require_main = __commonJS({
       }
       let lastError;
       const parsedAll = {};
-      for (const path18 of optionPaths) {
+      for (const path19 of optionPaths) {
         try {
-          const parsed = DotenvModule.parse(fs12.readFileSync(path18, { encoding }));
+          const parsed = DotenvModule.parse(fs13.readFileSync(path19, { encoding }));
           DotenvModule.populate(parsedAll, parsed, options);
         } catch (e2) {
           if (debug) {
-            _debug(`failed to load ${path18} ${e2.message}`);
+            _debug(`failed to load ${path19} ${e2.message}`);
           }
           lastError = e2;
         }
@@ -262,7 +262,7 @@ var require_main = __commonJS({
         const shortPaths = [];
         for (const filePath of optionPaths) {
           try {
-            const relative = path17.relative(process.cwd(), filePath);
+            const relative = path18.relative(process.cwd(), filePath);
             shortPaths.push(relative);
           } catch (e2) {
             if (debug) {
@@ -15564,11 +15564,11 @@ var require_mime_types = __commonJS({
       }
       return exts[0];
     }
-    function lookup(path17) {
-      if (!path17 || typeof path17 !== "string") {
+    function lookup(path18) {
+      if (!path18 || typeof path18 !== "string") {
         return false;
       }
-      var extension3 = extname("x." + path17).toLowerCase().slice(1);
+      var extension3 = extname("x." + path18).toLowerCase().slice(1);
       if (!extension3) {
         return false;
       }
@@ -19116,13 +19116,13 @@ var require_view = __commonJS({
   "node_modules/.bun/express@5.2.1/node_modules/express/lib/view.js"(exports2, module2) {
     "use strict";
     var debug = require_src()("express:view");
-    var path17 = __require("node:path");
-    var fs12 = __require("node:fs");
-    var dirname = path17.dirname;
-    var basename3 = path17.basename;
-    var extname = path17.extname;
-    var join = path17.join;
-    var resolve3 = path17.resolve;
+    var path18 = __require("node:path");
+    var fs13 = __require("node:fs");
+    var dirname = path18.dirname;
+    var basename3 = path18.basename;
+    var extname = path18.extname;
+    var join = path18.join;
+    var resolve3 = path18.resolve;
     module2.exports = View;
     function View(name2, options) {
       var opts = options || {};
@@ -19151,17 +19151,17 @@ var require_view = __commonJS({
       this.path = this.lookup(fileName);
     }
     View.prototype.lookup = function lookup(name2) {
-      var path18;
+      var path19;
       var roots = [].concat(this.root);
       debug('lookup "%s"', name2);
-      for (var i2 = 0; i2 < roots.length && !path18; i2++) {
+      for (var i2 = 0; i2 < roots.length && !path19; i2++) {
         var root = roots[i2];
         var loc = resolve3(root, name2);
         var dir = dirname(loc);
         var file = basename3(loc);
-        path18 = this.resolve(dir, file);
+        path19 = this.resolve(dir, file);
       }
-      return path18;
+      return path19;
     };
     View.prototype.render = function render3(options, callback) {
       var sync = true;
@@ -19183,21 +19183,21 @@ var require_view = __commonJS({
     };
     View.prototype.resolve = function resolve4(dir, file) {
       var ext = this.ext;
-      var path18 = join(dir, file);
-      var stat3 = tryStat(path18);
+      var path19 = join(dir, file);
+      var stat3 = tryStat(path19);
       if (stat3 && stat3.isFile()) {
-        return path18;
+        return path19;
       }
-      path18 = join(dir, basename3(file, ext), "index" + ext);
-      stat3 = tryStat(path18);
+      path19 = join(dir, basename3(file, ext), "index" + ext);
+      stat3 = tryStat(path19);
       if (stat3 && stat3.isFile()) {
-        return path18;
+        return path19;
       }
     };
-    function tryStat(path18) {
-      debug('stat "%s"', path18);
+    function tryStat(path19) {
+      debug('stat "%s"', path19);
       try {
-        return fs12.statSync(path18);
+        return fs13.statSync(path19);
       } catch (e2) {
         return void 0;
       }
@@ -20453,15 +20453,15 @@ var require_dist2 = __commonJS({
       let index = 0;
       function consumeUntil(end) {
         const output = [];
-        let path17 = "";
+        let path18 = "";
         function writePath() {
-          if (!path17)
+          if (!path18)
             return;
           output.push({
             type: "text",
-            value: encodePath(path17)
+            value: encodePath(path18)
           });
-          path17 = "";
+          path18 = "";
         }
         while (index < chars.length) {
           const value = chars[index++];
@@ -20473,7 +20473,7 @@ var require_dist2 = __commonJS({
             if (index === chars.length) {
               throw new PathError(`Unexpected end after \\ at index ${index}`, str);
             }
-            path17 += chars[index++];
+            path18 += chars[index++];
             continue;
           }
           if (value === ":" || value === "*") {
@@ -20517,7 +20517,7 @@ var require_dist2 = __commonJS({
           if (value === "}" || value === "(" || value === ")" || value === "[" || value === "]" || value === "+" || value === "?" || value === "!") {
             throw new PathError(`Unexpected ${value} at index ${index - 1}`, str);
           }
-          path17 += value;
+          path18 += value;
         }
         if (end) {
           throw new PathError(`Unexpected end at index ${index}, expected ${end}`, str);
@@ -20527,17 +20527,17 @@ var require_dist2 = __commonJS({
       }
       return new TokenData(consumeUntil(""), str);
     }
-    function compile(path17, options = {}) {
+    function compile(path18, options = {}) {
       const { encode: encode2 = encodeURIComponent, delimiter = DEFAULT_DELIMITER } = options;
-      const data = typeof path17 === "object" ? path17 : parse2(path17, options);
+      const data = typeof path18 === "object" ? path18 : parse2(path18, options);
       const fn = tokensToFunction(data.tokens, delimiter, encode2);
-      return function path18(params = {}) {
+      return function path19(params = {}) {
         const missing = [];
-        const path19 = fn(params, missing);
+        const path20 = fn(params, missing);
         if (missing.length) {
           throw new TypeError(`Missing parameters: ${missing.join(", ")}`);
         }
-        return path19;
+        return path20;
       };
     }
     function tokensToFunction(tokens, delimiter, encode2) {
@@ -20599,9 +20599,9 @@ var require_dist2 = __commonJS({
         return encodeValue(value);
       };
     }
-    function match2(path17, options = {}) {
+    function match2(path18, options = {}) {
       const { decode: decode2 = decodeURIComponent, delimiter = DEFAULT_DELIMITER } = options;
-      const { regexp, keys } = pathToRegexp(path17, options);
+      const { regexp, keys } = pathToRegexp(path18, options);
       const decoders = keys.map((key3) => {
         if (decode2 === false)
           return NOOP_VALUE;
@@ -20613,7 +20613,7 @@ var require_dist2 = __commonJS({
         const m2 = regexp.exec(input);
         if (!m2)
           return false;
-        const path18 = m2[0];
+        const path19 = m2[0];
         const params = /* @__PURE__ */ Object.create(null);
         for (let i2 = 1; i2 < m2.length; i2++) {
           if (m2[i2] === void 0)
@@ -20622,21 +20622,21 @@ var require_dist2 = __commonJS({
           const decoder = decoders[i2 - 1];
           params[key3.name] = decoder(m2[i2]);
         }
-        return { path: path18, params };
+        return { path: path19, params };
       };
     }
-    function pathToRegexp(path17, options = {}) {
+    function pathToRegexp(path18, options = {}) {
       const { delimiter = DEFAULT_DELIMITER, end = true, sensitive = false, trailing = true } = options;
       const keys = [];
       let source = "";
       let combinations = 0;
-      function process2(path18) {
-        if (Array.isArray(path18)) {
-          for (const p of path18)
+      function process2(path19) {
+        if (Array.isArray(path19)) {
+          for (const p of path19)
             process2(p);
           return;
         }
-        const data = typeof path18 === "object" ? path18 : parse2(path18, options);
+        const data = typeof path19 === "object" ? path19 : parse2(path19, options);
         flatten(data.tokens, 0, [], (tokens) => {
           if (combinations >= 256) {
             throw new PathError("Too many path combinations", data.originalPath);
@@ -20647,7 +20647,7 @@ var require_dist2 = __commonJS({
           combinations++;
         });
       }
-      process2(path17);
+      process2(path18);
       let pattern = `^(?:${source})`;
       if (trailing)
         pattern += "(?:" + escape2(delimiter) + "$)?";
@@ -20787,18 +20787,18 @@ var require_layer = __commonJS({
     var TRAILING_SLASH_REGEXP = /\/+$/;
     var MATCHING_GROUP_REGEXP = /\((?:\?<(.*?)>)?(?!\?)/g;
     module2.exports = Layer;
-    function Layer(path17, options, fn) {
+    function Layer(path18, options, fn) {
       if (!(this instanceof Layer)) {
-        return new Layer(path17, options, fn);
+        return new Layer(path18, options, fn);
       }
-      debug("new %o", path17);
+      debug("new %o", path18);
       const opts = options || {};
       this.handle = fn;
       this.keys = [];
       this.name = fn.name || "<anonymous>";
       this.params = void 0;
       this.path = void 0;
-      this.slash = path17 === "/" && opts.end === false;
+      this.slash = path18 === "/" && opts.end === false;
       function matcher(_path) {
         if (_path instanceof RegExp) {
           const keys = [];
@@ -20837,7 +20837,7 @@ var require_layer = __commonJS({
           decode: decodeParam
         });
       }
-      this.matchers = Array.isArray(path17) ? path17.map(matcher) : [matcher(path17)];
+      this.matchers = Array.isArray(path18) ? path18.map(matcher) : [matcher(path18)];
     }
     Layer.prototype.handleError = function handleError2(error2, req, res, next) {
       const fn = this.handle;
@@ -20877,9 +20877,9 @@ var require_layer = __commonJS({
         next(err);
       }
     };
-    Layer.prototype.match = function match2(path17) {
+    Layer.prototype.match = function match2(path18) {
       let match3;
-      if (path17 != null) {
+      if (path18 != null) {
         if (this.slash) {
           this.params = {};
           this.path = "";
@@ -20887,7 +20887,7 @@ var require_layer = __commonJS({
         }
         let i2 = 0;
         while (!match3 && i2 < this.matchers.length) {
-          match3 = this.matchers[i2](path17);
+          match3 = this.matchers[i2](path18);
           i2++;
         }
       }
@@ -20915,13 +20915,13 @@ var require_layer = __commonJS({
         throw err;
       }
     }
-    function loosen(path17) {
-      if (path17 instanceof RegExp || path17 === "/") {
-        return path17;
+    function loosen(path18) {
+      if (path18 instanceof RegExp || path18 === "/") {
+        return path18;
       }
-      return Array.isArray(path17) ? path17.map(function(p) {
+      return Array.isArray(path18) ? path18.map(function(p) {
         return loosen(p);
-      }) : String(path17).replace(TRAILING_SLASH_REGEXP, "");
+      }) : String(path18).replace(TRAILING_SLASH_REGEXP, "");
     }
   }
 });
@@ -20937,9 +20937,9 @@ var require_route = __commonJS({
     var flatten = Array.prototype.flat;
     var methods = METHODS.map((method) => method.toLowerCase());
     module2.exports = Route;
-    function Route(path17) {
-      debug("new %o", path17);
-      this.path = path17;
+    function Route(path18) {
+      debug("new %o", path18);
+      this.path = path18;
       this.stack = [];
       this.methods = /* @__PURE__ */ Object.create(null);
     }
@@ -21147,8 +21147,8 @@ var require_router = __commonJS({
         if (++sync > 100) {
           return setImmediate(next, err);
         }
-        const path17 = getPathname(req);
-        if (path17 == null) {
+        const path18 = getPathname(req);
+        if (path18 == null) {
           return done(layerError);
         }
         let layer;
@@ -21156,7 +21156,7 @@ var require_router = __commonJS({
         let route;
         while (match2 !== true && idx < stack.length) {
           layer = stack[idx++];
-          match2 = matchLayer(layer, path17);
+          match2 = matchLayer(layer, path18);
           route = layer.route;
           if (typeof match2 !== "boolean") {
             layerError = layerError || match2;
@@ -21194,18 +21194,18 @@ var require_router = __commonJS({
           } else if (route) {
             layer.handleRequest(req, res, next);
           } else {
-            trimPrefix(layer, layerError, layerPath, path17);
+            trimPrefix(layer, layerError, layerPath, path18);
           }
           sync = 0;
         });
       }
-      function trimPrefix(layer, layerError, layerPath, path17) {
+      function trimPrefix(layer, layerError, layerPath, path18) {
         if (layerPath.length !== 0) {
-          if (layerPath !== path17.substring(0, layerPath.length)) {
+          if (layerPath !== path18.substring(0, layerPath.length)) {
             next(layerError);
             return;
           }
-          const c = path17[layerPath.length];
+          const c = path18[layerPath.length];
           if (c && c !== "/") {
             next(layerError);
             return;
@@ -21229,7 +21229,7 @@ var require_router = __commonJS({
     };
     Router4.prototype.use = function use(handler) {
       let offset = 0;
-      let path17 = "/";
+      let path18 = "/";
       if (typeof handler !== "function") {
         let arg = handler;
         while (Array.isArray(arg) && arg.length !== 0) {
@@ -21237,7 +21237,7 @@ var require_router = __commonJS({
         }
         if (typeof arg !== "function") {
           offset = 1;
-          path17 = handler;
+          path18 = handler;
         }
       }
       const callbacks = flatten.call(slice.call(arguments, offset), Infinity);
@@ -21249,8 +21249,8 @@ var require_router = __commonJS({
         if (typeof fn !== "function") {
           throw new TypeError("argument handler must be a function");
         }
-        debug("use %o %s", path17, fn.name || "<anonymous>");
-        const layer = new Layer(path17, {
+        debug("use %o %s", path18, fn.name || "<anonymous>");
+        const layer = new Layer(path18, {
           sensitive: this.caseSensitive,
           strict: false,
           end: false
@@ -21260,9 +21260,9 @@ var require_router = __commonJS({
       }
       return this;
     };
-    Router4.prototype.route = function route(path17) {
-      const route2 = new Route(path17);
-      const layer = new Layer(path17, {
+    Router4.prototype.route = function route(path18) {
+      const route2 = new Route(path18);
+      const layer = new Layer(path18, {
         sensitive: this.caseSensitive,
         strict: this.strict,
         end: true
@@ -21275,8 +21275,8 @@ var require_router = __commonJS({
       return route2;
     };
     methods.concat("all").forEach(function(method) {
-      Router4.prototype[method] = function(path17) {
-        const route = this.route(path17);
+      Router4.prototype[method] = function(path18) {
+        const route = this.route(path18);
         route[method].apply(route, slice.call(arguments, 1));
         return this;
       };
@@ -21305,9 +21305,9 @@ var require_router = __commonJS({
       const fqdnIndex = url2.substring(0, pathLength).indexOf("://");
       return fqdnIndex !== -1 ? url2.substring(0, url2.indexOf("/", 3 + fqdnIndex)) : void 0;
     }
-    function matchLayer(layer, path17) {
+    function matchLayer(layer, path18) {
       try {
-        return layer.match(path17);
+        return layer.match(path18);
       } catch (err) {
         return err;
       }
@@ -21535,7 +21535,7 @@ var require_application = __commonJS({
     };
     app2.use = function use(fn) {
       var offset = 0;
-      var path17 = "/";
+      var path18 = "/";
       if (typeof fn !== "function") {
         var arg = fn;
         while (Array.isArray(arg) && arg.length !== 0) {
@@ -21543,7 +21543,7 @@ var require_application = __commonJS({
         }
         if (typeof arg !== "function") {
           offset = 1;
-          path17 = fn;
+          path18 = fn;
         }
       }
       var fns = flatten.call(slice.call(arguments, offset), Infinity);
@@ -21553,12 +21553,12 @@ var require_application = __commonJS({
       var router4 = this.router;
       fns.forEach(function(fn2) {
         if (!fn2 || !fn2.handle || !fn2.set) {
-          return router4.use(path17, fn2);
+          return router4.use(path18, fn2);
         }
-        debug(".use app under %s", path17);
-        fn2.mountpath = path17;
+        debug(".use app under %s", path18);
+        fn2.mountpath = path18;
         fn2.parent = this;
-        router4.use(path17, function mounted_app(req, res, next) {
+        router4.use(path18, function mounted_app(req, res, next) {
           var orig = req.app;
           fn2.handle(req, res, function(err) {
             Object.setPrototypeOf(req, orig.request);
@@ -21570,8 +21570,8 @@ var require_application = __commonJS({
       }, this);
       return this;
     };
-    app2.route = function route(path17) {
-      return this.router.route(path17);
+    app2.route = function route(path18) {
+      return this.router.route(path18);
     };
     app2.engine = function engine(ext, fn) {
       if (typeof fn !== "function") {
@@ -21614,7 +21614,7 @@ var require_application = __commonJS({
       }
       return this;
     };
-    app2.path = function path17() {
+    app2.path = function path18() {
       return this.parent ? this.parent.path() + this.mountpath : "";
     };
     app2.enabled = function enabled(setting) {
@@ -21630,17 +21630,17 @@ var require_application = __commonJS({
       return this.set(setting, false);
     };
     methods.forEach(function(method) {
-      app2[method] = function(path17) {
+      app2[method] = function(path18) {
         if (method === "get" && arguments.length === 1) {
-          return this.set(path17);
+          return this.set(path18);
         }
-        var route = this.route(path17);
+        var route = this.route(path18);
         route[method].apply(route, slice.call(arguments, 1));
         return this;
       };
     });
-    app2.all = function all(path17) {
-      var route = this.route(path17);
+    app2.all = function all(path18) {
+      var route = this.route(path18);
       var args = slice.call(arguments, 1);
       for (var i2 = 0; i2 < methods.length; i2++) {
         route[methods[i2]].apply(route, args);
@@ -22486,7 +22486,7 @@ var require_request = __commonJS({
       var subdomains2 = !isIP2(hostname) ? hostname.split(".").reverse() : [hostname];
       return subdomains2.slice(offset);
     });
-    defineGetter(req, "path", function path17() {
+    defineGetter(req, "path", function path18() {
       return parse2(this).pathname;
     });
     defineGetter(req, "host", function host() {
@@ -22697,8 +22697,8 @@ var require_content_disposition = __commonJS({
       this.type = type;
       this.parameters = parameters;
     }
-    function basename3(path17) {
-      const normalized = path17.replaceAll("\\", "/");
+    function basename3(path18) {
+      const normalized = path18.replaceAll("\\", "/");
       let end = normalized.length;
       while (end > 0 && normalized[end - 1] === "/") {
         end--;
@@ -22939,32 +22939,32 @@ var require_send = __commonJS({
     var escapeHtml = require_escape_html();
     var etag = require_etag();
     var fresh = require_fresh();
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var mime = require_mime_types();
     var ms = require_ms();
     var onFinished = require_on_finished();
     var parseRange = require_range_parser();
-    var path17 = __require("path");
+    var path18 = __require("path");
     var statuses = require_statuses();
     var Stream4 = __require("stream");
     var util = __require("util");
-    var extname = path17.extname;
-    var join = path17.join;
-    var normalize = path17.normalize;
-    var resolve3 = path17.resolve;
-    var sep = path17.sep;
+    var extname = path18.extname;
+    var join = path18.join;
+    var normalize = path18.normalize;
+    var resolve3 = path18.resolve;
+    var sep = path18.sep;
     var BYTES_RANGE_REGEXP = /^ *bytes=/;
     var MAX_MAXAGE = 60 * 60 * 24 * 365 * 1e3;
     var UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/;
     module2.exports = send;
-    function send(req, path18, options) {
-      return new SendStream(req, path18, options);
+    function send(req, path19, options) {
+      return new SendStream(req, path19, options);
     }
-    function SendStream(req, path18, options) {
+    function SendStream(req, path19, options) {
       Stream4.call(this);
       var opts = options || {};
       this.options = opts;
-      this.path = path18;
+      this.path = path19;
       this.req = req;
       this._acceptRanges = opts.acceptRanges !== void 0 ? Boolean(opts.acceptRanges) : true;
       this._cacheControl = opts.cacheControl !== void 0 ? Boolean(opts.cacheControl) : true;
@@ -23078,10 +23078,10 @@ var require_send = __commonJS({
       var lastModified = this.res.getHeader("Last-Modified");
       return parseHttpDate(lastModified) <= parseHttpDate(ifRange);
     };
-    SendStream.prototype.redirect = function redirect(path18) {
+    SendStream.prototype.redirect = function redirect(path19) {
       var res = this.res;
       if (hasListeners(this, "directory")) {
-        this.emit("directory", res, path18);
+        this.emit("directory", res, path19);
         return;
       }
       if (this.hasTrailingSlash()) {
@@ -23101,38 +23101,38 @@ var require_send = __commonJS({
     SendStream.prototype.pipe = function pipe2(res) {
       var root = this._root;
       this.res = res;
-      var path18 = decode2(this.path);
-      if (path18 === -1) {
+      var path19 = decode2(this.path);
+      if (path19 === -1) {
         this.error(400);
         return res;
       }
-      if (~path18.indexOf("\0")) {
+      if (~path19.indexOf("\0")) {
         this.error(400);
         return res;
       }
       var parts;
       if (root !== null) {
-        if (path18) {
-          path18 = normalize("." + sep + path18);
+        if (path19) {
+          path19 = normalize("." + sep + path19);
         }
-        if (UP_PATH_REGEXP.test(path18)) {
-          debug('malicious path "%s"', path18);
+        if (UP_PATH_REGEXP.test(path19)) {
+          debug('malicious path "%s"', path19);
           this.error(403);
           return res;
         }
-        parts = path18.split(sep);
-        path18 = normalize(join(root, path18));
+        parts = path19.split(sep);
+        path19 = normalize(join(root, path19));
       } else {
-        if (UP_PATH_REGEXP.test(path18)) {
-          debug('malicious path "%s"', path18);
+        if (UP_PATH_REGEXP.test(path19)) {
+          debug('malicious path "%s"', path19);
           this.error(403);
           return res;
         }
-        parts = normalize(path18).split(sep);
-        path18 = resolve3(path18);
+        parts = normalize(path19).split(sep);
+        path19 = resolve3(path19);
       }
       if (containsDotFile(parts)) {
-        debug('%s dotfile "%s"', this._dotfiles, path18);
+        debug('%s dotfile "%s"', this._dotfiles, path19);
         switch (this._dotfiles) {
           case "allow":
             break;
@@ -23146,13 +23146,13 @@ var require_send = __commonJS({
         }
       }
       if (this._index.length && this.hasTrailingSlash()) {
-        this.sendIndex(path18);
+        this.sendIndex(path19);
         return res;
       }
-      this.sendFile(path18);
+      this.sendFile(path19);
       return res;
     };
-    SendStream.prototype.send = function send2(path18, stat3) {
+    SendStream.prototype.send = function send2(path19, stat3) {
       var len = stat3.size;
       var options = this.options;
       var opts = {};
@@ -23164,9 +23164,9 @@ var require_send = __commonJS({
         this.headersAlreadySent();
         return;
       }
-      debug('pipe "%s"', path18);
-      this.setHeader(path18, stat3);
-      this.type(path18);
+      debug('pipe "%s"', path19);
+      this.setHeader(path19, stat3);
+      this.type(path19);
       if (this.isConditionalGET()) {
         if (this.isPreconditionFailure()) {
           this.error(412);
@@ -23215,30 +23215,30 @@ var require_send = __commonJS({
         res.end();
         return;
       }
-      this.stream(path18, opts);
+      this.stream(path19, opts);
     };
-    SendStream.prototype.sendFile = function sendFile(path18) {
+    SendStream.prototype.sendFile = function sendFile(path19) {
       var i2 = 0;
       var self2 = this;
-      debug('stat "%s"', path18);
-      fs12.stat(path18, function onstat(err, stat3) {
-        var pathEndsWithSep = path18[path18.length - 1] === sep;
-        if (err && err.code === "ENOENT" && !extname(path18) && !pathEndsWithSep) {
+      debug('stat "%s"', path19);
+      fs13.stat(path19, function onstat(err, stat3) {
+        var pathEndsWithSep = path19[path19.length - 1] === sep;
+        if (err && err.code === "ENOENT" && !extname(path19) && !pathEndsWithSep) {
           return next(err);
         }
         if (err) return self2.onStatError(err);
-        if (stat3.isDirectory()) return self2.redirect(path18);
+        if (stat3.isDirectory()) return self2.redirect(path19);
         if (pathEndsWithSep) return self2.error(404);
-        self2.emit("file", path18, stat3);
-        self2.send(path18, stat3);
+        self2.emit("file", path19, stat3);
+        self2.send(path19, stat3);
       });
       function next(err) {
         if (self2._extensions.length <= i2) {
           return err ? self2.onStatError(err) : self2.error(404);
         }
-        var p = path18 + "." + self2._extensions[i2++];
+        var p = path19 + "." + self2._extensions[i2++];
         debug('stat "%s"', p);
-        fs12.stat(p, function(err2, stat3) {
+        fs13.stat(p, function(err2, stat3) {
           if (err2) return next(err2);
           if (stat3.isDirectory()) return next();
           self2.emit("file", p, stat3);
@@ -23246,7 +23246,7 @@ var require_send = __commonJS({
         });
       }
     };
-    SendStream.prototype.sendIndex = function sendIndex(path18) {
+    SendStream.prototype.sendIndex = function sendIndex(path19) {
       var i2 = -1;
       var self2 = this;
       function next(err) {
@@ -23254,9 +23254,9 @@ var require_send = __commonJS({
           if (err) return self2.onStatError(err);
           return self2.error(404);
         }
-        var p = join(path18, self2._index[i2]);
+        var p = join(path19, self2._index[i2]);
         debug('stat "%s"', p);
-        fs12.stat(p, function(err2, stat3) {
+        fs13.stat(p, function(err2, stat3) {
           if (err2) return next(err2);
           if (stat3.isDirectory()) return next();
           self2.emit("file", p, stat3);
@@ -23265,10 +23265,10 @@ var require_send = __commonJS({
       }
       next();
     };
-    SendStream.prototype.stream = function stream(path18, options) {
+    SendStream.prototype.stream = function stream(path19, options) {
       var self2 = this;
       var res = this.res;
-      var stream2 = fs12.createReadStream(path18, options);
+      var stream2 = fs13.createReadStream(path19, options);
       this.emit("stream", stream2);
       stream2.pipe(res);
       function cleanup() {
@@ -23283,17 +23283,17 @@ var require_send = __commonJS({
         self2.emit("end");
       });
     };
-    SendStream.prototype.type = function type(path18) {
+    SendStream.prototype.type = function type(path19) {
       var res = this.res;
       if (res.getHeader("Content-Type")) return;
-      var ext = extname(path18);
+      var ext = extname(path19);
       var type2 = mime.contentType(ext) || "application/octet-stream";
       debug("content-type %s", type2);
       res.setHeader("Content-Type", type2);
     };
-    SendStream.prototype.setHeader = function setHeader2(path18, stat3) {
+    SendStream.prototype.setHeader = function setHeader2(path19, stat3) {
       var res = this.res;
-      this.emit("headers", res, path18, stat3);
+      this.emit("headers", res, path19, stat3);
       if (this._acceptRanges && !res.getHeader("Accept-Ranges")) {
         debug("accept ranges");
         res.setHeader("Accept-Ranges", "bytes");
@@ -23351,9 +23351,9 @@ var require_send = __commonJS({
       }
       return err instanceof Error ? createError(status, err, { expose: false }) : createError(status, err);
     }
-    function decode2(path18) {
+    function decode2(path19) {
       try {
-        return decodeURIComponent(path18);
+        return decodeURIComponent(path19);
       } catch (err) {
         return -1;
       }
@@ -23497,7 +23497,7 @@ var require_response = __commonJS({
     var http3 = __require("node:http");
     var onFinished = require_on_finished();
     var mime = require_mime_types();
-    var path17 = __require("node:path");
+    var path18 = __require("node:path");
     var pathIsAbsolute = __require("node:path").isAbsolute;
     var statuses = require_statuses();
     var sign = require_cookie_signature().sign;
@@ -23506,8 +23506,8 @@ var require_response = __commonJS({
     var setCharset = require_utils3().setCharset;
     var cookie = require_cookie();
     var send = require_send();
-    var extname = path17.extname;
-    var resolve3 = path17.resolve;
+    var extname = path18.extname;
+    var resolve3 = path18.resolve;
     var vary = require_vary();
     var { Buffer: Buffer4 } = __require("node:buffer");
     var res = Object.create(http3.ServerResponse.prototype);
@@ -23653,26 +23653,26 @@ var require_response = __commonJS({
       this.type("txt");
       return this.send(body);
     };
-    res.sendFile = function sendFile(path18, options, callback) {
+    res.sendFile = function sendFile(path19, options, callback) {
       var done = callback;
       var req = this.req;
       var res2 = this;
       var next = req.next;
       var opts = options || {};
-      if (!path18) {
+      if (!path19) {
         throw new TypeError("path argument is required to res.sendFile");
       }
-      if (typeof path18 !== "string") {
+      if (typeof path19 !== "string") {
         throw new TypeError("path must be a string to res.sendFile");
       }
       if (typeof options === "function") {
         done = options;
         opts = {};
       }
-      if (!opts.root && !pathIsAbsolute(path18)) {
+      if (!opts.root && !pathIsAbsolute(path19)) {
         throw new TypeError("path must be absolute or specify root to res.sendFile");
       }
-      var pathname = encodeURI(path18);
+      var pathname = encodeURI(path19);
       opts.etag = this.app.enabled("etag");
       var file = send(req, pathname, opts);
       sendfile(res2, file, opts, function(err) {
@@ -23683,7 +23683,7 @@ var require_response = __commonJS({
         }
       });
     };
-    res.download = function download(path18, filename, options, callback) {
+    res.download = function download(path19, filename, options, callback) {
       var done = callback;
       var name2 = filename;
       var opts = options || null;
@@ -23700,7 +23700,7 @@ var require_response = __commonJS({
         opts = filename;
       }
       var headers = {
-        "Content-Disposition": contentDisposition(name2 || path18)
+        "Content-Disposition": contentDisposition(name2 || path19)
       };
       if (opts && opts.headers) {
         var keys = Object.keys(opts.headers);
@@ -23713,7 +23713,7 @@ var require_response = __commonJS({
       }
       opts = Object.create(opts);
       opts.headers = headers;
-      var fullPath = !opts.root ? resolve3(path18) : path18;
+      var fullPath = !opts.root ? resolve3(path19) : path19;
       return this.sendFile(fullPath, opts, done);
     };
     res.contentType = res.type = function contentType(type) {
@@ -23996,11 +23996,11 @@ var require_serve_static = __commonJS({
         }
         var forwardError = !fallthrough;
         var originalUrl = parseUrl.original(req);
-        var path17 = parseUrl(req).pathname;
-        if (path17 === "/" && originalUrl.pathname.substr(-1) !== "/") {
-          path17 = "";
+        var path18 = parseUrl(req).pathname;
+        if (path18 === "/" && originalUrl.pathname.substr(-1) !== "/") {
+          path18 = "";
         }
-        var stream = send(req, path17, opts);
+        var stream = send(req, path18, opts);
         stream.on("directory", onDirectory);
         if (setHeaders) {
           stream.on("headers", setHeaders);
@@ -24648,8 +24648,8 @@ var require_req = __commonJS({
       if (req.originalUrl) {
         _req.url = req.originalUrl;
       } else {
-        const path17 = req.path;
-        _req.url = typeof path17 === "string" ? path17 : req.url ? req.url.path || req.url : void 0;
+        const path18 = req.path;
+        _req.url = typeof path18 === "string" ? path18 : req.url ? req.url.path || req.url : void 0;
       }
       if (req.query) {
         _req.query = req.query;
@@ -24814,14 +24814,14 @@ var require_redact = __commonJS({
       }
       return obj;
     }
-    function parsePath(path17) {
+    function parsePath(path18) {
       const parts = [];
       let current = "";
       let inBrackets = false;
       let inQuotes = false;
       let quoteChar = "";
-      for (let i2 = 0; i2 < path17.length; i2++) {
-        const char = path17[i2];
+      for (let i2 = 0; i2 < path18.length; i2++) {
+        const char = path18[i2];
         if (!inBrackets && char === ".") {
           if (current) {
             parts.push(current);
@@ -24952,10 +24952,10 @@ var require_redact = __commonJS({
       return current;
     }
     function redactPaths(obj, paths, censor, remove2 = false) {
-      for (const path17 of paths) {
-        const parts = parsePath(path17);
+      for (const path18 of paths) {
+        const parts = parsePath(path18);
         if (parts.includes("*")) {
-          redactWildcardPath(obj, parts, censor, path17, remove2);
+          redactWildcardPath(obj, parts, censor, path18, remove2);
         } else {
           if (remove2) {
             removeKey(obj, parts);
@@ -25040,8 +25040,8 @@ var require_redact = __commonJS({
           }
         } else {
           if (afterWildcard.includes("*")) {
-            const wrappedCensor = typeof censor === "function" ? (value, path17) => {
-              const fullPath = [...pathArray.slice(0, pathLength), ...path17];
+            const wrappedCensor = typeof censor === "function" ? (value, path18) => {
+              const fullPath = [...pathArray.slice(0, pathLength), ...path18];
               return censor(value, fullPath);
             } : censor;
             redactWildcardPath(current, afterWildcard, wrappedCensor, originalPath, remove2);
@@ -25076,8 +25076,8 @@ var require_redact = __commonJS({
         return null;
       }
       const pathStructure = /* @__PURE__ */ new Map();
-      for (const path17 of pathsToClone) {
-        const parts = parsePath(path17);
+      for (const path18 of pathsToClone) {
+        const parts = parsePath(path18);
         let current = pathStructure;
         for (let i2 = 0; i2 < parts.length; i2++) {
           const part = parts[i2];
@@ -25129,24 +25129,24 @@ var require_redact = __commonJS({
       }
       return cloneSelectively(obj, pathStructure);
     }
-    function validatePath(path17) {
-      if (typeof path17 !== "string") {
+    function validatePath(path18) {
+      if (typeof path18 !== "string") {
         throw new Error("Paths must be (non-empty) strings");
       }
-      if (path17 === "") {
+      if (path18 === "") {
         throw new Error("Invalid redaction path ()");
       }
-      if (path17.includes("..")) {
-        throw new Error(`Invalid redaction path (${path17})`);
+      if (path18.includes("..")) {
+        throw new Error(`Invalid redaction path (${path18})`);
       }
-      if (path17.includes(",")) {
-        throw new Error(`Invalid redaction path (${path17})`);
+      if (path18.includes(",")) {
+        throw new Error(`Invalid redaction path (${path18})`);
       }
       let bracketCount = 0;
       let inQuotes = false;
       let quoteChar = "";
-      for (let i2 = 0; i2 < path17.length; i2++) {
-        const char = path17[i2];
+      for (let i2 = 0; i2 < path18.length; i2++) {
+        const char = path18[i2];
         if ((char === '"' || char === "'") && bracketCount > 0) {
           if (!inQuotes) {
             inQuotes = true;
@@ -25160,20 +25160,20 @@ var require_redact = __commonJS({
         } else if (char === "]" && !inQuotes) {
           bracketCount--;
           if (bracketCount < 0) {
-            throw new Error(`Invalid redaction path (${path17})`);
+            throw new Error(`Invalid redaction path (${path18})`);
           }
         }
       }
       if (bracketCount !== 0) {
-        throw new Error(`Invalid redaction path (${path17})`);
+        throw new Error(`Invalid redaction path (${path18})`);
       }
     }
     function validatePaths(paths) {
       if (!Array.isArray(paths)) {
         throw new TypeError("paths must be an array");
       }
-      for (const path17 of paths) {
-        validatePath(path17);
+      for (const path18 of paths) {
+        validatePath(path18);
       }
     }
     function slowRedact(options = {}) {
@@ -25341,8 +25341,8 @@ var require_redaction = __commonJS({
         if (shape[k] === null) {
           o[k] = (value) => topCensor(value, [k]);
         } else {
-          const wrappedCensor = typeof censor === "function" ? (value, path17) => {
-            return censor(value, [k, ...path17]);
+          const wrappedCensor = typeof censor === "function" ? (value, path18) => {
+            return censor(value, [k, ...path18]);
           } : censor;
           o[k] = Redact({
             paths: shape[k],
@@ -25560,10 +25560,10 @@ var require_atomic_sleep = __commonJS({
 var require_sonic_boom = __commonJS({
   "node_modules/.bun/sonic-boom@4.2.1/node_modules/sonic-boom/index.js"(exports2, module2) {
     "use strict";
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var EventEmitter3 = __require("events");
     var inherits = __require("util").inherits;
-    var path17 = __require("path");
+    var path18 = __require("path");
     var sleep4 = require_atomic_sleep();
     var assert2 = __require("assert");
     var BUSY_WRITE_TIMEOUT = 100;
@@ -25617,20 +25617,20 @@ var require_sonic_boom = __commonJS({
       const mode = sonic.mode;
       if (sonic.sync) {
         try {
-          if (sonic.mkdir) fs12.mkdirSync(path17.dirname(file), { recursive: true });
-          const fd = fs12.openSync(file, flags, mode);
+          if (sonic.mkdir) fs13.mkdirSync(path18.dirname(file), { recursive: true });
+          const fd = fs13.openSync(file, flags, mode);
           fileOpened(null, fd);
         } catch (err) {
           fileOpened(err);
           throw err;
         }
       } else if (sonic.mkdir) {
-        fs12.mkdir(path17.dirname(file), { recursive: true }, (err) => {
+        fs13.mkdir(path18.dirname(file), { recursive: true }, (err) => {
           if (err) return fileOpened(err);
-          fs12.open(file, flags, mode, fileOpened);
+          fs13.open(file, flags, mode, fileOpened);
         });
       } else {
-        fs12.open(file, flags, mode, fileOpened);
+        fs13.open(file, flags, mode, fileOpened);
       }
     }
     function SonicBoom(opts) {
@@ -25671,8 +25671,8 @@ var require_sonic_boom = __commonJS({
         this.flush = flushBuffer;
         this.flushSync = flushBufferSync;
         this._actualWrite = actualWriteBuffer;
-        fsWriteSync = () => fs12.writeSync(this.fd, this._writingBuf);
-        fsWrite = () => fs12.write(this.fd, this._writingBuf, this.release);
+        fsWriteSync = () => fs13.writeSync(this.fd, this._writingBuf);
+        fsWrite = () => fs13.write(this.fd, this._writingBuf, this.release);
       } else if (contentMode === void 0 || contentMode === kContentModeUtf8) {
         this._writingBuf = "";
         this.write = write;
@@ -25681,15 +25681,15 @@ var require_sonic_boom = __commonJS({
         this._actualWrite = actualWrite;
         fsWriteSync = () => {
           if (Buffer.isBuffer(this._writingBuf)) {
-            return fs12.writeSync(this.fd, this._writingBuf);
+            return fs13.writeSync(this.fd, this._writingBuf);
           }
-          return fs12.writeSync(this.fd, this._writingBuf, "utf8");
+          return fs13.writeSync(this.fd, this._writingBuf, "utf8");
         };
         fsWrite = () => {
           if (Buffer.isBuffer(this._writingBuf)) {
-            return fs12.write(this.fd, this._writingBuf, this.release);
+            return fs13.write(this.fd, this._writingBuf, this.release);
           }
-          return fs12.write(this.fd, this._writingBuf, "utf8", this.release);
+          return fs13.write(this.fd, this._writingBuf, "utf8", this.release);
         };
       } else {
         throw new Error(`SonicBoom supports "${kContentModeUtf8}" and "${kContentModeBuffer}", but passed ${contentMode}`);
@@ -25746,7 +25746,7 @@ var require_sonic_boom = __commonJS({
           }
         }
         if (this._fsync) {
-          fs12.fsyncSync(this.fd);
+          fs13.fsyncSync(this.fd);
         }
         const len = this._len;
         if (this._reopening) {
@@ -25860,7 +25860,7 @@ var require_sonic_boom = __commonJS({
       const onDrain = () => {
         if (!this._fsync) {
           try {
-            fs12.fsync(this.fd, (err) => {
+            fs13.fsync(this.fd, (err) => {
               this._flushPending = false;
               cb(err);
             });
@@ -25962,7 +25962,7 @@ var require_sonic_boom = __commonJS({
       const fd = this.fd;
       this.once("ready", () => {
         if (fd !== this.fd) {
-          fs12.close(fd, (err) => {
+          fs13.close(fd, (err) => {
             if (err) {
               return this.emit("error", err);
             }
@@ -26011,7 +26011,7 @@ var require_sonic_boom = __commonJS({
           buf = this._bufs[0];
         }
         try {
-          const n = Buffer.isBuffer(buf) ? fs12.writeSync(this.fd, buf) : fs12.writeSync(this.fd, buf, "utf8");
+          const n = Buffer.isBuffer(buf) ? fs13.writeSync(this.fd, buf) : fs13.writeSync(this.fd, buf, "utf8");
           const releasedBufObj = releaseWritingBuf(buf, this._len, n);
           buf = releasedBufObj.writingBuf;
           this._len = releasedBufObj.len;
@@ -26027,7 +26027,7 @@ var require_sonic_boom = __commonJS({
         }
       }
       try {
-        fs12.fsyncSync(this.fd);
+        fs13.fsyncSync(this.fd);
       } catch {
       }
     }
@@ -26048,7 +26048,7 @@ var require_sonic_boom = __commonJS({
           buf = mergeBuf(this._bufs[0], this._lens[0]);
         }
         try {
-          const n = fs12.writeSync(this.fd, buf);
+          const n = fs13.writeSync(this.fd, buf);
           buf = buf.subarray(n);
           this._len = Math.max(this._len - n, 0);
           if (buf.length <= 0) {
@@ -26076,13 +26076,13 @@ var require_sonic_boom = __commonJS({
       this._writingBuf = this._writingBuf.length ? this._writingBuf : this._bufs.shift() || "";
       if (this.sync) {
         try {
-          const written = Buffer.isBuffer(this._writingBuf) ? fs12.writeSync(this.fd, this._writingBuf) : fs12.writeSync(this.fd, this._writingBuf, "utf8");
+          const written = Buffer.isBuffer(this._writingBuf) ? fs13.writeSync(this.fd, this._writingBuf) : fs13.writeSync(this.fd, this._writingBuf, "utf8");
           release(null, written);
         } catch (err) {
           release(err);
         }
       } else {
-        fs12.write(this.fd, this._writingBuf, release);
+        fs13.write(this.fd, this._writingBuf, release);
       }
     }
     function actualWriteBuffer() {
@@ -26091,7 +26091,7 @@ var require_sonic_boom = __commonJS({
       this._writingBuf = this._writingBuf.length ? this._writingBuf : mergeBuf(this._bufs.shift(), this._lens.shift());
       if (this.sync) {
         try {
-          const written = fs12.writeSync(this.fd, this._writingBuf);
+          const written = fs13.writeSync(this.fd, this._writingBuf);
           release(null, written);
         } catch (err) {
           release(err);
@@ -26100,7 +26100,7 @@ var require_sonic_boom = __commonJS({
         if (kCopyBuffer) {
           this._writingBuf = Buffer.from(this._writingBuf);
         }
-        fs12.write(this.fd, this._writingBuf, release);
+        fs13.write(this.fd, this._writingBuf, release);
       }
     }
     function actualClose(sonic) {
@@ -26116,12 +26116,12 @@ var require_sonic_boom = __commonJS({
       sonic._lens = [];
       assert2(typeof sonic.fd === "number", `sonic.fd must be a number, got ${typeof sonic.fd}`);
       try {
-        fs12.fsync(sonic.fd, closeWrapped);
+        fs13.fsync(sonic.fd, closeWrapped);
       } catch {
       }
       function closeWrapped() {
         if (sonic.fd !== 1 && sonic.fd !== 2) {
-          fs12.close(sonic.fd, done);
+          fs13.close(sonic.fd, done);
         } else {
           done();
         }
@@ -28485,9 +28485,9 @@ var require_pino = __commonJS({
   "node_modules/.bun/pino@9.14.0/node_modules/pino/pino.js"(exports2, module2) {
     function pinoBundlerAbsolutePath(p) {
       try {
-        const path17 = __require("path");
+        const path18 = __require("path");
         const outputDir = "/app/applet/artifacts/api-server/dist";
-        return path17.resolve(outputDir, p.replace(/^\.\//, ""));
+        return path18.resolve(outputDir, p.replace(/^\.\//, ""));
       } catch (e2) {
         const f3 = new Function("p", "return new URL(p, import.meta.url).pathname");
         return f3(p);
@@ -29506,13 +29506,13 @@ function __disposeResources(env2) {
   }
   return next();
 }
-function __rewriteRelativeImportExtension(path17, preserveJsx) {
-  if (typeof path17 === "string" && /^\.\.?\//.test(path17)) {
-    return path17.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function(m2, tsx, d, ext, cm) {
+function __rewriteRelativeImportExtension(path18, preserveJsx) {
+  if (typeof path18 === "string" && /^\.\.?\//.test(path18)) {
+    return path18.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function(m2, tsx, d, ext, cm) {
       return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m2 : d + ext + "." + cm.toLowerCase() + "js";
     });
   }
-  return path17;
+  return path18;
 }
 var extendStatics, __assign, __createBinding, __setModuleDefault, ownKeys, _SuppressedError, tslib_es6_default;
 var init_tslib_es6 = __esm({
@@ -30404,14 +30404,14 @@ var require_util = __commonJS({
         }
         const port2 = url2.port != null ? url2.port : url2.protocol === "https:" ? 443 : 80;
         let origin = url2.origin != null ? url2.origin : `${url2.protocol || ""}//${url2.hostname || ""}:${port2}`;
-        let path17 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
+        let path18 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
         if (origin[origin.length - 1] === "/") {
           origin = origin.slice(0, origin.length - 1);
         }
-        if (path17 && path17[0] !== "/") {
-          path17 = `/${path17}`;
+        if (path18 && path18[0] !== "/") {
+          path18 = `/${path18}`;
         }
-        return new URL(`${origin}${path17}`);
+        return new URL(`${origin}${path18}`);
       }
       if (!isHttpOrHttpsPrefixed(url2.origin || url2.protocol)) {
         throw new InvalidArgumentError("Invalid URL protocol: the URL must start with `http:` or `https:`.");
@@ -30862,39 +30862,39 @@ var require_diagnostics = __commonJS({
       });
       diagnosticsChannel.channel("undici:client:sendHeaders").subscribe((evt) => {
         const {
-          request: { method, path: path17, origin }
+          request: { method, path: path18, origin }
         } = evt;
-        debuglog("sending request to %s %s/%s", method, origin, path17);
+        debuglog("sending request to %s %s/%s", method, origin, path18);
       });
       diagnosticsChannel.channel("undici:request:headers").subscribe((evt) => {
         const {
-          request: { method, path: path17, origin },
+          request: { method, path: path18, origin },
           response: { statusCode }
         } = evt;
         debuglog(
           "received response to %s %s/%s - HTTP %d",
           method,
           origin,
-          path17,
+          path18,
           statusCode
         );
       });
       diagnosticsChannel.channel("undici:request:trailers").subscribe((evt) => {
         const {
-          request: { method, path: path17, origin }
+          request: { method, path: path18, origin }
         } = evt;
-        debuglog("trailers received from %s %s/%s", method, origin, path17);
+        debuglog("trailers received from %s %s/%s", method, origin, path18);
       });
       diagnosticsChannel.channel("undici:request:error").subscribe((evt) => {
         const {
-          request: { method, path: path17, origin },
+          request: { method, path: path18, origin },
           error: error2
         } = evt;
         debuglog(
           "request to %s %s/%s errored - %s",
           method,
           origin,
-          path17,
+          path18,
           error2.message
         );
       });
@@ -30943,9 +30943,9 @@ var require_diagnostics = __commonJS({
         });
         diagnosticsChannel.channel("undici:client:sendHeaders").subscribe((evt) => {
           const {
-            request: { method, path: path17, origin }
+            request: { method, path: path18, origin }
           } = evt;
-          debuglog("sending request to %s %s/%s", method, origin, path17);
+          debuglog("sending request to %s %s/%s", method, origin, path18);
         });
       }
       diagnosticsChannel.channel("undici:websocket:open").subscribe((evt) => {
@@ -31008,7 +31008,7 @@ var require_request2 = __commonJS({
     var kHandler = Symbol("handler");
     var Request3 = class {
       constructor(origin, {
-        path: path17,
+        path: path18,
         method,
         body,
         headers,
@@ -31023,11 +31023,11 @@ var require_request2 = __commonJS({
         expectContinue,
         servername
       }, handler) {
-        if (typeof path17 !== "string") {
+        if (typeof path18 !== "string") {
           throw new InvalidArgumentError("path must be a string");
-        } else if (path17[0] !== "/" && !(path17.startsWith("http://") || path17.startsWith("https://")) && method !== "CONNECT") {
+        } else if (path18[0] !== "/" && !(path18.startsWith("http://") || path18.startsWith("https://")) && method !== "CONNECT") {
           throw new InvalidArgumentError("path must be an absolute URL or start with a slash");
-        } else if (invalidPathRegex.test(path17)) {
+        } else if (invalidPathRegex.test(path18)) {
           throw new InvalidArgumentError("invalid request path");
         }
         if (typeof method !== "string") {
@@ -31093,7 +31093,7 @@ var require_request2 = __commonJS({
         this.completed = false;
         this.aborted = false;
         this.upgrade = upgrade || null;
-        this.path = query ? buildURL(path17, query) : path17;
+        this.path = query ? buildURL(path18, query) : path18;
         this.origin = origin;
         this.idempotent = idempotent == null ? method === "HEAD" || method === "GET" : idempotent;
         this.blocking = blocking == null ? false : blocking;
@@ -35779,7 +35779,7 @@ var require_client_h1 = __commonJS({
       return method !== "GET" && method !== "HEAD" && method !== "OPTIONS" && method !== "TRACE" && method !== "CONNECT";
     }
     function writeH1(client, request) {
-      const { method, path: path17, host, upgrade, blocking, reset } = request;
+      const { method, path: path18, host, upgrade, blocking, reset } = request;
       let { body, headers, contentLength } = request;
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH" || method === "QUERY" || method === "PROPFIND" || method === "PROPPATCH";
       if (util.isFormDataLike(body)) {
@@ -35860,7 +35860,7 @@ var require_client_h1 = __commonJS({
       if (blocking) {
         socket[kBlocking] = true;
       }
-      let header = `${method} ${path17} HTTP/1.1\r
+      let header = `${method} ${path18} HTTP/1.1\r
 `;
       if (typeof host === "string") {
         header += `host: ${host}\r
@@ -36391,7 +36391,7 @@ var require_client_h2 = __commonJS({
     }
     function writeH2(client, request) {
       const session = client[kHTTP2Session];
-      const { method, path: path17, host, upgrade, expectContinue, signal, headers: reqHeaders } = request;
+      const { method, path: path18, host, upgrade, expectContinue, signal, headers: reqHeaders } = request;
       let { body } = request;
       if (upgrade) {
         util.errorRequest(client, request, new Error("Upgrade not supported for H2"));
@@ -36488,7 +36488,7 @@ var require_client_h2 = __commonJS({
         });
         return true;
       }
-      headers[HTTP2_HEADER_PATH] = path17;
+      headers[HTTP2_HEADER_PATH] = path18;
       headers[HTTP2_HEADER_SCHEME] = "https";
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH";
       if (body && typeof body.read === "function") {
@@ -36841,9 +36841,9 @@ var require_redirect_handler = __commonJS({
           return this.handler.onHeaders(statusCode, headers, resume, statusText);
         }
         const { origin, pathname, search } = util.parseURL(new URL(this.location, this.opts.origin && new URL(this.opts.path, this.opts.origin)));
-        const path17 = search ? `${pathname}${search}` : pathname;
+        const path18 = search ? `${pathname}${search}` : pathname;
         this.opts.headers = cleanRequestHeaders(this.opts.headers, statusCode === 303, this.opts.origin !== origin);
-        this.opts.path = path17;
+        this.opts.path = path18;
         this.opts.origin = origin;
         this.opts.maxRedirections = 0;
         this.opts.query = null;
@@ -38078,10 +38078,10 @@ var require_proxy_agent = __commonJS({
         };
         const {
           origin,
-          path: path17 = "/",
+          path: path18 = "/",
           headers = {}
         } = opts;
-        opts.path = origin + path17;
+        opts.path = origin + path18;
         if (!("host" in headers) && !("Host" in headers)) {
           const { host } = new URL2(origin);
           headers.host = host;
@@ -40053,20 +40053,20 @@ var require_mock_utils = __commonJS({
       }
       return true;
     }
-    function safeUrl(path17) {
-      if (typeof path17 !== "string") {
-        return path17;
+    function safeUrl(path18) {
+      if (typeof path18 !== "string") {
+        return path18;
       }
-      const pathSegments = path17.split("?");
+      const pathSegments = path18.split("?");
       if (pathSegments.length !== 2) {
-        return path17;
+        return path18;
       }
       const qp = new URLSearchParams(pathSegments.pop());
       qp.sort();
       return [...pathSegments, qp.toString()].join("?");
     }
-    function matchKey(mockDispatch2, { path: path17, method, body, headers }) {
-      const pathMatch = matchValue(mockDispatch2.path, path17);
+    function matchKey(mockDispatch2, { path: path18, method, body, headers }) {
+      const pathMatch = matchValue(mockDispatch2.path, path18);
       const methodMatch = matchValue(mockDispatch2.method, method);
       const bodyMatch = typeof mockDispatch2.body !== "undefined" ? matchValue(mockDispatch2.body, body) : true;
       const headersMatch = matchHeaders(mockDispatch2, headers);
@@ -40088,7 +40088,7 @@ var require_mock_utils = __commonJS({
     function getMockDispatch(mockDispatches, key3) {
       const basePath = key3.query ? buildURL(key3.path, key3.query) : key3.path;
       const resolvedPath = typeof basePath === "string" ? safeUrl(basePath) : basePath;
-      let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path17 }) => matchValue(safeUrl(path17), resolvedPath));
+      let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path18 }) => matchValue(safeUrl(path18), resolvedPath));
       if (matchedMockDispatches.length === 0) {
         throw new MockNotMatchedError(`Mock dispatch not matched for path '${resolvedPath}'`);
       }
@@ -40126,9 +40126,9 @@ var require_mock_utils = __commonJS({
       }
     }
     function buildKey(opts) {
-      const { path: path17, method, body, headers, query } = opts;
+      const { path: path18, method, body, headers, query } = opts;
       return {
-        path: path17,
+        path: path18,
         method,
         body,
         headers,
@@ -40591,10 +40591,10 @@ var require_pending_interceptors_formatter = __commonJS({
       }
       format(pendingInterceptors) {
         const withPrettyHeaders = pendingInterceptors.map(
-          ({ method, path: path17, data: { statusCode }, persist: persist27, times, timesInvoked, origin }) => ({
+          ({ method, path: path18, data: { statusCode }, persist: persist27, times, timesInvoked, origin }) => ({
             Method: method,
             Origin: origin,
-            Path: path17,
+            Path: path18,
             "Status code": statusCode,
             Persistent: persist27 ? PERSISTENT : NOT_PERSISTENT,
             Invocations: timesInvoked,
@@ -45475,9 +45475,9 @@ var require_util6 = __commonJS({
         }
       }
     }
-    function validateCookiePath(path17) {
-      for (let i2 = 0; i2 < path17.length; ++i2) {
-        const code = path17.charCodeAt(i2);
+    function validateCookiePath(path18) {
+      for (let i2 = 0; i2 < path18.length; ++i2) {
+        const code = path18.charCodeAt(i2);
         if (code < 32 || // exclude CTLs (0-31)
         code > 126 || // exclude DEL and non-ascii
         code === 59) {
@@ -48319,11 +48319,11 @@ var require_undici = __commonJS({
           if (typeof opts.path !== "string") {
             throw new InvalidArgumentError("invalid opts.path");
           }
-          let path17 = opts.path;
+          let path18 = opts.path;
           if (!opts.path.startsWith("/")) {
-            path17 = `/${path17}`;
+            path18 = `/${path18}`;
           }
-          url2 = new URL(util.parseOrigin(url2).origin + path17);
+          url2 = new URL(util.parseOrigin(url2).origin + path18);
         } else {
           if (!opts) {
             opts = typeof url2 === "object" ? url2 : {};
@@ -55855,13 +55855,13 @@ var require_tree2 = __commonJS({
       mime: leaf.info.mime,
       extension: leaf.info.extension
     });
-    var isLeafNode = (tree, path17) => tree && path17.length === 0;
+    var isLeafNode = (tree, path18) => tree && path18.length === 0;
     var merge2 = (node2, tree) => {
       if (node2.bytes.length === 0)
         return tree;
-      const [currentByte, ...path17] = node2.bytes;
+      const [currentByte, ...path18] = node2.bytes;
       const currentTree = tree.bytes[currentByte];
-      if (isLeafNode(currentTree, path17)) {
+      if (isLeafNode(currentTree, path18)) {
         const matchingNode = tree.bytes[currentByte];
         tree.bytes[currentByte] = {
           ...matchingNode,
@@ -55873,9 +55873,9 @@ var require_tree2 = __commonJS({
         return tree;
       }
       if (tree.bytes[currentByte]) {
-        tree.bytes[currentByte] = exports2.merge(exports2.createNode(node2.typename, path17, node2.info), tree.bytes[currentByte]);
+        tree.bytes[currentByte] = exports2.merge(exports2.createNode(node2.typename, path18, node2.info), tree.bytes[currentByte]);
       } else {
-        tree.bytes[currentByte] = exports2.createComplexNode(node2.typename, path17, node2.info);
+        tree.bytes[currentByte] = exports2.createComplexNode(node2.typename, path18, node2.info);
       }
       return tree;
     };
@@ -55889,7 +55889,7 @@ var require_tree2 = __commonJS({
         bytes: {},
         matches: void 0
       };
-      const [currentKey, ...path17] = bytes;
+      const [currentKey, ...path18] = bytes;
       if (bytes.length === 0) {
         return {
           matches: [
@@ -55901,7 +55901,7 @@ var require_tree2 = __commonJS({
           bytes: {}
         };
       }
-      obj.bytes[currentKey] = exports2.createComplexNode(typename, path17, info);
+      obj.bytes[currentKey] = exports2.createComplexNode(typename, path18, info);
       return obj;
     };
     exports2.createComplexNode = createComplexNode;
@@ -62466,8 +62466,8 @@ var require_Util = __commonJS({
       await client.rest.patch(route, { body: updatedItems, reason });
       return updatedItems;
     }
-    function basename3(path17, ext) {
-      const res = parse2(path17);
+    function basename3(path18, ext) {
+      const res = parse2(path18);
       return ext && res.ext.startsWith(ext) ? res.name : res.base.split("?")[0];
     }
     function cleanContent(str, channel) {
@@ -64996,8 +64996,8 @@ var require_DataResolver = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/util/DataResolver.js"(exports2, module2) {
     "use strict";
     var { Buffer: Buffer4 } = __require("node:buffer");
-    var fs12 = __require("node:fs/promises");
-    var path17 = __require("node:path");
+    var fs13 = __require("node:fs/promises");
+    var path18 = __require("node:path");
     var { fetch: fetch3 } = require_undici();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var Invite2 = require_Invite();
@@ -65023,10 +65023,10 @@ var require_DataResolver = __commonJS({
           const res = await fetch3(resource);
           return { data: Buffer4.from(await res.arrayBuffer()), contentType: res.headers.get("content-type") };
         }
-        const file = path17.resolve(resource);
-        const stats2 = await fs12.stat(file);
+        const file = path18.resolve(resource);
+        const stats2 = await fs13.stat(file);
         if (!stats2.isFile()) throw new DiscordjsError2(ErrorCodes2.FileNotFound, file);
-        return { data: await fs12.readFile(file) };
+        return { data: await fs13.readFile(file) };
       }
       throw new DiscordjsTypeError2(ErrorCodes2.ReqResourceType);
     }
@@ -68251,11 +68251,11 @@ var require_baseGet = __commonJS({
   "node_modules/.bun/lodash@4.18.1/node_modules/lodash/_baseGet.js"(exports2, module2) {
     var castPath = require_castPath();
     var toKey = require_toKey();
-    function baseGet(object2, path17) {
-      path17 = castPath(path17, object2);
-      var index = 0, length = path17.length;
+    function baseGet(object2, path18) {
+      path18 = castPath(path18, object2);
+      var index = 0, length = path18.length;
       while (object2 != null && index < length) {
-        object2 = object2[toKey(path17[index++])];
+        object2 = object2[toKey(path18[index++])];
       }
       return index && index == length ? object2 : void 0;
     }
@@ -68267,8 +68267,8 @@ var require_baseGet = __commonJS({
 var require_get2 = __commonJS({
   "node_modules/.bun/lodash@4.18.1/node_modules/lodash/get.js"(exports2, module2) {
     var baseGet = require_baseGet();
-    function get2(object2, path17, defaultValue) {
-      var result = object2 == null ? void 0 : baseGet(object2, path17);
+    function get2(object2, path18, defaultValue) {
+      var result = object2 == null ? void 0 : baseGet(object2, path18);
       return result === void 0 ? defaultValue : result;
     }
     module2.exports = get2;
@@ -84302,9 +84302,9 @@ var require_ThreadManager = __commonJS({
        * @returns {Promise<FetchedThreadsMore>}
        */
       async fetchArchived({ type = "public", fetchAll = false, before, limit } = {}, cache43 = true) {
-        let path17 = Routes5.channelThreads(this.channel.id, type);
+        let path18 = Routes5.channelThreads(this.channel.id, type);
         if (type === "private" && !fetchAll) {
-          path17 = Routes5.channelJoinedArchivedThreads(this.channel.id);
+          path18 = Routes5.channelJoinedArchivedThreads(this.channel.id);
         }
         let timestamp;
         let id;
@@ -84328,7 +84328,7 @@ var require_ThreadManager = __commonJS({
             }
           }
         }
-        const raw = await this.client.rest.get(path17, { query });
+        const raw = await this.client.rest.get(path18, { query });
         return this.constructor._mapThreads(raw, this.client, { parent: this.channel, cache: cache43 });
       }
       /**
@@ -93511,20 +93511,20 @@ var require_dist11 = __commonJS({
         }
       }
       resolveWorkerPath() {
-        const path17 = this.options.workerPath;
-        if (!path17) {
+        const path18 = this.options.workerPath;
+        if (!path18) {
           return (0, import_node_path14.join)(__dirname, "defaultWorker.js");
         }
-        if ((0, import_node_path14.isAbsolute)(path17)) {
-          return path17;
+        if ((0, import_node_path14.isAbsolute)(path18)) {
+          return path18;
         }
-        if (/^\.\.?[/\\]/.test(path17)) {
-          return (0, import_node_path14.resolve)(path17);
+        if (/^\.\.?[/\\]/.test(path18)) {
+          return (0, import_node_path14.resolve)(path18);
         }
         try {
-          return __require.resolve(path17);
+          return __require.resolve(path18);
         } catch {
-          return (0, import_node_path14.resolve)(path17);
+          return (0, import_node_path14.resolve)(path18);
         }
       }
       async waitForWorkerReady(worker) {
@@ -103305,7 +103305,7 @@ var require_Shard = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/sharding/Shard.js"(exports2, module2) {
     "use strict";
     var EventEmitter3 = __require("node:events");
-    var path17 = __require("node:path");
+    var path18 = __require("node:path");
     var process2 = __require("node:process");
     var { setTimeout: setTimeout2, clearTimeout: clearTimeout2 } = __require("node:timers");
     var { setTimeout: sleep4 } = __require("node:timers/promises");
@@ -103357,14 +103357,14 @@ var require_Shard = __commonJS({
         this._exitListener = this._handleExit.bind(this, void 0, timeout);
         switch (this.manager.mode) {
           case "process":
-            this.process = childProcess.fork(path17.resolve(this.manager.file), this.args, {
+            this.process = childProcess.fork(path18.resolve(this.manager.file), this.args, {
               env: this.env,
               execArgv: this.execArgv,
               silent: this.silent
             }).on("message", this._handleMessage.bind(this)).on("exit", this._exitListener);
             break;
           case "worker":
-            this.worker = new Worker2(path17.resolve(this.manager.file), {
+            this.worker = new Worker2(path18.resolve(this.manager.file), {
               workerData: this.env,
               env: SHARE_ENV,
               execArgv: this.execArgv,
@@ -103625,8 +103625,8 @@ var require_ShardingManager = __commonJS({
   "node_modules/.bun/discord.js@14.27.0/node_modules/discord.js/src/sharding/ShardingManager.js"(exports2, module2) {
     "use strict";
     var EventEmitter3 = __require("node:events");
-    var fs12 = __require("node:fs");
-    var path17 = __require("node:path");
+    var fs13 = __require("node:fs");
+    var path18 = __require("node:path");
     var process2 = __require("node:process");
     var { setTimeout: sleep4 } = __require("node:timers/promises");
     var { Collection: Collection2 } = require_dist8();
@@ -103671,8 +103671,8 @@ var require_ShardingManager = __commonJS({
         };
         this.file = file;
         if (!file) throw new DiscordjsError2(ErrorCodes2.ClientInvalidOption, "File", "specified.");
-        if (!path17.isAbsolute(file)) this.file = path17.resolve(process2.cwd(), file);
-        const stats2 = fs12.statSync(this.file);
+        if (!path18.isAbsolute(file)) this.file = path18.resolve(process2.cwd(), file);
+        const stats2 = fs13.statSync(this.file);
         if (!stats2.isFile()) throw new DiscordjsError2(ErrorCodes2.ClientInvalidOption, "File", "a file");
         this.shardList = _options.shardList ?? "auto";
         if (this.shardList !== "auto") {
@@ -113430,8 +113430,8 @@ var require_main3 = __commonJS({
 });
 
 // node_modules/.bun/iceberg-js@0.8.1/node_modules/iceberg-js/dist/index.mjs
-function buildUrl(baseUrl, path17, query) {
-  const url2 = new URL(path17, baseUrl);
+function buildUrl(baseUrl, path18, query) {
+  const url2 = new URL(path18, baseUrl);
   if (query) {
     for (const [key3, value] of Object.entries(query)) {
       if (value !== void 0) {
@@ -113461,12 +113461,12 @@ function createFetchClient(options) {
   return {
     async request({
       method,
-      path: path17,
+      path: path18,
       query,
       body,
       headers
     }) {
-      const url2 = buildUrl(options.baseUrl, path17, query);
+      const url2 = buildUrl(options.baseUrl, path18, query);
       const authHeaders = await buildAuthHeaders(options.auth);
       const res = await fetchFn(url2, {
         method,
@@ -114134,7 +114134,7 @@ var init_dist3 = __esm({
       if (bucketName.includes("/") || bucketName.includes("\\")) return false;
       return /^[\w!.\*'() &$@=;:+,?-]+$/.test(bucketName);
     };
-    encodeStoragePath = (path17) => path17.split("/").map(encodeURIComponent).join("/");
+    encodeStoragePath = (path18) => path18.split("/").map(encodeURIComponent).join("/");
     _getErrorMessage = (err) => {
       if (typeof err === "object" && err !== null) {
         const e2 = err;
@@ -114366,7 +114366,7 @@ var init_dist3 = __esm({
       * @param path The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.
       * @param fileBody The body of the file to be stored in the bucket.
       */
-      async uploadOrUpdate(method, path17, fileBody, fileOptions) {
+      async uploadOrUpdate(method, path18, fileBody, fileOptions) {
         var _this = this;
         return _this.handleOperation(async () => {
           let body;
@@ -114390,7 +114390,7 @@ var init_dist3 = __esm({
             if ((typeof ReadableStream !== "undefined" && body instanceof ReadableStream || body && typeof body === "object" && "pipe" in body && typeof body.pipe === "function") && !options.duplex) options.duplex = "half";
           }
           if (fileOptions === null || fileOptions === void 0 ? void 0 : fileOptions.headers) for (const [key3, value] of Object.entries(fileOptions.headers)) headers = setHeader(headers, key3, value);
-          const cleanPath = _this._removeEmptyFolders(path17);
+          const cleanPath = _this._removeEmptyFolders(path18);
           const _path = _this._getFinalPath(cleanPath);
           const data = await (method == "PUT" ? put : post)(_this.fetch, `${_this.url}/object/${_path}`, body, _objectSpread22({ headers }, (options === null || options === void 0 ? void 0 : options.duplex) ? { duplex: options.duplex } : {}));
           return {
@@ -114467,8 +114467,8 @@ var init_dist3 = __esm({
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       * - For React Native, using either `Blob`, `File` or `FormData` does not work as intended. Upload file using `ArrayBuffer` from base64 file data instead, see example below.
       */
-      async upload(path17, fileBody, fileOptions) {
-        return this.uploadOrUpdate("POST", path17, fileBody, fileOptions);
+      async upload(path18, fileBody, fileOptions) {
+        return this.uploadOrUpdate("POST", path18, fileBody, fileOptions);
       }
       /**
       * Upload a file with a token generated from `createSignedUploadUrl`.
@@ -114508,9 +114508,9 @@ var init_dist3 = __esm({
       *   - `objects` table permissions: none
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       */
-      async uploadToSignedUrl(path17, token, fileBody, fileOptions) {
+      async uploadToSignedUrl(path18, token, fileBody, fileOptions) {
         var _this3 = this;
-        const cleanPath = _this3._removeEmptyFolders(path17);
+        const cleanPath = _this3._removeEmptyFolders(path18);
         const _path = _this3._getFinalPath(cleanPath);
         const url2 = new URL(_this3.url + `/object/upload/sign/${_path}`);
         url2.searchParams.set("token", token);
@@ -114579,10 +114579,10 @@ var init_dist3 = __esm({
       *   - `objects` table permissions: `insert`
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       */
-      async createSignedUploadUrl(path17, options) {
+      async createSignedUploadUrl(path18, options) {
         var _this4 = this;
         return _this4.handleOperation(async () => {
-          let _path = _this4._getFinalPath(path17);
+          let _path = _this4._getFinalPath(path18);
           const headers = _objectSpread22({}, _this4.headers);
           if (options === null || options === void 0 ? void 0 : options.upsert) headers["x-upsert"] = "true";
           const data = await post(_this4.fetch, `${_this4.url}/object/upload/sign/${_path}`, {}, { headers });
@@ -114591,7 +114591,7 @@ var init_dist3 = __esm({
           if (!token) throw new StorageError("No token returned by API");
           return {
             signedUrl: url2.toString(),
-            path: path17,
+            path: path18,
             token
           };
         });
@@ -114651,8 +114651,8 @@ var init_dist3 = __esm({
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       * - For React Native, using either `Blob`, `File` or `FormData` does not work as intended. Update file using `ArrayBuffer` from base64 file data instead, see example below.
       */
-      async update(path17, fileBody, fileOptions) {
-        return this.uploadOrUpdate("PUT", path17, fileBody, fileOptions);
+      async update(path18, fileBody, fileOptions) {
+        return this.uploadOrUpdate("PUT", path18, fileBody, fileOptions);
       }
       /**
       * Moves an existing file to a new path in the same bucket.
@@ -114808,10 +114808,10 @@ var init_dist3 = __esm({
       *   - `objects` table permissions: `select`
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       */
-      async createSignedUrl(path17, expiresIn, options) {
+      async createSignedUrl(path18, expiresIn, options) {
         var _this8 = this;
         return _this8.handleOperation(async () => {
-          let _path = _this8._getFinalPath(path17);
+          let _path = _this8._getFinalPath(path18);
           const hasTransform = typeof (options === null || options === void 0 ? void 0 : options.transform) === "object" && options.transform !== null && Object.keys(options.transform).length > 0;
           let data = await post(_this8.fetch, `${_this8.url}/object/sign/${_path}`, _objectSpread22(_objectSpread22({ expiresIn }, hasTransform ? { transform: options.transform } : {}), (options === null || options === void 0 ? void 0 : options.versionId) != null ? { versionId: options.versionId } : {}), { headers: _this8.headers });
           const query = new URLSearchParams();
@@ -114946,14 +114946,14 @@ var init_dist3 = __esm({
       *   - `objects` table permissions: `select`
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       */
-      download(path17, options, parameters) {
+      download(path18, options, parameters) {
         const renderPath = typeof (options === null || options === void 0 ? void 0 : options.transform) === "object" && options.transform !== null && Object.keys(options.transform).length > 0 ? "render/image/authenticated" : "object";
         const query = new URLSearchParams();
         if (options === null || options === void 0 ? void 0 : options.transform) this.applyTransformOptsToQuery(query, options.transform);
         if ((options === null || options === void 0 ? void 0 : options.cacheNonce) != null) query.set("cacheNonce", String(options.cacheNonce));
         if ((options === null || options === void 0 ? void 0 : options.versionId) != null) query.set("versionId", String(options.versionId));
         const queryString = query.toString();
-        const _path = this._getFinalPath(path17);
+        const _path = this._getFinalPath(path18);
         const downloadFn = () => get(this.fetch, `${this.url}/${renderPath}/${_path}${queryString ? `?${queryString}` : ""}`, {
           headers: this.headers,
           noResolveJson: true
@@ -114985,9 +114985,9 @@ var init_dist3 = __esm({
       * }
       * ```
       */
-      async info(path17, options) {
+      async info(path18, options) {
         var _this10 = this;
-        const _path = _this10._getFinalPath(path17);
+        const _path = _this10._getFinalPath(path18);
         const query = new URLSearchParams();
         if ((options === null || options === void 0 ? void 0 : options.versionId) != null) query.set("versionId", String(options.versionId));
         const queryString = query.toString();
@@ -115011,9 +115011,9 @@ var init_dist3 = __esm({
       *   .exists('folder/avatar1.png')
       * ```
       */
-      async exists(path17) {
+      async exists(path18) {
         var _this11 = this;
-        const _path = _this11._getFinalPath(path17);
+        const _path = _this11._getFinalPath(path18);
         try {
           await head(_this11.fetch, `${_this11.url}/object/${_path}`, { headers: _this11.headers });
           return {
@@ -115093,8 +115093,8 @@ var init_dist3 = __esm({
       *   - `objects` table permissions: none
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       */
-      getPublicUrl(path17, options) {
-        const _path = this._getFinalPath(path17);
+      getPublicUrl(path18, options) {
+        const _path = this._getFinalPath(path18);
         const query = new URLSearchParams();
         if (options === null || options === void 0 ? void 0 : options.download) query.set("download", options.download === true ? "" : options.download);
         if (options === null || options === void 0 ? void 0 : options.transform) this.applyTransformOptsToQuery(query, options.transform);
@@ -115194,10 +115194,10 @@ var init_dist3 = __esm({
       *   .purgeCache('folder/avatar1.png', { transformations: true })
       * ```
       */
-      async purgeCache(path17, options, parameters) {
+      async purgeCache(path18, options, parameters) {
         var _this13 = this;
         return _this13.handleOperation(async () => {
-          const _path = encodeStoragePath(_this13._getFinalPath(path17));
+          const _path = encodeStoragePath(_this13._getFinalPath(path18));
           const query = new URLSearchParams();
           if (options === null || options === void 0 ? void 0 : options.transformations) query.set("transformations", "true");
           const queryString = query.toString();
@@ -115295,13 +115295,13 @@ var init_dist3 = __esm({
       *   - `objects` table permissions: `select`
       * - Refer to the [Storage guide](/docs/guides/storage/security/access-control) on how access control works
       */
-      async list(path17, options, parameters) {
+      async list(path18, options, parameters) {
         var _this14 = this;
         return _this14.handleOperation(async () => {
           const sortBy = (options === null || options === void 0 ? void 0 : options.sortBy) ? _objectSpread22(_objectSpread22({}, DEFAULT_SEARCH_OPTIONS.sortBy), options.sortBy) : DEFAULT_SEARCH_OPTIONS.sortBy;
           const body = _objectSpread22(_objectSpread22(_objectSpread22({}, DEFAULT_SEARCH_OPTIONS), options), {}, {
             sortBy,
-            prefix: path17 || ""
+            prefix: path18 || ""
           });
           return await post(_this14.fetch, `${_this14.url}/object/list/${_this14.bucketId}`, body, { headers: _this14.headers }, parameters);
         });
@@ -115367,11 +115367,11 @@ var init_dist3 = __esm({
         if (typeof Buffer !== "undefined") return Buffer.from(data).toString("base64");
         return btoa(data);
       }
-      _getFinalPath(path17) {
-        return `${this.bucketId}/${path17.replace(/^\/+/, "")}`;
+      _getFinalPath(path18) {
+        return `${this.bucketId}/${path18.replace(/^\/+/, "")}`;
       }
-      _removeEmptyFolders(path17) {
-        return path17.replace(/^\/|\/$/g, "").replace(/\/+/g, "/");
+      _removeEmptyFolders(path18) {
+        return path18.replace(/^\/|\/$/g, "").replace(/\/+/g, "/");
       }
       /** Modifies the `query`, appending values the from `transform` */
       applyTransformOptsToQuery(query, transform2) {
@@ -117629,9 +117629,9 @@ var require_helpers = __commonJS({
       const fragment = hashIndex === -1 ? "" : redirectTo.slice(hashIndex);
       const queryIndex = base.indexOf("?");
       if (queryIndex !== -1) {
-        const path17 = base.slice(0, queryIndex);
+        const path18 = base.slice(0, queryIndex);
         const remaining = base.slice(queryIndex + 1).split("&").filter((pair) => pair !== "" && pair !== constants_1.PKCE_FLOW_ID_PARAM && !pair.startsWith(`${constants_1.PKCE_FLOW_ID_PARAM}=`));
-        base = remaining.length > 0 ? `${path17}?${remaining.join("&")}` : path17;
+        base = remaining.length > 0 ? `${path18}?${remaining.join("&")}` : path18;
       }
       const separator = base.includes("?") ? "&" : "?";
       return `${base}${separator}${constants_1.PKCE_FLOW_ID_PARAM}=${encodeURIComponent(flowId)}${fragment}`;
@@ -134601,22 +134601,22 @@ var init_from = __esm({
     init_file();
     init_fetch_blob();
     ({ stat } = fs3);
-    blobFromSync = (path17, type) => fromBlob(statSync(path17), path17, type);
-    blobFrom = (path17, type) => stat(path17).then((stat3) => fromBlob(stat3, path17, type));
-    fileFrom = (path17, type) => stat(path17).then((stat3) => fromFile(stat3, path17, type));
-    fileFromSync = (path17, type) => fromFile(statSync(path17), path17, type);
-    fromBlob = (stat3, path17, type = "") => new fetch_blob_default([new BlobDataItem({
-      path: path17,
+    blobFromSync = (path18, type) => fromBlob(statSync(path18), path18, type);
+    blobFrom = (path18, type) => stat(path18).then((stat3) => fromBlob(stat3, path18, type));
+    fileFrom = (path18, type) => stat(path18).then((stat3) => fromFile(stat3, path18, type));
+    fileFromSync = (path18, type) => fromFile(statSync(path18), path18, type);
+    fromBlob = (stat3, path18, type = "") => new fetch_blob_default([new BlobDataItem({
+      path: path18,
       size: stat3.size,
       lastModified: stat3.mtimeMs,
       start: 0
     })], { type });
-    fromFile = (stat3, path17, type = "") => new file_default([new BlobDataItem({
-      path: path17,
+    fromFile = (stat3, path18, type = "") => new file_default([new BlobDataItem({
+      path: path18,
       size: stat3.size,
       lastModified: stat3.mtimeMs,
       start: 0
-    })], basename(path17), { type, lastModified: stat3.mtimeMs });
+    })], basename(path18), { type, lastModified: stat3.mtimeMs });
     BlobDataItem = class _BlobDataItem {
       #path;
       #start;
@@ -139795,9 +139795,9 @@ var require_util11 = __commonJS({
     exports2.removeUndefinedValuesInObject = removeUndefinedValuesInObject;
     exports2.isValidFile = isValidFile;
     exports2.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var os5 = __require("os");
-    var path17 = __require("path");
+    var path18 = __require("path");
     var WELL_KNOWN_CERTIFICATE_CONFIG_FILE = "certificate_config.json";
     var CLOUDSDK_CONFIG_DIRECTORY = "gcloud";
     function snakeToCamel(str) {
@@ -139883,15 +139883,15 @@ var require_util11 = __commonJS({
     }
     async function isValidFile(filePath) {
       try {
-        const stats2 = await fs12.promises.lstat(filePath);
+        const stats2 = await fs13.promises.lstat(filePath);
         return stats2.isFile();
       } catch (e2) {
         return false;
       }
     }
     function getWellKnownCertificateConfigFileLocation() {
-      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path17.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path17.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
-      return path17.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
+      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path18.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path18.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
+      return path18.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
     }
     function _isWindows() {
       return os5.platform().startsWith("win");
@@ -141837,11 +141837,11 @@ var require_getCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getCredentials = getCredentials;
-    var path17 = __require("path");
-    var fs12 = __require("fs");
+    var path18 = __require("path");
+    var fs13 = __require("fs");
     var util_1 = __require("util");
     var errorWithCode_1 = require_errorWithCode();
-    var readFile = fs12.readFile ? (0, util_1.promisify)(fs12.readFile) : async () => {
+    var readFile = fs13.readFile ? (0, util_1.promisify)(fs13.readFile) : async () => {
       throw new errorWithCode_1.ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
     };
     var ExtensionFiles;
@@ -141909,7 +141909,7 @@ var require_getCredentials = __commonJS({
        * @returns An instance of a class that implements ICredentialsProvider.
        */
       static create(keyFilePath) {
-        const keyFileExtension = path17.extname(keyFilePath);
+        const keyFileExtension = path18.extname(keyFilePath);
         switch (keyFileExtension) {
           case ExtensionFiles.JSON:
             return new JsonCredentialsProvider(keyFilePath);
@@ -143518,12 +143518,12 @@ var require_filesubjecttokensupplier = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FileSubjectTokenSupplier = void 0;
     var util_1 = __require("util");
-    var fs12 = __require("fs");
-    var readFile = (0, util_1.promisify)(fs12.readFile ?? (() => {
+    var fs13 = __require("fs");
+    var readFile = (0, util_1.promisify)(fs13.readFile ?? (() => {
     }));
-    var realpath = (0, util_1.promisify)(fs12.realpath ?? (() => {
+    var realpath = (0, util_1.promisify)(fs13.realpath ?? (() => {
     }));
-    var lstat = (0, util_1.promisify)(fs12.lstat ?? (() => {
+    var lstat = (0, util_1.promisify)(fs13.lstat ?? (() => {
     }));
     var FileSubjectTokenSupplier = class {
       filePath;
@@ -143641,7 +143641,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CertificateSubjectTokenSupplier = exports2.InvalidConfigurationError = exports2.CertificateSourceUnavailableError = exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
     var util_1 = require_util11();
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var crypto_1 = __require("crypto");
     var https2 = __require("https");
     exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = "GOOGLE_API_CERTIFICATE_CONFIG";
@@ -143735,7 +143735,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
         const configPath = this.certificateConfigPath;
         let fileContents;
         try {
-          fileContents = await fs12.promises.readFile(configPath, "utf8");
+          fileContents = await fs13.promises.readFile(configPath, "utf8");
         } catch (err) {
           throw new CertificateSourceUnavailableError(`Failed to read certificate config file at: ${configPath}`);
         }
@@ -143760,14 +143760,14 @@ var require_certificatesubjecttokensupplier = __commonJS({
       async #getKeyAndCert(certPath, keyPath) {
         let cert, key3;
         try {
-          cert = await fs12.promises.readFile(certPath);
+          cert = await fs13.promises.readFile(certPath);
           new crypto_1.X509Certificate(cert);
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
           throw new CertificateSourceUnavailableError(`Failed to read certificate file at ${certPath}: ${message}`);
         }
         try {
-          key3 = await fs12.promises.readFile(keyPath);
+          key3 = await fs13.promises.readFile(keyPath);
           (0, crypto_1.createPrivateKey)(key3);
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
@@ -143786,7 +143786,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
           return JSON.stringify([leafCert.raw.toString("base64")]);
         }
         try {
-          const chainPems = await fs12.promises.readFile(this.trustChainPath, "utf8");
+          const chainPems = await fs13.promises.readFile(this.trustChainPath, "utf8");
           const pemBlocks = chainPems.match(/-----BEGIN CERTIFICATE-----[^-]+-----END CERTIFICATE-----/g) ?? [];
           const chainCerts = pemBlocks.map((pem, index) => {
             try {
@@ -144488,7 +144488,7 @@ var require_pluggable_auth_handler = __commonJS({
     exports2.PluggableAuthHandler = exports2.ExecutableError = void 0;
     var executable_response_1 = require_executable_response();
     var childProcess = __require("child_process");
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var ExecutableError = class extends Error {
       /**
        * The exit code returned by the executable.
@@ -144573,14 +144573,14 @@ var require_pluggable_auth_handler = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs12.promises.realpath(this.outputFile);
+          filePath = await fs13.promises.realpath(this.outputFile);
         } catch {
           return void 0;
         }
-        if (!(await fs12.promises.lstat(filePath)).isFile()) {
+        if (!(await fs13.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs12.promises.readFile(filePath, {
+        const responseString = await fs13.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -144991,7 +144991,7 @@ var require_gdchclient = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GdchClient = exports2.GDCH_SERVICE_ACCOUNT_TYPE = void 0;
     var crypto2 = __require("crypto");
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var https2 = __require("https");
     var oauth2client_1 = require_oauth2client();
     var DEFAULT_LIFETIME_IN_SECONDS = 3600;
@@ -145214,7 +145214,7 @@ var require_gdchclient = __commonJS({
         const currentPath = this.caCertPath;
         this.caAgentPromise = (async () => {
           try {
-            const ca = await fs12.promises.readFile(currentPath);
+            const ca = await fs13.promises.readFile(currentPath);
             return new https2.Agent({ ca });
           } catch (err) {
             if (this.cachedCaCertPath === currentPath) {
@@ -145274,11 +145274,11 @@ var require_googleauth = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.GoogleAuthExceptionMessages = void 0;
     var child_process_1 = __require("child_process");
-    var fs12 = __require("fs");
+    var fs13 = __require("fs");
     var gaxios_1 = require_src3();
     var gcpMetadata = require_src5();
     var os5 = __require("os");
-    var path17 = __require("path");
+    var path18 = __require("path");
     var crypto_1 = require_crypto3();
     var computeclient_1 = require_computeclient();
     var idtokenclient_1 = require_idtokenclient();
@@ -145563,20 +145563,20 @@ var require_googleauth = __commonJS({
         if (!configDir) {
           if (this._isWindows()) {
             if (process.env["APPDATA"]) {
-              configDir = path17.join(process.env["APPDATA"], "gcloud");
+              configDir = path18.join(process.env["APPDATA"], "gcloud");
             }
           } else {
             const home = process.env["HOME"];
             if (home) {
-              configDir = path17.join(home, ".config", "gcloud");
+              configDir = path18.join(home, ".config", "gcloud");
             }
           }
         }
         if (!configDir) {
           return null;
         }
-        const location2 = path17.join(configDir, "application_default_credentials.json");
-        if (!fs12.existsSync(location2)) {
+        const location2 = path18.join(configDir, "application_default_credentials.json");
+        if (!fs13.existsSync(location2)) {
           return null;
         }
         const client = await this._getApplicationCredentialsFromFilePath(location2, options);
@@ -145593,8 +145593,8 @@ var require_googleauth = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs12.realpathSync(filePath);
-          if (!fs12.lstatSync(filePath).isFile()) {
+          filePath = fs13.realpathSync(filePath);
+          if (!fs13.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -145603,7 +145603,7 @@ var require_googleauth = __commonJS({
           }
           throw err;
         }
-        const readStream = fs12.createReadStream(filePath);
+        const readStream = fs13.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -145930,8 +145930,8 @@ var require_googleauth = __commonJS({
         if (this.jsonContent) {
           return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
         } else if (this.keyFilename) {
-          const filePath = path17.resolve(this.keyFilename);
-          const stream = fs12.createReadStream(filePath);
+          const filePath = path18.resolve(this.keyFilename);
+          const stream = fs13.createReadStream(filePath);
           return await this.fromStreamAsync(stream, this.clientOptions);
         } else if (this.apiKey) {
           const client = await this.fromAPIKey(this.apiKey, this.clientOptions);
@@ -157137,7 +157137,7 @@ async function $do$A(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/agents")(pathParams);
+  const path18 = pathToFunc("/{api_version}/agents")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -157168,7 +157168,7 @@ async function $do$A(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -157212,7 +157212,7 @@ async function $do$z(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/agents/{agentsId}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/agents/{agentsId}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -157242,7 +157242,7 @@ async function $do$z(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -157286,7 +157286,7 @@ async function $do$y(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/agents/{agentsId}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/agents/{agentsId}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -157316,7 +157316,7 @@ async function $do$y(client, id, api_version, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -157358,7 +157358,7 @@ async function $do$x(client, api_version, page_size, page_token, parent, options
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload === null || payload === void 0 ? void 0 : payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/agents")(pathParams);
+  const path18 = pathToFunc("/{api_version}/agents")(pathParams);
   const query = encodeFormQuery({
     "page_size": payload === null || payload === void 0 ? void 0 : payload.page_size,
     "page_token": payload === null || payload === void 0 ? void 0 : payload.page_token,
@@ -157393,7 +157393,7 @@ async function $do$x(client, api_version, page_size, page_token, parent, options
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -157434,7 +157434,7 @@ async function $do$w(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/credentials")(pathParams);
+  const path18 = pathToFunc("/{api_version}/credentials")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -157465,7 +157465,7 @@ async function $do$w(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -157509,7 +157509,7 @@ async function $do$v(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/credentials/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/credentials/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -157539,7 +157539,7 @@ async function $do$v(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -157583,7 +157583,7 @@ async function $do$u(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/credentials/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/credentials/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -157613,7 +157613,7 @@ async function $do$u(client, id, api_version, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -157654,7 +157654,7 @@ async function $do$t(client, api_version, page_size, page_token, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload === null || payload === void 0 ? void 0 : payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/credentials")(pathParams);
+  const path18 = pathToFunc("/{api_version}/credentials")(pathParams);
   const query = encodeFormQuery({
     "page_size": payload === null || payload === void 0 ? void 0 : payload.page_size,
     "page_token": payload === null || payload === void 0 ? void 0 : payload.page_token
@@ -157688,7 +157688,7 @@ async function $do$t(client, api_version, page_size, page_token, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -157735,7 +157735,7 @@ async function $do$s(client, id, body, api_version, update_mask, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/credentials/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/credentials/{id}")(pathParams);
   const query = encodeFormQuery({
     "update_mask": payload.update_mask
   });
@@ -157769,7 +157769,7 @@ async function $do$s(client, id, body, api_version, update_mask, options) {
     security: requestSecurity,
     method: "PATCH",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body: body$,
@@ -157810,7 +157810,7 @@ async function $do$r(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/environments")(pathParams);
+  const path18 = pathToFunc("/{api_version}/environments")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -157841,7 +157841,7 @@ async function $do$r(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -157885,7 +157885,7 @@ async function $do$q(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/environments/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/environments/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -157915,7 +157915,7 @@ async function $do$q(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -157959,7 +157959,7 @@ async function $do$p(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/environments/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/environments/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -157989,7 +157989,7 @@ async function $do$p(client, id, api_version, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -158030,7 +158030,7 @@ async function $do$o(client, api_version, page_size, page_token, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload === null || payload === void 0 ? void 0 : payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/environments")(pathParams);
+  const path18 = pathToFunc("/{api_version}/environments")(pathParams);
   const query = encodeFormQuery({
     "page_size": payload === null || payload === void 0 ? void 0 : payload.page_size,
     "page_token": payload === null || payload === void 0 ? void 0 : payload.page_token
@@ -158064,7 +158064,7 @@ async function $do$o(client, api_version, page_size, page_token, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -158091,14 +158091,14 @@ async function $do$o(client, api_version, page_size, page_token, options) {
   }
   return [result, { status: "complete", request: req, response }];
 }
-function environmentsFilesList(client, environment, path17, api_version, page_size, page_token, recursive2, options) {
-  return new APIPromise($do$n(client, environment, path17, api_version, page_size, page_token, recursive2, options));
+function environmentsFilesList(client, environment, path18, api_version, page_size, page_token, recursive2, options) {
+  return new APIPromise($do$n(client, environment, path18, api_version, page_size, page_token, recursive2, options));
 }
-async function $do$n(client, environment, path17, api_version, page_size, page_token, recursive2, options) {
+async function $do$n(client, environment, path18, api_version, page_size, page_token, recursive2, options) {
   var _a4, _b, _c;
   const input = {
     environment,
-    path: path17,
+    path: path18,
     api_version,
     page_size,
     page_token,
@@ -158179,14 +158179,14 @@ async function $do$n(client, environment, path17, api_version, page_size, page_t
   }
   return [result, { status: "complete", request: req, response }];
 }
-function environmentsInternalStartUpload(client, environment, path17, x_goog_upload_command, x_goog_upload_header_content_length, x_goog_upload_header_content_type, x_goog_upload_protocol, api_version, extract, overwrite, options) {
-  return new APIPromise($do$m(client, environment, path17, x_goog_upload_command, x_goog_upload_header_content_length, x_goog_upload_header_content_type, x_goog_upload_protocol, api_version, extract, overwrite, options));
+function environmentsInternalStartUpload(client, environment, path18, x_goog_upload_command, x_goog_upload_header_content_length, x_goog_upload_header_content_type, x_goog_upload_protocol, api_version, extract, overwrite, options) {
+  return new APIPromise($do$m(client, environment, path18, x_goog_upload_command, x_goog_upload_header_content_length, x_goog_upload_header_content_type, x_goog_upload_protocol, api_version, extract, overwrite, options));
 }
-async function $do$m(client, environment, path17, x_goog_upload_command, x_goog_upload_header_content_length, x_goog_upload_header_content_type, x_goog_upload_protocol, api_version, extract, overwrite, options) {
+async function $do$m(client, environment, path18, x_goog_upload_command, x_goog_upload_header_content_length, x_goog_upload_header_content_type, x_goog_upload_protocol, api_version, extract, overwrite, options) {
   var _a4, _b, _c;
   const input = {
     environment,
-    path: path17,
+    path: path18,
     "X-Goog-Upload-Command": x_goog_upload_command,
     "X-Goog-Upload-Header-Content-Length": x_goog_upload_header_content_length,
     "X-Goog-Upload-Header-Content-Type": x_goog_upload_header_content_type,
@@ -158296,7 +158296,7 @@ async function $do$l(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/interactions/{interactionsId}/cancel")(pathParams);
+  const path18 = pathToFunc("/{api_version}/interactions/{interactionsId}/cancel")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -158326,7 +158326,7 @@ async function $do$l(client, id, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -158369,7 +158369,7 @@ async function $do$k(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/interactions")(pathParams);
+  const path18 = pathToFunc("/{api_version}/interactions")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: ((_b = input === null || input === void 0 ? void 0 : input.body) === null || _b === void 0 ? void 0 : _b.stream) ? "text/event-stream" : "application/json"
@@ -158400,7 +158400,7 @@ async function $do$k(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -158450,7 +158450,7 @@ async function $do$j(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/interactions/{interactionsId}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/interactions/{interactionsId}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -158480,7 +158480,7 @@ async function $do$j(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -158530,7 +158530,7 @@ async function $do$i(client, id, api_version, include_input, last_event_id, stre
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/interactions/{interactionsId}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/interactions/{interactionsId}")(pathParams);
   const query = encodeFormQuery({
     "include_input": payload.include_input,
     "last_event_id": payload.last_event_id,
@@ -158565,7 +158565,7 @@ async function $do$i(client, id, api_version, include_input, last_event_id, stre
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -158612,7 +158612,7 @@ async function $do$h(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/triggers")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -158643,7 +158643,7 @@ async function $do$h(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -158687,7 +158687,7 @@ async function $do$g(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/triggers/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -158717,7 +158717,7 @@ async function $do$g(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -158761,7 +158761,7 @@ async function $do$f(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/triggers/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -158791,7 +158791,7 @@ async function $do$f(client, id, api_version, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -158837,7 +158837,7 @@ async function $do$e(client, trigger_id, api_version, page_size, page_token, opt
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/triggers/{triggerId}/executions")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers/{triggerId}/executions")(pathParams);
   const query = encodeFormQuery({
     "page_size": payload.page_size,
     "page_token": payload.page_token
@@ -158871,7 +158871,7 @@ async function $do$e(client, trigger_id, api_version, page_size, page_token, opt
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -158914,7 +158914,7 @@ async function $do$d(client, api_version, filter, page_size, page_token, options
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload === null || payload === void 0 ? void 0 : payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/triggers")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers")(pathParams);
   const query = encodeFormQuery({
     "filter": payload === null || payload === void 0 ? void 0 : payload.filter,
     "page_size": payload === null || payload === void 0 ? void 0 : payload.page_size,
@@ -158949,7 +158949,7 @@ async function $do$d(client, api_version, filter, page_size, page_token, options
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -158994,7 +158994,7 @@ async function $do$c(client, trigger_id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/triggers/{triggerId}/executions")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers/{triggerId}/executions")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -159024,7 +159024,7 @@ async function $do$c(client, trigger_id, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -159069,7 +159069,7 @@ async function $do$b(client, id, body, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/triggers/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/triggers/{id}")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -159100,7 +159100,7 @@ async function $do$b(client, id, body, api_version, options) {
     security: requestSecurity,
     method: "PATCH",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -159140,7 +159140,7 @@ async function $do$a(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/voices")(pathParams);
+  const path18 = pathToFunc("/{api_version}/voices")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -159171,7 +159171,7 @@ async function $do$a(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -159215,7 +159215,7 @@ async function $do$9(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/voices/{voicesId}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/voices/{voicesId}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -159245,7 +159245,7 @@ async function $do$9(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -159289,7 +159289,7 @@ async function $do$8(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/voices/{voicesId}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/voices/{voicesId}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -159319,7 +159319,7 @@ async function $do$8(client, id, api_version, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -159369,7 +159369,7 @@ async function $do$7(client, api_version, accent, contexts, gender, language_cod
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload === null || payload === void 0 ? void 0 : payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/voices")(pathParams);
+  const path18 = pathToFunc("/{api_version}/voices")(pathParams);
   const query = encodeFormQuery({
     "accent": payload === null || payload === void 0 ? void 0 : payload.accent,
     "context": payload === null || payload === void 0 ? void 0 : payload.contexts,
@@ -159412,7 +159412,7 @@ async function $do$7(client, api_version, accent, contexts, gender, language_cod
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -159453,7 +159453,7 @@ async function $do$6(client, body, api_version, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -159484,7 +159484,7 @@ async function $do$6(client, body, api_version, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -159528,7 +159528,7 @@ async function $do$5(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -159558,7 +159558,7 @@ async function $do$5(client, id, api_version, options) {
     security: requestSecurity,
     method: "DELETE",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -159602,7 +159602,7 @@ async function $do$4(client, id, api_version, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks/{id}")(pathParams);
   const headers = new Headers(compactMap({
     Accept: "application/json"
   }));
@@ -159632,7 +159632,7 @@ async function $do$4(client, id, api_version, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body,
     userAgent: client._options.user_agent,
@@ -159673,7 +159673,7 @@ async function $do$3(client, api_version, page_size, page_token, options) {
   const pathParams = {
     api_version: encodeSimple("api_version", (_a4 = payload === null || payload === void 0 ? void 0 : payload.api_version) !== null && _a4 !== void 0 ? _a4 : client._options.api_version, { explode: false, charEncoding: "percent" })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks")(pathParams);
   const query = encodeFormQuery({
     "page_size": payload === null || payload === void 0 ? void 0 : payload.page_size,
     "page_token": payload === null || payload === void 0 ? void 0 : payload.page_token
@@ -159707,7 +159707,7 @@ async function $do$3(client, api_version, page_size, page_token, options) {
     security: requestSecurity,
     method: "GET",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body,
@@ -159753,7 +159753,7 @@ async function $do$2(client, id, api_version, body, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks/{id}:ping")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks/{id}:ping")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -159784,7 +159784,7 @@ async function $do$2(client, id, api_version, body, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -159829,7 +159829,7 @@ async function $do$1(client, id, api_version, body, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks/{id}:rotateSigningSecret")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks/{id}:rotateSigningSecret")(pathParams);
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json"
@@ -159860,7 +159860,7 @@ async function $do$1(client, id, api_version, body, options) {
     security: requestSecurity,
     method: "POST",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     body: body$,
     userAgent: client._options.user_agent,
@@ -159906,7 +159906,7 @@ async function $do(client, id, api_version, update_mask, body, options) {
       charEncoding: "percent"
     })
   };
-  const path17 = pathToFunc("/{api_version}/webhooks/{id}")(pathParams);
+  const path18 = pathToFunc("/{api_version}/webhooks/{id}")(pathParams);
   const query = encodeFormQuery({
     "update_mask": payload.update_mask
   });
@@ -159940,7 +159940,7 @@ async function $do(client, id, api_version, update_mask, body, options) {
     security: requestSecurity,
     method: "PATCH",
     baseURL: options === null || options === void 0 ? void 0 : options.server_url,
-    path: path17,
+    path: path18,
     headers,
     query,
     body: body$,
@@ -163107,7 +163107,7 @@ var init_node = __esm({
           params
         );
         const urlParams = body["_url"];
-        const path17 = formatMap2("{model}:batchGenerateContent", urlParams);
+        const path18 = formatMap2("{model}:batchGenerateContent", urlParams);
         const batch = body["batch"];
         const inputConfig = batch["inputConfig"];
         const requestsWrapper = inputConfig["requests"];
@@ -163128,7 +163128,7 @@ var init_node = __esm({
         delete body["config"];
         delete body["_url"];
         delete body["_query"];
-        return { path: path17, body };
+        return { path: path18, body };
       }
       // Helper function to get the first GCS URI
       getGcsUri(src) {
@@ -163184,16 +163184,16 @@ var init_node = __esm({
       async createInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = createBatchJobParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("batchPredictionJobs", body["_url"]);
+          path18 = formatMap2("batchPredictionJobs", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163208,12 +163208,12 @@ var init_node = __esm({
           });
         } else {
           const body = createBatchJobParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:batchGenerateContent", body["_url"]);
+          path18 = formatMap2("{model}:batchGenerateContent", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163238,18 +163238,18 @@ var init_node = __esm({
       async createEmbeddingsInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = createEmbeddingsBatchJobParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:asyncBatchEmbedContent", body["_url"]);
+          path18 = formatMap2("{model}:asyncBatchEmbedContent", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163278,16 +163278,16 @@ var init_node = __esm({
       async get(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = getBatchJobParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("batchPredictionJobs/{name}", body["_url"]);
+          path18 = formatMap2("batchPredictionJobs/{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163302,12 +163302,12 @@ var init_node = __esm({
           });
         } else {
           const body = getBatchJobParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("batches/{name}", body["_url"]);
+          path18 = formatMap2("batches/{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163335,16 +163335,16 @@ var init_node = __esm({
        */
       async cancel(params) {
         var _a4, _b, _c, _d;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = cancelBatchJobParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("batchPredictionJobs/{name}:cancel", body["_url"]);
+          path18 = formatMap2("batchPredictionJobs/{name}:cancel", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           await this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163353,12 +163353,12 @@ var init_node = __esm({
           });
         } else {
           const body = cancelBatchJobParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("batches/{name}:cancel", body["_url"]);
+          path18 = formatMap2("batches/{name}:cancel", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           await this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163370,16 +163370,16 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = listBatchJobsParametersToVertex(params);
-          path17 = formatMap2("batchPredictionJobs", body["_url"]);
+          path18 = formatMap2("batchPredictionJobs", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163402,12 +163402,12 @@ var init_node = __esm({
           });
         } else {
           const body = listBatchJobsParametersToMldev(params);
-          path17 = formatMap2("batches", body["_url"]);
+          path18 = formatMap2("batches", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163444,16 +163444,16 @@ var init_node = __esm({
       async delete(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = deleteBatchJobParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("batchPredictionJobs/{name}", body["_url"]);
+          path18 = formatMap2("batchPredictionJobs/{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -163474,12 +163474,12 @@ var init_node = __esm({
           });
         } else {
           const body = deleteBatchJobParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("batches/{name}", body["_url"]);
+          path18 = formatMap2("batches/{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -163538,16 +163538,16 @@ var init_node = __esm({
       async create(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = createCachedContentParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("cachedContents", body["_url"]);
+          path18 = formatMap2("cachedContents", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163561,12 +163561,12 @@ var init_node = __esm({
           });
         } else {
           const body = createCachedContentParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("cachedContents", body["_url"]);
+          path18 = formatMap2("cachedContents", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -163594,16 +163594,16 @@ var init_node = __esm({
       async get(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = getCachedContentParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163617,12 +163617,12 @@ var init_node = __esm({
           });
         } else {
           const body = getCachedContentParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163650,16 +163650,16 @@ var init_node = __esm({
       async delete(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = deleteCachedContentParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -163682,12 +163682,12 @@ var init_node = __esm({
           });
         } else {
           const body = deleteCachedContentParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -163727,16 +163727,16 @@ var init_node = __esm({
       async update(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = updateCachedContentParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "PATCH",
@@ -163750,12 +163750,12 @@ var init_node = __esm({
           });
         } else {
           const body = updateCachedContentParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "PATCH",
@@ -163772,16 +163772,16 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = listCachedContentsParametersToVertex(params);
-          path17 = formatMap2("cachedContents", body["_url"]);
+          path18 = formatMap2("cachedContents", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -163804,12 +163804,12 @@ var init_node = __esm({
           });
         } else {
           const body = listCachedContentsParametersToMldev(params);
-          path17 = formatMap2("cachedContents", body["_url"]);
+          path18 = formatMap2("cachedContents", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -164140,18 +164140,18 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = listFilesParametersToMldev(params);
-          path17 = formatMap2("files", body["_url"]);
+          path18 = formatMap2("files", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -164177,18 +164177,18 @@ var init_node = __esm({
       async createInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = createFileParametersToMldev(params);
-          path17 = formatMap2("upload/v1beta/files", body["_url"]);
+          path18 = formatMap2("upload/v1beta/files", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -164223,18 +164223,18 @@ var init_node = __esm({
       async get(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = getFileParametersToMldev(params);
-          path17 = formatMap2("files/{file}", body["_url"]);
+          path18 = formatMap2("files/{file}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -164264,18 +164264,18 @@ var init_node = __esm({
       async delete(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = deleteFileParametersToMldev(params);
-          path17 = formatMap2("files/{file}", body["_url"]);
+          path18 = formatMap2("files/{file}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -164301,18 +164301,18 @@ var init_node = __esm({
       async registerFilesInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = internalRegisterFilesParametersToMldev(params);
-          path17 = formatMap2("files:register", body["_url"]);
+          path18 = formatMap2("files:register", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -164472,13 +164472,13 @@ var init_node = __esm({
           throw new Error("HTTP options are not correctly set.");
         }
       }
-      constructUrl(path17, httpOptions, prependProjectLocation) {
+      constructUrl(path18, httpOptions, prependProjectLocation) {
         const urlElement = [this.getRequestUrlInternal(httpOptions)];
         if (prependProjectLocation) {
           urlElement.push(this.getBaseResourcePath());
         }
-        if (path17 !== "") {
-          urlElement.push(path17);
+        if (path18 !== "") {
+          urlElement.push(path18);
         }
         const url2 = new URL(`${urlElement.join("/")}`);
         return url2;
@@ -164775,8 +164775,8 @@ var init_node = __esm({
           file: fileToUpload
         };
         const fileName = this.getFileName(file);
-        const path17 = formatMap2("upload/v1beta/files", body["_url"]);
-        const uploadUrl = await this.fetchUploadUrl(path17, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config3 === null || config3 === void 0 ? void 0 : config3.httpOptions);
+        const path18 = formatMap2("upload/v1beta/files", body["_url"]);
+        const uploadUrl = await this.fetchUploadUrl(path18, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config3 === null || config3 === void 0 ? void 0 : config3.httpOptions);
         return uploader.upload(file, uploadUrl, this);
       }
       /**
@@ -164800,13 +164800,13 @@ var init_node = __esm({
         if (mimeType === void 0 || mimeType === "") {
           throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
         }
-        const path17 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
+        const path18 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
         const fileName = this.getFileName(file);
         const body = {};
         if (config3 != null) {
           uploadToFileSearchStoreConfigToMldev(config3, body);
         }
-        const uploadUrl = await this.fetchUploadUrl(path17, sizeBytes, mimeType, fileName, body, config3 === null || config3 === void 0 ? void 0 : config3.httpOptions);
+        const uploadUrl = await this.fetchUploadUrl(path18, sizeBytes, mimeType, fileName, body, config3 === null || config3 === void 0 ? void 0 : config3.httpOptions);
         return uploader.uploadToFileSearchStore(file, uploadUrl, this);
       }
       /**
@@ -164819,7 +164819,7 @@ var init_node = __esm({
         const downloader = this.clientOptions.downloader;
         await downloader.download(params, this);
       }
-      async fetchUploadUrl(path17, sizeBytes, mimeType, fileName, body, configHttpOptions) {
+      async fetchUploadUrl(path18, sizeBytes, mimeType, fileName, body, configHttpOptions) {
         var _a4;
         let httpOptions = {};
         if (configHttpOptions) {
@@ -164832,7 +164832,7 @@ var init_node = __esm({
           };
         }
         const httpResponse = await this.request({
-          path: path17,
+          path: path18,
           body: JSON.stringify(body),
           httpMethod: "POST",
           httpOptions
@@ -165846,16 +165846,16 @@ var init_node = __esm({
       async generateContentInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = generateContentParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:generateContent", body["_url"]);
+          path18 = formatMap2("{model}:generateContent", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -165878,12 +165878,12 @@ var init_node = __esm({
           });
         } else {
           const body = generateContentParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:generateContent", body["_url"]);
+          path18 = formatMap2("{model}:generateContent", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -165909,17 +165909,17 @@ var init_node = __esm({
       async generateContentStreamInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = generateContentParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:streamGenerateContent?alt=sse", body["_url"]);
+          path18 = formatMap2("{model}:streamGenerateContent?alt=sse", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           const apiClient = this.apiClient;
           response = apiClient.requestStream({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -165955,13 +165955,13 @@ var init_node = __esm({
           });
         } else {
           const body = generateContentParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:streamGenerateContent?alt=sse", body["_url"]);
+          path18 = formatMap2("{model}:streamGenerateContent?alt=sse", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           const apiClient = this.apiClient;
           response = apiClient.requestStream({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166021,17 +166021,17 @@ var init_node = __esm({
       async embedContentInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = embedContentParametersPrivateToVertex(this.apiClient, params, params);
           const endpointUrl = tIsVertexEmbedContentModel(params.model) ? "{model}:embedContent" : "{model}:predict";
-          path17 = formatMap2(endpointUrl, body["_url"]);
+          path18 = formatMap2(endpointUrl, body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166054,12 +166054,12 @@ var init_node = __esm({
           });
         } else {
           const body = embedContentParametersPrivateToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:batchEmbedContents", body["_url"]);
+          path18 = formatMap2("{model}:batchEmbedContents", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166088,16 +166088,16 @@ var init_node = __esm({
       async generateImagesInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = generateImagesParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:predict", body["_url"]);
+          path18 = formatMap2("{model}:predict", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166128,16 +166128,16 @@ var init_node = __esm({
       async editImageInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = editImageParametersInternalToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:predict", body["_url"]);
+          path18 = formatMap2("{model}:predict", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166168,16 +166168,16 @@ var init_node = __esm({
       async upscaleImageInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = upscaleImageAPIParametersInternalToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:predict", body["_url"]);
+          path18 = formatMap2("{model}:predict", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166229,16 +166229,16 @@ var init_node = __esm({
       async recontextImage(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = recontextImageParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:predict", body["_url"]);
+          path18 = formatMap2("{model}:predict", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166280,16 +166280,16 @@ var init_node = __esm({
       async segmentImage(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = segmentImageParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:predict", body["_url"]);
+          path18 = formatMap2("{model}:predict", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166319,16 +166319,16 @@ var init_node = __esm({
       async get(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = getModelParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -166343,12 +166343,12 @@ var init_node = __esm({
           });
         } else {
           const body = getModelParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -166366,16 +166366,16 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = listModelsParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{models_url}", body["_url"]);
+          path18 = formatMap2("{models_url}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -166398,12 +166398,12 @@ var init_node = __esm({
           });
         } else {
           const body = listModelsParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{models_url}", body["_url"]);
+          path18 = formatMap2("{models_url}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -166446,16 +166446,16 @@ var init_node = __esm({
       async update(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = updateModelParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}", body["_url"]);
+          path18 = formatMap2("{model}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "PATCH",
@@ -166470,12 +166470,12 @@ var init_node = __esm({
           });
         } else {
           const body = updateModelParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "PATCH",
@@ -166504,16 +166504,16 @@ var init_node = __esm({
       async delete(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = deleteModelParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -166536,12 +166536,12 @@ var init_node = __esm({
           });
         } else {
           const body = deleteModelParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -166583,16 +166583,16 @@ var init_node = __esm({
       async countTokens(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = countTokensParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:countTokens", body["_url"]);
+          path18 = formatMap2("{model}:countTokens", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166615,12 +166615,12 @@ var init_node = __esm({
           });
         } else {
           const body = countTokensParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:countTokens", body["_url"]);
+          path18 = formatMap2("{model}:countTokens", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166664,16 +166664,16 @@ var init_node = __esm({
       async computeTokens(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = computeTokensParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:computeTokens", body["_url"]);
+          path18 = formatMap2("{model}:computeTokens", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166704,16 +166704,16 @@ var init_node = __esm({
       async generateVideosInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = generateVideosParametersToVertex(this.apiClient, params);
-          path17 = formatMap2("{model}:predictLongRunning", body["_url"]);
+          path18 = formatMap2("{model}:predictLongRunning", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166730,12 +166730,12 @@ var init_node = __esm({
           });
         } else {
           const body = generateVideosParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("{model}:predictLongRunning", body["_url"]);
+          path18 = formatMap2("{model}:predictLongRunning", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166840,16 +166840,16 @@ var init_node = __esm({
       async getVideosOperationInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = getOperationParametersToVertex(params);
-          path17 = formatMap2("{operationName}", body["_url"]);
+          path18 = formatMap2("{operationName}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -166861,12 +166861,12 @@ var init_node = __esm({
           return response;
         } else {
           const body = getOperationParametersToMldev(params);
-          path17 = formatMap2("{operationName}", body["_url"]);
+          path18 = formatMap2("{operationName}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -166881,16 +166881,16 @@ var init_node = __esm({
       async fetchPredictVideosOperationInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = fetchPredictOperationParametersToVertex(params);
-          path17 = formatMap2("{resourceName}:fetchPredictOperation", body["_url"]);
+          path18 = formatMap2("{resourceName}:fetchPredictOperation", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -166996,20 +166996,20 @@ var init_node = __esm({
       async create(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
         } else {
           const body = createAuthTokenParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("auth_tokens", body["_url"]);
+          path18 = formatMap2("auth_tokens", body["_url"]);
           queryParams = body["_query"];
           delete body["config"];
           delete body["_url"];
           delete body["_query"];
           const transformedBody = convertBidiSetupToTokenSetup(body, params.config);
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(transformedBody),
             httpMethod: "POST",
@@ -167041,18 +167041,18 @@ var init_node = __esm({
       async get(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = getDocumentParametersToMldev(params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -167073,18 +167073,18 @@ var init_node = __esm({
        */
       async delete(params) {
         var _a4, _b;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = deleteDocumentParametersToMldev(params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           await this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -167096,18 +167096,18 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = listDocumentsParametersToMldev(params);
-          path17 = formatMap2("{parent}/documents", body["_url"]);
+          path18 = formatMap2("{parent}/documents", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -167224,18 +167224,18 @@ var init_node = __esm({
       async create(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = createFileSearchStoreParametersToMldev(this.apiClient, params);
-          path17 = formatMap2("fileSearchStores", body["_url"]);
+          path18 = formatMap2("fileSearchStores", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -167258,18 +167258,18 @@ var init_node = __esm({
       async get(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = getFileSearchStoreParametersToMldev(params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -167290,18 +167290,18 @@ var init_node = __esm({
        */
       async delete(params) {
         var _a4, _b;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = deleteFileSearchStoreParametersToMldev(params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           await this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "DELETE",
@@ -167313,18 +167313,18 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = listFileSearchStoresParametersToMldev(params);
-          path17 = formatMap2("fileSearchStores", body["_url"]);
+          path18 = formatMap2("fileSearchStores", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -167344,18 +167344,18 @@ var init_node = __esm({
       async uploadToFileSearchStoreInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = uploadToFileSearchStoreParametersToMldev(params);
-          path17 = formatMap2("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
+          path18 = formatMap2("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -167383,18 +167383,18 @@ var init_node = __esm({
       async importFile(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = importFileParametersToMldev(params);
-          path17 = formatMap2("{file_search_store_name}:importFile", body["_url"]);
+          path18 = formatMap2("{file_search_store_name}:importFile", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -167839,16 +167839,16 @@ var init_node = __esm({
       }
       _createRequest(context, conf, options) {
         var _a4, _b, _c, _d, _e;
-        const { method, path: path17, query, headers: opHeaders, security } = conf;
+        const { method, path: path18, query, headers: opHeaders, security } = conf;
         const base = (_a4 = conf.baseURL) !== null && _a4 !== void 0 ? _a4 : this._baseURL;
         if (!base) {
           return ERR(new InvalidRequestError("No base URL provided for operation"));
         }
         const baseURL = new URL(base);
         let reqURL;
-        if (path17) {
+        if (path18) {
           baseURL.pathname = baseURL.pathname.replace(/\/+$/, "") + "/";
-          reqURL = new URL(path17, baseURL);
+          reqURL = new URL(path18, baseURL);
           if (!reqURL.search && baseURL.search) {
             reqURL.search = baseURL.search;
           }
@@ -168294,8 +168294,8 @@ var init_node = __esm({
       /**
        * Retrieves file metadata or directory contents from an environment's snapshot. To download file content, use the download URL returned in the response.
        */
-      list(environment, path17, params, options) {
-        return unwrapAsAPIPromise(environmentsFilesList(this, environment, path17, params === null || params === void 0 ? void 0 : params.api_version, params === null || params === void 0 ? void 0 : params.page_size, params === null || params === void 0 ? void 0 : params.page_token, params === null || params === void 0 ? void 0 : params.recursive, options));
+      list(environment, path18, params, options) {
+        return unwrapAsAPIPromise(environmentsFilesList(this, environment, path18, params === null || params === void 0 ? void 0 : params.api_version, params === null || params === void 0 ? void 0 : params.page_size, params === null || params === void 0 ? void 0 : params.page_token, params === null || params === void 0 ? void 0 : params.recursive, options));
       }
     };
     Internal = class extends ClientSDK {
@@ -168307,8 +168307,8 @@ var init_node = __esm({
        * Upload the file bytes to the URL returned in the `X-Goog-Upload-URL`
        * response header, using the resumable upload protocol.
        */
-      startUpload(environment, path17, params, options) {
-        return unwrapAsAPIPromise(environmentsInternalStartUpload(this, environment, path17, params["X-Goog-Upload-Command"], params["X-Goog-Upload-Header-Content-Length"], params["X-Goog-Upload-Header-Content-Type"], params["X-Goog-Upload-Protocol"], params.api_version, params.extract, params.overwrite, options));
+      startUpload(environment, path18, params, options) {
+        return unwrapAsAPIPromise(environmentsInternalStartUpload(this, environment, path18, params["X-Goog-Upload-Command"], params["X-Goog-Upload-Header-Content-Length"], params["X-Goog-Upload-Header-Content-Type"], params["X-Goog-Upload-Protocol"], params.api_version, params.extract, params.overwrite, options));
       }
     };
     Environments = class extends ClientSDK {
@@ -168804,8 +168804,8 @@ var init_node = __esm({
           try {
             const req = globalThis.require;
             if (req) {
-              const fs12 = req("fs");
-              buffer = fs12.readFileSync(params.file);
+              const fs13 = req("fs");
+              buffer = fs13.readFileSync(params.file);
             }
           } catch (_j) {
           }
@@ -168813,8 +168813,8 @@ var init_node = __esm({
             try {
               const mod = (_b = (_a4 = globalThis.process.mainModule) === null || _a4 === void 0 ? void 0 : _a4.require) !== null && _b !== void 0 ? _b : globalThis.require;
               if (mod) {
-                const fs12 = mod("fs");
-                buffer = fs12.readFileSync(params.file);
+                const fs13 = mod("fs");
+                buffer = fs13.readFileSync(params.file);
               }
             } catch (_k) {
             }
@@ -169130,16 +169130,16 @@ var init_node = __esm({
       async getInternal(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = getTuningJobParametersToVertex(params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -169160,12 +169160,12 @@ var init_node = __esm({
           });
         } else {
           const body = getTuningJobParametersToMldev(params);
-          path17 = formatMap2("{name}", body["_url"]);
+          path18 = formatMap2("{name}", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -169189,16 +169189,16 @@ var init_node = __esm({
       async listInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = listTuningJobsParametersToVertex(params);
-          path17 = formatMap2("tuningJobs", body["_url"]);
+          path18 = formatMap2("tuningJobs", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "GET",
@@ -169237,16 +169237,16 @@ var init_node = __esm({
       async cancel(params) {
         var _a4, _b, _c, _d;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = cancelTuningJobParametersToVertex(params);
-          path17 = formatMap2("{name}:cancel", body["_url"]);
+          path18 = formatMap2("{name}:cancel", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -169269,12 +169269,12 @@ var init_node = __esm({
           });
         } else {
           const body = cancelTuningJobParametersToMldev(params);
-          path17 = formatMap2("{name}:cancel", body["_url"]);
+          path18 = formatMap2("{name}:cancel", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -169300,16 +169300,16 @@ var init_node = __esm({
       async tuneInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = createTuningJobParametersPrivateToVertex(params, params);
-          path17 = formatMap2("tuningJobs", body["_url"]);
+          path18 = formatMap2("tuningJobs", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -169335,18 +169335,18 @@ var init_node = __esm({
       async tuneMldevInternal(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           throw new Error("This method is only supported by the Gemini Developer API.");
         } else {
           const body = createTuningJobParametersPrivateToMldev(params);
-          path17 = formatMap2("tunedModels", body["_url"]);
+          path18 = formatMap2("tunedModels", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -169370,16 +169370,16 @@ var init_node = __esm({
       async validateReward(params) {
         var _a4, _b;
         let response;
-        let path17 = "";
+        let path18 = "";
         let queryParams = {};
         if (this.apiClient.isVertexAI()) {
           const body = validateRewardParametersToVertex(params);
-          path17 = formatMap2("{parent}/tuningJobs:validateReinforcementTuningReward", body["_url"]);
+          path18 = formatMap2("{parent}/tuningJobs:validateReinforcementTuningReward", body["_url"]);
           queryParams = body["_query"];
           delete body["_url"];
           delete body["_query"];
           response = this.apiClient.request({
-            path: path17,
+            path: path18,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -200480,7 +200480,7 @@ var init_dist6 = __esm({
       }
     };
     RestError = class extends Error {
-      constructor({ timestamp, status, error: error2, trace, message, path: path17 }) {
+      constructor({ timestamp, status, error: error2, trace, message, path: path18 }) {
         super(`Rest request failed with response code: ${status}${message ? ` | message: ${message}` : ""}`);
         this.name = "RestError";
         this.timestamp = timestamp;
@@ -200488,7 +200488,7 @@ var init_dist6 = __esm({
         this.error = error2;
         this.trace = trace;
         this.message = message;
-        this.path = path17;
+        this.path = path18;
         Object.setPrototypeOf(this, new.target.prototype);
       }
     };
@@ -205040,14 +205040,14 @@ var require_util12 = __commonJS({
         }
         const port2 = url2.port != null ? url2.port : url2.protocol === "https:" ? 443 : 80;
         let origin = url2.origin != null ? url2.origin : `${url2.protocol || ""}//${url2.hostname || ""}:${port2}`;
-        let path17 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
+        let path18 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
         if (origin[origin.length - 1] === "/") {
           origin = origin.slice(0, origin.length - 1);
         }
-        if (path17 && path17[0] !== "/") {
-          path17 = `/${path17}`;
+        if (path18 && path18[0] !== "/") {
+          path18 = `/${path18}`;
         }
-        return new URL(`${origin}${path17}`);
+        return new URL(`${origin}${path18}`);
       }
       if (!isHttpOrHttpsPrefixed(url2.origin || url2.protocol)) {
         throw new InvalidArgumentError("Invalid URL protocol: the URL must start with `http:` or `https:`.");
@@ -205868,9 +205868,9 @@ var require_diagnostics2 = __commonJS({
         "undici:client:sendHeaders",
         (evt) => {
           const {
-            request: { method, path: path17, origin }
+            request: { method, path: path18, origin }
           } = evt;
-          debugLog("sending request to %s %s%s", method, origin, path17);
+          debugLog("sending request to %s %s%s", method, origin, path18);
         }
       );
     }
@@ -205888,14 +205888,14 @@ var require_diagnostics2 = __commonJS({
         "undici:request:headers",
         (evt) => {
           const {
-            request: { method, path: path17, origin },
+            request: { method, path: path18, origin },
             response: { statusCode }
           } = evt;
           debugLog(
             "received response to %s %s%s - HTTP %d",
             method,
             origin,
-            path17,
+            path18,
             statusCode
           );
         }
@@ -205904,23 +205904,23 @@ var require_diagnostics2 = __commonJS({
         "undici:request:trailers",
         (evt) => {
           const {
-            request: { method, path: path17, origin }
+            request: { method, path: path18, origin }
           } = evt;
-          debugLog("trailers received from %s %s%s", method, origin, path17);
+          debugLog("trailers received from %s %s%s", method, origin, path18);
         }
       );
       diagnosticsChannel.subscribe(
         "undici:request:error",
         (evt) => {
           const {
-            request: { method, path: path17, origin },
+            request: { method, path: path18, origin },
             error: error2
           } = evt;
           debugLog(
             "request to %s %s%s errored - %s",
             method,
             origin,
-            path17,
+            path18,
             error2.message
           );
         }
@@ -206035,7 +206035,7 @@ var require_request4 = __commonJS({
     var kHandler = Symbol("handler");
     var Request3 = class {
       constructor(origin, {
-        path: path17,
+        path: path18,
         method,
         body,
         headers,
@@ -206052,11 +206052,11 @@ var require_request4 = __commonJS({
         maxRedirections,
         typeOfService
       }, handler) {
-        if (typeof path17 !== "string") {
+        if (typeof path18 !== "string") {
           throw new InvalidArgumentError("path must be a string");
-        } else if (path17[0] !== "/" && !(path17.startsWith("http://") || path17.startsWith("https://")) && method !== "CONNECT") {
+        } else if (path18[0] !== "/" && !(path18.startsWith("http://") || path18.startsWith("https://")) && method !== "CONNECT") {
           throw new InvalidArgumentError("path must be an absolute URL or start with a slash");
-        } else if (invalidPathRegex.test(path17)) {
+        } else if (invalidPathRegex.test(path18)) {
           throw new InvalidArgumentError("invalid request path");
         }
         if (typeof method !== "string") {
@@ -206131,7 +206131,7 @@ var require_request4 = __commonJS({
         this.completed = false;
         this.aborted = false;
         this.upgrade = upgrade || null;
-        this.path = query ? serializePathWithQuery(path17, query) : path17;
+        this.path = query ? serializePathWithQuery(path18, query) : path18;
         this.origin = origin;
         this.protocol = getProtocolFromUrlString(origin);
         this.idempotent = idempotent == null ? method === "HEAD" || method === "GET" : idempotent;
@@ -211337,7 +211337,7 @@ var require_client_h12 = __commonJS({
       return method !== "GET" && method !== "HEAD" && method !== "OPTIONS" && method !== "TRACE" && method !== "CONNECT";
     }
     function writeH1(client, request) {
-      const { method, path: path17, host, upgrade, blocking, reset } = request;
+      const { method, path: path18, host, upgrade, blocking, reset } = request;
       let { body, headers, contentLength } = request;
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH" || method === "QUERY" || method === "PROPFIND" || method === "PROPPATCH";
       if (util.isFormDataLike(body)) {
@@ -211415,7 +211415,7 @@ var require_client_h12 = __commonJS({
       if (socket.setTypeOfService) {
         socket.setTypeOfService(request.typeOfService);
       }
-      let header = `${method} ${path17} HTTP/1.1\r
+      let header = `${method} ${path18} HTTP/1.1\r
 `;
       if (typeof host === "string") {
         header += `host: ${host}\r
@@ -212094,7 +212094,7 @@ var require_client_h22 = __commonJS({
       const headersTimeout = request.headersTimeout ?? client[kHeadersTimeout];
       const bodyTimeout = request.bodyTimeout ?? client[kBodyTimeout];
       const session = client[kHTTP2Session];
-      const { method, path: path17, host, upgrade, expectContinue, signal, protocol, headers: reqHeaders } = request;
+      const { method, path: path18, host, upgrade, expectContinue, signal, protocol, headers: reqHeaders } = request;
       let { body } = request;
       if (upgrade != null && upgrade !== "websocket") {
         util.errorRequest(client, request, new InvalidArgumentError(`Custom upgrade "${upgrade}" not supported over HTTP/2`));
@@ -212163,7 +212163,7 @@ var require_client_h22 = __commonJS({
           }
           headers[HTTP2_HEADER_METHOD] = "CONNECT";
           headers[HTTP2_HEADER_PROTOCOL] = "websocket";
-          headers[HTTP2_HEADER_PATH] = path17;
+          headers[HTTP2_HEADER_PATH] = path18;
           if (protocol === "ws:" || protocol === "wss:") {
             headers[HTTP2_HEADER_SCHEME] = protocol === "ws:" ? "http" : "https";
           } else {
@@ -212215,7 +212215,7 @@ var require_client_h22 = __commonJS({
         stream.setTimeout(headersTimeout);
         return true;
       }
-      headers[HTTP2_HEADER_PATH] = path17;
+      headers[HTTP2_HEADER_PATH] = path18;
       headers[HTTP2_HEADER_SCHEME] = protocol === "http:" ? "http" : "https";
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH";
       if (body && typeof body.read === "function") {
@@ -214567,10 +214567,10 @@ var require_proxy_agent2 = __commonJS({
         };
         const {
           origin,
-          path: path17 = "/",
+          path: path18 = "/",
           headers = {}
         } = opts;
-        opts.path = origin + path17;
+        opts.path = origin + path18;
         if (!("host" in headers) && !("Host" in headers)) {
           const { host } = new URL(origin);
           headers.host = host;
@@ -216730,20 +216730,20 @@ var require_mock_utils2 = __commonJS({
       }
       return normalizedQp;
     }
-    function safeUrl(path17) {
-      if (typeof path17 !== "string") {
-        return path17;
+    function safeUrl(path18) {
+      if (typeof path18 !== "string") {
+        return path18;
       }
-      const pathSegments = path17.split("?", 3);
+      const pathSegments = path18.split("?", 3);
       if (pathSegments.length !== 2) {
-        return path17;
+        return path18;
       }
       const qp = new URLSearchParams(pathSegments.pop());
       qp.sort();
       return [...pathSegments, qp.toString()].join("?");
     }
-    function matchKey(mockDispatch2, { path: path17, method, body, headers }) {
-      const pathMatch = matchValue(mockDispatch2.path, path17);
+    function matchKey(mockDispatch2, { path: path18, method, body, headers }) {
+      const pathMatch = matchValue(mockDispatch2.path, path18);
       const methodMatch = matchValue(mockDispatch2.method, method);
       const bodyMatch = typeof mockDispatch2.body !== "undefined" ? matchValue(mockDispatch2.body, body) : true;
       const headersMatch = matchHeaders(mockDispatch2, headers);
@@ -216768,8 +216768,8 @@ var require_mock_utils2 = __commonJS({
       const basePath = key3.query ? serializePathWithQuery(key3.path, key3.query) : key3.path;
       const resolvedPath = typeof basePath === "string" ? safeUrl(basePath) : basePath;
       const resolvedPathWithoutTrailingSlash = removeTrailingSlash(resolvedPath);
-      let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path17, ignoreTrailingSlash }) => {
-        return ignoreTrailingSlash ? matchValue(removeTrailingSlash(safeUrl(path17)), resolvedPathWithoutTrailingSlash) : matchValue(safeUrl(path17), resolvedPath);
+      let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path18, ignoreTrailingSlash }) => {
+        return ignoreTrailingSlash ? matchValue(removeTrailingSlash(safeUrl(path18)), resolvedPathWithoutTrailingSlash) : matchValue(safeUrl(path18), resolvedPath);
       });
       if (matchedMockDispatches.length === 0) {
         throw new MockNotMatchedError(`Mock dispatch not matched for path '${resolvedPath}'`);
@@ -216808,19 +216808,19 @@ var require_mock_utils2 = __commonJS({
         mockDispatches.splice(index, 1);
       }
     }
-    function removeTrailingSlash(path17) {
-      while (path17.endsWith("/")) {
-        path17 = path17.slice(0, -1);
+    function removeTrailingSlash(path18) {
+      while (path18.endsWith("/")) {
+        path18 = path18.slice(0, -1);
       }
-      if (path17.length === 0) {
-        path17 = "/";
+      if (path18.length === 0) {
+        path18 = "/";
       }
-      return path17;
+      return path18;
     }
     function buildKey(opts) {
-      const { path: path17, method, body, headers, query } = opts;
+      const { path: path18, method, body, headers, query } = opts;
       return {
-        path: path17,
+        path: path18,
         method,
         body,
         headers,
@@ -217510,10 +217510,10 @@ var require_pending_interceptors_formatter2 = __commonJS({
       }
       format(pendingInterceptors) {
         const withPrettyHeaders = pendingInterceptors.map(
-          ({ method, path: path17, data: { statusCode }, persist: persist27, times, timesInvoked, origin }) => ({
+          ({ method, path: path18, data: { statusCode }, persist: persist27, times, timesInvoked, origin }) => ({
             Method: method,
             Origin: origin,
-            Path: path17,
+            Path: path18,
             "Status code": statusCode,
             Persistent: persist27 ? PERSISTENT : NOT_PERSISTENT,
             Invocations: timesInvoked,
@@ -217595,9 +217595,9 @@ var require_mock_agent2 = __commonJS({
         const acceptNonStandardSearchParameters = this[kMockAgentAcceptsNonStandardSearchParameters];
         const dispatchOpts = { ...opts };
         if (acceptNonStandardSearchParameters && dispatchOpts.path) {
-          const [path17, searchParams] = dispatchOpts.path.split("?");
+          const [path18, searchParams] = dispatchOpts.path.split("?");
           const normalizedSearchParams = normalizeSearchParams(searchParams, acceptNonStandardSearchParameters);
-          dispatchOpts.path = `${path17}?${normalizedSearchParams}`;
+          dispatchOpts.path = `${path18}?${normalizedSearchParams}`;
         }
         return this[kAgent].dispatch(dispatchOpts, handler);
       }
@@ -217998,12 +217998,12 @@ var require_snapshot_recorder = __commonJS({
        * @return {Promise<void>} - Resolves when snapshots are loaded
        */
       async loadSnapshots(filePath) {
-        const path17 = filePath || this.#snapshotPath;
-        if (!path17) {
+        const path18 = filePath || this.#snapshotPath;
+        if (!path18) {
           throw new InvalidArgumentError("Snapshot path is required");
         }
         try {
-          const data = await readFile(resolve3(path17), "utf8");
+          const data = await readFile(resolve3(path18), "utf8");
           const parsed = JSON.parse(data);
           if (Array.isArray(parsed)) {
             this.#snapshots.clear();
@@ -218017,7 +218017,7 @@ var require_snapshot_recorder = __commonJS({
           if (error2.code === "ENOENT") {
             this.#snapshots.clear();
           } else {
-            throw new UndiciError(`Failed to load snapshots from ${path17}`, { cause: error2 });
+            throw new UndiciError(`Failed to load snapshots from ${path18}`, { cause: error2 });
           }
         }
       }
@@ -218028,11 +218028,11 @@ var require_snapshot_recorder = __commonJS({
        * @returns {Promise<void>} - Resolves when snapshots are saved
        */
       async saveSnapshots(filePath) {
-        const path17 = filePath || this.#snapshotPath;
-        if (!path17) {
+        const path18 = filePath || this.#snapshotPath;
+        if (!path18) {
           throw new InvalidArgumentError("Snapshot path is required");
         }
-        const resolvedPath = resolve3(path17);
+        const resolvedPath = resolve3(path18);
         await mkdir(dirname(resolvedPath), { recursive: true });
         const data = Array.from(this.#snapshots.entries()).map(([hash, snapshot]) => ({
           hash,
@@ -218664,15 +218664,15 @@ var require_redirect_handler2 = __commonJS({
           return;
         }
         const { origin, pathname, search } = util.parseURL(new URL(this.location, this.opts.origin && new URL(this.opts.path, this.opts.origin)));
-        const path17 = search ? `${pathname}${search}` : pathname;
-        const redirectUrlString = `${origin}${path17}`;
+        const path18 = search ? `${pathname}${search}` : pathname;
+        const redirectUrlString = `${origin}${path18}`;
         for (const historyUrl of this.history) {
           if (historyUrl.toString() === redirectUrlString) {
             throw new InvalidArgumentError(`Redirect loop detected. Cannot redirect to ${origin}. This typically happens when using a Client or Pool with cross-origin redirects. Use an Agent for cross-origin redirects.`);
           }
         }
         this.opts.headers = cleanRequestHeaders(this.opts.headers, statusCode === 303, this.opts.origin !== origin);
-        this.opts.path = path17;
+        this.opts.path = path18;
         this.opts.origin = origin;
         this.opts.query = null;
       }
@@ -220432,10 +220432,10 @@ var require_cache_handler = __commonJS({
       }
       return locationUrl.pathname + locationUrl.search;
     }
-    function deleteCachedUri(store, cacheKey, path17) {
+    function deleteCachedUri(store, cacheKey, path18) {
       deleteCachedValue(store, {
         ...cacheKey,
-        path: path17
+        path: path18
       });
       for (let i2 = 0; i2 < util.safeHTTPMethods.length; i2++) {
         const method = util.safeHTTPMethods[i2];
@@ -220443,7 +220443,7 @@ var require_cache_handler = __commonJS({
           deleteCachedValue(store, {
             ...cacheKey,
             method,
-            path: path17
+            path: path18
           });
         }
       }
@@ -220454,9 +220454,9 @@ var require_cache_handler = __commonJS({
       }
       const values = Array.isArray(headerValue) ? headerValue : [headerValue];
       for (let i2 = 0; i2 < values.length; i2++) {
-        const path17 = getSameOriginPath(cacheKey, values[i2]);
-        if (path17 !== void 0) {
-          deleteCachedUri(store, cacheKey, path17);
+        const path18 = getSameOriginPath(cacheKey, values[i2]);
+        if (path18 !== void 0) {
+          deleteCachedUri(store, cacheKey, path18);
         }
       }
     }
@@ -225603,11 +225603,11 @@ var require_fetch3 = __commonJS({
       function dispatch({ body }) {
         const url2 = requestCurrentURL(request);
         const agent = fetchParams.controller.dispatcher;
-        const path17 = url2.pathname + url2.search;
+        const path18 = url2.pathname + url2.search;
         const hasTrailingQuestionMark = url2.search.length === 0 && url2.href[url2.href.length - url2.hash.length - 1] === "?";
         return new Promise((resolve3, reject) => agent.dispatch(
           {
-            path: hasTrailingQuestionMark ? `${path17}?` : path17,
+            path: hasTrailingQuestionMark ? `${path18}?` : path18,
             origin: url2.origin,
             method: request.method,
             body: agent.isMockActive ? request.body && (request.body.source || request.body.stream) : body,
@@ -226554,9 +226554,9 @@ var require_util15 = __commonJS({
         }
       }
     }
-    function validateCookiePath(path17) {
-      for (let i2 = 0; i2 < path17.length; ++i2) {
-        const code = path17.charCodeAt(i2);
+    function validateCookiePath(path18) {
+      for (let i2 = 0; i2 < path18.length; ++i2) {
+        const code = path18.charCodeAt(i2);
         if (code < 32 || // exclude CTLs (0-31)
         code > 126 || // exclude DEL and non-ascii
         code === 59) {
@@ -229910,11 +229910,11 @@ var require_undici2 = __commonJS({
           if (typeof opts.path !== "string") {
             throw new InvalidArgumentError("invalid opts.path");
           }
-          let path17 = opts.path;
+          let path18 = opts.path;
           if (!opts.path.startsWith("/")) {
-            path17 = `/${path17}`;
+            path18 = `/${path18}`;
           }
-          url2 = new URL(util.parseOrigin(url2).origin + path17);
+          url2 = new URL(util.parseOrigin(url2).origin + path18);
         } else {
           if (!opts) {
             opts = typeof url2 === "object" ? url2 : {};
@@ -230742,18 +230742,18 @@ var require_memstore = __commonJS({
       /**
        * @internal No doc because this is an overload that supports the implementation
        */
-      findCookie(domain, path17, key3, callback) {
+      findCookie(domain, path18, key3, callback) {
         const promiseCallback = (0, utils_1.createPromiseCallback)(callback);
-        if (domain == null || path17 == null || key3 == null) {
+        if (domain == null || path18 == null || key3 == null) {
           return promiseCallback.resolve(void 0);
         }
-        const result = this.idx[domain]?.[path17]?.[key3];
+        const result = this.idx[domain]?.[path18]?.[key3];
         return promiseCallback.resolve(result);
       }
       /**
        * @internal No doc because this is an overload that supports the implementation
        */
-      findCookies(domain, path17, allowSpecialUseDomain = false, callback) {
+      findCookies(domain, path18, allowSpecialUseDomain = false, callback) {
         if (typeof allowSpecialUseDomain === "function") {
           callback = allowSpecialUseDomain;
           allowSpecialUseDomain = true;
@@ -230764,7 +230764,7 @@ var require_memstore = __commonJS({
           return promiseCallback.resolve([]);
         }
         let pathMatcher;
-        if (!path17) {
+        if (!path18) {
           pathMatcher = function matchAll(domainIndex) {
             for (const curPath in domainIndex) {
               const pathIndex = domainIndex[curPath];
@@ -230779,7 +230779,7 @@ var require_memstore = __commonJS({
         } else {
           pathMatcher = function matchRFC(domainIndex) {
             for (const cookiePath in domainIndex) {
-              if ((0, pathMatch_1.pathMatch)(path17, cookiePath)) {
+              if ((0, pathMatch_1.pathMatch)(path18, cookiePath)) {
                 const pathIndex = domainIndex[cookiePath];
                 for (const key3 in pathIndex) {
                   const value = pathIndex[key3];
@@ -230807,14 +230807,14 @@ var require_memstore = __commonJS({
        */
       putCookie(cookie, callback) {
         const promiseCallback = (0, utils_1.createPromiseCallback)(callback);
-        const { domain, path: path17, key: key3 } = cookie;
-        if (domain == null || path17 == null || key3 == null) {
+        const { domain, path: path18, key: key3 } = cookie;
+        if (domain == null || path18 == null || key3 == null) {
           return promiseCallback.resolve(void 0);
         }
         const domainEntry = this.idx[domain] ?? /* @__PURE__ */ Object.create(null);
         this.idx[domain] = domainEntry;
-        const pathEntry = domainEntry[path17] ?? /* @__PURE__ */ Object.create(null);
-        domainEntry[path17] = pathEntry;
+        const pathEntry = domainEntry[path18] ?? /* @__PURE__ */ Object.create(null);
+        domainEntry[path18] = pathEntry;
         pathEntry[key3] = cookie;
         return promiseCallback.resolve(void 0);
       }
@@ -230830,20 +230830,20 @@ var require_memstore = __commonJS({
       /**
        * @internal No doc because this is an overload that supports the implementation
        */
-      removeCookie(domain, path17, key3, callback) {
+      removeCookie(domain, path18, key3, callback) {
         const promiseCallback = (0, utils_1.createPromiseCallback)(callback);
-        delete this.idx[domain]?.[path17]?.[key3];
+        delete this.idx[domain]?.[path18]?.[key3];
         return promiseCallback.resolve(void 0);
       }
       /**
        * @internal No doc because this is an overload that supports the implementation
        */
-      removeCookies(domain, path17, callback) {
+      removeCookies(domain, path18, callback) {
         const promiseCallback = (0, utils_1.createPromiseCallback)(callback);
         const domainEntry = this.idx[domain];
         if (domainEntry) {
-          if (path17) {
-            delete domainEntry[path17];
+          if (path18) {
+            delete domainEntry[path18];
           } else {
             delete this.idx[domain];
           }
@@ -230869,8 +230869,8 @@ var require_memstore = __commonJS({
         domains.forEach((domain) => {
           const domainEntry = idx[domain] ?? {};
           const paths = Object.keys(domainEntry);
-          paths.forEach((path17) => {
-            const pathEntry = domainEntry[path17] ?? {};
+          paths.forEach((path18) => {
+            const pathEntry = domainEntry[path18] ?? {};
             const keys = Object.keys(pathEntry);
             keys.forEach((key3) => {
               const keyEntry = pathEntry[key3];
@@ -231888,18 +231888,18 @@ var require_defaultPath = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.defaultPath = defaultPath;
-    function defaultPath(path17) {
-      if (!path17 || path17.slice(0, 1) !== "/") {
+    function defaultPath(path18) {
+      if (!path18 || path18.slice(0, 1) !== "/") {
         return "/";
       }
-      if (path17 === "/") {
-        return path17;
+      if (path18 === "/") {
+        return path18;
       }
-      const rightSlash = path17.lastIndexOf("/");
+      const rightSlash = path18.lastIndexOf("/");
       if (rightSlash === 0) {
         return "/";
       }
-      return path17.slice(0, rightSlash);
+      return path18.slice(0, rightSlash);
     }
   }
 });
@@ -232293,7 +232293,7 @@ var require_cookieJar = __commonJS({
           return promiseCallback.reject(parameterError);
         }
         const host = (0, canonicalDomain_1.canonicalDomain)(context.hostname);
-        const path17 = context.pathname || "/";
+        const path18 = context.pathname || "/";
         const secure = context.protocol && (context.protocol == "https:" || context.protocol == "wss:");
         let sameSiteLevel = 0;
         if (options.sameSiteContext) {
@@ -232321,7 +232321,7 @@ var require_cookieJar = __commonJS({
               return false;
             }
           }
-          if (!allPaths && typeof c.path === "string" && !(0, pathMatch_1.pathMatch)(path17, c.path)) {
+          if (!allPaths && typeof c.path === "string" && !(0, pathMatch_1.pathMatch)(path18, c.path)) {
             return false;
           }
           if (c.secure && !secure) {
@@ -232351,7 +232351,7 @@ var require_cookieJar = __commonJS({
           }
           return true;
         }
-        store.findCookies(host, allPaths ? null : path17, this.allowSpecialUseDomain, (err, cookies) => {
+        store.findCookies(host, allPaths ? null : path18, this.allowSpecialUseDomain, (err, cookies) => {
           if (err) {
             cb(err);
             return;
@@ -232786,18 +232786,18 @@ var require_permutePath = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.permutePath = permutePath;
-    function permutePath(path17) {
-      if (path17 === "/") {
+    function permutePath(path18) {
+      if (path18 === "/") {
         return ["/"];
       }
-      const permutations = [path17];
-      while (path17.length > 1) {
-        const lindex = path17.lastIndexOf("/");
+      const permutations = [path18];
+      while (path18.length > 1) {
+        const lindex = path18.lastIndexOf("/");
         if (lindex === 0) {
           break;
         }
-        path17 = path17.slice(0, lindex);
-        permutations.push(path17);
+        path18 = path18.slice(0, lindex);
+        permutations.push(path18);
       }
       permutations.push("/");
       return permutations;
@@ -245825,8 +245825,15 @@ ${premEmoji} Made by demonXtejas`;
     }
   }
   try {
+    const normalActivity = ".help | Server Guard from demonxtejas";
     client.user.setPresence({
-      activities: [{ name: type === "normal" ? "demonxtejas" : statusText, type: import_discord188.ActivityType.Listening }],
+      activities: [
+        {
+          name: type === "normal" ? normalActivity : statusText,
+          type: import_discord188.ActivityType.Custom,
+          state: type === "normal" ? normalActivity : statusText
+        }
+      ],
       status: presenceStatus
     });
   } catch (err) {
@@ -247699,13 +247706,31 @@ __export(premiumBranding_exports, {
   applyServerPremiumBranding: () => applyServerPremiumBranding,
   getGoldenAvatarBase64: () => getGoldenAvatarBase64
 });
+import fs9 from "fs";
+import path14 from "path";
 async function getGoldenAvatarBase64() {
   if (cachedGoldenAvatarBase64) return cachedGoldenAvatarBase64;
+  const localPaths = [
+    path14.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.png"),
+    path14.resolve(process.cwd(), "artifacts/api-server/public/golden-zenith-avatar.png"),
+    path14.resolve(process.cwd(), "dist/golden-zenith-avatar.png"),
+    path14.resolve(process.cwd(), "public/golden-zenith-avatar.png")
+  ];
+  for (const lp of localPaths) {
+    if (fs9.existsSync(lp)) {
+      try {
+        const buf = fs9.readFileSync(lp);
+        cachedGoldenAvatarBase64 = `data:image/png;base64,${buf.toString("base64")}`;
+        return cachedGoldenAvatarBase64;
+      } catch {
+      }
+    }
+  }
   try {
     const res = await fetch(GOLDEN_ZENITH_AVATAR_URL);
     if (res.ok) {
       const buf = Buffer.from(await res.arrayBuffer());
-      cachedGoldenAvatarBase64 = `data:image/jpeg;base64,${buf.toString("base64")}`;
+      cachedGoldenAvatarBase64 = `data:image/png;base64,${buf.toString("base64")}`;
       return cachedGoldenAvatarBase64;
     }
   } catch (err) {
@@ -250070,14 +250095,14 @@ __export(client_exports, {
   getDiscordClient: () => getDiscordClient,
   startDiscordBot: () => startDiscordBot
 });
-import fs9 from "fs";
+import fs10 from "fs";
 function getDiscordClient() {
   return globalThis.__discordClient;
 }
 function acquireBotProcessLock() {
   try {
-    if (fs9.existsSync(BOT_PID_LOCK_FILE)) {
-      const rawPid = fs9.readFileSync(BOT_PID_LOCK_FILE, "utf8").trim();
+    if (fs10.existsSync(BOT_PID_LOCK_FILE)) {
+      const rawPid = fs10.readFileSync(BOT_PID_LOCK_FILE, "utf8").trim();
       const existingPid = parseInt(rawPid, 10);
       if (!isNaN(existingPid) && existingPid !== process.pid) {
         try {
@@ -250088,7 +250113,7 @@ function acquireBotProcessLock() {
         }
       }
     }
-    fs9.writeFileSync(BOT_PID_LOCK_FILE, String(process.pid), "utf8");
+    fs10.writeFileSync(BOT_PID_LOCK_FILE, String(process.pid), "utf8");
     return true;
   } catch {
     return true;
@@ -250254,7 +250279,13 @@ async function startDiscordBot() {
       const setPermanentActivity = () => {
         try {
           readyClient.user.setPresence({
-            activities: [{ name: "demonxtejas", type: import_discord200.ActivityType.Listening }],
+            activities: [
+              {
+                name: ".help | Server Guard from demonxtejas",
+                type: import_discord200.ActivityType.Custom,
+                state: ".help | Server Guard from demonxtejas"
+              }
+            ],
             status: "online"
           });
         } catch (err) {
@@ -252024,8 +252055,8 @@ var init_client = __esm({
 // artifacts/api-server/src/index.ts
 var dotenv = __toESM(require_main(), 1);
 var import_express5 = __toESM(require_express2(), 1);
-import * as path16 from "path";
-import * as fs11 from "fs";
+import * as path17 from "path";
+import * as fs12 from "fs";
 
 // artifacts/api-server/src/app.ts
 var import_express4 = __toESM(require_express2(), 1);
@@ -252274,10 +252305,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path17) {
-  if (!path17)
+function getElementAtPath(obj, path18) {
+  if (!path18)
     return obj;
-  return path17.reduce((acc, key3) => acc?.[key3], obj);
+  return path18.reduce((acc, key3) => acc?.[key3], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -252617,11 +252648,11 @@ function explicitlyAborted(x2, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path17, issues) {
+function prefixIssues(path18, issues) {
   return issues.map((iss) => {
     var _a4;
     (_a4 = iss).path ?? (_a4.path = []);
-    iss.path.unshift(path17);
+    iss.path.unshift(path18);
     return iss;
   });
 }
@@ -253067,16 +253098,16 @@ function flattenError(error2, mapper = (issue2) => issue2.message) {
 }
 function formatError(error2, mapper = (issue2) => issue2.message) {
   const fieldErrors = { _errors: [] };
-  const processError = (error3, path17 = []) => {
+  const processError = (error3, path18 = []) => {
     for (const issue2 of error3.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
-        issue2.errors.map((issues) => processError({ issues }, [...path17, ...issue2.path]));
+        issue2.errors.map((issues) => processError({ issues }, [...path18, ...issue2.path]));
       } else if (issue2.code === "invalid_key") {
-        processError({ issues: issue2.issues }, [...path17, ...issue2.path]);
+        processError({ issues: issue2.issues }, [...path18, ...issue2.path]);
       } else if (issue2.code === "invalid_element") {
-        processError({ issues: issue2.issues }, [...path17, ...issue2.path]);
+        processError({ issues: issue2.issues }, [...path18, ...issue2.path]);
       } else {
-        const fullpath = [...path17, ...issue2.path];
+        const fullpath = [...path18, ...issue2.path];
         if (fullpath.length === 0) {
           fieldErrors._errors.push(mapper(issue2));
         } else {
@@ -257479,8 +257510,8 @@ init_config();
 init_messageHandler();
 init_logger();
 import os3 from "os";
-import * as fs10 from "fs";
-import * as path14 from "path";
+import * as fs11 from "fs";
+import * as path15 from "path";
 var router2 = (0, import_express2.Router)();
 router2.get("/overview", async (_req, res) => {
   try {
@@ -258051,8 +258082,8 @@ LAVALINK_PORT=${process.env.LAVALINK_PORT || "2333"}
 LAVALINK_PASSWORD=${process.env.LAVALINK_PASSWORD || "youshallnotpass"}
 LAVALINK_SECURE=false
 `;
-    fs10.writeFileSync(path14.resolve(process.cwd(), ".env"), envContent, "utf-8");
-    fs10.writeFileSync(path14.resolve(process.cwd(), "artifacts/api-server/.env"), envContent, "utf-8");
+    fs11.writeFileSync(path15.resolve(process.cwd(), ".env"), envContent, "utf-8");
+    fs11.writeFileSync(path15.resolve(process.cwd(), "artifacts/api-server/.env"), envContent, "utf-8");
     const { startDiscordBot: startDiscordBot2 } = await Promise.resolve().then(() => (init_client(), client_exports));
     startDiscordBot2().catch((err) => {
       logger.error({ err }, "Failed to start Discord bot with newly provided token");
@@ -258070,12 +258101,12 @@ var dashboard_default = router2;
 
 // artifacts/api-server/src/routes/index.ts
 import { exec } from "child_process";
-import path15 from "path";
+import path16 from "path";
 var router3 = (0, import_express3.Router)();
 router3.use(health_default);
 router3.use("/dashboard", dashboard_default);
 router3.get("/download-patch", (_req, res) => {
-  const tarPath = path15.join(process.cwd(), "modified_files.tar.gz");
+  const tarPath = path16.join(process.cwd(), "modified_files.tar.gz");
   const filesToPack = [
     "bot/discord/commands/ping.ts",
     "bot/discord/commands/botinfo.ts",
@@ -260116,14 +260147,14 @@ function getDashboardHtml() {
 var import_discord202 = __toESM(require_src2(), 1);
 import os4 from "os";
 var candidates = [
-  path16.resolve(process.cwd(), ".env"),
-  path16.resolve(process.cwd(), "artifacts/api-server/.env"),
-  path16.resolve(process.cwd(), "artifacts/api-server/src/discord/storage/.env"),
-  path16.resolve(process.cwd(), "../../.env")
+  path17.resolve(process.cwd(), ".env"),
+  path17.resolve(process.cwd(), "artifacts/api-server/.env"),
+  path17.resolve(process.cwd(), "artifacts/api-server/src/discord/storage/.env"),
+  path17.resolve(process.cwd(), "../../.env")
 ];
 var loadedEnv = false;
 for (const envPath of candidates) {
-  if (fs11.existsSync(envPath)) {
+  if (fs12.existsSync(envPath)) {
     dotenv.config({ path: envPath });
     loadedEnv = true;
     break;
@@ -260152,10 +260183,40 @@ process.on("unhandledRejection", (reason) => {
   const errorDetails = reason instanceof Error ? { message: reason.message, stack: reason.stack } : reason;
   logger.error({ reason: errorDetails }, "Unhandled Rejection");
 });
-var distPath = path16.resolve(process.cwd(), "dist");
-if (fs11.existsSync(distPath)) {
+var distPath = path17.resolve(process.cwd(), "dist");
+if (fs12.existsSync(distPath)) {
   app_default.use(import_express5.default.static(distPath));
 }
+app_default.get(["/golden-zenith-avatar.png", "/assets/golden-zenith-avatar.png", "/avatar/premium.png"], (_req, res) => {
+  const candidates2 = [
+    path17.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.png"),
+    path17.resolve(process.cwd(), "artifacts/api-server/public/golden-zenith-avatar.png"),
+    path17.resolve(process.cwd(), "dist/golden-zenith-avatar.png"),
+    path17.resolve(process.cwd(), "public/golden-zenith-avatar.png")
+  ];
+  for (const c of candidates2) {
+    if (fs12.existsSync(c)) {
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      return res.sendFile(c);
+    }
+  }
+  res.status(404).send("Avatar image not found");
+});
+app_default.get(["/golden-zenith-avatar.svg", "/assets/golden-zenith-avatar.svg"], (_req, res) => {
+  const candidates2 = [
+    path17.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.svg"),
+    path17.resolve(process.cwd(), "artifacts/api-server/public/golden-zenith-avatar.svg"),
+    path17.resolve(process.cwd(), "dist/golden-zenith-avatar.svg")
+  ];
+  for (const c of candidates2) {
+    if (fs12.existsSync(c)) {
+      res.setHeader("Content-Type", "image/svg+xml");
+      return res.sendFile(c);
+    }
+  }
+  res.status(404).send("Avatar vector not found");
+});
 app_default.get(["/health", "/healthz", "/_health"], (_req, res) => {
   res.status(200).json({ status: "ok", timestamp: (/* @__PURE__ */ new Date()).toISOString() });
 });

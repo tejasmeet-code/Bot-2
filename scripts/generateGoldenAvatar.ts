@@ -1,0 +1,126 @@
+import fs from "fs";
+import path from "path";
+import sharp from "sharp";
+
+const svgGoldenZ = `
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#18150f" />
+      <stop offset="70%" stop-color="#0c0a07" />
+      <stop offset="100%" stop-color="#050403" />
+    </radialGradient>
+
+    <!-- Outer Gold Ring -->
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe57f" />
+      <stop offset="25%" stop-color="#d4af37" />
+      <stop offset="50%" stop-color="#996515" />
+      <stop offset="75%" stop-color="#f3e5ab" />
+      <stop offset="100%" stop-color="#c59b27" />
+    </linearGradient>
+
+    <!-- 3D Extrusion Shadow/Side Gradient -->
+    <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a4f08" />
+      <stop offset="50%" stop-color="#4a2e04" />
+      <stop offset="100%" stop-color="#2d1c02" />
+    </linearGradient>
+
+    <!-- 3D Front Face Gold Gradient -->
+    <linearGradient id="faceGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#fff8d6" />
+      <stop offset="20%" stop-color="#ffd700" />
+      <stop offset="45%" stop-color="#e6b800" />
+      <stop offset="70%" stop-color="#b8860b" />
+      <stop offset="90%" stop-color="#ffd700" />
+      <stop offset="100%" stop-color="#fff2a3" />
+    </linearGradient>
+
+    <!-- Bevel Highlight Gradient -->
+    <linearGradient id="highlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#ffd700" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#664400" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow3d" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="15" dy="25" stdDeviation="20" flood-color="#000000" flood-opacity="0.85" />
+    </filter>
+    
+    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="35" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="512" cy="512" r="490" fill="url(#bgGrad)" stroke="url(#ringGrad)" stroke-width="12" />
+  <circle cx="512" cy="512" r="460" fill="none" stroke="#d4af37" stroke-width="2" stroke-opacity="0.25" stroke-dasharray="10 10" />
+
+  <!-- Gold Ambient Backglow -->
+  <circle cx="512" cy="512" r="280" fill="#d4af37" opacity="0.12" filter="url(#goldGlow)" />
+
+  <!-- 3D 'Z' Structure Group -->
+  <g filter="url(#shadow3d)">
+    <!-- 3D Depth Extrusion Layers (Offset to create solid 3D depth) -->
+    <!-- Layer 4 (Bottom-most extrusion) -->
+    <path d="M 330 300 Q 330 250 380 250 L 670 250 Q 720 250 720 300 Q 720 335 690 365 L 490 610 L 670 610 Q 720 610 720 660 L 720 730 Q 720 780 670 780 L 370 780 Q 320 780 320 730 Q 320 695 350 665 L 560 410 L 380 410 Q 330 410 330 360 Z"
+          transform="translate(45, 55)" fill="#1c1101" />
+
+    <!-- Layer 3 -->
+    <path d="M 330 300 Q 330 250 380 250 L 670 250 Q 720 250 720 300 Q 720 335 690 365 L 490 610 L 670 610 Q 720 610 720 660 L 720 730 Q 720 780 670 780 L 370 780 Q 320 780 320 730 Q 320 695 350 665 L 560 410 L 380 410 Q 330 410 330 360 Z"
+          transform="translate(30, 38)" fill="url(#sideGrad)" />
+
+    <!-- Layer 2 (Mid Side Chamfer) -->
+    <path d="M 330 300 Q 330 250 380 250 L 670 250 Q 720 250 720 300 Q 720 335 690 365 L 490 610 L 670 610 Q 720 610 720 660 L 720 730 Q 720 780 670 780 L 370 780 Q 320 780 320 730 Q 320 695 350 665 L 560 410 L 380 410 Q 330 410 330 360 Z"
+          transform="translate(15, 20)" fill="#7a4f08" stroke="#a67c1e" stroke-width="6" />
+
+    <!-- Front 3D Golden Face -->
+    <path d="M 330 300 Q 330 250 380 250 L 670 250 Q 720 250 720 300 Q 720 335 690 365 L 490 610 L 670 610 Q 720 610 720 660 L 720 730 Q 720 780 670 780 L 370 780 Q 320 780 320 730 Q 320 695 350 665 L 560 410 L 380 410 Q 330 410 330 360 Z"
+          fill="url(#faceGrad)" stroke="url(#highlightGrad)" stroke-width="10" stroke-linejoin="round" />
+
+    <!-- Top Highlight Glare (Reflective Sheen) -->
+    <path d="M 380 262 L 670 262 Q 700 262 705 285 L 685 310 L 400 310 Q 355 310 355 285 Q 360 262 380 262 Z"
+          fill="#ffffff" opacity="0.45" />
+
+    <!-- Diagonal Highlight Glare -->
+    <path d="M 680 370 L 510 590 L 540 600 L 700 380 Z"
+          fill="#ffffff" opacity="0.35" />
+
+    <!-- Bottom Highlight Glare -->
+    <path d="M 370 768 L 660 768 Q 695 768 700 745 L 680 725 L 390 725 Q 345 725 345 750 Q 350 768 370 768 Z"
+          fill="#ffffff" opacity="0.3" />
+  </g>
+</svg>
+`;
+
+async function generateGoldenAvatar() {
+  const dirs = [
+    path.resolve(process.cwd(), "artifacts/api-server/src/assets"),
+    path.resolve(process.cwd(), "artifacts/api-server/public"),
+    path.resolve(process.cwd(), "dist"),
+    path.resolve(process.cwd(), "public"),
+  ];
+
+  for (const d of dirs) {
+    if (!fs.existsSync(d)) {
+      fs.mkdirSync(d, { recursive: true });
+    }
+  }
+
+  const pngBuffer = await sharp(Buffer.from(svgGoldenZ))
+    .png({ quality: 100, compressionLevel: 9 })
+    .toBuffer();
+
+  for (const d of dirs) {
+    fs.writeFileSync(path.join(d, "golden-zenith-avatar.png"), pngBuffer);
+    fs.writeFileSync(path.join(d, "golden-zenith-avatar.svg"), svgGoldenZ);
+  }
+
+  console.log("Successfully generated golden-zenith-avatar.png and svg across public asset directories!");
+}
+
+generateGoldenAvatar().catch(console.error);

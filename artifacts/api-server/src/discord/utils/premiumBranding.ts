@@ -1,6 +1,8 @@
 import { type Guild } from "discord.js";
 import { isGuildPremium } from "../storage/premium";
 import { logger } from "../../lib/logger";
+import fs from "fs";
+import path from "path";
 
 export const GOLDEN_ZENITH_AVATAR_URL =
   "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=800&auto=format&fit=crop";
@@ -9,11 +11,31 @@ let cachedGoldenAvatarBase64 = "";
 
 export async function getGoldenAvatarBase64(): Promise<string | null> {
   if (cachedGoldenAvatarBase64) return cachedGoldenAvatarBase64;
+
+  // 1. Check local asset files first (Instant 3D Metallic Gold Z Icon)
+  const localPaths = [
+    path.resolve(process.cwd(), "artifacts/api-server/src/assets/golden-zenith-avatar.png"),
+    path.resolve(process.cwd(), "artifacts/api-server/public/golden-zenith-avatar.png"),
+    path.resolve(process.cwd(), "dist/golden-zenith-avatar.png"),
+    path.resolve(process.cwd(), "public/golden-zenith-avatar.png"),
+  ];
+
+  for (const lp of localPaths) {
+    if (fs.existsSync(lp)) {
+      try {
+        const buf = fs.readFileSync(lp);
+        cachedGoldenAvatarBase64 = `data:image/png;base64,${buf.toString("base64")}`;
+        return cachedGoldenAvatarBase64;
+      } catch {}
+    }
+  }
+
+  // 2. Network Fallback
   try {
     const res = await fetch(GOLDEN_ZENITH_AVATAR_URL);
     if (res.ok) {
       const buf = Buffer.from(await res.arrayBuffer());
-      cachedGoldenAvatarBase64 = `data:image/jpeg;base64,${buf.toString("base64")}`;
+      cachedGoldenAvatarBase64 = `data:image/png;base64,${buf.toString("base64")}`;
       return cachedGoldenAvatarBase64;
     }
   } catch (err: any) {
