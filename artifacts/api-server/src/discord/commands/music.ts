@@ -282,8 +282,14 @@ export const playCommand: SlashCommand = {
       return;
     }
 
+    // Cache search results for other results picker
+    searchResultCache.set(interaction.guildId, results);
+    searchResultCache.set(interaction.user.id, results);
+
     const track = results[0];
     const player = getOrCreateMusicPlayer(interaction.guildId, voiceChannel, interaction.channel as any);
+    player.lastSearchResults = results;
+    player.lastSearchQuery = query;
 
     if (player.isPlaying) {
       if (player.currentTrack?.is247Radio) {
@@ -308,9 +314,22 @@ export const playCommand: SlashCommand = {
           footer: "👑 Zenith High-Fidelity Audio • Upgrade: discord.gg/gFgAfpSYdp",
         });
 
+        const actionRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+          new ButtonBuilder()
+            .setCustomId("music:search_results")
+            .setLabel("Other Results")
+            .setEmoji(CE.search ? CE.search.str : CE.list.str)
+            .setStyle(ButtonStyle.Secondary),
+          new ButtonBuilder()
+            .setCustomId("music:queue")
+            .setLabel("View Queue")
+            .setEmoji(CE.list.str)
+            .setStyle(ButtonStyle.Secondary),
+        );
+
         await interaction.editReply({
           embeds: [queuedEmbed],
-          components: [buildSupportRow("⚡ Get VIP Pass & 24/7")] as any,
+          components: [actionRow as any],
         });
       }
     } else {

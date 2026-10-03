@@ -274,11 +274,12 @@ export async function startDiscordBot(): Promise<void> {
     // Re-apply every 15 minutes to guarantee status persistence
     setInterval(setPermanentActivity, 15 * 60 * 1000);
 
-    // Ensure branding & per-guild slash commands are applied across all active servers
+    // Ensure branding is applied across all active servers and clear any duplicate guild-scoped commands
     const { applyServerPremiumBranding } = await import("./utils/premiumBranding");
+    const { clearGuildCommands } = await import("./registry/registerGuildCommands");
     for (const [_, g] of readyClient.guilds.cache) {
       applyServerPremiumBranding(g).catch(() => {});
-      registerGuildCommands(readyClient, g.id).catch(() => {});
+      clearGuildCommands(readyClient, g.id).catch(() => {});
     }
 
     // Register full server audit event logger (VC, roles, emojis, stickers, channels, members, messages)
@@ -503,8 +504,9 @@ export async function startDiscordBot(): Promise<void> {
       await takeBackup(guild, "join");
       ensureJailRole(guild).catch(() => {});
       const { applyServerPremiumBranding } = await import("./utils/premiumBranding");
+      const { clearGuildCommands } = await import("./registry/registerGuildCommands");
       await applyServerPremiumBranding(guild).catch(() => {});
-      await registerGuildCommands(client, guild.id).catch(() => {});
+      await clearGuildCommands(client, guild.id).catch(() => {});
       const guildNum = await incrementGuildCount();
       await new Promise((r) => setTimeout(r, 3000));
       let inviterId: string | null = null;

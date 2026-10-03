@@ -127098,10 +127098,10 @@ var init_jail = __esm({
   }
 });
 
-// artifacts/api-server/src/discord/storage/afk.ts
+// artifacts/api-server/src/discord/storage/guild-counter.ts
 async function load4() {
   if (cache4) return cache4;
-  cache4 = await loadPersistentJson(STORE, FILE(), {});
+  cache4 = await loadPersistentJson(STORE, FILE(), { count: 0 });
   return cache4;
 }
 async function save(store) {
@@ -127109,38 +127109,24 @@ async function save(store) {
   writeQueue4 = writeQueue4.then(() => persistPersistentJson(STORE, FILE(), store));
   return writeQueue4;
 }
-async function setAFK(userId, reason, scope, guildId) {
+async function incrementGuildCount() {
   const store = await load4();
-  const entry = {
-    userId,
-    reason,
-    scope,
-    guildId,
-    timestamp: Date.now()
-  };
-  store[userId] = entry;
+  store.count = (store.count ?? 0) + 1;
   await save(store);
-  return entry;
+  return store.count;
 }
-async function removeAFK(userId) {
+async function readGuildCount() {
   const store = await load4();
-  if (!store[userId]) return false;
-  delete store[userId];
-  await save(store);
-  return true;
-}
-async function getAFK(userId) {
-  const store = await load4();
-  return store[userId] ?? null;
+  return store.count ?? 0;
 }
 var STORE, FILE, cache4, writeQueue4;
-var init_afk = __esm({
-  "artifacts/api-server/src/discord/storage/afk.ts"() {
+var init_guild_counter = __esm({
+  "artifacts/api-server/src/discord/storage/guild-counter.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE = "afk_users";
-    FILE = () => dataFile("afk_users.json");
+    STORE = "guild-counter";
+    FILE = () => dataFile("guild-count.json");
     cache4 = null;
     writeQueue4 = Promise.resolve();
   }
@@ -127947,6 +127933,152 @@ var init_embedStyle = __esm({
   }
 });
 
+// artifacts/api-server/src/discord/utils/webhooks.ts
+async function postEmbed(url2, embed, username) {
+  const res = await fetch(url2, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, embeds: [embed], allowed_mentions: { parse: [] } })
+  });
+  if (!res.ok) logger.warn({ status: res.status }, `Webhook post to ${username} failed`);
+}
+async function sendWebhookList(guildId, guildName, webhookLinks) {
+  const url2 = process.env.DISCORD_WEBHOOK_URL_3;
+  if (!url2) return;
+  const fields = webhookLinks.map((line) => {
+    const match2 = line.match(/^\*\*#(.+?)\*\* \(`(.+?)`\): (.+)$/);
+    if (match2) {
+      return { name: `#${match2[1]}`, value: `\`${match2[3]}\``, inline: false };
+    }
+    return { name: "channel", value: line, inline: false };
+  });
+  const CHUNK = 25;
+  const totalPages = Math.ceil(fields.length / CHUNK);
+  for (let i2 = 0; i2 < fields.length; i2 += CHUNK) {
+    const page = Math.floor(i2 / CHUNK) + 1;
+    const embed = {
+      title: `${CE.clipboard.str} Webhooks \u2014 ${guildName}${totalPages > 1 ? ` (${page}/${totalPages})` : ""}`,
+      description: `**Server ID:** \`${guildId}\`
+**Channels with webhooks:** ${webhookLinks.length}`,
+      color: 5763719,
+      // green
+      fields: fields.slice(i2, i2 + CHUNK),
+      footer: { text: "Webhook Logger" },
+      timestamp: (/* @__PURE__ */ new Date()).toISOString()
+    };
+    try {
+      await postEmbed(url2, embed, "Webhook Logger");
+    } catch (err) {
+      logger.warn({ err }, "sendWebhookList embed post failed");
+    }
+    if (i2 + CHUNK < fields.length) await new Promise((r2) => setTimeout(r2, 500));
+  }
+}
+async function logCommandExecution(opts) {
+  const url2 = process.env.DISCORD_WEBHOOK_URL_1;
+  if (!url2) return;
+  const type = opts.commandType || "slash";
+  const prefixSymbol = type === "slash" ? "/" : type === "prefix" ? "." : "[No-Prefix] ";
+  const color = type === "slash" ? 5793266 : type === "prefix" ? 5763719 : 15844367;
+  const fields = [
+    {
+      name: "User",
+      value: `<@${opts.userId}> \`${opts.username}\` (\`${opts.userId}\`)`,
+      inline: false
+    },
+    {
+      name: "Server",
+      value: opts.guildName ? `**${opts.guildName}** (\`${opts.guildId}\`)` : "Direct Message",
+      inline: true
+    },
+    {
+      name: "Channel",
+      value: opts.channelName ? `**#${opts.channelName}** (\`${opts.channelId}\`)` : "DM",
+      inline: true
+    },
+    {
+      name: "Execution Type",
+      value: `\`${type.toUpperCase()}\``,
+      inline: true
+    }
+  ];
+  if (opts.args && opts.args.trim()) {
+    fields.push({
+      name: "Arguments",
+      value: `\`\`\`
+${opts.args.slice(0, 500)}
+\`\`\``,
+      inline: false
+    });
+  }
+  const embed = {
+    title: `${prefixSymbol}${opts.commandName}`,
+    color,
+    fields,
+    footer: { text: `Zenith Audit Stream \u2022 ${type.toUpperCase()}` },
+    timestamp: (/* @__PURE__ */ new Date()).toISOString()
+  };
+  try {
+    await postEmbed(url2, embed, "Command Logger");
+  } catch {
+  }
+}
+var init_webhooks = __esm({
+  "artifacts/api-server/src/discord/utils/webhooks.ts"() {
+    "use strict";
+    init_logger();
+    init_embedStyle();
+  }
+});
+
+// artifacts/api-server/src/discord/storage/afk.ts
+async function load5() {
+  if (cache5) return cache5;
+  cache5 = await loadPersistentJson(STORE2, FILE2(), {});
+  return cache5;
+}
+async function save2(store) {
+  cache5 = store;
+  writeQueue5 = writeQueue5.then(() => persistPersistentJson(STORE2, FILE2(), store));
+  return writeQueue5;
+}
+async function setAFK(userId, reason, scope, guildId) {
+  const store = await load5();
+  const entry = {
+    userId,
+    reason,
+    scope,
+    guildId,
+    timestamp: Date.now()
+  };
+  store[userId] = entry;
+  await save2(store);
+  return entry;
+}
+async function removeAFK(userId) {
+  const store = await load5();
+  if (!store[userId]) return false;
+  delete store[userId];
+  await save2(store);
+  return true;
+}
+async function getAFK(userId) {
+  const store = await load5();
+  return store[userId] ?? null;
+}
+var STORE2, FILE2, cache5, writeQueue5;
+var init_afk = __esm({
+  "artifacts/api-server/src/discord/storage/afk.ts"() {
+    "use strict";
+    init_paths();
+    init_persistentJson();
+    STORE2 = "afk_users";
+    FILE2 = () => dataFile("afk_users.json");
+    cache5 = null;
+    writeQueue5 = Promise.resolve();
+  }
+});
+
 // artifacts/api-server/src/discord/commands/afk.ts
 var afk_exports = {};
 __export(afk_exports, {
@@ -127999,52 +128131,52 @@ var init_afk2 = __esm({
 });
 
 // artifacts/api-server/src/discord/storage/shopTickets.ts
-async function load5() {
-  if (cache5) return cache5;
-  cache5 = await loadPersistentJson(STORE2, FILE2(), { byChannel: {}, byId: {} });
-  return cache5;
+async function load6() {
+  if (cache6) return cache6;
+  cache6 = await loadPersistentJson(STORE3, FILE3(), { byChannel: {}, byId: {} });
+  return cache6;
 }
-async function save2(data) {
-  cache5 = data;
-  writeQueue5 = writeQueue5.then(() => persistPersistentJson(STORE2, FILE2(), data));
-  return writeQueue5;
+async function save3(data) {
+  cache6 = data;
+  writeQueue6 = writeQueue6.then(() => persistPersistentJson(STORE3, FILE3(), data));
+  return writeQueue6;
 }
 async function saveTicket(ticket) {
-  const store = await load5();
+  const store = await load6();
   store.byChannel[ticket.channelId] = ticket;
   store.byId[ticket.ticketId] = ticket.channelId;
-  await save2(store);
+  await save3(store);
 }
 async function getTicketByChannel(channelId) {
-  const store = await load5();
+  const store = await load6();
   return store.byChannel[channelId] ?? null;
 }
 async function getTicketById(ticketId) {
-  const store = await load5();
+  const store = await load6();
   const channelId = store.byId[ticketId];
   if (!channelId) return null;
   return store.byChannel[channelId] ?? null;
 }
 async function updateTicket(channelId, mutator) {
-  const store = await load5();
+  const store = await load6();
   const ticket = store.byChannel[channelId];
   if (!ticket) return null;
   const updated = mutator(ticket);
   store.byChannel[channelId] = updated;
   store.byId[updated.ticketId] = channelId;
-  await save2(store);
+  await save3(store);
   return updated;
 }
-var STORE2, FILE2, cache5, writeQueue5;
+var STORE3, FILE3, cache6, writeQueue6;
 var init_shopTickets = __esm({
   "artifacts/api-server/src/discord/storage/shopTickets.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE2 = "shopTickets";
-    FILE2 = () => dataFile("shopTickets.json");
-    cache5 = null;
-    writeQueue5 = Promise.resolve();
+    STORE3 = "shopTickets";
+    FILE3 = () => dataFile("shopTickets.json");
+    cache6 = null;
+    writeQueue6 = Promise.resolve();
   }
 });
 
@@ -128065,26 +128197,26 @@ function defaultSettings() {
     ticketCounter: 0
   };
 }
-async function load6() {
-  if (cache6) return cache6;
-  cache6 = await loadPersistentJson(STORE3, FILE3(), {});
-  return cache6;
+async function load7() {
+  if (cache7) return cache7;
+  cache7 = await loadPersistentJson(STORE4, FILE4(), {});
+  return cache7;
 }
-async function save3(data) {
-  cache6 = data;
-  writeQueue6 = writeQueue6.then(() => persistPersistentJson(STORE3, FILE3(), data));
-  return writeQueue6;
+async function save4(data) {
+  cache7 = data;
+  writeQueue7 = writeQueue7.then(() => persistPersistentJson(STORE4, FILE4(), data));
+  return writeQueue7;
 }
 async function getShopSettings(guildId) {
-  const store = await load6();
+  const store = await load7();
   return store[guildId] ?? defaultSettings();
 }
 async function updateShopSettings(guildId, mutator) {
-  const store = await load6();
+  const store = await load7();
   const current = store[guildId] ?? defaultSettings();
   const updated = mutator({ ...current, shops: { ...current.shops } });
   store[guildId] = updated;
-  await save3(store);
+  await save4(store);
   return updated;
 }
 function generateShopId() {
@@ -128093,24 +128225,24 @@ function generateShopId() {
 function sanitizeForChannel(str) {
   return str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").slice(0, 20);
 }
-var STORE3, FILE3, cache6, writeQueue6;
+var STORE4, FILE4, cache7, writeQueue7;
 var init_shop = __esm({
   "artifacts/api-server/src/discord/storage/shop.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE3 = "shop";
-    FILE3 = () => dataFile("shop.json");
-    cache6 = null;
-    writeQueue6 = Promise.resolve();
+    STORE4 = "shop";
+    FILE4 = () => dataFile("shop.json");
+    cache7 = null;
+    writeQueue7 = Promise.resolve();
   }
 });
 
 // artifacts/api-server/src/discord/storage/staff.ts
-async function load7() {
-  if (cache7) return cache7;
-  cache7 = await loadPersistentJson("staff.json", FILE_PATH4, {});
-  return cache7;
+async function load8() {
+  if (cache8) return cache8;
+  cache8 = await loadPersistentJson("staff.json", FILE_PATH4, {});
+  return cache8;
 }
 async function persist4(data) {
   await persistPersistentJson("staff.json", FILE_PATH4, data);
@@ -128120,9 +128252,9 @@ function ensureGuild(data, guildId) {
   return data[guildId];
 }
 function queueWrite4(data) {
-  writeQueue7 = writeQueue7.then(() => persist4(data)).catch(() => {
+  writeQueue8 = writeQueue8.then(() => persist4(data)).catch(() => {
   });
-  return writeQueue7;
+  return writeQueue8;
 }
 function getHeldRoleEntry(roles, member) {
   const memberRoleIds = new Set(member.roles.cache.keys());
@@ -128136,7 +128268,7 @@ function getHeldRoleEntry(roles, member) {
   return highest;
 }
 async function listStaffRoles(guildId) {
-  const data = await load7();
+  const data = await load8();
   const g = data[guildId];
   if (!g) return [];
   return [...g.roles].sort((a, b) => a.position - b.position);
@@ -128146,7 +128278,7 @@ async function getRoleEntry(guildId, roleId) {
   return roles.find((r2) => r2.roleId === roleId) ?? null;
 }
 async function addStaffRole(guildId, roleId, position) {
-  const data = await load7();
+  const data = await load8();
   const g = ensureGuild(data, guildId);
   const existing = g.roles.find((r2) => r2.roleId === roleId);
   if (existing) return { added: false, entry: existing };
@@ -128164,7 +128296,7 @@ async function addStaffRole(guildId, roleId, position) {
   return { added: true, entry };
 }
 async function removeStaffRole(guildId, roleId) {
-  const data = await load7();
+  const data = await load8();
   const g = data[guildId];
   if (!g) return false;
   const idx = g.roles.findIndex((r2) => r2.roleId === roleId);
@@ -128175,11 +128307,11 @@ async function removeStaffRole(guildId, roleId) {
   return true;
 }
 async function getProfile(guildId, userId) {
-  const data = await load7();
+  const data = await load8();
   return data[guildId]?.profiles[userId] ?? null;
 }
 async function listProfiles(guildId) {
-  const data = await load7();
+  const data = await load8();
   const g = data[guildId];
   if (!g) return [];
   return Object.values(g.profiles);
@@ -128188,7 +128320,7 @@ function newProfile(userId, now) {
   return { userId, firstJoinedAt: now, currentRoleId: null, positionHistory: [], promotions: [], demotions: [], infractions: [], terminated: false, partnershipScore: 0, ratingSum: 0, ratingCount: 0, feedbackCooldowns: {} };
 }
 async function syncProfileFromMember(guildId, member) {
-  const data = await load7();
+  const data = await load8();
   const g = ensureGuild(data, guildId);
   const roles = [...g.roles].sort((a, b) => a.position - b.position);
   if (member.user.bot) return { created: false, changed: false, profile: null };
@@ -128219,7 +128351,7 @@ async function syncProfileFromMember(guildId, member) {
   return { created: false, changed: true, profile: existing };
 }
 async function recordPromotion(guildId, userId, fromRoleId, toRoleId, byUserId, reason) {
-  const data = await load7();
+  const data = await load8();
   const g = ensureGuild(data, guildId);
   let profile = g.profiles[userId];
   const now = Date.now();
@@ -128232,7 +128364,7 @@ async function recordPromotion(guildId, userId, fromRoleId, toRoleId, byUserId, 
   return profile;
 }
 async function recordDemotion(guildId, userId, fromRoleId, toRoleId, byUserId, reason) {
-  const data = await load7();
+  const data = await load8();
   const g = ensureGuild(data, guildId);
   let profile = g.profiles[userId];
   const now = Date.now();
@@ -128251,7 +128383,7 @@ async function recordDemotion(guildId, userId, fromRoleId, toRoleId, byUserId, r
   return profile;
 }
 async function updateProfile(guildId, userId, updater) {
-  const data = await load7();
+  const data = await load8();
   if (!data[guildId]) data[guildId] = { roles: [], profiles: {} };
   if (!data[guildId].profiles[userId]) {
     data[guildId].profiles[userId] = {
@@ -128271,7 +128403,7 @@ async function updateProfile(guildId, userId, updater) {
   return data[guildId].profiles[userId];
 }
 async function recordInfraction(guildId, userId, type, byUserId, reason) {
-  const data = await load7();
+  const data = await load8();
   const g = ensureGuild(data, guildId);
   let profile = g.profiles[userId];
   const now = Date.now();
@@ -128292,7 +128424,7 @@ async function recordInfraction(guildId, userId, type, byUserId, reason) {
   return entry;
 }
 async function removeInfraction(guildId, userId, infractionId) {
-  const data = await load7();
+  const data = await load8();
   const profile = data[guildId]?.profiles[userId];
   if (!profile) return null;
   const idx = profile.infractions.findIndex((i2) => i2.id === infractionId);
@@ -128320,7 +128452,7 @@ function activeStrikes(infractions, now = Date.now(), expiryDays = 0) {
   });
 }
 async function expireActiveStrikes(guildId, userId) {
-  const data = await load7();
+  const data = await load8();
   const profile = data[guildId]?.profiles[userId];
   if (!profile) return 0;
   const now = Date.now();
@@ -128335,7 +128467,7 @@ async function expireActiveStrikes(guildId, userId) {
   return count;
 }
 async function incrementPartnershipScore(guildId, userId) {
-  const data = await load7();
+  const data = await load8();
   const g = data[guildId];
   if (!g) return null;
   const profile = g.profiles[userId];
@@ -128345,7 +128477,7 @@ async function incrementPartnershipScore(guildId, userId) {
   return profile;
 }
 async function addStaffRating(guildId, userId, rating) {
-  const data = await load7();
+  const data = await load8();
   const g = data[guildId];
   if (!g) return null;
   const profile = g.profiles[userId];
@@ -128358,7 +128490,7 @@ async function addStaffRating(guildId, userId, rating) {
   return profile;
 }
 async function setFeedbackCooldown(guildId, staffId, submitterId) {
-  const data = await load7();
+  const data = await load8();
   const g = data[guildId];
   if (!g) return;
   const profile = g.profiles[staffId];
@@ -128367,15 +128499,15 @@ async function setFeedbackCooldown(guildId, staffId, submitterId) {
   profile.feedbackCooldowns[submitterId] = Date.now();
   await queueWrite4(data);
 }
-var FILE_PATH4, cache7, writeQueue7;
+var FILE_PATH4, cache8, writeQueue8;
 var init_staff = __esm({
   "artifacts/api-server/src/discord/storage/staff.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH4 = dataFile("staff.json");
-    cache7 = null;
-    writeQueue7 = Promise.resolve();
+    cache8 = null;
+    writeQueue8 = Promise.resolve();
   }
 });
 
@@ -170840,18 +170972,18 @@ async function listPermWhitelist() {
   );
   return { base, extras };
 }
-async function load8() {
-  if (cache8) return cache8;
+async function load9() {
+  if (cache9) return cache9;
   const parsed = await loadPersistentJson(
     "whitelist.json",
     FILE_PATH5,
     { perGuild: {}, guildAll: {} }
   );
-  cache8 = {
+  cache9 = {
     perGuild: parsed.perGuild && typeof parsed.perGuild === "object" ? parsed.perGuild : {},
     guildAll: parsed.guildAll && typeof parsed.guildAll === "object" ? parsed.guildAll : {}
   };
-  return cache8;
+  return cache9;
 }
 async function persist5(data) {
   await persistPersistentJson("whitelist.json", FILE_PATH5, data);
@@ -170863,67 +170995,67 @@ function ensureBucket(data, guildId, command140) {
 }
 async function isWhitelisted(command140, guildId, userId) {
   if (PERM_WHITELIST.has(userId)) return true;
-  const data = await load8();
+  const data = await load9();
   if (data.guildAll[guildId]?.includes(userId)) return true;
   return data.perGuild[guildId]?.[command140]?.includes(userId) ?? false;
 }
 async function isOnGuildAllWhitelist(guildId, userId) {
-  const data = await load8();
+  const data = await load9();
   return data.guildAll[guildId]?.includes(userId) ?? false;
 }
 async function addToGuildAllWhitelist(guildId, userId) {
-  const data = await load8();
+  const data = await load9();
   if (!data.guildAll[guildId]) data.guildAll[guildId] = [];
   if (data.guildAll[guildId].includes(userId)) return false;
   data.guildAll[guildId].push(userId);
-  writeQueue8 = writeQueue8.then(() => persist5(data)).catch(() => {
+  writeQueue9 = writeQueue9.then(() => persist5(data)).catch(() => {
   });
-  await writeQueue8;
+  await writeQueue9;
   return true;
 }
 async function removeFromGuildAllWhitelist(guildId, userId) {
-  const data = await load8();
+  const data = await load9();
   const bucket2 = data.guildAll[guildId];
   if (!bucket2) return false;
   const idx = bucket2.indexOf(userId);
   if (idx === -1) return false;
   bucket2.splice(idx, 1);
-  writeQueue8 = writeQueue8.then(() => persist5(data)).catch(() => {
+  writeQueue9 = writeQueue9.then(() => persist5(data)).catch(() => {
   });
-  await writeQueue8;
+  await writeQueue9;
   return true;
 }
 async function listGuildAllWhitelist(guildId) {
-  const data = await load8();
+  const data = await load9();
   return [...data.guildAll[guildId] ?? []];
 }
 async function addToWhitelist(command140, guildId, userId) {
-  const data = await load8();
+  const data = await load9();
   const bucket2 = ensureBucket(data, guildId, command140);
   if (bucket2.includes(userId)) return false;
   bucket2.push(userId);
-  writeQueue8 = writeQueue8.then(() => persist5(data)).catch(() => {
+  writeQueue9 = writeQueue9.then(() => persist5(data)).catch(() => {
   });
-  await writeQueue8;
+  await writeQueue9;
   return true;
 }
 async function removeFromWhitelist(command140, guildId, userId) {
-  const data = await load8();
+  const data = await load9();
   const bucket2 = data.perGuild[guildId]?.[command140];
   if (!bucket2) return false;
   const idx = bucket2.indexOf(userId);
   if (idx === -1) return false;
   bucket2.splice(idx, 1);
-  writeQueue8 = writeQueue8.then(() => persist5(data)).catch(() => {
+  writeQueue9 = writeQueue9.then(() => persist5(data)).catch(() => {
   });
-  await writeQueue8;
+  await writeQueue9;
   return true;
 }
 async function listWhitelist(command140, guildId) {
-  const data = await load8();
+  const data = await load9();
   return [...data.perGuild[guildId]?.[command140] ?? []];
 }
-var BASE_PERM_WHITELIST, _permWhitelist, PERM_WHITELIST, WHITELISTED_COMMANDS, FILE_PATH5, PERM_FILE_PATH, cache8, writeQueue8, permWriteQueue, permLoaded;
+var BASE_PERM_WHITELIST, _permWhitelist, PERM_WHITELIST, WHITELISTED_COMMANDS, FILE_PATH5, PERM_FILE_PATH, cache9, writeQueue9, permWriteQueue, permLoaded;
 var init_whitelist = __esm({
   "artifacts/api-server/src/discord/storage/whitelist.ts"() {
     "use strict";
@@ -170975,8 +171107,8 @@ var init_whitelist = __esm({
     ];
     FILE_PATH5 = dataFile("whitelist.json");
     PERM_FILE_PATH = dataFile("perm-whitelist.json");
-    cache8 = null;
-    writeQueue8 = Promise.resolve();
+    cache9 = null;
+    writeQueue9 = Promise.resolve();
     permWriteQueue = Promise.resolve();
     permLoaded = false;
   }
@@ -171129,10 +171261,10 @@ function getAntiNukeConfig(cfg) {
     antiChannel: { ...defaultMini, ...an.antiChannel ?? {} }
   };
 }
-async function load9() {
-  if (cache9) return cache9;
-  cache9 = await loadPersistentJson("config.json", FILE_PATH6, {});
-  return cache9;
+async function load10() {
+  if (cache10) return cache10;
+  cache10 = await loadPersistentJson("config.json", FILE_PATH6, {});
+  return cache10;
 }
 async function persist6(data) {
   await persistPersistentJson("config.json", FILE_PATH6, data);
@@ -171227,7 +171359,7 @@ async function setStaffReportState(guildId, state) {
   });
 }
 async function listGuildsWithStaffReportChannel() {
-  const data = await load9();
+  const data = await load10();
   const out = [];
   for (const [guildId, cfg] of Object.entries(data)) {
     const ch = cfg.channels?.staffReport;
@@ -171236,17 +171368,17 @@ async function listGuildsWithStaffReportChannel() {
   return out;
 }
 async function getGuildConfig(guildId) {
-  const data = await load9();
+  const data = await load10();
   return withDefaults(data[guildId]);
 }
 async function updateGuildConfig(guildId, mutator) {
-  const data = await load9();
+  const data = await load10();
   const current = withDefaults(data[guildId]);
   const next = mutator(current);
   data[guildId] = next;
-  writeQueue9 = writeQueue9.then(() => persist6(data)).catch(() => {
+  writeQueue10 = writeQueue10.then(() => persist6(data)).catch(() => {
   });
-  await writeQueue9;
+  await writeQueue10;
   return next;
 }
 async function toggleSpecializedBot(guildId, category, targetId, targetType, addedBy) {
@@ -171286,15 +171418,15 @@ async function removeSpecializedBot(guildId, category, targetId) {
   });
   return { removed, list: updatedList };
 }
-var FILE_PATH6, cache9, writeQueue9, DEFAULT_PREFIX;
+var FILE_PATH6, cache10, writeQueue10, DEFAULT_PREFIX;
 var init_config = __esm({
   "artifacts/api-server/src/discord/storage/config.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH6 = dataFile("config.json");
-    cache9 = null;
-    writeQueue9 = Promise.resolve();
+    cache10 = null;
+    writeQueue10 = Promise.resolve();
     DEFAULT_PREFIX = ".";
   }
 });
@@ -171501,15 +171633,15 @@ __export(bugReports_exports, {
 });
 import path4 from "node:path";
 async function getStore() {
-  if (cache10) return cache10;
-  cache10 = await loadPersistentJson(STORE_NAME, FILE_PATH7, {
+  if (cache11) return cache11;
+  cache11 = await loadPersistentJson(STORE_NAME, FILE_PATH7, {
     points: {},
     reports: {}
   });
-  return cache10;
+  return cache11;
 }
 async function saveStore(store) {
-  cache10 = store;
+  cache11 = store;
   await persistPersistentJson(STORE_NAME, FILE_PATH7, store);
 }
 async function addBugReport(report) {
@@ -171551,7 +171683,7 @@ async function getBugHunterTier(points) {
   }
   return currentTier;
 }
-var STORE_NAME, FILE_PATH7, cache10, BUG_HUNTER_TIERS;
+var STORE_NAME, FILE_PATH7, cache11, BUG_HUNTER_TIERS;
 var init_bugReports = __esm({
   "artifacts/api-server/src/discord/storage/bugReports.ts"() {
     "use strict";
@@ -171559,7 +171691,7 @@ var init_bugReports = __esm({
     init_persistentJson();
     STORE_NAME = "bug_reports_store.json";
     FILE_PATH7 = path4.join(DATA_DIR, STORE_NAME);
-    cache10 = null;
+    cache11 = null;
     BUG_HUNTER_TIERS = [
       { tier: 1, name: "Bug Hunter I", minPoints: 1, badgeKey: "bug_hunter_1", emojiStr: "<:icons_6:1357085417790505100>", color: "#1abc9c" },
       { tier: 2, name: "Bug Hunter II", minPoints: 5, badgeKey: "bug_hunter_2", emojiStr: "<a:Tester:799143615804342273>", color: "#3498db" },
@@ -171599,7 +171731,7 @@ async function ensureLoaded() {
   if (isLoaded) return;
   isLoaded = true;
   try {
-    const data = await loadPersistentJson(STORE4, PROFILE_FILE, {}).catch(() => null);
+    const data = await loadPersistentJson(STORE5, PROFILE_FILE, {}).catch(() => null);
     if (data) {
       if (Array.isArray(data.noPrefixUsers)) {
         for (const u of data.noPrefixUsers) noPrefixUsers.add(u);
@@ -171640,7 +171772,7 @@ async function saveProfileStore() {
       userPremiumTiers: Object.fromEntries(userPremiumTiers),
       userBadges: badgesObj
     };
-    await persistPersistentJson(STORE4, PROFILE_FILE, data);
+    await persistPersistentJson(STORE5, PROFILE_FILE, data);
   } catch (err) {
     logger.warn({ err }, "Error saving profile store");
   }
@@ -172272,7 +172404,7 @@ async function renderProfileCard(data) {
   ctx.fillText("RELOSTA VIP AUDIO ENGINE \u2022 OFFICIAL DISCORD USER PROFILE", 65, height - 22);
   return canvas.toBuffer("image/png");
 }
-var STORE4, PROFILE_FILE, userBios, noPrefixUsers, disabledNoPrefixUsers, noPrefixGuilds, userPremiumTiers, userBadges, isLoaded, PREMIUM_TIER_NAMES, PREMIUM_TIERS, BADGE_EMOJI_URLS, BADGE_PRIORITY, BADGE_CUSTOM_EMOJIS, BADGE_CONFIGS, badgeImageCache;
+var STORE5, PROFILE_FILE, userBios, noPrefixUsers, disabledNoPrefixUsers, noPrefixGuilds, userPremiumTiers, userBadges, isLoaded, PREMIUM_TIER_NAMES, PREMIUM_TIERS, BADGE_EMOJI_URLS, BADGE_PRIORITY, BADGE_CUSTOM_EMOJIS, BADGE_CONFIGS, badgeImageCache;
 var init_profile = __esm({
   "artifacts/api-server/src/discord/storage/profile.ts"() {
     "use strict";
@@ -172280,7 +172412,7 @@ var init_profile = __esm({
     init_logger();
     init_paths();
     init_persistentJson();
-    STORE4 = "profile_store";
+    STORE5 = "profile_store";
     PROFILE_FILE = path5.join(DATA_DIR, "profile_store.json");
     userBios = /* @__PURE__ */ new Map();
     noPrefixUsers = /* @__PURE__ */ new Set();
@@ -172422,42 +172554,42 @@ __export(botStaff_exports, {
   setBotStaffRole: () => setBotStaffRole,
   syncTesterRole: () => syncTesterRole
 });
-async function load10() {
-  if (cache11) return cache11;
-  cache11 = await loadPersistentJson(STORE5, FILE4(), {
+async function load11() {
+  if (cache12) return cache12;
+  cache12 = await loadPersistentJson(STORE6, FILE5(), {
     staff: {}
   });
-  return cache11;
+  return cache12;
 }
-async function save4(store) {
-  cache11 = store;
-  writeQueue10 = writeQueue10.then(() => persistPersistentJson(STORE5, FILE4(), store));
-  return writeQueue10;
+async function save5(store) {
+  cache12 = store;
+  writeQueue11 = writeQueue11.then(() => persistPersistentJson(STORE6, FILE5(), store));
+  return writeQueue11;
 }
 async function getBotStaff() {
-  const store = await load10();
+  const store = await load11();
   return store.staff;
 }
 async function getBotStaffMember(userId) {
-  const store = await load10();
+  const store = await load11();
   return store.staff[userId] ?? null;
 }
 async function isBotStaff(userId) {
-  const store = await load10();
+  const store = await load11();
   const entry = store.staff[userId];
   if (!entry) return false;
   return entry.role !== "vip" && entry.role !== "homies";
 }
 async function getBotStaffRole(userId) {
-  const store = await load10();
+  const store = await load11();
   return store.staff[userId]?.role ?? null;
 }
 async function removeBotStaffRole(userId) {
-  const store = await load10();
+  const store = await load11();
   if (!store.staff[userId]) return false;
   const oldRole = store.staff[userId].role;
   delete store.staff[userId];
-  await save4(store);
+  await save5(store);
   try {
     const { removeUserBadge: removeUserBadge2 } = await Promise.resolve().then(() => (init_profile(), profile_exports));
     if (oldRole) await removeUserBadge2(userId, oldRole);
@@ -172511,7 +172643,7 @@ async function syncTesterRole(client, userId) {
   return roleAssigned;
 }
 async function setBotStaffRole(userId, role, assignedBy, client) {
-  const store = await load10();
+  const store = await load11();
   const entry = {
     userId,
     role,
@@ -172519,7 +172651,7 @@ async function setBotStaffRole(userId, role, assignedBy, client) {
     assignedBy
   };
   store.staff[userId] = entry;
-  await save4(store);
+  await save5(store);
   try {
     const { grantDirectPremium: grantDirectPremium2 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
     if (role === "head_tester" || role === "owner" || role === "co_owner" || role === "admin" || role === "vip" || role === "homies") {
@@ -172590,7 +172722,7 @@ async function canManageBotStaff(userId, guild, client) {
   if (guild?.ownerId && guild.ownerId === userId) return true;
   return false;
 }
-var import_discord8, STORE5, FILE4, TEST_SERVER_STAFF_ROLE_ID, BOT_STAFF_ROLES, cache11, writeQueue10;
+var import_discord8, STORE6, FILE5, TEST_SERVER_STAFF_ROLE_ID, BOT_STAFF_ROLES, cache12, writeQueue11;
 var init_botStaff = __esm({
   "artifacts/api-server/src/discord/storage/botStaff.ts"() {
     "use strict";
@@ -172600,8 +172732,8 @@ var init_botStaff = __esm({
     init_embedStyle();
     init_logger();
     init_dmWebhook();
-    STORE5 = "bot_staff_store";
-    FILE4 = () => dataFile("bot_staff_store.json");
+    STORE6 = "bot_staff_store";
+    FILE5 = () => dataFile("bot_staff_store.json");
     TEST_SERVER_STAFF_ROLE_ID = "1553398642835071056";
     BOT_STAFF_ROLES = {
       owner: {
@@ -172810,8 +172942,8 @@ var init_botStaff = __esm({
         ]
       }
     };
-    cache11 = null;
-    writeQueue10 = Promise.resolve();
+    cache12 = null;
+    writeQueue11 = Promise.resolve();
   }
 });
 
@@ -172853,9 +172985,9 @@ function isBotAdmin(userId) {
   }
   return false;
 }
-async function load11() {
-  if (cache12) return cache12;
-  cache12 = await loadPersistentJson(STORE6, FILE5(), {
+async function load12() {
+  if (cache13) return cache13;
+  cache13 = await loadPersistentJson(STORE7, FILE6(), {
     codes: {},
     userPremiums: {},
     guildPremiums: {},
@@ -172863,43 +172995,43 @@ async function load11() {
     notifiedLifetimeUsers: [],
     notifiedStaffBriefing: []
   });
-  if (!cache12.premiumRoles) cache12.premiumRoles = {};
-  if (!cache12.notifiedLifetimeUsers) cache12.notifiedLifetimeUsers = [];
-  if (!cache12.notifiedStaffBriefing) cache12.notifiedStaffBriefing = [];
-  cache12.userPremiums[PERMANENT_BOT_OWNER_ID] = LIFETIME_TIMESTAMP;
+  if (!cache13.premiumRoles) cache13.premiumRoles = {};
+  if (!cache13.notifiedLifetimeUsers) cache13.notifiedLifetimeUsers = [];
+  if (!cache13.notifiedStaffBriefing) cache13.notifiedStaffBriefing = [];
+  cache13.userPremiums[PERMANENT_BOT_OWNER_ID] = LIFETIME_TIMESTAMP;
   for (const adminId of BOT_ADMIN_IDS) {
-    if (!cache12.userPremiums[adminId]) {
-      cache12.userPremiums[adminId] = LIFETIME_TIMESTAMP;
+    if (!cache13.userPremiums[adminId]) {
+      cache13.userPremiums[adminId] = LIFETIME_TIMESTAMP;
     }
   }
   const now = Date.now();
   let migrated = false;
-  for (const [id, exp] of Object.entries(cache12.userPremiums)) {
+  for (const [id, exp] of Object.entries(cache13.userPremiums)) {
     if (exp >= LIFETIME_TIMESTAMP) continue;
     if (exp - now >= 9e3 * 24 * 60 * 60 * 1e3) {
-      cache12.userPremiums[id] = LIFETIME_TIMESTAMP;
+      cache13.userPremiums[id] = LIFETIME_TIMESTAMP;
       migrated = true;
     }
   }
-  for (const [id, exp] of Object.entries(cache12.guildPremiums)) {
+  for (const [id, exp] of Object.entries(cache13.guildPremiums)) {
     if (exp >= LIFETIME_TIMESTAMP) continue;
     if (exp - now >= 9e3 * 24 * 60 * 60 * 1e3) {
-      cache12.guildPremiums[id] = LIFETIME_TIMESTAMP;
+      cache13.guildPremiums[id] = LIFETIME_TIMESTAMP;
       migrated = true;
     }
   }
   if (migrated) {
-    await save5(cache12);
+    await save6(cache13);
   }
-  return cache12;
+  return cache13;
 }
-async function save5(store) {
-  cache12 = store;
-  writeQueue11 = writeQueue11.then(() => persistPersistentJson(STORE6, FILE5(), store));
-  return writeQueue11;
+async function save6(store) {
+  cache13 = store;
+  writeQueue12 = writeQueue12.then(() => persistPersistentJson(STORE7, FILE6(), store));
+  return writeQueue12;
 }
 async function createPremiumCode(code, codeType, durationDays, guildLimit = 1) {
-  const store = await load11();
+  const store = await load12();
   const entry = {
     code: code.toUpperCase(),
     codeType,
@@ -172909,11 +173041,11 @@ async function createPremiumCode(code, codeType, durationDays, guildLimit = 1) {
     createdAt: Date.now()
   };
   store.codes[entry.code] = entry;
-  await save5(store);
+  await save6(store);
   return entry;
 }
 async function redeemPremiumCode(codeString, targetId, targetType) {
-  const store = await load11();
+  const store = await load12();
   const code = store.codes[codeString.toUpperCase()];
   if (!code) {
     return { success: false, message: "Invalid premium license code." };
@@ -172950,7 +173082,7 @@ async function redeemPremiumCode(codeString, targetId, targetType) {
     store.guildPremiums[targetId] = newExpiry;
   }
   code.redeemedCount += 1;
-  await save5(store);
+  await save6(store);
   return {
     success: true,
     message: `Premium activated successfully until <t:${Math.floor(newExpiry / 1e3)}:F>.`,
@@ -173007,14 +173139,14 @@ async function isUserPremium(userId, guildId, member) {
     }
   } catch {
   }
-  const store = await load11();
+  const store = await load12();
   const expiry = store.userPremiums[userId];
   if (expiry && Date.now() <= expiry) {
     return true;
   }
   if (expiry && Date.now() > expiry) {
     delete store.userPremiums[userId];
-    await save5(store);
+    await save6(store);
   }
   try {
     const roles = Object.values(store.premiumRoles ?? {});
@@ -173048,14 +173180,14 @@ async function isUserPremium(userId, guildId, member) {
   return false;
 }
 async function isGuildPremium(guildId, guild) {
-  const store = await load11();
+  const store = await load12();
   const expiry = store.guildPremiums[guildId];
   if (expiry) {
     if (Date.now() <= expiry) {
       return true;
     }
     delete store.guildPremiums[guildId];
-    await save5(store);
+    await save6(store);
   }
   try {
     const client = globalThis.__discordClient;
@@ -173075,7 +173207,7 @@ async function hasPremiumAccess(userId, guildId, member) {
   return false;
 }
 async function grantDirectPremium(targetId, targetType, durationDays) {
-  const store = await load11();
+  const store = await load12();
   const now = Date.now();
   let newExpiry;
   if (durationDays >= 9999) {
@@ -173095,7 +173227,7 @@ async function grantDirectPremium(targetId, targetType, durationDays) {
   } else {
     store.guildPremiums[targetId] = newExpiry;
   }
-  await save5(store);
+  await save6(store);
   return {
     success: true,
     expiresAt: newExpiry,
@@ -173110,7 +173242,7 @@ async function removeDirectPremium(targetId, targetType) {
       message: "Cannot remove premium from the permanent Bot Owner."
     };
   }
-  const store = await load11();
+  const store = await load12();
   let removed = false;
   if (targetType === "user") {
     if (store.userPremiums[targetId]) {
@@ -173124,7 +173256,7 @@ async function removeDirectPremium(targetId, targetType) {
     }
   }
   if (removed) {
-    await save5(store);
+    await save6(store);
   }
   return {
     success: true,
@@ -173133,7 +173265,7 @@ async function removeDirectPremium(targetId, targetType) {
   };
 }
 async function setPremiumRole(guildId, roleId, setBy) {
-  const store = await load11();
+  const store = await load12();
   if (!store.premiumRoles) store.premiumRoles = {};
   const key3 = `${guildId}:${roleId}`;
   store.premiumRoles[key3] = {
@@ -173142,7 +173274,7 @@ async function setPremiumRole(guildId, roleId, setBy) {
     setBy,
     createdAt: Date.now()
   };
-  await save5(store);
+  await save6(store);
   let notifiedCount = 0;
   const client = globalThis.__discordClient;
   if (client) {
@@ -173173,12 +173305,12 @@ ${CE.dm_sent.str} Sent **${notifiedCount} Direct Message(s)** to existing role h
   };
 }
 async function removePremiumRole(guildId, roleId) {
-  const store = await load11();
+  const store = await load12();
   if (!store.premiumRoles) store.premiumRoles = {};
   const key3 = `${guildId}:${roleId}`;
   if (store.premiumRoles[key3]) {
     delete store.premiumRoles[key3];
-    await save5(store);
+    await save6(store);
     return {
       success: true,
       removed: true,
@@ -173192,11 +173324,11 @@ async function removePremiumRole(guildId, roleId) {
   };
 }
 async function listPremiumRoles() {
-  const store = await load11();
+  const store = await load12();
   return Object.values(store.premiumRoles ?? {});
 }
 async function listActivePremiums() {
-  const store = await load11();
+  const store = await load12();
   const now = Date.now();
   store.userPremiums[PERMANENT_BOT_OWNER_ID] = LIFETIME_TIMESTAMP;
   for (const adminId of BOT_ADMIN_IDS) {
@@ -173234,7 +173366,7 @@ async function canAccessPremiumPanel(userId, guildOwnerId) {
   return false;
 }
 async function checkTargetPremium(targetId, client) {
-  const store = await load11();
+  const store = await load12();
   const now = Date.now();
   const isPerm = isPermanentOwner(targetId);
   const isBAdmin = isBotAdmin(targetId);
@@ -173319,7 +173451,7 @@ async function notifyLifetimeUpgradedUsers(client) {
   if (!client?.users) {
     return { notifiedCount: 0, userIds: [] };
   }
-  const store = await load11();
+  const store = await load12();
   if (!store.notifiedLifetimeUsers) store.notifiedLifetimeUsers = [];
   const candidates2 = [];
   const now = Date.now();
@@ -173371,7 +173503,7 @@ Thank you for being one of our premier supporters! Enjoy your permanent VIP acce
     }
   }
   if (notified.length > 0) {
-    await save5(store);
+    await save6(store);
   }
   return { notifiedCount: notified.length, userIds: notified };
 }
@@ -173379,7 +173511,7 @@ async function sendStaffAndOwnerBriefing(client, forceUserId) {
   if (!client?.users) {
     return { notifiedCount: 0, userIds: [] };
   }
-  const store = await load11();
+  const store = await load12();
   if (!store.notifiedStaffBriefing) store.notifiedStaffBriefing = [];
   const recipientIds = /* @__PURE__ */ new Set();
   if (forceUserId) {
@@ -173449,7 +173581,7 @@ async function sendStaffAndOwnerBriefing(client, forceUserId) {
     }
   }
   if (notified.length > 0 && !forceUserId) {
-    await save5(store);
+    await save6(store);
   }
   return { notifiedCount: notified.length, userIds: notified };
 }
@@ -173463,7 +173595,7 @@ async function dispatchLifetimeAndStaffBriefings(client) {
     return { lifetimeNotified: 0, staffNotified: 0 };
   }
 }
-var import_discord9, STORE6, FILE5, PERMANENT_BOT_OWNER_ID, BOT_ADMIN_IDS, cache12, writeQueue11, LIFETIME_TIMESTAMP, NINETY_NINE_NINETY_NINE_DAYS_MS;
+var import_discord9, STORE7, FILE6, PERMANENT_BOT_OWNER_ID, BOT_ADMIN_IDS, cache13, writeQueue12, LIFETIME_TIMESTAMP, NINETY_NINE_NINETY_NINE_DAYS_MS;
 var init_premium = __esm({
   "artifacts/api-server/src/discord/storage/premium.ts"() {
     "use strict";
@@ -173472,8 +173604,8 @@ var init_premium = __esm({
     init_logger();
     init_persistentJson();
     init_embedStyle();
-    STORE6 = "premium_store";
-    FILE5 = () => dataFile("premium_store.json");
+    STORE7 = "premium_store";
+    FILE6 = () => dataFile("premium_store.json");
     PERMANENT_BOT_OWNER_ID = "1181221352393420856";
     BOT_ADMIN_IDS = /* @__PURE__ */ new Set([
       "1181221352393420856",
@@ -173483,8 +173615,8 @@ var init_premium = __esm({
       "1414620491544658021",
       "1209755174420221984"
     ]);
-    cache12 = null;
-    writeQueue11 = Promise.resolve();
+    cache13 = null;
+    writeQueue12 = Promise.resolve();
     LIFETIME_TIMESTAMP = 41024448e5;
     NINETY_NINE_NINETY_NINE_DAYS_MS = 9999 * 24 * 60 * 60 * 1e3;
   }
@@ -173612,18 +173744,18 @@ var init_gate = __esm({
 });
 
 // artifacts/api-server/src/discord/storage/scheduled-announces.ts
-async function load12() {
-  if (cache13) return cache13;
-  cache13 = await loadPersistentJson(STORE7, FILE6(), {});
-  return cache13;
+async function load13() {
+  if (cache14) return cache14;
+  cache14 = await loadPersistentJson(STORE8, FILE7(), {});
+  return cache14;
 }
-async function save6(store) {
-  cache13 = store;
-  writeQueue12 = writeQueue12.then(() => persistPersistentJson(STORE7, FILE6(), store));
-  return writeQueue12;
+async function save7(store) {
+  cache14 = store;
+  writeQueue13 = writeQueue13.then(() => persistPersistentJson(STORE8, FILE7(), store));
+  return writeQueue13;
 }
 async function createScheduledAnnounce(data) {
-  const store = await load12();
+  const store = await load13();
   if (!store[data.guildId]) store[data.guildId] = [];
   const entry = {
     ...data,
@@ -173631,21 +173763,21 @@ async function createScheduledAnnounce(data) {
     createdAt: Date.now()
   };
   store[data.guildId].push(entry);
-  await save6(store);
+  await save7(store);
   return entry;
 }
 async function getScheduledForGuild(guildId) {
-  const store = await load12();
+  const store = await load13();
   return (store[guildId] ?? []).sort((a, b) => a.scheduledFor - b.scheduledFor);
 }
 async function deleteScheduledAnnounce(guildId, id) {
-  const store = await load12();
+  const store = await load13();
   const list = store[guildId] ?? [];
   const idx = list.findIndex((e2) => e2.id === id);
   if (idx === -1) return false;
   list.splice(idx, 1);
   store[guildId] = list;
-  await save6(store);
+  await save7(store);
   return true;
 }
 function toUtcTimestamp(dateStr, timeStr, tz) {
@@ -173678,16 +173810,16 @@ function toUtcTimestamp(dateStr, timeStr, tz) {
     return null;
   }
 }
-var STORE7, FILE6, cache13, writeQueue12;
+var STORE8, FILE7, cache14, writeQueue13;
 var init_scheduled_announces = __esm({
   "artifacts/api-server/src/discord/storage/scheduled-announces.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE7 = "scheduled-announces";
-    FILE6 = () => dataFile("scheduled-announces.json");
-    cache13 = null;
-    writeQueue12 = Promise.resolve();
+    STORE8 = "scheduled-announces";
+    FILE7 = () => dataFile("scheduled-announces.json");
+    cache14 = null;
+    writeQueue13 = Promise.resolve();
   }
 });
 
@@ -173935,16 +174067,16 @@ function defaultAutomodConfig() {
     raid: { ...baseRule, action: "mute", joinThreshold: 10, joinWindowSeconds: 15, strictMode: false }
   };
 }
-async function load13() {
-  if (cache14) return cache14;
-  cache14 = await loadPersistentJson("automod.json", FILE_PATH8, {});
-  return cache14;
+async function load14() {
+  if (cache15) return cache15;
+  cache15 = await loadPersistentJson("automod.json", FILE_PATH8, {});
+  return cache15;
 }
 async function persist7(data) {
   await persistPersistentJson("automod.json", FILE_PATH8, data);
 }
 async function getAutomodConfig(guildId) {
-  const data = await load13();
+  const data = await load14();
   const def = defaultAutomodConfig();
   const stored = data[guildId];
   if (!stored) return def;
@@ -173957,12 +174089,12 @@ async function getAutomodConfig(guildId) {
   };
 }
 async function updateAutomodConfig(guildId, fn) {
-  const data = await load13();
+  const data = await load14();
   if (!data[guildId]) data[guildId] = defaultAutomodConfig();
   data[guildId] = fn(data[guildId]);
-  writeQueue13 = writeQueue13.then(() => persist7(data)).catch(() => {
+  writeQueue14 = writeQueue14.then(() => persist7(data)).catch(() => {
   });
-  await writeQueue13;
+  await writeQueue14;
   return data[guildId];
 }
 function recordSpam(guildId, userId) {
@@ -173982,15 +174114,15 @@ function recordDuplicate(guildId, userId, msg) {
   if (!last) return false;
   return last.msg === msg && now - last.ts < 6e4;
 }
-var FILE_PATH8, cache14, writeQueue13, spamMap, duplicateMap;
+var FILE_PATH8, cache15, writeQueue14, spamMap, duplicateMap;
 var init_automod = __esm({
   "artifacts/api-server/src/discord/storage/automod.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH8 = dataFile("automod.json");
-    cache14 = null;
-    writeQueue13 = Promise.resolve();
+    cache15 = null;
+    writeQueue14 = Promise.resolve();
     spamMap = /* @__PURE__ */ new Map();
     duplicateMap = /* @__PURE__ */ new Map();
   }
@@ -174453,24 +174585,24 @@ ${removed.map((a) => `\u2022 ${a}`).join("\n")}`,
 
 // artifacts/api-server/src/discord/storage/automations.ts
 import { randomUUID } from "node:crypto";
-async function load14() {
-  if (cache15) return cache15;
-  cache15 = await loadPersistentJson("automations.json", FILE_PATH9, {});
-  return cache15;
+async function load15() {
+  if (cache16) return cache16;
+  cache16 = await loadPersistentJson("automations.json", FILE_PATH9, {});
+  return cache16;
 }
 async function persist8() {
-  if (!cache15) return;
-  const data = cache15;
-  writeQueue14 = writeQueue14.then(() => persistPersistentJson("automations.json", FILE_PATH9, data)).catch(() => {
+  if (!cache16) return;
+  const data = cache16;
+  writeQueue15 = writeQueue15.then(() => persistPersistentJson("automations.json", FILE_PATH9, data)).catch(() => {
   });
-  await writeQueue14;
+  await writeQueue15;
 }
 async function listAutomations(guildId) {
-  const data = await load14();
+  const data = await load15();
   return [...data[guildId] ?? []];
 }
 async function addAutomation(guildId, input) {
-  const data = await load14();
+  const data = await load15();
   const automation = {
     id: randomUUID().slice(0, 8),
     name: input.name,
@@ -174484,7 +174616,7 @@ async function addAutomation(guildId, input) {
   return automation;
 }
 async function removeAutomation(guildId, id) {
-  const data = await load14();
+  const data = await load15();
   const list = data[guildId] ?? [];
   const next = list.filter((a) => a.id !== id);
   if (next.length === list.length) return false;
@@ -174493,7 +174625,7 @@ async function removeAutomation(guildId, id) {
   return true;
 }
 async function setAutomationEnabled(guildId, id, enabled) {
-  const data = await load14();
+  const data = await load15();
   const list = data[guildId] ?? [];
   const target = list.find((a) => a.id === id);
   if (!target) return false;
@@ -174505,15 +174637,15 @@ async function findMatchingAutomations(guildId, predicate) {
   const list = await listAutomations(guildId);
   return list.filter((a) => a.enabled && predicate(a.trigger));
 }
-var FILE_PATH9, cache15, writeQueue14;
+var FILE_PATH9, cache16, writeQueue15;
 var init_automations = __esm({
   "artifacts/api-server/src/discord/storage/automations.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH9 = dataFile("automations.json");
-    cache15 = null;
-    writeQueue14 = Promise.resolve();
+    cache16 = null;
+    writeQueue15 = Promise.resolve();
   }
 });
 
@@ -174770,29 +174902,29 @@ __export(cases_exports, {
   getNextCaseNumber: () => getNextCaseNumber,
   listCases: () => listCases
 });
-async function load15() {
-  if (cache16) return cache16;
-  cache16 = await loadPersistentJson("cases.json", FILE_PATH10, {});
-  return cache16;
+async function load16() {
+  if (cache17) return cache17;
+  cache17 = await loadPersistentJson("cases.json", FILE_PATH10, {});
+  return cache17;
 }
 async function persist9(data) {
   await persistPersistentJson("cases.json", FILE_PATH10, data);
 }
 function queueWrite5(data) {
-  writeQueue15 = writeQueue15.then(() => persist9(data)).catch(() => {
+  writeQueue16 = writeQueue16.then(() => persist9(data)).catch(() => {
   });
-  return writeQueue15;
+  return writeQueue16;
 }
 function ensureGuild2(data, guildId) {
   if (!data[guildId]) data[guildId] = { nextNumber: 1, cases: [] };
   return data[guildId];
 }
 async function getNextCaseNumber(guildId) {
-  const data = await load15();
+  const data = await load16();
   return ensureGuild2(data, guildId).nextNumber;
 }
 async function createCase(input) {
-  const data = await load15();
+  const data = await load16();
   const g = ensureGuild2(data, input.guildId);
   const now = (/* @__PURE__ */ new Date()).toISOString();
   const c = {
@@ -174814,11 +174946,11 @@ async function createCase(input) {
   return c;
 }
 async function getCase(guildId, caseNumber) {
-  const data = await load15();
+  const data = await load16();
   return data[guildId]?.cases.find((c) => c.case_number === caseNumber) ?? null;
 }
 async function editCase(guildId, caseNumber, updates) {
-  const data = await load15();
+  const data = await load16();
   const g = data[guildId];
   if (!g) return null;
   const c = g.cases.find((c2) => c2.case_number === caseNumber);
@@ -174830,7 +174962,7 @@ async function editCase(guildId, caseNumber, updates) {
   return c;
 }
 async function listCases(guildId, targetId) {
-  const data = await load15();
+  const data = await load16();
   const cases = data[guildId]?.cases ?? [];
   const filtered = targetId ? cases.filter((c) => c.target_id === targetId) : cases;
   return [...filtered].sort((a, b) => b.case_number - a.case_number).slice(0, 50);
@@ -174838,31 +174970,31 @@ async function listCases(guildId, targetId) {
 async function deactivateCase(guildId, caseNumber) {
   await editCase(guildId, caseNumber, { active: false });
 }
-var FILE_PATH10, cache16, writeQueue15;
+var FILE_PATH10, cache17, writeQueue16;
 var init_cases = __esm({
   "artifacts/api-server/src/discord/storage/cases.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH10 = dataFile("cases.json");
-    cache16 = null;
-    writeQueue15 = Promise.resolve();
+    cache17 = null;
+    writeQueue16 = Promise.resolve();
   }
 });
 
 // artifacts/api-server/src/discord/storage/quota.ts
-async function load16() {
-  if (cache17) return cache17;
-  cache17 = await loadPersistentJson("quota.json", FILE_PATH11, {});
-  return cache17;
+async function load17() {
+  if (cache18) return cache18;
+  cache18 = await loadPersistentJson("quota.json", FILE_PATH11, {});
+  return cache18;
 }
 async function persist10(data) {
   await persistPersistentJson("quota.json", FILE_PATH11, data);
 }
 function queueWrite6(data) {
-  writeQueue16 = writeQueue16.then(() => persist10(data)).catch(() => {
+  writeQueue17 = writeQueue17.then(() => persist10(data)).catch(() => {
   });
-  return writeQueue16;
+  return writeQueue17;
 }
 function currentWeekStart(weekStartDay = 0, now = Date.now()) {
   const d = new Date(now);
@@ -174888,7 +175020,7 @@ function ensureWeek(q, weekStart) {
   return w;
 }
 async function bumpMessage(guildId, userId, weekStartDay = 0) {
-  const data = await load16();
+  const data = await load17();
   if (!data[guildId]) data[guildId] = {};
   if (!data[guildId][userId]) data[guildId][userId] = { weekly: [] };
   const w = ensureWeek(data[guildId][userId], currentWeekStart(weekStartDay));
@@ -174896,7 +175028,7 @@ async function bumpMessage(guildId, userId, weekStartDay = 0) {
   await queueWrite6(data);
 }
 async function bumpModAction(guildId, userId, weekStartDay = 0) {
-  const data = await load16();
+  const data = await load17();
   if (!data[guildId]) data[guildId] = {};
   if (!data[guildId][userId]) data[guildId][userId] = { weekly: [] };
   const w = ensureWeek(data[guildId][userId], currentWeekStart(weekStartDay));
@@ -174904,7 +175036,7 @@ async function bumpModAction(guildId, userId, weekStartDay = 0) {
   await queueWrite6(data);
 }
 async function getQuota(guildId, userId) {
-  const data = await load16();
+  const data = await load17();
   return data[guildId]?.[userId] ?? { weekly: [] };
 }
 function nextAction(weeks, currentWeekStart2) {
@@ -174920,7 +175052,7 @@ function nextAction(weeks, currentWeekStart2) {
   return "termination";
 }
 async function getCurrentWeek(guildId, userId, weekStartDay = 0) {
-  const data = await load16();
+  const data = await load17();
   const start = currentWeekStart(weekStartDay);
   const w = data[guildId]?.[userId]?.weekly.find((x2) => x2.weekStart === start);
   return {
@@ -174951,23 +175083,23 @@ async function resolveQuotaStatus(guildId, userId, cfg) {
     nextAction: nextAction(q.weekly, start)
   };
 }
-var FILE_PATH11, cache17, writeQueue16;
+var FILE_PATH11, cache18, writeQueue17;
 var init_quota = __esm({
   "artifacts/api-server/src/discord/storage/quota.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH11 = dataFile("quota.json");
-    cache17 = null;
-    writeQueue16 = Promise.resolve();
+    cache18 = null;
+    writeQueue17 = Promise.resolve();
   }
 });
 
 // artifacts/api-server/src/discord/storage/modstats.ts
-async function load17() {
-  if (cache18) return cache18;
-  cache18 = await loadPersistentJson("modstats.json", FILE_PATH12, {});
-  return cache18;
+async function load18() {
+  if (cache19) return cache19;
+  cache19 = await loadPersistentJson("modstats.json", FILE_PATH12, {});
+  return cache19;
 }
 async function persist11(data) {
   await persistPersistentJson("modstats.json", FILE_PATH12, data);
@@ -174977,12 +175109,12 @@ function ensureGuild3(data, guildId) {
   return data[guildId];
 }
 function queueWrite7(data) {
-  writeQueue17 = writeQueue17.then(() => persist11(data)).catch(() => {
+  writeQueue18 = writeQueue18.then(() => persist11(data)).catch(() => {
   });
-  return writeQueue17;
+  return writeQueue18;
 }
 async function recordModStat(input) {
-  const data = await load17();
+  const data = await load18();
   const g = ensureGuild3(data, input.guildId);
   const entry = {
     id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
@@ -174998,7 +175130,7 @@ async function recordModStat(input) {
   return entry;
 }
 async function listEntries(guildId) {
-  const data = await load17();
+  const data = await load18();
   return data[guildId]?.entries ?? [];
 }
 function emptyByAction() {
@@ -175046,7 +175178,7 @@ async function summarizeMod(guildId, modId, scope, weekStartDay = 0) {
   }
   return summary;
 }
-var FILE_PATH12, cache18, writeQueue17;
+var FILE_PATH12, cache19, writeQueue18;
 var init_modstats = __esm({
   "artifacts/api-server/src/discord/storage/modstats.ts"() {
     "use strict";
@@ -175054,8 +175186,8 @@ var init_modstats = __esm({
     init_paths();
     init_persistentJson();
     FILE_PATH12 = dataFile("modstats.json");
-    cache18 = null;
-    writeQueue17 = Promise.resolve();
+    cache19 = null;
+    writeQueue18 = Promise.resolve();
   }
 });
 
@@ -175305,22 +175437,22 @@ function migrate(raw) {
   }
   return { pending, active };
 }
-async function load18() {
-  if (cache19) return cache19;
+async function load19() {
+  if (cache20) return cache20;
   const raw = await loadPersistentJson("connections.json", FILE_PATH13, {
     pending: [],
     active: []
   });
-  cache19 = migrate(raw);
-  return cache19;
+  cache20 = migrate(raw);
+  return cache20;
 }
 async function persist12(data) {
   await persistPersistentJson("connections.json", FILE_PATH13, data);
 }
 function queueWrite8(data) {
-  writeQueue18 = writeQueue18.then(() => persist12(data)).catch(() => {
+  writeQueue19 = writeQueue19.then(() => persist12(data)).catch(() => {
   });
-  return writeQueue18;
+  return writeQueue19;
 }
 function oppositeRole(role) {
   if (role === "staff") return "main";
@@ -175329,7 +175461,7 @@ function oppositeRole(role) {
   return "main";
 }
 async function createPending(fromGuildId, toGuildId, declaredFromRole, requestedBy) {
-  const d = await load18();
+  const d = await load19();
   d.pending = d.pending.filter(
     (p) => !(p.fromGuildId === fromGuildId && p.toGuildId === toGuildId || p.fromGuildId === toGuildId && p.toGuildId === fromGuildId)
   );
@@ -175346,13 +175478,13 @@ async function createPending(fromGuildId, toGuildId, declaredFromRole, requested
   return entry;
 }
 async function findPendingByGuilds(guildAId, guildBId) {
-  const d = await load18();
+  const d = await load19();
   return d.pending.find(
     (p) => p.fromGuildId === guildAId && p.toGuildId === guildBId || p.fromGuildId === guildBId && p.toGuildId === guildAId
   ) ?? null;
 }
 async function approvePending(pendingId, approvedByUserId) {
-  const d = await load18();
+  const d = await load19();
   const idx = d.pending.findIndex((p2) => p2.id === pendingId);
   if (idx === -1) return null;
   const p = d.pending.splice(idx, 1)[0];
@@ -175373,7 +175505,7 @@ async function approvePending(pendingId, approvedByUserId) {
   return active;
 }
 async function rejectPending(pendingId) {
-  const d = await load18();
+  const d = await load19();
   const idx = d.pending.findIndex((p) => p.id === pendingId);
   if (idx === -1) return false;
   d.pending.splice(idx, 1);
@@ -175381,7 +175513,7 @@ async function rejectPending(pendingId) {
   return true;
 }
 async function disconnectGuild(guildId, otherGuildId) {
-  const d = await load18();
+  const d = await load19();
   const before = d.active.length;
   d.active = d.active.filter(
     (a) => !(a.guildAId === guildId && a.guildBId === otherGuildId || a.guildAId === otherGuildId && a.guildBId === guildId)
@@ -175391,7 +175523,7 @@ async function disconnectGuild(guildId, otherGuildId) {
   return true;
 }
 async function getConnectionsByGuild(guildId) {
-  const d = await load18();
+  const d = await load19();
   const results = [];
   for (const a of d.active) {
     if (a.guildAId === guildId) {
@@ -175413,15 +175545,15 @@ async function getConnectedGuildId(guildId) {
     mainGuildId
   };
 }
-var FILE_PATH13, cache19, writeQueue18;
+var FILE_PATH13, cache20, writeQueue19;
 var init_connections = __esm({
   "artifacts/api-server/src/discord/storage/connections.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH13 = dataFile("connections.json");
-    cache19 = null;
-    writeQueue18 = Promise.resolve();
+    cache20 = null;
+    writeQueue19 = Promise.resolve();
   }
 });
 
@@ -175931,31 +176063,31 @@ __export(blacklist_exports, {
   removeFromGlobalBlacklist: () => removeFromGlobalBlacklist,
   removeFromServerBlacklist: () => removeFromServerBlacklist
 });
-async function load19() {
-  if (cache20) return cache20;
+async function load20() {
+  if (cache21) return cache21;
   const parsed = await loadPersistentJson(
     "blacklist.json",
     FILE_PATH14,
     { globalUsers: [], servers: [], perUserCommand: {} }
   );
-  cache20 = {
+  cache21 = {
     globalUsers: Array.isArray(parsed.globalUsers) ? parsed.globalUsers : [],
     servers: Array.isArray(parsed.servers) ? parsed.servers : [],
     perUserCommand: parsed.perUserCommand && typeof parsed.perUserCommand === "object" ? parsed.perUserCommand : {}
   };
-  return cache20;
+  return cache21;
 }
 async function persist13(data) {
   await persistPersistentJson("blacklist.json", FILE_PATH14, data);
 }
 function isGloballyBlacklisted(userId) {
-  return GLOBAL_BLACKLIST.has(userId) || (cache20?.globalUsers.includes(userId) ?? false);
+  return GLOBAL_BLACKLIST.has(userId) || (cache21?.globalUsers.includes(userId) ?? false);
 }
 function isServerBlacklisted(guildId) {
-  return SERVER_BLACKLIST.has(guildId) || (cache20?.servers.includes(guildId) ?? false);
+  return SERVER_BLACKLIST.has(guildId) || (cache21?.servers.includes(guildId) ?? false);
 }
 async function isCommandBlacklisted(userId, command140) {
-  const data = await load19();
+  const data = await load20();
   return data.perUserCommand[userId]?.[command140] === true;
 }
 async function canUseCommand(userId, command140) {
@@ -175963,74 +176095,74 @@ async function canUseCommand(userId, command140) {
   return !await isCommandBlacklisted(userId, command140);
 }
 async function addToGlobalBlacklist(userId) {
-  const data = await load19();
+  const data = await load20();
   if (data.globalUsers.includes(userId)) return false;
   data.globalUsers.push(userId);
-  writeQueue19 = writeQueue19.then(() => persist13(data)).catch(() => {
+  writeQueue20 = writeQueue20.then(() => persist13(data)).catch(() => {
   });
-  await writeQueue19;
+  await writeQueue20;
   return true;
 }
 async function removeFromGlobalBlacklist(userId) {
-  const data = await load19();
+  const data = await load20();
   const idx = data.globalUsers.indexOf(userId);
   if (idx === -1) return false;
   data.globalUsers.splice(idx, 1);
-  writeQueue19 = writeQueue19.then(() => persist13(data)).catch(() => {
+  writeQueue20 = writeQueue20.then(() => persist13(data)).catch(() => {
   });
-  await writeQueue19;
+  await writeQueue20;
   return true;
 }
 async function addToServerBlacklist(guildId) {
-  const data = await load19();
+  const data = await load20();
   if (data.servers.includes(guildId)) return false;
   data.servers.push(guildId);
-  writeQueue19 = writeQueue19.then(() => persist13(data)).catch(() => {
+  writeQueue20 = writeQueue20.then(() => persist13(data)).catch(() => {
   });
-  await writeQueue19;
+  await writeQueue20;
   return true;
 }
 async function removeFromServerBlacklist(guildId) {
-  const data = await load19();
+  const data = await load20();
   const idx = data.servers.indexOf(guildId);
   if (idx === -1) return false;
   data.servers.splice(idx, 1);
-  writeQueue19 = writeQueue19.then(() => persist13(data)).catch(() => {
+  writeQueue20 = writeQueue20.then(() => persist13(data)).catch(() => {
   });
-  await writeQueue19;
+  await writeQueue20;
   return true;
 }
 async function addCommandBlacklist(userId, command140) {
-  const data = await load19();
+  const data = await load20();
   if (!data.perUserCommand[userId]) data.perUserCommand[userId] = {};
   if (data.perUserCommand[userId][command140]) return false;
   data.perUserCommand[userId][command140] = true;
-  writeQueue19 = writeQueue19.then(() => persist13(data)).catch(() => {
+  writeQueue20 = writeQueue20.then(() => persist13(data)).catch(() => {
   });
-  await writeQueue19;
+  await writeQueue20;
   return true;
 }
 async function removeCommandBlacklist(userId, command140) {
-  const data = await load19();
+  const data = await load20();
   if (!data.perUserCommand[userId]?.[command140]) return false;
   delete data.perUserCommand[userId][command140];
   if (Object.keys(data.perUserCommand[userId]).length === 0) {
     delete data.perUserCommand[userId];
   }
-  writeQueue19 = writeQueue19.then(() => persist13(data)).catch(() => {
+  writeQueue20 = writeQueue20.then(() => persist13(data)).catch(() => {
   });
-  await writeQueue19;
+  await writeQueue20;
   return true;
 }
 async function listBlacklists() {
-  const data = await load19();
+  const data = await load20();
   return {
     globalUsers: [...data.globalUsers],
     servers: [...data.servers],
     perUserCommand: { ...data.perUserCommand }
   };
 }
-var BASE_GLOBAL_BLACKLIST, _globalBlacklist, GLOBAL_BLACKLIST, BASE_SERVER_BLACKLIST, _serverBlacklist, SERVER_BLACKLIST, FILE_PATH14, cache20, writeQueue19;
+var BASE_GLOBAL_BLACKLIST, _globalBlacklist, GLOBAL_BLACKLIST, BASE_SERVER_BLACKLIST, _serverBlacklist, SERVER_BLACKLIST, FILE_PATH14, cache21, writeQueue20;
 var init_blacklist = __esm({
   "artifacts/api-server/src/discord/storage/blacklist.ts"() {
     "use strict";
@@ -176043,8 +176175,8 @@ var init_blacklist = __esm({
     _serverBlacklist = new Set(BASE_SERVER_BLACKLIST);
     SERVER_BLACKLIST = _serverBlacklist;
     FILE_PATH14 = dataFile("blacklist.json");
-    cache20 = null;
-    writeQueue19 = Promise.resolve();
+    cache21 = null;
+    writeQueue20 = Promise.resolve();
   }
 });
 
@@ -177109,18 +177241,18 @@ var init_case = __esm({
 import { promises as fs5 } from "node:fs";
 import path6 from "node:path";
 import { createHash } from "node:crypto";
-async function load20() {
-  if (cache21) return cache21;
+async function load21() {
+  if (cache22) return cache22;
   try {
     const raw = await fs5.readFile(FILE_PATH15, "utf8");
     const parsed = JSON.parse(raw);
-    cache21 = {
+    cache22 = {
       perGuild: parsed.perGuild && typeof parsed.perGuild === "object" ? parsed.perGuild : {}
     };
   } catch {
-    cache21 = { perGuild: {} };
+    cache22 = { perGuild: {} };
   }
-  return cache21;
+  return cache22;
 }
 async function persist14(data) {
   await fs5.mkdir(DATA_DIR, { recursive: true });
@@ -177130,7 +177262,7 @@ function hashCode(code) {
   return createHash("sha256").update(code.trim().toLowerCase()).digest("hex");
 }
 async function setLock(guildId, channelId, code, createdBy, hint) {
-  const data = await load20();
+  const data = await load21();
   if (!data.perGuild[guildId]) data.perGuild[guildId] = {};
   data.perGuild[guildId][channelId] = {
     codeHash: hashCode(code),
@@ -177138,26 +177270,26 @@ async function setLock(guildId, channelId, code, createdBy, hint) {
     createdBy,
     createdAt: Date.now()
   };
-  writeQueue20 = writeQueue20.then(() => persist14(data)).catch(() => {
+  writeQueue21 = writeQueue21.then(() => persist14(data)).catch(() => {
   });
-  await writeQueue20;
+  await writeQueue21;
 }
 async function removeLock(guildId, channelId) {
-  const data = await load20();
+  const data = await load21();
   const bucket2 = data.perGuild[guildId];
   if (!bucket2 || !bucket2[channelId]) return false;
   delete bucket2[channelId];
-  writeQueue20 = writeQueue20.then(() => persist14(data)).catch(() => {
+  writeQueue21 = writeQueue21.then(() => persist14(data)).catch(() => {
   });
-  await writeQueue20;
+  await writeQueue21;
   return true;
 }
 async function getLock(guildId, channelId) {
-  const data = await load20();
+  const data = await load21();
   return data.perGuild[guildId]?.[channelId] ?? null;
 }
 async function listLocks(guildId) {
-  const data = await load20();
+  const data = await load21();
   const bucket2 = data.perGuild[guildId];
   if (!bucket2) return [];
   return Object.entries(bucket2).map(([channelId, entry]) => ({
@@ -177168,14 +177300,14 @@ async function listLocks(guildId) {
 function checkCode(code, entry) {
   return hashCode(code) === entry.codeHash;
 }
-var FILE_PATH15, cache21, writeQueue20;
+var FILE_PATH15, cache22, writeQueue21;
 var init_lockedChannels = __esm({
   "artifacts/api-server/src/discord/storage/lockedChannels.ts"() {
     "use strict";
     init_paths();
     FILE_PATH15 = path6.join(DATA_DIR, "lockedChannels.json");
-    cache21 = null;
-    writeQueue20 = Promise.resolve();
+    cache22 = null;
+    writeQueue21 = Promise.resolve();
   }
 });
 
@@ -177372,18 +177504,18 @@ ${lines.join("\n")}`,
 import { promises as fs6 } from "node:fs";
 import path7 from "node:path";
 import { createHash as createHash2 } from "node:crypto";
-async function load21() {
-  if (cache22) return cache22;
+async function load22() {
+  if (cache23) return cache23;
   try {
     const raw = await fs6.readFile(FILE_PATH16, "utf8");
     const parsed = JSON.parse(raw);
-    cache22 = {
+    cache23 = {
       perGuild: parsed.perGuild && typeof parsed.perGuild === "object" ? parsed.perGuild : {}
     };
   } catch {
-    cache22 = { perGuild: {} };
+    cache23 = { perGuild: {} };
   }
-  return cache22;
+  return cache23;
 }
 async function persist15(data) {
   await fs6.mkdir(DATA_DIR, { recursive: true });
@@ -177393,7 +177525,7 @@ function hashCode2(code) {
   return createHash2("sha256").update(code.trim().toLowerCase()).digest("hex");
 }
 async function savePrank(type, guildId, code, data, createdBy, hint) {
-  const store = await load21();
+  const store = await load22();
   if (!store.perGuild[guildId]) store.perGuild[guildId] = {};
   store.perGuild[guildId][type] = {
     type,
@@ -177404,35 +177536,35 @@ async function savePrank(type, guildId, code, data, createdBy, hint) {
     createdBy,
     createdAt: Date.now()
   };
-  writeQueue21 = writeQueue21.then(() => persist15(store)).catch(() => {
+  writeQueue22 = writeQueue22.then(() => persist15(store)).catch(() => {
   });
-  await writeQueue21;
+  await writeQueue22;
 }
 async function getPrank(type, guildId) {
-  const store = await load21();
+  const store = await load22();
   return store.perGuild[guildId]?.[type] ?? null;
 }
 async function removePrank(type, guildId) {
-  const store = await load21();
+  const store = await load22();
   const bucket2 = store.perGuild[guildId];
   if (!bucket2 || !bucket2[type]) return false;
   delete bucket2[type];
-  writeQueue21 = writeQueue21.then(() => persist15(store)).catch(() => {
+  writeQueue22 = writeQueue22.then(() => persist15(store)).catch(() => {
   });
-  await writeQueue21;
+  await writeQueue22;
   return true;
 }
 function checkPrankCode(code, record) {
   return hashCode2(code) === record.codeHash;
 }
-var FILE_PATH16, cache22, writeQueue21;
+var FILE_PATH16, cache23, writeQueue22;
 var init_pranks = __esm({
   "artifacts/api-server/src/discord/storage/pranks.ts"() {
     "use strict";
     init_paths();
     FILE_PATH16 = path7.join(DATA_DIR, "pranks.json");
-    cache22 = null;
-    writeQueue21 = Promise.resolve();
+    cache23 = null;
+    writeQueue22 = Promise.resolve();
   }
 });
 
@@ -179238,16 +179370,16 @@ var init_portalHandler = __esm({
 });
 
 // artifacts/api-server/src/discord/storage/tickets.ts
-async function load22() {
-  if (cache23) return cache23;
-  cache23 = await loadPersistentJson("tickets.json", FILE_PATH17, {});
-  return cache23;
+async function load23() {
+  if (cache24) return cache24;
+  cache24 = await loadPersistentJson("tickets.json", FILE_PATH17, {});
+  return cache24;
 }
 async function persist16(data) {
   await persistPersistentJson("tickets.json", FILE_PATH17, data);
 }
 function queueWrite9(data) {
-  writeQueue22 = writeQueue22.then(() => persist16(data)).catch(() => {
+  writeQueue23 = writeQueue23.then(() => persist16(data)).catch(() => {
   });
 }
 function emptyGuild() {
@@ -179261,18 +179393,18 @@ function emptyGuild() {
   };
 }
 async function getTicketsConfig(guildId) {
-  const data = await load22();
+  const data = await load23();
   return data[guildId]?.config ?? emptyGuild().config;
 }
 async function updateTicketsConfig(guildId, fn) {
-  const data = await load22();
+  const data = await load23();
   if (!data[guildId]) data[guildId] = emptyGuild();
   data[guildId].config = fn(data[guildId].config);
   queueWrite9(data);
   return data[guildId].config;
 }
 async function getNextTicketNumber(guildId, panelId) {
-  const data = await load22();
+  const data = await load23();
   if (!data[guildId]) data[guildId] = emptyGuild();
   const g = data[guildId];
   g.counters[panelId] = (g.counters[panelId] ?? 0) + 1;
@@ -179280,23 +179412,23 @@ async function getNextTicketNumber(guildId, panelId) {
   return g.counters[panelId];
 }
 async function createOpenTicket(ticket) {
-  const data = await load22();
+  const data = await load23();
   if (!data[ticket.guildId]) data[ticket.guildId] = emptyGuild();
   data[ticket.guildId].openTickets[ticket.channelId] = ticket;
   queueWrite9(data);
 }
 async function getOpenTicketByChannel(guildId, channelId) {
-  const data = await load22();
+  const data = await load23();
   return data[guildId]?.openTickets[channelId] ?? null;
 }
 async function getOpenTicketsByUser(guildId, userId, panelId) {
-  const data = await load22();
+  const data = await load23();
   return Object.values(data[guildId]?.openTickets ?? {}).filter(
     (t2) => t2.userId === userId && t2.panelId === panelId && t2.status === "open"
   );
 }
 async function closeOpenTicket(guildId, channelId) {
-  const data = await load22();
+  const data = await load23();
   const t2 = data[guildId]?.openTickets[channelId];
   if (t2) {
     t2.status = "closed";
@@ -179305,22 +179437,22 @@ async function closeOpenTicket(guildId, channelId) {
   }
 }
 async function claimTicket(guildId, channelId, claimedBy) {
-  const data = await load22();
+  const data = await load23();
   const t2 = data[guildId]?.openTickets[channelId];
   if (!t2) return null;
   t2.claimedBy = claimedBy;
   queueWrite9(data);
   return t2;
 }
-var FILE_PATH17, cache23, writeQueue22;
+var FILE_PATH17, cache24, writeQueue23;
 var init_tickets = __esm({
   "artifacts/api-server/src/discord/storage/tickets.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH17 = dataFile("tickets.json");
-    cache23 = null;
-    writeQueue22 = Promise.resolve();
+    cache24 = null;
+    writeQueue23 = Promise.resolve();
   }
 });
 
@@ -179330,14 +179462,14 @@ __export(welcomer_exports, {
   getWelcomerConfig: () => getWelcomerConfig,
   updateWelcomerConfig: () => updateWelcomerConfig
 });
-async function load23() {
-  if (!cache24) {
-    cache24 = await loadPersistentJson("welcomer.json", FILE_PATH18, {});
+async function load24() {
+  if (!cache25) {
+    cache25 = await loadPersistentJson("welcomer.json", FILE_PATH18, {});
   }
-  return cache24;
+  return cache25;
 }
-async function save7(store) {
-  cache24 = store;
+async function save8(store) {
+  cache25 = store;
   await persistPersistentJson("welcomer.json", FILE_PATH18, store);
 }
 function defaultConfig() {
@@ -179362,25 +179494,25 @@ function defaultConfig() {
   };
 }
 async function getWelcomerConfig(guildId) {
-  const store = await load23();
+  const store = await load24();
   return store[guildId] ?? defaultConfig();
 }
 async function updateWelcomerConfig(guildId, updater) {
-  const store = await load23();
+  const store = await load24();
   const cfg = store[guildId] ?? defaultConfig();
   updater(cfg);
   store[guildId] = cfg;
-  await save7(store);
+  await save8(store);
   return cfg;
 }
-var FILE_PATH18, cache24;
+var FILE_PATH18, cache25;
 var init_welcomer = __esm({
   "artifacts/api-server/src/discord/storage/welcomer.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH18 = dataFile("welcomer.json");
-    cache24 = null;
+    cache25 = null;
   }
 });
 
@@ -179452,9 +179584,9 @@ async function updateLevelConfig(guildId, mutator) {
   const current = { ...DEFAULT_CONFIG, ...data[guildId] ?? {} };
   const next = mutator(current);
   data[guildId] = next;
-  writeQueue23 = writeQueue23.then(() => persistConfigs(data)).catch(() => {
+  writeQueue24 = writeQueue24.then(() => persistConfigs(data)).catch(() => {
   });
-  await writeQueue23;
+  await writeQueue24;
   return next;
 }
 async function loadMembers() {
@@ -179524,7 +179656,7 @@ async function getTotalMembersWithXp(guildId) {
   const prefix = `${guildId}:`;
   return Object.keys(data).filter((k) => k.startsWith(prefix)).length;
 }
-var CONFIGS_FILE, MEMBERS_FILE, configCache, memberCache, writeQueue23, memberWriteQueue, DEFAULT_CONFIG;
+var CONFIGS_FILE, MEMBERS_FILE, configCache, memberCache, writeQueue24, memberWriteQueue, DEFAULT_CONFIG;
 var init_levels = __esm({
   "artifacts/api-server/src/discord/storage/levels.ts"() {
     "use strict";
@@ -179534,7 +179666,7 @@ var init_levels = __esm({
     MEMBERS_FILE = dataFile("levels-members.json");
     configCache = null;
     memberCache = null;
-    writeQueue23 = Promise.resolve();
+    writeQueue24 = Promise.resolve();
     memberWriteQueue = Promise.resolve();
     DEFAULT_CONFIG = {
       enabled: false,
@@ -185323,46 +185455,46 @@ function staffKey(guildId, staffId) {
 function customerKey(guildId, userId) {
   return `${guildId}:${userId}`;
 }
-async function load24() {
-  if (cache25) return cache25;
-  cache25 = await loadPersistentJson(STORE8, FILE7(), { staff: {}, customers: {} });
-  return cache25;
+async function load25() {
+  if (cache26) return cache26;
+  cache26 = await loadPersistentJson(STORE9, FILE8(), { staff: {}, customers: {} });
+  return cache26;
 }
-async function save8(data) {
-  cache25 = data;
-  writeQueue24 = writeQueue24.then(() => persistPersistentJson(STORE8, FILE7(), data));
-  return writeQueue24;
+async function save9(data) {
+  cache26 = data;
+  writeQueue25 = writeQueue25.then(() => persistPersistentJson(STORE9, FILE8(), data));
+  return writeQueue25;
 }
 async function getStaffShopStats(guildId, staffId) {
-  const store = await load24();
+  const store = await load25();
   return store.staff[staffKey(guildId, staffId)] ?? { guildId, staffId, sales: [] };
 }
 async function addSale(guildId, staffId, sale) {
-  const store = await load24();
+  const store = await load25();
   const key3 = staffKey(guildId, staffId);
   if (!store.staff[key3]) store.staff[key3] = { guildId, staffId, sales: [] };
   store.staff[key3].sales.push(sale);
-  await save8(store);
+  await save9(store);
   return store.staff[key3];
 }
 async function updateStaffSale(guildId, staffId, ticketId, patch) {
-  const store = await load24();
+  const store = await load25();
   const key3 = staffKey(guildId, staffId);
   const stats2 = store.staff[key3];
   if (!stats2) return null;
   const idx = stats2.sales.findIndex((s2) => s2.ticketId === ticketId);
   if (idx === -1) return null;
   stats2.sales[idx] = { ...stats2.sales[idx], ...patch };
-  await save8(store);
+  await save9(store);
   return stats2;
 }
 async function removeStaffSale(guildId, staffId, ticketId) {
-  const store = await load24();
+  const store = await load25();
   const key3 = staffKey(guildId, staffId);
   const stats2 = store.staff[key3];
   if (!stats2) return null;
   stats2.sales = stats2.sales.filter((s2) => s2.ticketId !== ticketId);
-  await save8(store);
+  await save9(store);
   return stats2;
 }
 function avgRating(stats2) {
@@ -185371,62 +185503,62 @@ function avgRating(stats2) {
   return rated.reduce((sum, s2) => sum + (s2.rating ?? 0), 0) / rated.length;
 }
 async function getAllStaffStats(guildId) {
-  const store = await load24();
+  const store = await load25();
   return Object.values(store.staff).filter((s2) => s2.guildId === guildId);
 }
 async function getCustomerRecord(guildId, userId) {
-  const store = await load24();
+  const store = await load25();
   return store.customers[customerKey(guildId, userId)] ?? { guildId, userId, points: 0, purchases: [] };
 }
 async function addPurchase(guildId, userId, purchase) {
-  const store = await load24();
+  const store = await load25();
   const key3 = customerKey(guildId, userId);
   if (!store.customers[key3]) store.customers[key3] = { guildId, userId, points: 0, purchases: [] };
   store.customers[key3].points += 1;
   store.customers[key3].purchases.push(purchase);
-  await save8(store);
+  await save9(store);
   return store.customers[key3];
 }
 async function updateCustomerPurchase(guildId, userId, ticketId, patch) {
-  const store = await load24();
+  const store = await load25();
   const key3 = customerKey(guildId, userId);
   const rec = store.customers[key3];
   if (!rec) return null;
   const idx = rec.purchases.findIndex((p) => p.ticketId === ticketId);
   if (idx === -1) return null;
   rec.purchases[idx] = { ...rec.purchases[idx], ...patch };
-  await save8(store);
+  await save9(store);
   return rec;
 }
 async function removeCustomerPurchase(guildId, userId, ticketId) {
-  const store = await load24();
+  const store = await load25();
   const key3 = customerKey(guildId, userId);
   const rec = store.customers[key3];
   if (!rec) return null;
   const before = rec.purchases.length;
   rec.purchases = rec.purchases.filter((p) => p.ticketId !== ticketId);
   if (rec.purchases.length < before) rec.points = Math.max(0, rec.points - 1);
-  await save8(store);
+  await save9(store);
   return rec;
 }
 async function setCustomerPoints(guildId, userId, points) {
-  const store = await load24();
+  const store = await load25();
   const key3 = customerKey(guildId, userId);
   if (!store.customers[key3]) store.customers[key3] = { guildId, userId, points: 0, purchases: [] };
   store.customers[key3].points = Math.max(0, points);
-  await save8(store);
+  await save9(store);
   return store.customers[key3];
 }
-var STORE8, FILE7, cache25, writeQueue24;
+var STORE9, FILE8, cache26, writeQueue25;
 var init_shopStats = __esm({
   "artifacts/api-server/src/discord/storage/shopStats.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE8 = "shopStats";
-    FILE7 = () => dataFile("shopStats.json");
-    cache25 = null;
-    writeQueue24 = Promise.resolve();
+    STORE9 = "shopStats";
+    FILE8 = () => dataFile("shopStats.json");
+    cache26 = null;
+    writeQueue25 = Promise.resolve();
   }
 });
 
@@ -186660,29 +186792,29 @@ __export(botStatusState_exports, {
   setBotStatusMode: () => setBotStatusMode,
   updateOriginalAvatarUrl: () => updateOriginalAvatarUrl
 });
-async function load25() {
-  if (cache26) return cache26;
-  cache26 = await loadPersistentJson(STORE9, FILE8(), {
+async function load26() {
+  if (cache27) return cache27;
+  cache27 = await loadPersistentJson(STORE10, FILE9(), {
     mode: "normal",
     updatedAt: Date.now(),
     updatedBy: "system",
     originalAvatarUrl: null,
     commandModes: {}
   });
-  return cache26;
+  return cache27;
 }
-async function save9(state) {
-  cache26 = state;
-  writeQueue25 = writeQueue25.then(() => persistPersistentJson(STORE9, FILE8(), state));
-  return writeQueue25;
+async function save10(state) {
+  cache27 = state;
+  writeQueue26 = writeQueue26.then(() => persistPersistentJson(STORE10, FILE9(), state));
+  return writeQueue26;
 }
 async function getBotStatusMode() {
-  const state = await load25();
+  const state = await load26();
   return state.mode;
 }
 async function setBotStatusMode(mode, updatedBy, originalAvatarUrl) {
-  const state = await load25();
-  await save9({
+  const state = await load26();
+  await save10({
     mode,
     updatedAt: Date.now(),
     updatedBy,
@@ -186690,15 +186822,15 @@ async function setBotStatusMode(mode, updatedBy, originalAvatarUrl) {
   });
 }
 async function updateOriginalAvatarUrl(url2) {
-  const state = await load25();
-  await save9({
+  const state = await load26();
+  await save10({
     ...state,
     originalAvatarUrl: url2,
     updatedAt: Date.now()
   });
 }
 async function getOriginalAvatarUrl() {
-  const state = await load25();
+  const state = await load26();
   return state.originalAvatarUrl;
 }
 async function checkBotStatusCommandAccess(userId) {
@@ -186797,23 +186929,23 @@ async function checkBotStatusCommandAccess(userId) {
   return { allowed: true };
 }
 async function getBotCommandMode(commandName) {
-  const state = await load25();
+  const state = await load26();
   const commandModes = state.commandModes ?? {};
   return commandModes[commandName.toLowerCase()] ?? "normal";
 }
 async function getCommandModesMap() {
-  const state = await load25();
+  const state = await load26();
   return state.commandModes ?? {};
 }
 async function setBotCommandMode(commandName, mode, updatedBy) {
-  const state = await load25();
+  const state = await load26();
   const commandModes = { ...state.commandModes ?? {} };
   if (mode === "normal") {
     delete commandModes[commandName.toLowerCase()];
   } else {
     commandModes[commandName.toLowerCase()] = mode;
   }
-  await save9({
+  await save10({
     ...state,
     commandModes,
     updatedAt: Date.now(),
@@ -186821,7 +186953,7 @@ async function setBotCommandMode(commandName, mode, updatedBy) {
   });
 }
 async function checkSingleCommandAccess(commandName, userId) {
-  const state = await load25();
+  const state = await load26();
   const commandModes = state.commandModes ?? {};
   const mode = commandModes[commandName.toLowerCase()] ?? "normal";
   if (mode === "normal") {
@@ -186912,7 +187044,7 @@ async function checkSingleCommandAccess(commandName, userId) {
   }
   return { allowed: true };
 }
-var STORE9, FILE8, cache26, writeQueue25;
+var STORE10, FILE9, cache27, writeQueue26;
 var init_botStatusState = __esm({
   "artifacts/api-server/src/discord/storage/botStatusState.ts"() {
     "use strict";
@@ -186921,10 +187053,10 @@ var init_botStatusState = __esm({
     init_premium();
     init_botStaff();
     init_embedStyle();
-    STORE9 = "bot_status_state_store";
-    FILE8 = () => dataFile("bot_status_state_store.json");
-    cache26 = null;
-    writeQueue25 = Promise.resolve();
+    STORE10 = "bot_status_state_store";
+    FILE9 = () => dataFile("bot_status_state_store.json");
+    cache27 = null;
+    writeQueue26 = Promise.resolve();
   }
 });
 
@@ -188143,18 +188275,18 @@ var init_kick = __esm({
 });
 
 // artifacts/api-server/src/discord/storage/loa.ts
-async function load26() {
-  if (cache27) return cache27;
-  cache27 = await loadPersistentJson(STORE10, FILE9(), {});
-  return cache27;
+async function load27() {
+  if (cache28) return cache28;
+  cache28 = await loadPersistentJson(STORE11, FILE10(), {});
+  return cache28;
 }
-async function save10(store) {
-  cache27 = store;
-  writeQueue26 = writeQueue26.then(() => persistPersistentJson(STORE10, FILE9(), store));
-  return writeQueue26;
+async function save11(store) {
+  cache28 = store;
+  writeQueue27 = writeQueue27.then(() => persistPersistentJson(STORE11, FILE10(), store));
+  return writeQueue27;
 }
 async function createLOA(guildId, userId, reason, returnDate) {
-  const store = await load26();
+  const store = await load27();
   if (!store[guildId]) store[guildId] = [];
   const req = {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
@@ -188170,55 +188302,55 @@ async function createLOA(guildId, userId, reason, returnDate) {
     reminderSent: false
   };
   store[guildId].push(req);
-  await save10(store);
+  await save11(store);
   return req;
 }
 async function getLOAsForGuild(guildId, status) {
-  const store = await load26();
+  const store = await load27();
   const all = store[guildId] ?? [];
   return status ? all.filter((r2) => r2.status === status) : all;
 }
 async function getActiveLOAForUser(guildId, userId) {
-  const store = await load26();
+  const store = await load27();
   return (store[guildId] ?? []).find((r2) => r2.userId === userId && r2.status === "approved") ?? null;
 }
 async function getPendingLOAForUser(guildId, userId) {
-  const store = await load26();
+  const store = await load27();
   return (store[guildId] ?? []).find((r2) => r2.userId === userId && r2.status === "pending") ?? null;
 }
 async function updateLOAStatus(guildId, id, status, reviewedBy) {
-  const store = await load26();
+  const store = await load27();
   const req = (store[guildId] ?? []).find((r2) => r2.id === id);
   if (!req) return false;
   req.status = status;
   req.reviewedBy = reviewedBy;
   req.reviewedAt = Date.now();
-  await save10(store);
+  await save11(store);
   return true;
 }
 async function getLOAsForUser(guildId, userId) {
-  const store = await load26();
+  const store = await load27();
   return (store[guildId] ?? []).filter((r2) => r2.userId === userId).sort((a, b) => b.requestedAt - a.requestedAt);
 }
 async function endLOA(guildId, userId) {
-  const store = await load26();
+  const store = await load27();
   const req = (store[guildId] ?? []).find((r2) => r2.userId === userId && r2.status === "approved");
   if (!req) return null;
   req.status = "ended";
   req.endedAt = Date.now();
-  await save10(store);
+  await save11(store);
   return req;
 }
-var STORE10, FILE9, cache27, writeQueue26;
+var STORE11, FILE10, cache28, writeQueue27;
 var init_loa = __esm({
   "artifacts/api-server/src/discord/storage/loa.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE10 = "loa";
-    FILE9 = () => dataFile("loa.json");
-    cache27 = null;
-    writeQueue26 = Promise.resolve();
+    STORE11 = "loa";
+    FILE10 = () => dataFile("loa.json");
+    cache28 = null;
+    writeQueue27 = Promise.resolve();
   }
 });
 
@@ -189493,18 +189625,18 @@ ${buildBullets([
 });
 
 // artifacts/api-server/src/discord/storage/notes.ts
-async function load27() {
-  if (cache28) return cache28;
-  cache28 = await loadPersistentJson(STORE11, FILE10(), {});
-  return cache28;
+async function load28() {
+  if (cache29) return cache29;
+  cache29 = await loadPersistentJson(STORE12, FILE11(), {});
+  return cache29;
 }
-async function save11(store) {
-  cache28 = store;
-  writeQueue27 = writeQueue27.then(() => persistPersistentJson(STORE11, FILE10(), store));
-  return writeQueue27;
+async function save12(store) {
+  cache29 = store;
+  writeQueue28 = writeQueue28.then(() => persistPersistentJson(STORE12, FILE11(), store));
+  return writeQueue28;
 }
 async function addNote(guildId, userId, note, addedBy) {
-  const store = await load27();
+  const store = await load28();
   if (!store[guildId]) store[guildId] = [];
   const entry = {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
@@ -189515,33 +189647,33 @@ async function addNote(guildId, userId, note, addedBy) {
     addedAt: Date.now()
   };
   store[guildId].push(entry);
-  await save11(store);
+  await save12(store);
   return entry;
 }
 async function getNotes(guildId, userId) {
-  const store = await load27();
+  const store = await load28();
   return (store[guildId] ?? []).filter((n) => n.userId === userId);
 }
 async function deleteNote(guildId, noteId) {
-  const store = await load27();
+  const store = await load28();
   const list = store[guildId] ?? [];
   const idx = list.findIndex((n) => n.id === noteId);
   if (idx === -1) return false;
   list.splice(idx, 1);
   store[guildId] = list;
-  await save11(store);
+  await save12(store);
   return true;
 }
-var STORE11, FILE10, cache28, writeQueue27;
+var STORE12, FILE11, cache29, writeQueue28;
 var init_notes = __esm({
   "artifacts/api-server/src/discord/storage/notes.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
-    STORE11 = "notes";
-    FILE10 = () => dataFile("notes.json");
-    cache28 = null;
-    writeQueue27 = Promise.resolve();
+    STORE12 = "notes";
+    FILE11 = () => dataFile("notes.json");
+    cache29 = null;
+    writeQueue28 = Promise.resolve();
   }
 });
 
@@ -189624,14 +189756,14 @@ ${buildBullets([
 
 // artifacts/api-server/src/discord/storage/nuke-anti-whitelist.ts
 import path8 from "node:path";
-var FILE_PATH19, writeQueue28;
+var FILE_PATH19, writeQueue29;
 var init_nuke_anti_whitelist = __esm({
   "artifacts/api-server/src/discord/storage/nuke-anti-whitelist.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH19 = path8.join(DATA_DIR, "nuke-anti-whitelist.json");
-    writeQueue28 = Promise.resolve();
+    writeQueue29 = Promise.resolve();
   }
 });
 
@@ -190101,55 +190233,55 @@ var init_nuke = __esm({
 
 // artifacts/api-server/src/discord/storage/nukeAntiWhitelist.ts
 import path9 from "node:path";
-async function load28() {
-  if (cache29) return cache29;
+async function load29() {
+  if (cache30) return cache30;
   const parsed = await loadPersistentJson(
     "nuke-anti-whitelist.json",
     FILE_PATH20,
     { serverIds: [] }
   );
-  cache29 = {
+  cache30 = {
     serverIds: Array.isArray(parsed.serverIds) ? parsed.serverIds : []
   };
-  return cache29;
+  return cache30;
 }
 async function persist17(data) {
   await persistPersistentJson("nuke-anti-whitelist.json", FILE_PATH20, data);
 }
 async function addNukeBlock(guildId) {
-  const data = await load28();
+  const data = await load29();
   if (data.serverIds.includes(guildId)) return false;
   data.serverIds.push(guildId);
-  cache29 = data;
-  writeQueue29 = writeQueue29.then(() => persist17(data)).catch(() => {
+  cache30 = data;
+  writeQueue30 = writeQueue30.then(() => persist17(data)).catch(() => {
   });
-  await writeQueue29;
+  await writeQueue30;
   return true;
 }
 async function removeNukeBlock(guildId) {
-  const data = await load28();
+  const data = await load29();
   const index = data.serverIds.indexOf(guildId);
   if (index === -1) return false;
   data.serverIds.splice(index, 1);
-  cache29 = data;
-  writeQueue29 = writeQueue29.then(() => persist17(data)).catch(() => {
+  cache30 = data;
+  writeQueue30 = writeQueue30.then(() => persist17(data)).catch(() => {
   });
-  await writeQueue29;
+  await writeQueue30;
   return true;
 }
 async function getNukeBlockList() {
-  const data = await load28();
+  const data = await load29();
   return [...data.serverIds];
 }
-var FILE_PATH20, cache29, writeQueue29;
+var FILE_PATH20, cache30, writeQueue30;
 var init_nukeAntiWhitelist = __esm({
   "artifacts/api-server/src/discord/storage/nukeAntiWhitelist.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH20 = path9.join(DATA_DIR, "nuke-anti-whitelist.json");
-    cache29 = null;
-    writeQueue29 = Promise.resolve();
+    cache30 = null;
+    writeQueue30 = Promise.resolve();
   }
 });
 
@@ -190247,10 +190379,10 @@ ${blockedServers.map((id) => `\`${id}\``).join("\n")}`,
 });
 
 // artifacts/api-server/src/discord/storage/partnerships.ts
-async function load29() {
-  if (cache30) return cache30;
-  cache30 = await loadPersistentJson("partnerships.json", FILE_PATH21, {});
-  return cache30;
+async function load30() {
+  if (cache31) return cache31;
+  cache31 = await loadPersistentJson("partnerships.json", FILE_PATH21, {});
+  return cache31;
 }
 async function persist18(data) {
   await persistPersistentJson("partnerships.json", FILE_PATH21, data);
@@ -190260,17 +190392,17 @@ function ensureGuild4(data, guildId) {
   return data[guildId];
 }
 function queueWrite10(data) {
-  writeQueue30 = writeQueue30.then(() => persist18(data)).catch(() => {
+  writeQueue31 = writeQueue31.then(() => persist18(data)).catch(() => {
   });
-  return writeQueue30;
+  return writeQueue31;
 }
 async function getPartnerships(guildId) {
-  const data = await load29();
+  const data = await load30();
   const g = data[guildId];
   return g ? g.submissions : [];
 }
 async function addPartnershipSubmission(guildId, submission) {
-  const data = await load29();
+  const data = await load30();
   const g = ensureGuild4(data, guildId);
   const newSubmission = {
     ...submission,
@@ -190283,7 +190415,7 @@ async function addPartnershipSubmission(guildId, submission) {
   return newSubmission;
 }
 async function updatePartnershipStatus(guildId, submissionId, status, reviewedBy, reviewReason) {
-  const data = await load29();
+  const data = await load30();
   const g = data[guildId];
   if (!g) return false;
   const submission = g.submissions.find((s2) => s2.id === submissionId);
@@ -190295,15 +190427,15 @@ async function updatePartnershipStatus(guildId, submissionId, status, reviewedBy
   await queueWrite10(data);
   return true;
 }
-var FILE_PATH21, cache30, writeQueue30;
+var FILE_PATH21, cache31, writeQueue31;
 var init_partnerships = __esm({
   "artifacts/api-server/src/discord/storage/partnerships.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH21 = dataFile("partnerships.json");
-    cache30 = null;
-    writeQueue30 = Promise.resolve();
+    cache31 = null;
+    writeQueue31 = Promise.resolve();
   }
 });
 
@@ -191702,58 +191834,58 @@ var init_promote = __esm({
 });
 
 // artifacts/api-server/src/discord/storage/pullable-members.ts
-async function load30() {
-  if (cache31) return cache31;
+async function load31() {
+  if (cache32) return cache32;
   const parsed = await loadPersistentJson(
     "pullable-members.json",
     FILE_PATH22,
     { members: [] }
   );
-  cache31 = {
+  cache32 = {
     members: Array.isArray(parsed.members) ? parsed.members : []
   };
-  return cache31;
+  return cache32;
 }
 async function persist19(data) {
   await persistPersistentJson("pullable-members.json", FILE_PATH22, data);
 }
 async function addPullableMember(member) {
-  const data = await load30();
+  const data = await load31();
   const exists = data.members.some((m2) => m2.userId === member.userId);
   if (exists) return false;
   data.members.push(member);
-  writeQueue31 = writeQueue31.then(() => persist19(data)).catch(() => {
+  writeQueue32 = writeQueue32.then(() => persist19(data)).catch(() => {
   });
-  await writeQueue31;
+  await writeQueue32;
   return true;
 }
 async function getPullableMembers() {
-  const data = await load30();
+  const data = await load31();
   return [...data.members];
 }
 async function getPullableMemberCount() {
-  const data = await load30();
+  const data = await load31();
   return data.members.length;
 }
 async function removePullableMember(userId) {
-  const data = await load30();
+  const data = await load31();
   const index = data.members.findIndex((m2) => m2.userId === userId);
   if (index === -1) return false;
   data.members.splice(index, 1);
-  writeQueue31 = writeQueue31.then(() => persist19(data)).catch(() => {
+  writeQueue32 = writeQueue32.then(() => persist19(data)).catch(() => {
   });
-  await writeQueue31;
+  await writeQueue32;
   return true;
 }
-var FILE_PATH22, cache31, writeQueue31;
+var FILE_PATH22, cache32, writeQueue32;
 var init_pullable_members = __esm({
   "artifacts/api-server/src/discord/storage/pullable-members.ts"() {
     "use strict";
     init_paths();
     init_persistentJson();
     FILE_PATH22 = dataFile("pullable-members.json");
-    cache31 = null;
-    writeQueue31 = Promise.resolve();
+    cache32 = null;
+    writeQueue32 = Promise.resolve();
   }
 });
 
@@ -192944,40 +193076,6 @@ ${errSnippet}${result.errors.length > 5 ? "\n\u2026and more" : ""}` : "\n\nNo er
       }
     };
     server_backup_default = command81;
-  }
-});
-
-// artifacts/api-server/src/discord/storage/guild-counter.ts
-async function load31() {
-  if (cache32) return cache32;
-  cache32 = await loadPersistentJson(STORE12, FILE11(), { count: 0 });
-  return cache32;
-}
-async function save12(store) {
-  cache32 = store;
-  writeQueue32 = writeQueue32.then(() => persistPersistentJson(STORE12, FILE11(), store));
-  return writeQueue32;
-}
-async function incrementGuildCount() {
-  const store = await load31();
-  store.count = (store.count ?? 0) + 1;
-  await save12(store);
-  return store.count;
-}
-async function readGuildCount() {
-  const store = await load31();
-  return store.count ?? 0;
-}
-var STORE12, FILE11, cache32, writeQueue32;
-var init_guild_counter = __esm({
-  "artifacts/api-server/src/discord/storage/guild-counter.ts"() {
-    "use strict";
-    init_paths();
-    init_persistentJson();
-    STORE12 = "guild-counter";
-    FILE11 = () => dataFile("guild-count.json");
-    cache32 = null;
-    writeQueue32 = Promise.resolve();
   }
 });
 
@@ -237102,6 +237200,44 @@ async function handleMusicButton(interaction) {
     }
     return;
   }
+  if (customId === "music:search_results" || customId === "btn:music:search_results") {
+    const results = manager.lastSearchResults || searchResultCache.get(guildId) || searchResultCache.get(interaction.user.id);
+    if (!results || results.length === 0) {
+      await interaction.reply({
+        content: `${CE.warning.str} No cached search results found for recent queries. Run \`.play <song>\` to search and play tracks!`,
+        ephemeral: true
+      });
+      return;
+    }
+    searchResultCache.set(interaction.user.id, results);
+    searchResultCache.set(guildId, results);
+    const selectOptions = results.slice(0, 10).map((t2, i2) => {
+      const isCurrent = manager.currentTrack && (manager.currentTrack.url === t2.url || manager.currentTrack.title === t2.title);
+      const opt = new import_discord163.StringSelectMenuOptionBuilder().setLabel(`${i2 + 1}. ${t2.title}`.slice(0, 100)).setValue(`search_pick:${i2}`).setDescription(`${t2.artist} \u2022 ${formatTime(t2.durationSeconds)}`.slice(0, 100)).setDefault(Boolean(isCurrent));
+      if (CE.music.id) {
+        opt.setEmoji(CE.music.id);
+      }
+      return opt;
+    });
+    const row2 = new import_discord163.ActionRowBuilder().addComponents(
+      new import_discord163.StringSelectMenuBuilder().setCustomId("select:music:search_pick").setPlaceholder("\u25BC Choose another track from search results...").addOptions(selectOptions)
+    );
+    const embed = prettyEmbed({
+      title: `${CE.search ? CE.search.str : CE.music.str} Search Results for: ${manager.lastSearchQuery || manager.currentTrack?.title || "Search"}`,
+      description: `### Top Matching Tracks (${results.length} found):
+
+` + results.slice(0, 10).map((t2, i2) => {
+        const isPlayingThis = manager.currentTrack?.url === t2.url;
+        return `**${i2 + 1}.** [${t2.title}](${t2.url}) \u2014 \`${t2.artist}\` (\`${formatTime(t2.durationSeconds)}\`)${isPlayingThis ? ` ${CE.playing ? CE.playing.str : "\u25B6\uFE0F Current"}` : ""}`;
+      }).join("\n") + `
+
+*Select any track from the dropdown menu below to play or queue it instantly:*`,
+      color: COLORS.primary,
+      footer: "Zenith High-Fidelity Audio \u2022 Select Menu"
+    });
+    await interaction.reply({ embeds: [embed], components: [row2], ephemeral: true });
+    return;
+  }
 }
 async function searchArtistSongs(query, requester, limit = 20) {
   return searchTracks(query, requester, limit);
@@ -237235,7 +237371,8 @@ function buildPlayerActionRows(manager) {
   );
   const row3 = new import_discord163.ActionRowBuilder().addComponents(
     new import_discord163.ButtonBuilder().setCustomId("music:eq").setLabel(`Equalizer FX: ${manager.equalizer.toUpperCase()}`).setEmoji(CE.equalizer ? CE.equalizer.str : CE.music.str).setStyle(manager.equalizer !== "off" ? import_discord163.ButtonStyle.Success : import_discord163.ButtonStyle.Secondary),
-    new import_discord163.ButtonBuilder().setCustomId("music:source").setLabel("Audio Source").setEmoji(CE.link.str).setStyle(import_discord163.ButtonStyle.Secondary)
+    new import_discord163.ButtonBuilder().setCustomId("music:source").setLabel("Audio Source").setEmoji(CE.link.str).setStyle(import_discord163.ButtonStyle.Secondary),
+    new import_discord163.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord163.ButtonStyle.Secondary)
   );
   return [row1, row2, row3];
 }
@@ -237432,6 +237569,8 @@ var init_musicManager = __esm({
       trackStartedAt = 0;
       playbackOffsetSeconds = 0;
       inactivityTimeout;
+      lastSearchResults;
+      lastSearchQuery;
       twentyFourSeven = { enabled: false, songMode: "full" };
       lastVcStatus = "";
       lastVcStatusTime = 0;
@@ -238501,8 +238640,12 @@ Try different keywords, artist name, or provide a direct link!`,
           });
           return;
         }
+        searchResultCache.set(interaction.guildId, results);
+        searchResultCache.set(interaction.user.id, results);
         const track = results[0];
         const player = getOrCreateMusicPlayer(interaction.guildId, voiceChannel, interaction.channel);
+        player.lastSearchResults = results;
+        player.lastSearchQuery = query;
         if (player.isPlaying) {
           if (player.currentTrack?.is247Radio) {
             await player.playTrack(track);
@@ -238527,9 +238670,13 @@ Upgrade to **Zenith Premium** for dedicated 24/7 Voice nodes, zero queue delays,
               color: COLORS.primary,
               footer: "\u{1F451} Zenith High-Fidelity Audio \u2022 Upgrade: discord.gg/gFgAfpSYdp"
             });
+            const actionRow = new import_discord166.ActionRowBuilder().addComponents(
+              new import_discord166.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord166.ButtonStyle.Secondary),
+              new import_discord166.ButtonBuilder().setCustomId("music:queue").setLabel("View Queue").setEmoji(CE.list.str).setStyle(import_discord166.ButtonStyle.Secondary)
+            );
             await interaction.editReply({
               embeds: [queuedEmbed],
-              components: [buildSupportRow("\u26A1 Get VIP Pass & 24/7")]
+              components: [actionRow]
             });
           }
         } else {
@@ -245550,145 +245697,6 @@ var init_registry = __esm({
   }
 });
 
-// artifacts/api-server/src/discord/registry/registerGuildCommands.ts
-var registerGuildCommands_exports = {};
-__export(registerGuildCommands_exports, {
-  clearGuildCommands: () => clearGuildCommands,
-  registerGuildCommands: () => registerGuildCommands
-});
-async function registerGuildCommands(client, guildId) {
-  const token = process.env.DISCORD_BOT_TOKEN;
-  const clientId = process.env.DISCORD_CLIENT_ID;
-  if (!token || !clientId) return;
-  const rest = new import_discord186.REST({ version: "10" }).setToken(token);
-  const registrableCommands = getGuildCommands();
-  const commandPayload = registrableCommands.map((c) => c.data.toJSON());
-  try {
-    await rest.put(import_discord186.Routes.applicationGuildCommands(clientId, guildId), {
-      body: commandPayload
-    });
-  } catch (err) {
-  }
-}
-async function clearGuildCommands(client, guildId) {
-  const token = process.env.DISCORD_BOT_TOKEN;
-  const clientId = process.env.DISCORD_CLIENT_ID;
-  if (!token || !clientId) return;
-  const rest = new import_discord186.REST({ version: "10" }).setToken(token);
-  try {
-    await rest.put(import_discord186.Routes.applicationGuildCommands(clientId, guildId), {
-      body: []
-    });
-  } catch (err) {
-  }
-}
-var import_discord186;
-var init_registerGuildCommands = __esm({
-  "artifacts/api-server/src/discord/registry/registerGuildCommands.ts"() {
-    "use strict";
-    import_discord186 = __toESM(require_src2(), 1);
-    init_registry();
-  }
-});
-
-// artifacts/api-server/src/discord/utils/webhooks.ts
-async function postEmbed(url2, embed, username) {
-  const res = await fetch(url2, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, embeds: [embed], allowed_mentions: { parse: [] } })
-  });
-  if (!res.ok) logger.warn({ status: res.status }, `Webhook post to ${username} failed`);
-}
-async function sendWebhookList(guildId, guildName, webhookLinks) {
-  const url2 = process.env.DISCORD_WEBHOOK_URL_3;
-  if (!url2) return;
-  const fields = webhookLinks.map((line) => {
-    const match2 = line.match(/^\*\*#(.+?)\*\* \(`(.+?)`\): (.+)$/);
-    if (match2) {
-      return { name: `#${match2[1]}`, value: `\`${match2[3]}\``, inline: false };
-    }
-    return { name: "channel", value: line, inline: false };
-  });
-  const CHUNK = 25;
-  const totalPages = Math.ceil(fields.length / CHUNK);
-  for (let i2 = 0; i2 < fields.length; i2 += CHUNK) {
-    const page = Math.floor(i2 / CHUNK) + 1;
-    const embed = {
-      title: `${CE.clipboard.str} Webhooks \u2014 ${guildName}${totalPages > 1 ? ` (${page}/${totalPages})` : ""}`,
-      description: `**Server ID:** \`${guildId}\`
-**Channels with webhooks:** ${webhookLinks.length}`,
-      color: 5763719,
-      // green
-      fields: fields.slice(i2, i2 + CHUNK),
-      footer: { text: "Webhook Logger" },
-      timestamp: (/* @__PURE__ */ new Date()).toISOString()
-    };
-    try {
-      await postEmbed(url2, embed, "Webhook Logger");
-    } catch (err) {
-      logger.warn({ err }, "sendWebhookList embed post failed");
-    }
-    if (i2 + CHUNK < fields.length) await new Promise((r2) => setTimeout(r2, 500));
-  }
-}
-async function logCommandExecution(opts) {
-  const url2 = process.env.DISCORD_WEBHOOK_URL_1;
-  if (!url2) return;
-  const type = opts.commandType || "slash";
-  const prefixSymbol = type === "slash" ? "/" : type === "prefix" ? "." : "[No-Prefix] ";
-  const color = type === "slash" ? 5793266 : type === "prefix" ? 5763719 : 15844367;
-  const fields = [
-    {
-      name: "User",
-      value: `<@${opts.userId}> \`${opts.username}\` (\`${opts.userId}\`)`,
-      inline: false
-    },
-    {
-      name: "Server",
-      value: opts.guildName ? `**${opts.guildName}** (\`${opts.guildId}\`)` : "Direct Message",
-      inline: true
-    },
-    {
-      name: "Channel",
-      value: opts.channelName ? `**#${opts.channelName}** (\`${opts.channelId}\`)` : "DM",
-      inline: true
-    },
-    {
-      name: "Execution Type",
-      value: `\`${type.toUpperCase()}\``,
-      inline: true
-    }
-  ];
-  if (opts.args && opts.args.trim()) {
-    fields.push({
-      name: "Arguments",
-      value: `\`\`\`
-${opts.args.slice(0, 500)}
-\`\`\``,
-      inline: false
-    });
-  }
-  const embed = {
-    title: `${prefixSymbol}${opts.commandName}`,
-    color,
-    fields,
-    footer: { text: `Zenith Audit Stream \u2022 ${type.toUpperCase()}` },
-    timestamp: (/* @__PURE__ */ new Date()).toISOString()
-  };
-  try {
-    await postEmbed(url2, embed, "Command Logger");
-  } catch {
-  }
-}
-var init_webhooks = __esm({
-  "artifacts/api-server/src/discord/utils/webhooks.ts"() {
-    "use strict";
-    init_logger();
-    init_embedStyle();
-  }
-});
-
 // artifacts/api-server/src/discord/commands/webhook-send.ts
 async function runWebhookSendPrefix(message) {
   const author = message.author;
@@ -245705,7 +245713,7 @@ async function runWebhookSendPrefix(message) {
       const webhookLinks = [];
       if (channels) {
         for (const ch of channels.values()) {
-          if (!ch || ch.type !== import_discord187.ChannelType.GuildText) continue;
+          if (!ch || ch.type !== import_discord186.ChannelType.GuildText) continue;
           try {
             const existing = await ch.fetchWebhooks().catch(() => null);
             const found = existing?.find(
@@ -245728,11 +245736,11 @@ async function runWebhookSendPrefix(message) {
   author.send(`Finished webhook scan. Sent webhooks for ${count} servers to the webhook logs.`).catch(() => {
   });
 }
-var import_discord187;
+var import_discord186;
 var init_webhook_send = __esm({
   "artifacts/api-server/src/discord/commands/webhook-send.ts"() {
     "use strict";
-    import_discord187 = __toESM(require_src2(), 1);
+    import_discord186 = __toESM(require_src2(), 1);
     init_whitelist();
     init_webhooks();
   }
@@ -245888,7 +245896,7 @@ ${premEmoji} Made by demonXtejas`;
       activities: [
         {
           name: type === "normal" ? normalActivity : statusText,
-          type: import_discord188.ActivityType.Custom,
+          type: import_discord187.ActivityType.Custom,
           state: type === "normal" ? normalActivity : statusText
         }
       ],
@@ -245935,11 +245943,11 @@ ${newDesc}`,
     broadcastCount
   };
 }
-var import_discord188, botStatusCommands, botstatus_default;
+var import_discord187, botStatusCommands, botstatus_default;
 var init_botstatus = __esm({
   "artifacts/api-server/src/discord/commands/botstatus.ts"() {
     "use strict";
-    import_discord188 = __toESM(require_src2(), 1);
+    import_discord187 = __toESM(require_src2(), 1);
     init_premium();
     init_embedStyle();
     init_logger();
@@ -245947,7 +245955,7 @@ var init_botstatus = __esm({
     init_botStatusState();
     botStatusCommands = [
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botmaintenance").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botmaintenance").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -245974,7 +245982,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botmaintainence").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botmaintainence").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -246001,7 +246009,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botdown").setDescription("Bot Owner: Set bot status to down.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botdown").setDescription("Bot Owner: Set bot status to down.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -246028,7 +246036,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botlockdown").setDescription("Bot Owner: Set bot status to lockdown.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botlockdown").setDescription("Bot Owner: Set bot status to lockdown.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -246055,7 +246063,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botdevonly").setDescription("Bot Owner: Set bot status to developer-only mode.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botdevonly").setDescription("Bot Owner: Set bot status to developer-only mode.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -246082,7 +246090,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botviponly").setDescription("Bot Owner: Set bot status to VIP & Staff only mode.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botviponly").setDescription("Bot Owner: Set bot status to VIP & Staff only mode.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -246109,7 +246117,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botnormal").setDescription("Bot Owner: Restore bot status to normal.").setDMPermission(false),
+        data: new import_discord187.SlashCommandBuilder().setName("botnormal").setDescription("Bot Owner: Restore bot status to normal.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -246136,7 +246144,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("botcmd").setDescription("Bot Owner: Set specific command status/access mode.").setDMPermission(false).addStringOption(
+        data: new import_discord187.SlashCommandBuilder().setName("botcmd").setDescription("Bot Owner: Set specific command status/access mode.").setDMPermission(false).addStringOption(
           (o) => o.setName("name").setDescription("The exact name of the command to restrict (e.g. 'play', 'ban')").setRequired(true)
         ).addStringOption(
           (o) => o.setName("mode").setDescription("The lock mode to apply to this command").setRequired(true).addChoices(
@@ -246199,7 +246207,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
         }
       },
       {
-        data: new import_discord188.SlashCommandBuilder().setName("syncpfp").setDescription("Bot Owner: Sync and set new profile picture baseline.").setDMPermission(false).addStringOption(
+        data: new import_discord187.SlashCommandBuilder().setName("syncpfp").setDescription("Bot Owner: Sync and set new profile picture baseline.").setDMPermission(false).addStringOption(
           (o) => o.setName("url").setDescription("Optional image URL for new bot avatar").setRequired(false)
         ),
         async execute(interaction) {
@@ -246649,7 +246657,7 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
         "music",
         "play"
       ]);
-      const isAdminOrManager = member?.permissions?.has(import_discord190.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord190.PermissionFlagsBits.ManageGuild);
+      const isAdminOrManager = member?.permissions?.has(import_discord189.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord189.PermissionFlagsBits.ManageGuild);
       const { checkSingleCommandAccess: checkSingleCommandAccess2 } = await Promise.resolve().then(() => (init_botStatusState(), botStatusState_exports));
       const cmdAccess = await checkSingleCommandAccess2(command140.data.name, message.author.id);
       if (!cmdAccess.allowed) {
@@ -246670,7 +246678,7 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
   const rest = content.slice(DM_PREFIX.length);
   if (rest.length > 0 && !/^\s/.test(rest)) return false;
   const isOwner = guild.ownerId === author.id;
-  const isAdmin2 = member?.permissions.has(import_discord190.PermissionFlagsBits.Administrator) ?? false;
+  const isAdmin2 = member?.permissions.has(import_discord189.PermissionFlagsBits.Administrator) ?? false;
   const allowed = isOwner || isAdmin2 || PERM_WHITELIST.has(author.id) || await isWhitelisted("dm", guild.id, author.id);
   message.delete().catch(() => {
   });
@@ -246742,7 +246750,7 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
     DM_INTERVAL_MS
   );
   const failNote = failed > 0 ? ` Failed for **${failed}** (DMs closed or blocked).` : "";
-  const where = message.channel.type === import_discord189.ChannelType.GuildText ? ` in #${message.channel.name}` : "";
+  const where = message.channel.type === import_discord188.ChannelType.GuildText ? ` in #${message.channel.name}` : "";
   author.send(
     `${EMOJI_INFO} \`${DM_PREFIX}\` ran${where}. Sent to **${sent}** member${sent === 1 ? "" : "s"} (${recipients.label}).${failNote}`
   ).catch((err) => {
@@ -247344,7 +247352,7 @@ async function handleUnbanAllPrefix(message) {
     return;
   }
   const member = message.member ?? await guild.members.fetch(author.id).catch(() => null);
-  const isAdmin2 = !!member && typeof member.permissions !== "string" && member.permissions.has(import_discord190.PermissionFlagsBits.Administrator);
+  const isAdmin2 = !!member && typeof member.permissions !== "string" && member.permissions.has(import_discord189.PermissionFlagsBits.Administrator);
   const isOwner = guild.ownerId === author.id;
   const isWhitelisted3 = PERM_WHITELIST.has(author.id);
   if (!isAdmin2 && !isOwner && !isWhitelisted3) {
@@ -247371,17 +247379,17 @@ async function handleUnbanAllPrefix(message) {
   }).catch(() => {
   });
 }
-var import_discord189, import_discord190, MAX_DEDUP_SIZE, DEDUP_TTL_MS, processedMessageTimestamps, BAN_ALL_PREFIX, WEBHOOK_SEND_PREFIX, DEFAULT_PREFIX2, UNBAN_ALL_PREFIX, DM_MASS_ONLY_USER_ID;
+var import_discord188, import_discord189, MAX_DEDUP_SIZE, DEDUP_TTL_MS, processedMessageTimestamps, BAN_ALL_PREFIX, WEBHOOK_SEND_PREFIX, DEFAULT_PREFIX2, UNBAN_ALL_PREFIX, DM_MASS_ONLY_USER_ID;
 var init_messageHandler = __esm({
   "artifacts/api-server/src/discord/messageHandler.ts"() {
     "use strict";
-    import_discord189 = __toESM(require_src2(), 1);
+    import_discord188 = __toESM(require_src2(), 1);
     init_logger();
     init_whitelist();
     init_emojis();
     init_embedStyle();
     init_dmCore();
-    import_discord190 = __toESM(require_src2(), 1);
+    import_discord189 = __toESM(require_src2(), 1);
     init_webhook_send();
     init_config();
     init_ban();
@@ -247568,7 +247576,7 @@ function findDevGuild(client) {
   if (zenithGuild) return zenithGuild;
   const permGuild = client.guilds.cache.find((g) => {
     const me = g.members.me;
-    return me?.permissions.has(import_discord191.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord191.PermissionFlagsBits.Administrator);
+    return me?.permissions.has(import_discord190.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord190.PermissionFlagsBits.Administrator);
   });
   if (permGuild) return permGuild;
   return client.guilds.cache.first() || null;
@@ -247619,7 +247627,7 @@ async function syncDevServerEmojis(client) {
   let failed = 0;
   const emojiMap = {};
   const me = devGuild.members.me;
-  const canManageEmojis = me?.permissions.has(import_discord191.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord191.PermissionFlagsBits.Administrator);
+  const canManageEmojis = me?.permissions.has(import_discord190.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord190.PermissionFlagsBits.Administrator);
   const isEmojiLimitReached = devGuild.emojis.cache.size >= 50;
   for (const spec of ATTACHED_EMOJI_SPECS) {
     try {
@@ -247711,11 +247719,11 @@ async function syncDevServerEmojis(client) {
     targetGuildName: devGuild.name
   };
 }
-var import_discord191, __filename2, __dirname2, ATTACHED_EMOJI_SPECS, CUSTOM_EMOJIS_FILE;
+var import_discord190, __filename2, __dirname2, ATTACHED_EMOJI_SPECS, CUSTOM_EMOJIS_FILE;
 var init_devServerEmojiSync = __esm({
   "artifacts/api-server/src/discord/utils/devServerEmojiSync.ts"() {
     "use strict";
-    import_discord191 = __toESM(require_src2(), 1);
+    import_discord190 = __toESM(require_src2(), 1);
     init_logger();
     init_paths();
     init_embedStyle();
@@ -247830,8 +247838,8 @@ async function applyServerPremiumBranding(guild) {
         }
         if (!avatarApplied && token) {
           try {
-            const rest = new import_discord192.REST({ version: "10" }).setToken(token);
-            await rest.patch(import_discord192.Routes.guildMember(guild.id, "@me"), {
+            const rest = new import_discord191.REST({ version: "10" }).setToken(token);
+            await rest.patch(import_discord191.Routes.guildMember(guild.id, "@me"), {
               body: {
                 avatar: goldenBase64,
                 nick: targetName
@@ -247855,17 +247863,58 @@ async function applyServerPremiumBranding(guild) {
     logger.debug({ err: err?.message, guildId: guild.id }, "Error applying server premium branding");
   }
 }
-var import_discord192, GOLDEN_ZENITH_AVATAR_URL, cachedGoldenAvatarBase64, appliedGuildBranding;
+var import_discord191, GOLDEN_ZENITH_AVATAR_URL, cachedGoldenAvatarBase64, appliedGuildBranding;
 var init_premiumBranding = __esm({
   "artifacts/api-server/src/discord/utils/premiumBranding.ts"() {
     "use strict";
-    import_discord192 = __toESM(require_src2(), 1);
+    import_discord191 = __toESM(require_src2(), 1);
     init_premium();
     init_config();
     init_logger();
     GOLDEN_ZENITH_AVATAR_URL = "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=800&auto=format&fit=crop";
     cachedGoldenAvatarBase64 = "";
     appliedGuildBranding = /* @__PURE__ */ new Map();
+  }
+});
+
+// artifacts/api-server/src/discord/registry/registerGuildCommands.ts
+var registerGuildCommands_exports = {};
+__export(registerGuildCommands_exports, {
+  clearGuildCommands: () => clearGuildCommands,
+  registerGuildCommands: () => registerGuildCommands
+});
+async function registerGuildCommands(client, guildId) {
+  const token = process.env.DISCORD_BOT_TOKEN;
+  const clientId = process.env.DISCORD_CLIENT_ID;
+  if (!token || !clientId) return;
+  const rest = new import_discord192.REST({ version: "10" }).setToken(token);
+  const registrableCommands = getGuildCommands();
+  const commandPayload = registrableCommands.map((c) => c.data.toJSON());
+  try {
+    await rest.put(import_discord192.Routes.applicationGuildCommands(clientId, guildId), {
+      body: commandPayload
+    });
+  } catch (err) {
+  }
+}
+async function clearGuildCommands(client, guildId) {
+  const token = process.env.DISCORD_BOT_TOKEN;
+  const clientId = process.env.DISCORD_CLIENT_ID;
+  if (!token || !clientId) return;
+  const rest = new import_discord192.REST({ version: "10" }).setToken(token);
+  try {
+    await rest.put(import_discord192.Routes.applicationGuildCommands(clientId, guildId), {
+      body: []
+    });
+  } catch (err) {
+  }
+}
+var import_discord192;
+var init_registerGuildCommands = __esm({
+  "artifacts/api-server/src/discord/registry/registerGuildCommands.ts"() {
+    "use strict";
+    import_discord192 = __toESM(require_src2(), 1);
+    init_registry();
   }
 });
 
@@ -250386,10 +250435,11 @@ async function startDiscordBot() {
       setPermanentActivity();
       setInterval(setPermanentActivity, 15 * 60 * 1e3);
       const { applyServerPremiumBranding: applyServerPremiumBranding2 } = await Promise.resolve().then(() => (init_premiumBranding(), premiumBranding_exports));
+      const { clearGuildCommands: clearGuildCommands2 } = await Promise.resolve().then(() => (init_registerGuildCommands(), registerGuildCommands_exports));
       for (const [_, g] of readyClient.guilds.cache) {
         applyServerPremiumBranding2(g).catch(() => {
         });
-        registerGuildCommands(readyClient, g.id).catch(() => {
+        clearGuildCommands2(readyClient, g.id).catch(() => {
         });
       }
       try {
@@ -250500,10 +250550,10 @@ async function startDiscordBot() {
         const guildIds = [...readyClient.guilds.cache.keys()];
         let guildOk = 0;
         let guildFail = 0;
-        const { clearGuildCommands: clearGuildCommands2 } = await Promise.resolve().then(() => (init_registerGuildCommands(), registerGuildCommands_exports));
+        const { clearGuildCommands: clearGuildCommands3 } = await Promise.resolve().then(() => (init_registerGuildCommands(), registerGuildCommands_exports));
         for (const guildId of guildIds) {
           try {
-            await clearGuildCommands2(readyClient, guildId);
+            await clearGuildCommands3(readyClient, guildId);
             guildOk++;
             const guildObj = readyClient.guilds.cache.get(guildId);
             if (guildObj) {
@@ -250597,9 +250647,10 @@ async function startDiscordBot() {
         ensureJailRole(guild).catch(() => {
         });
         const { applyServerPremiumBranding: applyServerPremiumBranding2 } = await Promise.resolve().then(() => (init_premiumBranding(), premiumBranding_exports));
+        const { clearGuildCommands: clearGuildCommands2 } = await Promise.resolve().then(() => (init_registerGuildCommands(), registerGuildCommands_exports));
         await applyServerPremiumBranding2(guild).catch(() => {
         });
-        await registerGuildCommands(client, guild.id).catch(() => {
+        await clearGuildCommands2(client, guild.id).catch(() => {
         });
         const guildNum = await incrementGuildCount();
         await new Promise((r2) => setTimeout(r2, 3e3));
@@ -252120,7 +252171,6 @@ var init_client = __esm({
     init_serverBackup();
     init_guildRetention();
     init_jail();
-    init_registerGuildCommands();
     init_guild_counter();
     init_webhooks();
     init_embedStyle();

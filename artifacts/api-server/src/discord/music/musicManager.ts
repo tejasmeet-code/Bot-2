@@ -137,6 +137,8 @@ export class MusicManager {
   public trackStartedAt: number = 0;
   public playbackOffsetSeconds: number = 0;
   public inactivityTimeout?: NodeJS.Timeout;
+  public lastSearchResults?: Track[];
+  public lastSearchQuery?: string;
 
   public twentyFourSeven: {
     enabled: boolean;
@@ -1117,6 +1119,65 @@ export async function handleMusicButton(interaction: ButtonInteraction): Promise
     }
     return;
   }
+
+  // 12. Other Search Results View & Select Menu
+  if (customId === "music:search_results" || customId === "btn:music:search_results") {
+    const results =
+      manager.lastSearchResults ||
+      searchResultCache.get(guildId) ||
+      searchResultCache.get(interaction.user.id);
+
+    if (!results || results.length === 0) {
+      await interaction.reply({
+        content: `${CE.warning.str} No cached search results found for recent queries. Run \`.play <song>\` to search and play tracks!`,
+        ephemeral: true,
+      });
+      return;
+    }
+
+    searchResultCache.set(interaction.user.id, results);
+    searchResultCache.set(guildId, results);
+
+    const selectOptions = results.slice(0, 10).map((t: Track, i: number) => {
+      const isCurrent = manager.currentTrack && (manager.currentTrack.url === t.url || manager.currentTrack.title === t.title);
+      const opt = new StringSelectMenuOptionBuilder()
+        .setLabel(`${i + 1}. ${t.title}`.slice(0, 100))
+        .setValue(`search_pick:${i}`)
+        .setDescription(`${t.artist} • ${formatTime(t.durationSeconds)}`.slice(0, 100))
+        .setDefault(Boolean(isCurrent));
+
+      if (CE.music.id) {
+        opt.setEmoji(CE.music.id);
+      }
+      return opt;
+    });
+
+    const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId("select:music:search_pick")
+        .setPlaceholder("▼ Choose another track from search results...")
+        .addOptions(selectOptions)
+    );
+
+    const embed = prettyEmbed({
+      title: `${CE.search ? CE.search.str : CE.music.str} Search Results for: ${manager.lastSearchQuery || manager.currentTrack?.title || "Search"}`,
+      description:
+        `### Top Matching Tracks (${results.length} found):\n\n` +
+        results
+          .slice(0, 10)
+          .map((t: Track, i: number) => {
+            const isPlayingThis = manager.currentTrack?.url === t.url;
+            return `**${i + 1}.** [${t.title}](${t.url}) — \`${t.artist}\` (\`${formatTime(t.durationSeconds)}\`)${isPlayingThis ? ` ${CE.playing ? CE.playing.str : "▶️ Current"}` : ""}`;
+          })
+          .join("\n") +
+        `\n\n*Select any track from the dropdown menu below to play or queue it instantly:*`,
+      color: COLORS.primary,
+      footer: "Zenith High-Fidelity Audio • Select Menu",
+    });
+
+    await interaction.reply({ embeds: [embed], components: [row as any], ephemeral: true });
+    return;
+  }
 }
 
 export async function searchArtistSongs(
@@ -1332,7 +1393,7 @@ export function buildPlayerActionRows(manager: MusicManager): ActionRowBuilder<B
       .setStyle(is247 ? ButtonStyle.Success : ButtonStyle.Secondary),
   );
 
-  // Row 3: Equalizer / Audio FX, Source Switcher
+  // Row 3: Equalizer / Audio FX, Source Switcher, Search Results
   const row3 = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
       .setCustomId("music:eq")
@@ -1343,6 +1404,11 @@ export function buildPlayerActionRows(manager: MusicManager): ActionRowBuilder<B
       .setCustomId("music:source")
       .setLabel("Audio Source")
       .setEmoji(CE.link.str)
+      .setStyle(ButtonStyle.Secondary),
+    new ButtonBuilder()
+      .setCustomId("music:search_results")
+      .setLabel("Other Results")
+      .setEmoji(CE.search ? CE.search.str : CE.list.str)
       .setStyle(ButtonStyle.Secondary),
   );
 
