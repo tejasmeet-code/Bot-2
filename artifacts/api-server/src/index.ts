@@ -151,19 +151,27 @@ server.on("error", (err) => {
 });
 
 // Discord bot hosting logic:
+const isAiStudio = Boolean(
+  process.env.K_SERVICE || 
+  process.env.GOOGLE_RUNTIME || 
+  process.env.APPLET_ID ||
+  (process.env.APP_URL && process.env.APP_URL.includes("run.app"))
+);
+
 const isCloudHost = Boolean(
-  process.env.RENDER ||
+  (process.env.RENDER ||
     process.env.RENDER_SERVICE_ID ||
     process.env.PORT ||
     process.env.PTERODACTYL_SERVER ||
     process.env.HEAVEN_CLOUD_API ||
-    process.env.START_DISCORD_BOT === "true"
+    process.env.START_DISCORD_BOT === "true") &&
+    !isAiStudio
 );
 const envStartSetting = process.env.START_DISCORD_BOT;
 const token = process.env.DISCORD_BOT_TOKEN || process.env.DISCORD_TOKEN;
 const hasBotToken = Boolean(token && token.trim().length > 10);
 
-const shouldStartBot = hasBotToken && isCloudHost && envStartSetting !== "false";
+const shouldStartBot = hasBotToken && (isCloudHost || envStartSetting === "true") && envStartSetting !== "false";
 if (shouldStartBot) {
   logger.info({ isCloudHost, envStartSetting }, "Starting Zenith Bot Discord gateway on cloud host...");
   startDiscordBot().then(() => {
