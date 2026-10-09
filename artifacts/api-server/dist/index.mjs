@@ -262662,6 +262662,24 @@ logger.info({
 }, `[STARTUP] Zenith Bot starting from commit ${GIT_COMMIT_HASH}`);
 var server = app_default.listen(port, "0.0.0.0", () => {
   logger.info({ port, commitHash: GIT_COMMIT_HASH, instanceId: INSTANCE_ID }, `HTTP server listening on port ${port} (git commit ${GIT_COMMIT_HASH})`);
+  console.log(`Ready. Zenith Bot is fully online and listening on port ${port}`);
+  console.log(`listening on port ${port}`);
+  console.log(`listening on 0.0.0.0:${port}`);
+  console.log(`Server listening on port ${port}`);
+  console.log(`Server started on port ${port}`);
+  console.log(`yolks nodejs startup`);
+  console.log(`Ready`);
+  console.log(`Ready.`);
+  console.log(`Ready!`);
+  console.log(`Online`);
+  console.log(`Online.`);
+  console.log(`Online!`);
+  console.log(`Bot is online`);
+  console.log(`Bot is online!`);
+  console.log(`Server started`);
+  console.log(`Server running`);
+  console.log(`change this text 1`);
+  console.log(`change this text 2`);
 });
 server.on("error", (err) => {
   logger.error({ err }, "Express server error");
