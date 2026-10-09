@@ -51,6 +51,19 @@ async function run() {
           event: 'send logs',
           args: []
         }));
+
+        // Trigger RESTART power signal
+        console.log('Triggering RESTART power signal...');
+        const powerRes = await fetch(`https://control.heavencloud.in/api/client/servers/${serverId}/power`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ signal: 'restart' })
+        });
+        console.log('Power action response status:', powerRes.status);
       }
     } catch (e) {
       console.log('Raw message:', data.toString());
@@ -65,12 +78,12 @@ async function run() {
     console.log(`WebSocket closed: Code ${code}, Reason: ${reason}`);
   });
 
-  // Keep alive for 8 seconds to capture logs
+  // Keep alive for 45 seconds to capture full restart and online state transition
   setTimeout(() => {
     console.log('Timing out, closing websocket');
     ws.close();
     process.exit(0);
-  }, 8000);
+  }, 45000);
 }
 
 run().catch(console.error);

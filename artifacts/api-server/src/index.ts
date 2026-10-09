@@ -240,3 +240,20 @@ if (SERVER_MEMORY_LIMIT_MB > 0) {
   }, 45 * 1000); // Check memory every 45 seconds
 }
 
+// ── Graceful Shutdown ──
+function handleShutdown(signal: string) {
+  logger.info({ signal }, `[SHUTDOWN] Received ${signal}, closing HTTP server and terminating...`);
+  server.close(() => {
+    logger.info("[SHUTDOWN] HTTP server closed. Exiting process.");
+    process.exit(0);
+  });
+  
+  // Force exit after 3 seconds if handles remain open
+  setTimeout(() => {
+    logger.warn("[SHUTDOWN] Forced exit due to open handles.");
+    process.exit(0);
+  }, 3000);
+}
+process.on("SIGTERM", () => handleShutdown("SIGTERM"));
+process.on("SIGINT", () => handleShutdown("SIGINT"));
+

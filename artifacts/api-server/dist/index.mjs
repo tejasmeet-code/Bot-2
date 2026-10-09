@@ -262758,6 +262758,19 @@ if (SERVER_MEMORY_LIMIT_MB > 0) {
     }
   }, 45 * 1e3);
 }
+function handleShutdown(signal) {
+  logger.info({ signal }, `[SHUTDOWN] Received ${signal}, closing HTTP server and terminating...`);
+  server.close(() => {
+    logger.info("[SHUTDOWN] HTTP server closed. Exiting process.");
+    process.exit(0);
+  });
+  setTimeout(() => {
+    logger.warn("[SHUTDOWN] Forced exit due to open handles.");
+    process.exit(0);
+  }, 3e3);
+}
+process.on("SIGTERM", () => handleShutdown("SIGTERM"));
+process.on("SIGINT", () => handleShutdown("SIGINT"));
 /*! Bundled license information:
 
 depd/index.js:
