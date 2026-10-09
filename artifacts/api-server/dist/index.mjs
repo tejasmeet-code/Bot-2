@@ -262728,7 +262728,7 @@ var isCloudHost = Boolean(
 var envStartSetting = process.env.START_DISCORD_BOT;
 var token = process.env.DISCORD_BOT_TOKEN || process.env.DISCORD_TOKEN;
 var hasBotToken = Boolean(token && token.trim().length > 10);
-var shouldStartBot = hasBotToken && (isCloudHost || envStartSetting === "true") && envStartSetting !== "false";
+var shouldStartBot = hasBotToken && (isCloudHost || envStartSetting === "true") && envStartSetting !== "false" && !isAiStudio;
 if (shouldStartBot) {
   logger.info({ isCloudHost, envStartSetting }, "Starting Zenith Bot Discord gateway on cloud host...");
   startDiscordBot().then(() => {
