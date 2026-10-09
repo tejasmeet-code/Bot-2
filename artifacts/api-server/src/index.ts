@@ -105,8 +105,8 @@ app.get(["/", "/dashboard", "/admin", "/panel", "/dashboard.html"], (req, res) =
 import os from "os";
 import { version as djsVersion } from "discord.js";
 
-// Respect Render's PORT environment variable, defaulting to 3000 for local dev
-const PORT_STR = process.env.PORT || "3000";
+// Respect Pterodactyl's SERVER_PORT or Render's PORT environment variable, defaulting to 3000 for local dev
+const PORT_STR = process.env.SERVER_PORT || process.env.PORT || "3000";
 const port = parseInt(PORT_STR, 10);
 
 const INSTANCE_ID = "INST_" + Math.random().toString(36).substring(2, 10).toUpperCase();
@@ -146,15 +146,20 @@ const hasBotToken = Boolean(token && token.trim().length > 10);
 const shouldStartBot = hasBotToken && isCloudHost && envStartSetting !== "false";
 if (shouldStartBot) {
   logger.info({ isCloudHost, envStartSetting }, "Starting Zenith Bot Discord gateway on cloud host...");
-  startDiscordBot().catch((err) => {
+  startDiscordBot().then(() => {
+    console.log("Ready. Zenith Bot is fully online.");
+  }).catch((err) => {
     logger.error({ err }, "Discord bot failed to start — check DISCORD_BOT_TOKEN and DISCORD_CLIENT_ID");
   });
 } else if (!isCloudHost) {
   logger.info("Discord bot gateway connection disabled in local preview — configured to host on cloud exclusively.");
+  console.log("Ready. Local bot is running.");
 } else if (!hasBotToken) {
   logger.warn("Discord bot process skipped: DISCORD_BOT_TOKEN is missing or empty in environment variables.");
+  console.log("Ready. Bot is running (web only).");
 } else {
   logger.info("Discord bot process skipped: START_DISCORD_BOT is set to false.");
+  console.log("Ready. Bot is running (web only).");
 }
 
 // ── 24/7 Keep-Alive Background Heartbeat System ──
