@@ -1,0 +1,10 @@
+packages:
+  - "artifacts/*"
+  - "lib/*"
+  - "scripts"
+
+allowBuilds:
+  '@google/genai': true
+  esbuild: true
+  ffmpeg-static: true
+  protobufjs: true

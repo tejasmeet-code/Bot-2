@@ -1,0 +1,41 @@
+{
+  "name": "workspace",
+  "version": "0.0.0",
+  "license": "MIT",
+  "workspaces": [
+    "artifacts/*",
+    "lib/*",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "node ./artifacts/api-server/build.mjs",
+    "build:apps": "npx pnpm --filter @workspace/api-server run build",
+    "typecheck:libs": "tsc --build",
+    "typecheck": "npx pnpm run typecheck:libs && npx pnpm run typecheck:apps",
+    "typecheck:apps": "npx pnpm -r --if-present run typecheck",
+    "lint": "npx pnpm run typecheck",
+    "dev": "node index.js",
+    "check:emojis": "node scripts/check-emojis.js",
+    "start": "node --dns-result-order=ipv4first index.js"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@discordjs/voice": "^0.19.2",
+    "@google/genai": "*",
+    "@napi-rs/canvas": "^1.0.9",
+    "ffmpeg-static": "^5.2.0",
+    "opusscript": "^0.0.8",
+    "prettier": "^3.8.3",
+    "sharp": "^0.35.4",
+    "shoukaku": "^4.3.0",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.3"
+  },
+  "dependencies": {
+    "libsodium-wrappers": "^0.8.4"
+  }
+}

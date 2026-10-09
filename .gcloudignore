@@ -1,0 +1,14 @@
+.gcloudignore
+.git
+.github
+node_modules
+.data
+dist
+build
+emoji_report.txt
+*.log
+.env
+.env.local
+tmp
+out-tsc
+*.tsbuildinfo

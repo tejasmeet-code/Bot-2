@@ -1,0 +1,29 @@
+# Fly.io Configuration for Relosta Bot
+# Primary Region: iad (Ashburn, Northern Virginia)
+app = "relosta-bot"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3000"
+  START_DISCORD_BOT = "true"
+  TARGET_HOST_LOCATION = "US Virginia (Ashburn Equinix Datacenter)"
+  TARGET_HOST_REGION = "iad"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[mounts]]
+  source = "relosta_data"
+  destination = "/app/.data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1024mb"
