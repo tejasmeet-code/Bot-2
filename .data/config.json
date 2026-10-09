@@ -1,0 +1,2047 @@
+{
+  "1439906085988208832": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": false,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {},
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "noPrefixRoles": [],
+    "noPrefixUserIds": [],
+    "commandsUnlocked": false,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": false,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1450831244035362848": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": false,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {},
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "noPrefixRoles": [],
+    "noPrefixUserIds": [],
+    "commandsUnlocked": false,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": false,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1466728565352435847": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": true,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": true
+    },
+    "channels": {
+      "antiNukeLog": "1466835971549954159"
+    },
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "verifyConfig": {
+      "verifiedRoleId": "1556233248760275005"
+    },
+    "noPrefixRoles": [],
+    "antiNukeConfig": {
+      "antiBan": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1526643079661224006",
+          "1466741036389896317",
+          "1511338996381384754",
+          "1466741424593703057",
+          "1512060577504170094",
+          "1512060792659509368",
+          "1521588977721671681",
+          "1511035278528352377",
+          "1511701355595825212",
+          "1511950663029096568",
+          "1514965165890867250",
+          "1508074025442607205",
+          "1524100753361473536",
+          "1515028316112031817",
+          "1515028207026573474",
+          "1515028111673262120",
+          "1515027939765518376",
+          "1515027824753381386",
+          "1505638397140537442",
+          "1515266572984516639",
+          "1512407741883486299",
+          "1511048857637621820",
+          "1511050892453871617",
+          "1511036125991669963",
+          "1509140282371997768",
+          "1553740153401380916",
+          "1553740152902524948"
+        ],
+        "whitelistUserIds": [
+          "1331663615413063807",
+          "1181221352393420856"
+        ]
+      },
+      "enabled": true,
+      "antiJoin": {
+        "enabled": true,
+        "threshold": 5,
+        "punishment": "kick",
+        "windowSeconds": 10,
+        "whitelistRoleIds": [
+          "1526643079661224006",
+          "1466741036389896317",
+          "1511338996381384754",
+          "1466741424593703057",
+          "1512060577504170094",
+          "1512060792659509368",
+          "1521588977721671681",
+          "1511035278528352377",
+          "1511701355595825212",
+          "1511950663029096568",
+          "1514965165890867250",
+          "1508074025442607205",
+          "1524100753361473536",
+          "1515028316112031817",
+          "1515028207026573474",
+          "1515028111673262120",
+          "1515027939765518376",
+          "1515027824753381386",
+          "1505638397140537442",
+          "1515266572984516639",
+          "1512407741883486299",
+          "1511048857637621820",
+          "1511050892453871617",
+          "1511036125991669963",
+          "1509140282371997768",
+          "1553740153401380916",
+          "1553740152902524948"
+        ],
+        "whitelistUserIds": [
+          "1331663615413063807",
+          "1181221352393420856"
+        ]
+      },
+      "antiKick": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1526643079661224006",
+          "1466741036389896317",
+          "1511338996381384754",
+          "1466741424593703057",
+          "1512060577504170094",
+          "1512060792659509368",
+          "1521588977721671681",
+          "1511035278528352377",
+          "1511701355595825212",
+          "1511950663029096568",
+          "1514965165890867250",
+          "1508074025442607205",
+          "1524100753361473536",
+          "1515028316112031817",
+          "1515028207026573474",
+          "1515028111673262120",
+          "1515027939765518376",
+          "1515027824753381386",
+          "1505638397140537442",
+          "1515266572984516639",
+          "1512407741883486299",
+          "1511048857637621820",
+          "1511050892453871617",
+          "1511036125991669963",
+          "1509140282371997768",
+          "1553740153401380916",
+          "1553740152902524948"
+        ],
+        "whitelistUserIds": [
+          "1331663615413063807",
+          "1181221352393420856"
+        ]
+      },
+      "antiRole": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1526643079661224006",
+          "1466741036389896317",
+          "1511338996381384754",
+          "1466741424593703057",
+          "1512060577504170094",
+          "1512060792659509368",
+          "1521588977721671681",
+          "1511035278528352377",
+          "1511701355595825212",
+          "1511950663029096568",
+          "1514965165890867250",
+          "1508074025442607205",
+          "1524100753361473536",
+          "1515028316112031817",
+          "1515028207026573474",
+          "1515028111673262120",
+          "1515027939765518376",
+          "1515027824753381386",
+          "1505638397140537442",
+          "1515266572984516639",
+          "1512407741883486299",
+          "1511048857637621820",
+          "1511050892453871617",
+          "1511036125991669963",
+          "1509140282371997768",
+          "1553740153401380916",
+          "1553740152902524948"
+        ],
+        "whitelistUserIds": [
+          "1331663615413063807",
+          "1181221352393420856"
+        ]
+      },
+      "antiPrune": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiBotAdd": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannel": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1526643079661224006",
+          "1466741036389896317",
+          "1511338996381384754",
+          "1466741424593703057",
+          "1512060577504170094",
+          "1512060792659509368",
+          "1521588977721671681",
+          "1511035278528352377",
+          "1511701355595825212",
+          "1511950663029096568",
+          "1514965165890867250",
+          "1508074025442607205",
+          "1524100753361473536",
+          "1515028316112031817",
+          "1515028207026573474",
+          "1515028111673262120",
+          "1515027939765518376",
+          "1515027824753381386",
+          "1505638397140537442",
+          "1515266572984516639",
+          "1512407741883486299",
+          "1511048857637621820",
+          "1511050892453871617",
+          "1511036125991669963",
+          "1509140282371997768",
+          "1553740153401380916",
+          "1553740152902524948"
+        ],
+        "whitelistUserIds": [
+          "1331663615413063807",
+          "1181221352393420856"
+        ]
+      },
+      "antiSticker": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiWebhook": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "accessUserIds": [
+        "1331663615413063807",
+        "1181221352393420856"
+      ],
+      "antiInviteRole": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEveryoneHere": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiMemberUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiServerUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "commonPunishment": "kick",
+      "antiChannelCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "globalWhitelistRoleIds": [
+        "1526643079661224006",
+        "1466741036389896317",
+        "1511338996381384754",
+        "1466741424593703057",
+        "1512060577504170094",
+        "1512060792659509368",
+        "1521588977721671681",
+        "1511035278528352377",
+        "1511701355595825212",
+        "1511950663029096568",
+        "1514965165890867250",
+        "1508074025442607205",
+        "1524100753361473536",
+        "1515028316112031817",
+        "1515028207026573474",
+        "1515028111673262120",
+        "1515027939765518376",
+        "1515027824753381386",
+        "1505638397140537442",
+        "1515266572984516639",
+        "1512407741883486299",
+        "1511048857637621820",
+        "1511050892453871617",
+        "1511036125991669963",
+        "1509140282371997768",
+        "1553740153401380916",
+        "1553740152902524948"
+      ],
+      "globalWhitelistUserIds": [
+        "1331663615413063807",
+        "1181221352393420856"
+      ],
+      "globalWhitelistChannelIds": [],
+      "globalWhitelistCategoryIds": []
+    },
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "maintenanceConfig": {
+      "active": false,
+      "categoryId": "1555951170155978782",
+      "chatChannelId": "1555951172282753087",
+      "cmdsChannelId": "1555951174438363166",
+      "mediaChannelId": "1555951173499093192",
+      "announcementsChannelId": "1555951171653337198"
+    },
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": true,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1496877352276332685": {
+    "prefix": ".",
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": false,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {},
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "guildPrefix": ".",
+    "moduleRoles": {},
+    "noPrefixRoles": [],
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": false,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1510975690068070501": {
+    "guildId": "",
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "modules": {
+      "staffMgmt": true,
+      "quota": true,
+      "auditLog": true,
+      "moderation": true,
+      "infractions": true,
+      "appeals": true,
+      "loa": true,
+      "partnership": true,
+      "verify": true,
+      "banRequest": true,
+      "roleMemory": true,
+      "antiNuke": false,
+      "serverMaintenance": true,
+      "staffDirectory": true,
+      "afk": true,
+      "noPrefix": true
+    },
+    "channels": {
+      "loaLog": "1531972780244078672",
+      "promotions": "1555193359482753114",
+      "staffFeedbackLog": "1531972780244078672",
+      "staffDirectoryLog": "1555545764284076122",
+      "botNotifications": "1532657155679715368"
+    },
+    "moduleRoles": {
+      "staffDirectory": [
+        "1531996687743324362",
+        "1531996985769332888",
+        "1544292188739870740",
+        "1541123269003055175",
+        "1541123188845711500"
+      ]
+    },
+    "roleQuotas": {},
+    "quotaWhitelistRoles": [],
+    "commandsUnlocked": true,
+    "maintenanceConfig": {
+      "active": true,
+      "categoryId": "1556677751367401544",
+      "savedPerms": {
+        "1511331261074112512": {
+          "viewDenyBefore": false
+        },
+        "1511331591912296478": {
+          "viewDenyBefore": false
+        },
+        "1511331734954835968": {
+          "viewDenyBefore": false
+        },
+        "1511331898646069390": {
+          "viewDenyBefore": false
+        },
+        "1511332005894291618": {
+          "viewDenyBefore": false
+        },
+        "1511332087276372071": {
+          "viewDenyBefore": false
+        },
+        "1511332174287212654": {
+          "viewDenyBefore": false
+        },
+        "1511332237742837830": {
+          "viewDenyBefore": false
+        },
+        "1511332354432438363": {
+          "viewDenyBefore": false
+        },
+        "1511376354359378112": {
+          "viewDenyBefore": false
+        },
+        "1511388099845034206": {
+          "viewDenyBefore": false
+        },
+        "1513091203560771655": {
+          "viewDenyBefore": false
+        },
+        "1522245973445972079": {
+          "viewDenyBefore": false
+        },
+        "1523995702026436689": {
+          "viewDenyBefore": false
+        },
+        "1523997136054652970": {
+          "viewDenyBefore": false
+        },
+        "1523997357555978250": {
+          "viewDenyBefore": false
+        },
+        "1523997712532377711": {
+          "viewDenyBefore": false
+        },
+        "1527996683064053771": {
+          "viewDenyBefore": false
+        },
+        "1527998069713670206": {
+          "viewDenyBefore": false
+        },
+        "1528239029450051715": {
+          "viewDenyBefore": false
+        },
+        "1528239111306219561": {
+          "viewDenyBefore": false
+        },
+        "1528239439124496534": {
+          "viewDenyBefore": false
+        },
+        "1529131591564267640": {
+          "viewDenyBefore": false
+        },
+        "1529132862563942613": {
+          "viewDenyBefore": false
+        },
+        "1530150455546740877": {
+          "viewDenyBefore": false
+        },
+        "1530151176144683028": {
+          "viewDenyBefore": false
+        },
+        "1530151290649448468": {
+          "viewDenyBefore": false
+        },
+        "1530901355080978504": {
+          "viewDenyBefore": false
+        },
+        "1530901355080978507": {
+          "viewDenyBefore": false
+        },
+        "1531210619594997840": {
+          "viewDenyBefore": false
+        },
+        "1531587234967588954": {
+          "viewDenyBefore": false
+        },
+        "1531587311752712232": {
+          "viewDenyBefore": false
+        },
+        "1531587383831822438": {
+          "viewDenyBefore": false
+        },
+        "1531587875781611581": {
+          "viewDenyBefore": false
+        },
+        "1531588811341955185": {
+          "viewDenyBefore": false
+        },
+        "1531589739868586095": {
+          "viewDenyBefore": false
+        },
+        "1531590970460733480": {
+          "viewDenyBefore": false
+        },
+        "1531591036315369494": {
+          "viewDenyBefore": false
+        },
+        "1531591176950513779": {
+          "viewDenyBefore": false
+        },
+        "1531591222819426375": {
+          "viewDenyBefore": false
+        },
+        "1531591273633419344": {
+          "viewDenyBefore": false
+        },
+        "1531591338850521220": {
+          "viewDenyBefore": false
+        },
+        "1531591697728012348": {
+          "viewDenyBefore": false
+        },
+        "1531591780301279262": {
+          "viewDenyBefore": false
+        },
+        "1531965710736031745": {
+          "viewDenyBefore": false
+        },
+        "1531972780244078672": {
+          "viewDenyBefore": false
+        },
+        "1532033268394889246": {
+          "viewDenyBefore": false
+        },
+        "1532034013265526935": {
+          "viewDenyBefore": false
+        },
+        "1532034014838394960": {
+          "viewDenyBefore": false
+        },
+        "1532250929233920010": {
+          "viewDenyBefore": false
+        },
+        "1532280166074683473": {
+          "viewDenyBefore": false
+        },
+        "1532336528217346161": {
+          "viewDenyBefore": false
+        },
+        "1532656363136749628": {
+          "viewDenyBefore": false
+        },
+        "1532657155679715368": {
+          "viewDenyBefore": false
+        },
+        "1532657272998592574": {
+          "viewDenyBefore": false
+        },
+        "1532742016985726986": {
+          "viewDenyBefore": false
+        },
+        "1533067678334586930": {
+          "viewDenyBefore": false
+        },
+        "1533067882395865160": {
+          "viewDenyBefore": false
+        },
+        "1533091569526243349": {
+          "viewDenyBefore": false
+        },
+        "1533092276509610065": {
+          "viewDenyBefore": false
+        },
+        "1533092390569513034": {
+          "viewDenyBefore": false
+        },
+        "1533344402842321067": {
+          "viewDenyBefore": false
+        },
+        "1535964796640567326": {
+          "viewDenyBefore": false
+        },
+        "1535967007411929118": {
+          "viewDenyBefore": false
+        },
+        "1536033098557562960": {
+          "viewDenyBefore": false
+        },
+        "1536033339415208066": {
+          "viewDenyBefore": false
+        },
+        "1537146123746287656": {
+          "viewDenyBefore": false
+        },
+        "1539995725658587186": {
+          "viewDenyBefore": false
+        },
+        "1539995727139442708": {
+          "viewDenyBefore": false
+        },
+        "1539995728494207096": {
+          "viewDenyBefore": false
+        },
+        "1539995733149618176": {
+          "viewDenyBefore": false
+        },
+        "1539995734349316277": {
+          "viewDenyBefore": false
+        },
+        "1539995735418867816": {
+          "viewDenyBefore": false
+        },
+        "1540912248288182302": {
+          "viewDenyBefore": false
+        },
+        "1540947617360650240": {
+          "viewDenyBefore": false
+        },
+        "1541125340930515065": {
+          "viewDenyBefore": false
+        },
+        "1544925029752381470": {
+          "viewDenyBefore": false
+        },
+        "1547663695574864003": {
+          "viewDenyBefore": false
+        },
+        "1547667322007720018": {
+          "viewDenyBefore": false
+        },
+        "1554828923542442135": {
+          "viewDenyBefore": false
+        },
+        "1554828964659331202": {
+          "viewDenyBefore": false
+        },
+        "1554829001409826907": {
+          "viewDenyBefore": false
+        },
+        "1554846310065250304": {
+          "viewDenyBefore": false
+        },
+        "1554896182755467274": {
+          "viewDenyBefore": false
+        },
+        "1555141872618446878": {
+          "viewDenyBefore": false
+        },
+        "1555191290478723215": {
+          "viewDenyBefore": false
+        },
+        "1555191292839862422": {
+          "viewDenyBefore": false
+        },
+        "1555191293817397310": {
+          "viewDenyBefore": false
+        },
+        "1555191294987337728": {
+          "viewDenyBefore": false
+        },
+        "1555191296208146452": {
+          "viewDenyBefore": false
+        },
+        "1555193307657797652": {
+          "viewDenyBefore": false
+        },
+        "1555193359482753114": {
+          "viewDenyBefore": false
+        },
+        "1555193596737753098": {
+          "viewDenyBefore": false
+        },
+        "1555193677905658046": {
+          "viewDenyBefore": false
+        },
+        "1555194091996712990": {
+          "viewDenyBefore": false
+        },
+        "1555194188600180817": {
+          "viewDenyBefore": false
+        },
+        "1555194370859204618": {
+          "viewDenyBefore": false
+        },
+        "1555194407827800214": {
+          "viewDenyBefore": false
+        },
+        "1555195095899177114": {
+          "viewDenyBefore": false
+        },
+        "1555492451081261137": {
+          "viewDenyBefore": false
+        },
+        "1555492620929859604": {
+          "viewDenyBefore": false
+        },
+        "1555492816258465832": {
+          "viewDenyBefore": false
+        },
+        "1555492896705351752": {
+          "viewDenyBefore": false
+        },
+        "1555545764284076122": {
+          "viewDenyBefore": false
+        }
+      },
+      "chatChannelId": "1556677753745711136",
+      "cmdsChannelId": "1556677756144848936",
+      "membersRoleId": "1544557395198484581",
+      "mediaChannelId": "1556677754907402412",
+      "announcementsChannelId": "1556677752923357255"
+    },
+    "antiNukeConfig": {
+      "enabled": true,
+      "accessUserIds": [],
+      "globalWhitelistUserIds": [
+        "1333706119809335348",
+        "1152798137778442332",
+        "1420048312077389825",
+        "1181221352393420856"
+      ],
+      "globalWhitelistRoleIds": [
+        "1531202843313176586",
+        "1529133626770460792",
+        "1531202019174650009",
+        "1554826153854894121",
+        "1531986650521931806",
+        "1531201648557293599",
+        "1555176602986487901",
+        "1554816263337811989",
+        "1537034004904017940",
+        "1532007834919632927",
+        "1554855339214512270",
+        "1536034915605553163",
+        "1554475480567251034",
+        "1531996985769332888",
+        "1544557395198484581",
+        "1534217772010311790",
+        "1555914527625838653",
+        "1536015115889942628",
+        "1536268481148883034",
+        "1532052455679070278",
+        "1533499499757043832",
+        "1531203025904078909",
+        "1531203971610447983",
+        "1531204116540428489",
+        "1544292188739870740",
+        "1544292101141954560",
+        "1541123269003055175",
+        "1541123188845711500",
+        "1531996687743324362",
+        "1531204324791947355",
+        "1531204452202053733",
+        "1531238517676572772",
+        "1535964128294871040",
+        "1531204564697481227",
+        "1544652025252417637",
+        "1548931621498003476",
+        "1529129048385519828",
+        "1533102834172563586",
+        "1532715415636283484"
+      ],
+      "globalWhitelistChannelIds": [],
+      "globalWhitelistCategoryIds": [],
+      "commonPunishment": "ban",
+      "antiJoin": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none",
+        "threshold": 3,
+        "windowSeconds": 60
+      },
+      "antiBan": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [
+          "1531202843313176586"
+        ],
+        "punishment": "none"
+      },
+      "antiKick": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [
+          "1531202843313176586"
+        ],
+        "punishment": "none"
+      },
+      "antiPrune": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiBotAdd": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [
+          "1531202843313176586"
+        ],
+        "punishment": "none"
+      },
+      "antiServerUpdate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiMemberUpdate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiChannelCreate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiChannelDelete": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiChannelUpdate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiRoleCreate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiRoleUpdate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiRoleDelete": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiEveryoneHere": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiWebhook": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [
+          "1531202843313176586"
+        ],
+        "punishment": "none"
+      },
+      "antiSticker": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiEmojiCreate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiEmojiDelete": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiEmojiUpdate": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiInviteRole": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [],
+        "punishment": "none"
+      },
+      "antiRole": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [
+          "1531202843313176586"
+        ],
+        "punishment": "none"
+      },
+      "antiChannel": {
+        "enabled": false,
+        "whitelistUserIds": [],
+        "whitelistRoleIds": [
+          "1531202843313176586"
+        ],
+        "punishment": "none"
+      },
+      "ownerWhitelistedUserIds": [
+        "1420048312077389825",
+        "1181221352393420856",
+        "1152798137778442332"
+      ],
+      "threeWalls": {
+        "wall1OwnerUserIds": [
+          "1420048312077389825",
+          "1181221352393420856",
+          "1152798137778442332"
+        ],
+        "wall2AdminRoleIds": [
+          "1529133626770460792",
+          "1531202019174650009",
+          "1554826153854894121",
+          "1531986650521931806",
+          "1531201648557293599",
+          "1555176602986487901",
+          "1554816263337811989",
+          "1531202843313176586",
+          "1537034004904017940",
+          "1532007834919632927",
+          "1554855339214512270",
+          "1536034915605553163",
+          "1554475480567251034",
+          "1531996985769332888",
+          "1544557395198484581",
+          "1534217772010311790",
+          "1555914527625838653",
+          "1536015115889942628",
+          "1536268481148883034",
+          "1532052455679070278",
+          "1533499499757043832",
+          "1531203025904078909",
+          "1531203971610447983",
+          "1531204116540428489",
+          "1544292188739870740",
+          "1544292101141954560",
+          "1541123269003055175",
+          "1541123188845711500",
+          "1531996687743324362",
+          "1531204324791947355",
+          "1531204452202053733",
+          "1531238517676572772",
+          "1535964128294871040",
+          "1531204564697481227",
+          "1544652025252417637",
+          "1548931621498003476",
+          "1529129048385519828",
+          "1533102834172563586",
+          "1532715415636283484"
+        ],
+        "wall3StaffRoleIds": [
+          "1535885952067837952",
+          "1536014298403569796",
+          "1535911594608033842",
+          "1531208971149639803",
+          "1531208887577874543",
+          "1531208796087779338",
+          "1531208614084087808",
+          "1531208570169720913",
+          "1531208329899016272",
+          "1531208147568431215",
+          "1531208105822523482",
+          "1531208013346770975",
+          "1533353900554322010",
+          "1540948451037155348",
+          "1533351140014555166",
+          "1533350990416318544",
+          "1532048959424696380",
+          "1531207916726652928",
+          "1531207517101625384",
+          "1512469123077242890",
+          "1533870784064393408",
+          "1532074770894422218",
+          "1533117899223601243",
+          "1529131124830245025",
+          "1531205113270632518",
+          "1532240488931790970",
+          "1532240594255216671",
+          "1531613398360658061",
+          "1532240727663317144",
+          "1532240839282000025",
+          "1533088468744404992",
+          "1533088609861632081",
+          "1533089730324074617",
+          "1531205242031571054",
+          "1535885210883850261",
+          "1537471319094992937",
+          "1554788958792187974"
+        ]
+      }
+    },
+    "setupWizardCompleted": true,
+    "setupConfig": {
+      "mainRoleId": "1529131124830245025",
+      "staffCommonRoleId": "1531996985769332888",
+      "staffRoleHierarchy": [
+        "1554826153854894121",
+        "1529133626770460792",
+        "1531986650521931806",
+        "1531201648557293599",
+        "1555176602986487901",
+        "1554816263337811989",
+        "1531202843313176586",
+        "1537034004904017940",
+        "1532007834919632927",
+        "1554855339214512270",
+        "1536034915605553163",
+        "1554475480567251034",
+        "1531202019174650009",
+        "1531996985769332888",
+        "1544557395198484581",
+        "1534217772010311790",
+        "1555914527625838653",
+        "1536015115889942628",
+        "1536268481148883034",
+        "1532052455679070278",
+        "1533499499757043832",
+        "1531203025904078909",
+        "1531203971610447983",
+        "1531204116540428489",
+        "1544292188739870740",
+        "1544292101141954560",
+        "1541123269003055175",
+        "1541123188845711500",
+        "1531996687743324362",
+        "1531204324791947355",
+        "1531204452202053733",
+        "1531238517676572772",
+        "1535964128294871040",
+        "1531204564697481227",
+        "1544652025252417637",
+        "1548931621498003476",
+        "1529129048385519828",
+        "1533102834172563586",
+        "1532715415636283484",
+        "1535885952067837952",
+        "1536014298403569796",
+        "1535911594608033842",
+        "1531208971149639803",
+        "1531208887577874543",
+        "1531208796087779338",
+        "1531208614084087808",
+        "1531208570169720913",
+        "1531208329899016272",
+        "1531208147568431215",
+        "1531208105822523482",
+        "1531208013346770975",
+        "1533353900554322010",
+        "1540948451037155348",
+        "1533351140014555166",
+        "1533350990416318544",
+        "1532048959424696380",
+        "1531207916726652928",
+        "1531207517101625384",
+        "1512469123077242890",
+        "1533870784064393408",
+        "1532074770894422218",
+        "1533117899223601243",
+        "1529131124830245025",
+        "1531205113270632518",
+        "1532240488931790970",
+        "1532240594255216671",
+        "1531613398360658061",
+        "1532240727663317144",
+        "1532240839282000025",
+        "1533088468744404992",
+        "1533088609861632081",
+        "1533089730324074617",
+        "1531205242031571054",
+        "1535885210883850261",
+        "1537471319094992937",
+        "1554788958792187974"
+      ]
+    },
+    "serverOwnerWhitelistUserIds": [
+      "1420048312077389825",
+      "1181221352393420856",
+      "1152798137778442332"
+    ],
+    "serverAdminWhitelistUserIds": [],
+    "trustedWhitelistUserIds": [],
+    "noPrefixUserIds": [],
+    "noPrefixRoles": []
+  },
+  "1515426705550872698": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": true,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "automations": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {
+      "moderation": "1515426752447512696",
+      "antiNukeLog": "1515426752447512696"
+    },
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "setupConfig": {
+      "mainRoleId": "1517509294579257484",
+      "staffCommonRoleId": "1519394624743931905",
+      "staffRoleHierarchy": [
+        "1519394624743931905",
+        "1518163965962621080"
+      ]
+    },
+    "noPrefixRoles": [],
+    "antiNukeConfig": {
+      "antiBan": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1519394624743931905"
+        ],
+        "whitelistUserIds": [
+          "1181221352393420856",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "enabled": true,
+      "antiJoin": {
+        "enabled": true,
+        "threshold": 5,
+        "punishment": "kick",
+        "windowSeconds": 10,
+        "whitelistRoleIds": [
+          "1519394624743931905"
+        ],
+        "whitelistUserIds": [
+          "1181221352393420856",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiKick": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1519394624743931905"
+        ],
+        "whitelistUserIds": [
+          "1181221352393420856",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiRole": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1519394624743931905"
+        ],
+        "whitelistUserIds": [
+          "1181221352393420856",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiPrune": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiBotAdd": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "threeWalls": {
+        "wall1OwnerUserIds": [
+          "1181221352393420856"
+        ],
+        "wall2AdminRoleIds": [
+          "1519394624743931905"
+        ],
+        "wall3StaffRoleIds": [
+          "1518163965962621080"
+        ]
+      },
+      "antiChannel": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1519394624743931905"
+        ],
+        "whitelistUserIds": [
+          "1181221352393420856",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiSticker": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiWebhook": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "accessUserIds": [
+        "1181221352393420856",
+        "1181221352393420856"
+      ],
+      "antiInviteRole": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEveryoneHere": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiMemberUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiServerUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "commonPunishment": "kick",
+      "antiChannelCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "globalWhitelistRoleIds": [
+        "1519394624743931905"
+      ],
+      "globalWhitelistUserIds": [
+        "1181221352393420856"
+      ],
+      "ownerWhitelistedUserIds": [
+        "1181221352393420856"
+      ],
+      "globalWhitelistChannelIds": [],
+      "globalWhitelistCategoryIds": []
+    },
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": true,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1537500368290717698": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": true,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "automations": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {
+      "botNotifications": "1554854948552970270"
+    },
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "setupConfig": {
+      "mainRoleId": "1554854947684614184",
+      "staffCommonRoleId": "1543497589536591872",
+      "staffRoleHierarchy": [
+        "1543497589536591872"
+      ]
+    },
+    "noPrefixRoles": [],
+    "antiNukeConfig": {
+      "antiBan": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1543497589536591872"
+        ],
+        "whitelistUserIds": [
+          "1420048312077389825",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "enabled": true,
+      "antiJoin": {
+        "enabled": true,
+        "threshold": 5,
+        "punishment": "kick",
+        "windowSeconds": 10,
+        "whitelistRoleIds": [
+          "1543497589536591872"
+        ],
+        "whitelistUserIds": [
+          "1420048312077389825",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiKick": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1543497589536591872"
+        ],
+        "whitelistUserIds": [
+          "1420048312077389825",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiRole": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1543497589536591872"
+        ],
+        "whitelistUserIds": [
+          "1420048312077389825",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiPrune": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiBotAdd": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": [
+          "1420048312077389825"
+        ]
+      },
+      "threeWalls": {
+        "wall1OwnerUserIds": [
+          "1420048312077389825",
+          "1181221352393420856"
+        ],
+        "wall2AdminRoleIds": [
+          "1543497589536591872"
+        ],
+        "wall3StaffRoleIds": []
+      },
+      "antiChannel": {
+        "enabled": true,
+        "punishment": "kick",
+        "whitelistRoleIds": [
+          "1543497589536591872"
+        ],
+        "whitelistUserIds": [
+          "1420048312077389825",
+          "1181221352393420856",
+          "1181221352393420856"
+        ]
+      },
+      "antiSticker": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiWebhook": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": [
+          "1420048312077389825"
+        ]
+      },
+      "accessUserIds": [
+        "1420048312077389825",
+        "1181221352393420856"
+      ],
+      "antiInviteRole": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEveryoneHere": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiMemberUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiServerUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "commonPunishment": "kick",
+      "antiChannelCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "globalWhitelistRoleIds": [
+        "1543497589536591872"
+      ],
+      "globalWhitelistUserIds": [
+        "1420048312077389825",
+        "1181221352393420856"
+      ],
+      "ownerWhitelistedUserIds": [
+        "1420048312077389825",
+        "1181221352393420856"
+      ],
+      "globalWhitelistChannelIds": [],
+      "globalWhitelistCategoryIds": []
+    },
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": true,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1539245247714824302": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": false,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {
+      "moderation": "1539248542571434024",
+      "botNotifications": "1539260275390283816"
+    },
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "setupConfig": {
+      "mainRoleId": "1539270283645554779",
+      "staffCommonRoleId": "1539280405176254484",
+      "staffRoleHierarchy": [
+        "1539278957080481864",
+        "1539245725026885752",
+        "1539588492429099078",
+        "1539590739539795969",
+        "1539279501073321984",
+        "1539588381431046216",
+        "1539279825905131631",
+        "1539280405176254484",
+        "1539282973734604832",
+        "1539256280512856094",
+        "1539283186540871800",
+        "1539246679218196600",
+        "1539246873695486023",
+        "1539247904865394718",
+        "1539248355899613244",
+        "1539256498901876807",
+        "1539605967774425130",
+        "1539605408715513856",
+        "1539605294907133973",
+        "1539605193006780497",
+        "1539605060705718352",
+        "1539604925141745797",
+        "1539604757579042866",
+        "1539604653677879297",
+        "1539604514158551170",
+        "1539604298403549255",
+        "1539604196138160148",
+        "1539604092152709150",
+        "1539270283645554779"
+      ]
+    },
+    "noPrefixRoles": [],
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": true,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1554479885760856076": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": false,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {},
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "setupConfig": {
+      "staffRoleHierarchy": []
+    },
+    "noPrefixRoles": [],
+    "antiNukeConfig": {
+      "antiBan": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "enabled": true,
+      "antiJoin": {
+        "enabled": false,
+        "threshold": 3,
+        "punishment": "none",
+        "windowSeconds": 60,
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiKick": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRole": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiPrune": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "fourWalls": {
+        "wall1OwnerUserIds": [
+          "1181221352393420856"
+        ],
+        "wall2AdminRoleIds": [],
+        "wall3StaffRoleIds": [],
+        "wall4MemberRoleIds": []
+      },
+      "antiBotAdd": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "threeWalls": {
+        "wall1OwnerUserIds": [
+          "1181221352393420856"
+        ],
+        "wall2AdminRoleIds": [],
+        "wall3StaffRoleIds": []
+      },
+      "antiChannel": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiSticker": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiWebhook": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "accessUserIds": [],
+      "antiInviteRole": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiRoleUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEmojiUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiEveryoneHere": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiMemberUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiServerUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "commonPunishment": "ban",
+      "antiChannelCreate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelDelete": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "antiChannelUpdate": {
+        "enabled": false,
+        "punishment": "none",
+        "whitelistRoleIds": [],
+        "whitelistUserIds": []
+      },
+      "globalWhitelistRoleIds": [],
+      "globalWhitelistUserIds": [
+        "1181221352393420856"
+      ],
+      "ownerWhitelistedUserIds": [
+        "1181221352393420856"
+      ],
+      "globalWhitelistChannelIds": [],
+      "globalWhitelistCategoryIds": []
+    },
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": true,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  },
+  "1555111481505218583": {
+    "guildId": "",
+    "modules": {
+      "afk": true,
+      "loa": true,
+      "quota": true,
+      "verify": true,
+      "appeals": true,
+      "antiNuke": false,
+      "auditLog": true,
+      "noPrefix": true,
+      "staffMgmt": true,
+      "banRequest": true,
+      "moderation": true,
+      "roleMemory": true,
+      "infractions": true,
+      "partnership": true,
+      "staffDirectory": false,
+      "serverMaintenance": false
+    },
+    "channels": {},
+    "managers": {
+      "roleIds": [],
+      "userIds": []
+    },
+    "roleQuotas": {},
+    "moduleRoles": {},
+    "setupConfig": {
+      "mainRoleId": "1555142719691694121",
+      "staffRoleHierarchy": []
+    },
+    "noPrefixRoles": [],
+    "noPrefixUserIds": [],
+    "commandsUnlocked": true,
+    "quotaWhitelistRoles": [],
+    "setupWizardCompleted": true,
+    "trustedWhitelistUserIds": [],
+    "serverAdminWhitelistUserIds": [],
+    "serverOwnerWhitelistUserIds": []
+  }
+}

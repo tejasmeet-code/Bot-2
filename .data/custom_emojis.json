@@ -1,0 +1,182 @@
+{
+  "rank1": {
+    "str": "<:rank1:1551201983296307262>",
+    "id": "1551201983296307262",
+    "name": "rank1",
+    "animated": false
+  },
+  "rank2": {
+    "str": "<:rank2:1551201986383454278>",
+    "id": "1551201986383454278",
+    "name": "rank2",
+    "animated": false
+  },
+  "automod": {
+    "str": "<:automod:1517468917755412634>",
+    "id": "1517468917755412634",
+    "name": "automod",
+    "animated": false
+  },
+  "ban": {
+    "str": "<:ban:1517488765810114560>",
+    "id": "1517488765810114560",
+    "name": "ban",
+    "animated": false
+  },
+  "bullseye": {
+    "str": "<:bullseye:1551201988627402842>",
+    "id": "1551201988627402842",
+    "name": "bullseye",
+    "animated": false
+  },
+  "cashout": {
+    "str": "<:cashout:1551201991072686211>",
+    "id": "1551201991072686211",
+    "name": "cashout",
+    "animated": false
+  },
+  "chart": {
+    "str": "<:chart:1551201993295659059>",
+    "id": "1551201993295659059",
+    "name": "chart",
+    "animated": false
+  },
+  "check_no": {
+    "str": "<:white_cancel:1555133596652539988>",
+    "id": "1555133596652539988",
+    "name": "white_cancel",
+    "animated": false
+  },
+  "check_yes": {
+    "str": "<a:white_Done:1555133626276905040>",
+    "id": "1555133626276905040",
+    "name": "white_Done",
+    "animated": true
+  },
+  "dead": {
+    "str": "<:dead:1517469705709817948>",
+    "id": "1517469705709817948",
+    "name": "dead",
+    "animated": false
+  },
+  "delete": {
+    "str": "<:white_delete:1555133618072846417>",
+    "id": "1555133618072846417",
+    "name": "white_delete",
+    "animated": false
+  },
+  "dm_sent": {
+    "str": "<:dm_sent:1517480357090295898>",
+    "id": "1517480357090295898",
+    "name": "dm_sent",
+    "animated": false
+  },
+  "eightball": {
+    "str": "<:white_games:1555133649504968775>",
+    "id": "1555133649504968775",
+    "name": "white_games",
+    "animated": false
+  },
+  "error": {
+    "str": "<a:error:1553623618184020010>",
+    "id": "1553623618184020010",
+    "name": "error",
+    "animated": true
+  },
+  "failure": {
+    "str": "<:failure:1517469374594945134>",
+    "id": "1517469374594945134",
+    "name": "failure",
+    "animated": false
+  },
+  "fortune": {
+    "str": "<:white_games:1555133649504968775>",
+    "id": "1555133649504968775",
+    "name": "white_games",
+    "animated": false
+  },
+  "giveaway": {
+    "str": "<:giveaway:1517478245233201242>",
+    "id": "1517478245233201242",
+    "name": "giveaway",
+    "animated": false
+  },
+  "locked": {
+    "str": "<:locked:1517468838936051803>",
+    "id": "1517468838936051803",
+    "name": "locked",
+    "animated": false
+  },
+  "mute_icon": {
+    "str": "<:white_mute:1555133755184906250>",
+    "id": "1555133755184906250",
+    "name": "white_mute",
+    "animated": false
+  },
+  "nuke": {
+    "str": "<:nuke:1517479972652974130>",
+    "id": "1517479972652974130",
+    "name": "nuke",
+    "animated": false
+  },
+  "roulette": {
+    "str": "<:white_games:1555133649504968775>",
+    "id": "1555133649504968775",
+    "name": "white_games",
+    "animated": false
+  },
+  "scramble": {
+    "str": "<:Tool:1555133545918369894>",
+    "id": "1555133545918369894",
+    "name": "scramble",
+    "animated": false
+  },
+  "ship": {
+    "str": "<:ship:1517480289142571059>",
+    "id": "1517480289142571059",
+    "name": "ship",
+    "animated": false
+  },
+  "soulmates": {
+    "str": "<:people:1555133444017619028>",
+    "id": "1555133444017619028",
+    "name": "people",
+    "animated": false
+  },
+  "streak": {
+    "str": "<:streak:1517478143642832996>",
+    "id": "1517478143642832996",
+    "name": "streak",
+    "animated": false
+  },
+  "success": {
+    "str": "<a:Success:1500117505400897606>",
+    "id": "1500117505400897606",
+    "name": "Success",
+    "animated": true
+  },
+  "thinking": {
+    "str": "<:white_info:1555133685118931086>",
+    "id": "1555133685118931086",
+    "name": "white_info",
+    "animated": false
+  },
+  "ticket": {
+    "str": "<:ticket:1517478211855057018>",
+    "id": "1517478211855057018",
+    "name": "ticket",
+    "animated": false
+  },
+  "trophy": {
+    "str": "<:trophy:1517479909818236958>",
+    "id": "1517479909818236958",
+    "name": "trophy",
+    "animated": false
+  },
+  "warning": {
+    "str": "<:warning:1500119953951555824>",
+    "id": "1500119953951555824",
+    "name": "warning",
+    "animated": false
+  }
+}

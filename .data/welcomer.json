@@ -1,0 +1,29 @@
+{
+  "1466728565352435847": {
+    "dm": {
+      "mode": "embed",
+      "embed": {
+        "color": 5793266,
+        "title": "Welcome to **RelostaMedia**!",
+        "description": "<:Blue_dot:1472116261797232738> Make sure to read <#1470840724491600067>\n\n<:Blue_dot:1472116261797232738> Know about us from <#1505245804019847269>\n\n<:Blue_dot:1472116261797232738> Reach Us Out at <#1514941192603697213>"
+      },
+      "enabled": true,
+      "message": "Welcome to **{server}**, {username}! We're glad to have you 🎉"
+    },
+    "channel": {
+      "mode": "image",
+      "embed": {
+        "color": 5793266,
+        "title": "Welcome to **RelostaMedia**!",
+        "footer": "{server} • {count} members",
+        "showAvatar": true,
+        "description": "<a:arrow_arrow:1181221352393420856> Make sure to read <#1470840724491600067>\n\n<a:arrow_arrow:1181221352393420856> Know about us from <#1505245804019847269>\n\n<a:arrow_arrow:1181221352393420856> Reach Us Out at <#1505247493888278568>"
+      },
+      "enabled": true,
+      "aboveText": "Welcome! {user} to relosta",
+      "channelId": "1505245733388030034",
+      "imageBackground": 2
+    },
+    "enabled": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "rules": [
+    {
+      "id": "5isjr8",
+      "emoji": "<:Premium4:1555133480810193016>",
+      "target": "<@1181221352393420856>",
+      "addedAt": 1791203947264,
+      "addedBy": "1181221352393420856",
+      "enabled": true,
+      "targetType": "word",
+      "addedByName": "demonxtejas"
+    }
+  ],
+  "enabled": true
+}

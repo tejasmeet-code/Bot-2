@@ -1,0 +1,102 @@
+{
+  "1466728565352435847": [
+    {
+      "id": "3516342f",
+      "name": "New staff",
+      "action": {
+        "type": "dm_user",
+        "message": "https://discord.gg/AgnCyHBPbb Join the staff server"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1514965165890867250"
+      },
+      "createdAt": 1781266305976
+    },
+    {
+      "id": "b2b4f681",
+      "name": "Content",
+      "action": {
+        "type": "dm_user",
+        "message": "https://cdn.discordapp.com/attachments/1511703164980826152/1512811755062034432/relosta_ad.png?ex=6a2cb37d&is=6a2b61fd&hm=ee31228a3942134fcca08072c45d3bcbfe2f8ef827d4b52aff85ce92e2cef1b3"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1505638397140537442"
+      },
+      "createdAt": 1781266455243
+    },
+    {
+      "id": "cc66c1b6",
+      "name": "Influencers",
+      "action": {
+        "type": "dm_user",
+        "message": "https://cdn.discordapp.com/attachments/1511703164980826152/1512811755062034432/relosta_ad.png?ex=6a2cb37d&is=6a2b61fd&hm=ee31228a3942134fcca08072c45d3bcbfe2f8ef827d4b52aff85ce92e2cef1b3"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1505638492099711026"
+      },
+      "createdAt": 1781266519500
+    },
+    {
+      "id": "25d27883",
+      "name": "Influencer 2",
+      "action": {
+        "type": "dm_user",
+        "message": "https://discord.com/channels/1466728565352435847/1514941192603697213 Come to this channel to create ticket"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1505638492099711026"
+      },
+      "createdAt": 1781266610429
+    },
+    {
+      "id": "37d40c2b",
+      "name": "Content 2",
+      "action": {
+        "type": "dm_user",
+        "message": "https://discord.com/channels/1466728565352435847/1514941192603697213 Come to this channel to create ticket"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1505638397140537442"
+      },
+      "createdAt": 1781266804446
+    },
+    {
+      "id": "ac3b2a0f",
+      "name": "Content Creators",
+      "action": {
+        "type": "dm_user",
+        "message": "https://cdn.discordapp.com/attachments/1511703164980826152/1512811755062034432/relosta_ad.png?ex=6a25733d&is=6a2421bd&hm=67088be366a1cb5d4ebe64b6ed544d06b15e70ad253c1215a39d127f4bf1827e"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1515266572984516639"
+      },
+      "createdAt": 1781421554625
+    },
+    {
+      "id": "ad624fb6",
+      "name": "content creators 2",
+      "action": {
+        "type": "dm_user",
+        "message": "https://discord.com/channels/1466728565352435847/1514941192603697213 Come to this channel to create ticket"
+      },
+      "enabled": true,
+      "trigger": {
+        "type": "role_added",
+        "roleId": "1515266572984516639"
+      },
+      "createdAt": 1781421612381
+    }
+  ]
+}

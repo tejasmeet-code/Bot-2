@@ -124,6 +124,9 @@ export async function applyServerPremiumBranding(guild: Guild, force: boolean = 
       }
 
       // 1. Change nickname separately (always works if bot has nickname permission)
+      if (guild.members.me) {
+        await guild.members.me.setNickname(targetName).catch(() => {});
+      }
       await rest.patch(Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: targetName,
@@ -148,6 +151,9 @@ export async function applyServerPremiumBranding(guild: Guild, force: boolean = 
       const defaultNick = customProfile?.name || "Zenith Bot";
 
       // 1. Reset nickname separately
+      if (guild.members.me) {
+        await guild.members.me.setNickname(defaultNick).catch(() => {});
+      }
       await rest.patch(Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: defaultNick,

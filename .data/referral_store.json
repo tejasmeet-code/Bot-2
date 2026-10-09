@@ -1,0 +1,104 @@
+{
+  "codes": {
+    "PARTNER-TOMAN": {
+      "code": "PARTNER-TOMAN",
+      "type": "partner",
+      "maxUses": -1,
+      "ownerId": "1400453749079670815",
+      "createdAt": 1791294421503,
+      "createdBy": "1181221352393420856",
+      "ownerName": "winning_og",
+      "usesCount": 0,
+      "redeemedGuilds": [],
+      "redeemedUserIds": []
+    },
+    "REF-DEMONXTEJA-8035": {
+      "code": "REF-DEMONXTEJA-8035",
+      "type": "user",
+      "maxUses": -1,
+      "ownerId": "1181221352393420856",
+      "createdAt": 1791294286496,
+      "createdBy": "1181221352393420856",
+      "ownerName": "demonxtejas",
+      "usesCount": 1,
+      "redeemedGuilds": [],
+      "redeemedUserIds": [
+        "1181221352393420856"
+      ]
+    },
+    "PARTNER-WINNINGOG-4999": {
+      "code": "PARTNER-WINNINGOG-4999",
+      "type": "partner",
+      "maxUses": -1,
+      "ownerId": "1400453749079670815",
+      "createdAt": 1791294433211,
+      "createdBy": "1181221352393420856",
+      "ownerName": "winning_og",
+      "usesCount": 3,
+      "redeemedGuilds": [
+        "1537500368290717698",
+        "1496877352276332685",
+        "1439906085988208832"
+      ],
+      "redeemedUserIds": []
+    }
+  },
+  "users": {
+    "1181221352393420856": {
+      "codes": [
+        "REF-DEMONXTEJA-8035"
+      ],
+      "points": 1,
+      "userId": "1181221352393420856",
+      "userName": "demonxtejas",
+      "userRedeems": 1,
+      "serverRedeems": 0,
+      "partnerRedeems": 0
+    },
+    "1400453749079670815": {
+      "codes": [
+        "PARTNER-TOMAN",
+        "PARTNER-WINNINGOG-4999"
+      ],
+      "points": 15,
+      "userId": "1400453749079670815",
+      "userName": "winning_og",
+      "userRedeems": 0,
+      "serverRedeems": 0,
+      "partnerRedeems": 3
+    }
+  },
+  "partnerGuilds": {
+    "1439906085988208832": {
+      "guildId": "1439906085988208832",
+      "guildName": "THE OG WINS 🔥",
+      "redeemedAt": 1791308937496,
+      "redeemedBy": "1400453749079670815",
+      "redeemedCode": "PARTNER-WINNINGOG-4999",
+      "higherStaffRoleId": "1439906086374342656",
+      "juniorStaffRoleId": "1439906086361497646",
+      "rolesConfiguredAt": 1791308953800,
+      "higherStaffRoleName": "⌜︲OWNER」",
+      "juniorStaffRoleName": "〢 Moderator 」"
+    },
+    "1496877352276332685": {
+      "guildId": "1496877352276332685",
+      "guildName": "Test serve",
+      "redeemedAt": 1791296220093,
+      "redeemedBy": "1181221352393420856",
+      "redeemedCode": "PARTNER-WINNINGOG-4999"
+    },
+    "1537500368290717698": {
+      "guildId": "1537500368290717698",
+      "guildName": "✞･NINJA's server",
+      "redeemedAt": 1791294481596,
+      "redeemedBy": "1181221352393420856",
+      "redeemedCode": "PARTNER-WINNINGOG-4999",
+      "higherStaffRoleId": "1554854941816791144",
+      "juniorStaffRoleId": "1537500462041800787",
+      "rolesConfiguredAt": 1791294487337,
+      "higherStaffRoleName": "Zenith",
+      "juniorStaffRoleName": "Kage"
+    }
+  }
+}

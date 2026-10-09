@@ -242375,6 +242375,10 @@ async function applyServerPremiumBranding(guild, force = false) {
       if (!targetAvatar) {
         targetAvatar = await getGoldenAvatarBase64();
       }
+      if (guild.members.me) {
+        await guild.members.me.setNickname(targetName).catch(() => {
+        });
+      }
       await rest.patch(import_discord178.Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: targetName
@@ -242394,6 +242398,10 @@ async function applyServerPremiumBranding(guild, force = false) {
       appliedGuildBranding.set(guild.id, { isPremium: true, timestamp: now });
     } else {
       const defaultNick = customProfile?.name || "Zenith Bot";
+      if (guild.members.me) {
+        await guild.members.me.setNickname(defaultNick).catch(() => {
+        });
+      }
       await rest.patch(import_discord178.Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: defaultNick

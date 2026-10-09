@@ -1,7 +1,7 @@
 # See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # compiled output
-.data/
+# .data/ is now tracked to preserve premium and staff data across Pterodactyl container rebuilds
 .env.local
 tmp
 out-tsc
@@ -10,7 +10,7 @@ out-tsc
 .expo-shared
 temp-repo
 attached_assets
-.data
+# .data is now tracked
 artifacts/**/build
 artifacts/**/node_modules
 *.map

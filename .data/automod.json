@@ -1,0 +1,110 @@
+{
+  "1537500368290717698": {
+    "caps": {
+      "action": "delete",
+      "enabled": false,
+      "percent": 70,
+      "minLength": 6,
+      "exemptRoleIds": [],
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "raid": {
+      "action": "mute",
+      "enabled": false,
+      "strictMode": false,
+      "exemptRoleIds": [],
+      "joinThreshold": 10,
+      "exemptChannelIds": [],
+      "joinWindowSeconds": 15,
+      "muteDurationMinutes": 10
+    },
+    "spam": {
+      "action": "delete",
+      "enabled": false,
+      "threshold": 5,
+      "exemptRoleIds": [],
+      "windowSeconds": 5,
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "links": {
+      "action": "delete",
+      "enabled": false,
+      "whitelist": [],
+      "scamDomains": [
+        "discord-nitro.com"
+      ],
+      "scanInternet": true,
+      "exemptRoleIds": [],
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "enabled": false,
+    "invites": {
+      "action": "delete",
+      "enabled": false,
+      "exemptRoleIds": [],
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "badWords": {
+      "words": [],
+      "action": "delete",
+      "enabled": false,
+      "exemptRoleIds": [],
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "mentions": {
+      "action": "delete",
+      "enabled": false,
+      "threshold": 3,
+      "exemptRoleIds": [],
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "newlines": {
+      "action": "delete",
+      "enabled": false,
+      "threshold": 5,
+      "exemptRoleIds": [],
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "aiAutomod": {
+      "action": "delete",
+      "enabled": false,
+      "whitelist": [],
+      "categories": [
+        "threat",
+        "hate_speech",
+        "slur",
+        "explicit",
+        "harassment",
+        "self_harm",
+        "scam",
+        "spam",
+        "nsfw"
+      ],
+      "scanImages": false,
+      "scanStickers": false,
+      "exemptRoleIds": [],
+      "minConfidence": 75,
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "duplicates": {
+      "action": "delete",
+      "enabled": false,
+      "exemptRoleIds": [],
+      "windowSeconds": 30,
+      "exemptChannelIds": [],
+      "muteDurationMinutes": 10
+    },
+    "whitelistRoleIds": [],
+    "whitelistUserIds": [],
+    "whitelistChannelIds": [],
+    "whitelistCategoryIds": []
+  }
+}
