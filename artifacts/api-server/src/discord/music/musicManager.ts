@@ -344,9 +344,16 @@ export class MusicManager {
       }
     });
 
-    player.on("end", (reason) => {
-      logger.info({ reason, track: this.currentTrack?.title }, "Lavalink track ended");
+    player.on("end", (payload) => {
+      const reasonStr = typeof payload === "string" ? payload : payload?.reason;
+      logger.info({ reason: reasonStr, track: this.currentTrack?.title }, "Lavalink track ended");
       this.isPlaying = false;
+
+      if (reasonStr === "REPLACED") {
+        logger.info("Track replaced, ignoring queue advancement to prevent duplicate/skipped playbacks.");
+        return;
+      }
+
       this.onTrackEnded().catch(() => {});
     });
 
@@ -1010,6 +1017,14 @@ export class MusicManager {
       this.currentTrack = null;
       this.isPlaying = false;
       this.updateVoiceStatus("", true).catch(() => {});
+      if (this.lastPlayerMessage) {
+        const endedEmbed = prettyEmbed({
+          title: "Playback Concluded",
+          description: `*The queue is now empty. Add more songs with \`/play\`!*`,
+          color: COLORS.primary,
+        });
+        await this.lastPlayerMessage.edit({ embeds: [endedEmbed], components: [] }).catch(() => {});
+      }
       try {
         const clientUser = (this.voiceChannel.client as any).user;
         clientUser?.setPresence({
@@ -1168,25 +1183,31 @@ export async function handleMusicButton(interaction: ButtonInteraction): Promise
 
   // 3. Skip
   if (customId === "music:skip" || customId === "btn:music:skip") {
+    if (interaction.message) {
+      const embed = prettyEmbed({
+        title: `${CE.white_skip.str} Skipping Track...`,
+        description: `Transitioning to the next song in the queue...`,
+        color: COLORS.primary,
+      });
+      await interaction.message.edit({ embeds: [embed], components: [] }).catch(() => {});
+    }
     await manager.skip();
     await interaction.reply({ content: `${CE.white_skip.str} Skipped track!`, ephemeral: true });
-    if (interaction.message) {
-      const embed = buildNowPlayingEmbed(manager);
-      const rows = buildPlayerActionRows(manager);
-      await interaction.message.edit({ embeds: [embed], components: rows as any }).catch(() => {});
-    }
     return;
   }
 
   // 4. Stop
   if (customId === "music:stop" || customId === "btn:music:stop") {
+    if (interaction.message) {
+      const embed = prettyEmbed({
+        title: `${CE.white_cancel.str} Stopping Playback...`,
+        description: `Clearing queue and leaving voice channel...`,
+        color: COLORS.primary,
+      });
+      await interaction.message.edit({ embeds: [embed], components: [] }).catch(() => {});
+    }
     await manager.stop();
     await interaction.reply({ content: `${CE.white_cancel.str} Stopped music playback and cleared queue!`, ephemeral: true });
-    if (interaction.message) {
-      const embed = buildNowPlayingEmbed(manager);
-      const rows = buildPlayerActionRows(manager);
-      await interaction.message.edit({ embeds: [embed], components: rows as any }).catch(() => {});
-    }
     return;
   }
 

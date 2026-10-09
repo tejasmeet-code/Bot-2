@@ -118,12 +118,6 @@ export async function handleAutoReactMessage(message: Message): Promise<void> {
 export async function handleNoPrefixNLPMessage(message: Message): Promise<boolean> {
   if (message.author.bot || !message.inGuild() || !message.guild) return false;
 
-  // Deduplication check: if message was already handled by prefix router, do NOT re-run
-  const { isMessageRecentlyProcessed } = await import("../messageHandler");
-  if (isMessageRecentlyProcessed(message.id)) {
-    return false;
-  }
-
   const content = message.content.trim();
   if (!content) return false;
 
@@ -164,8 +158,9 @@ export async function handleNoPrefixNLPMessage(message: Message): Promise<boolea
   const firstWord = (tokens[0] || "").toLowerCase();
   const rawArgs = tokens.slice(1);
 
-  // Single-letter words (k, b, p, etc.) must NEVER trigger as no-prefix commands
-  if (firstWord.length <= 1) return false;
+  // Single-letter words must NEVER trigger as no-prefix commands unless they are safe music/help aliases (p, s, q, v, h)
+  const SAFE_SINGLE_CHAR_ALIASES = new Set(["p", "s", "q", "v", "h"]);
+  if (firstWord.length <= 1 && !SAFE_SINGLE_CHAR_ALIASES.has(firstWord)) return false;
 
   // Resolve aliases (e.g. an -> antinuke, st -> setup, etc.) and info flag
   const { canonicalName, resolvedArgs, isInfo } = resolveCommandAndArgs(firstWord, rawArgs);

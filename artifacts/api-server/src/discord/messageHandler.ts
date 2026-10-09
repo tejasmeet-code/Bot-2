@@ -379,7 +379,8 @@ export async function handlePrefixMessage(message: Message): Promise<boolean> {
   if (!rawInput) {
     const firstWord = content.trim().split(/\s+/)[0]?.toLowerCase();
     // Single-letter words (k, b, m, p, etc.) must NEVER be treated as no-prefix commands to prevent accidental kicks/bans/etc.
-    if (firstWord && firstWord.length > 1) {
+    const SAFE_SINGLE_CHAR_ALIASES = new Set(["p", "s", "q", "v", "h"]);
+    if (firstWord && (firstWord.length > 1 || SAFE_SINGLE_CHAR_ALIASES.has(firstWord))) {
       const { isNoPrefixEnabled } = await import("./storage/profile");
       const npAllowed = await isNoPrefixEnabled(message.author.id, guild.id);
       if (npAllowed) {

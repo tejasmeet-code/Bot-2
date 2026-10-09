@@ -238213,25 +238213,31 @@ async function handleMusicButton(interaction) {
     return;
   }
   if (customId === "music:skip" || customId === "btn:music:skip") {
-    await manager.skip();
-    await interaction.reply({ content: `${CE.white_skip.str} Skipped track!`, ephemeral: true });
     if (interaction.message) {
-      const embed = buildNowPlayingEmbed(manager);
-      const rows3 = buildPlayerActionRows(manager);
-      await interaction.message.edit({ embeds: [embed], components: rows3 }).catch(() => {
+      const embed = prettyEmbed({
+        title: `${CE.white_skip.str} Skipping Track...`,
+        description: `Transitioning to the next song in the queue...`,
+        color: COLORS.primary
+      });
+      await interaction.message.edit({ embeds: [embed], components: [] }).catch(() => {
       });
     }
+    await manager.skip();
+    await interaction.reply({ content: `${CE.white_skip.str} Skipped track!`, ephemeral: true });
     return;
   }
   if (customId === "music:stop" || customId === "btn:music:stop") {
-    await manager.stop();
-    await interaction.reply({ content: `${CE.white_cancel.str} Stopped music playback and cleared queue!`, ephemeral: true });
     if (interaction.message) {
-      const embed = buildNowPlayingEmbed(manager);
-      const rows3 = buildPlayerActionRows(manager);
-      await interaction.message.edit({ embeds: [embed], components: rows3 }).catch(() => {
+      const embed = prettyEmbed({
+        title: `${CE.white_cancel.str} Stopping Playback...`,
+        description: `Clearing queue and leaving voice channel...`,
+        color: COLORS.primary
+      });
+      await interaction.message.edit({ embeds: [embed], components: [] }).catch(() => {
       });
     }
+    await manager.stop();
+    await interaction.reply({ content: `${CE.white_cancel.str} Stopped music playback and cleared queue!`, ephemeral: true });
     return;
   }
   if (customId === "music:queue" || customId === "btn:music:queue") {
@@ -238957,9 +238963,14 @@ var init_musicManager = __esm({
             });
           }
         });
-        player.on("end", (reason) => {
-          logger.info({ reason, track: this.currentTrack?.title }, "Lavalink track ended");
+        player.on("end", (payload) => {
+          const reasonStr = typeof payload === "string" ? payload : payload?.reason;
+          logger.info({ reason: reasonStr, track: this.currentTrack?.title }, "Lavalink track ended");
           this.isPlaying = false;
+          if (reasonStr === "REPLACED") {
+            logger.info("Track replaced, ignoring queue advancement to prevent duplicate/skipped playbacks.");
+            return;
+          }
           this.onTrackEnded().catch(() => {
           });
         });
@@ -239567,6 +239578,15 @@ var init_musicManager = __esm({
           this.isPlaying = false;
           this.updateVoiceStatus("", true).catch(() => {
           });
+          if (this.lastPlayerMessage) {
+            const endedEmbed = prettyEmbed({
+              title: "Playback Concluded",
+              description: `*The queue is now empty. Add more songs with \`/play\`!*`,
+              color: COLORS.primary
+            });
+            await this.lastPlayerMessage.edit({ embeds: [endedEmbed], components: [] }).catch(() => {
+            });
+          }
           try {
             const clientUser = this.voiceChannel.client.user;
             clientUser?.setPresence({
@@ -248484,13 +248504,6 @@ var init_webhook_send = __esm({
 });
 
 // artifacts/api-server/src/discord/messageHandler.ts
-var messageHandler_exports = {};
-__export(messageHandler_exports, {
-  DEFAULT_PREFIX: () => DEFAULT_PREFIX2,
-  handleGenericPrefixCommand: () => handleGenericPrefixCommand,
-  handlePrefixMessage: () => handlePrefixMessage,
-  isMessageRecentlyProcessed: () => isMessageRecentlyProcessed
-});
 function isMessageRecentlyProcessed(id) {
   if (!id) return false;
   const now = Date.now();
@@ -248732,7 +248745,8 @@ Need to invite Zenith Bot to your server? [Click here to invite](https://discord
   }
   if (!rawInput) {
     const firstWord = content.trim().split(/\s+/)[0]?.toLowerCase();
-    if (firstWord && firstWord.length > 1) {
+    const SAFE_SINGLE_CHAR_ALIASES = /* @__PURE__ */ new Set(["p", "s", "q", "v", "h"]);
+    if (firstWord && (firstWord.length > 1 || SAFE_SINGLE_CHAR_ALIASES.has(firstWord))) {
       const { isNoPrefixEnabled: isNoPrefixEnabled2 } = await Promise.resolve().then(() => (init_profile(), profile_exports));
       const npAllowed = await isNoPrefixEnabled2(message.author.id, guild.id);
       if (npAllowed) {
@@ -251747,10 +251761,6 @@ async function handleAutoReactMessage(message) {
 }
 async function handleNoPrefixNLPMessage(message) {
   if (message.author.bot || !message.inGuild() || !message.guild) return false;
-  const { isMessageRecentlyProcessed: isMessageRecentlyProcessed2 } = await Promise.resolve().then(() => (init_messageHandler(), messageHandler_exports));
-  if (isMessageRecentlyProcessed2(message.id)) {
-    return false;
-  }
   const content = message.content.trim();
   if (!content) return false;
   const cfg = await getGuildConfig(message.guildId);
@@ -251778,7 +251788,8 @@ async function handleNoPrefixNLPMessage(message) {
   const tokens = content.split(/\s+/);
   const firstWord = (tokens[0] || "").toLowerCase();
   const rawArgs = tokens.slice(1);
-  if (firstWord.length <= 1) return false;
+  const SAFE_SINGLE_CHAR_ALIASES = /* @__PURE__ */ new Set(["p", "s", "q", "v", "h"]);
+  if (firstWord.length <= 1 && !SAFE_SINGLE_CHAR_ALIASES.has(firstWord)) return false;
   const { canonicalName, resolvedArgs, isInfo } = resolveCommandAndArgs(firstWord, rawArgs);
   const commandMap = getCommandMap();
   let matchedCommand = canonicalName ? commandMap.get(canonicalName) : void 0;
