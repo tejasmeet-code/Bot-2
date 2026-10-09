@@ -131,23 +131,30 @@ server.on("error", (err) => {
 });
 
 // Discord bot hosting logic:
-const isRenderHost = Boolean(process.env.RENDER || process.env.RENDER_SERVICE_ID || process.env.RENDER_INSTANCE_ID);
+const isCloudHost = Boolean(
+  process.env.RENDER ||
+    process.env.RENDER_SERVICE_ID ||
+    process.env.PORT ||
+    process.env.PTERODACTYL_SERVER ||
+    process.env.HEAVEN_CLOUD_API ||
+    process.env.START_DISCORD_BOT === "true"
+);
 const envStartSetting = process.env.START_DISCORD_BOT;
 const token = process.env.DISCORD_BOT_TOKEN || process.env.DISCORD_TOKEN;
 const hasBotToken = Boolean(token && token.trim().length > 10);
 
-const shouldStartBot = hasBotToken && isRenderHost && envStartSetting !== "false";
+const shouldStartBot = hasBotToken && isCloudHost && envStartSetting !== "false";
 if (shouldStartBot) {
-  logger.info({ isRenderHost, envStartSetting }, "Starting Zenith Bot Discord gateway on Render host...");
+  logger.info({ isCloudHost, envStartSetting }, "Starting Zenith Bot Discord gateway on cloud host...");
   startDiscordBot().catch((err) => {
-    logger.error({ err }, "Discord bot failed to start on Render — check DISCORD_BOT_TOKEN and DISCORD_CLIENT_ID");
+    logger.error({ err }, "Discord bot failed to start — check DISCORD_BOT_TOKEN and DISCORD_CLIENT_ID");
   });
-} else if (!isRenderHost) {
-  logger.info("Discord bot gateway connection disabled in local preview — configured to host on Render exclusively.");
+} else if (!isCloudHost) {
+  logger.info("Discord bot gateway connection disabled in local preview — configured to host on cloud exclusively.");
 } else if (!hasBotToken) {
-  logger.warn("Discord bot process skipped on Render: DISCORD_BOT_TOKEN is missing or empty in environment variables.");
+  logger.warn("Discord bot process skipped: DISCORD_BOT_TOKEN is missing or empty in environment variables.");
 } else {
-  logger.info("Discord bot process skipped on Render: START_DISCORD_BOT is set to false.");
+  logger.info("Discord bot process skipped: START_DISCORD_BOT is set to false.");
 }
 
 // ── 24/7 Keep-Alive Background Heartbeat System ──
@@ -165,4 +172,40 @@ setInterval(async () => {
     }
   } catch {}
 }, KEEP_ALIVE_INTERVAL_MS);
+
+// ── Self-Healing Low-Resource Pterodactyl Monitor ──
+// Programmatically tracks memory limits and automatically garbage-collects or flushes caches when approaching limit
+const SERVER_MEMORY_LIMIT_MB = parseInt(process.env.SERVER_MEMORY || "512", 10);
+if (SERVER_MEMORY_LIMIT_MB > 0) {
+  logger.info({ memoryLimitMb: SERVER_MEMORY_LIMIT_MB }, "Pterodactyl self-healing resource monitor active");
+  
+  setInterval(async () => {
+    try {
+      const usageBytes = process.memoryUsage().rss;
+      const usageMb = Math.round(usageBytes / 1024 / 1024);
+      
+      // If memory exceeds 80% of limit, flush caches & trigger GC
+      if (usageMb >= SERVER_MEMORY_LIMIT_MB * 0.80) {
+        logger.warn({ usageMb, limitMb: SERVER_MEMORY_LIMIT_MB }, "Low resource alert: Approaching memory limits! Flushing caches programmatically.");
+        
+        try {
+          const { searchResultCache, sourceOptionCache } = await import("./discord/music/musicManager");
+          searchResultCache.clear();
+          sourceOptionCache.clear();
+          logger.info("Internal search result and source caches cleared successfully");
+        } catch (err) {
+          logger.debug({ err }, "Could not resolve musicManager caches for garbage collection");
+        }
+        
+        // Force trigger V8 Garbage Collection if flag is enabled
+        if (typeof (global as any).gc === "function") {
+          logger.info("Triggering V8 Garbage Collection programmatically");
+          (global as any).gc();
+        }
+      }
+    } catch (monitorErr) {
+      logger.debug({ monitorErr }, "Resource monitor check warning");
+    }
+  }, 45 * 1000); // Check memory every 45 seconds
+}
 

@@ -150,17 +150,7 @@ export async function startDiscordBot(): Promise<void> {
     console.log("[boot] Setting up REST...");
     const rest = new REST({ version: "10" }).setToken(token);
     
-    console.log("[boot] Warming up module cache...");
-    // Pre-import frequently used modules to avoid latency during first interactions
-    await Promise.all([
-      import("./storage/premium"),
-      import("./storage/whitelist"),
-      import("./storage/config"),
-      import("./storage/botStatusState"),
-      import("./utils/embedStyle"),
-      import("./utils/commandAliases"),
-      import("./messageHandler"),
-    ]).catch((err) => logger.warn({ err }, "Error during module warm-up"));
+    console.log("[boot] Skipping module cache warm-up to conserve memory...");
 
     console.log("[boot] Skipping REST token validation to speed up boot...");
 

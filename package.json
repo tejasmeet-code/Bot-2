@@ -1,41 +1,52 @@
 {
-  "name": "workspace",
+  "name": "zenith-bot",
   "version": "0.0.0",
-  "license": "MIT",
-  "workspaces": [
-    "artifacts/*",
-    "lib/*",
-    "scripts"
-  ],
-  "scripts": {
-    "build": "node ./artifacts/api-server/build.mjs",
-    "build:apps": "npx pnpm --filter @workspace/api-server run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "npx pnpm run typecheck:libs && npx pnpm run typecheck:apps",
-    "typecheck:apps": "npx pnpm -r --if-present run typecheck",
-    "lint": "npx pnpm run typecheck",
-    "dev": "node index.js",
-    "check:emojis": "node scripts/check-emojis.js",
-    "start": "node --dns-result-order=ipv4first index.js"
-  },
   "type": "module",
   "private": true,
   "engines": {
     "node": ">=22"
   },
-  "devDependencies": {
-    "@discordjs/voice": "^0.19.2",
-    "@google/genai": "*",
-    "@napi-rs/canvas": "^1.0.9",
-    "ffmpeg-static": "^5.2.0",
-    "opusscript": "^0.0.8",
-    "prettier": "^3.8.3",
-    "sharp": "^0.35.4",
-    "shoukaku": "^4.3.0",
-    "tsx": "^4.21.0",
-    "typescript": "~5.9.3"
+  "scripts": {
+    "build": "node ./artifacts/api-server/build.mjs",
+    "start": "node --dns-result-order=ipv4first index.js",
+    "dev": "node index.js"
   },
   "dependencies": {
-    "libsodium-wrappers": "^0.8.4"
+    "@discordjs/voice": "^0.19.2",
+    "@distube/ytdl-core": "^4.15.1",
+    "@google/genai": "*",
+    "@supabase/supabase-js": "^2.105.1",
+    "libsodium-wrappers": "^0.8.4",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2",
+    "discord.js": "^14.18.0",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "*",
+    "express": "^5",
+    "ffmpeg-static": "^5.2.0",
+    "opusscript": "^0.0.8",
+    "pg": "^8.20.0",
+    "pino": "^9",
+    "pino-http": "^10",
+    "play-dl": "^1.9.7",
+    "soundcloud-downloader": "^1.0.0",
+    "shoukaku": "^4.3.0",
+    "tslib": "^2.6.2",
+    "tweetnacl": "^1.0.3",
+    "ws": "^8.20.1",
+    "youtube-sr": "^4.3.11"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "*",
+    "@types/pg": "^8.18.0",
+    "@types/ws": "^8.18.1",
+    "esbuild": "0.25.8",
+    "esbuild-plugin-pino": "^2.3.3",
+    "pino-pretty": "^13",
+    "thread-stream": "3.1.0",
+    "typescript": "~5.9.3"
   }
 }
