@@ -175,7 +175,33 @@ setInterval(async () => {
 
 // ── Self-Healing Low-Resource Pterodactyl Monitor ──
 // Programmatically tracks memory limits and automatically garbage-collects or flushes caches when approaching limit
-const SERVER_MEMORY_LIMIT_MB = parseInt(process.env.SERVER_MEMORY || "512", 10);
+function getContainerMemoryLimitMb(): number {
+  if (process.env.SERVER_MEMORY) {
+    const parsed = parseInt(process.env.SERVER_MEMORY, 10);
+    if (!isNaN(parsed) && parsed > 0) return parsed;
+  }
+  try {
+    if (fs.existsSync("/sys/fs/cgroup/memory.max")) {
+      const content = fs.readFileSync("/sys/fs/cgroup/memory.max", "utf8").trim();
+      if (content && content !== "max") {
+        const bytes = parseInt(content, 10);
+        if (bytes > 0) return Math.round(bytes / 1024 / 1024);
+      }
+    }
+  } catch {}
+  try {
+    if (fs.existsSync("/sys/fs/cgroup/memory/memory.limit_in_bytes")) {
+      const content = fs.readFileSync("/sys/fs/cgroup/memory/memory.limit_in_bytes", "utf8").trim();
+      const bytes = parseInt(content, 10);
+      if (bytes > 0 && bytes < 9007199254740991) {
+        return Math.round(bytes / 1024 / 1024);
+      }
+    }
+  } catch {}
+  return 512;
+}
+
+const SERVER_MEMORY_LIMIT_MB = getContainerMemoryLimitMb();
 if (SERVER_MEMORY_LIMIT_MB > 0) {
   logger.info({ memoryLimitMb: SERVER_MEMORY_LIMIT_MB }, "Pterodactyl self-healing resource monitor active");
   

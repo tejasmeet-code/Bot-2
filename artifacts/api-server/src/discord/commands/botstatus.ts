@@ -11,7 +11,6 @@ import { CE, prettyEmbed, errorEmbed, COLORS, resolveDynamicEmoji } from "../uti
 import { logger } from "../../lib/logger";
 import { getGuildConfig } from "../storage/config";
 import { setBotStatusMode, getOriginalAvatarUrl, setBotCommandMode, type BotStatusMode } from "../storage/botStatusState";
-import sharp from "sharp";
 
 export function formatNitroUsername(text: string, style: string = "bold_sans"): string {
   const boldSansMap: Record<string, string> = {
@@ -671,14 +670,38 @@ export async function executeBotStatusUpdate(client: any, type: BotStatusMode) {
       });
       if (res.ok) {
         const buffer = Buffer.from(await res.arrayBuffer());
-        let processed: Buffer;
+        const { createCanvas, loadImage } = await import("@napi-rs/canvas");
+        const img = await loadImage(buffer);
+        const canvas = createCanvas(img.width, img.height);
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const imgData = ctx.getImageData(0, 0, img.width, img.height);
+        
         if (type === "maintenance" || type === "dev_only") {
           // Grayscale version for maintenance / developer mode
-          processed = await sharp(buffer).grayscale().png().toBuffer();
+          for (let i = 0; i < imgData.data.length; i += 4) {
+            const r = imgData.data[i];
+            const g = imgData.data[i + 1];
+            const b = imgData.data[i + 2];
+            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+            imgData.data[i] = gray;
+            imgData.data[i + 1] = gray;
+            imgData.data[i + 2] = gray;
+          }
         } else {
           // Red-tinted version for down / lockdown / vip modes
-          processed = await sharp(buffer).tint({ r: 255, g: 50, b: 50 }).png().toBuffer();
+          for (let i = 0; i < imgData.data.length; i += 4) {
+            const r = imgData.data[i];
+            const g = imgData.data[i + 1];
+            const b = imgData.data[i + 2];
+            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+            imgData.data[i] = Math.min(255, gray + 100);
+            imgData.data[i + 1] = Math.max(0, gray - 50);
+            imgData.data[i + 2] = Math.max(0, gray - 50);
+          }
         }
+        ctx.putImageData(imgData, 0, 0);
+        const processed = canvas.toBuffer("image/png");
         await client.user.setAvatar(processed);
       }
     } catch (err) {
