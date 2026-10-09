@@ -78,6 +78,22 @@ export async function getGoldenAvatarBase64(): Promise<string | null> {
   return null;
 }
 
+export async function fetchImageAsBase64(imageUrl: string): Promise<string | null> {
+  if (!imageUrl) return null;
+  if (imageUrl.startsWith("data:image")) return imageUrl;
+  try {
+    const res = await fetch(imageUrl);
+    if (res.ok) {
+      const buf = Buffer.from(await res.arrayBuffer());
+      const contentType = res.headers.get("content-type") || "image/png";
+      return `data:${contentType};base64,${buf.toString("base64")}`;
+    }
+  } catch (err: any) {
+    logger.debug({ err: err?.message, imageUrl }, "Failed to fetch and convert image URL to base64");
+  }
+  return null;
+}
+
 export async function applyServerPremiumBranding(guild: Guild, force: boolean = false): Promise<void> {
   if (!guild || !guild.id) return;
   try {
@@ -99,29 +115,54 @@ export async function applyServerPremiumBranding(guild: Guild, force: boolean = 
 
     if (isPremium) {
       const targetName = customProfile?.name || "Zenith Prime";
-      const goldenBase64 = await getGoldenAvatarBase64();
-      const targetAvatar = customProfile?.avatarUrl || goldenBase64 || null;
+      let targetAvatar = null;
+      if (customProfile?.avatarUrl) {
+        targetAvatar = await fetchImageAsBase64(customProfile.avatarUrl);
+      }
+      if (!targetAvatar) {
+        targetAvatar = await getGoldenAvatarBase64();
+      }
 
+      // 1. Change nickname separately (always works if bot has nickname permission)
       await rest.patch(Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: targetName,
-          avatar: targetAvatar,
         },
       }).catch((err: any) => {
-        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium avatar attempt");
+        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium nickname attempt failed");
       });
+
+      // 2. Change guild-specific avatar separately (fails gracefully if missing server boosts/Nitro)
+      if (targetAvatar) {
+        await rest.patch(Routes.guildMember(guild.id, "@me"), {
+          body: {
+            avatar: targetAvatar,
+          },
+        }).catch((err: any) => {
+          logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium avatar attempt failed (likely missing Discord server boost level)");
+        });
+      }
 
       appliedGuildBranding.set(guild.id, { isPremium: true, timestamp: now });
     } else {
       const defaultNick = customProfile?.name || "Zenith Bot";
 
+      // 1. Reset nickname separately
       await rest.patch(Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: defaultNick,
+        },
+      }).catch((err: any) => {
+        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me default nickname reset attempt failed");
+      });
+
+      // 2. Reset avatar separately
+      await rest.patch(Routes.guildMember(guild.id, "@me"), {
+        body: {
           avatar: null,
         },
       }).catch((err: any) => {
-        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me non-premium reset attempt");
+        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me default avatar reset attempt failed");
       });
 
       appliedGuildBranding.set(guild.id, { isPremium: false, timestamp: now });

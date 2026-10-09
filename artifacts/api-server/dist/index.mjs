@@ -242272,6 +242272,7 @@ __export(premiumBranding_exports, {
   GOLDEN_ZENITH_AVATAR_URL: () => GOLDEN_ZENITH_AVATAR_URL,
   NORMAL_ZENITH_AVATAR_URL: () => NORMAL_ZENITH_AVATAR_URL,
   applyServerPremiumBranding: () => applyServerPremiumBranding,
+  fetchImageAsBase64: () => fetchImageAsBase64,
   getGoldenAvatarBase64: () => getGoldenAvatarBase64,
   getNormalAvatarBase64: () => getNormalAvatarBase64,
   syncGlobalNormalAvatar: () => syncGlobalNormalAvatar
@@ -242336,6 +242337,21 @@ async function getGoldenAvatarBase64() {
   }
   return null;
 }
+async function fetchImageAsBase64(imageUrl) {
+  if (!imageUrl) return null;
+  if (imageUrl.startsWith("data:image")) return imageUrl;
+  try {
+    const res = await fetch(imageUrl);
+    if (res.ok) {
+      const buf = Buffer.from(await res.arrayBuffer());
+      const contentType = res.headers.get("content-type") || "image/png";
+      return `data:${contentType};base64,${buf.toString("base64")}`;
+    }
+  } catch (err) {
+    logger.debug({ err: err?.message, imageUrl }, "Failed to fetch and convert image URL to base64");
+  }
+  return null;
+}
 async function applyServerPremiumBranding(guild, force = false) {
   if (!guild || !guild.id) return;
   try {
@@ -242352,26 +242368,45 @@ async function applyServerPremiumBranding(guild, force = false) {
     const rest = new import_discord178.REST({ version: "10" }).setToken(token2);
     if (isPremium) {
       const targetName = customProfile?.name || "Zenith Prime";
-      const goldenBase64 = await getGoldenAvatarBase64();
-      const targetAvatar = customProfile?.avatarUrl || goldenBase64 || null;
+      let targetAvatar = null;
+      if (customProfile?.avatarUrl) {
+        targetAvatar = await fetchImageAsBase64(customProfile.avatarUrl);
+      }
+      if (!targetAvatar) {
+        targetAvatar = await getGoldenAvatarBase64();
+      }
       await rest.patch(import_discord178.Routes.guildMember(guild.id, "@me"), {
         body: {
-          nick: targetName,
-          avatar: targetAvatar
+          nick: targetName
         }
       }).catch((err) => {
-        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium avatar attempt");
+        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium nickname attempt failed");
       });
+      if (targetAvatar) {
+        await rest.patch(import_discord178.Routes.guildMember(guild.id, "@me"), {
+          body: {
+            avatar: targetAvatar
+          }
+        }).catch((err) => {
+          logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium avatar attempt failed (likely missing Discord server boost level)");
+        });
+      }
       appliedGuildBranding.set(guild.id, { isPremium: true, timestamp: now });
     } else {
       const defaultNick = customProfile?.name || "Zenith Bot";
       await rest.patch(import_discord178.Routes.guildMember(guild.id, "@me"), {
         body: {
-          nick: defaultNick,
+          nick: defaultNick
+        }
+      }).catch((err) => {
+        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me default nickname reset attempt failed");
+      });
+      await rest.patch(import_discord178.Routes.guildMember(guild.id, "@me"), {
+        body: {
           avatar: null
         }
       }).catch((err) => {
-        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me non-premium reset attempt");
+        logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me default avatar reset attempt failed");
       });
       appliedGuildBranding.set(guild.id, { isPremium: false, timestamp: now });
     }
