@@ -16,6 +16,7 @@
     "@discordjs/voice": "^0.19.2",
     "@distube/ytdl-core": "^4.15.1",
     "@google/genai": "*",
+    "@napi-rs/canvas": "^1.0.9",
     "@supabase/supabase-js": "^2.105.1",
     "libsodium-wrappers": "^0.8.4",
     "@workspace/api-zod": "file:../../lib/api-zod",
