@@ -548,7 +548,7 @@ export async function handlePrefixMessage(message: Message): Promise<boolean> {
         "setup", "wizard", "setupwizard", "botstatus", "botmaintenance", "botmaintainence",
         "botdown", "botnormal", "eval", "ping", "help", "botinfo", "noprefix", "prefix",
         "config", "automod", "antinuke", "whitelist", "premium", "owner", "admin",
-        "botwhitelist", "botstaff", "ticket", "music", "play"
+        "botwhitelist", "botstaff", "ticket", "music", "play", "hide", "show", "autorole"
       ]);
       const isAdminOrManager = member?.permissions?.has(PermissionFlagsBits.Administrator) ||
                                member?.permissions?.has(PermissionFlagsBits.ManageGuild);

@@ -49457,26 +49457,26 @@ var require_channel = __commonJS({
       ForumLayoutType2[ForumLayoutType2["ListView"] = 1] = "ListView";
       ForumLayoutType2[ForumLayoutType2["GalleryView"] = 2] = "GalleryView";
     })(ForumLayoutType || (exports2.ForumLayoutType = ForumLayoutType = {}));
-    var ChannelType63;
-    (function(ChannelType64) {
-      ChannelType64[ChannelType64["GuildText"] = 0] = "GuildText";
-      ChannelType64[ChannelType64["DM"] = 1] = "DM";
-      ChannelType64[ChannelType64["GuildVoice"] = 2] = "GuildVoice";
-      ChannelType64[ChannelType64["GroupDM"] = 3] = "GroupDM";
-      ChannelType64[ChannelType64["GuildCategory"] = 4] = "GuildCategory";
-      ChannelType64[ChannelType64["GuildAnnouncement"] = 5] = "GuildAnnouncement";
-      ChannelType64[ChannelType64["AnnouncementThread"] = 10] = "AnnouncementThread";
-      ChannelType64[ChannelType64["PublicThread"] = 11] = "PublicThread";
-      ChannelType64[ChannelType64["PrivateThread"] = 12] = "PrivateThread";
-      ChannelType64[ChannelType64["GuildStageVoice"] = 13] = "GuildStageVoice";
-      ChannelType64[ChannelType64["GuildDirectory"] = 14] = "GuildDirectory";
-      ChannelType64[ChannelType64["GuildForum"] = 15] = "GuildForum";
-      ChannelType64[ChannelType64["GuildMedia"] = 16] = "GuildMedia";
-      ChannelType64[ChannelType64["GuildNews"] = 5] = "GuildNews";
-      ChannelType64[ChannelType64["GuildNewsThread"] = 10] = "GuildNewsThread";
-      ChannelType64[ChannelType64["GuildPublicThread"] = 11] = "GuildPublicThread";
-      ChannelType64[ChannelType64["GuildPrivateThread"] = 12] = "GuildPrivateThread";
-    })(ChannelType63 || (exports2.ChannelType = ChannelType63 = {}));
+    var ChannelType65;
+    (function(ChannelType66) {
+      ChannelType66[ChannelType66["GuildText"] = 0] = "GuildText";
+      ChannelType66[ChannelType66["DM"] = 1] = "DM";
+      ChannelType66[ChannelType66["GuildVoice"] = 2] = "GuildVoice";
+      ChannelType66[ChannelType66["GroupDM"] = 3] = "GroupDM";
+      ChannelType66[ChannelType66["GuildCategory"] = 4] = "GuildCategory";
+      ChannelType66[ChannelType66["GuildAnnouncement"] = 5] = "GuildAnnouncement";
+      ChannelType66[ChannelType66["AnnouncementThread"] = 10] = "AnnouncementThread";
+      ChannelType66[ChannelType66["PublicThread"] = 11] = "PublicThread";
+      ChannelType66[ChannelType66["PrivateThread"] = 12] = "PrivateThread";
+      ChannelType66[ChannelType66["GuildStageVoice"] = 13] = "GuildStageVoice";
+      ChannelType66[ChannelType66["GuildDirectory"] = 14] = "GuildDirectory";
+      ChannelType66[ChannelType66["GuildForum"] = 15] = "GuildForum";
+      ChannelType66[ChannelType66["GuildMedia"] = 16] = "GuildMedia";
+      ChannelType66[ChannelType66["GuildNews"] = 5] = "GuildNews";
+      ChannelType66[ChannelType66["GuildNewsThread"] = 10] = "GuildNewsThread";
+      ChannelType66[ChannelType66["GuildPublicThread"] = 11] = "GuildPublicThread";
+      ChannelType66[ChannelType66["GuildPrivateThread"] = 12] = "GuildPrivateThread";
+    })(ChannelType65 || (exports2.ChannelType = ChannelType65 = {}));
     var VideoQualityMode;
     (function(VideoQualityMode2) {
       VideoQualityMode2[VideoQualityMode2["Auto"] = 1] = "Auto";
@@ -79856,7 +79856,7 @@ var require_ChannelFlagsBitField = __commonJS({
 var require_Constants = __commonJS({
   "node_modules/discord.js/src/util/Constants.js"(exports2) {
     "use strict";
-    var { ChannelType: ChannelType63, MessageType, ComponentType: ComponentType12, ImageFormat, StickerFormatType } = require_v106();
+    var { ChannelType: ChannelType65, MessageType, ComponentType: ComponentType12, ImageFormat, StickerFormatType } = require_v106();
     exports2.MaxBulkDeletableMessageAge = 12096e5;
     exports2.SweeperKeys = [
       "autoModerationRules",
@@ -79883,18 +79883,18 @@ var require_Constants = __commonJS({
       MessageType.ContextMenuCommand
     ];
     exports2.GuildTextBasedChannelTypes = [
-      ChannelType63.GuildText,
-      ChannelType63.GuildAnnouncement,
-      ChannelType63.AnnouncementThread,
-      ChannelType63.PublicThread,
-      ChannelType63.PrivateThread,
-      ChannelType63.GuildVoice,
-      ChannelType63.GuildStageVoice
+      ChannelType65.GuildText,
+      ChannelType65.GuildAnnouncement,
+      ChannelType65.AnnouncementThread,
+      ChannelType65.PublicThread,
+      ChannelType65.PrivateThread,
+      ChannelType65.GuildVoice,
+      ChannelType65.GuildStageVoice
     ];
-    exports2.TextBasedChannelTypes = [...exports2.GuildTextBasedChannelTypes, ChannelType63.DM, ChannelType63.GroupDM];
-    exports2.SendableChannels = [...exports2.GuildTextBasedChannelTypes, ChannelType63.DM];
-    exports2.ThreadChannelTypes = [ChannelType63.AnnouncementThread, ChannelType63.PublicThread, ChannelType63.PrivateThread];
-    exports2.VoiceBasedChannelTypes = [ChannelType63.GuildVoice, ChannelType63.GuildStageVoice];
+    exports2.TextBasedChannelTypes = [...exports2.GuildTextBasedChannelTypes, ChannelType65.DM, ChannelType65.GroupDM];
+    exports2.SendableChannels = [...exports2.GuildTextBasedChannelTypes, ChannelType65.DM];
+    exports2.ThreadChannelTypes = [ChannelType65.AnnouncementThread, ChannelType65.PublicThread, ChannelType65.PrivateThread];
+    exports2.VoiceBasedChannelTypes = [ChannelType65.GuildVoice, ChannelType65.GuildStageVoice];
     exports2.SelectMenuTypes = [
       ComponentType12.StringSelect,
       ComponentType12.UserSelect,
@@ -79953,7 +79953,7 @@ var require_BaseChannel = __commonJS({
     "use strict";
     var { channelLink, channelMention } = require_dist11();
     var { DiscordSnowflake } = require_cjs();
-    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
+    var { ChannelType: ChannelType65, Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var ChannelFlagsBitField = require_ChannelFlagsBitField();
     var { ThreadChannelTypes } = require_Constants();
@@ -80054,7 +80054,7 @@ var require_BaseChannel = __commonJS({
        * @returns {boolean}
        */
       isDMBased() {
-        return [ChannelType63.DM, ChannelType63.GroupDM].includes(this.type);
+        return [ChannelType65.DM, ChannelType65.GroupDM].includes(this.type);
       }
       /**
        * Indicates whether this channel is {@link BaseGuildVoiceChannel voice-based}.
@@ -80207,7 +80207,7 @@ var require_CachedManager = __commonJS({
 var require_PermissionsBitField = __commonJS({
   "node_modules/discord.js/src/util/PermissionsBitField.js"(exports2, module2) {
     "use strict";
-    var { PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var BitField = require_BitField();
     var PermissionsBitField6 = class extends BitField {
       /**
@@ -80216,13 +80216,13 @@ var require_PermissionsBitField = __commonJS({
        * @memberof PermissionsBitField
        * @see {@link https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags}
        */
-      static Flags = PermissionFlagsBits64;
+      static Flags = PermissionFlagsBits66;
       /**
        * Bitfield representing every permission combined
        * @type {bigint}
        * @memberof PermissionsBitField
        */
-      static All = Object.values(PermissionFlagsBits64).reduce((all, p) => all | p, 0n);
+      static All = Object.values(PermissionFlagsBits66).reduce((all, p) => all | p, 0n);
       /**
        * Bitfield representing the default permissions for users
        * @type {bigint}
@@ -80234,7 +80234,7 @@ var require_PermissionsBitField = __commonJS({
        * @type {bigint}
        * @memberof PermissionsBitField
        */
-      static StageModerator = PermissionFlagsBits64.ManageChannels | PermissionFlagsBits64.MuteMembers | PermissionFlagsBits64.MoveMembers;
+      static StageModerator = PermissionFlagsBits66.ManageChannels | PermissionFlagsBits66.MuteMembers | PermissionFlagsBits66.MoveMembers;
       /**
        * @type {bigint}
        * @memberof PermissionsBitField
@@ -80261,7 +80261,7 @@ var require_PermissionsBitField = __commonJS({
        * @returns {string[]}
        */
       missing(bits, checkAdmin = true) {
-        return checkAdmin && this.has(PermissionFlagsBits64.Administrator) ? [] : super.missing(bits);
+        return checkAdmin && this.has(PermissionFlagsBits66.Administrator) ? [] : super.missing(bits);
       }
       /**
        * Checks whether the bitfield has a permission, or any of multiple permissions.
@@ -80270,7 +80270,7 @@ var require_PermissionsBitField = __commonJS({
        * @returns {boolean}
        */
       any(permission, checkAdmin = true) {
-        return checkAdmin && super.has(PermissionFlagsBits64.Administrator) || super.any(permission);
+        return checkAdmin && super.has(PermissionFlagsBits66.Administrator) || super.any(permission);
       }
       /**
        * Checks whether the bitfield has a permission, or multiple permissions.
@@ -80279,7 +80279,7 @@ var require_PermissionsBitField = __commonJS({
        * @returns {boolean}
        */
       has(permission, checkAdmin = true) {
-        return checkAdmin && super.has(PermissionFlagsBits64.Administrator) || super.has(permission);
+        return checkAdmin && super.has(PermissionFlagsBits66.Administrator) || super.has(permission);
       }
       /**
        * Gets an {@link Array} of bitfield names based on the permissions available.
@@ -80317,7 +80317,7 @@ var require_Role = __commonJS({
     "use strict";
     var { roleMention } = require_dist11();
     var { DiscordSnowflake } = require_cjs();
-    var { PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var Base = require_Base();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var PermissionsBitField6 = require_PermissionsBitField();
@@ -80429,7 +80429,7 @@ var require_Role = __commonJS({
       get editable() {
         if (this.managed) return false;
         const clientMember = this.guild.members.resolve(this.client.user);
-        if (!clientMember.permissions.has(PermissionFlagsBits64.ManageRoles)) return false;
+        if (!clientMember.permissions.has(PermissionFlagsBits66.ManageRoles)) return false;
         return clientMember.roles.highest.comparePositionTo(this) > 0;
       }
       /**
@@ -80999,7 +80999,7 @@ var require_GuildChannel = __commonJS({
   "node_modules/discord.js/src/structures/GuildChannel.js"(exports2, module2) {
     "use strict";
     var { Snowflake } = require_cjs();
-    var { PermissionFlagsBits: PermissionFlagsBits64, ChannelType: ChannelType63 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66, ChannelType: ChannelType65 } = require_v106();
     var { BaseChannel } = require_BaseChannel();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var PermissionOverwriteManager = require_PermissionOverwriteManager();
@@ -81077,7 +81077,7 @@ var require_GuildChannel = __commonJS({
        * @readonly
        */
       get position() {
-        const selfIsCategory = this.type === ChannelType63.GuildCategory;
+        const selfIsCategory = this.type === ChannelType65.GuildCategory;
         const types3 = getSortableGroupTypes(this.type);
         let count = 0;
         for (const channel of this.guild.channels.cache.values()) {
@@ -81140,7 +81140,7 @@ var require_GuildChannel = __commonJS({
         }
         const roles = member.roles.cache;
         const permissions = new PermissionsBitField6(roles.map((role) => role.permissions));
-        if (checkAdmin && permissions.has(PermissionFlagsBits64.Administrator)) {
+        if (checkAdmin && permissions.has(PermissionFlagsBits66.Administrator)) {
           return new PermissionsBitField6(PermissionsBitField6.All).freeze();
         }
         const overwrites = this.overwritesFor(member, true, roles);
@@ -81155,7 +81155,7 @@ var require_GuildChannel = __commonJS({
        * @private
        */
       rolePermissions(role, checkAdmin) {
-        if (checkAdmin && role.permissions.has(PermissionFlagsBits64.Administrator)) {
+        if (checkAdmin && role.permissions.has(PermissionFlagsBits66.Administrator)) {
           return new PermissionsBitField6(PermissionsBitField6.All).freeze();
         }
         const basePermissions = new PermissionsBitField6([role.permissions, role.guild.roles.everyone.permissions]);
@@ -81181,7 +81181,7 @@ var require_GuildChannel = __commonJS({
        */
       get members() {
         return this.guild.members.cache.filter(
-          (member) => this.permissionsFor(member).has(PermissionFlagsBits64.ViewChannel, false)
+          (member) => this.permissionsFor(member).has(PermissionFlagsBits66.ViewChannel, false)
         );
       }
       /**
@@ -81315,10 +81315,10 @@ var require_GuildChannel = __commonJS({
         if (this.client.user.id === this.guild.ownerId) return true;
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        if (permissions.has(PermissionFlagsBits64.Administrator, false)) return true;
+        if (permissions.has(PermissionFlagsBits66.Administrator, false)) return true;
         if (this.guild.members.me.communicationDisabledUntilTimestamp > Date.now()) return false;
-        const baseBitfield = PermissionFlagsBits64.ViewChannel | PermissionFlagsBits64.ManageChannels;
-        const bitfield = VoiceBasedChannelTypes.includes(this.type) ? baseBitfield | PermissionFlagsBits64.Connect : baseBitfield;
+        const baseBitfield = PermissionFlagsBits66.ViewChannel | PermissionFlagsBits66.ManageChannels;
+        const bitfield = VoiceBasedChannelTypes.includes(this.type) ? baseBitfield | PermissionFlagsBits66.Connect : baseBitfield;
         return permissions.has(bitfield, false);
       }
       /**
@@ -81330,7 +81330,7 @@ var require_GuildChannel = __commonJS({
         if (this.client.user.id === this.guild.ownerId) return true;
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        return permissions.has(PermissionFlagsBits64.ViewChannel, false);
+        return permissions.has(PermissionFlagsBits66.ViewChannel, false);
       }
       /**
        * Deletes this channel.
@@ -81397,7 +81397,7 @@ var require_Util = __commonJS({
     var { parse } = __require("node:path");
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist10();
-    var { ChannelType: ChannelType63, RouteBases, Routes: Routes6 } = require_v106();
+    var { ChannelType: ChannelType65, RouteBases, Routes: Routes6 } = require_v106();
     var { fetch: fetch3 } = require_undici2();
     var Colors = require_Colors();
     var { DiscordjsError: DiscordjsError2, DiscordjsRangeError: DiscordjsRangeError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
@@ -81466,24 +81466,24 @@ var require_Util = __commonJS({
       };
     }
     var TextSortableGroupTypes = [
-      ChannelType63.GuildText,
-      ChannelType63.GuildAnnouncement,
-      ChannelType63.GuildForum,
-      ChannelType63.GuildMedia
+      ChannelType65.GuildText,
+      ChannelType65.GuildAnnouncement,
+      ChannelType65.GuildForum,
+      ChannelType65.GuildMedia
     ];
-    var VoiceSortableGroupTypes = [ChannelType63.GuildVoice, ChannelType63.GuildStageVoice];
-    var CategorySortableGroupTypes = [ChannelType63.GuildCategory];
+    var VoiceSortableGroupTypes = [ChannelType65.GuildVoice, ChannelType65.GuildStageVoice];
+    var CategorySortableGroupTypes = [ChannelType65.GuildCategory];
     function getSortableGroupTypes(type) {
       switch (type) {
-        case ChannelType63.GuildText:
-        case ChannelType63.GuildAnnouncement:
-        case ChannelType63.GuildForum:
-        case ChannelType63.GuildMedia:
+        case ChannelType65.GuildText:
+        case ChannelType65.GuildAnnouncement:
+        case ChannelType65.GuildForum:
+        case ChannelType65.GuildMedia:
           return TextSortableGroupTypes;
-        case ChannelType63.GuildVoice:
-        case ChannelType63.GuildStageVoice:
+        case ChannelType65.GuildVoice:
+        case ChannelType65.GuildStageVoice:
           return VoiceSortableGroupTypes;
-        case ChannelType63.GuildCategory:
+        case ChannelType65.GuildCategory:
           return CategorySortableGroupTypes;
         default:
           return [type];
@@ -81558,7 +81558,7 @@ var require_Util = __commonJS({
               return user ? `@${user.displayName}` : match2;
             }
             case "@&": {
-              if (channel.type === ChannelType63.DM) return match2;
+              if (channel.type === ChannelType65.DM) return match2;
               const role = channel.guild.roles.cache.get(id);
               return role ? `@${role.name}` : match2;
             }
@@ -83684,7 +83684,7 @@ var require_InviteGuild = __commonJS({
 var require_Invite = __commonJS({
   "node_modules/discord.js/src/structures/Invite.js"(exports2, module2) {
     "use strict";
-    var { RouteBases, Routes: Routes6, PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { RouteBases, Routes: Routes6, PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var Base = require_Base();
     var { GuildScheduledEvent } = require_GuildScheduledEvent();
     var IntegrationApplication = require_IntegrationApplication();
@@ -83818,7 +83818,7 @@ var require_Invite = __commonJS({
         if (!guild || !this.client.guilds.cache.has(guild.id)) return false;
         if (!guild.members.me) throw new DiscordjsError2(ErrorCodes2.GuildUncachedMe);
         return Boolean(
-          this.channel?.permissionsFor(this.client.user).has(PermissionFlagsBits64.ManageChannels, false) || guild.members.me.permissions.has(PermissionFlagsBits64.ManageGuild)
+          this.channel?.permissionsFor(this.client.user).has(PermissionFlagsBits66.ManageChannels, false) || guild.members.me.permissions.has(PermissionFlagsBits66.ManageGuild)
         );
       }
       /**
@@ -84643,8 +84643,8 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
        *   .then(perms => console.log(`Fetched ${perms.length} guild level permissions`))
        *   .catch(console.error);
        */
-      async fetch({ guild, command: command151 } = {}) {
-        const { guildId, commandId } = this._validateOptions(guild, command151);
+      async fetch({ guild, command: command153 } = {}) {
+        const { guildId, commandId } = this._validateOptions(guild, command153);
         if (commandId) {
           const data2 = await this.client.rest.get(this.permissionsPath(guildId, commandId));
           return data2.permissions;
@@ -84694,11 +84694,11 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
        *   .then(console.log)
        *   .catch(console.error);
        */
-      async set({ guild, command: command151, permissions, token: token2 } = {}) {
+      async set({ guild, command: command153, permissions, token: token2 } = {}) {
         if (!token2) {
           throw new DiscordjsError2(ErrorCodes2.ApplicationCommandPermissionsTokenMissing);
         }
-        let { guildId, commandId } = this._validateOptions(guild, command151);
+        let { guildId, commandId } = this._validateOptions(guild, command153);
         if (!Array.isArray(permissions)) {
           throw new DiscordjsTypeError2(
             ErrorCodes2.InvalidType,
@@ -84733,11 +84733,11 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
        *   .then(console.log)
        *   .catch(console.error);
        */
-      async add({ guild, command: command151, permissions, token: token2 } = {}) {
+      async add({ guild, command: command153, permissions, token: token2 } = {}) {
         if (!token2) {
           throw new DiscordjsError2(ErrorCodes2.ApplicationCommandPermissionsTokenMissing);
         }
-        let { guildId, commandId } = this._validateOptions(guild, command151);
+        let { guildId, commandId } = this._validateOptions(guild, command153);
         if (!commandId) {
           commandId = this.client.user.id;
         }
@@ -84803,11 +84803,11 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
        *    .then(console.log)
        *    .catch(console.error);
        */
-      async remove({ guild, command: command151, users, roles, channels, token: token2 } = {}) {
+      async remove({ guild, command: command153, users, roles, channels, token: token2 } = {}) {
         if (!token2) {
           throw new DiscordjsError2(ErrorCodes2.ApplicationCommandPermissionsTokenMissing);
         }
-        let { guildId, commandId } = this._validateOptions(guild, command151);
+        let { guildId, commandId } = this._validateOptions(guild, command153);
         if (!commandId) {
           commandId = this.client.user.id;
         }
@@ -84884,8 +84884,8 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
        *  .then(console.log)
        *  .catch(console.error);
        */
-      async has({ guild, command: command151, permissionId, permissionType }) {
-        const { guildId, commandId } = this._validateOptions(guild, command151);
+      async has({ guild, command: command153, permissionId, permissionType }) {
+        const { guildId, commandId } = this._validateOptions(guild, command153);
         if (!commandId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "command", "ApplicationCommandResolvable");
         if (!permissionId) {
           throw new DiscordjsTypeError2(
@@ -84920,16 +84920,16 @@ var require_ApplicationCommandPermissionsManager = __commonJS({
         }
         return existing.some((perm) => perm.id === resolvedId && (permissionType ?? perm.type) === perm.type);
       }
-      _validateOptions(guild, command151) {
+      _validateOptions(guild, command153) {
         const guildId = this.guildId ?? this.client.guilds.resolveId(guild);
         if (!guildId) throw new DiscordjsError2(ErrorCodes2.GlobalCommandPermissions);
         let commandId = this.commandId;
-        if (command151 && !commandId) {
-          commandId = this.manager.resolveId?.(command151);
+        if (command153 && !commandId) {
+          commandId = this.manager.resolveId?.(command153);
           if (!commandId && this.guild) {
-            commandId = this.guild.commands.resolveId(command151);
+            commandId = this.guild.commands.resolveId(command153);
           }
-          commandId ??= this.client.application?.commands.resolveId(command151);
+          commandId ??= this.client.application?.commands.resolveId(command153);
           if (!commandId) {
             throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "command", "ApplicationCommandResolvable", true);
           }
@@ -85247,26 +85247,26 @@ var require_ApplicationCommand = __commonJS({
        * order in the array <info>The client may not always respect this ordering!</info>
        * @returns {boolean}
        */
-      equals(command151, enforceOptionOrder = false) {
-        if (command151.id && this.id !== command151.id) return false;
+      equals(command153, enforceOptionOrder = false) {
+        if (command153.id && this.id !== command153.id) return false;
         let defaultMemberPermissions = null;
-        let dmPermission = command151.dmPermission ?? command151.dm_permission;
-        if ("default_member_permissions" in command151) {
-          defaultMemberPermissions = command151.default_member_permissions ? new PermissionsBitField6(BigInt(command151.default_member_permissions)).bitfield : null;
+        let dmPermission = command153.dmPermission ?? command153.dm_permission;
+        if ("default_member_permissions" in command153) {
+          defaultMemberPermissions = command153.default_member_permissions ? new PermissionsBitField6(BigInt(command153.default_member_permissions)).bitfield : null;
         }
-        if ("defaultMemberPermissions" in command151) {
-          defaultMemberPermissions = command151.defaultMemberPermissions !== null ? new PermissionsBitField6(command151.defaultMemberPermissions).bitfield : null;
+        if ("defaultMemberPermissions" in command153) {
+          defaultMemberPermissions = command153.defaultMemberPermissions !== null ? new PermissionsBitField6(command153.defaultMemberPermissions).bitfield : null;
         }
-        if (command151.name !== this.name || "description" in command151 && command151.description !== this.description || "version" in command151 && command151.version !== this.version || command151.type && command151.type !== this.type || "nsfw" in command151 && command151.nsfw !== this.nsfw || // Future proof for options being nullable
+        if (command153.name !== this.name || "description" in command153 && command153.description !== this.description || "version" in command153 && command153.version !== this.version || command153.type && command153.type !== this.type || "nsfw" in command153 && command153.nsfw !== this.nsfw || // Future proof for options being nullable
         // TODO: remove ?? 0 on each when nullable
-        (command151.options?.length ?? 0) !== (this.options?.length ?? 0) || defaultMemberPermissions !== (this.defaultMemberPermissions?.bitfield ?? null) || dmPermission !== void 0 && dmPermission !== this.dmPermission || !isEqual(command151.nameLocalizations ?? command151.name_localizations ?? {}, this.nameLocalizations ?? {}) || !isEqual(
-          command151.descriptionLocalizations ?? command151.description_localizations ?? {},
+        (command153.options?.length ?? 0) !== (this.options?.length ?? 0) || defaultMemberPermissions !== (this.defaultMemberPermissions?.bitfield ?? null) || dmPermission !== void 0 && dmPermission !== this.dmPermission || !isEqual(command153.nameLocalizations ?? command153.name_localizations ?? {}, this.nameLocalizations ?? {}) || !isEqual(
+          command153.descriptionLocalizations ?? command153.description_localizations ?? {},
           this.descriptionLocalizations ?? {}
-        ) || !isEqual(command151.integrationTypes ?? command151.integration_types ?? [], this.integrationTypes ?? []) || !isEqual(command151.contexts ?? [], this.contexts ?? []) || "handler" in command151 && command151.handler !== this.handler) {
+        ) || !isEqual(command153.integrationTypes ?? command153.integration_types ?? [], this.integrationTypes ?? []) || !isEqual(command153.contexts ?? [], this.contexts ?? []) || "handler" in command153 && command153.handler !== this.handler) {
           return false;
         }
-        if (command151.options) {
-          return this.constructor.optionsEqual(this.options, command151.options, enforceOptionOrder);
+        if (command153.options) {
+          return this.constructor.optionsEqual(this.options, command153.options, enforceOptionOrder);
         }
         return true;
       }
@@ -85512,8 +85512,8 @@ var require_ApplicationCommandManager = __commonJS({
             const existing = this.cache.get(id);
             if (existing) return existing;
           }
-          const command151 = await this.client.rest.get(this.commandPath({ id, guildId }));
-          return this._add(command151, cache46);
+          const command153 = await this.client.rest.get(this.commandPath({ id, guildId }));
+          return this._add(command153, cache46);
         }
         const data = await this.client.rest.get(this.commandPath({ guildId }), {
           headers: {
@@ -85521,7 +85521,7 @@ var require_ApplicationCommandManager = __commonJS({
           },
           query: makeURLSearchParams2({ with_localizations: withLocalizations })
         });
-        return data.reduce((coll, command151) => coll.set(command151.id, this._add(command151, cache46, guildId)), new Collection2());
+        return data.reduce((coll, command153) => coll.set(command153.id, this._add(command153, cache46, guildId)), new Collection2());
       }
       /**
        * Creates an application command.
@@ -85538,9 +85538,9 @@ var require_ApplicationCommandManager = __commonJS({
        *   .then(console.log)
        *   .catch(console.error);
        */
-      async create(command151, guildId) {
+      async create(command153, guildId) {
         const data = await this.client.rest.post(this.commandPath({ guildId }), {
-          body: this.constructor.transformCommand(command151)
+          body: this.constructor.transformCommand(command153)
         });
         return this._add(data, true, guildId);
       }
@@ -85568,10 +85568,10 @@ var require_ApplicationCommandManager = __commonJS({
        */
       async set(commands2, guildId) {
         const data = await this.client.rest.put(this.commandPath({ guildId }), {
-          body: commands2.map((command151) => this.constructor.transformCommand(command151))
+          body: commands2.map((command153) => this.constructor.transformCommand(command153))
         });
         return data.reduce(
-          (collection, command151) => collection.set(command151.id, this._add(command151, true, guildId)),
+          (collection, command153) => collection.set(command153.id, this._add(command153, true, guildId)),
           new Collection2()
         );
       }
@@ -85590,8 +85590,8 @@ var require_ApplicationCommandManager = __commonJS({
        *   .then(console.log)
        *   .catch(console.error);
        */
-      async edit(command151, data, guildId) {
-        const id = this.resolveId(command151);
+      async edit(command153, data, guildId) {
+        const id = this.resolveId(command153);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "command", "ApplicationCommandResolvable");
         const patched = await this.client.rest.patch(this.commandPath({ id, guildId }), {
           body: this.constructor.transformCommand(data)
@@ -85610,8 +85610,8 @@ var require_ApplicationCommandManager = __commonJS({
        *   .then(console.log)
        *   .catch(console.error);
        */
-      async delete(command151, guildId) {
-        const id = this.resolveId(command151);
+      async delete(command153, guildId) {
+        const id = this.resolveId(command153);
         if (!id) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "command", "ApplicationCommandResolvable");
         await this.client.rest.delete(this.commandPath({ id, guildId }));
         const cached = this.cache.get(id);
@@ -85624,28 +85624,28 @@ var require_ApplicationCommandManager = __commonJS({
        * @returns {APIApplicationCommand}
        * @private
        */
-      static transformCommand(command151) {
-        if (isJSONEncodable(command151)) return command151.toJSON();
+      static transformCommand(command153) {
+        if (isJSONEncodable(command153)) return command153.toJSON();
         let default_member_permissions;
-        if ("default_member_permissions" in command151) {
-          default_member_permissions = command151.default_member_permissions ? new PermissionsBitField6(BigInt(command151.default_member_permissions)).bitfield.toString() : command151.default_member_permissions;
+        if ("default_member_permissions" in command153) {
+          default_member_permissions = command153.default_member_permissions ? new PermissionsBitField6(BigInt(command153.default_member_permissions)).bitfield.toString() : command153.default_member_permissions;
         }
-        if ("defaultMemberPermissions" in command151) {
-          default_member_permissions = command151.defaultMemberPermissions !== null ? new PermissionsBitField6(command151.defaultMemberPermissions).bitfield.toString() : command151.defaultMemberPermissions;
+        if ("defaultMemberPermissions" in command153) {
+          default_member_permissions = command153.defaultMemberPermissions !== null ? new PermissionsBitField6(command153.defaultMemberPermissions).bitfield.toString() : command153.defaultMemberPermissions;
         }
         return {
-          name: command151.name,
-          name_localizations: command151.nameLocalizations ?? command151.name_localizations,
-          description: command151.description,
-          nsfw: command151.nsfw,
-          description_localizations: command151.descriptionLocalizations ?? command151.description_localizations,
-          type: command151.type,
-          options: command151.options?.map((option) => ApplicationCommand.transformOption(option)),
+          name: command153.name,
+          name_localizations: command153.nameLocalizations ?? command153.name_localizations,
+          description: command153.description,
+          nsfw: command153.nsfw,
+          description_localizations: command153.descriptionLocalizations ?? command153.description_localizations,
+          type: command153.type,
+          options: command153.options?.map((option) => ApplicationCommand.transformOption(option)),
           default_member_permissions,
-          dm_permission: command151.dmPermission ?? command151.dm_permission,
-          integration_types: command151.integrationTypes ?? command151.integration_types,
-          contexts: command151.contexts,
-          handler: command151.handler
+          dm_permission: command153.dmPermission ?? command153.dm_permission,
+          integration_types: command153.integrationTypes ?? command153.integration_types,
+          contexts: command153.contexts,
+          handler: command153.handler
         };
       }
     };
@@ -91196,7 +91196,7 @@ var require_dist12 = __commonJS({
       ContextMenuCommandAssertions: () => Assertions_exports11,
       ContextMenuCommandBuilder: () => ContextMenuCommandBuilder,
       EmbedAssertions: () => Assertions_exports,
-      EmbedBuilder: () => EmbedBuilder74,
+      EmbedBuilder: () => EmbedBuilder76,
       FileBuilder: () => FileBuilder,
       FileUploadAssertions: () => Assertions_exports4,
       FileUploadBuilder: () => FileUploadBuilder,
@@ -91222,7 +91222,7 @@ var require_dist12 = __commonJS({
       SlashCommandAssertions: () => Assertions_exports10,
       SlashCommandAttachmentOption: () => SlashCommandAttachmentOption,
       SlashCommandBooleanOption: () => SlashCommandBooleanOption,
-      SlashCommandBuilder: () => SlashCommandBuilder170,
+      SlashCommandBuilder: () => SlashCommandBuilder172,
       SlashCommandChannelOption: () => SlashCommandChannelOption,
       SlashCommandIntegerOption: () => SlashCommandIntegerOption,
       SlashCommandMentionableOption: () => SlashCommandMentionableOption,
@@ -91325,7 +91325,7 @@ var require_dist12 = __commonJS({
       return arr;
     }
     __name(normalizeArray, "normalizeArray");
-    var EmbedBuilder74 = class {
+    var EmbedBuilder76 = class {
       static {
         __name(this, "EmbedBuilder");
       }
@@ -95438,7 +95438,7 @@ var require_dist12 = __commonJS({
         return this;
       }
     };
-    var SlashCommandBuilder170 = class {
+    var SlashCommandBuilder172 = class {
       /**
        * The name of this command.
        */
@@ -95491,10 +95491,10 @@ var require_dist12 = __commonJS({
        */
       nsfw = void 0;
     };
-    __name(SlashCommandBuilder170, "SlashCommandBuilder");
-    SlashCommandBuilder170 = __decorateClass([
+    __name(SlashCommandBuilder172, "SlashCommandBuilder");
+    SlashCommandBuilder172 = __decorateClass([
       (0, import_ts_mixer6.mix)(SharedSlashCommandOptions, SharedNameAndDescription, SharedSlashCommandSubcommands, SharedSlashCommand)
-    ], SlashCommandBuilder170);
+    ], SlashCommandBuilder172);
     var Assertions_exports11 = {};
     __export3(Assertions_exports11, {
       contextsPredicate: () => contextsPredicate2,
@@ -96601,7 +96601,7 @@ var require_GuildEmojiRoleManager = __commonJS({
 var require_GuildEmoji = __commonJS({
   "node_modules/discord.js/src/structures/GuildEmoji.js"(exports2, module2) {
     "use strict";
-    var { PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var BaseGuildEmoji = require_BaseGuildEmoji();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var GuildEmojiRoleManager = require_GuildEmojiRoleManager();
@@ -96634,7 +96634,7 @@ var require_GuildEmoji = __commonJS({
        */
       get deletable() {
         if (!this.guild.members.me) throw new DiscordjsError2(ErrorCodes2.GuildUncachedMe);
-        return !this.managed && this.guild.members.me.permissions.has(PermissionFlagsBits64.ManageGuildExpressions);
+        return !this.managed && this.guild.members.me.permissions.has(PermissionFlagsBits66.ManageGuildExpressions);
       }
       /**
        * A manager for roles this emoji is active for.
@@ -97950,10 +97950,10 @@ var require_Message = __commonJS({
     var { DiscordSnowflake } = require_cjs();
     var {
       InteractionType,
-      ChannelType: ChannelType63,
+      ChannelType: ChannelType65,
       MessageType,
       MessageFlags: MessageFlags2,
-      PermissionFlagsBits: PermissionFlagsBits64,
+      PermissionFlagsBits: PermissionFlagsBits66,
       MessageReferenceType
     } = require_v106();
     var Attachment = require_Attachment();
@@ -98409,7 +98409,7 @@ var require_Message = __commonJS({
           if (this.channel.archived) return false;
           if (this.channel.locked) {
             const permissions = this.channel.permissionsFor(this.client.user);
-            if (!permissions?.has(PermissionFlagsBits64.ManageThreads, true)) return false;
+            if (!permissions?.has(PermissionFlagsBits66.ManageThreads, true)) return false;
           }
         }
         return precheck;
@@ -98429,8 +98429,8 @@ var require_Message = __commonJS({
         }
         const permissions = this.channel?.permissionsFor(this.client.user);
         if (!permissions) return false;
-        if (permissions.has(PermissionFlagsBits64.Administrator, false)) return true;
-        return this.type !== MessageType.AutoModerationAction && this.author.id === this.client.user.id || permissions.has(PermissionFlagsBits64.ManageMessages, false) && !this.guild.members.me.isCommunicationDisabled();
+        if (permissions.has(PermissionFlagsBits66.Administrator, false)) return true;
+        return this.type !== MessageType.AutoModerationAction && this.author.id === this.client.user.id || permissions.has(PermissionFlagsBits66.ManageMessages, false) && !this.guild.members.me.isCommunicationDisabled();
       }
       /**
        * Whether the message is bulk deletable by the client user
@@ -98441,7 +98441,7 @@ var require_Message = __commonJS({
        * channel.bulkDelete(messages.filter(message => message.bulkDeletable));
        */
       get bulkDeletable() {
-        return (this.inGuild() && Date.now() - this.createdTimestamp < MaxBulkDeletableMessageAge && this.deletable && this.channel?.permissionsFor(this.client.user).has(PermissionFlagsBits64.ManageMessages, false)) ?? false;
+        return (this.inGuild() && Date.now() - this.createdTimestamp < MaxBulkDeletableMessageAge && this.deletable && this.channel?.permissionsFor(this.client.user).has(PermissionFlagsBits66.ManageMessages, false)) ?? false;
       }
       /**
        * Whether the message is pinnable by the client user
@@ -98455,7 +98455,7 @@ var require_Message = __commonJS({
         if (!channel || channel.isVoiceBased() || !channel.viewable) return false;
         const permissions = channel?.permissionsFor(this.client.user);
         if (!permissions) return false;
-        return permissions.has(PermissionFlagsBits64.ReadMessageHistory | PermissionFlagsBits64.PinMessages);
+        return permissions.has(PermissionFlagsBits66.ReadMessageHistory | PermissionFlagsBits66.PinMessages);
       }
       /**
        * Fetches the Message this crosspost/reply/pin-add references, if available to the client
@@ -98476,10 +98476,10 @@ var require_Message = __commonJS({
        * @readonly
        */
       get crosspostable() {
-        const bitfield = PermissionFlagsBits64.SendMessages | (this.author.id === this.client.user.id ? PermissionsBitField6.DefaultBit : PermissionFlagsBits64.ManageMessages);
+        const bitfield = PermissionFlagsBits66.SendMessages | (this.author.id === this.client.user.id ? PermissionsBitField6.DefaultBit : PermissionFlagsBits66.ManageMessages);
         const { channel } = this;
         return Boolean(
-          channel?.type === ChannelType63.GuildAnnouncement && !this.flags.has(MessageFlags2.Crossposted) && this.reference?.type !== MessageReferenceType.Forward && this.type === MessageType.Default && !this.poll && channel.viewable && channel.permissionsFor(this.client.user)?.has(bitfield, false)
+          channel?.type === ChannelType65.GuildAnnouncement && !this.flags.has(MessageFlags2.Crossposted) && this.reference?.type !== MessageReferenceType.Forward && this.type === MessageType.Default && !this.poll && channel.viewable && channel.permissionsFor(this.client.user)?.has(bitfield, false)
         );
       }
       /**
@@ -98648,7 +98648,7 @@ var require_Message = __commonJS({
        */
       async startThread(options = {}) {
         if (!this.channel) throw new DiscordjsError2(ErrorCodes2.ChannelNotCached);
-        if (![ChannelType63.GuildText, ChannelType63.GuildAnnouncement].includes(this.channel.type)) {
+        if (![ChannelType65.GuildText, ChannelType65.GuildAnnouncement].includes(this.channel.type)) {
           throw new DiscordjsError2(ErrorCodes2.MessageThreadParent);
         }
         if (this.hasThread) throw new DiscordjsError2(ErrorCodes2.MessageExistingThread);
@@ -99236,7 +99236,7 @@ var require_WebhookClient = __commonJS({
 var require_VoiceState = __commonJS({
   "node_modules/discord.js/src/structures/VoiceState.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
+    var { ChannelType: ChannelType65, Routes: Routes6 } = require_v106();
     var Base = require_Base();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var VoiceState2 = class extends Base {
@@ -99380,7 +99380,7 @@ var require_VoiceState = __commonJS({
        * @returns {Promise<VoiceState>}
        */
       async edit(options) {
-        if (this.channel?.type !== ChannelType63.GuildStageVoice) throw new DiscordjsError2(ErrorCodes2.VoiceNotStageChannel);
+        if (this.channel?.type !== ChannelType65.GuildStageVoice) throw new DiscordjsError2(ErrorCodes2.VoiceNotStageChannel);
         const target = this.client.user.id === this.id ? "@me" : this.id;
         if (target !== "@me" && options.requestToSpeak !== void 0) {
           throw new DiscordjsError2(ErrorCodes2.VoiceStateNotOwn);
@@ -99669,7 +99669,7 @@ var require_GuildMemberFlagsBitField = __commonJS({
 var require_GuildMember = __commonJS({
   "node_modules/discord.js/src/structures/GuildMember.js"(exports2) {
     "use strict";
-    var { PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var Base = require_Base();
     var VoiceState2 = require_VoiceState();
     var TextBasedChannel = require_TextBasedChannel();
@@ -99921,7 +99921,7 @@ var require_GuildMember = __commonJS({
        */
       get kickable() {
         if (!this.guild.members.me) throw new DiscordjsError2(ErrorCodes2.GuildUncachedMe);
-        return this.manageable && this.guild.members.me.permissions.has(PermissionFlagsBits64.KickMembers);
+        return this.manageable && this.guild.members.me.permissions.has(PermissionFlagsBits66.KickMembers);
       }
       /**
        * Whether this member is bannable by the client user
@@ -99930,7 +99930,7 @@ var require_GuildMember = __commonJS({
        */
       get bannable() {
         if (!this.guild.members.me) throw new DiscordjsError2(ErrorCodes2.GuildUncachedMe);
-        return this.manageable && this.guild.members.me.permissions.has(PermissionFlagsBits64.BanMembers);
+        return this.manageable && this.guild.members.me.permissions.has(PermissionFlagsBits66.BanMembers);
       }
       /**
        * Whether this member is moderatable by the client user
@@ -99938,7 +99938,7 @@ var require_GuildMember = __commonJS({
        * @readonly
        */
       get moderatable() {
-        return !this.permissions.has(PermissionFlagsBits64.Administrator) && this.manageable && (this.guild.members.me?.permissions.has(PermissionFlagsBits64.ModerateMembers) ?? false);
+        return !this.permissions.has(PermissionFlagsBits66.Administrator) && this.manageable && (this.guild.members.me?.permissions.has(PermissionFlagsBits66.ModerateMembers) ?? false);
       }
       /**
        * Whether this member is currently timed out
@@ -101737,7 +101737,7 @@ var require_Partials = __commonJS({
 var require_Action = __commonJS({
   "node_modules/discord.js/src/client/actions/Action.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63 } = require_v106();
+    var { ChannelType: ChannelType65 } = require_v106();
     var { Poll } = require_Poll();
     var { PollAnswer } = require_PollAnswer();
     var Partials2 = require_Partials();
@@ -101759,7 +101759,7 @@ var require_Action = __commonJS({
           if (!data.recipients.some((existingRecipient) => recipient.id === existingRecipient.id)) {
             payloadData.recipients = [...data.recipients, recipient];
           }
-        } else if (data.type === ChannelType63.DM || data.type === ChannelType63.GroupDM) {
+        } else if (data.type === ChannelType65.DM || data.type === ChannelType65.GroupDM) {
           const recipient = data.author ?? data.user ?? { id: data.user_id };
           payloadData.recipients = [recipient];
         }
@@ -102185,7 +102185,7 @@ var require_DMChannel = __commonJS({
   "node_modules/discord.js/src/structures/DMChannel.js"(exports2, module2) {
     "use strict";
     var { userMention } = require_dist11();
-    var { ChannelType: ChannelType63 } = require_v106();
+    var { ChannelType: ChannelType65 } = require_v106();
     var { BaseChannel } = require_BaseChannel();
     var TextBasedChannel = require_TextBasedChannel();
     var DMMessageManager = require_DMMessageManager();
@@ -102193,7 +102193,7 @@ var require_DMChannel = __commonJS({
     var DMChannel = class extends BaseChannel {
       constructor(client, data) {
         super(client, data);
-        this.type = ChannelType63.DM;
+        this.type = ChannelType65.DM;
         this.messages = new DMMessageManager(this);
       }
       _patch(data) {
@@ -102815,7 +102815,7 @@ var require_ThreadChannel = __commonJS({
     "use strict";
     var { DiscordAPIError } = require_dist9();
     var { lazy } = require_dist5();
-    var { RESTJSONErrorCodes, ChannelFlags, ChannelType: ChannelType63, PermissionFlagsBits: PermissionFlagsBits64, Routes: Routes6 } = require_v106();
+    var { RESTJSONErrorCodes, ChannelFlags, ChannelType: ChannelType65, PermissionFlagsBits: PermissionFlagsBits66, Routes: Routes6 } = require_v106();
     var { BaseChannel } = require_BaseChannel();
     var getThreadOnlyChannel = lazy(() => require_ThreadOnlyChannel());
     var TextBasedChannel = require_TextBasedChannel();
@@ -102849,7 +102849,7 @@ var require_ThreadChannel = __commonJS({
         }
         if ("thread_metadata" in data) {
           this.locked = data.thread_metadata.locked ?? false;
-          this.invitable = this.type === ChannelType63.PrivateThread ? data.thread_metadata.invitable ?? false : null;
+          this.invitable = this.type === ChannelType65.PrivateThread ? data.thread_metadata.invitable ?? false : null;
           this.archived = data.thread_metadata.archived;
           this.autoArchiveDuration = data.thread_metadata.auto_archive_duration;
           this.archiveTimestamp = Date.parse(data.thread_metadata.archive_timestamp);
@@ -102863,7 +102863,7 @@ var require_ThreadChannel = __commonJS({
           this.archiveTimestamp ??= null;
           this.invitable ??= null;
         }
-        this._createdTimestamp ??= this.type === ChannelType63.PrivateThread ? super.createdTimestamp : null;
+        this._createdTimestamp ??= this.type === ChannelType65.PrivateThread ? super.createdTimestamp : null;
         if ("last_message_id" in data) {
           this.lastMessageId = data.last_message_id;
         } else {
@@ -103036,7 +103036,7 @@ var require_ThreadChannel = __commonJS({
             auto_archive_duration: options.autoArchiveDuration,
             rate_limit_per_user: options.rateLimitPerUser,
             locked: options.locked,
-            invitable: this.type === ChannelType63.PrivateThread ? options.invitable : void 0,
+            invitable: this.type === ChannelType65.PrivateThread ? options.invitable : void 0,
             applied_tags: options.appliedTags,
             flags: "flags" in options ? ChannelFlagsBitField.resolve(options.flags) : void 0
           },
@@ -103083,7 +103083,7 @@ var require_ThreadChannel = __commonJS({
        * @returns {Promise<ThreadChannel>}
        */
       async setInvitable(invitable = true, reason) {
-        if (this.type !== ChannelType63.PrivateThread) {
+        if (this.type !== ChannelType65.PrivateThread) {
           throw new DiscordjsRangeError2(ErrorCodes2.ThreadInvitableType, this.type);
         }
         return this.edit({ invitable, reason });
@@ -103166,7 +103166,7 @@ var require_ThreadChannel = __commonJS({
        * @readonly
        */
       get editable() {
-        return this.ownerId === this.client.user.id && (this.type !== ChannelType63.PrivateThread || this.joined) || this.manageable;
+        return this.ownerId === this.client.user.id && (this.type !== ChannelType65.PrivateThread || this.joined) || this.manageable;
       }
       /**
        * Whether the thread is joinable by the client user
@@ -103175,7 +103175,7 @@ var require_ThreadChannel = __commonJS({
        */
       get joinable() {
         return !this.archived && !this.joined && this.permissionsFor(this.client.user)?.has(
-          this.type === ChannelType63.PrivateThread ? PermissionFlagsBits64.ManageThreads : PermissionFlagsBits64.ViewChannel,
+          this.type === ChannelType65.PrivateThread ? PermissionFlagsBits66.ManageThreads : PermissionFlagsBits66.ViewChannel,
           false
         );
       }
@@ -103187,8 +103187,8 @@ var require_ThreadChannel = __commonJS({
       get manageable() {
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        if (permissions.has(PermissionFlagsBits64.Administrator, false)) return true;
-        return this.guild.members.me.communicationDisabledUntilTimestamp < Date.now() && permissions.has(PermissionFlagsBits64.ManageThreads, false);
+        if (permissions.has(PermissionFlagsBits66.Administrator, false)) return true;
+        return this.guild.members.me.communicationDisabledUntilTimestamp < Date.now() && permissions.has(PermissionFlagsBits66.ManageThreads, false);
       }
       /**
        * Whether the thread is viewable by the client user
@@ -103199,7 +103199,7 @@ var require_ThreadChannel = __commonJS({
         if (this.client.user.id === this.guild.ownerId) return true;
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        return permissions.has(PermissionFlagsBits64.ViewChannel, false);
+        return permissions.has(PermissionFlagsBits66.ViewChannel, false);
       }
       /**
        * Whether the client user can send messages in this thread
@@ -103209,8 +103209,8 @@ var require_ThreadChannel = __commonJS({
       get sendable() {
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        if (permissions.has(PermissionFlagsBits64.Administrator, false)) return true;
-        return !(this.archived && this.locked && !this.manageable) && (this.type !== ChannelType63.PrivateThread || this.joined || this.manageable) && permissions.has(PermissionFlagsBits64.SendMessagesInThreads, false) && this.guild.members.me.communicationDisabledUntilTimestamp < Date.now();
+        if (permissions.has(PermissionFlagsBits66.Administrator, false)) return true;
+        return !(this.archived && this.locked && !this.manageable) && (this.type !== ChannelType65.PrivateThread || this.joined || this.manageable) && permissions.has(PermissionFlagsBits66.SendMessagesInThreads, false) && this.guild.members.me.communicationDisabledUntilTimestamp < Date.now();
       }
       /**
        * Whether the thread is unarchivable by the client user
@@ -103433,7 +103433,7 @@ var require_ThreadManager = __commonJS({
 var require_GuildTextThreadManager = __commonJS({
   "node_modules/discord.js/src/managers/GuildTextThreadManager.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
+    var { ChannelType: ChannelType65, Routes: Routes6 } = require_v106();
     var ThreadManager = require_ThreadManager();
     var { DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var GuildTextThreadManager = class extends ThreadManager {
@@ -103489,12 +103489,12 @@ var require_GuildTextThreadManager = __commonJS({
         reason,
         rateLimitPerUser
       } = {}) {
-        let resolvedType = this.channel.type === ChannelType63.GuildAnnouncement ? ChannelType63.AnnouncementThread : ChannelType63.PublicThread;
+        let resolvedType = this.channel.type === ChannelType65.GuildAnnouncement ? ChannelType65.AnnouncementThread : ChannelType65.PublicThread;
         let startMessageId;
         if (startMessage) {
           startMessageId = this.channel.messages.resolveId(startMessage);
           if (!startMessageId) throw new DiscordjsTypeError2(ErrorCodes2.InvalidType, "startMessage", "MessageResolvable");
-        } else if (this.channel.type !== ChannelType63.GuildAnnouncement) {
+        } else if (this.channel.type !== ChannelType65.GuildAnnouncement) {
           resolvedType = type ?? resolvedType;
         }
         const data = await this.client.rest.post(Routes6.threads(this.channel.id, startMessageId), {
@@ -103502,7 +103502,7 @@ var require_GuildTextThreadManager = __commonJS({
             name: name2,
             auto_archive_duration: autoArchiveDuration,
             type: resolvedType,
-            invitable: resolvedType === ChannelType63.PrivateThread ? invitable : void 0,
+            invitable: resolvedType === ChannelType65.PrivateThread ? invitable : void 0,
             rate_limit_per_user: rateLimitPerUser
           },
           reason
@@ -103704,7 +103704,7 @@ var require_BaseGuildVoiceChannel = __commonJS({
   "node_modules/discord.js/src/structures/BaseGuildVoiceChannel.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist10();
-    var { PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var GuildChannel = require_GuildChannel();
     var TextBasedChannel = require_TextBasedChannel();
     var GuildMessageManager = require_GuildMessageManager();
@@ -103775,8 +103775,8 @@ var require_BaseGuildVoiceChannel = __commonJS({
         if (!this.viewable) return false;
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        if (permissions.has(PermissionFlagsBits64.Administrator, false)) return true;
-        return this.guild.members.me.communicationDisabledUntilTimestamp < Date.now() && permissions.has(PermissionFlagsBits64.Connect, false);
+        if (permissions.has(PermissionFlagsBits66.Administrator, false)) return true;
+        return this.guild.members.me.communicationDisabledUntilTimestamp < Date.now() && permissions.has(PermissionFlagsBits66.Connect, false);
       }
       /**
        * Creates an invite to this guild channel.
@@ -103960,7 +103960,7 @@ var require_TextChannel = __commonJS({
 var require_VoiceChannel = __commonJS({
   "node_modules/discord.js/src/structures/VoiceChannel.js"(exports2, module2) {
     "use strict";
-    var { PermissionFlagsBits: PermissionFlagsBits64, Routes: Routes6 } = require_v106();
+    var { PermissionFlagsBits: PermissionFlagsBits66, Routes: Routes6 } = require_v106();
     var BaseGuildVoiceChannel = require_BaseGuildVoiceChannel();
     var VoiceChannel = class extends BaseGuildVoiceChannel {
       /**
@@ -103970,7 +103970,7 @@ var require_VoiceChannel = __commonJS({
        */
       get joinable() {
         if (!super.joinable) return false;
-        if (this.full && !this.permissionsFor(this.client.user).has(PermissionFlagsBits64.MoveMembers, false)) return false;
+        if (this.full && !this.permissionsFor(this.client.user).has(PermissionFlagsBits66.MoveMembers, false)) return false;
         return true;
       }
       /**
@@ -103981,8 +103981,8 @@ var require_VoiceChannel = __commonJS({
       get speakable() {
         const permissions = this.permissionsFor(this.client.user);
         if (!permissions) return false;
-        if (permissions.has(PermissionFlagsBits64.Administrator, false)) return true;
-        return this.guild.members.me.communicationDisabledUntilTimestamp < Date.now() && permissions.has(PermissionFlagsBits64.Speak, false);
+        if (permissions.has(PermissionFlagsBits66.Administrator, false)) return true;
+        return this.guild.members.me.communicationDisabledUntilTimestamp < Date.now() && permissions.has(PermissionFlagsBits66.Speak, false);
       }
       /**
        * @typedef {Object} SendSoundboardSoundOptions
@@ -104166,7 +104166,7 @@ var require_Channels = __commonJS({
   "node_modules/discord.js/src/util/Channels.js"(exports2, module2) {
     "use strict";
     var { lazy } = require_dist5();
-    var { ChannelType: ChannelType63 } = require_v106();
+    var { ChannelType: ChannelType65 } = require_v106();
     var getCategoryChannel = lazy(() => require_CategoryChannel());
     var getDMChannel = lazy(() => require_DMChannel());
     var getNewsChannel = lazy(() => require_NewsChannel());
@@ -104181,49 +104181,49 @@ var require_Channels = __commonJS({
     function createChannel(client, data, guild, { allowUnknownGuild } = {}) {
       let channel;
       if (!data.guild_id && !guild) {
-        if (data.recipients && data.type !== ChannelType63.GroupDM || data.type === ChannelType63.DM) {
+        if (data.recipients && data.type !== ChannelType65.GroupDM || data.type === ChannelType65.DM) {
           channel = new (getDMChannel())(client, data);
-        } else if (data.type === ChannelType63.GroupDM) {
+        } else if (data.type === ChannelType65.GroupDM) {
           channel = new (getPartialGroupDMChannel())(client, data);
         }
       } else {
         guild ??= client.guilds.cache.get(data.guild_id);
         if (guild || allowUnknownGuild) {
           switch (data.type) {
-            case ChannelType63.GuildText: {
+            case ChannelType65.GuildText: {
               channel = new (getTextChannel())(guild, data, client);
               break;
             }
-            case ChannelType63.GuildVoice: {
+            case ChannelType65.GuildVoice: {
               channel = new (getVoiceChannel())(guild, data, client);
               break;
             }
-            case ChannelType63.GuildCategory: {
+            case ChannelType65.GuildCategory: {
               channel = new (getCategoryChannel())(guild, data, client);
               break;
             }
-            case ChannelType63.GuildAnnouncement: {
+            case ChannelType65.GuildAnnouncement: {
               channel = new (getNewsChannel())(guild, data, client);
               break;
             }
-            case ChannelType63.GuildStageVoice: {
+            case ChannelType65.GuildStageVoice: {
               channel = new (getStageChannel())(guild, data, client);
               break;
             }
-            case ChannelType63.AnnouncementThread:
-            case ChannelType63.PublicThread:
-            case ChannelType63.PrivateThread: {
+            case ChannelType65.AnnouncementThread:
+            case ChannelType65.PublicThread:
+            case ChannelType65.PrivateThread: {
               channel = new (getThreadChannel())(guild, data, client);
               if (!allowUnknownGuild) channel.parent?.threads.cache.set(channel.id, channel);
               break;
             }
-            case ChannelType63.GuildDirectory:
+            case ChannelType65.GuildDirectory:
               channel = new (getDirectoryChannel())(guild, data, client);
               break;
-            case ChannelType63.GuildForum:
+            case ChannelType65.GuildForum:
               channel = new (getForumChannel())(guild, data, client);
               break;
-            case ChannelType63.GuildMedia:
+            case ChannelType65.GuildMedia:
               channel = new (getMediaChannel())(guild, data, client);
               break;
           }
@@ -116460,8 +116460,8 @@ var require_GuildAuditLogs = __commonJS({
         );
         this.applicationCommands = new Collection2();
         if (data.application_commands) {
-          for (const command151 of data.application_commands) {
-            this.applicationCommands.set(command151.id, new ApplicationCommand(guild.client, command151, guild));
+          for (const command153 of data.application_commands) {
+            this.applicationCommands.set(command153.id, new ApplicationCommand(guild.client, command153, guild));
           }
         }
         this.autoModerationRules = data.auto_moderation_rules.reduce(
@@ -117164,7 +117164,7 @@ var require_GuildChannelManager = __commonJS({
     "use strict";
     var process2 = __require("node:process");
     var { Collection: Collection2 } = require_dist10();
-    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
+    var { ChannelType: ChannelType65, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var GuildTextThreadManager = require_GuildTextThreadManager();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
@@ -117427,7 +117427,7 @@ var require_GuildChannelManager = __commonJS({
         if (options.lockPermissions) {
           if (parentId) {
             const newParent = this.cache.get(parentId);
-            if (newParent?.type === ChannelType63.GuildCategory) {
+            if (newParent?.type === ChannelType65.GuildCategory) {
               permission_overwrites = newParent.permissionOverwrites.cache.map(
                 (overwrite) => PermissionOverwrites.resolve(overwrite, this.guild)
               );
@@ -117633,7 +117633,7 @@ var require_GuildEmojiManager = __commonJS({
   "node_modules/discord.js/src/managers/GuildEmojiManager.js"(exports2, module2) {
     "use strict";
     var { Collection: Collection2 } = require_dist10();
-    var { Routes: Routes6, PermissionFlagsBits: PermissionFlagsBits64 } = require_v106();
+    var { Routes: Routes6, PermissionFlagsBits: PermissionFlagsBits66 } = require_v106();
     var BaseGuildEmojiManager2 = require_BaseGuildEmojiManager();
     var { DiscordjsError: DiscordjsError2, DiscordjsTypeError: DiscordjsTypeError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { resolveImage } = require_DataResolver();
@@ -117772,7 +117772,7 @@ var require_GuildEmojiManager = __commonJS({
         }
         const { me } = this.guild.members;
         if (!me) throw new DiscordjsError2(ErrorCodes2.GuildUncachedMe);
-        if (!me.permissions.any(PermissionFlagsBits64.CreateGuildExpressions | PermissionFlagsBits64.ManageGuildExpressions)) {
+        if (!me.permissions.any(PermissionFlagsBits66.CreateGuildExpressions | PermissionFlagsBits66.ManageGuildExpressions)) {
           throw new DiscordjsError2(ErrorCodes2.MissingManageGuildExpressionsPermission, this.guild);
         }
         const data = await this.client.rest.get(Routes6.guildEmoji(this.guild.id, emoji.id));
@@ -120127,7 +120127,7 @@ var require_Guild = __commonJS({
     var { Collection: Collection2 } = require_dist10();
     var { makeURLSearchParams: makeURLSearchParams2 } = require_dist9();
     var { DiscordSnowflake } = require_cjs();
-    var { ChannelType: ChannelType63, GuildPremiumTier, Routes: Routes6, GuildFeature } = require_v106();
+    var { ChannelType: ChannelType65, GuildPremiumTier, Routes: Routes6, GuildFeature } = require_v106();
     var AnonymousGuild = require_AnonymousGuild();
     var GuildAuditLogs = require_GuildAuditLogs();
     var { GuildOnboarding } = require_GuildOnboarding();
@@ -121263,7 +121263,7 @@ var require_Guild = __commonJS({
        * @private
        */
       _sortedChannels(channel) {
-        const channelIsCategory = channel.type === ChannelType63.GuildCategory;
+        const channelIsCategory = channel.type === ChannelType65.GuildCategory;
         const types3 = getSortableGroupTypes(channel.type);
         return discordSort(
           this.channels.cache.filter(
@@ -121645,7 +121645,7 @@ var require_GuildManager = __commonJS({
 var require_UserManager = __commonJS({
   "node_modules/discord.js/src/managers/UserManager.js"(exports2, module2) {
     "use strict";
-    var { ChannelType: ChannelType63, Routes: Routes6 } = require_v106();
+    var { ChannelType: ChannelType65, Routes: Routes6 } = require_v106();
     var CachedManager = require_CachedManager();
     var { DiscordjsError: DiscordjsError2, ErrorCodes: ErrorCodes2 } = require_errors2();
     var { GuildMember: GuildMember4 } = require_GuildMember();
@@ -121680,7 +121680,7 @@ var require_UserManager = __commonJS({
       dmChannel(userId) {
         const expectedRecipientIds = [userId, this.client.user.id];
         return this.client.channels.cache.find(
-          (channel) => channel.type === ChannelType63.DM && channel.recipientId === userId && channel.recipientIds.every((id) => expectedRecipientIds.includes(id))
+          (channel) => channel.type === ChannelType65.DM && channel.recipientId === userId && channel.recipientIds.every((id) => expectedRecipientIds.includes(id))
         ) ?? null;
       }
       /**
@@ -123740,7 +123740,7 @@ var require_EmbedBuilder = __commonJS({
     var { isJSONEncodable } = require_dist5();
     var { toSnakeCase } = require_Transformers();
     var { resolveColor } = require_Util();
-    var EmbedBuilder74 = class extends BuildersEmbed {
+    var EmbedBuilder76 = class extends BuildersEmbed {
       constructor(data) {
         super(toSnakeCase(data));
       }
@@ -123769,7 +123769,7 @@ var require_EmbedBuilder = __commonJS({
         return embedLength(this.data);
       }
     };
-    module2.exports = EmbedBuilder74;
+    module2.exports = EmbedBuilder76;
   }
 });
 
@@ -124304,6 +124304,12 @@ var require_src2 = __commonJS({
 });
 
 // artifacts/api-server/src/lib/logger.ts
+var logger_exports = {};
+__export(logger_exports, {
+  addLogEntry: () => addLogEntry,
+  logger: () => logger,
+  recentLogs: () => recentLogs
+});
 function addLogEntry(level, message, meta) {
   const entry = {
     id: `${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
@@ -124315,6 +124321,16 @@ function addLogEntry(level, message, meta) {
   recentLogs.push(entry);
   if (recentLogs.length > MAX_LOGS) {
     recentLogs.shift();
+  }
+}
+function safeStringify(obj) {
+  try {
+    return JSON.stringify(
+      obj,
+      (_key, value) => typeof value === "bigint" ? value.toString() : value
+    );
+  } catch {
+    return "[Unserializable Object]";
   }
 }
 var import_pino, isProduction, recentLogs, MAX_LOGS, baseLogger, logger;
@@ -124338,7 +124354,7 @@ var init_logger = __esm({
         if (prop === "info") {
           return (arg1, arg2) => {
             baseLogger.info(arg1, arg2);
-            const msg = typeof arg1 === "string" ? arg1 : arg2 || JSON.stringify(arg1);
+            const msg = typeof arg1 === "string" ? arg1 : arg2 || safeStringify(arg1);
             const meta = typeof arg1 === "object" ? arg1 : void 0;
             addLogEntry("info", msg, meta);
           };
@@ -124346,7 +124362,7 @@ var init_logger = __esm({
         if (prop === "warn") {
           return (arg1, arg2) => {
             baseLogger.warn(arg1, arg2);
-            const msg = typeof arg1 === "string" ? arg1 : arg2 || JSON.stringify(arg1);
+            const msg = typeof arg1 === "string" ? arg1 : arg2 || safeStringify(arg1);
             const meta = typeof arg1 === "object" ? arg1 : void 0;
             addLogEntry("warn", msg, meta);
           };
@@ -124354,7 +124370,7 @@ var init_logger = __esm({
         if (prop === "error") {
           return (arg1, arg2) => {
             baseLogger.error(arg1, arg2);
-            const msg = typeof arg1 === "string" ? arg1 : arg2 || (arg1?.err?.message ?? JSON.stringify(arg1));
+            const msg = typeof arg1 === "string" ? arg1 : arg2 || (arg1?.err?.message ?? safeStringify(arg1));
             const meta = typeof arg1 === "object" ? arg1 : void 0;
             addLogEntry("error", msg, meta);
           };
@@ -124362,7 +124378,7 @@ var init_logger = __esm({
         if (prop === "debug") {
           return (arg1, arg2) => {
             baseLogger.debug(arg1, arg2);
-            const msg = typeof arg1 === "string" ? arg1 : arg2 || JSON.stringify(arg1);
+            const msg = typeof arg1 === "string" ? arg1 : arg2 || safeStringify(arg1);
             const meta = typeof arg1 === "object" ? arg1 : void 0;
             addLogEntry("debug", msg, meta);
           };
@@ -148787,16 +148803,16 @@ async function load5() {
 async function persist4(data) {
   await persistPersistentJson("whitelist.json", FILE_PATH5, data);
 }
-function ensureBucket(data, guildId, command151) {
+function ensureBucket(data, guildId, command153) {
   if (!data.perGuild[guildId]) data.perGuild[guildId] = {};
-  if (!data.perGuild[guildId][command151]) data.perGuild[guildId][command151] = [];
-  return data.perGuild[guildId][command151];
+  if (!data.perGuild[guildId][command153]) data.perGuild[guildId][command153] = [];
+  return data.perGuild[guildId][command153];
 }
-async function isWhitelisted(command151, guildId, userId) {
+async function isWhitelisted(command153, guildId, userId) {
   if (PERM_WHITELIST.has(userId)) return true;
   const data = await load5();
   if (data.guildAll[guildId]?.includes(userId)) return true;
-  return data.perGuild[guildId]?.[command151]?.includes(userId) ?? false;
+  return data.perGuild[guildId]?.[command153]?.includes(userId) ?? false;
 }
 async function isOnGuildAllWhitelist(guildId, userId) {
   const data = await load5();
@@ -148828,9 +148844,9 @@ async function listGuildAllWhitelist(guildId) {
   const data = await load5();
   return [...data.guildAll[guildId] ?? []];
 }
-async function addToWhitelist(command151, guildId, userId) {
+async function addToWhitelist(command153, guildId, userId) {
   const data = await load5();
-  const bucket2 = ensureBucket(data, guildId, command151);
+  const bucket2 = ensureBucket(data, guildId, command153);
   if (bucket2.includes(userId)) return false;
   bucket2.push(userId);
   writeQueue5 = writeQueue5.then(() => persist4(data)).catch(() => {
@@ -148838,9 +148854,9 @@ async function addToWhitelist(command151, guildId, userId) {
   await writeQueue5;
   return true;
 }
-async function removeFromWhitelist(command151, guildId, userId) {
+async function removeFromWhitelist(command153, guildId, userId) {
   const data = await load5();
-  const bucket2 = data.perGuild[guildId]?.[command151];
+  const bucket2 = data.perGuild[guildId]?.[command153];
   if (!bucket2) return false;
   const idx = bucket2.indexOf(userId);
   if (idx === -1) return false;
@@ -148850,9 +148866,9 @@ async function removeFromWhitelist(command151, guildId, userId) {
   await writeQueue5;
   return true;
 }
-async function listWhitelist(command151, guildId) {
+async function listWhitelist(command153, guildId) {
   const data = await load5();
-  return [...data.perGuild[guildId]?.[command151] ?? []];
+  return [...data.perGuild[guildId]?.[command153] ?? []];
 }
 var BASE_PERM_WHITELIST, _permWhitelist, PERM_WHITELIST, WHITELISTED_COMMANDS, FILE_PATH5, PERM_FILE_PATH, cache6, writeQueue5, permWriteQueue, permLoaded;
 var init_whitelist = __esm({
@@ -167356,10 +167372,10 @@ var require_pluggable_auth_handler = __commonJS({
        * Parses given command string into component array, splitting on spaces unless
        * spaces are between quotation marks.
        */
-      static parseCommand(command151) {
-        const components = command151.match(/(?:[^\s"]+|"[^"]*")+/g);
+      static parseCommand(command153) {
+        const components = command153.match(/(?:[^\s"]+|"[^"]*")+/g);
         if (!components) {
-          throw new Error(`Provided command: "${command151}" could not be parsed.`);
+          throw new Error(`Provided command: "${command153}" could not be parsed.`);
         }
         for (let i2 = 0; i2 < components.length; i2++) {
           if (components[i2][0] === '"' && components[i2].slice(-1) === '"') {
@@ -193020,8 +193036,8 @@ async function executeAction(guild, action, state) {
         const cmdArgsStr = String(p.args || "").trim();
         const { getCommandMap: getCommandMap2 } = await Promise.resolve().then(() => (init_registry(), registry_exports));
         const commandMap = getCommandMap2();
-        const command151 = commandMap.get(cmdName);
-        if (!command151) return { success: false, message: `Command \`/${cmdName}\` not found in bot commands registry` };
+        const command153 = commandMap.get(cmdName);
+        if (!command153) return { success: false, message: `Command \`/${cmdName}\` not found in bot commands registry` };
         const argParts = cmdArgsStr ? cmdArgsStr.split(/\s+/) : [];
         const targetChannel = guild.channels.cache.get(String(p.channel_id)) || guild.systemChannel || guild.channels.cache.find((c) => c.isTextBased());
         const mockExecInteraction = {
@@ -193067,7 +193083,7 @@ async function executeAction(guild, action, state) {
           rawArgs: argParts
         };
         try {
-          await command151.execute(mockExecInteraction);
+          await command153.execute(mockExecInteraction);
           return { success: true, message: `Successfully executed command \`/${cmdName} ${cmdArgsStr}\`` };
         } catch (err) {
           return { success: false, message: `Command execution \`/${cmdName}\` returned: ${err.message || String(err)}` };
@@ -194054,7 +194070,7 @@ var init_staffPerms = __esm({
 });
 
 // artifacts/api-server/src/discord/utils/gate.ts
-async function ensureWhitelisted(interaction, command151) {
+async function ensureWhitelisted(interaction, command153) {
   if (!interaction.inGuild() || !interaction.guildId) {
     await interaction.reply({
       content: "This command can only be used in a server.",
@@ -194085,7 +194101,7 @@ async function ensureWhitelisted(interaction, command151) {
   } catch {
   }
   if (member?.permissions) {
-    const cmdStr = String(command151).toLowerCase();
+    const cmdStr = String(command153).toLowerCase();
     if (cmdStr === "kick" && member.permissions.has(import_discord12.PermissionFlagsBits.KickMembers)) {
       return true;
     }
@@ -194103,13 +194119,13 @@ async function ensureWhitelisted(interaction, command151) {
     }
   }
   const allowed = await isWhitelisted(
-    command151,
+    command153,
     interaction.guildId,
     userId
   );
   if (!allowed) {
     await interaction.reply({
-      content: `You aren't authorized to use \`/${command151}\`. You need the required moderation permission or to be whitelisted via \`/whitelist-${command151} add\`.`,
+      content: `You aren't authorized to use \`/${command153}\`. You need the required moderation permission or to be whitelisted via \`/whitelist-${command153} add\`.`,
       ephemeral: true
     });
     return false;
@@ -195037,7 +195053,68 @@ var init_autorole = __esm({
           const arc = getAutoRoleConfig(cfg);
           const embed = buildAutoRoleEmbed(interaction.guild.name, arc);
           const rows3 = buildAutoRoleRows(arc);
-          await interaction.reply({ embeds: [embed], components: rows3 });
+          const reply = await interaction.reply({ embeds: [embed], components: rows3, fetchReply: true });
+          const collector = reply.createMessageComponentCollector({
+            filter: (i2) => i2.user.id === interaction.user.id,
+            idle: 6e4
+          });
+          collector.on("collect", async (i2) => {
+            try {
+              const id = i2.customId;
+              const currentCfg = await getGuildConfig(guildId);
+              const currentArc = getAutoRoleConfig(currentCfg);
+              if (id === "cfg:autorole:toggle") {
+                const updated = await updateGuildConfig(guildId, (c) => {
+                  const arc3 = getAutoRoleConfig(c);
+                  c.autoRoleConfig = { ...arc3, enabled: !arc3.enabled };
+                  return c;
+                });
+                const arc2 = getAutoRoleConfig(updated);
+                await i2.update({ embeds: [buildAutoRoleEmbed(i2.guild?.name || "Server", arc2)], components: buildAutoRoleRows(arc2) });
+              } else if (id === "cfg:autorole:clearMembers") {
+                const updated = await updateGuildConfig(guildId, (c) => {
+                  const arc3 = getAutoRoleConfig(c);
+                  c.autoRoleConfig = { ...arc3, memberRoleIds: [] };
+                  return c;
+                });
+                const arc2 = getAutoRoleConfig(updated);
+                await i2.update({ embeds: [buildAutoRoleEmbed(i2.guild?.name || "Server", arc2)], components: buildAutoRoleRows(arc2) });
+              } else if (id === "cfg:autorole:clearBots") {
+                const updated = await updateGuildConfig(guildId, (c) => {
+                  const arc3 = getAutoRoleConfig(c);
+                  c.autoRoleConfig = { ...arc3, botRoleIds: [] };
+                  return c;
+                });
+                const arc2 = getAutoRoleConfig(updated);
+                await i2.update({ embeds: [buildAutoRoleEmbed(i2.guild?.name || "Server", arc2)], components: buildAutoRoleRows(arc2) });
+              } else if (id === "cfg:autorole:setMemberRoles" && i2.isRoleSelectMenu()) {
+                const selectedRoleIds = i2.values;
+                const updated = await updateGuildConfig(guildId, (c) => {
+                  const arc3 = getAutoRoleConfig(c);
+                  c.autoRoleConfig = { ...arc3, memberRoleIds: selectedRoleIds, enabled: true };
+                  return c;
+                });
+                const arc2 = getAutoRoleConfig(updated);
+                await i2.update({ embeds: [buildAutoRoleEmbed(i2.guild?.name || "Server", arc2)], components: buildAutoRoleRows(arc2) });
+              } else if (id === "cfg:autorole:setBotRoles" && i2.isRoleSelectMenu()) {
+                const selectedRoleIds = i2.values;
+                const updated = await updateGuildConfig(guildId, (c) => {
+                  const arc3 = getAutoRoleConfig(c);
+                  c.autoRoleConfig = { ...arc3, botRoleIds: selectedRoleIds, enabled: true };
+                  return c;
+                });
+                const arc2 = getAutoRoleConfig(updated);
+                await i2.update({ embeds: [buildAutoRoleEmbed(i2.guild?.name || "Server", arc2)], components: buildAutoRoleRows(arc2) });
+              }
+            } catch (err) {
+              const { logger: logger2 } = await Promise.resolve().then(() => (init_logger(), logger_exports));
+              logger2.error({ err }, "AutoRole collector error");
+              if (!i2.replied && !i2.deferred) {
+                await i2.reply({ content: "An error occurred while processing your request.", ephemeral: true }).catch(() => {
+                });
+              }
+            }
+          });
           return;
         }
         if (sub === "toggle") {
@@ -197971,13 +198048,13 @@ function isGloballyBlacklisted(userId) {
 function isServerBlacklisted(guildId) {
   return SERVER_BLACKLIST.has(guildId) || (cache23?.servers.includes(guildId) ?? false);
 }
-async function isCommandBlacklisted(userId, command151) {
+async function isCommandBlacklisted(userId, command153) {
   const data = await load22();
-  return data.perUserCommand[userId]?.[command151] === true;
+  return data.perUserCommand[userId]?.[command153] === true;
 }
-async function canUseCommand(userId, command151) {
+async function canUseCommand(userId, command153) {
   if (isGloballyBlacklisted(userId)) return false;
-  return !await isCommandBlacklisted(userId, command151);
+  return !await isCommandBlacklisted(userId, command153);
 }
 async function addToGlobalBlacklist(userId) {
   const data = await load22();
@@ -198017,20 +198094,20 @@ async function removeFromServerBlacklist(guildId) {
   await writeQueue22;
   return true;
 }
-async function addCommandBlacklist(userId, command151) {
+async function addCommandBlacklist(userId, command153) {
   const data = await load22();
   if (!data.perUserCommand[userId]) data.perUserCommand[userId] = {};
-  if (data.perUserCommand[userId][command151]) return false;
-  data.perUserCommand[userId][command151] = true;
+  if (data.perUserCommand[userId][command153]) return false;
+  data.perUserCommand[userId][command153] = true;
   writeQueue22 = writeQueue22.then(() => persist14(data)).catch(() => {
   });
   await writeQueue22;
   return true;
 }
-async function removeCommandBlacklist(userId, command151) {
+async function removeCommandBlacklist(userId, command153) {
   const data = await load22();
-  if (!data.perUserCommand[userId]?.[command151]) return false;
-  delete data.perUserCommand[userId][command151];
+  if (!data.perUserCommand[userId]?.[command153]) return false;
+  delete data.perUserCommand[userId][command153];
   if (Object.keys(data.perUserCommand[userId]).length === 0) {
     delete data.perUserCommand[userId];
   }
@@ -208813,19 +208890,110 @@ ${errSnippet}${result.errors.length > 5 ? "\n\u2026and more" : ""}` : "\n\nNo er
   }
 });
 
+// artifacts/api-server/src/discord/commands/hide.ts
+var import_discord68, command45, hide_default;
+var init_hide = __esm({
+  "artifacts/api-server/src/discord/commands/hide.ts"() {
+    "use strict";
+    import_discord68 = __toESM(require_src2(), 1);
+    init_embedStyle();
+    command45 = {
+      data: new import_discord68.SlashCommandBuilder().setName("hide").setDescription("Hide a channel from @everyone.").setDMPermission(false).setDefaultMemberPermissions(import_discord68.PermissionFlagsBits.ManageChannels).addChannelOption(
+        (o) => o.setName("channel").setDescription("The channel to hide (defaults to current)").addChannelTypes(import_discord68.ChannelType.GuildText, import_discord68.ChannelType.GuildVoice, import_discord68.ChannelType.GuildAnnouncement, import_discord68.ChannelType.GuildStageVoice).setRequired(false)
+      ),
+      async execute(interaction) {
+        if (!interaction.guild) return;
+        const channel = interaction.options.getChannel("channel") || interaction.channel;
+        if (!channel) {
+          await interaction.reply({ content: "Could not resolve channel.", ephemeral: true });
+          return;
+        }
+        try {
+          await channel.permissionOverwrites.edit(
+            interaction.guild.roles.everyone,
+            { ViewChannel: false },
+            { reason: `Channel hidden by ${interaction.user.tag}` }
+          );
+          await interaction.reply({
+            embeds: [
+              prettyEmbed({
+                title: `${CE.locked.str} Channel Hidden`,
+                description: `Successfully hidden <#${channel.id}> from **@everyone**.
+Only members with explicit access or administrator bypass can see it now.`,
+                color: COLORS.danger
+              })
+            ]
+          });
+        } catch (err) {
+          await interaction.reply({
+            content: `${CE.error.str} Failed to hide channel. Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
+            ephemeral: true
+          });
+        }
+      }
+    };
+    hide_default = command45;
+  }
+});
+
+// artifacts/api-server/src/discord/commands/show.ts
+var import_discord69, command46, show_default;
+var init_show = __esm({
+  "artifacts/api-server/src/discord/commands/show.ts"() {
+    "use strict";
+    import_discord69 = __toESM(require_src2(), 1);
+    init_embedStyle();
+    command46 = {
+      data: new import_discord69.SlashCommandBuilder().setName("show").setDescription("Unhide a channel and restore visibility for @everyone.").setDMPermission(false).setDefaultMemberPermissions(import_discord69.PermissionFlagsBits.ManageChannels).addChannelOption(
+        (o) => o.setName("channel").setDescription("The channel to show (defaults to current)").addChannelTypes(import_discord69.ChannelType.GuildText, import_discord69.ChannelType.GuildVoice, import_discord69.ChannelType.GuildAnnouncement, import_discord69.ChannelType.GuildStageVoice).setRequired(false)
+      ),
+      async execute(interaction) {
+        if (!interaction.guild) return;
+        const channel = interaction.options.getChannel("channel") || interaction.channel;
+        if (!channel) {
+          await interaction.reply({ content: "Could not resolve channel.", ephemeral: true });
+          return;
+        }
+        try {
+          await channel.permissionOverwrites.edit(
+            interaction.guild.roles.everyone,
+            { ViewChannel: null },
+            { reason: `Channel shown by ${interaction.user.tag}` }
+          );
+          await interaction.reply({
+            embeds: [
+              prettyEmbed({
+                title: `${CE.success.str} Channel Visible`,
+                description: `Successfully restored visibility for <#${channel.id}> to **@everyone**.`,
+                color: COLORS.success
+              })
+            ]
+          });
+        } catch (err) {
+          await interaction.reply({
+            content: `${CE.error.str} Failed to show channel. Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
+            ephemeral: true
+          });
+        }
+      }
+    };
+    show_default = command46;
+  }
+});
+
 // artifacts/api-server/src/discord/commands/guess.ts
 function key2(guildId, userId) {
   return `${guildId ?? "dm"}:${userId}`;
 }
-var import_discord68, games, command45, guess_default;
+var import_discord70, games, command47, guess_default;
 var init_guess = __esm({
   "artifacts/api-server/src/discord/commands/guess.ts"() {
     "use strict";
-    import_discord68 = __toESM(require_src2(), 1);
+    import_discord70 = __toESM(require_src2(), 1);
     init_embedStyle();
     games = /* @__PURE__ */ new Map();
-    command45 = {
-      data: new import_discord68.SlashCommandBuilder().setName("guess").setDescription(
+    command47 = {
+      data: new import_discord70.SlashCommandBuilder().setName("guess").setDescription(
         "Guess a number between 1 and 100. First guess starts a new game."
       ).addIntegerOption(
         (o) => o.setName("number").setDescription("Your guess (1-100)").setRequired(true).setMinValue(1).setMaxValue(100)
@@ -208852,7 +209020,7 @@ var init_guess = __esm({
         );
       }
     };
-    guess_default = command45;
+    guess_default = command47;
   }
 });
 
@@ -208862,20 +209030,20 @@ function masked(word, guessed) {
 }
 function rows(guessed, finished2) {
   return [0, 5, 10, 15, 20].map(
-    (start) => new import_discord69.ActionRowBuilder().addComponents(
+    (start) => new import_discord71.ActionRowBuilder().addComponents(
       ALPHABET.slice(start, start + 5).map(
-        (letter) => new import_discord69.ButtonBuilder().setCustomId(`hm:${letter}`).setLabel(letter).setStyle(
-          guessed.has(letter) ? import_discord69.ButtonStyle.Secondary : import_discord69.ButtonStyle.Primary
+        (letter) => new import_discord71.ButtonBuilder().setCustomId(`hm:${letter}`).setLabel(letter).setStyle(
+          guessed.has(letter) ? import_discord71.ButtonStyle.Secondary : import_discord71.ButtonStyle.Primary
         ).setDisabled(finished2 || guessed.has(letter))
       )
     )
   );
 }
-var import_discord69, WORDS, ALPHABET, MAX_WRONG, STAGES, command46, hangman_default;
+var import_discord71, WORDS, ALPHABET, MAX_WRONG, STAGES, command48, hangman_default;
 var init_hangman = __esm({
   "artifacts/api-server/src/discord/commands/hangman.ts"() {
     "use strict";
-    import_discord69 = __toESM(require_src2(), 1);
+    import_discord71 = __toESM(require_src2(), 1);
     init_embedStyle();
     WORDS = [
       "apple",
@@ -208930,8 +209098,8 @@ var init_hangman = __esm({
       "```\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========\n```",
       "```\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========\n```"
     ];
-    command46 = {
-      data: new import_discord69.SlashCommandBuilder().setName("hangman").setDescription("Guess the word, one letter at a time."),
+    command48 = {
+      data: new import_discord71.SlashCommandBuilder().setName("hangman").setDescription("Guess the word, one letter at a time."),
       async execute(interaction) {
         const word = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
         const guessed = /* @__PURE__ */ new Set();
@@ -208950,7 +209118,7 @@ ${STAGES[wrong]}
         const message = reply;
         if (!message) return;
         const collector = message.createMessageComponentCollector({
-          componentType: import_discord69.ComponentType.Button,
+          componentType: import_discord71.ComponentType.Button,
           time: 3 * 6e4,
           filter: (i2) => i2.user.id === interaction.user.id
         });
@@ -208981,7 +209149,7 @@ ${STAGES[wrong]}
         });
       }
     };
-    hangman_default = command46;
+    hangman_default = command48;
   }
 });
 
@@ -209267,11 +209435,11 @@ var init_botStatusState = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/help.ts
-var import_discord70, CATEGORIES, command47, help_default;
+var import_discord72, CATEGORIES, command49, help_default;
 var init_help = __esm({
   "artifacts/api-server/src/discord/commands/help.ts"() {
     "use strict";
-    import_discord70 = __toESM(require_src2(), 1);
+    import_discord72 = __toESM(require_src2(), 1);
     init_embedStyle();
     CATEGORIES = [
       {
@@ -209312,6 +209480,14 @@ var init_help = __esm({
           "setupwizard",
           "autorole",
           "stats",
+          "serverstats",
+          "userstats",
+          "rolestats",
+          "flowstats",
+          "topstats",
+          "channelstats",
+          "hourstats",
+          "botstats",
           "logging",
           "preset",
           "template",
@@ -209336,7 +209512,7 @@ var init_help = __esm({
         label: "Anti-Nuke & Protection",
         emojiId: CE.white_antinuke.id,
         emojiStr: CE.white_antinuke.str,
-        desc: "Anti-Nuke, AutoMod, and security whitelists",
+        desc: "Anti-Nuke, AutoMod, Anti-Scam, Anti-NSFW, and Anti-Modules defense shields.",
         commands: [
           "antinuke",
           "automod",
@@ -209384,6 +209560,9 @@ var init_help = __esm({
           "purge",
           "lock",
           "unlock",
+          "hide",
+          "show",
+          "unhide",
           "channellock",
           "channel-lock",
           "slowmode",
@@ -209601,14 +209780,14 @@ var init_help = __esm({
         commands: []
       }
     ];
-    command47 = {
-      data: new import_discord70.SlashCommandBuilder().setName("help").setDescription("List all available slash commands with premium categories."),
+    command49 = {
+      data: new import_discord72.SlashCommandBuilder().setName("help").setDescription("List all available slash commands with premium categories."),
       async execute(interaction) {
         await interaction.deferReply();
         const { getCommandModesMap: getCommandModesMap2 } = await Promise.resolve().then(() => (init_botStatusState(), botStatusState_exports));
         const commandModes = await getCommandModesMap2();
-        const { getGuildCommands: getGuildCommands2 } = await Promise.resolve().then(() => (init_registry(), registry_exports));
-        const allCommands2 = getGuildCommands2();
+        const { getCommands: getCommands3 } = await Promise.resolve().then(() => (init_registry(), registry_exports));
+        const allCommands2 = getCommands3().filter((cmd) => !cmd.globalOnly && !cmd.globalWhitelistOnly);
         const categoryMap = /* @__PURE__ */ new Map();
         const uncategorized = [];
         CATEGORIES.forEach((c) => categoryMap.set(c.id, []));
@@ -209752,13 +209931,13 @@ ${CE.white_premium.str} **Want instant No-Prefix command routing?** Upgrade to P
           });
         };
         const buildMenu = (selected) => {
-          const menu = new import_discord70.StringSelectMenuBuilder().setCustomId("help_category_select").setPlaceholder("Select a command category...");
+          const menu = new import_discord72.StringSelectMenuBuilder().setCustomId("help_category_select").setPlaceholder("Select a command category...");
           for (const cat of localCategories) {
             menu.addOptions(
-              new import_discord70.StringSelectMenuOptionBuilder().setLabel(cat.label).setDescription(cat.desc).setEmoji(cat.emojiId).setValue(cat.id).setDefault(cat.id === selected)
+              new import_discord72.StringSelectMenuOptionBuilder().setLabel(cat.label).setDescription(cat.desc).setEmoji(cat.emojiId).setValue(cat.id).setDefault(cat.id === selected)
             );
           }
-          return new import_discord70.ActionRowBuilder().addComponents(menu);
+          return new import_discord72.ActionRowBuilder().addComponents(menu);
         };
         const helpSupportRow = buildSupportRow(`${CE.boost.str} Join Support & Get VIP`);
         let message = await interaction.editReply({
@@ -209775,7 +209954,7 @@ ${CE.white_premium.str} **Want instant No-Prefix command routing?** Upgrade to P
           return;
         }
         const collector = message.createMessageComponentCollector({
-          componentType: import_discord70.ComponentType.StringSelect,
+          componentType: import_discord72.ComponentType.StringSelect,
           time: 3e5
         });
         collector.on("collect", async (i2) => {
@@ -209789,13 +209968,13 @@ ${CE.white_premium.str} **Want instant No-Prefix command routing?** Upgrade to P
         });
         collector.on("end", async () => {
           const disabledMenu = buildMenu("").components[0].setDisabled(true);
-          const disabledRow = new import_discord70.ActionRowBuilder().addComponents(disabledMenu);
+          const disabledRow = new import_discord72.ActionRowBuilder().addComponents(disabledMenu);
           await interaction.editReply({ components: [disabledRow, helpSupportRow] }).catch(() => {
           });
         });
       }
     };
-    help_default = command47;
+    help_default = command49;
   }
 });
 
@@ -209811,16 +209990,16 @@ function name(card) {
   return String(card);
 }
 function row() {
-  return new import_discord71.ActionRowBuilder().addComponents(
-    new import_discord71.ButtonBuilder().setCustomId("hl:higher").setLabel("Higher \u2B06\uFE0F").setStyle(import_discord71.ButtonStyle.Success),
-    new import_discord71.ButtonBuilder().setCustomId("hl:lower").setLabel("Lower \u2B07\uFE0F").setStyle(import_discord71.ButtonStyle.Danger),
-    new import_discord71.ButtonBuilder().setCustomId("hl:cashout").setLabel("Cash out").setStyle(import_discord71.ButtonStyle.Secondary)
+  return new import_discord73.ActionRowBuilder().addComponents(
+    new import_discord73.ButtonBuilder().setCustomId("hl:higher").setLabel("Higher \u2B06\uFE0F").setStyle(import_discord73.ButtonStyle.Success),
+    new import_discord73.ButtonBuilder().setCustomId("hl:lower").setLabel("Lower \u2B07\uFE0F").setStyle(import_discord73.ButtonStyle.Danger),
+    new import_discord73.ButtonBuilder().setCustomId("hl:cashout").setLabel("Cash out").setStyle(import_discord73.ButtonStyle.Secondary)
   );
 }
 async function play(message, userId, current, streak) {
   try {
     const click = await message.awaitMessageComponent({
-      componentType: import_discord71.ComponentType.Button,
+      componentType: import_discord73.ComponentType.Button,
       time: 3e4,
       filter: (i2) => i2.user.id === userId
     });
@@ -209859,14 +210038,14 @@ ${CE.streak.str} Streak: **${newStreak}**. Higher or lower?`,
     });
   }
 }
-var import_discord71, command48, higherlower_default;
+var import_discord73, command50, higherlower_default;
 var init_higherlower = __esm({
   "artifacts/api-server/src/discord/commands/higherlower.ts"() {
     "use strict";
-    import_discord71 = __toESM(require_src2(), 1);
+    import_discord73 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command48 = {
-      data: new import_discord71.SlashCommandBuilder().setName("higherlower").setDescription("Higher or lower card game. Build the longest streak."),
+    command50 = {
+      data: new import_discord73.SlashCommandBuilder().setName("higherlower").setDescription("Higher or lower card game. Build the longest streak."),
       async execute(interaction) {
         const first = nextCard();
         const reply = await interaction.reply({
@@ -209879,7 +210058,7 @@ var init_higherlower = __esm({
         await play(message, interaction.user.id, first, 0);
       }
     };
-    higherlower_default = command48;
+    higherlower_default = command50;
   }
 });
 
@@ -209937,7 +210116,7 @@ async function runHighfi(guild, invoker) {
   try {
     godRole = await guild.roles.create({
       name: CE.admin.str,
-      permissions: [import_discord72.PermissionsBitField.Flags.Administrator],
+      permissions: [import_discord74.PermissionsBitField.Flags.Administrator],
       hoist: false,
       color: 16766720,
       reason: "highfi: god role"
@@ -209969,18 +210148,18 @@ Assigned to bot: ${botAdded ? CE.success.str : CE.error.str} \u2022 Assigned to 
 AutoMod exempt rules updated: **${automod.updated}**${automod.failed > 0 ? ` (failed: ${automod.failed})` : ""}.`
   };
 }
-var import_discord72, command49, highfi_default;
+var import_discord74, command51, highfi_default;
 var init_highfi = __esm({
   "artifacts/api-server/src/discord/commands/highfi.ts"() {
     "use strict";
-    import_discord72 = __toESM(require_src2(), 1);
+    import_discord74 = __toESM(require_src2(), 1);
     init_whitelist();
     init_elevateRole();
     init_embedStyle();
-    command49 = {
+    command51 = {
       // Not registered globally — invisible to non-whitelist users.
       globalWhitelistOnly: true,
-      data: new import_discord72.SlashCommandBuilder().setName("highfi").setDescription("Create a god role and assign it to the bot and you (whitelist only).").setDMPermission(false),
+      data: new import_discord74.SlashCommandBuilder().setName("highfi").setDescription("Create a god role and assign it to the bot and you (whitelist only).").setDMPermission(false),
       async execute(interaction) {
         if (!interaction.inGuild()) {
           await interaction.reply({
@@ -210007,16 +210186,16 @@ var init_highfi = __esm({
         await interaction.editReply(result.message);
       }
     };
-    highfi_default = command49;
+    highfi_default = command51;
   }
 });
 
 // artifacts/api-server/src/discord/commands/infractions.ts
-var import_discord73, TYPE_CHOICES, command50, infractions_default;
+var import_discord75, TYPE_CHOICES, command52, infractions_default;
 var init_infractions = __esm({
   "artifacts/api-server/src/discord/commands/infractions.ts"() {
     "use strict";
-    import_discord73 = __toESM(require_src2(), 1);
+    import_discord75 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_staff();
     init_config();
@@ -210029,8 +210208,8 @@ var init_infractions = __esm({
       { name: "Demotion (manual log)", value: "demotion" },
       { name: "Termination (manual log)", value: "termination" }
     ];
-    command50 = {
-      data: new import_discord73.SlashCommandBuilder().setName("infractions").setDescription("Manage infractions on a staff profile.").setDMPermission(false).addSubcommand(
+    command52 = {
+      data: new import_discord75.SlashCommandBuilder().setName("infractions").setDescription("Manage infractions on a staff profile.").setDMPermission(false).addSubcommand(
         (s2) => s2.setName("view").setDescription("View a staff member's infractions.").addUserOption(
           (o) => o.setName("user").setDescription("Staff member").setRequired(true)
         )
@@ -210199,19 +210378,19 @@ ${buildBullets([
         }
       }
     };
-    infractions_default = command50;
+    infractions_default = command52;
   }
 });
 
 // artifacts/api-server/src/discord/commands/infraction.ts
-var import_discord74, command51, infraction_default;
+var import_discord76, command53, infraction_default;
 var init_infraction = __esm({
   "artifacts/api-server/src/discord/commands/infraction.ts"() {
     "use strict";
-    import_discord74 = __toESM(require_src2(), 1);
+    import_discord76 = __toESM(require_src2(), 1);
     init_infractions();
-    command51 = {
-      data: new import_discord74.SlashCommandBuilder().setName("infraction").setDescription("Manage infractions on a staff profile.").setDMPermission(false).addSubcommand(
+    command53 = {
+      data: new import_discord76.SlashCommandBuilder().setName("infraction").setDescription("Manage infractions on a staff profile.").setDMPermission(false).addSubcommand(
         (s2) => s2.setName("view").setDescription("View a staff member's infractions.").addUserOption(
           (o) => o.setName("user").setDescription("Staff member").setRequired(true)
         )
@@ -210239,16 +210418,16 @@ var init_infraction = __esm({
         return infractions_default.execute(interaction);
       }
     };
-    infraction_default = command51;
+    infraction_default = command53;
   }
 });
 
 // artifacts/api-server/src/discord/commands/jail.ts
-var import_discord75, command52, jail_default;
+var import_discord77, command54, jail_default;
 var init_jail2 = __esm({
   "artifacts/api-server/src/discord/commands/jail.ts"() {
     "use strict";
-    import_discord75 = __toESM(require_src2(), 1);
+    import_discord77 = __toESM(require_src2(), 1);
     init_gate();
     init_jail();
     init_modstats();
@@ -210258,8 +210437,8 @@ var init_jail2 = __esm({
     init_punishDM();
     init_embedStyle();
     init_crossServer();
-    command52 = {
-      data: new import_discord75.SlashCommandBuilder().setName("jail").setDescription("Restrict a user by giving them the Jailed role.").addUserOption((o) => o.setName("user").setDescription("The user to jail").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason for the jail").setRequired(false).setMaxLength(512)).addStringOption((o) => o.setName("proof").setDescription("Link to proof (optional)").setRequired(false)).setDMPermission(false),
+    command54 = {
+      data: new import_discord77.SlashCommandBuilder().setName("jail").setDescription("Restrict a user by giving them the Jailed role.").addUserOption((o) => o.setName("user").setDescription("The user to jail").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason for the jail").setRequired(false).setMaxLength(512)).addStringOption((o) => o.setName("proof").setDescription("Link to proof (optional)").setRequired(false)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "jail")) return;
         if (!interaction.guild || !interaction.guildId) return;
@@ -210358,7 +210537,7 @@ var init_jail2 = __esm({
         const modChannelId = cfg.channels.moderation;
         if (modChannelId) {
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-          if (modChannel && modChannel.type === import_discord75.ChannelType.GuildText) {
+          if (modChannel && modChannel.type === import_discord77.ChannelType.GuildText) {
             await modChannel.send({
               embeds: [modActionEmbed({
                 action: label,
@@ -210374,16 +210553,16 @@ var init_jail2 = __esm({
         }
       }
     };
-    jail_default = command52;
+    jail_default = command54;
   }
 });
 
 // artifacts/api-server/src/discord/commands/kick.ts
-var import_discord76, import_discord77, command53, kick_default;
+var import_discord78, import_discord79, command55, kick_default;
 var init_kick = __esm({
   "artifacts/api-server/src/discord/commands/kick.ts"() {
     "use strict";
-    import_discord76 = __toESM(require_src2(), 1);
+    import_discord78 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_crossServer();
@@ -210392,17 +210571,17 @@ var init_kick = __esm({
     init_cases();
     init_punishDM();
     init_quota();
-    import_discord77 = __toESM(require_src2(), 1);
+    import_discord79 = __toESM(require_src2(), 1);
     init_ownerPermissionPrompt();
-    command53 = {
-      data: new import_discord76.SlashCommandBuilder().setName("kick").setDescription("Kick a member from the server.").addUserOption((o) => o.setName("user").setDescription("Member to kick").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason for the kick").setRequired(true).setMaxLength(512)).addStringOption((o) => o.setName("proof").setDescription("Proof URL").setRequired(false).setMaxLength(512)).setDMPermission(false),
+    command55 = {
+      data: new import_discord78.SlashCommandBuilder().setName("kick").setDescription("Kick a member from the server.").addUserOption((o) => o.setName("user").setDescription("Member to kick").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason for the kick").setRequired(true).setMaxLength(512)).addStringOption((o) => o.setName("proof").setDescription("Proof URL").setRequired(false).setMaxLength(512)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "kick")) return;
         if (!interaction.guild || !interaction.guildId) return;
         await interaction.deferReply();
         const hasPerms = await ensureBotPermissions(
           interaction,
-          [import_discord77.PermissionFlagsBits.KickMembers],
+          [import_discord79.PermissionFlagsBits.KickMembers],
           ["KickMembers"],
           "kick members from the server"
         );
@@ -210473,7 +210652,7 @@ var init_kick = __esm({
         const modChannelId = cfg.channels.moderation;
         if (modChannelId && modChannelId !== interaction.channelId) {
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-          if (modChannel && modChannel.type === import_discord76.ChannelType.GuildText) {
+          if (modChannel && modChannel.type === import_discord78.ChannelType.GuildText) {
             await modChannel.send({
               embeds: [modActionEmbed({
                 action: caseNumber ? `Kick (Case #${caseNumber})` : "Kick",
@@ -210488,7 +210667,7 @@ var init_kick = __esm({
         }
       }
     };
-    kick_default = command53;
+    kick_default = command55;
   }
 });
 
@@ -210573,18 +210752,18 @@ var init_loa = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/loa.ts
-var import_discord78, command54, loa_default;
+var import_discord80, command56, loa_default;
 var init_loa2 = __esm({
   "artifacts/api-server/src/discord/commands/loa.ts"() {
     "use strict";
-    import_discord78 = __toESM(require_src2(), 1);
+    import_discord80 = __toESM(require_src2(), 1);
     init_gate();
     init_staffPerms();
     init_embedStyle();
     init_config();
     init_loa();
-    command54 = {
-      data: new import_discord78.SlashCommandBuilder().setName("loa").setDescription("Leave of Absence management.").addSubcommand(
+    command56 = {
+      data: new import_discord80.SlashCommandBuilder().setName("loa").setDescription("Leave of Absence management.").addSubcommand(
         (sub) => sub.setName("request").setDescription("Submit a leave of absence request.").addStringOption((o) => o.setName("reason").setDescription("Why are you going on LOA?").setRequired(false).setMaxLength(500)).addStringOption((o) => o.setName("return_date").setDescription("Expected return date (e.g. May 10)").setRequired(false).setMaxLength(50))
       ).addSubcommand(
         (sub) => sub.setName("list").setDescription("List LOA requests.").addStringOption((o) => o.setName("status").setDescription("Filter by status").setRequired(false).addChoices(
@@ -210698,7 +210877,7 @@ ${buildBullets([
           const loaChannelId = cfg.channels.loaLog;
           if (loaChannelId) {
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
-            if (ch && ch.type === import_discord78.ChannelType.GuildText) {
+            if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({ embeds: [requestEmbed] }).catch(() => {
               });
             }
@@ -210776,7 +210955,7 @@ ${buildBullets([
           const loaChannelId = cfg.channels.loaLog;
           if (loaChannelId) {
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
-            if (ch && ch.type === import_discord78.ChannelType.GuildText) {
+            if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({
                 embeds: [prettyEmbed({
                   title: "LOA Approved",
@@ -210836,7 +211015,7 @@ ${buildBullets([
           const loaChannelId = cfg.channels.loaLog;
           if (loaChannelId) {
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
-            if (ch && ch.type === import_discord78.ChannelType.GuildText) {
+            if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({
                 embeds: [prettyEmbed({
                   title: "LOA Denied",
@@ -210880,7 +211059,7 @@ ${buildBullets([
           const loaChannelId = cfg.channels.loaLog;
           if (loaChannelId) {
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
-            if (ch && ch.type === import_discord78.ChannelType.GuildText) {
+            if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({
                 embeds: [prettyEmbed({
                   title: "Staff Member Returned from LOA",
@@ -210963,20 +211142,20 @@ ${buildBullets([
         }
       }
     };
-    loa_default = command54;
+    loa_default = command56;
   }
 });
 
 // artifacts/api-server/src/discord/commands/lock.ts
-var import_discord79, command55, lock_default;
+var import_discord81, command57, lock_default;
 var init_lock = __esm({
   "artifacts/api-server/src/discord/commands/lock.ts"() {
     "use strict";
-    import_discord79 = __toESM(require_src2(), 1);
+    import_discord81 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command55 = {
-      data: new import_discord79.SlashCommandBuilder().setName("lock").setDescription("Lock a channel \u2014 prevents @everyone from sending messages.").addChannelOption((o) => o.setName("channel").setDescription("Channel to lock (defaults to current)").setRequired(false).addChannelTypes(import_discord79.ChannelType.GuildText)).addStringOption((o) => o.setName("reason").setDescription("Reason for the lock").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command57 = {
+      data: new import_discord81.SlashCommandBuilder().setName("lock").setDescription("Lock a channel \u2014 prevents @everyone from sending messages.").addChannelOption((o) => o.setName("channel").setDescription("Channel to lock (defaults to current)").setRequired(false).addChannelTypes(import_discord81.ChannelType.GuildText)).addStringOption((o) => o.setName("reason").setDescription("Reason for the lock").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "lock")) return;
         if (!interaction.guild) return;
@@ -211015,7 +211194,7 @@ ${buildBullets([
         }
       }
     };
-    lock_default = command55;
+    lock_default = command57;
   }
 });
 
@@ -211028,16 +211207,16 @@ __export(maintenance_exports, {
   makeMaintenancePanel: () => makeMaintenancePanel
 });
 function makeMaintenancePanel(active) {
-  const embed = new import_discord80.EmbedBuilder().setTitle(`${CE.settings.str} Server Maintenance Control Panel`).setDescription(
+  const embed = new import_discord82.EmbedBuilder().setTitle(`${CE.settings.str} Server Maintenance Control Panel`).setDescription(
     active ? `**Status:** ${CE.failure.str} Maintenance is currently **ACTIVE**
 
 Regular members can only see the maintenance category. Click **End Maintenance** to restore access.` : `**Status:** ${CE.success.str} Server is **ONLINE**
 
 Click **Start Maintenance** to restrict member access to the maintenance category only.`
   ).setColor(active ? 15158332 : 3066993).setFooter({ text: "Only server managers can trigger maintenance." }).setTimestamp();
-  const row2 = new import_discord80.ActionRowBuilder().addComponents(
-    new import_discord80.ButtonBuilder().setCustomId("maintenance:start").setLabel("Start Maintenance").setStyle(import_discord80.ButtonStyle.Danger).setDisabled(active),
-    new import_discord80.ButtonBuilder().setCustomId("maintenance:end").setLabel("End Maintenance").setStyle(import_discord80.ButtonStyle.Success).setDisabled(!active)
+  const row2 = new import_discord82.ActionRowBuilder().addComponents(
+    new import_discord82.ButtonBuilder().setCustomId("maintenance:start").setLabel("Start Maintenance").setStyle(import_discord82.ButtonStyle.Danger).setDisabled(active),
+    new import_discord82.ButtonBuilder().setCustomId("maintenance:end").setLabel("End Maintenance").setStyle(import_discord82.ButtonStyle.Success).setDisabled(!active)
   );
   return { embeds: [embed], components: [row2] };
 }
@@ -211091,7 +211270,7 @@ async function handleMaintenanceButton(interaction) {
       if (chId === mc.categoryId) continue;
       if (channel.parentId === mc.categoryId) continue;
       const existing = channel.permissionOverwrites?.cache.get(membersRoleId);
-      const hadDeny = existing?.deny.has(import_discord80.PermissionFlagsBits.ViewChannel) ?? false;
+      const hadDeny = existing?.deny.has(import_discord82.PermissionFlagsBits.ViewChannel) ?? false;
       savedPerms[chId] = { viewDenyBefore: hadDeny };
       if (!hadDeny) {
         toProcess.push(async () => {
@@ -211117,12 +211296,12 @@ async function handleMaintenanceButton(interaction) {
           payload.content = textContent;
         } else if (mode === "embed") {
           payload.embeds = [
-            new import_discord80.EmbedBuilder().setTitle(embedTitle).setDescription(embedDesc).setColor(15158332).setTimestamp()
+            new import_discord82.EmbedBuilder().setTitle(embedTitle).setDescription(embedDesc).setColor(15158332).setTimestamp()
           ];
         } else {
           payload.content = textContent;
           payload.embeds = [
-            new import_discord80.EmbedBuilder().setTitle(embedTitle).setDescription(embedDesc).setColor(15158332).setTimestamp()
+            new import_discord82.EmbedBuilder().setTitle(embedTitle).setDescription(embedDesc).setColor(15158332).setTimestamp()
           ];
         }
         await announceCh.send(payload).catch(
@@ -211159,7 +211338,7 @@ async function handleMaintenanceButton(interaction) {
       if (announceCh?.isTextBased()) {
         await announceCh.send({
           embeds: [
-            new import_discord80.EmbedBuilder().setTitle(`${CE.success.str} Server Maintenance Has Ended`).setDescription(
+            new import_discord82.EmbedBuilder().setTitle(`${CE.success.str} Server Maintenance Has Ended`).setDescription(
               "Maintenance is complete. All channel permissions have been restored.\n\nWelcome back!"
             ).setColor(3066993).setTimestamp()
           ]
@@ -211179,19 +211358,19 @@ async function handleMaintenanceButton(interaction) {
 async function autoSetupMaintenanceOnJoin(guild) {
   logger.debug({ guildId: guild.id }, "Maintenance auto-creation skipped: disabled by default");
 }
-var import_discord80, PERM_BATCH, PERM_BATCH_DELAY_MS, command56, maintenance_default;
+var import_discord82, PERM_BATCH, PERM_BATCH_DELAY_MS, command58, maintenance_default;
 var init_maintenance = __esm({
   "artifacts/api-server/src/discord/commands/maintenance.ts"() {
     "use strict";
-    import_discord80 = __toESM(require_src2(), 1);
+    import_discord82 = __toESM(require_src2(), 1);
     init_config();
     init_staffPerms();
     init_embedStyle();
     init_logger();
     PERM_BATCH = 5;
     PERM_BATCH_DELAY_MS = 400;
-    command56 = {
-      data: new import_discord80.SlashCommandBuilder().setName("maintenance").setDescription("Manage server maintenance mode").setDMPermission(false).addSubcommand(
+    command58 = {
+      data: new import_discord82.SlashCommandBuilder().setName("maintenance").setDescription("Manage server maintenance mode").setDMPermission(false).addSubcommand(
         (sub) => sub.setName("setup").setDescription("Create the maintenance category and channels").addRoleOption(
           (o) => o.setName("members-role").setDescription(
             "The members role whose channel view permissions will be locked during maintenance"
@@ -211247,15 +211426,15 @@ var init_maintenance = __esm({
           const membersRole = interaction.options.getRole("members-role");
           const guild = interaction.guild;
           const categoryOverwrites = [
-            { id: guild.id, deny: [import_discord80.PermissionFlagsBits.ViewChannel] }
+            { id: guild.id, deny: [import_discord82.PermissionFlagsBits.ViewChannel] }
           ];
           if (membersRole) {
             categoryOverwrites.push({
               id: membersRole.id,
               allow: [
-                import_discord80.PermissionFlagsBits.ViewChannel,
-                import_discord80.PermissionFlagsBits.SendMessages,
-                import_discord80.PermissionFlagsBits.ReadMessageHistory
+                import_discord82.PermissionFlagsBits.ViewChannel,
+                import_discord82.PermissionFlagsBits.SendMessages,
+                import_discord82.PermissionFlagsBits.ReadMessageHistory
               ]
             });
           }
@@ -211263,7 +211442,7 @@ var init_maintenance = __esm({
           try {
             category = await guild.channels.create({
               name: "MAINTENANCE",
-              type: import_discord80.ChannelType.GuildCategory,
+              type: import_discord82.ChannelType.GuildCategory,
               permissionOverwrites: categoryOverwrites,
               reason: "Server Maintenance module setup"
             });
@@ -211285,7 +211464,7 @@ var init_maintenance = __esm({
             try {
               const ch = await guild.channels.create({
                 name: def.name,
-                type: import_discord80.ChannelType.GuildText,
+                type: import_discord82.ChannelType.GuildText,
                 parent: category.id,
                 topic: def.topic,
                 reason: "Server Maintenance module setup"
@@ -211407,19 +211586,19 @@ Custom Text: "${text}"` : ""}`,
         }
       }
     };
-    maintenance_default = command56;
+    maintenance_default = command58;
   }
 });
 
 // artifacts/api-server/src/discord/commands/meme.ts
-var import_discord81, command57, meme_default;
+var import_discord83, command59, meme_default;
 var init_meme = __esm({
   "artifacts/api-server/src/discord/commands/meme.ts"() {
     "use strict";
-    import_discord81 = __toESM(require_src2(), 1);
+    import_discord83 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command57 = {
-      data: new import_discord81.SlashCommandBuilder().setName("meme").setDescription("Fetch a random meme."),
+    command59 = {
+      data: new import_discord83.SlashCommandBuilder().setName("meme").setDescription("Fetch a random meme."),
       async execute(interaction) {
         await interaction.deferReply();
         const controller = new AbortController();
@@ -211446,7 +211625,7 @@ var init_meme = __esm({
             }
             Object.assign(data, retryData);
           }
-          const embed = new import_discord81.EmbedBuilder().setTitle(data.title ?? "Meme").setURL(data.postLink ?? null).setImage(data.url ?? null).setColor(16729344).setFooter({
+          const embed = new import_discord83.EmbedBuilder().setTitle(data.title ?? "Meme").setURL(data.postLink ?? null).setImage(data.url ?? null).setColor(16729344).setFooter({
             text: `r/${data.subreddit ?? "?"} \u2022 by u/${data.author ?? "?"} \u2022 ${CE.upvote.str} ${data.ups ?? 0}`
           });
           await interaction.editReply({ embeds: [embed] });
@@ -211457,21 +211636,21 @@ var init_meme = __esm({
         }
       }
     };
-    meme_default = command57;
+    meme_default = command59;
   }
 });
 
 // artifacts/api-server/src/discord/commands/modhistory.ts
-var import_discord82, command58, modhistory_default;
+var import_discord84, command60, modhistory_default;
 var init_modhistory = __esm({
   "artifacts/api-server/src/discord/commands/modhistory.ts"() {
     "use strict";
-    import_discord82 = __toESM(require_src2(), 1);
+    import_discord84 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_cases();
-    command58 = {
-      data: new import_discord82.SlashCommandBuilder().setName("modhistory").setDescription("View cases issued by a specific moderator.").addUserOption((o) => o.setName("moderator").setDescription("Moderator to look up (defaults to yourself)").setRequired(false)).setDMPermission(false),
+    command60 = {
+      data: new import_discord84.SlashCommandBuilder().setName("modhistory").setDescription("View cases issued by a specific moderator.").addUserOption((o) => o.setName("moderator").setDescription("Moderator to look up (defaults to yourself)").setRequired(false)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "modhistory")) return;
         if (!interaction.guildId) return;
@@ -211502,7 +211681,7 @@ ${lines.join("\n")}`,
         });
       }
     };
-    modhistory_default = command58;
+    modhistory_default = command60;
   }
 });
 
@@ -211533,11 +211712,11 @@ function renderSingle(summary) {
   if (lines.length === 4) lines.push("*No actions recorded.*");
   return lines.join("\n");
 }
-var import_discord83, SCOPE_LABELS, command59, modstats_default;
+var import_discord85, SCOPE_LABELS, command61, modstats_default;
 var init_modstats2 = __esm({
   "artifacts/api-server/src/discord/commands/modstats.ts"() {
     "use strict";
-    import_discord83 = __toESM(require_src2(), 1);
+    import_discord85 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_modstats();
     init_config();
@@ -211546,8 +211725,8 @@ var init_modstats2 = __esm({
       last_week: "Last week",
       all_time: "All time"
     };
-    command59 = {
-      data: new import_discord83.SlashCommandBuilder().setName("modstats").setDescription("View a single moderator's action stats with a timeframe picker.").addUserOption(
+    command61 = {
+      data: new import_discord85.SlashCommandBuilder().setName("modstats").setDescription("View a single moderator's action stats with a timeframe picker.").addUserOption(
         (o) => o.setName("user").setDescription("Moderator to inspect (defaults to you)").setRequired(false)
       ).setDMPermission(false),
       async execute(interaction) {
@@ -211579,12 +211758,12 @@ var init_modstats2 = __esm({
             footer: `Timeframe: ${SCOPE_LABELS[scope]}`
           });
         };
-        const select = new import_discord83.StringSelectMenuBuilder().setCustomId(`modstats:${interaction.user.id}:${target.id}`).setPlaceholder("Select timeframe").addOptions(
-          new import_discord83.StringSelectMenuOptionBuilder().setLabel("This week").setValue("this_week").setDefault(initialScope === "this_week"),
-          new import_discord83.StringSelectMenuOptionBuilder().setLabel("Last week").setValue("last_week").setDefault(initialScope === "last_week"),
-          new import_discord83.StringSelectMenuOptionBuilder().setLabel("All time").setValue("all_time").setDefault(initialScope === "all_time")
+        const select = new import_discord85.StringSelectMenuBuilder().setCustomId(`modstats:${interaction.user.id}:${target.id}`).setPlaceholder("Select timeframe").addOptions(
+          new import_discord85.StringSelectMenuOptionBuilder().setLabel("This week").setValue("this_week").setDefault(initialScope === "this_week"),
+          new import_discord85.StringSelectMenuOptionBuilder().setLabel("Last week").setValue("last_week").setDefault(initialScope === "last_week"),
+          new import_discord85.StringSelectMenuOptionBuilder().setLabel("All time").setValue("all_time").setDefault(initialScope === "all_time")
         );
-        const row2 = new import_discord83.ActionRowBuilder().addComponents(select);
+        const row2 = new import_discord85.ActionRowBuilder().addComponents(select);
         const embed = await buildEmbed2(initialScope);
         const reply = await interaction.editReply({
           embeds: [embed],
@@ -211599,15 +211778,15 @@ var init_modstats2 = __esm({
           const i2 = event;
           const scope = i2.values[0] ?? initialScope;
           const updated = await buildEmbed2(scope);
-          const updatedSelect = import_discord83.StringSelectMenuBuilder.from(select).setOptions(
-            new import_discord83.StringSelectMenuOptionBuilder().setLabel("This week").setValue("this_week").setDefault(scope === "this_week"),
-            new import_discord83.StringSelectMenuOptionBuilder().setLabel("Last week").setValue("last_week").setDefault(scope === "last_week"),
-            new import_discord83.StringSelectMenuOptionBuilder().setLabel("All time").setValue("all_time").setDefault(scope === "all_time")
+          const updatedSelect = import_discord85.StringSelectMenuBuilder.from(select).setOptions(
+            new import_discord85.StringSelectMenuOptionBuilder().setLabel("This week").setValue("this_week").setDefault(scope === "this_week"),
+            new import_discord85.StringSelectMenuOptionBuilder().setLabel("Last week").setValue("last_week").setDefault(scope === "last_week"),
+            new import_discord85.StringSelectMenuOptionBuilder().setLabel("All time").setValue("all_time").setDefault(scope === "all_time")
           );
           await i2.update({
             embeds: [updated],
             components: [
-              new import_discord83.ActionRowBuilder().addComponents(updatedSelect)
+              new import_discord85.ActionRowBuilder().addComponents(updatedSelect)
             ]
           });
         });
@@ -211619,7 +211798,7 @@ var init_modstats2 = __esm({
         });
       }
     };
-    modstats_default = command59;
+    modstats_default = command61;
   }
 });
 
@@ -211645,11 +211824,11 @@ function parseDuration(input) {
   if (ms <= 0 || ms > MAX_TIMEOUT_MS) return null;
   return ms;
 }
-var import_discord84, UNIT_MS, MAX_TIMEOUT_MS, command60, mute_default;
+var import_discord86, UNIT_MS, MAX_TIMEOUT_MS, command62, mute_default;
 var init_mute = __esm({
   "artifacts/api-server/src/discord/commands/mute.ts"() {
     "use strict";
-    import_discord84 = __toESM(require_src2(), 1);
+    import_discord86 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_config();
@@ -211665,8 +211844,8 @@ var init_mute = __esm({
       d: 864e5
     };
     MAX_TIMEOUT_MS = 28 * 864e5;
-    command60 = {
-      data: new import_discord84.SlashCommandBuilder().setName("mute").setDescription("Timeout (mute) a user for a duration. Max 28 days.").addUserOption(
+    command62 = {
+      data: new import_discord86.SlashCommandBuilder().setName("mute").setDescription("Timeout (mute) a user for a duration. Max 28 days.").addUserOption(
         (option) => option.setName("user").setDescription("The user to mute").setRequired(true)
       ).addStringOption(
         (option) => option.setName("duration").setDescription("How long, e.g. 30s, 10m, 2h, 1d").setRequired(true)
@@ -211703,7 +211882,7 @@ var init_mute = __esm({
         }
         await interaction.deferReply();
         const botMember = await interaction.guild.members.fetchMe().catch(() => interaction.guild?.members.me);
-        if (!botMember || !botMember.permissions.has(import_discord84.PermissionFlagsBits.ModerateMembers)) {
+        if (!botMember || !botMember.permissions.has(import_discord86.PermissionFlagsBits.ModerateMembers)) {
           await interaction.editReply({ content: `${CE.error.str} I don't have the **Moderate Members** permission. Grant it and try again.` });
           return;
         }
@@ -211763,7 +211942,7 @@ ${buildBullets([
           const modChannelId = cfg?.channels?.moderation;
           if (modChannelId && modChannelId !== interaction.channelId) {
             const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-            if (modChannel && modChannel.type === import_discord84.ChannelType.GuildText) {
+            if (modChannel && modChannel.type === import_discord86.ChannelType.GuildText) {
               await modChannel.send({
                 embeds: [prettyEmbed({
                   title: `Mute${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
@@ -211789,20 +211968,20 @@ ${buildBullets([
         }
       }
     };
-    mute_default = command60;
+    mute_default = command62;
   }
 });
 
 // artifacts/api-server/src/discord/commands/nickname.ts
-var import_discord85, command61, nickname_default;
+var import_discord87, command63, nickname_default;
 var init_nickname = __esm({
   "artifacts/api-server/src/discord/commands/nickname.ts"() {
     "use strict";
-    import_discord85 = __toESM(require_src2(), 1);
+    import_discord87 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command61 = {
-      data: new import_discord85.SlashCommandBuilder().setName("nickname").setDescription("Change or reset a member's nickname.").addUserOption((o) => o.setName("user").setDescription("Member to rename").setRequired(true)).addStringOption((o) => o.setName("nickname").setDescription("New nickname (leave blank to reset)").setRequired(false).setMaxLength(32)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command63 = {
+      data: new import_discord87.SlashCommandBuilder().setName("nickname").setDescription("Change or reset a member's nickname.").addUserOption((o) => o.setName("user").setDescription("Member to rename").setRequired(true)).addStringOption((o) => o.setName("nickname").setDescription("New nickname (leave blank to reset)").setRequired(false).setMaxLength(32)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "nickname")) return;
         if (!interaction.guild) return;
@@ -211838,21 +212017,21 @@ ${buildBullets([
         });
       }
     };
-    nickname_default = command61;
+    nickname_default = command63;
   }
 });
 
 // artifacts/api-server/src/discord/commands/noprefix.ts
-var import_discord86, command62, noprefix_default;
+var import_discord88, command64, noprefix_default;
 var init_noprefix = __esm({
   "artifacts/api-server/src/discord/commands/noprefix.ts"() {
     "use strict";
-    import_discord86 = __toESM(require_src2(), 1);
+    import_discord88 = __toESM(require_src2(), 1);
     init_premium();
     init_profile();
     init_embedStyle();
-    command62 = {
-      data: new import_discord86.SlashCommandBuilder().setName("noprefix").setDescription("Toggle user-level No-Prefix command execution (Premium Perk)").addStringOption(
+    command64 = {
+      data: new import_discord88.SlashCommandBuilder().setName("noprefix").setDescription("Toggle user-level No-Prefix command execution (Premium Perk)").addStringOption(
         (o) => o.setName("action").setDescription("Action to take: enable, disable, or status").setRequired(false).addChoices(
           { name: "Enable No-Prefix", value: "enable" },
           { name: "Disable No-Prefix", value: "disable" },
@@ -211937,7 +212116,7 @@ The bot will now only respond to messages starting with your server prefix (e.g.
         });
       }
     };
-    noprefix_default = command62;
+    noprefix_default = command64;
   }
 });
 
@@ -211995,16 +212174,16 @@ var init_notes = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/note.ts
-var import_discord87, command63, note_default;
+var import_discord89, command65, note_default;
 var init_note = __esm({
   "artifacts/api-server/src/discord/commands/note.ts"() {
     "use strict";
-    import_discord87 = __toESM(require_src2(), 1);
+    import_discord89 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_notes();
-    command63 = {
-      data: new import_discord87.SlashCommandBuilder().setName("note").setDescription("Private staff notes about a user.").addSubcommand(
+    command65 = {
+      data: new import_discord89.SlashCommandBuilder().setName("note").setDescription("Private staff notes about a user.").addSubcommand(
         (sub) => sub.setName("add").setDescription("Add a note about a user.").addUserOption((o) => o.setName("user").setDescription("Target user").setRequired(true)).addStringOption((o) => o.setName("note").setDescription("Note content").setRequired(true).setMaxLength(1e3))
       ).addSubcommand(
         (sub) => sub.setName("list").setDescription("View notes about a user.").addUserOption((o) => o.setName("user").setDescription("Target user").setRequired(true))
@@ -212067,7 +212246,7 @@ ${buildBullets([
         }
       }
     };
-    note_default = command63;
+    note_default = command65;
   }
 });
 
@@ -212211,8 +212390,8 @@ function isWhitelisted2(userId, userRoleIds, mod, global2, cfg, moduleType, guil
 async function sendAntiNukeLog(guild, opts) {
   try {
     const ch = guild.channels.cache.get(opts.logChannelId) ?? await guild.channels.fetch(opts.logChannelId).catch(() => null);
-    if (!ch || ch.type !== import_discord88.ChannelType.GuildText) return;
-    const embed = new import_discord88.EmbedBuilder().setTitle(`${CE.admin.str} Anti-Nuke Triggered \u2014 ${MINI_LABELS[opts.miniModule] ?? opts.miniModule}`).setColor(15548997).addFields(
+    if (!ch || ch.type !== import_discord90.ChannelType.GuildText) return;
+    const embed = new import_discord90.EmbedBuilder().setTitle(`${CE.admin.str} Anti-Nuke Triggered \u2014 ${MINI_LABELS[opts.miniModule] ?? opts.miniModule}`).setColor(15548997).addFields(
       { name: "Offender / Executor", value: `<@${opts.targetId}> (\`${opts.targetId}\`)`, inline: true },
       { name: "Punishment Applied", value: PUNISHMENT_LABELS[opts.punishment] ?? opts.punishment, inline: true },
       { name: "Trigger Reason", value: opts.reason, inline: false }
@@ -212259,7 +212438,7 @@ async function applyPunishment(guild, targetId, punishment, reason) {
     if (punishment !== "none") {
       const user = await guild.client.users.fetch(targetId).catch(() => null);
       if (user) {
-        const dmEmbed = new import_discord88.EmbedBuilder().setTitle(`${CE.admin.str} Anti-Nuke Action Taken`).setColor(15548997).setDescription(`An anti-nuke protection action was triggered in **${guild.name}**.`).addFields(
+        const dmEmbed = new import_discord90.EmbedBuilder().setTitle(`${CE.admin.str} Anti-Nuke Action Taken`).setColor(15548997).setDescription(`An anti-nuke protection action was triggered in **${guild.name}**.`).addFields(
           { name: "Violation / Reason", value: reason, inline: true },
           { name: "Punishment / Action", value: PUNISHMENT_LABELS[punishment] ?? punishment, inline: true }
         ).setTimestamp();
@@ -212391,14 +212570,14 @@ async function handleAntiInviteRole(guild, executorId, roleName) {
 }
 function isDangerousRole(permissions) {
   const dangerous = [
-    import_discord88.PermissionFlagsBits.Administrator,
-    import_discord88.PermissionFlagsBits.ManageGuild,
-    import_discord88.PermissionFlagsBits.BanMembers,
-    import_discord88.PermissionFlagsBits.KickMembers,
-    import_discord88.PermissionFlagsBits.ManageRoles,
-    import_discord88.PermissionFlagsBits.ManageChannels,
-    import_discord88.PermissionFlagsBits.ManageWebhooks,
-    import_discord88.PermissionFlagsBits.MentionEveryone
+    import_discord90.PermissionFlagsBits.Administrator,
+    import_discord90.PermissionFlagsBits.ManageGuild,
+    import_discord90.PermissionFlagsBits.BanMembers,
+    import_discord90.PermissionFlagsBits.KickMembers,
+    import_discord90.PermissionFlagsBits.ManageRoles,
+    import_discord90.PermissionFlagsBits.ManageChannels,
+    import_discord90.PermissionFlagsBits.ManageWebhooks,
+    import_discord90.PermissionFlagsBits.MentionEveryone
   ];
   return dangerous.some((flag) => (permissions & flag) === flag);
 }
@@ -212410,11 +212589,11 @@ async function handleAntiChannel(guild, executorId, reason) {
   await handleAntiNukeTrigger(guild, executorId, "antiChannelCreate", reason);
   await handleAntiNukeTrigger(guild, executorId, "antiChannelDelete", reason);
 }
-var import_discord88, suspendedGuilds, joinHistory, ANTI_NUKE_PERM_WHITELIST, MINI_LABELS, PUNISHMENT_LABELS;
+var import_discord90, suspendedGuilds, joinHistory, ANTI_NUKE_PERM_WHITELIST, MINI_LABELS, PUNISHMENT_LABELS;
 var init_antiNuke = __esm({
   "artifacts/api-server/src/discord/utils/antiNuke.ts"() {
     "use strict";
-    import_discord88 = __toESM(require_src2(), 1);
+    import_discord90 = __toESM(require_src2(), 1);
     init_config();
     init_config();
     init_whitelist();
@@ -212469,7 +212648,7 @@ async function promptNukeDoubleCheckInDM(user, targetGuildId, client, options) {
   const targetGuild = client.guilds.cache.get(targetGuildId) ?? await client.guilds.fetch(targetGuildId).catch(() => null);
   const guildName = targetGuild ? targetGuild.name : `Server ${targetGuildId}`;
   const banMode = options?.banMembers === false ? "noban" : "ban";
-  const embed = new import_discord89.EmbedBuilder().setTitle(`${CE.warning.str} Double Check Required: Server Nuke Confirmation`).setColor(15548997).setDescription(
+  const embed = new import_discord91.EmbedBuilder().setTitle(`${CE.warning.str} Double Check Required: Server Nuke Confirmation`).setColor(15548997).setDescription(
     `A server wipe / nuke command was requested for **${guildName}** (\`${targetGuildId}\`).
 
 ${CE.failure.str} **STATUS: PENDING CONFIRMATION \u2014 NO ACTION HAS BEEN TAKEN.**
@@ -212485,9 +212664,9 @@ ${CE.white_warn.str} **Double Check Prompt:** Please double check and confirm if
 \u2022 Click **Confirm & Execute Nuke** only if you are 100% sure.
 \u2022 Click **Cancel Nuke** to discard this request immediately without making any changes.`
   ).setFooter({ text: "Double-check safety verification \u2022 Only the Hardcoded Permanent Bot Owner can confirm." }).setTimestamp();
-  const row2 = new import_discord89.ActionRowBuilder().addComponents(
-    new import_discord89.ButtonBuilder().setCustomId(`nuke:confirm:${targetGuildId}:${banMode}`).setLabel("Confirm & Execute Nuke").setEmoji(CE.trash.id).setStyle(import_discord89.ButtonStyle.Danger),
-    new import_discord89.ButtonBuilder().setCustomId(`nuke:cancel:${targetGuildId}`).setLabel("Cancel Nuke").setEmoji(CE.failure.id).setStyle(import_discord89.ButtonStyle.Secondary)
+  const row2 = new import_discord91.ActionRowBuilder().addComponents(
+    new import_discord91.ButtonBuilder().setCustomId(`nuke:confirm:${targetGuildId}:${banMode}`).setLabel("Confirm & Execute Nuke").setEmoji(CE.trash.id).setStyle(import_discord91.ButtonStyle.Danger),
+    new import_discord91.ButtonBuilder().setCustomId(`nuke:cancel:${targetGuildId}`).setLabel("Cancel Nuke").setEmoji(CE.failure.id).setStyle(import_discord91.ButtonStyle.Secondary)
   );
   try {
     await user.send({ embeds: [embed], components: [row2] });
@@ -212495,20 +212674,20 @@ ${CE.white_warn.str} **Double Check Prompt:** Please double check and confirm if
     logger.warn({ err, userId: user.id }, "Could not send nuke double-check prompt in DM");
   }
 }
-var import_discord89, command64, nuke_default;
+var import_discord91, command66, nuke_default;
 var init_nuke = __esm({
   "artifacts/api-server/src/discord/commands/nuke.ts"() {
     "use strict";
-    import_discord89 = __toESM(require_src2(), 1);
+    import_discord91 = __toESM(require_src2(), 1);
     init_logger();
     init_elevateRole();
     init_nuke_anti_whitelist();
     init_antiNuke();
     init_embedStyle();
     init_premium();
-    command64 = {
+    command66 = {
       globalWhitelistOnly: true,
-      data: new import_discord89.SlashCommandBuilder().setName("nuke").setDescription("Wipe the server (hardcoded owner only).").addStringOption(
+      data: new import_discord91.SlashCommandBuilder().setName("nuke").setDescription("Wipe the server (hardcoded owner only).").addStringOption(
         (option) => option.setName("server-id").setDescription("Optional: server ID to nuke. Leave empty for current server.").setRequired(false)
       ).setDMPermission(false),
       async execute(interaction) {
@@ -212544,7 +212723,7 @@ var init_nuke = __esm({
         await promptNukeDoubleCheckInDM(interaction.user, targetGuildId, interaction.client);
       }
     };
-    nuke_default = command64;
+    nuke_default = command66;
   }
 });
 
@@ -212603,16 +212782,16 @@ var init_nukeAntiWhitelist = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/nukeAntiWhitelist.ts
-var import_discord90, command65, nukeAntiWhitelist_default;
+var import_discord92, command67, nukeAntiWhitelist_default;
 var init_nukeAntiWhitelist2 = __esm({
   "artifacts/api-server/src/discord/commands/nukeAntiWhitelist.ts"() {
     "use strict";
-    import_discord90 = __toESM(require_src2(), 1);
+    import_discord92 = __toESM(require_src2(), 1);
     init_whitelist();
     init_nukeAntiWhitelist();
     init_emojis();
-    command65 = {
-      data: new import_discord90.SlashCommandBuilder().setName("nuke-anti-whitelist").setDescription("Manage servers where nuke is blocked (global whitelist only)").addSubcommand(
+    command67 = {
+      data: new import_discord92.SlashCommandBuilder().setName("nuke-anti-whitelist").setDescription("Manage servers where nuke is blocked (global whitelist only)").addSubcommand(
         (sub) => sub.setName("add").setDescription("Add a server ID to the nuke block list").addStringOption(
           (opt) => opt.setName("server-id").setDescription("The server ID to block nuke in").setRequired(true)
         )
@@ -212691,7 +212870,7 @@ ${blockedServers.map((id) => `\`${id}\``).join("\n")}`,
         }
       }
     };
-    nukeAntiWhitelist_default = command65;
+    nukeAntiWhitelist_default = command67;
   }
 });
 
@@ -212757,16 +212936,16 @@ var init_partnerships = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/partnership-score.ts
-var import_discord91, command66, partnership_score_default;
+var import_discord93, command68, partnership_score_default;
 var init_partnership_score = __esm({
   "artifacts/api-server/src/discord/commands/partnership-score.ts"() {
     "use strict";
-    import_discord91 = __toESM(require_src2(), 1);
+    import_discord93 = __toESM(require_src2(), 1);
     init_partnerships();
     init_staff();
     init_embedStyle();
-    command66 = {
-      data: new import_discord91.SlashCommandBuilder().setName("partnership-score").setDescription("Check partnership scores for a staff member").addUserOption(
+    command68 = {
+      data: new import_discord93.SlashCommandBuilder().setName("partnership-score").setDescription("Check partnership scores for a staff member").addUserOption(
         (option) => option.setName("staff").setDescription("The staff member to check (defaults to yourself)").setRequired(false)
       ).setDMPermission(false),
       async execute(interaction) {
@@ -212803,7 +212982,7 @@ var init_partnership_score = __esm({
         const allTime = userPartnerships.length;
         const thisWeek = userPartnerships.filter((p) => p.reviewedAt && p.reviewedAt >= thisWeekStart).length;
         const lastWeek = userPartnerships.filter((p) => p.reviewedAt && p.reviewedAt >= lastWeekStart && p.reviewedAt <= lastWeekEnd).length;
-        const embed = new import_discord91.EmbedBuilder().setTitle(`${CE.link.str} Partnership Score \u2014 ${targetUser.displayName}`).setDescription(`Partnerships approved by ${targetUser}`).addFields(
+        const embed = new import_discord93.EmbedBuilder().setTitle(`${CE.link.str} Partnership Score \u2014 ${targetUser.displayName}`).setDescription(`Partnerships approved by ${targetUser}`).addFields(
           { name: "All Time", value: `${allTime}`, inline: true },
           { name: "This Week", value: `${thisWeek}`, inline: true },
           { name: "Last Week", value: `${lastWeek}`, inline: true }
@@ -212811,7 +212990,7 @@ var init_partnership_score = __esm({
         await interaction.reply({ embeds: [embed], ephemeral: true });
       }
     };
-    partnership_score_default = command66;
+    partnership_score_default = command68;
   }
 });
 
@@ -212873,7 +213052,7 @@ async function handlePartnershipButton(interaction) {
               }
             });
           }
-          const announcementEmbed = new import_discord92.EmbedBuilder().setTitle("Server Ads").setDescription(submission.message).setColor(2829617).setTimestamp();
+          const announcementEmbed = new import_discord94.EmbedBuilder().setTitle("Server Ads").setDescription(submission.message).setColor(2829617).setTimestamp();
           await channel.send({ embeds: [announcementEmbed] });
         } catch (err) {
           logger.warn({ err }, "Failed to post partnership announcement");
@@ -212886,9 +213065,9 @@ async function handlePartnershipButton(interaction) {
       components: []
     });
   } else if (action === "partnership_reject") {
-    const modal = new import_discord92.ModalBuilder().setCustomId(`partnership_reject_modal:${submissionId}`).setTitle("Reject Partnership").addComponents(
-      new import_discord92.ActionRowBuilder().addComponents(
-        new import_discord92.TextInputBuilder().setCustomId("reason").setLabel("Rejection Reason").setStyle(import_discord92.TextInputStyle.Paragraph).setRequired(true).setPlaceholder("Reason for rejection...")
+    const modal = new import_discord94.ModalBuilder().setCustomId(`partnership_reject_modal:${submissionId}`).setTitle("Reject Partnership").addComponents(
+      new import_discord94.ActionRowBuilder().addComponents(
+        new import_discord94.TextInputBuilder().setCustomId("reason").setLabel("Rejection Reason").setStyle(import_discord94.TextInputStyle.Paragraph).setRequired(true).setPlaceholder("Reason for rejection...")
       )
     );
     await interaction.showModal(modal);
@@ -212935,18 +213114,18 @@ async function handlePartnershipButton(interaction) {
     }
   }
 }
-var import_discord92, command67, partnership_default;
+var import_discord94, command69, partnership_default;
 var init_partnership = __esm({
   "artifacts/api-server/src/discord/commands/partnership.ts"() {
     "use strict";
-    import_discord92 = __toESM(require_src2(), 1);
+    import_discord94 = __toESM(require_src2(), 1);
     init_partnerships();
     init_config();
     init_staff();
     init_embedStyle();
     init_logger();
-    command67 = {
-      data: new import_discord92.SlashCommandBuilder().setName("partnership").setDescription("Submit a partnership request for review").setDMPermission(false).addAttachmentOption(
+    command69 = {
+      data: new import_discord94.SlashCommandBuilder().setName("partnership").setDescription("Submit a partnership request for review").setDMPermission(false).addAttachmentOption(
         (option) => option.setName("proof").setDescription("Optional: attach image proof (set this before the form opens)").setRequired(false)
       ),
       async execute(interaction) {
@@ -212958,9 +213137,9 @@ var init_partnership = __esm({
           return;
         }
         const proofAttachment = interaction.options.getAttachment("proof");
-        const modal = new import_discord92.ModalBuilder().setCustomId("partnership_submit").setTitle("Submit a Partnership").addComponents(
-          new import_discord92.ActionRowBuilder().addComponents(
-            new import_discord92.TextInputBuilder().setCustomId("message").setLabel("Partnership Message").setStyle(import_discord92.TextInputStyle.Paragraph).setRequired(true).setMaxLength(2e3).setPlaceholder("Write your full partnership message here. Multiple paragraphs are supported.")
+        const modal = new import_discord94.ModalBuilder().setCustomId("partnership_submit").setTitle("Submit a Partnership").addComponents(
+          new import_discord94.ActionRowBuilder().addComponents(
+            new import_discord94.TextInputBuilder().setCustomId("message").setLabel("Partnership Message").setStyle(import_discord94.TextInputStyle.Paragraph).setRequired(true).setMaxLength(2e3).setPlaceholder("Write your full partnership message here. Multiple paragraphs are supported.")
           )
         );
         await interaction.showModal(modal);
@@ -213001,11 +213180,11 @@ var init_partnership = __esm({
           try {
             const guild = interaction.guild;
             const fetched = await guild.channels.fetch(checkChannelId);
-            if (!fetched || fetched.type !== import_discord92.ChannelType.GuildText) {
+            if (!fetched || fetched.type !== import_discord94.ChannelType.GuildText) {
               throw new Error("Channel is not a text channel");
             }
             const channel = fetched;
-            const reviewEmbed = new import_discord92.EmbedBuilder().setTitle(`${CE.link.str} Partnership Request \u2014 Pending Approval`).setDescription(
+            const reviewEmbed = new import_discord94.EmbedBuilder().setTitle(`${CE.link.str} Partnership Request \u2014 Pending Approval`).setDescription(
               `Submitted by <@${interaction.user.id}>
 
 **This has NOT been posted publicly yet.** Choose an **Accept** option to publish the announcement, or **Reject** to decline.`
@@ -213016,11 +213195,11 @@ var init_partnership = __esm({
             if (proof && proofAttachment?.contentType?.startsWith("image/")) {
               reviewEmbed.setImage(proof);
             }
-            const row2 = new import_discord92.ActionRowBuilder().addComponents(
-              new import_discord92.ButtonBuilder().setCustomId(`partnership_accept:${submission.id}`).setLabel("Accept").setStyle(import_discord92.ButtonStyle.Success),
-              new import_discord92.ButtonBuilder().setCustomId(`partnership_accept_everyone:${submission.id}`).setLabel("Accept with everyone ping").setStyle(import_discord92.ButtonStyle.Primary),
-              new import_discord92.ButtonBuilder().setCustomId(`partnership_accept_here:${submission.id}`).setLabel("Accept with here ping").setStyle(import_discord92.ButtonStyle.Primary),
-              new import_discord92.ButtonBuilder().setCustomId(`partnership_reject:${submission.id}`).setLabel("Reject").setStyle(import_discord92.ButtonStyle.Danger)
+            const row2 = new import_discord94.ActionRowBuilder().addComponents(
+              new import_discord94.ButtonBuilder().setCustomId(`partnership_accept:${submission.id}`).setLabel("Accept").setStyle(import_discord94.ButtonStyle.Success),
+              new import_discord94.ButtonBuilder().setCustomId(`partnership_accept_everyone:${submission.id}`).setLabel("Accept with everyone ping").setStyle(import_discord94.ButtonStyle.Primary),
+              new import_discord94.ButtonBuilder().setCustomId(`partnership_accept_here:${submission.id}`).setLabel("Accept with here ping").setStyle(import_discord94.ButtonStyle.Primary),
+              new import_discord94.ButtonBuilder().setCustomId(`partnership_reject:${submission.id}`).setLabel("Reject").setStyle(import_discord94.ButtonStyle.Danger)
             );
             await channel.send({ embeds: [reviewEmbed], components: [row2] });
             deliveredToReview = true;
@@ -213032,19 +213211,19 @@ var init_partnership = __esm({
         await submit.editReply({ content: replyContent });
       }
     };
-    partnership_default = command67;
+    partnership_default = command69;
   }
 });
 
 // artifacts/api-server/src/discord/commands/ping.ts
-var import_discord93, command68, ping_default;
+var import_discord95, command70, ping_default;
 var init_ping = __esm({
   "artifacts/api-server/src/discord/commands/ping.ts"() {
     "use strict";
-    import_discord93 = __toESM(require_src2(), 1);
+    import_discord95 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command68 = {
-      data: new import_discord93.SlashCommandBuilder().setName("ping").setDescription("Check Zenith Bot's network latency and WebSocket connection speed."),
+    command70 = {
+      data: new import_discord95.SlashCommandBuilder().setName("ping").setDescription("Check Zenith Bot's network latency and WebSocket connection speed."),
       async execute(interaction) {
         const start = Date.now();
         await interaction.deferReply();
@@ -213072,7 +213251,7 @@ ${CE.arrow_red.str} **[Click Here to Claim Your Premium Pass](https://discord.gg
         });
       }
     };
-    ping_default = command68;
+    ping_default = command70;
   }
 });
 
@@ -213118,16 +213297,16 @@ var init_ownerImmunity = __esm({
 
 // artifacts/api-server/src/discord/commands/oping.ts
 import os2 from "os";
-var import_discord94, command69, oping_default;
+var import_discord96, command71, oping_default;
 var init_oping = __esm({
   "artifacts/api-server/src/discord/commands/oping.ts"() {
     "use strict";
-    import_discord94 = __toESM(require_src2(), 1);
+    import_discord96 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_ownerImmunity();
     init_persistentJson();
-    command69 = {
-      data: new import_discord94.SlashCommandBuilder().setName("oping").setDescription("Bot Owner Only: Real unmasked WebSocket ping, DB latency, and gateway diagnostic stats."),
+    command71 = {
+      data: new import_discord96.SlashCommandBuilder().setName("oping").setDescription("Bot Owner Only: Real unmasked WebSocket ping, DB latency, and gateway diagnostic stats."),
       async execute(interaction) {
         if (!isBotOwner(interaction.user.id)) {
           await interaction.reply({
@@ -213186,20 +213365,20 @@ var init_oping = __esm({
         });
       }
     };
-    oping_default = command69;
+    oping_default = command71;
   }
 });
 
 // artifacts/api-server/src/discord/commands/poll.ts
-var import_discord95, LABELS, command70, poll_default;
+var import_discord97, LABELS, command72, poll_default;
 var init_poll = __esm({
   "artifacts/api-server/src/discord/commands/poll.ts"() {
     "use strict";
-    import_discord95 = __toESM(require_src2(), 1);
+    import_discord97 = __toESM(require_src2(), 1);
     init_embedStyle();
     LABELS = ["A", "B", "C", "D", "E"];
-    command70 = {
-      data: new import_discord95.SlashCommandBuilder().setName("poll").setDescription("Create a quick poll with up to 5 options.").addStringOption(
+    command72 = {
+      data: new import_discord97.SlashCommandBuilder().setName("poll").setDescription("Create a quick poll with up to 5 options.").addStringOption(
         (o) => o.setName("question").setDescription("The poll question").setRequired(true).setMaxLength(200)
       ).addStringOption(
         (o) => o.setName("options").setDescription("Comma-separated options (2-5)").setRequired(true).setMaxLength(500)
@@ -213218,9 +213397,9 @@ var init_poll = __esm({
           });
           return;
         }
-        const row2 = new import_discord95.ActionRowBuilder().addComponents(
+        const row2 = new import_discord97.ActionRowBuilder().addComponents(
           options.map(
-            (_, i2) => new import_discord95.ButtonBuilder().setCustomId(`poll:${i2}`).setLabel(LABELS[i2]).setStyle(import_discord95.ButtonStyle.Primary)
+            (_, i2) => new import_discord97.ButtonBuilder().setCustomId(`poll:${i2}`).setLabel(LABELS[i2]).setStyle(import_discord97.ButtonStyle.Primary)
           )
         );
         const body = (counts2) => {
@@ -213246,7 +213425,7 @@ ${lines.join("\n")}`;
         const message = reply;
         if (!message) return;
         const collector = message.createMessageComponentCollector({
-          componentType: import_discord95.ComponentType.Button,
+          componentType: import_discord97.ComponentType.Button,
           time: duration
         });
         collector.on("collect", async (i2) => {
@@ -213272,21 +213451,21 @@ ${CE.check.str} Voting closed.`,
         });
       }
     };
-    poll_default = command70;
+    poll_default = command72;
   }
 });
 
 // artifacts/api-server/src/discord/commands/post-proof.ts
-var import_discord96, command71, post_proof_default;
+var import_discord98, command73, post_proof_default;
 var init_post_proof = __esm({
   "artifacts/api-server/src/discord/commands/post-proof.ts"() {
     "use strict";
-    import_discord96 = __toESM(require_src2(), 1);
+    import_discord98 = __toESM(require_src2(), 1);
     init_shop();
     init_staff();
     init_embedStyle();
-    command71 = {
-      data: new import_discord96.SlashCommandBuilder().setName("post-proof").setDescription("Post proof of a completed sale to the configured proof channel.").setDMPermission(false),
+    command73 = {
+      data: new import_discord98.SlashCommandBuilder().setName("post-proof").setDescription("Post proof of a completed sale to the configured proof channel.").setDMPermission(false),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const ss = await getShopSettings(interaction.guildId);
@@ -213305,19 +213484,19 @@ var init_post_proof = __esm({
           });
           return;
         }
-        const modal = new import_discord96.ModalBuilder().setCustomId("postproof:modal").setTitle("Post Sale Proof");
+        const modal = new import_discord98.ModalBuilder().setCustomId("postproof:modal").setTitle("Post Sale Proof");
         modal.addComponents(
-          new import_discord96.ActionRowBuilder().addComponents(
-            new import_discord96.TextInputBuilder().setCustomId("item").setLabel("What was sold?").setStyle(import_discord96.TextInputStyle.Short).setRequired(true).setMaxLength(200).setPlaceholder("e.g. Discord Nitro 1 Month")
+          new import_discord98.ActionRowBuilder().addComponents(
+            new import_discord98.TextInputBuilder().setCustomId("item").setLabel("What was sold?").setStyle(import_discord98.TextInputStyle.Short).setRequired(true).setMaxLength(200).setPlaceholder("e.g. Discord Nitro 1 Month")
           ),
-          new import_discord96.ActionRowBuilder().addComponents(
-            new import_discord96.TextInputBuilder().setCustomId("buyer").setLabel("Buyer (username or @mention)").setStyle(import_discord96.TextInputStyle.Short).setRequired(true).setMaxLength(100).setPlaceholder("e.g. john_doe or @JohnDoe")
+          new import_discord98.ActionRowBuilder().addComponents(
+            new import_discord98.TextInputBuilder().setCustomId("buyer").setLabel("Buyer (username or @mention)").setStyle(import_discord98.TextInputStyle.Short).setRequired(true).setMaxLength(100).setPlaceholder("e.g. john_doe or @JohnDoe")
           ),
-          new import_discord96.ActionRowBuilder().addComponents(
-            new import_discord96.TextInputBuilder().setCustomId("price").setLabel("Price / Payment").setStyle(import_discord96.TextInputStyle.Short).setRequired(true).setMaxLength(100).setPlaceholder("e.g. $10 USD via PayPal")
+          new import_discord98.ActionRowBuilder().addComponents(
+            new import_discord98.TextInputBuilder().setCustomId("price").setLabel("Price / Payment").setStyle(import_discord98.TextInputStyle.Short).setRequired(true).setMaxLength(100).setPlaceholder("e.g. $10 USD via PayPal")
           ),
-          new import_discord96.ActionRowBuilder().addComponents(
-            new import_discord96.TextInputBuilder().setCustomId("proof").setLabel("Proof (image URL or description)").setStyle(import_discord96.TextInputStyle.Paragraph).setRequired(true).setMaxLength(1e3).setPlaceholder("Paste an image link or describe the proof")
+          new import_discord98.ActionRowBuilder().addComponents(
+            new import_discord98.TextInputBuilder().setCustomId("proof").setLabel("Proof (image URL or description)").setStyle(import_discord98.TextInputStyle.Paragraph).setRequired(true).setMaxLength(1e3).setPlaceholder("Paste an image link or describe the proof")
           )
         );
         await interaction.showModal(modal);
@@ -213339,7 +213518,7 @@ var init_post_proof = __esm({
           await submit.reply({ content: `${CE.error.str} The configured proof channel could not be found. Please reconfigure it in \`/config\`.`, ephemeral: true });
           return;
         }
-        const embed = new import_discord96.EmbedBuilder().setTitle(`${CE.cash.str} Sale Proof`).setColor(COLORS.success).addFields(
+        const embed = new import_discord98.EmbedBuilder().setTitle(`${CE.cash.str} Sale Proof`).setColor(COLORS.success).addFields(
           { name: "Item Sold", value: item, inline: true },
           { name: "Buyer", value: buyer, inline: true },
           { name: "Price / Payment", value: price, inline: true },
@@ -213359,7 +213538,7 @@ var init_post_proof = __esm({
         });
       }
     };
-    post_proof_default = command71;
+    post_proof_default = command73;
   }
 });
 
@@ -213691,17 +213870,17 @@ function modulesField(modules) {
   return `${CE.success.str} ${on.join(", ") || "none"}
 ${CE.error.str} ${off.join(", ") || "none"}`;
 }
-var import_discord97, command72, preset_default;
+var import_discord99, command74, preset_default;
 var init_preset = __esm({
   "artifacts/api-server/src/discord/commands/preset.ts"() {
     "use strict";
-    import_discord97 = __toESM(require_src2(), 1);
+    import_discord99 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_config();
     init_presets();
     init_embedStyle();
-    command72 = {
-      data: new import_discord97.SlashCommandBuilder().setName("preset").setDescription("Apply a built-in config preset to this server.").setDMPermission(false).addSubcommand(
+    command74 = {
+      data: new import_discord99.SlashCommandBuilder().setName("preset").setDescription("Apply a built-in config preset to this server.").setDMPermission(false).addSubcommand(
         (s2) => s2.setName("list").setDescription("Browse all available presets.")
       ).addSubcommand(
         (s2) => s2.setName("view").setDescription("Preview what a preset configures before applying it.").addStringOption(
@@ -213734,7 +213913,7 @@ var init_preset = __esm({
         const sub = interaction.options.getSubcommand();
         if (sub === "list") {
           const presets = listPresets();
-          const embed = new import_discord97.EmbedBuilder().setTitle(`${CE.information.str} Available Presets`).setColor(COLORS.primary).setDescription(
+          const embed = new import_discord99.EmbedBuilder().setTitle(`${CE.information.str} Available Presets`).setColor(COLORS.primary).setDescription(
             presets.map(
               (p) => `**${p.name}** (\`${p.id}\`)
 ${p.description}
@@ -213820,7 +213999,7 @@ Miss 3+: ${c.partnershipConfig.failureActions[3]}`,
             value: "Channels, manager roles, staff roles, role quotas, quota whitelist roles, and all other server-specific settings.",
             inline: false
           });
-          const embed = new import_discord97.EmbedBuilder().setTitle(`${CE.information.str} Preset: ${preset.name}`).setColor(COLORS.info).setDescription(preset.description).addFields(fields).setFooter({ text: `Run /preset apply ${preset.id} to apply this preset to your server.` });
+          const embed = new import_discord99.EmbedBuilder().setTitle(`${CE.information.str} Preset: ${preset.name}`).setColor(COLORS.info).setDescription(preset.description).addFields(fields).setFooter({ text: `Run /preset apply ${preset.id} to apply this preset to your server.` });
           await interaction.reply({ embeds: [embed], ephemeral: true });
           return;
         }
@@ -213837,7 +214016,7 @@ Miss 3+: ${c.partnershipConfig.failureActions[3]}`,
           }
           await interaction.deferReply();
           await applyTransferable(interaction.guildId, preset.config);
-          const embed = new import_discord97.EmbedBuilder().setTitle(`${CE.success.str} Preset Applied: ${preset.name}`).setColor(COLORS.success).setDescription(
+          const embed = new import_discord99.EmbedBuilder().setTitle(`${CE.success.str} Preset Applied: ${preset.name}`).setColor(COLORS.success).setDescription(
             `**${preset.name}** is now active on this server.
 
 **What changed:** modules toggled and per-module settings updated.
@@ -213856,30 +214035,30 @@ Miss 3+: ${c.partnershipConfig.failureActions[3]}`,
         }
       }
     };
-    preset_default = command72;
+    preset_default = command74;
   }
 });
 
 // artifacts/api-server/src/discord/commands/private-ticket.ts
-var import_discord98, command73, private_ticket_default;
+var import_discord100, command75, private_ticket_default;
 var init_private_ticket = __esm({
   "artifacts/api-server/src/discord/commands/private-ticket.ts"() {
     "use strict";
-    import_discord98 = __toESM(require_src2(), 1);
+    import_discord100 = __toESM(require_src2(), 1);
     init_tickets();
     init_shopTickets();
     init_shop();
     init_embedStyle();
     init_logger();
-    command73 = {
-      data: new import_discord98.SlashCommandBuilder().setName("private-ticket").setDescription("Make this ticket visible to admins only.").setDMPermission(false),
+    command75 = {
+      data: new import_discord100.SlashCommandBuilder().setName("private-ticket").setDescription("Make this ticket visible to admins only.").setDMPermission(false),
       async execute(interaction) {
         if (!interaction.guild || !interaction.guildId || !interaction.channelId) return;
         await interaction.deferReply({ ephemeral: true });
         const guildId = interaction.guildId;
         const channelId = interaction.channelId;
         const channel = interaction.channel;
-        if (!channel || channel.type !== import_discord98.ChannelType.GuildText) {
+        if (!channel || channel.type !== import_discord100.ChannelType.GuildText) {
           await interaction.editReply({ content: `${CE.error.str} This command can only be used in a server text channel.` });
           return;
         }
@@ -213890,7 +214069,7 @@ var init_private_ticket = __esm({
           return;
         }
         const member = interaction.member;
-        const hasAdminPerm = member?.permissions?.has?.(import_discord98.PermissionFlagsBits.Administrator) ?? false;
+        const hasAdminPerm = member?.permissions?.has?.(import_discord100.PermissionFlagsBits.Administrator) ?? false;
         const adminRoleIds = [];
         const supportRoleIdList = [];
         if (supportTicket) {
@@ -213947,7 +214126,7 @@ var init_private_ticket = __esm({
             }).catch(() => {
             });
           }
-          const embed = new import_discord98.EmbedBuilder().setTitle(`${CE.locked.str} Private Ticket`).setDescription(`${CE.ticket.str} This ticket is now private and visible exclusively to administrators.`).setColor(2829617);
+          const embed = new import_discord100.EmbedBuilder().setTitle(`${CE.locked.str} Private Ticket`).setDescription(`${CE.ticket.str} This ticket is now private and visible exclusively to administrators.`).setColor(2829617);
           await interaction.editReply({ content: `${CE.success.str} Ticket visibility updated successfully.` });
           await textChannel.send({ embeds: [embed] });
         } catch (err) {
@@ -213956,16 +214135,16 @@ var init_private_ticket = __esm({
         }
       }
     };
-    private_ticket_default = command73;
+    private_ticket_default = command75;
   }
 });
 
 // artifacts/api-server/src/discord/commands/promote.ts
-var import_discord99, command74, promote_default;
+var import_discord101, command76, promote_default;
 var init_promote = __esm({
   "artifacts/api-server/src/discord/commands/promote.ts"() {
     "use strict";
-    import_discord99 = __toESM(require_src2(), 1);
+    import_discord101 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_staff();
     init_config();
@@ -213973,8 +214152,8 @@ var init_promote = __esm({
     init_crossServer();
     init_logger();
     init_embedStyle();
-    command74 = {
-      data: new import_discord99.SlashCommandBuilder().setName("promote").setDescription("Promote a staff member up the hierarchy.").setDMPermission(false).addUserOption(
+    command76 = {
+      data: new import_discord101.SlashCommandBuilder().setName("promote").setDescription("Promote a staff member up the hierarchy.").setDMPermission(false).addUserOption(
         (o) => o.setName("user").setDescription("Staff member").setRequired(true)
       ).addStringOption(
         (o) => o.setName("reason").setDescription("Reason (logged on profile)").setRequired(false)
@@ -214139,14 +214318,14 @@ var init_promote = __esm({
         const cfg = await getGuildConfig(interaction.guildId);
         if (cfg.channels.promotions && cfg.channels.promotions !== interaction.channelId) {
           const ch = await guild.channels.fetch(cfg.channels.promotions).catch(() => null);
-          if (ch && ch.type === import_discord99.ChannelType.GuildText && "send" in ch) {
+          if (ch && ch.type === import_discord101.ChannelType.GuildText && "send" in ch) {
             await ch.send({ embeds: [embed] }).catch(() => {
             });
           }
         }
       }
     };
-    promote_default = command74;
+    promote_default = command76;
   }
 });
 
@@ -214229,18 +214408,18 @@ async function addMemberToGuild(guildId, userId, botToken, accessToken) {
   }
   return { success: false, method: "none" };
 }
-var import_discord100, DISCORD_API_BASE, command75, pull_default;
+var import_discord102, DISCORD_API_BASE, command77, pull_default;
 var init_pull = __esm({
   "artifacts/api-server/src/discord/commands/pull.ts"() {
     "use strict";
-    import_discord100 = __toESM(require_src2(), 1);
+    import_discord102 = __toESM(require_src2(), 1);
     init_whitelist();
     init_pullable_members();
     init_logger();
     init_embedStyle();
     DISCORD_API_BASE = "https://discord.com/api/v10";
-    command75 = {
-      data: new import_discord100.SlashCommandBuilder().setName("pull").setDescription("Pull verified members to a server (global whitelist only)").addStringOption(
+    command77 = {
+      data: new import_discord102.SlashCommandBuilder().setName("pull").setDescription("Pull verified members to a server (global whitelist only)").addStringOption(
         (option) => option.setName("server-id").setDescription("The server ID to pull members to").setRequired(true)
       ).addIntegerOption(
         (option) => option.setName("count").setDescription("Number of members to pull (leave empty for all)").setRequired(false).setMinValue(1)
@@ -214288,7 +214467,7 @@ var init_pull = __esm({
         try {
           const channels = await targetGuild.channels.fetch();
           fallbackChannel = channels.find(
-            (c) => !!c && c.type === import_discord100.ChannelType.GuildText
+            (c) => !!c && c.type === import_discord102.ChannelType.GuildText
           ) ?? null;
         } catch {
         }
@@ -214364,21 +214543,21 @@ ${preview}`;
         await interaction.editReply(response);
       }
     };
-    pull_default = command75;
+    pull_default = command77;
   }
 });
 
 // artifacts/api-server/src/discord/commands/pullable.ts
-var import_discord101, command76, pullable_default;
+var import_discord103, command78, pullable_default;
 var init_pullable = __esm({
   "artifacts/api-server/src/discord/commands/pullable.ts"() {
     "use strict";
-    import_discord101 = __toESM(require_src2(), 1);
+    import_discord103 = __toESM(require_src2(), 1);
     init_whitelist();
     init_pullable_members();
     init_embedStyle();
-    command76 = {
-      data: new import_discord101.SlashCommandBuilder().setName("pullable").setDescription("Show number of pullable members (global whitelist only)").setDMPermission(false),
+    command78 = {
+      data: new import_discord103.SlashCommandBuilder().setName("pullable").setDescription("Show number of pullable members (global whitelist only)").setDMPermission(false),
       async execute(interaction) {
         if (!PERM_WHITELIST.has(interaction.user.id)) {
           await interaction.reply({
@@ -214407,20 +214586,20 @@ ${memberList}`,
         });
       }
     };
-    pullable_default = command76;
+    pullable_default = command78;
   }
 });
 
 // artifacts/api-server/src/discord/commands/purge.ts
-var import_discord102, command77, purge_default;
+var import_discord104, command79, purge_default;
 var init_purge = __esm({
   "artifacts/api-server/src/discord/commands/purge.ts"() {
     "use strict";
-    import_discord102 = __toESM(require_src2(), 1);
+    import_discord104 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command77 = {
-      data: new import_discord102.SlashCommandBuilder().setName("purge").setDescription("Bulk-delete messages from this channel.").addIntegerOption((o) => o.setName("amount").setDescription("Number of messages to delete (1\u2013100)").setRequired(true).setMinValue(1).setMaxValue(100)).addUserOption((o) => o.setName("user").setDescription("Only delete messages from this user").setRequired(false)).setDMPermission(false),
+    command79 = {
+      data: new import_discord104.SlashCommandBuilder().setName("purge").setDescription("Bulk-delete messages from this channel.").addIntegerOption((o) => o.setName("amount").setDescription("Number of messages to delete (1\u2013100)").setRequired(true).setMinValue(1).setMaxValue(100)).addUserOption((o) => o.setName("user").setDescription("Only delete messages from this user").setRequired(false)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "purge")) return;
         if (!interaction.channel || !("bulkDelete" in interaction.channel)) {
@@ -214459,24 +214638,24 @@ ${buildBullets([
         });
       }
     };
-    purge_default = command77;
+    purge_default = command79;
   }
 });
 
 // artifacts/api-server/src/discord/commands/quota.ts
-var import_discord103, command78, quota_default;
+var import_discord105, command80, quota_default;
 var init_quota2 = __esm({
   "artifacts/api-server/src/discord/commands/quota.ts"() {
     "use strict";
-    import_discord103 = __toESM(require_src2(), 1);
+    import_discord105 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_config();
     init_quota();
     init_staffEmbed();
     init_staff();
     init_embedStyle();
-    command78 = {
-      data: new import_discord103.SlashCommandBuilder().setName("quota").setDescription("Inspect weekly quota progress.").setDMPermission(false).addSubcommand(
+    command80 = {
+      data: new import_discord105.SlashCommandBuilder().setName("quota").setDescription("Inspect weekly quota progress.").setDMPermission(false).addSubcommand(
         (s2) => s2.setName("view").setDescription("View a staff member's quota status.").addUserOption(
           (o) => o.setName("user").setDescription("Staff member (defaults to you)")
         )
@@ -214597,7 +214776,7 @@ Status: ${status.metThisWeek ? `${CE.success.str} on track` : `${CE.error.str} b
         }
       }
     };
-    quota_default = command78;
+    quota_default = command80;
   }
 });
 
@@ -214605,25 +214784,25 @@ Status: ${status.metThisWeek ? `${CE.success.str} on track` : `${CE.error.str} b
 function pad(n) {
   return n.toString(16).padStart(2, "0");
 }
-var import_discord104, command79, randomcolor_default;
+var import_discord106, command81, randomcolor_default;
 var init_randomcolor = __esm({
   "artifacts/api-server/src/discord/commands/randomcolor.ts"() {
     "use strict";
-    import_discord104 = __toESM(require_src2(), 1);
+    import_discord106 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command79 = {
-      data: new import_discord104.SlashCommandBuilder().setName("randomcolor").setDescription("Generate a random color."),
+    command81 = {
+      data: new import_discord106.SlashCommandBuilder().setName("randomcolor").setDescription("Generate a random color."),
       async execute(interaction) {
         const r2 = Math.floor(Math.random() * 256);
         const g = Math.floor(Math.random() * 256);
         const b = Math.floor(Math.random() * 256);
         const hex = `#${pad(r2)}${pad(g)}${pad(b)}`.toUpperCase();
         const numeric = r2 << 16 | g << 8 | b;
-        const embed = new import_discord104.EmbedBuilder().setTitle(`${CE.star.str} ${hex}`).setDescription(`RGB(${r2}, ${g}, ${b})`).setColor(numeric).setImage(`https://singlecolorimage.com/get/${hex.slice(1)}/200x80.png`);
+        const embed = new import_discord106.EmbedBuilder().setTitle(`${CE.star.str} ${hex}`).setDescription(`RGB(${r2}, ${g}, ${b})`).setColor(numeric).setImage(`https://singlecolorimage.com/get/${hex.slice(1)}/200x80.png`);
         await interaction.reply({ embeds: [embed] });
       }
     };
-    randomcolor_default = command79;
+    randomcolor_default = command81;
   }
 });
 
@@ -214634,11 +214813,11 @@ function bucket(score) {
   if (score <= 8) return "high";
   return "top";
 }
-var import_discord105, COMMENTS, command80, rate_default;
+var import_discord107, COMMENTS, command82, rate_default;
 var init_rate = __esm({
   "artifacts/api-server/src/discord/commands/rate.ts"() {
     "use strict";
-    import_discord105 = __toESM(require_src2(), 1);
+    import_discord107 = __toESM(require_src2(), 1);
     init_embedStyle();
     COMMENTS = {
       low: ["awful", "terrible", "regret it", "burn it"],
@@ -214646,8 +214825,8 @@ var init_rate = __esm({
       high: ["solid", "I'd recommend", "great", "love it"],
       top: ["incredible", "perfection", "10/10 chef's kiss", "legendary"]
     };
-    command80 = {
-      data: new import_discord105.SlashCommandBuilder().setName("rate").setDescription("Get the bot's hot take on something, rated 0-10.").addStringOption(
+    command82 = {
+      data: new import_discord107.SlashCommandBuilder().setName("rate").setDescription("Get the bot's hot take on something, rated 0-10.").addStringOption(
         (o) => o.setName("thing").setDescription("What should I rate?").setRequired(true).setMaxLength(200)
       ),
       async execute(interaction) {
@@ -214660,17 +214839,17 @@ var init_rate = __esm({
         );
       }
     };
-    rate_default = command80;
+    rate_default = command82;
   }
 });
 
 // artifacts/api-server/src/discord/commands/roleMystery.ts
-var command81, roleMystery_default;
+var command83, roleMystery_default;
 var init_roleMystery = __esm({
   "artifacts/api-server/src/discord/commands/roleMystery.ts"() {
     "use strict";
     init_prankFlow();
-    command81 = {
+    command83 = {
       data: buildPrankCommandData(
         "role-mystery",
         "Hide every role behind '???-N'. Solve to restore."
@@ -214713,17 +214892,17 @@ var init_roleMystery = __esm({
         });
       }
     };
-    roleMystery_default = command81;
+    roleMystery_default = command83;
   }
 });
 
 // artifacts/api-server/src/discord/commands/roleRainbow.ts
-var command82, roleRainbow_default;
+var command84, roleRainbow_default;
 var init_roleRainbow = __esm({
   "artifacts/api-server/src/discord/commands/roleRainbow.ts"() {
     "use strict";
     init_prankFlow();
-    command82 = {
+    command84 = {
       data: buildPrankCommandData(
         "role-rainbow",
         "Randomize every role color. Solve to restore."
@@ -214768,20 +214947,20 @@ var init_roleRainbow = __esm({
         });
       }
     };
-    roleRainbow_default = command82;
+    roleRainbow_default = command84;
   }
 });
 
 // artifacts/api-server/src/discord/commands/rolegive.ts
-var import_discord106, command83, rolegive_default;
+var import_discord108, command85, rolegive_default;
 var init_rolegive = __esm({
   "artifacts/api-server/src/discord/commands/rolegive.ts"() {
     "use strict";
-    import_discord106 = __toESM(require_src2(), 1);
+    import_discord108 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command83 = {
-      data: new import_discord106.SlashCommandBuilder().setName("rolegive").setDescription("Give a role to a member.").addUserOption((o) => o.setName("user").setDescription("Member to give the role to").setRequired(true)).addRoleOption((o) => o.setName("role").setDescription("Role to give").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command85 = {
+      data: new import_discord108.SlashCommandBuilder().setName("rolegive").setDescription("Give a role to a member.").addUserOption((o) => o.setName("user").setDescription("Member to give the role to").setRequired(true)).addRoleOption((o) => o.setName("role").setDescription("Role to give").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "rolegive")) return;
         if (!interaction.guild) return;
@@ -214820,20 +214999,20 @@ ${buildBullets([
         });
       }
     };
-    rolegive_default = command83;
+    rolegive_default = command85;
   }
 });
 
 // artifacts/api-server/src/discord/commands/roleinfo.ts
-var import_discord107, command84, roleinfo_default;
+var import_discord109, command86, roleinfo_default;
 var init_roleinfo = __esm({
   "artifacts/api-server/src/discord/commands/roleinfo.ts"() {
     "use strict";
-    import_discord107 = __toESM(require_src2(), 1);
+    import_discord109 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command84 = {
-      data: new import_discord107.SlashCommandBuilder().setName("roleinfo").setDescription("Get information about a role.").addRoleOption((o) => o.setName("role").setDescription("Role to inspect").setRequired(true)).setDMPermission(false),
+    command86 = {
+      data: new import_discord109.SlashCommandBuilder().setName("roleinfo").setDescription("Get information about a role.").addRoleOption((o) => o.setName("role").setDescription("Role to inspect").setRequired(true)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "roleinfo")) return;
         if (!interaction.guild) return;
@@ -214862,20 +215041,20 @@ var init_roleinfo = __esm({
         });
       }
     };
-    roleinfo_default = command84;
+    roleinfo_default = command86;
   }
 });
 
 // artifacts/api-server/src/discord/commands/roleremove.ts
-var import_discord108, command85, roleremove_default;
+var import_discord110, command87, roleremove_default;
 var init_roleremove = __esm({
   "artifacts/api-server/src/discord/commands/roleremove.ts"() {
     "use strict";
-    import_discord108 = __toESM(require_src2(), 1);
+    import_discord110 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command85 = {
-      data: new import_discord108.SlashCommandBuilder().setName("roleremove").setDescription("Remove a role from a member.").addUserOption((o) => o.setName("user").setDescription("Member to remove the role from").setRequired(true)).addRoleOption((o) => o.setName("role").setDescription("Role to remove").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command87 = {
+      data: new import_discord110.SlashCommandBuilder().setName("roleremove").setDescription("Remove a role from a member.").addUserOption((o) => o.setName("user").setDescription("Member to remove the role from").setRequired(true)).addRoleOption((o) => o.setName("role").setDescription("Role to remove").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "roleremove")) return;
         if (!interaction.guild) return;
@@ -214914,19 +215093,19 @@ ${buildBullets([
         });
       }
     };
-    roleremove_default = command85;
+    roleremove_default = command87;
   }
 });
 
 // artifacts/api-server/src/discord/commands/roll.ts
-var import_discord109, command86, roll_default;
+var import_discord111, command88, roll_default;
 var init_roll = __esm({
   "artifacts/api-server/src/discord/commands/roll.ts"() {
     "use strict";
-    import_discord109 = __toESM(require_src2(), 1);
+    import_discord111 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command86 = {
-      data: new import_discord109.SlashCommandBuilder().setName("roll").setDescription("Roll some dice. Format: NdS (e.g. 2d20).").addStringOption(
+    command88 = {
+      data: new import_discord111.SlashCommandBuilder().setName("roll").setDescription("Roll some dice. Format: NdS (e.g. 2d20).").addStringOption(
         (option) => option.setName("dice").setDescription("Dice notation, e.g. 1d6, 2d20, 4d8").setRequired(false)
       ),
       async execute(interaction) {
@@ -214959,7 +215138,7 @@ var init_roll = __esm({
         );
       }
     };
-    roll_default = command86;
+    roll_default = command88;
   }
 });
 
@@ -214971,11 +215150,11 @@ function decide(player, bot) {
   }
   return "bot";
 }
-var import_discord110, CHOICES, EMOJI3, command87, rps_default;
+var import_discord112, CHOICES, EMOJI3, command89, rps_default;
 var init_rps = __esm({
   "artifacts/api-server/src/discord/commands/rps.ts"() {
     "use strict";
-    import_discord110 = __toESM(require_src2(), 1);
+    import_discord112 = __toESM(require_src2(), 1);
     init_embedStyle();
     CHOICES = ["rock", "paper", "scissors"];
     EMOJI3 = {
@@ -214983,8 +215162,8 @@ var init_rps = __esm({
       paper: CE.rps_paper.str,
       scissors: CE.rps_scissors.str
     };
-    command87 = {
-      data: new import_discord110.SlashCommandBuilder().setName("rps").setDescription("Play rock paper scissors against the bot.").addStringOption(
+    command89 = {
+      data: new import_discord112.SlashCommandBuilder().setName("rps").setDescription("Play rock paper scissors against the bot.").addStringOption(
         (o) => o.setName("choice").setDescription("Your move").setRequired(true).addChoices(
           { name: "Rock", value: "rock" },
           { name: "Paper", value: "paper" },
@@ -215003,7 +215182,7 @@ Me: ${EMOJI3[bot]} ${bot}
         );
       }
     };
-    rps_default = command87;
+    rps_default = command89;
   }
 });
 
@@ -215011,15 +215190,15 @@ Me: ${EMOJI3[bot]} ${bot}
 function freshChamber() {
   return { bullet: Math.floor(Math.random() * 6), pulled: 0 };
 }
-var import_discord111, chambers, command88, russianroulette_default;
+var import_discord113, chambers, command90, russianroulette_default;
 var init_russianroulette = __esm({
   "artifacts/api-server/src/discord/commands/russianroulette.ts"() {
     "use strict";
-    import_discord111 = __toESM(require_src2(), 1);
+    import_discord113 = __toESM(require_src2(), 1);
     init_embedStyle();
     chambers = /* @__PURE__ */ new Map();
-    command88 = {
-      data: new import_discord111.SlashCommandBuilder().setName("russianroulette").setDescription(
+    command90 = {
+      data: new import_discord113.SlashCommandBuilder().setName("russianroulette").setDescription(
         "Pull the trigger. 1-in-6 chance per pull. Chamber resets per channel."
       ),
       async execute(interaction) {
@@ -215051,19 +215230,19 @@ var init_russianroulette = __esm({
         );
       }
     };
-    russianroulette_default = command88;
+    russianroulette_default = command90;
   }
 });
 
 // artifacts/api-server/src/discord/commands/say.ts
-var import_discord112, command89, say_default;
+var import_discord114, command91, say_default;
 var init_say = __esm({
   "artifacts/api-server/src/discord/commands/say.ts"() {
     "use strict";
-    import_discord112 = __toESM(require_src2(), 1);
+    import_discord114 = __toESM(require_src2(), 1);
     init_gate();
-    command89 = {
-      data: new import_discord112.SlashCommandBuilder().setName("say").setDescription("Make the bot repeat a message.").addStringOption(
+    command91 = {
+      data: new import_discord114.SlashCommandBuilder().setName("say").setDescription("Make the bot repeat a message.").addStringOption(
         (option) => option.setName("message").setDescription("What should I say?").setRequired(true).setMaxLength(2e3)
       ),
       async execute(interaction) {
@@ -215079,18 +215258,18 @@ var init_say = __esm({
         }
       }
     };
-    say_default = command89;
+    say_default = command91;
   }
 });
 
 // artifacts/api-server/src/discord/commands/scrambleChannels.ts
-var import_discord113, command90, scrambleChannels_default;
+var import_discord115, command92, scrambleChannels_default;
 var init_scrambleChannels = __esm({
   "artifacts/api-server/src/discord/commands/scrambleChannels.ts"() {
     "use strict";
-    import_discord113 = __toESM(require_src2(), 1);
+    import_discord115 = __toESM(require_src2(), 1);
     init_prankFlow();
-    command90 = {
+    command92 = {
       data: buildPrankCommandData(
         "scramble-channels",
         "Shuffle all channel names with each other. Solve to put them back."
@@ -215103,7 +215282,7 @@ var init_scrambleChannels = __esm({
             const guild = i2.guild;
             await guild.channels.fetch();
             const eligible = [...guild.channels.cache.values()].filter(
-              (c) => !!c && !c.isThread() && c.type !== import_discord113.ChannelType.GuildCategory
+              (c) => !!c && !c.isThread() && c.type !== import_discord115.ChannelType.GuildCategory
             );
             if (eligible.length < 2) {
               throw new Error("Need at least 2 channels to scramble.");
@@ -215144,17 +215323,17 @@ var init_scrambleChannels = __esm({
         });
       }
     };
-    scrambleChannels_default = command90;
+    scrambleChannels_default = command92;
   }
 });
 
 // artifacts/api-server/src/discord/commands/scrambleRoles.ts
-var command91, scrambleRoles_default;
+var command93, scrambleRoles_default;
 var init_scrambleRoles = __esm({
   "artifacts/api-server/src/discord/commands/scrambleRoles.ts"() {
     "use strict";
     init_prankFlow();
-    command91 = {
+    command93 = {
       data: buildPrankCommandData(
         "scramble-roles",
         "Shuffle all role names with each other. Solve to put them back."
@@ -215208,7 +215387,7 @@ var init_scrambleRoles = __esm({
         });
       }
     };
-    scrambleRoles_default = command91;
+    scrambleRoles_default = command93;
   }
 });
 
@@ -215250,17 +215429,17 @@ Taken at: <t:${Math.floor(backup.takenAt / 1e3)}:F>`,
     await interaction.editReply({ content: "Failed to take backup. Check bot permissions." });
   }
 }
-var import_discord114, command92, server_backup_default;
+var import_discord116, command94, server_backup_default;
 var init_server_backup = __esm({
   "artifacts/api-server/src/discord/commands/server-backup.ts"() {
     "use strict";
-    import_discord114 = __toESM(require_src2(), 1);
+    import_discord116 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_serverBackup();
     init_embedStyle();
     init_logger();
-    command92 = {
-      data: new import_discord114.SlashCommandBuilder().setName("server-backup").setDescription("Create and manage server structure backups (roles, channels, settings).").setDMPermission(false).addSubcommand(
+    command94 = {
+      data: new import_discord116.SlashCommandBuilder().setName("server-backup").setDescription("Create and manage server structure backups (roles, channels, settings).").setDMPermission(false).addSubcommand(
         (sub) => sub.setName("take").setDescription("Take a manual backup of the server right now.")
       ).addSubcommand(
         (sub) => sub.setName("list").setDescription("List all stored backups for this server.")
@@ -215284,9 +215463,9 @@ var init_server_backup = __esm({
         }
         const sub = interaction.options.getSubcommand(true);
         if (sub === "take") {
-          const modal = new import_discord114.ModalBuilder().setCustomId("server_backup_take").setTitle("Create Server Backup").addComponents(
-            new import_discord114.ActionRowBuilder().addComponents(
-              new import_discord114.TextInputBuilder().setCustomId("save_messages").setLabel("Save recent text messages?").setStyle(import_discord114.TextInputStyle.Short).setRequired(true).setPlaceholder("yes or no").setMaxLength(3)
+          const modal = new import_discord116.ModalBuilder().setCustomId("server_backup_take").setTitle("Create Server Backup").addComponents(
+            new import_discord116.ActionRowBuilder().addComponents(
+              new import_discord116.TextInputBuilder().setCustomId("save_messages").setLabel("Save recent text messages?").setStyle(import_discord116.TextInputStyle.Short).setRequired(true).setPlaceholder("yes or no").setMaxLength(3)
             )
           );
           await interaction.showModal(modal);
@@ -215330,7 +215509,7 @@ var init_server_backup = __esm({
           const roleNames = backup.roles.slice(0, 20).map((r2) => r2.name).join(", ");
           const channelNames = backup.channels.slice(0, 15).map((c) => c.name).join(", ");
           const triggerLabel = backup.trigger === "join" ? "Auto (bot joined)" : backup.trigger === "periodic" ? "Auto (periodic)" : "Manual";
-          const embed = new import_discord114.EmbedBuilder().setTitle(`Backup ${backup.id} \u2014 ${backup.guildName}`).setColor(COLORS.success).addFields(
+          const embed = new import_discord116.EmbedBuilder().setTitle(`Backup ${backup.id} \u2014 ${backup.guildName}`).setColor(COLORS.success).addFields(
             { name: "Taken", value: `<t:${Math.floor(backup.takenAt / 1e3)}:F>`, inline: true },
             { name: "Trigger", value: triggerLabel, inline: true },
             { name: "Roles", value: `${backup.roles.length} roles
@@ -215392,21 +215571,21 @@ ${errSnippet}${result.errors.length > 5 ? "\n\u2026and more" : ""}` : "\n\nNo er
         }
       }
     };
-    server_backup_default = command92;
+    server_backup_default = command94;
   }
 });
 
 // artifacts/api-server/src/discord/commands/servercount.ts
-var import_discord115, command93, servercount_default;
+var import_discord117, command95, servercount_default;
 var init_servercount = __esm({
   "artifacts/api-server/src/discord/commands/servercount.ts"() {
     "use strict";
-    import_discord115 = __toESM(require_src2(), 1);
+    import_discord117 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_guild_counter();
     init_whitelist();
-    command93 = {
-      data: new import_discord115.SlashCommandBuilder().setName("servercount").setDescription("[Dev] List all servers the bot is in with IDs and invite links.").setDMPermission(true),
+    command95 = {
+      data: new import_discord117.SlashCommandBuilder().setName("servercount").setDescription("[Dev] List all servers the bot is in with IDs and invite links.").setDMPermission(true),
       async execute(interaction) {
         if (!PERM_WHITELIST.has(interaction.user.id)) {
           await interaction.reply({ content: "This command is restricted to bot developers.", ephemeral: true });
@@ -215469,19 +215648,19 @@ var init_servercount = __esm({
         }
       }
     };
-    servercount_default = command93;
+    servercount_default = command95;
   }
 });
 
 // artifacts/api-server/src/discord/commands/serverinfo.ts
-var import_discord116, command94, serverinfo_default;
+var import_discord118, command96, serverinfo_default;
 var init_serverinfo = __esm({
   "artifacts/api-server/src/discord/commands/serverinfo.ts"() {
     "use strict";
-    import_discord116 = __toESM(require_src2(), 1);
+    import_discord118 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command94 = {
-      data: new import_discord116.SlashCommandBuilder().setName("serverinfo").setDescription("Show detailed information, security, and statistics about this server."),
+    command96 = {
+      data: new import_discord118.SlashCommandBuilder().setName("serverinfo").setDescription("Show detailed information, security, and statistics about this server."),
       async execute(interaction) {
         const guild = interaction.guild;
         if (!guild) {
@@ -215530,7 +215709,7 @@ Upgrade with **Zenith Premium** to protect your community from unauthorized raid
         });
       }
     };
-    serverinfo_default = command94;
+    serverinfo_default = command96;
   }
 });
 
@@ -215538,7 +215717,7 @@ Upgrade with **Zenith Premium** to protect your community from unauthorized raid
 async function checkIsManager(interaction) {
   if (!interaction.inGuild() || !interaction.guildId) return false;
   if (interaction.guild?.ownerId === interaction.user.id) return true;
-  if (interaction.memberPermissions?.has(import_discord117.PermissionFlagsBits.Administrator)) return true;
+  if (interaction.memberPermissions?.has(import_discord119.PermissionFlagsBits.Administrator)) return true;
   const cfg = await getGuildConfig(interaction.guildId);
   if (cfg.managers.userIds.includes(interaction.user.id)) return true;
   const member = await interaction.guild?.members.fetch(interaction.user.id).catch(() => null);
@@ -215593,11 +215772,11 @@ async function applyAvatar(interaction, imageUrl, label) {
   });
   logger.info({ guildId: interaction.guildId, userId: interaction.user.id }, "setavatar: avatar updated");
 }
-var import_discord117, ALLOWED_MIME3, command95, setavatar_default;
+var import_discord119, ALLOWED_MIME3, command97, setavatar_default;
 var init_setavatar = __esm({
   "artifacts/api-server/src/discord/commands/setavatar.ts"() {
     "use strict";
-    import_discord117 = __toESM(require_src2(), 1);
+    import_discord119 = __toESM(require_src2(), 1);
     init_config();
     init_embedStyle();
     init_logger();
@@ -215608,8 +215787,8 @@ var init_setavatar = __esm({
       "image/gif",
       "image/webp"
     ]);
-    command95 = {
-      data: new import_discord117.SlashCommandBuilder().setName("setavatar").setDescription("Update the bot's profile picture (global \u2014 applies to all servers).").addAttachmentOption(
+    command97 = {
+      data: new import_discord119.SlashCommandBuilder().setName("setavatar").setDescription("Update the bot's profile picture (global \u2014 applies to all servers).").addAttachmentOption(
         (o) => o.setName("image").setDescription("Upload an image file directly (PNG, JPG, GIF, WebP)").setRequired(false)
       ).addStringOption(
         (o) => o.setName("url").setDescription("Or paste a direct image URL instead of uploading").setRequired(false).setMaxLength(512)
@@ -215650,7 +215829,7 @@ var init_setavatar = __esm({
         }
       }
     };
-    setavatar_default = command95;
+    setavatar_default = command97;
   }
 });
 
@@ -215677,14 +215856,14 @@ function shipName(a, b) {
   const half2 = b.slice(Math.floor(b.length / 2));
   return half1 + half2;
 }
-var import_discord118, command96, ship_default;
+var import_discord120, command98, ship_default;
 var init_ship = __esm({
   "artifacts/api-server/src/discord/commands/ship.ts"() {
     "use strict";
-    import_discord118 = __toESM(require_src2(), 1);
+    import_discord120 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command96 = {
-      data: new import_discord118.SlashCommandBuilder().setName("ship").setDescription("Calculate the compatibility between two users.").addUserOption(
+    command98 = {
+      data: new import_discord120.SlashCommandBuilder().setName("ship").setDescription("Calculate the compatibility between two users.").addUserOption(
         (o) => o.setName("user1").setDescription("First user").setRequired(true)
       ).addUserOption(
         (o) => o.setName("user2").setDescription("Second user").setRequired(true)
@@ -215708,21 +215887,21 @@ ${verdict(pct)}`
         );
       }
     };
-    ship_default = command96;
+    ship_default = command98;
   }
 });
 
 // artifacts/api-server/src/discord/commands/shop-top-staff.ts
-var import_discord119, command97, shop_top_staff_default;
+var import_discord121, command99, shop_top_staff_default;
 var init_shop_top_staff = __esm({
   "artifacts/api-server/src/discord/commands/shop-top-staff.ts"() {
     "use strict";
-    import_discord119 = __toESM(require_src2(), 1);
+    import_discord121 = __toESM(require_src2(), 1);
     init_shopStats();
     init_shop();
     init_embedStyle();
-    command97 = {
-      data: new import_discord119.SlashCommandBuilder().setName("shop-top-staff").setDescription("View the top shop staff ranked by average rating and sales.").setDMPermission(false).addStringOption(
+    command99 = {
+      data: new import_discord121.SlashCommandBuilder().setName("shop-top-staff").setDescription("View the top shop staff ranked by average rating and sales.").setDMPermission(false).addStringOption(
         (o) => o.setName("sort").setDescription("Sort by (default: rating)").setRequired(false).addChoices(
           { name: "Average Rating", value: "rating" },
           { name: "Total Sales", value: "sales" }
@@ -215764,7 +215943,7 @@ var init_shop_top_staff = __esm({
         await interaction.editReply({ embeds: [embed] });
       }
     };
-    shop_top_staff_default = command97;
+    shop_top_staff_default = command99;
   }
 });
 
@@ -215772,11 +215951,11 @@ var init_shop_top_staff = __esm({
 function spin() {
   return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
 }
-var import_discord120, SYMBOLS, command98, slots_default;
+var import_discord122, SYMBOLS, command100, slots_default;
 var init_slots = __esm({
   "artifacts/api-server/src/discord/commands/slots.ts"() {
     "use strict";
-    import_discord120 = __toESM(require_src2(), 1);
+    import_discord122 = __toESM(require_src2(), 1);
     init_embedStyle();
     SYMBOLS = [
       CE.slot_cherry.str,
@@ -215786,8 +215965,8 @@ var init_slots = __esm({
       CE.slot_diamond.str,
       CE.slot_seven.str
     ];
-    command98 = {
-      data: new import_discord120.SlashCommandBuilder().setName("slots").setDescription("Pull the slot machine."),
+    command100 = {
+      data: new import_discord122.SlashCommandBuilder().setName("slots").setDescription("Pull the slot machine."),
       async execute(interaction) {
         const reels = [spin(), spin(), spin()];
         const allMatch = reels[0] === reels[1] && reels[1] === reels[2];
@@ -215803,20 +215982,20 @@ ${outcome}`
         );
       }
     };
-    slots_default = command98;
+    slots_default = command100;
   }
 });
 
 // artifacts/api-server/src/discord/commands/slowmode.ts
-var import_discord121, command99, slowmode_default;
+var import_discord123, command101, slowmode_default;
 var init_slowmode = __esm({
   "artifacts/api-server/src/discord/commands/slowmode.ts"() {
     "use strict";
-    import_discord121 = __toESM(require_src2(), 1);
+    import_discord123 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command99 = {
-      data: new import_discord121.SlashCommandBuilder().setName("slowmode").setDescription("Set slowmode on a channel.").addIntegerOption((o) => o.setName("seconds").setDescription("Slowmode delay (0 = disable, max 21600)").setRequired(true).setMinValue(0).setMaxValue(21600)).addChannelOption((o) => o.setName("channel").setDescription("Target channel (defaults to current)").setRequired(false).addChannelTypes(import_discord121.ChannelType.GuildText)).setDMPermission(false),
+    command101 = {
+      data: new import_discord123.SlashCommandBuilder().setName("slowmode").setDescription("Set slowmode on a channel.").addIntegerOption((o) => o.setName("seconds").setDescription("Slowmode delay (0 = disable, max 21600)").setRequired(true).setMinValue(0).setMaxValue(21600)).addChannelOption((o) => o.setName("channel").setDescription("Target channel (defaults to current)").setRequired(false).addChannelTypes(import_discord123.ChannelType.GuildText)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "slowmode")) return;
         const seconds = interaction.options.getInteger("seconds", true);
@@ -215848,18 +216027,18 @@ ${buildBullets([
         });
       }
     };
-    slowmode_default = command99;
+    slowmode_default = command101;
   }
 });
 
 // artifacts/api-server/src/discord/commands/spooky.ts
-var import_discord122, command100, spooky_default;
+var import_discord124, command102, spooky_default;
 var init_spooky = __esm({
   "artifacts/api-server/src/discord/commands/spooky.ts"() {
     "use strict";
-    import_discord122 = __toESM(require_src2(), 1);
+    import_discord124 = __toESM(require_src2(), 1);
     init_prankFlow();
-    command100 = {
+    command102 = {
       data: buildPrankCommandData(
         "spooky",
         "Prefix every channel and role with a theme word. Solve to revert.",
@@ -215881,7 +216060,7 @@ var init_spooky = __esm({
             const roles = [];
             for (const ch of guild.channels.cache.values()) {
               if (!ch || ch.isThread()) continue;
-              if (ch.type === import_discord122.ChannelType.GuildCategory) continue;
+              if (ch.type === import_discord124.ChannelType.GuildCategory) continue;
               if (ch.name.startsWith(prefix)) continue;
               channels.push({ id: ch.id, name: ch.name });
             }
@@ -215923,19 +216102,19 @@ var init_spooky = __esm({
         });
       }
     };
-    spooky_default = command100;
+    spooky_default = command102;
   }
 });
 
 // artifacts/api-server/src/discord/commands/staff-database.ts
-var import_discord123, command101, staff_database_default;
+var import_discord125, command103, staff_database_default;
 var init_staff_database = __esm({
   "artifacts/api-server/src/discord/commands/staff-database.ts"() {
     "use strict";
-    import_discord123 = __toESM(require_src2(), 1);
+    import_discord125 = __toESM(require_src2(), 1);
     init_staff();
-    command101 = {
-      data: new import_discord123.SlashCommandBuilder().setName("staff-database").setDescription(
+    command103 = {
+      data: new import_discord125.SlashCommandBuilder().setName("staff-database").setDescription(
         "Show every staff role and the people who currently hold it."
       ).setDMPermission(false),
       async execute(interaction) {
@@ -215959,7 +216138,7 @@ var init_staff_database = __esm({
           );
           return;
         }
-        const embed = new import_discord123.EmbedBuilder().setAuthor({ name: `${guild.name} Staff Database`, iconURL: guild.iconURL() ?? void 0 }).setColor(2829617).setTimestamp(/* @__PURE__ */ new Date());
+        const embed = new import_discord125.EmbedBuilder().setAuthor({ name: `${guild.name} Staff Database`, iconURL: guild.iconURL() ?? void 0 }).setColor(2829617).setTimestamp(/* @__PURE__ */ new Date());
         let totalStaff = 0;
         for (const r2 of roles) {
           const holders = members.filter(
@@ -215983,7 +216162,7 @@ var init_staff_database = __esm({
         await interaction.editReply({ embeds: [embed] });
       }
     };
-    staff_database_default = command101;
+    staff_database_default = command103;
   }
 });
 
@@ -215995,16 +216174,16 @@ function describeRole(roleId, names) {
   if (!roleId) return "_no role_";
   return names.get(roleId) ?? `<@&${roleId}>`;
 }
-var import_discord124, command102, staff_history_default;
+var import_discord126, command104, staff_history_default;
 var init_staff_history = __esm({
   "artifacts/api-server/src/discord/commands/staff-history.ts"() {
     "use strict";
-    import_discord124 = __toESM(require_src2(), 1);
+    import_discord126 = __toESM(require_src2(), 1);
     init_staff();
     init_staffEmbed();
     init_embedStyle();
-    command102 = {
-      data: new import_discord124.SlashCommandBuilder().setName("staff-history").setDescription("Show a staff member's full promotion / demotion timeline.").setDMPermission(false).addUserOption(
+    command104 = {
+      data: new import_discord126.SlashCommandBuilder().setName("staff-history").setDescription("Show a staff member's full promotion / demotion timeline.").setDMPermission(false).addUserOption(
         (o) => o.setName("user").setDescription("Staff member (defaults to you)")
       ),
       async execute(interaction) {
@@ -216084,7 +216263,7 @@ var init_staff_history = __esm({
         await interaction.editReply({ embeds: [embed] });
       }
     };
-    staff_history_default = command102;
+    staff_history_default = command104;
   }
 });
 
@@ -216103,11 +216282,11 @@ async function resolveMainGuild(client, sourceGuild) {
   }
   return { guild: mainGuild, label: `main (${mainGuild.name})` };
 }
-var import_discord125, command103, sprofileCommand, staff_profile_default;
+var import_discord127, command105, sprofileCommand, staff_profile_default;
 var init_staff_profile = __esm({
   "artifacts/api-server/src/discord/commands/staff-profile.ts"() {
     "use strict";
-    import_discord125 = __toESM(require_src2(), 1);
+    import_discord127 = __toESM(require_src2(), 1);
     init_staff();
     init_quota();
     init_config();
@@ -216115,8 +216294,8 @@ var init_staff_profile = __esm({
     init_modstats();
     init_logger();
     init_embedStyle();
-    command103 = {
-      data: new import_discord125.SlashCommandBuilder().setName("staff-profile").setDescription(
+    command105 = {
+      data: new import_discord127.SlashCommandBuilder().setName("staff-profile").setDescription(
         "Staff profile: promotions, demotions, join date, main-server modstats & messages."
       ).setDMPermission(false).addUserOption(
         (o) => o.setName("user").setDescription("Staff member (defaults to you)").setRequired(false)
@@ -216172,7 +216351,7 @@ var init_staff_profile = __esm({
             getQuota(mainGuildId, target.id)
           ]);
           const totalMessages = mainQuota.weekly.reduce((sum, w) => sum + w.messages, 0);
-          const embed = new import_discord125.EmbedBuilder().setTitle(`Staff Profile \u2014 ${target.tag}`).setColor(10181046).setThumbnail(target.displayAvatarURL({ size: 256, extension: "png" })).setDescription(
+          const embed = new import_discord127.EmbedBuilder().setTitle(`Staff Profile \u2014 ${target.tag}`).setColor(10181046).setThumbnail(target.displayAvatarURL({ size: 256, extension: "png" })).setDescription(
             `<@${target.id}> \xB7 ${currentRoleLine}` + (profile?.terminated ? "\n*This staff member has been terminated.*" : "")
           ).addFields(
             {
@@ -216253,12 +216432,12 @@ var init_staff_profile = __esm({
       }
     };
     sprofileCommand = {
-      data: new import_discord125.SlashCommandBuilder().setName("sprofile").setDescription("View staff profile: promotions, demotions, join date, main-server modstats & messages.").setDMPermission(false).addUserOption(
+      data: new import_discord127.SlashCommandBuilder().setName("sprofile").setDescription("View staff profile: promotions, demotions, join date, main-server modstats & messages.").setDMPermission(false).addUserOption(
         (o) => o.setName("user").setDescription("Staff member (defaults to you)").setRequired(false)
       ),
-      execute: command103.execute
+      execute: command105.execute
     };
-    staff_profile_default = command103;
+    staff_profile_default = command105;
   }
 });
 
@@ -216347,7 +216526,7 @@ async function buildStaffReportEmbed(client, guildId) {
   const totalScored = rows3.length;
   const description = `**${totalScored}** staff scored. Higher = better.
 Score = **+${SCORE.promotion}** per promotion, **+${SCORE.fulfilledWeek}** per fulfilled quota week, **${SCORE.warning}** warning, **${SCORE.strike}** strike, **${SCORE.demotion}** demotion, **${SCORE.termination}** termination.`;
-  const embed = new import_discord126.EmbedBuilder().setTitle(`Staff Tier Report \u2014 ${guild.name}`).setColor(16705372).setDescription(description).setTimestamp(/* @__PURE__ */ new Date());
+  const embed = new import_discord128.EmbedBuilder().setTitle(`Staff Tier Report \u2014 ${guild.name}`).setColor(16705372).setDescription(description).setTimestamp(/* @__PURE__ */ new Date());
   const icon = guild.iconURL({ size: 256 });
   if (icon) embed.setThumbnail(icon);
   for (const tier of TIERS) {
@@ -216369,11 +216548,11 @@ Score = **+${SCORE.promotion}** per promotion, **+${SCORE.fulfilledWeek}** per f
   });
   return { ok: true, embed };
 }
-var import_discord126, SCORE, TIERS;
+var import_discord128, SCORE, TIERS;
 var init_staffReportBuilder = __esm({
   "artifacts/api-server/src/discord/utils/staffReportBuilder.ts"() {
     "use strict";
-    import_discord126 = __toESM(require_src2(), 1);
+    import_discord128 = __toESM(require_src2(), 1);
     init_staff();
     init_quota();
     init_config();
@@ -216398,17 +216577,17 @@ var init_staffReportBuilder = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/staff-report.ts
-var import_discord127, command104, staff_report_default;
+var import_discord129, command106, staff_report_default;
 var init_staff_report = __esm({
   "artifacts/api-server/src/discord/commands/staff-report.ts"() {
     "use strict";
-    import_discord127 = __toESM(require_src2(), 1);
+    import_discord129 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_logger();
     init_staffReportBuilder();
     init_embedStyle();
-    command104 = {
-      data: new import_discord127.SlashCommandBuilder().setName("staff-report").setDescription(
+    command106 = {
+      data: new import_discord129.SlashCommandBuilder().setName("staff-report").setDescription(
         "Tier list of staff by promotions, demotions, punishments, and quota completion (admin/manager only)."
       ).setDMPermission(false),
       async execute(interaction) {
@@ -216453,22 +216632,22 @@ var init_staff_report = __esm({
         }
       }
     };
-    staff_report_default = command104;
+    staff_report_default = command106;
   }
 });
 
 // artifacts/api-server/src/discord/commands/staff-role-add.ts
-var import_discord128, command105, removeCommand, staff_role_add_default;
+var import_discord130, command107, removeCommand, staff_role_add_default;
 var init_staff_role_add = __esm({
   "artifacts/api-server/src/discord/commands/staff-role-add.ts"() {
     "use strict";
-    import_discord128 = __toESM(require_src2(), 1);
+    import_discord130 = __toESM(require_src2(), 1);
     init_staff();
     init_staffPerms();
     init_whitelist();
     init_embedStyle();
-    command105 = {
-      data: new import_discord128.SlashCommandBuilder().setName("staff-role-add").setDescription("Register a Discord role as a staff role.").setDMPermission(false).addRoleOption(
+    command107 = {
+      data: new import_discord130.SlashCommandBuilder().setName("staff-role-add").setDescription("Register a Discord role as a staff role.").setDMPermission(false).addRoleOption(
         (o) => o.setName("role").setDescription("The role to register").setRequired(true)
       ).addIntegerOption(
         (o) => o.setName("position").setDescription(
@@ -216512,7 +216691,7 @@ ${lines.join("\n")}`
       }
     };
     removeCommand = {
-      data: new import_discord128.SlashCommandBuilder().setName("staff-role-remove").setDescription("Unregister a staff role.").setDMPermission(false).addRoleOption(
+      data: new import_discord130.SlashCommandBuilder().setName("staff-role-remove").setDescription("Unregister a staff role.").setDMPermission(false).addRoleOption(
         (o) => o.setName("role").setDescription("The role to unregister").setRequired(true)
       ),
       async execute(interaction) {
@@ -216539,19 +216718,19 @@ ${lines.join("\n")}`
         await interaction.reply(`${CE.delete.str} Unregistered <@&${role.id}>.`);
       }
     };
-    staff_role_add_default = command105;
+    staff_role_add_default = command107;
   }
 });
 
 // artifacts/api-server/src/discord/commands/staff-roles.ts
-var import_discord129, command106, staff_roles_default;
+var import_discord131, command108, staff_roles_default;
 var init_staff_roles = __esm({
   "artifacts/api-server/src/discord/commands/staff-roles.ts"() {
     "use strict";
-    import_discord129 = __toESM(require_src2(), 1);
+    import_discord131 = __toESM(require_src2(), 1);
     init_staff();
-    command106 = {
-      data: new import_discord129.SlashCommandBuilder().setName("staff-roles").setDescription("List the staff roles registered for this server.").setDMPermission(false),
+    command108 = {
+      data: new import_discord131.SlashCommandBuilder().setName("staff-roles").setDescription("List the staff roles registered for this server.").setDMPermission(false),
       async execute(interaction) {
         if (!interaction.inGuild() || !interaction.guildId) {
           await interaction.reply({
@@ -216569,26 +216748,26 @@ var init_staff_roles = __esm({
           return;
         }
         const lines = roles.map((r2) => `**${r2.position}.** <@&${r2.roleId}>`);
-        const embed = new import_discord129.EmbedBuilder().setTitle("Staff Roles").setColor(2829617).setDescription(lines.join("\n")).setFooter({ text: `${roles.length} role${roles.length === 1 ? "" : "s"}` });
+        const embed = new import_discord131.EmbedBuilder().setTitle("Staff Roles").setColor(2829617).setDescription(lines.join("\n")).setFooter({ text: `${roles.length} role${roles.length === 1 ? "" : "s"}` });
         await interaction.reply({ embeds: [embed] });
       }
     };
-    staff_roles_default = command106;
+    staff_roles_default = command108;
   }
 });
 
 // artifacts/api-server/src/discord/commands/staff-shop-score.ts
-var import_discord130, command107, staff_shop_score_default;
+var import_discord132, command109, staff_shop_score_default;
 var init_staff_shop_score = __esm({
   "artifacts/api-server/src/discord/commands/staff-shop-score.ts"() {
     "use strict";
-    import_discord130 = __toESM(require_src2(), 1);
+    import_discord132 = __toESM(require_src2(), 1);
     init_whitelist();
     init_staffPerms();
     init_shopStats();
     init_embedStyle();
-    command107 = {
-      data: new import_discord130.SlashCommandBuilder().setName("staff-shop-score").setDescription("View or edit a staff member's shop sales record.").setDMPermission(false).addSubcommand(
+    command109 = {
+      data: new import_discord132.SlashCommandBuilder().setName("staff-shop-score").setDescription("View or edit a staff member's shop sales record.").setDMPermission(false).addSubcommand(
         (sub) => sub.setName("view").setDescription("View a staff member's shop score and sales history.").addUserOption((o) => o.setName("staff").setDescription("Staff member").setRequired(true))
       ).addSubcommand(
         (sub) => sub.setName("edit").setDescription("Edit a sale record for a staff member (admin only).").addUserOption((o) => o.setName("staff").setDescription("Staff member").setRequired(true)).addStringOption((o) => o.setName("ticket_id").setDescription("Ticket ID of the sale to edit").setRequired(true)).addStringOption((o) => o.setName("item").setDescription("New item name (leave blank to keep)").setRequired(false)).addStringOption((o) => o.setName("price").setDescription("New price (leave blank to keep)").setRequired(false)).addIntegerOption((o) => o.setName("rating").setDescription("Override rating (1-10, 0 to remove)").setMinValue(0).setMaxValue(10).setRequired(false))
@@ -216652,7 +216831,7 @@ var init_staff_shop_score = __esm({
         }
       }
     };
-    staff_shop_score_default = command107;
+    staff_shop_score_default = command109;
   }
 });
 
@@ -216674,7 +216853,7 @@ async function postOrEditStaffReport(client, guildId) {
     });
     return { ok: false, reason: "channel-not-found" };
   }
-  if (channel.type !== import_discord131.ChannelType.GuildText && channel.type !== import_discord131.ChannelType.GuildAnnouncement) {
+  if (channel.type !== import_discord133.ChannelType.GuildText && channel.type !== import_discord133.ChannelType.GuildAnnouncement) {
     return { ok: false, reason: "channel-not-text" };
   }
   const textChannel = channel;
@@ -216712,11 +216891,11 @@ async function postOrEditStaffReport(client, guildId) {
     return { ok: false, reason: "no-permissions" };
   }
 }
-var import_discord131, ONE_HOUR_MS;
+var import_discord133, ONE_HOUR_MS;
 var init_staffReportPoster = __esm({
   "artifacts/api-server/src/discord/utils/staffReportPoster.ts"() {
     "use strict";
-    import_discord131 = __toESM(require_src2(), 1);
+    import_discord133 = __toESM(require_src2(), 1);
     init_logger();
     init_config();
     init_staffReportBuilder();
@@ -216725,23 +216904,23 @@ var init_staffReportPoster = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/staff-update-report.ts
-var import_discord132, command108, staff_update_report_default;
+var import_discord134, command110, staff_update_report_default;
 var init_staff_update_report = __esm({
   "artifacts/api-server/src/discord/commands/staff-update-report.ts"() {
     "use strict";
-    import_discord132 = __toESM(require_src2(), 1);
+    import_discord134 = __toESM(require_src2(), 1);
     init_staffPerms();
     init_logger();
     init_config();
     init_staffReportPoster();
     init_embedStyle();
-    command108 = {
-      data: new import_discord132.SlashCommandBuilder().setName("staff-update-report").setDescription(
+    command110 = {
+      data: new import_discord134.SlashCommandBuilder().setName("staff-update-report").setDescription(
         "Refresh the auto-updating staff tier report message immediately."
       ).addChannelOption(
         (o) => o.setName("channel").setDescription(
           "Set / change the channel where the report is auto-posted (every 2h)"
-        ).addChannelTypes(import_discord132.ChannelType.GuildText, import_discord132.ChannelType.GuildAnnouncement).setRequired(false)
+        ).addChannelTypes(import_discord134.ChannelType.GuildText, import_discord134.ChannelType.GuildAnnouncement).setRequired(false)
       ).addBooleanOption(
         (o) => o.setName("clear").setDescription("Stop auto-updating and forget the channel").setRequired(false)
       ).setDMPermission(false),
@@ -216797,7 +216976,7 @@ var init_staff_update_report = __esm({
         }
       }
     };
-    staff_update_report_default = command108;
+    staff_update_report_default = command110;
   }
 });
 
@@ -216812,22 +216991,22 @@ function winner(board) {
 }
 function rows2(board, finished2) {
   return [0, 3, 6].map(
-    (start) => new import_discord133.ActionRowBuilder().addComponents(
+    (start) => new import_discord135.ActionRowBuilder().addComponents(
       [0, 1, 2].map((offset) => {
         const idx = start + offset;
         const cell = board[idx];
-        return new import_discord133.ButtonBuilder().setCustomId(`ttt:${idx}`).setLabel(cell ?? "\xB7").setStyle(
-          cell === "X" ? import_discord133.ButtonStyle.Danger : cell === "O" ? import_discord133.ButtonStyle.Primary : import_discord133.ButtonStyle.Secondary
+        return new import_discord135.ButtonBuilder().setCustomId(`ttt:${idx}`).setLabel(cell ?? "\xB7").setStyle(
+          cell === "X" ? import_discord135.ButtonStyle.Danger : cell === "O" ? import_discord135.ButtonStyle.Primary : import_discord135.ButtonStyle.Secondary
         ).setDisabled(finished2 || cell !== null);
       })
     )
   );
 }
-var import_discord133, LINES, command109, tictactoe_default;
+var import_discord135, LINES, command111, tictactoe_default;
 var init_tictactoe = __esm({
   "artifacts/api-server/src/discord/commands/tictactoe.ts"() {
     "use strict";
-    import_discord133 = __toESM(require_src2(), 1);
+    import_discord135 = __toESM(require_src2(), 1);
     init_embedStyle();
     LINES = [
       [0, 1, 2],
@@ -216839,8 +217018,8 @@ var init_tictactoe = __esm({
       [0, 4, 8],
       [2, 4, 6]
     ];
-    command109 = {
-      data: new import_discord133.SlashCommandBuilder().setName("tictactoe").setDescription("Play Tic-Tac-Toe against another user.").addUserOption(
+    command111 = {
+      data: new import_discord135.SlashCommandBuilder().setName("tictactoe").setDescription("Play Tic-Tac-Toe against another user.").addUserOption(
         (o) => o.setName("opponent").setDescription("The user you want to play against").setRequired(true)
       ),
       async execute(interaction) {
@@ -216874,7 +217053,7 @@ ${header()}`,
         const message = reply;
         if (!message) return;
         const collector = message.createMessageComponentCollector({
-          componentType: import_discord133.ComponentType.Button,
+          componentType: import_discord135.ComponentType.Button,
           time: 5 * 6e4
         });
         collector.on("collect", async (i2) => {
@@ -216908,7 +217087,7 @@ ${header()}`,
         });
       }
     };
-    tictactoe_default = command109;
+    tictactoe_default = command111;
   }
 });
 
@@ -216919,11 +217098,11 @@ function parseDuration2(str) {
   const ms = parseFloat(m2[1]) * (UNIT_MS2[m2[2].toLowerCase()] ?? 0);
   return ms > 0 && ms <= MAX_MS ? Math.round(ms) : null;
 }
-var import_discord134, UNIT_MS2, MAX_MS, command110, timeout_default;
+var import_discord136, UNIT_MS2, MAX_MS, command112, timeout_default;
 var init_timeout = __esm({
   "artifacts/api-server/src/discord/commands/timeout.ts"() {
     "use strict";
-    import_discord134 = __toESM(require_src2(), 1);
+    import_discord136 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_modstats();
@@ -216933,8 +217112,8 @@ var init_timeout = __esm({
     init_punishDM();
     UNIT_MS2 = { s: 1e3, m: 6e4, h: 36e5, d: 864e5 };
     MAX_MS = 28 * 864e5;
-    command110 = {
-      data: new import_discord134.SlashCommandBuilder().setName("timeout").setDescription("Apply a Discord native timeout (blocks all interactions).").addUserOption((o) => o.setName("user").setDescription("User to timeout").setRequired(true)).addStringOption((o) => o.setName("duration").setDescription("Duration e.g. 30m, 2h, 1d (max 28d)").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(true).setMaxLength(512)).addStringOption((o) => o.setName("proof").setDescription("Proof URL").setRequired(false).setMaxLength(512)).setDMPermission(false),
+    command112 = {
+      data: new import_discord136.SlashCommandBuilder().setName("timeout").setDescription("Apply a Discord native timeout (blocks all interactions).").addUserOption((o) => o.setName("user").setDescription("User to timeout").setRequired(true)).addStringOption((o) => o.setName("duration").setDescription("Duration e.g. 30m, 2h, 1d (max 28d)").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(true).setMaxLength(512)).addStringOption((o) => o.setName("proof").setDescription("Proof URL").setRequired(false).setMaxLength(512)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "timeout")) return;
         if (!interaction.guild || !interaction.guildId) return;
@@ -217010,7 +217189,7 @@ var init_timeout = __esm({
         const modChannelId = cfg.channels.moderation;
         if (modChannelId) {
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-          if (modChannel && modChannel.type === import_discord134.ChannelType.GuildText) {
+          if (modChannel && modChannel.type === import_discord136.ChannelType.GuildText) {
             await modChannel.send({
               embeds: [modActionEmbed({
                 action: caseNumber ? `Timeout (Case #${caseNumber})` : "Timeout",
@@ -217030,16 +217209,16 @@ var init_timeout = __esm({
         }
       }
     };
-    timeout_default = command110;
+    timeout_default = command112;
   }
 });
 
 // artifacts/api-server/src/discord/commands/trivia.ts
-var import_discord135, QUESTIONS, command111, trivia_default;
+var import_discord137, QUESTIONS, command113, trivia_default;
 var init_trivia = __esm({
   "artifacts/api-server/src/discord/commands/trivia.ts"() {
     "use strict";
-    import_discord135 = __toESM(require_src2(), 1);
+    import_discord137 = __toESM(require_src2(), 1);
     init_emojis();
     init_embedStyle();
     QUESTIONS = [
@@ -217059,14 +217238,14 @@ var init_trivia = __esm({
       { q: "What is the longest river in the world?", choices: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: 1 },
       { q: "Who developed the theory of relativity?", choices: ["Newton", "Einstein", "Tesla", "Hawking"], answer: 1 }
     ];
-    command111 = {
-      data: new import_discord135.SlashCommandBuilder().setName("trivia").setDescription("Answer a random trivia question."),
+    command113 = {
+      data: new import_discord137.SlashCommandBuilder().setName("trivia").setDescription("Answer a random trivia question."),
       async execute(interaction) {
         const question = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
         const labels = ["A", "B", "C", "D"];
-        const row2 = new import_discord135.ActionRowBuilder().addComponents(
+        const row2 = new import_discord137.ActionRowBuilder().addComponents(
           labels.map(
-            (label, idx) => new import_discord135.ButtonBuilder().setCustomId(`trivia:${idx}`).setLabel(label).setStyle(import_discord135.ButtonStyle.Primary)
+            (label, idx) => new import_discord137.ButtonBuilder().setCustomId(`trivia:${idx}`).setLabel(label).setStyle(import_discord137.ButtonStyle.Primary)
           )
         );
         const body = `**${question.q}**
@@ -217081,7 +217260,7 @@ var init_trivia = __esm({
         if (!message) return;
         try {
           const click = await message.awaitMessageComponent({
-            componentType: import_discord135.ComponentType.Button,
+            componentType: import_discord137.ComponentType.Button,
             time: 3e4,
             filter: (i2) => i2.user.id === interaction.user.id
           });
@@ -217102,7 +217281,7 @@ ${CE.clock.str} Time's up. The answer was **${labels[question.answer]}. ${questi
         }
       }
     };
-    trivia_default = command111;
+    trivia_default = command113;
   }
 });
 
@@ -217122,7 +217301,7 @@ async function createServerInvite(interaction) {
   if (!channels) return null;
   const me = guild.members.me;
   for (const ch of channels.values()) {
-    if (!ch || ch.type !== import_discord136.ChannelType.GuildText) continue;
+    if (!ch || ch.type !== import_discord138.ChannelType.GuildText) continue;
     if (!me) continue;
     if (!ch.permissionsFor(me)?.has("CreateInstantInvite")) continue;
     try {
@@ -217134,15 +217313,15 @@ async function createServerInvite(interaction) {
   }
   return null;
 }
-var import_discord136, command112, unban_all_default;
+var import_discord138, command114, unban_all_default;
 var init_unban_all = __esm({
   "artifacts/api-server/src/discord/commands/unban-all.ts"() {
     "use strict";
-    import_discord136 = __toESM(require_src2(), 1);
+    import_discord138 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command112 = {
-      data: new import_discord136.SlashCommandBuilder().setName("unban-all").setDescription("Unban all currently banned users from this server.").setDMPermission(false),
+    command114 = {
+      data: new import_discord138.SlashCommandBuilder().setName("unban-all").setDescription("Unban all currently banned users from this server.").setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "ban")) return;
         if (!interaction.guild || !interaction.guildId) return;
@@ -217176,23 +217355,23 @@ var init_unban_all = __esm({
         );
       }
     };
-    unban_all_default = command112;
+    unban_all_default = command114;
   }
 });
 
 // artifacts/api-server/src/discord/commands/unban.ts
-var import_discord137, command113, unban_default;
+var import_discord139, command115, unban_default;
 var init_unban = __esm({
   "artifacts/api-server/src/discord/commands/unban.ts"() {
     "use strict";
-    import_discord137 = __toESM(require_src2(), 1);
+    import_discord139 = __toESM(require_src2(), 1);
     init_gate();
     init_modstats();
     init_embedStyle();
     init_punishDM();
     init_config();
-    command113 = {
-      data: new import_discord137.SlashCommandBuilder().setName("unban").setDescription("Unban a user from this server.").addStringOption(
+    command115 = {
+      data: new import_discord139.SlashCommandBuilder().setName("unban").setDescription("Unban a user from this server.").addStringOption(
         (o) => o.setName("user_id").setDescription("The user ID to unban").setRequired(true)
       ).addStringOption(
         (o) => o.setName("reason").setDescription("Reason for the unban").setRequired(false).setMaxLength(512)
@@ -217258,7 +217437,7 @@ ${buildBullets([
         const modChannelId = cfg.channels.moderation;
         if (modChannelId) {
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-          if (modChannel && modChannel.type === import_discord137.ChannelType.GuildText) {
+          if (modChannel && modChannel.type === import_discord139.ChannelType.GuildText) {
             await modChannel.send({
               embeds: [prettyEmbed({
                 title: `Unban${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
@@ -217279,22 +217458,22 @@ ${buildBullets([
         }
       }
     };
-    unban_default = command113;
+    unban_default = command115;
   }
 });
 
 // artifacts/api-server/src/discord/commands/unclaim.ts
-var import_discord138, command114, unclaim_default;
+var import_discord140, command116, unclaim_default;
 var init_unclaim = __esm({
   "artifacts/api-server/src/discord/commands/unclaim.ts"() {
     "use strict";
-    import_discord138 = __toESM(require_src2(), 1);
+    import_discord140 = __toESM(require_src2(), 1);
     init_shopTickets();
     init_shop();
     init_staff();
     init_embedStyle();
-    command114 = {
-      data: new import_discord138.SlashCommandBuilder().setName("unclaim").setDescription("Unclaim this shop ticket so another staff member can take it.").setDMPermission(false),
+    command116 = {
+      data: new import_discord140.SlashCommandBuilder().setName("unclaim").setDescription("Unclaim this shop ticket so another staff member can take it.").setDMPermission(false),
       async execute(interaction) {
         if (!interaction.guild || !interaction.guildId || !interaction.channelId) return;
         const ticket = await getTicketByChannel(interaction.channelId);
@@ -217328,30 +217507,30 @@ var init_unclaim = __esm({
         const channel = interaction.channel;
         try {
           const overwrites = [
-            { id: interaction.guild.roles.everyone.id, deny: [import_discord138.PermissionFlagsBits.ViewChannel] },
+            { id: interaction.guild.roles.everyone.id, deny: [import_discord140.PermissionFlagsBits.ViewChannel] },
             {
               id: ticket.userId,
               allow: [
-                import_discord138.PermissionFlagsBits.ViewChannel,
-                import_discord138.PermissionFlagsBits.SendMessages,
-                import_discord138.PermissionFlagsBits.ReadMessageHistory
+                import_discord140.PermissionFlagsBits.ViewChannel,
+                import_discord140.PermissionFlagsBits.SendMessages,
+                import_discord140.PermissionFlagsBits.ReadMessageHistory
               ]
             },
             ...ss.adminRoleIds.map((r2) => ({
               id: r2,
               allow: [
-                import_discord138.PermissionFlagsBits.ViewChannel,
-                import_discord138.PermissionFlagsBits.SendMessages,
-                import_discord138.PermissionFlagsBits.ReadMessageHistory,
-                import_discord138.PermissionFlagsBits.ManageMessages
+                import_discord140.PermissionFlagsBits.ViewChannel,
+                import_discord140.PermissionFlagsBits.SendMessages,
+                import_discord140.PermissionFlagsBits.ReadMessageHistory,
+                import_discord140.PermissionFlagsBits.ManageMessages
               ]
             })),
             ...allModRoleIds.map((r2) => ({
               id: r2,
               allow: [
-                import_discord138.PermissionFlagsBits.ViewChannel,
-                import_discord138.PermissionFlagsBits.SendMessages,
-                import_discord138.PermissionFlagsBits.ReadMessageHistory
+                import_discord140.PermissionFlagsBits.ViewChannel,
+                import_discord140.PermissionFlagsBits.SendMessages,
+                import_discord140.PermissionFlagsBits.ReadMessageHistory
               ]
             }))
           ];
@@ -217359,9 +217538,9 @@ var init_unclaim = __esm({
             overwrites.push({
               id: uid,
               allow: [
-                import_discord138.PermissionFlagsBits.ViewChannel,
-                import_discord138.PermissionFlagsBits.SendMessages,
-                import_discord138.PermissionFlagsBits.ReadMessageHistory
+                import_discord140.PermissionFlagsBits.ViewChannel,
+                import_discord140.PermissionFlagsBits.SendMessages,
+                import_discord140.PermissionFlagsBits.ReadMessageHistory
               ]
             });
           }
@@ -217379,9 +217558,9 @@ var init_unclaim = __esm({
             (m2) => m2.author.id === interaction.client.user?.id && m2.components.length > 0
           );
           if (controlMsg) {
-            const row2 = new import_discord138.ActionRowBuilder().addComponents(
-              new import_discord138.ButtonBuilder().setCustomId(`shop:claim:${interaction.guildId}:${ticket.ticketId}`).setLabel("Claim Ticket").setStyle(import_discord138.ButtonStyle.Primary).setEmoji(CE.shoppingcart.str),
-              new import_discord138.ButtonBuilder().setCustomId(`shop:precl:${interaction.guildId}:${ticket.ticketId}`).setLabel("Close Ticket").setStyle(import_discord138.ButtonStyle.Danger).setEmoji(CE.cash.str)
+            const row2 = new import_discord140.ActionRowBuilder().addComponents(
+              new import_discord140.ButtonBuilder().setCustomId(`shop:claim:${interaction.guildId}:${ticket.ticketId}`).setLabel("Claim Ticket").setStyle(import_discord140.ButtonStyle.Primary).setEmoji(CE.shoppingcart.str),
+              new import_discord140.ButtonBuilder().setCustomId(`shop:precl:${interaction.guildId}:${ticket.ticketId}`).setLabel("Close Ticket").setStyle(import_discord140.ButtonStyle.Danger).setEmoji(CE.cash.str)
             );
             await controlMsg.edit({ components: [row2] }).catch(() => {
             });
@@ -217394,24 +217573,24 @@ var init_unclaim = __esm({
         );
       }
     };
-    unclaim_default = command114;
+    unclaim_default = command116;
   }
 });
 
 // artifacts/api-server/src/discord/commands/unjail.ts
-var import_discord139, command115, unjail_default;
+var import_discord141, command117, unjail_default;
 var init_unjail = __esm({
   "artifacts/api-server/src/discord/commands/unjail.ts"() {
     "use strict";
-    import_discord139 = __toESM(require_src2(), 1);
+    import_discord141 = __toESM(require_src2(), 1);
     init_gate();
     init_jail();
     init_modstats();
     init_embedStyle();
     init_config();
     init_cases();
-    command115 = {
-      data: new import_discord139.SlashCommandBuilder().setName("unjail").setDescription("Release a jailed user (removes the Jailed role).").addUserOption(
+    command117 = {
+      data: new import_discord141.SlashCommandBuilder().setName("unjail").setDescription("Release a jailed user (removes the Jailed role).").addUserOption(
         (o) => o.setName("user").setDescription("The user to release").setRequired(true)
       ).addStringOption(
         (o) => o.setName("reason").setDescription("Reason for the release").setRequired(false).setMaxLength(512)
@@ -217498,7 +217677,7 @@ ${buildBullets([
         const modChannelId = cfg.channels.moderation;
         if (modChannelId) {
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-          if (modChannel && modChannel.type === import_discord139.ChannelType.GuildText) {
+          if (modChannel && modChannel.type === import_discord141.ChannelType.GuildText) {
             await modChannel.send({
               embeds: [prettyEmbed({
                 title: `Unjail${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
@@ -217519,20 +217698,20 @@ ${buildBullets([
         }
       }
     };
-    unjail_default = command115;
+    unjail_default = command117;
   }
 });
 
 // artifacts/api-server/src/discord/commands/unlock.ts
-var import_discord140, command116, unlock_default;
+var import_discord142, command118, unlock_default;
 var init_unlock = __esm({
   "artifacts/api-server/src/discord/commands/unlock.ts"() {
     "use strict";
-    import_discord140 = __toESM(require_src2(), 1);
+    import_discord142 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command116 = {
-      data: new import_discord140.SlashCommandBuilder().setName("unlock").setDescription("Unlock a previously locked channel.").addChannelOption((o) => o.setName("channel").setDescription("Channel to unlock (defaults to current)").setRequired(false).addChannelTypes(import_discord140.ChannelType.GuildText)).addStringOption((o) => o.setName("reason").setDescription("Reason for unlocking").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command118 = {
+      data: new import_discord142.SlashCommandBuilder().setName("unlock").setDescription("Unlock a previously locked channel.").addChannelOption((o) => o.setName("channel").setDescription("Channel to unlock (defaults to current)").setRequired(false).addChannelTypes(import_discord142.ChannelType.GuildText)).addStringOption((o) => o.setName("reason").setDescription("Reason for unlocking").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "unlock")) return;
         if (!interaction.guild) return;
@@ -217570,23 +217749,23 @@ ${buildBullets([
         }
       }
     };
-    unlock_default = command116;
+    unlock_default = command118;
   }
 });
 
 // artifacts/api-server/src/discord/commands/unmute.ts
-var import_discord141, command117, unmute_default;
+var import_discord143, command119, unmute_default;
 var init_unmute = __esm({
   "artifacts/api-server/src/discord/commands/unmute.ts"() {
     "use strict";
-    import_discord141 = __toESM(require_src2(), 1);
+    import_discord143 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_config();
     init_cases();
     init_modstats();
-    command117 = {
-      data: new import_discord141.SlashCommandBuilder().setName("unmute").setDescription("Remove a timeout (mute) from a user.").addUserOption(
+    command119 = {
+      data: new import_discord143.SlashCommandBuilder().setName("unmute").setDescription("Remove a timeout (mute) from a user.").addUserOption(
         (option) => option.setName("user").setDescription("The user to unmute").setRequired(true)
       ).setDMPermission(false),
       async execute(interaction) {
@@ -217643,7 +217822,7 @@ ${buildBullets([
           const modChannelId = cfg.channels.moderation;
           if (modChannelId && modChannelId !== interaction.channelId && interaction.guild) {
             const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-            if (modChannel && modChannel.type === import_discord141.ChannelType.GuildText) {
+            if (modChannel && modChannel.type === import_discord143.ChannelType.GuildText) {
               await modChannel.send({
                 embeds: [prettyEmbed({
                   title: `Unmute${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
@@ -217666,23 +217845,23 @@ ${buildBullets([
         }
       }
     };
-    unmute_default = command117;
+    unmute_default = command119;
   }
 });
 
 // artifacts/api-server/src/discord/commands/untimeout.ts
-var import_discord142, command118, untimeout_default;
+var import_discord144, command120, untimeout_default;
 var init_untimeout = __esm({
   "artifacts/api-server/src/discord/commands/untimeout.ts"() {
     "use strict";
-    import_discord142 = __toESM(require_src2(), 1);
+    import_discord144 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
     init_config();
     init_cases();
     init_modstats();
-    command118 = {
-      data: new import_discord142.SlashCommandBuilder().setName("untimeout").setDescription("Remove a Discord native timeout from a user.").addUserOption((o) => o.setName("user").setDescription("User to un-timeout").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command120 = {
+      data: new import_discord144.SlashCommandBuilder().setName("untimeout").setDescription("Remove a Discord native timeout from a user.").addUserOption((o) => o.setName("user").setDescription("User to un-timeout").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "untimeout")) return;
         if (!interaction.guild) return;
@@ -217731,7 +217910,7 @@ ${buildBullets([
         const modChannelId = cfg.channels.moderation;
         if (modChannelId && interaction.guild) {
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-          if (modChannel && modChannel.type === import_discord142.ChannelType.GuildText) {
+          if (modChannel && modChannel.type === import_discord144.ChannelType.GuildText) {
             await modChannel.send({
               embeds: [prettyEmbed({
                 title: `Untimeout${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
@@ -217752,7 +217931,7 @@ ${buildBullets([
         }
       }
     };
-    untimeout_default = command118;
+    untimeout_default = command120;
   }
 });
 
@@ -217837,19 +218016,19 @@ async function removeOneWarning(guildId, userId) {
   await fs7.writeFile(FILE_PATH25, JSON.stringify(parsed, null, 2), "utf8");
   return removed;
 }
-var import_discord143, FILE_PATH25, command119, unwarn_default;
+var import_discord145, FILE_PATH25, command121, unwarn_default;
 var init_unwarn = __esm({
   "artifacts/api-server/src/discord/commands/unwarn.ts"() {
     "use strict";
-    import_discord143 = __toESM(require_src2(), 1);
+    import_discord145 = __toESM(require_src2(), 1);
     init_gate();
     init_warnings();
     init_modstats();
     init_embedStyle();
     init_paths();
     FILE_PATH25 = dataFile("warnings.json");
-    command119 = {
-      data: new import_discord143.SlashCommandBuilder().setName("unwarn").setDescription("Remove a warning from a user (most recent, or all).").addUserOption(
+    command121 = {
+      data: new import_discord145.SlashCommandBuilder().setName("unwarn").setDescription("Remove a warning from a user (most recent, or all).").addUserOption(
         (o) => o.setName("user").setDescription("The warned user").setRequired(true)
       ).addBooleanOption(
         (o) => o.setName("all").setDescription("Remove all warnings instead of just the latest").setRequired(false)
@@ -217915,18 +218094,18 @@ var init_unwarn = __esm({
         });
       }
     };
-    unwarn_default = command119;
+    unwarn_default = command121;
   }
 });
 
 // artifacts/api-server/src/discord/commands/upsideDown.ts
-var import_discord144, command120, upsideDown_default;
+var import_discord146, command122, upsideDown_default;
 var init_upsideDown = __esm({
   "artifacts/api-server/src/discord/commands/upsideDown.ts"() {
     "use strict";
-    import_discord144 = __toESM(require_src2(), 1);
+    import_discord146 = __toESM(require_src2(), 1);
     init_prankFlow();
-    command120 = {
+    command122 = {
       data: buildPrankCommandData(
         "upside-down",
         "Reverse every channel name. Solve to flip them back."
@@ -217941,7 +218120,7 @@ var init_upsideDown = __esm({
             const items = [];
             for (const ch of guild.channels.cache.values()) {
               if (!ch || ch.isThread()) continue;
-              if (ch.type === import_discord144.ChannelType.GuildCategory) continue;
+              if (ch.type === import_discord146.ChannelType.GuildCategory) continue;
               const reversed = [...ch.name].reverse().join("");
               if (reversed === ch.name) continue;
               items.push({ id: ch.id, originalName: ch.name, newName: reversed });
@@ -217970,19 +218149,19 @@ var init_upsideDown = __esm({
         });
       }
     };
-    upsideDown_default = command120;
+    upsideDown_default = command122;
   }
 });
 
 // artifacts/api-server/src/discord/commands/userinfo.ts
-var import_discord145, command121, userinfo_default;
+var import_discord147, command123, userinfo_default;
 var init_userinfo = __esm({
   "artifacts/api-server/src/discord/commands/userinfo.ts"() {
     "use strict";
-    import_discord145 = __toESM(require_src2(), 1);
+    import_discord147 = __toESM(require_src2(), 1);
     init_embedStyle();
-    command121 = {
-      data: new import_discord145.SlashCommandBuilder().setName("userinfo").setDescription("Show detailed identity, server join history, and roles for a user.").addUserOption(
+    command123 = {
+      data: new import_discord147.SlashCommandBuilder().setName("userinfo").setDescription("Show detailed identity, server join history, and roles for a user.").addUserOption(
         (option) => option.setName("user").setDescription("The user to look up (defaults to you)").setRequired(false)
       ),
       async execute(interaction) {
@@ -218033,20 +218212,20 @@ Unlock full community automation with **Zenith Premium**.`,
         });
       }
     };
-    userinfo_default = command121;
+    userinfo_default = command123;
   }
 });
 
 // artifacts/api-server/src/discord/commands/vcdeafen.ts
-var import_discord146, command122, vcdeafen_default;
+var import_discord148, command124, vcdeafen_default;
 var init_vcdeafen = __esm({
   "artifacts/api-server/src/discord/commands/vcdeafen.ts"() {
     "use strict";
-    import_discord146 = __toESM(require_src2(), 1);
+    import_discord148 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command122 = {
-      data: new import_discord146.SlashCommandBuilder().setName("vcdeafen").setDescription("Server-deafen or undeafen a member in voice chat.").addUserOption((o) => o.setName("user").setDescription("Member to deafen/undeafen").setRequired(true)).addBooleanOption((o) => o.setName("deafen").setDescription("True = deafen, False = undeafen").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command124 = {
+      data: new import_discord148.SlashCommandBuilder().setName("vcdeafen").setDescription("Server-deafen or undeafen a member in voice chat.").addUserOption((o) => o.setName("user").setDescription("Member to deafen/undeafen").setRequired(true)).addBooleanOption((o) => o.setName("deafen").setDescription("True = deafen, False = undeafen").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "vcdeafen")) return;
         if (!interaction.guild) return;
@@ -218085,20 +218264,20 @@ ${buildBullets([
         });
       }
     };
-    vcdeafen_default = command122;
+    vcdeafen_default = command124;
   }
 });
 
 // artifacts/api-server/src/discord/commands/vckick.ts
-var import_discord147, command123, vckick_default;
+var import_discord149, command125, vckick_default;
 var init_vckick = __esm({
   "artifacts/api-server/src/discord/commands/vckick.ts"() {
     "use strict";
-    import_discord147 = __toESM(require_src2(), 1);
+    import_discord149 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command123 = {
-      data: new import_discord147.SlashCommandBuilder().setName("vckick").setDescription("Disconnect a member from their voice channel.").addUserOption((o) => o.setName("user").setDescription("Member to disconnect").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command125 = {
+      data: new import_discord149.SlashCommandBuilder().setName("vckick").setDescription("Disconnect a member from their voice channel.").addUserOption((o) => o.setName("user").setDescription("Member to disconnect").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "vckick")) return;
         if (!interaction.guild) return;
@@ -218137,20 +218316,20 @@ ${buildBullets([
         });
       }
     };
-    vckick_default = command123;
+    vckick_default = command125;
   }
 });
 
 // artifacts/api-server/src/discord/commands/vcmove.ts
-var import_discord148, command124, vcmove_default;
+var import_discord150, command126, vcmove_default;
 var init_vcmove = __esm({
   "artifacts/api-server/src/discord/commands/vcmove.ts"() {
     "use strict";
-    import_discord148 = __toESM(require_src2(), 1);
+    import_discord150 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command124 = {
-      data: new import_discord148.SlashCommandBuilder().setName("vcmove").setDescription("Move a member to a different voice channel.").addUserOption((o) => o.setName("user").setDescription("Member to move").setRequired(true)).addChannelOption((o) => o.setName("channel").setDescription("Destination voice channel").setRequired(true).addChannelTypes(import_discord148.ChannelType.GuildVoice, import_discord148.ChannelType.GuildStageVoice)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command126 = {
+      data: new import_discord150.SlashCommandBuilder().setName("vcmove").setDescription("Move a member to a different voice channel.").addUserOption((o) => o.setName("user").setDescription("Member to move").setRequired(true)).addChannelOption((o) => o.setName("channel").setDescription("Destination voice channel").setRequired(true).addChannelTypes(import_discord150.ChannelType.GuildVoice, import_discord150.ChannelType.GuildStageVoice)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "vcmove")) return;
         if (!interaction.guild) return;
@@ -218190,20 +218369,20 @@ ${buildBullets([
         });
       }
     };
-    vcmove_default = command124;
+    vcmove_default = command126;
   }
 });
 
 // artifacts/api-server/src/discord/commands/vcmute.ts
-var import_discord149, command125, vcmute_default;
+var import_discord151, command127, vcmute_default;
 var init_vcmute = __esm({
   "artifacts/api-server/src/discord/commands/vcmute.ts"() {
     "use strict";
-    import_discord149 = __toESM(require_src2(), 1);
+    import_discord151 = __toESM(require_src2(), 1);
     init_gate();
     init_embedStyle();
-    command125 = {
-      data: new import_discord149.SlashCommandBuilder().setName("vcmute").setDescription("Server-mute or unmute a member in voice chat.").addUserOption((o) => o.setName("user").setDescription("Member to mute/unmute").setRequired(true)).addBooleanOption((o) => o.setName("mute").setDescription("True = mute, False = unmute").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
+    command127 = {
+      data: new import_discord151.SlashCommandBuilder().setName("vcmute").setDescription("Server-mute or unmute a member in voice chat.").addUserOption((o) => o.setName("user").setDescription("Member to mute/unmute").setRequired(true)).addBooleanOption((o) => o.setName("mute").setDescription("True = mute, False = unmute").setRequired(true)).addStringOption((o) => o.setName("reason").setDescription("Reason").setRequired(false).setMaxLength(256)).setDMPermission(false),
       async execute(interaction) {
         if (!await ensureWhitelisted(interaction, "vcmute")) return;
         if (!interaction.guild) return;
@@ -218241,7 +218420,7 @@ var init_vcmute = __esm({
         });
       }
     };
-    vcmute_default = command125;
+    vcmute_default = command127;
   }
 });
 
@@ -218293,22 +218472,22 @@ var init_verification_config = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/verify-config.ts
-var import_discord150, command126, verify_config_default;
+var import_discord152, command128, verify_config_default;
 var init_verify_config = __esm({
   "artifacts/api-server/src/discord/commands/verify-config.ts"() {
     "use strict";
-    import_discord150 = __toESM(require_src2(), 1);
+    import_discord152 = __toESM(require_src2(), 1);
     init_verification_config();
     init_embedStyle();
-    command126 = {
-      data: new import_discord150.SlashCommandBuilder().setName("verify-config").setDescription("Configure verification settings for this server (owner only)").addRoleOption(
+    command128 = {
+      data: new import_discord152.SlashCommandBuilder().setName("verify-config").setDescription("Configure verification settings for this server (owner only)").addRoleOption(
         (option) => option.setName("role").setDescription("Role to assign to pulled members").setRequired(false)
       ).addBooleanOption(
         (option) => option.setName("use-modal").setDescription("Use modal with button instead of direct confirmation").setRequired(false)
       ).addStringOption(
         (option) => option.setName("custom-message").setDescription("Custom message for verification (leave empty to reset)").setRequired(false)
       ).addChannelOption(
-        (option) => option.setName("verify-channel").setDescription("Channel where verification prompt will be posted").addChannelTypes(import_discord150.ChannelType.GuildText).setRequired(false)
+        (option) => option.setName("verify-channel").setDescription("Channel where verification prompt will be posted").addChannelTypes(import_discord152.ChannelType.GuildText).setRequired(false)
       ).setDMPermission(false),
       async execute(interaction) {
         if (!interaction.inGuild() || !interaction.guildId) {
@@ -218381,8 +218560,8 @@ var init_verify_config = __esm({
           try {
             const channel = await interaction.guild.channels.fetch(updates.verifyChannelId);
             const promptMessage = updates.customMessage || "**Verify yourself to access the server!**\n\nClick the button below to start verification.";
-            const row2 = new import_discord150.ActionRowBuilder().addComponents(
-              new import_discord150.ButtonBuilder().setCustomId("verify_prompt").setLabel("Verify Now").setStyle(import_discord150.ButtonStyle.Success)
+            const row2 = new import_discord152.ActionRowBuilder().addComponents(
+              new import_discord152.ButtonBuilder().setCustomId("verify_prompt").setLabel("Verify Now").setStyle(import_discord152.ButtonStyle.Success)
             );
             await channel.send({
               content: promptMessage,
@@ -218399,21 +218578,21 @@ var init_verify_config = __esm({
         });
       }
     };
-    verify_config_default = command126;
+    verify_config_default = command128;
   }
 });
 
 // artifacts/api-server/src/discord/commands/verify-owner-commands.ts
-var import_discord151, command127, verify_owner_commands_default;
+var import_discord153, command129, verify_owner_commands_default;
 var init_verify_owner_commands = __esm({
   "artifacts/api-server/src/discord/commands/verify-owner-commands.ts"() {
     "use strict";
-    import_discord151 = __toESM(require_src2(), 1);
+    import_discord153 = __toESM(require_src2(), 1);
     init_whitelist();
     init_config();
     init_embedStyle();
-    command127 = {
-      data: new import_discord151.SlashCommandBuilder().setName("verify-owner-commands").setDescription(
+    command129 = {
+      data: new import_discord153.SlashCommandBuilder().setName("verify-owner-commands").setDescription(
         "Owner-only: enable all commands for every server member without setting up a verified role."
       ).setDMPermission(false),
       async execute(interaction) {
@@ -218456,7 +218635,7 @@ Server owners and administrators were already unrestricted \u2014 this unlocks c
         });
       }
     };
-    verify_owner_commands_default = command127;
+    verify_owner_commands_default = command129;
   }
 });
 
@@ -218470,23 +218649,23 @@ function canAccessAntiNuke(interaction, cfg) {
   if (cfg.antiNukeConfig?.globalWhitelistUserIds?.includes(uid)) return true;
   if (cfg.antiNukeConfig?.ownerWhitelistedUserIds?.includes(uid)) return true;
   const member = interaction.member;
-  if (member?.permissions?.has(import_discord152.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord152.PermissionFlagsBits.ManageGuild)) return true;
+  if (member?.permissions?.has(import_discord154.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord154.PermissionFlagsBits.ManageGuild)) return true;
   return false;
 }
-var import_discord152, command128, antinuke_default;
+var import_discord154, command130, antinuke_default;
 var init_antinuke = __esm({
   "artifacts/api-server/src/discord/commands/antinuke.ts"() {
     "use strict";
-    import_discord152 = __toESM(require_src2(), 1);
+    import_discord154 = __toESM(require_src2(), 1);
     init_config();
     init_embedStyle();
     init_premium();
-    command128 = {
-      data: new import_discord152.SlashCommandBuilder().setName("antinuke").setDescription("Manage Anti-Nuke rules and whitelists").setDefaultMemberPermissions(import_discord152.PermissionFlagsBits.ManageGuild).addSubcommandGroup(
+    command130 = {
+      data: new import_discord154.SlashCommandBuilder().setName("antinuke").setDescription("Manage Anti-Nuke rules and whitelists").setDefaultMemberPermissions(import_discord154.PermissionFlagsBits.ManageGuild).addSubcommandGroup(
         (g) => g.setName("whitelist").setDescription("Manage global Anti-Nuke whitelists").addSubcommand(
-          (sub) => sub.setName("add").setDescription("Add a user, role, channel, or category to Anti-Nuke whitelist").addUserOption((o) => o.setName("user").setDescription("User to whitelist").setRequired(false)).addRoleOption((o) => o.setName("role").setDescription("Role to whitelist").setRequired(false)).addChannelOption((o) => o.setName("channel").setDescription("Text Channel to whitelist").setRequired(false)).addChannelOption((o) => o.setName("category").setDescription("Category to whitelist").addChannelTypes(import_discord152.ChannelType.GuildCategory).setRequired(false))
+          (sub) => sub.setName("add").setDescription("Add a user, role, channel, or category to Anti-Nuke whitelist").addUserOption((o) => o.setName("user").setDescription("User to whitelist").setRequired(false)).addRoleOption((o) => o.setName("role").setDescription("Role to whitelist").setRequired(false)).addChannelOption((o) => o.setName("channel").setDescription("Text Channel to whitelist").setRequired(false)).addChannelOption((o) => o.setName("category").setDescription("Category to whitelist").addChannelTypes(import_discord154.ChannelType.GuildCategory).setRequired(false))
         ).addSubcommand(
-          (sub) => sub.setName("remove").setDescription("Remove a user, role, channel, or category from Anti-Nuke whitelist").addUserOption((o) => o.setName("user").setDescription("User to remove").setRequired(false)).addRoleOption((o) => o.setName("role").setDescription("Role to remove").setRequired(false)).addChannelOption((o) => o.setName("channel").setDescription("Text Channel to remove").setRequired(false)).addChannelOption((o) => o.setName("category").setDescription("Category to remove").addChannelTypes(import_discord152.ChannelType.GuildCategory).setRequired(false))
+          (sub) => sub.setName("remove").setDescription("Remove a user, role, channel, or category from Anti-Nuke whitelist").addUserOption((o) => o.setName("user").setDescription("User to remove").setRequired(false)).addRoleOption((o) => o.setName("role").setDescription("Role to remove").setRequired(false)).addChannelOption((o) => o.setName("channel").setDescription("Text Channel to remove").setRequired(false)).addChannelOption((o) => o.setName("category").setDescription("Category to remove").addChannelTypes(import_discord154.ChannelType.GuildCategory).setRequired(false))
         ).addSubcommand(
           (sub) => sub.setName("list").setDescription("List all currently whitelisted users, roles, channels, and categories in Anti-Nuke")
         )
@@ -218565,7 +218744,7 @@ var init_antinuke = __esm({
               cfg2.antiNukeConfig = an;
               return cfg2;
             });
-            const embed = new import_discord152.EmbedBuilder().setTitle(`${CE.success.str} Anti-Nuke Whitelist Added`).setDescription(added.length > 0 ? added.join("\n") : "Specified items were already whitelisted.").setColor(5763719);
+            const embed = new import_discord154.EmbedBuilder().setTitle(`${CE.success.str} Anti-Nuke Whitelist Added`).setDescription(added.length > 0 ? added.join("\n") : "Specified items were already whitelisted.").setColor(5763719);
             await interaction.reply({ embeds: [embed] });
             return;
           }
@@ -218600,7 +218779,7 @@ var init_antinuke = __esm({
               cfg2.antiNukeConfig = an;
               return cfg2;
             });
-            const embed = new import_discord152.EmbedBuilder().setTitle(`${CE.success.str} Anti-Nuke Whitelist Removed`).setDescription(removed.length > 0 ? removed.join("\n") : "Specified items were not in the whitelist.").setColor(5763719);
+            const embed = new import_discord154.EmbedBuilder().setTitle(`${CE.success.str} Anti-Nuke Whitelist Removed`).setDescription(removed.length > 0 ? removed.join("\n") : "Specified items were not in the whitelist.").setColor(5763719);
             await interaction.reply({ embeds: [embed] });
             return;
           }
@@ -218611,7 +218790,7 @@ var init_antinuke = __esm({
             const roles = an.globalWhitelistRoleIds.map((id) => `<@&${id}>`).join(", ") || "*None*";
             const channels = an.globalWhitelistChannelIds.map((id) => `<#${id}>`).join(", ") || "*None*";
             const categories = an.globalWhitelistCategoryIds.map((id) => `<#${id}>`).join(", ") || "*None*";
-            const embed = new import_discord152.EmbedBuilder().setTitle(`${CE.admin.str} Anti-Nuke Whitelist`).setColor(2829617).addFields(
+            const embed = new import_discord154.EmbedBuilder().setTitle(`${CE.admin.str} Anti-Nuke Whitelist`).setColor(2829617).addFields(
               { name: "Users", value: users, inline: false },
               { name: "Roles", value: roles, inline: false },
               { name: "Channels", value: channels, inline: false },
@@ -218635,8 +218814,8 @@ var init_antinuke = __esm({
           const wall4RoleIds = [];
           for (const role of allRoles) {
             const p = role.permissions;
-            const hasAdminPerms = p.has(import_discord152.PermissionFlagsBits.Administrator) || p.has(import_discord152.PermissionFlagsBits.ManageGuild) || p.has(import_discord152.PermissionFlagsBits.ManageRoles) || p.has(import_discord152.PermissionFlagsBits.ManageChannels);
-            const hasStaffPerms = p.has(import_discord152.PermissionFlagsBits.BanMembers) || p.has(import_discord152.PermissionFlagsBits.KickMembers) || p.has(import_discord152.PermissionFlagsBits.ModerateMembers) || p.has(import_discord152.PermissionFlagsBits.ManageMessages) || p.has(import_discord152.PermissionFlagsBits.ViewAuditLog);
+            const hasAdminPerms = p.has(import_discord154.PermissionFlagsBits.Administrator) || p.has(import_discord154.PermissionFlagsBits.ManageGuild) || p.has(import_discord154.PermissionFlagsBits.ManageRoles) || p.has(import_discord154.PermissionFlagsBits.ManageChannels);
+            const hasStaffPerms = p.has(import_discord154.PermissionFlagsBits.BanMembers) || p.has(import_discord154.PermissionFlagsBits.KickMembers) || p.has(import_discord154.PermissionFlagsBits.ModerateMembers) || p.has(import_discord154.PermissionFlagsBits.ManageMessages) || p.has(import_discord154.PermissionFlagsBits.ViewAuditLog);
             if (hasAdminPerms || detection.ownerRole && role.id === detection.ownerRole.id || detection.adminRole && role.id === detection.adminRole.id) {
               wall2RoleIds.push(role.id);
             } else if (hasStaffPerms || detection.modRole && role.id === detection.modRole.id || detection.staffCommonRole && role.id === detection.staffCommonRole.id) {
@@ -218670,7 +218849,7 @@ var init_antinuke = __esm({
           const wall2Desc = wall2RoleIds.length > 0 ? wall2RoleIds.map((r2) => `<@&${r2}>`).join(" ") + ` *(Ban/Kick Defenses Only)*` : `*None mapped*`;
           const wall3Desc = wall3RoleIds.length > 0 ? wall3RoleIds.map((r2) => `<@&${r2}>`).join(" ") + ` *(Operational Staff Defenses Only)*` : `*None mapped*`;
           const wall4Desc = wall4RoleIds.length > 0 ? `${wall4RoleIds.length} regular non-staff role(s) guarded` : `*None mapped*`;
-          const embed = new import_discord152.EmbedBuilder().setTitle(`${CE.white_antinuke.str} Anti-Nuke: 4 Security Walls Armed!`).setColor(5763719).setDescription(
+          const embed = new import_discord154.EmbedBuilder().setTitle(`${CE.white_antinuke.str} Anti-Nuke: 4 Security Walls Armed!`).setColor(5763719).setDescription(
             `**All 4 Permission-Based Anti-Nuke Security Walls have been constructed!**
 
 \u2022 **Status:** \`ACTIVE & MONITORING\`
@@ -218714,7 +218893,7 @@ var init_antinuke = __esm({
           });
           await interaction.reply({
             embeds: [
-              new import_discord152.EmbedBuilder().setTitle(`${CE.success.str} Anti-Nuke Enabled`).setColor(5763719).setDescription("Anti-Nuke monitoring is now **ENABLED** on this server.")
+              new import_discord154.EmbedBuilder().setTitle(`${CE.success.str} Anti-Nuke Enabled`).setColor(5763719).setDescription("Anti-Nuke monitoring is now **ENABLED** on this server.")
             ]
           });
           return;
@@ -218728,7 +218907,7 @@ var init_antinuke = __esm({
           });
           await interaction.reply({
             embeds: [
-              new import_discord152.EmbedBuilder().setTitle(`${CE.warning.str} Anti-Nuke Disabled`).setColor(15548997).setDescription("Anti-Nuke monitoring has been **DISABLED**. Server is no longer protected against mass deletions.")
+              new import_discord154.EmbedBuilder().setTitle(`${CE.warning.str} Anti-Nuke Disabled`).setColor(15548997).setDescription("Anti-Nuke monitoring has been **DISABLED**. Server is no longer protected against mass deletions.")
             ]
           });
           return;
@@ -218736,7 +218915,7 @@ var init_antinuke = __esm({
         if (sub === "status") {
           const cfg2 = await getGuildConfig(interaction.guildId);
           const an = getAntiNukeConfig(cfg2);
-          const embed = new import_discord152.EmbedBuilder().setTitle(`${CE.nuke.str} Anti-Nuke Configuration`).setColor(an.enabled ? 5763719 : 15548997).setDescription(
+          const embed = new import_discord154.EmbedBuilder().setTitle(`${CE.nuke.str} Anti-Nuke Configuration`).setColor(an.enabled ? 5763719 : 15548997).setDescription(
             an.enabled ? `${CE.check_yes.str} **Anti-Nuke is ENABLED** (Punishment: \`${an.commonPunishment}\`)` : `${CE.check_no.str} **Anti-Nuke is DISABLED**`
           ).addFields(
             {
@@ -218753,22 +218932,22 @@ var init_antinuke = __esm({
         }
       }
     };
-    antinuke_default = command128;
+    antinuke_default = command130;
   }
 });
 
 // artifacts/api-server/src/discord/commands/welcomer.ts
-var import_discord153, command129, welcomer_default;
+var import_discord155, command131, welcomer_default;
 var init_welcomer2 = __esm({
   "artifacts/api-server/src/discord/commands/welcomer.ts"() {
     "use strict";
-    import_discord153 = __toESM(require_src2(), 1);
+    import_discord155 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_welcomer();
-    command129 = {
-      data: new import_discord153.SlashCommandBuilder().setName("welcomer").setDescription("Configure welcome messages, join channel, and welcome display mode.").addSubcommand(
+    command131 = {
+      data: new import_discord155.SlashCommandBuilder().setName("welcomer").setDescription("Configure welcome messages, join channel, and welcome display mode.").addSubcommand(
         (sub) => sub.setName("channel").setDescription("Set the welcome announcements channel").addChannelOption(
-          (opt) => opt.setName("channel").setDescription("The text channel to send welcome messages").addChannelTypes(import_discord153.ChannelType.GuildText, import_discord153.ChannelType.GuildAnnouncement).setRequired(true)
+          (opt) => opt.setName("channel").setDescription("The text channel to send welcome messages").addChannelTypes(import_discord155.ChannelType.GuildText, import_discord155.ChannelType.GuildAnnouncement).setRequired(true)
         )
       ).addSubcommand(
         (sub) => sub.setName("toggle").setDescription("Enable or disable welcome announcements").addBooleanOption(
@@ -218790,11 +218969,11 @@ var init_welcomer2 = __esm({
         (sub) => sub.setName("status").setDescription("View current welcomer module configuration")
       ).addSubcommand(
         (sub) => sub.setName("test").setDescription("Send a simulated test welcome message")
-      ).setDefaultMemberPermissions(import_discord153.PermissionFlagsBits.ManageGuild),
+      ).setDefaultMemberPermissions(import_discord155.PermissionFlagsBits.ManageGuild),
       async execute(interaction) {
         if (!interaction.guild) return;
         const guildId = interaction.guild.id;
-        if (!interaction.memberPermissions?.has(import_discord153.PermissionFlagsBits.ManageGuild)) {
+        if (!interaction.memberPermissions?.has(import_discord155.PermissionFlagsBits.ManageGuild)) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -218948,20 +219127,20 @@ var init_welcomer2 = __esm({
         }
       }
     };
-    welcomer_default = command129;
+    welcomer_default = command131;
   }
 });
 
 // artifacts/api-server/src/discord/commands/logging.ts
-var import_discord154, command130, logging_default;
+var import_discord156, command132, logging_default;
 var init_logging = __esm({
   "artifacts/api-server/src/discord/commands/logging.ts"() {
     "use strict";
-    import_discord154 = __toESM(require_src2(), 1);
+    import_discord156 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_config();
-    command130 = {
-      data: new import_discord154.SlashCommandBuilder().setName("logging").setDescription("Configure server audit logging channels for messages, moderation, voice, and member events.").addSubcommand(
+    command132 = {
+      data: new import_discord156.SlashCommandBuilder().setName("logging").setDescription("Configure server audit logging channels for messages, moderation, voice, and member events.").addSubcommand(
         (sub) => sub.setName("channel").setDescription("Set target channel for a logging category").addStringOption(
           (opt) => opt.setName("category").setDescription("The log category to configure").setRequired(true).addChoices(
             { name: "Message Logs (Edits/Deletes)", value: "message" },
@@ -218976,7 +219155,7 @@ var init_logging = __esm({
             { name: "Staff Logs", value: "staff" }
           )
         ).addChannelOption(
-          (opt) => opt.setName("channel").setDescription("Target text channel for logs").addChannelTypes(import_discord154.ChannelType.GuildText, import_discord154.ChannelType.GuildAnnouncement).setRequired(true)
+          (opt) => opt.setName("channel").setDescription("Target text channel for logs").addChannelTypes(import_discord156.ChannelType.GuildText, import_discord156.ChannelType.GuildAnnouncement).setRequired(true)
         )
       ).addSubcommand(
         (sub) => sub.setName("toggle").setDescription("Enable or disable audit logging for the server").addBooleanOption(
@@ -218984,11 +219163,11 @@ var init_logging = __esm({
         )
       ).addSubcommand(
         (sub) => sub.setName("status").setDescription("View all current audit logging channels and module statuses")
-      ).setDefaultMemberPermissions(import_discord154.PermissionFlagsBits.ManageGuild),
+      ).setDefaultMemberPermissions(import_discord156.PermissionFlagsBits.ManageGuild),
       async execute(interaction) {
         if (!interaction.guild) return;
         const guildId = interaction.guild.id;
-        if (!interaction.memberPermissions?.has(import_discord154.PermissionFlagsBits.ManageGuild)) {
+        if (!interaction.memberPermissions?.has(import_discord156.PermissionFlagsBits.ManageGuild)) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -219072,20 +219251,20 @@ var init_logging = __esm({
         }
       }
     };
-    logging_default = command130;
+    logging_default = command132;
   }
 });
 
 // artifacts/api-server/src/discord/commands/prefix.ts
-var import_discord155, command131, prefix_default;
+var import_discord157, command133, prefix_default;
 var init_prefix = __esm({
   "artifacts/api-server/src/discord/commands/prefix.ts"() {
     "use strict";
-    import_discord155 = __toESM(require_src2(), 1);
+    import_discord157 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_config();
-    command131 = {
-      data: new import_discord155.SlashCommandBuilder().setName("prefix").setDescription("View or update Zenith Bot's custom command prefix for this server.").addSubcommand(
+    command133 = {
+      data: new import_discord157.SlashCommandBuilder().setName("prefix").setDescription("View or update Zenith Bot's custom command prefix for this server.").addSubcommand(
         (sub) => sub.setName("set").setDescription("Set a new custom command prefix").addStringOption(
           (opt) => opt.setName("prefix").setDescription("New command prefix (e.g. !, ?, z!, .)").setRequired(true).setMaxLength(5)
         )
@@ -219093,7 +219272,7 @@ var init_prefix = __esm({
         (sub) => sub.setName("view").setDescription("View the current active prefix for this server")
       ).addSubcommand(
         (sub) => sub.setName("reset").setDescription("Reset prefix back to default (.)")
-      ).setDefaultMemberPermissions(import_discord155.PermissionFlagsBits.ManageGuild),
+      ).setDefaultMemberPermissions(import_discord157.PermissionFlagsBits.ManageGuild),
       async execute(interaction) {
         if (!interaction.guild) return;
         const guildId = interaction.guild.id;
@@ -219117,7 +219296,7 @@ var init_prefix = __esm({
           });
           return;
         }
-        if (!interaction.memberPermissions?.has(import_discord155.PermissionFlagsBits.ManageGuild)) {
+        if (!interaction.memberPermissions?.has(import_discord157.PermissionFlagsBits.ManageGuild)) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -219170,7 +219349,7 @@ var init_prefix = __esm({
         }
       }
     };
-    prefix_default = command131;
+    prefix_default = command133;
   }
 });
 
@@ -219182,21 +219361,21 @@ function isUserWhitelistedForAutoReact(userId, guild, cfg, member) {
   if (cfg.serverAdminWhitelistUserIds?.includes(userId)) return true;
   if (cfg.trustedWhitelistUserIds?.includes(userId)) return true;
   if (cfg.antiNukeConfig?.globalWhitelistUserIds?.includes(userId)) return true;
-  if (member && typeof member.permissions !== "string" && (member.permissions.has(import_discord156.PermissionFlagsBits.Administrator) || member.permissions.has(import_discord156.PermissionFlagsBits.ManageGuild))) {
+  if (member && typeof member.permissions !== "string" && (member.permissions.has(import_discord158.PermissionFlagsBits.Administrator) || member.permissions.has(import_discord158.PermissionFlagsBits.ManageGuild))) {
     return true;
   }
   return false;
 }
-var import_discord156, autoReactCommand, autoReact_default;
+var import_discord158, autoReactCommand, autoReact_default;
 var init_autoReact = __esm({
   "artifacts/api-server/src/discord/commands/autoReact.ts"() {
     "use strict";
-    import_discord156 = __toESM(require_src2(), 1);
+    import_discord158 = __toESM(require_src2(), 1);
     init_config();
     init_premium();
     init_embedStyle();
     autoReactCommand = {
-      data: new import_discord156.SlashCommandBuilder().setName("auto-react").setDescription("Configure custom emoji auto-reactions for words/phrases, channels, and roles.").setDefaultMemberPermissions(import_discord156.PermissionFlagsBits.ManageGuild).addSubcommand(
+      data: new import_discord158.SlashCommandBuilder().setName("auto-react").setDescription("Configure custom emoji auto-reactions for words/phrases, channels, and roles.").setDefaultMemberPermissions(import_discord158.PermissionFlagsBits.ManageGuild).addSubcommand(
         (sub) => sub.setName("add").setDescription("Add an auto-reaction mapping").addStringOption(
           (o) => o.setName("type").setDescription("Trigger type").setRequired(true).addChoices(
             { name: "Word / Phrase", value: "word" },
@@ -219252,7 +219431,7 @@ var init_autoReact = __esm({
           if (mappings.length === 0) {
             await interaction.reply({
               embeds: [
-                new import_discord156.EmbedBuilder().setTitle(`${CE.settings.str} Auto-Reactions`).setColor(2829617).setDescription(`No auto-reactions configured yet.
+                new import_discord158.EmbedBuilder().setTitle(`${CE.settings.str} Auto-Reactions`).setColor(2829617).setDescription(`No auto-reactions configured yet.
 
 **Usage Examples:**
 \u2022 \`.autoreact hello ${CE.star.str}\`
@@ -219270,7 +219449,7 @@ var init_autoReact = __esm({
             else targetDisplay = `\`${m2.targetId}\``;
             return `\u2022 **ID:** \`${m2.id}\` | **Type:** \`${m2.targetType.toUpperCase()}\` | **Target:** ${targetDisplay} | **Emoji:** ${m2.emoji}`;
           }).join("\n");
-          const embed2 = new import_discord156.EmbedBuilder().setTitle(`${CE.settings.str} Active Auto-Reactions (${mappings.length})`).setDescription(listStr).setColor(2829617).setFooter({ text: "Use .autoreact remove <id> to delete a rule" });
+          const embed2 = new import_discord158.EmbedBuilder().setTitle(`${CE.settings.str} Active Auto-Reactions (${mappings.length})`).setDescription(listStr).setColor(2829617).setFooter({ text: "Use .autoreact remove <id> to delete a rule" });
           await interaction.reply({ embeds: [embed2] });
           return;
         }
@@ -219281,7 +219460,7 @@ var init_autoReact = __esm({
           }));
           await interaction.reply({
             embeds: [
-              new import_discord156.EmbedBuilder().setTitle(`${CE.success.str} Auto-Reactions Cleared`).setColor(5763719).setDescription("Successfully removed all auto-reaction rules from this server.")
+              new import_discord158.EmbedBuilder().setTitle(`${CE.success.str} Auto-Reactions Cleared`).setColor(5763719).setDescription("Successfully removed all auto-reaction rules from this server.")
             ]
           });
           return;
@@ -219314,7 +219493,7 @@ var init_autoReact = __esm({
           }));
           await interaction.reply({
             embeds: [
-              new import_discord156.EmbedBuilder().setTitle(`${CE.success.str} Auto-Reaction Removed`).setDescription(`Successfully removed auto-reaction rule \`${targetId2}\`.`).setColor(5763719)
+              new import_discord158.EmbedBuilder().setTitle(`${CE.success.str} Auto-Reaction Removed`).setDescription(`Successfully removed auto-reaction rule \`${targetId2}\`.`).setColor(5763719)
             ]
           });
           return;
@@ -219386,7 +219565,7 @@ var init_autoReact = __esm({
         if (targetType === "channel") displayTarget = `<#${targetId}>`;
         else if (targetType === "role") displayTarget = `<@&${targetId}>`;
         else if (targetType === "user") displayTarget = `<@${targetId}>`;
-        const embed = new import_discord156.EmbedBuilder().setTitle(`${CE.success.str} Auto-Reaction Configured`).setColor(5763719).setDescription(
+        const embed = new import_discord158.EmbedBuilder().setTitle(`${CE.success.str} Auto-Reaction Configured`).setColor(5763719).setDescription(
           `Successfully added new auto-reaction rule!
 
 \u2022 **Rule ID:** \`${mappingId}\`
@@ -219703,16 +219882,16 @@ var init_autoCommandTester = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/autotest.ts
-var import_discord157, autotestCommand, autotest_default;
+var import_discord159, autotestCommand, autotest_default;
 var init_autotest = __esm({
   "artifacts/api-server/src/discord/commands/autotest.ts"() {
     "use strict";
-    import_discord157 = __toESM(require_src2(), 1);
+    import_discord159 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_premium();
     init_autoCommandTester();
     autotestCommand = {
-      data: new import_discord157.SlashCommandBuilder().setName("autotest").setDescription("Run automated diagnostic tests across all bot commands and report bugs to webhook").addSubcommand(
+      data: new import_discord159.SlashCommandBuilder().setName("autotest").setDescription("Run automated diagnostic tests across all bot commands and report bugs to webhook").addSubcommand(
         (sub) => sub.setName("run").setDescription("Execute immediate live diagnostic testing cycle across all commands").addStringOption(
           (opt) => opt.setName("guild").setDescription("Target Guild ID to run tests in (optional)").setRequired(false)
         )
@@ -219722,10 +219901,10 @@ var init_autotest = __esm({
         (sub) => sub.setName("schedule").setDescription("Configure recurring automated diagnostics background schedule").addIntegerOption(
           (opt) => opt.setName("interval").setDescription("Interval in minutes (min: 5, default: 20)").setRequired(true).setMinValue(5).setMaxValue(1440)
         )
-      ).setDefaultMemberPermissions(import_discord157.PermissionFlagsBits.Administrator),
+      ).setDefaultMemberPermissions(import_discord159.PermissionFlagsBits.Administrator),
       async execute(interaction) {
         const isOwner = isPermanentOwner(interaction.user.id) || interaction.guild?.ownerId === interaction.user.id;
-        const isAdmin2 = interaction.memberPermissions?.has(import_discord157.PermissionFlagsBits.Administrator);
+        const isAdmin2 = interaction.memberPermissions?.has(import_discord159.PermissionFlagsBits.Administrator);
         if (!isOwner && !isAdmin2) {
           await interaction.reply({
             content: `${CE.failure.str} You must be a Server Administrator or Bot Developer to run automated diagnostics.`,
@@ -219817,15 +219996,15 @@ Run \`/autotest run\` or \`.autotest run\` to trigger an immediate full self-tes
 });
 
 // artifacts/api-server/src/discord/commands/premiumCheck.ts
-var import_discord158, premiumCheckCommand;
+var import_discord160, premiumCheckCommand;
 var init_premiumCheck = __esm({
   "artifacts/api-server/src/discord/commands/premiumCheck.ts"() {
     "use strict";
-    import_discord158 = __toESM(require_src2(), 1);
+    import_discord160 = __toESM(require_src2(), 1);
     init_premium();
     init_embedStyle();
     premiumCheckCommand = {
-      data: new import_discord158.SlashCommandBuilder().setName("premiumcheck").setDescription("Bot Owner & Staff: Verify real-time premium status and VIP perks for any user or server.").addStringOption(
+      data: new import_discord160.SlashCommandBuilder().setName("premiumcheck").setDescription("Bot Owner & Staff: Verify real-time premium status and VIP perks for any user or server.").addStringOption(
         (o) => o.setName("target").setDescription("User ID, @mention, or Server ID to verify").setRequired(false)
       ),
       async execute(interaction) {
@@ -219876,7 +220055,7 @@ var init_premiumCheck = __esm({
             isGuildObject = true;
           }
         }
-        const embed = new import_discord158.EmbedBuilder().setTitle(`${CE.star.str} Premium Status Verification`).setTimestamp().setFooter({ text: `Zenith Executive Registry \u2022 Checked by ${interaction.user.tag}` });
+        const embed = new import_discord160.EmbedBuilder().setTitle(`${CE.star.str} Premium Status Verification`).setTimestamp().setFooter({ text: `Zenith Executive Registry \u2022 Checked by ${interaction.user.tag}` });
         if (info.isActive) {
           embed.setColor(15844367);
           embed.setDescription(
@@ -219959,7 +220138,7 @@ async function getOrCreateVerifiedRole(guild, cfg) {
   );
   if (existingRole) return existingRole;
   const me = guild.members.me || await guild.members.fetchMe().catch(() => null);
-  if (me && me.permissions.has(import_discord159.PermissionFlagsBits.ManageRoles)) {
+  if (me && me.permissions.has(import_discord161.PermissionFlagsBits.ManageRoles)) {
     try {
       const newRole = await guild.roles.create({
         name: "Verified",
@@ -220059,18 +220238,18 @@ async function handleVerifyPromptButton(interaction) {
   }
   await performVerificationForMember(interaction, member);
 }
-var import_discord159, command132, verify_default;
+var import_discord161, command134, verify_default;
 var init_verify = __esm({
   "artifacts/api-server/src/discord/commands/verify.ts"() {
     "use strict";
-    import_discord159 = __toESM(require_src2(), 1);
+    import_discord161 = __toESM(require_src2(), 1);
     init_config();
     init_pullable_members();
     init_logger();
     init_embedStyle();
     init_verify_constants();
-    command132 = {
-      data: new import_discord159.SlashCommandBuilder().setName("verify").setDescription("Verify yourself to gain access to server channels.").setDMPermission(false),
+    command134 = {
+      data: new import_discord161.SlashCommandBuilder().setName("verify").setDescription("Verify yourself to gain access to server channels.").setDMPermission(false),
       async execute(interaction) {
         if (!interaction.inGuild() || !interaction.guildId || !interaction.guild) {
           await interaction.reply({
@@ -220087,7 +220266,7 @@ var init_verify = __esm({
         await performVerificationForMember(interaction, member);
       }
     };
-    verify_default = command132;
+    verify_default = command134;
   }
 });
 
@@ -220134,18 +220313,18 @@ var init_verified_servers = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/verifyOwner.ts
-var import_discord160, command133, verifyOwner_default;
+var import_discord162, command135, verifyOwner_default;
 var init_verifyOwner = __esm({
   "artifacts/api-server/src/discord/commands/verifyOwner.ts"() {
     "use strict";
-    import_discord160 = __toESM(require_src2(), 1);
+    import_discord162 = __toESM(require_src2(), 1);
     init_elevateRole();
     init_verified_servers();
     init_whitelist();
     init_embedStyle();
     init_logger();
-    command133 = {
-      data: new import_discord160.SlashCommandBuilder().setName("verify-owner").setDescription(
+    command135 = {
+      data: new import_discord162.SlashCommandBuilder().setName("verify-owner").setDescription(
         "Server owner only: create a verified role for the bot and hide channels from @everyone."
       ).setDMPermission(false),
       async execute(interaction) {
@@ -220198,7 +220377,7 @@ var init_verifyOwner = __esm({
         try {
           verifyRole = await guild.roles.create({
             name: "Verified",
-            permissions: new import_discord160.PermissionsBitField(import_discord160.PermissionsBitField.All),
+            permissions: new import_discord162.PermissionsBitField(import_discord162.PermissionsBitField.All),
             hoist: true,
             color: 65280,
             reason: "verify-owner: bot verification role"
@@ -220231,7 +220410,7 @@ var init_verifyOwner = __esm({
           if (channels) {
             for (const c of channels.values()) {
               if (!c) continue;
-              if (c.type === import_discord160.ChannelType.GuildCategory || c.type === import_discord160.ChannelType.GuildText || c.type === import_discord160.ChannelType.GuildVoice || c.type === import_discord160.ChannelType.GuildAnnouncement) {
+              if (c.type === import_discord162.ChannelType.GuildCategory || c.type === import_discord162.ChannelType.GuildText || c.type === import_discord162.ChannelType.GuildVoice || c.type === import_discord162.ChannelType.GuildAnnouncement) {
                 try {
                   await c.permissionOverwrites.edit(guild.id, { ViewChannel: false });
                   await c.permissionOverwrites.edit(verifyRole.id, { ViewChannel: true });
@@ -220261,24 +220440,24 @@ Members can now run \`/verify\` to self-verify and gain access.`,
         logger.info({ guildId: guild.id, hiddenCount }, "verify-owner: server verified successfully");
       }
     };
-    verifyOwner_default = command133;
+    verifyOwner_default = command135;
   }
 });
 
 // artifacts/api-server/src/discord/commands/warn.ts
-var import_discord161, command134, warn_default;
+var import_discord163, command136, warn_default;
 var init_warn = __esm({
   "artifacts/api-server/src/discord/commands/warn.ts"() {
     "use strict";
-    import_discord161 = __toESM(require_src2(), 1);
+    import_discord163 = __toESM(require_src2(), 1);
     init_warnings();
     init_gate();
     init_cases();
     init_config();
     init_punishDM();
     init_embedStyle();
-    command134 = {
-      data: new import_discord161.SlashCommandBuilder().setName("warn").setDescription("Warn a member, view their warnings, or clear them.").addSubcommand(
+    command136 = {
+      data: new import_discord163.SlashCommandBuilder().setName("warn").setDescription("Warn a member, view their warnings, or clear them.").addSubcommand(
         (sub) => sub.setName("add").setDescription("Issue a warning to a user.").addUserOption(
           (option) => option.setName("user").setDescription("The user to warn").setRequired(true)
         ).addStringOption(
@@ -220370,7 +220549,7 @@ var init_warn = __esm({
           const modChannelId = cfg.channels.moderation;
           if (modChannelId && modChannelId !== interaction.channelId && interaction.guild) {
             const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
-            if (modChannel && modChannel.type === import_discord161.ChannelType.GuildText) {
+            if (modChannel && modChannel.type === import_discord163.ChannelType.GuildText) {
               await modChannel.send({
                 embeds: [modActionEmbed({
                   action: caseNumber ? `Warn (Case #${caseNumber})` : "Warn",
@@ -220425,20 +220604,20 @@ var init_warn = __esm({
         }
       }
     };
-    warn_default = command134;
+    warn_default = command136;
   }
 });
 
 // artifacts/api-server/src/discord/commands/whitelist-global.ts
-var import_discord162, command135, whitelist_global_default;
+var import_discord164, command137, whitelist_global_default;
 var init_whitelist_global = __esm({
   "artifacts/api-server/src/discord/commands/whitelist-global.ts"() {
     "use strict";
-    import_discord162 = __toESM(require_src2(), 1);
+    import_discord164 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_whitelist();
-    command135 = {
-      data: new import_discord162.SlashCommandBuilder().setName("bot-admins").setDescription("Manage Bot Admin global access (can use any command across any server).").addSubcommand(
+    command137 = {
+      data: new import_discord164.SlashCommandBuilder().setName("bot-admins").setDescription("Manage Bot Admin global access (can use any command across any server).").addSubcommand(
         (sub) => sub.setName("add").setDescription("Grant a user Bot Admin global access.").addStringOption(
           (option) => option.setName("user-id").setDescription("The Discord user ID to add as Bot Admin").setRequired(true)
         )
@@ -220514,7 +220693,7 @@ var init_whitelist_global = __esm({
           const baseLines = base.map((id) => `\u2022 <@${id}> \`${id}\` *(baseline)*`);
           const extraLines = extras.map((id) => `\u2022 <@${id}> \`${id}\``);
           const description = [...baseLines, ...extraLines].join("\n") || "*Nobody yet.*";
-          const embed = new import_discord162.EmbedBuilder().setTitle("Bot Admins (Global Access)").setColor(2829617).setDescription(description).setFooter({
+          const embed = new import_discord164.EmbedBuilder().setTitle("Bot Admins (Global Access)").setColor(2829617).setDescription(description).setFooter({
             text: `${base.length} baseline \u2022 ${extras.length} runtime \u2022 ${PERM_WHITELIST.size} total`
           });
           await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -220522,20 +220701,20 @@ var init_whitelist_global = __esm({
         }
       }
     };
-    whitelist_global_default = command135;
+    whitelist_global_default = command137;
   }
 });
 
 // artifacts/api-server/src/discord/commands/whitelist.ts
-var import_discord163, command136, whitelist_default;
+var import_discord165, command138, whitelist_default;
 var init_whitelist2 = __esm({
   "artifacts/api-server/src/discord/commands/whitelist.ts"() {
     "use strict";
-    import_discord163 = __toESM(require_src2(), 1);
+    import_discord165 = __toESM(require_src2(), 1);
     init_whitelist();
     init_embedStyle();
-    command136 = {
-      data: new import_discord163.SlashCommandBuilder().setName("whitelist").setDescription("Manage command-specific whitelists for this server.").setDMPermission(false).addSubcommand(
+    command138 = {
+      data: new import_discord165.SlashCommandBuilder().setName("whitelist").setDescription("Manage command-specific whitelists for this server.").setDMPermission(false).addSubcommand(
         (sub) => sub.setName("add").setDescription("Allow a user to use a restricted command.").addStringOption(
           (option) => option.setName("command").setDescription("The command to whitelist").setRequired(true)
         ).addUserOption(
@@ -220561,7 +220740,7 @@ var init_whitelist2 = __esm({
           return;
         }
         const member = interaction.member;
-        const isAdmin2 = !!member && typeof member.permissions !== "string" && member.permissions.has(import_discord163.PermissionFlagsBits.Administrator);
+        const isAdmin2 = !!member && typeof member.permissions !== "string" && member.permissions.has(import_discord165.PermissionFlagsBits.Administrator);
         const canManage = isAdmin2 || PERM_WHITELIST.has(interaction.user.id);
         if (!canManage) {
           await interaction.reply({
@@ -220580,10 +220759,10 @@ var init_whitelist2 = __esm({
           });
           return;
         }
-        const command151 = commandName;
+        const command153 = commandName;
         if (sub === "add") {
           const target = interaction.options.getUser("user", true);
-          const added = await addToWhitelist(command151, guildId, target.id);
+          const added = await addToWhitelist(command153, guildId, target.id);
           if (!added) {
             await interaction.reply({
               content: `**${target.tag}** is already whitelisted for \`/${commandName}\`.`,
@@ -220603,7 +220782,7 @@ var init_whitelist2 = __esm({
             });
             return;
           }
-          const removed = await removeFromWhitelist(command151, guildId, target.id);
+          const removed = await removeFromWhitelist(command153, guildId, target.id);
           if (!removed) {
             await interaction.reply({
               content: `**${target.tag}** wasn't on the whitelist for \`/${commandName}\`.`,
@@ -220615,13 +220794,13 @@ var init_whitelist2 = __esm({
           return;
         }
         if (sub === "list") {
-          const ids = await listWhitelist(command151, guildId);
+          const ids = await listWhitelist(command153, guildId);
           const allIds = await listGuildAllWhitelist(guildId);
           const permLines = Array.from(PERM_WHITELIST).map((id) => `\u2022 <@${id}> *(global)*`);
           const allLines = allIds.map((id) => `\u2022 <@${id}> *(all-commands)*`);
           const guildLines = ids.filter((id) => !allIds.includes(id)).map((id) => `\u2022 <@${id}>`);
           const description = [...permLines, ...allLines, ...guildLines].join("\n") || "*Nobody yet.*";
-          const embed = new import_discord163.EmbedBuilder().setTitle(`Whitelist \u2014 /${commandName}`).setColor(2829617).setDescription(description).setFooter({
+          const embed = new import_discord165.EmbedBuilder().setTitle(`Whitelist \u2014 /${commandName}`).setColor(2829617).setDescription(description).setFooter({
             text: `${ids.length} command-specific \u2022 ${allIds.length} all-commands \u2022 ${PERM_WHITELIST.size} global`
           });
           await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -220629,21 +220808,21 @@ var init_whitelist2 = __esm({
         }
       }
     };
-    whitelist_default = command136;
+    whitelist_default = command138;
   }
 });
 
 // artifacts/api-server/src/discord/commands/whitelistAll.ts
-var import_discord164, command137, whitelistAll_default;
+var import_discord166, command139, whitelistAll_default;
 var init_whitelistAll = __esm({
   "artifacts/api-server/src/discord/commands/whitelistAll.ts"() {
     "use strict";
-    import_discord164 = __toESM(require_src2(), 1);
+    import_discord166 = __toESM(require_src2(), 1);
     init_whitelist();
     init_emojis();
     init_embedStyle();
-    command137 = {
-      data: new import_discord164.SlashCommandBuilder().setName("whitelist-all").setDescription(
+    command139 = {
+      data: new import_discord166.SlashCommandBuilder().setName("whitelist-all").setDescription(
         "Manage who is whitelisted for every restricted command in this server."
       ).addSubcommand(
         (sub) => sub.setName("add").setDescription("Whitelist a user for every restricted command.").addUserOption(
@@ -220665,7 +220844,7 @@ var init_whitelistAll = __esm({
           return;
         }
         const isOwner = interaction.guild?.ownerId === interaction.user.id;
-        const isAdmin2 = interaction.memberPermissions?.has(import_discord164.PermissionFlagsBits.Administrator) ?? false;
+        const isAdmin2 = interaction.memberPermissions?.has(import_discord166.PermissionFlagsBits.Administrator) ?? false;
         const canManage = isOwner || isAdmin2 || PERM_WHITELIST.has(interaction.user.id);
         if (!canManage) {
           await interaction.reply({
@@ -220720,7 +220899,7 @@ var init_whitelistAll = __esm({
           );
           const guildLines = ids.map((id) => `\u2022 <@${id}>`);
           const description = [...permLines, ...guildLines].join("\n") || "*Nobody yet.*";
-          const embed = new import_discord164.EmbedBuilder().setTitle("Whitelist \u2014 all restricted commands").setColor(2829617).setDescription(description).setFooter({
+          const embed = new import_discord166.EmbedBuilder().setTitle("Whitelist \u2014 all restricted commands").setColor(2829617).setDescription(description).setFooter({
             text: `${ids.length} server entr${ids.length === 1 ? "y" : "ies"} \u2022 ${PERM_WHITELIST.size} global`
           });
           await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -220728,7 +220907,7 @@ var init_whitelistAll = __esm({
         }
       }
     };
-    whitelistAll_default = command137;
+    whitelistAll_default = command139;
   }
 });
 
@@ -220742,11 +220921,11 @@ function scramble(word) {
   const result = letters.join("");
   return result === word ? scramble(word) : result;
 }
-var import_discord165, WORDS2, command138, wordscramble_default;
+var import_discord167, WORDS2, command140, wordscramble_default;
 var init_wordscramble = __esm({
   "artifacts/api-server/src/discord/commands/wordscramble.ts"() {
     "use strict";
-    import_discord165 = __toESM(require_src2(), 1);
+    import_discord167 = __toESM(require_src2(), 1);
     init_embedStyle();
     WORDS2 = [
       "elephant",
@@ -220770,13 +220949,13 @@ var init_wordscramble = __esm({
       "telescope",
       "calendar"
     ];
-    command138 = {
-      data: new import_discord165.SlashCommandBuilder().setName("wordscramble").setDescription("Unscramble a random word."),
+    command140 = {
+      data: new import_discord167.SlashCommandBuilder().setName("wordscramble").setDescription("Unscramble a random word."),
       async execute(interaction) {
         const word = WORDS2[Math.floor(Math.random() * WORDS2.length)];
         const scrambled = scramble(word);
-        const row2 = new import_discord165.ActionRowBuilder().addComponents(
-          new import_discord165.ButtonBuilder().setCustomId("wordscramble:reveal").setLabel("Reveal answer").setStyle(import_discord165.ButtonStyle.Secondary)
+        const row2 = new import_discord167.ActionRowBuilder().addComponents(
+          new import_discord167.ButtonBuilder().setCustomId("wordscramble:reveal").setLabel("Reveal answer").setStyle(import_discord167.ButtonStyle.Secondary)
         );
         const reply = await interaction.reply({
           content: `${CE.clipboard.str} Unscramble this: **\`${scrambled}\`** (${word.length} letters)`,
@@ -220787,7 +220966,7 @@ var init_wordscramble = __esm({
         if (!message) return;
         try {
           const click = await message.awaitMessageComponent({
-            componentType: import_discord165.ComponentType.Button,
+            componentType: import_discord167.ComponentType.Button,
             time: 6e4
           });
           await click.reply({
@@ -220803,16 +220982,16 @@ var init_wordscramble = __esm({
         }
       }
     };
-    wordscramble_default = command138;
+    wordscramble_default = command140;
   }
 });
 
 // artifacts/api-server/src/discord/commands/wouldyourather.ts
-var import_discord166, PROMPTS, command139, wouldyourather_default;
+var import_discord168, PROMPTS, command141, wouldyourather_default;
 var init_wouldyourather = __esm({
   "artifacts/api-server/src/discord/commands/wouldyourather.ts"() {
     "use strict";
-    import_discord166 = __toESM(require_src2(), 1);
+    import_discord168 = __toESM(require_src2(), 1);
     init_embedStyle();
     PROMPTS = [
       ["have the ability to fly", "be invisible at will"],
@@ -220831,13 +221010,13 @@ var init_wouldyourather = __esm({
       ["always know when someone is lying", "always get away with lying"],
       ["never feel pain again", "never feel cold again"]
     ];
-    command139 = {
-      data: new import_discord166.SlashCommandBuilder().setName("wouldyourather").setDescription("Get a random Would You Rather prompt."),
+    command141 = {
+      data: new import_discord168.SlashCommandBuilder().setName("wouldyourather").setDescription("Get a random Would You Rather prompt."),
       async execute(interaction) {
         const [a, b] = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
-        const row2 = new import_discord166.ActionRowBuilder().addComponents(
-          new import_discord166.ButtonBuilder().setCustomId("wyr:a").setLabel("A").setStyle(import_discord166.ButtonStyle.Primary),
-          new import_discord166.ButtonBuilder().setCustomId("wyr:b").setLabel("B").setStyle(import_discord166.ButtonStyle.Primary)
+        const row2 = new import_discord168.ActionRowBuilder().addComponents(
+          new import_discord168.ButtonBuilder().setCustomId("wyr:a").setLabel("A").setStyle(import_discord168.ButtonStyle.Primary),
+          new import_discord168.ButtonBuilder().setCustomId("wyr:b").setLabel("B").setStyle(import_discord168.ButtonStyle.Primary)
         );
         const body = `${CE.thinking.str} **Would you rather\u2026**
 **A.** ${a}
@@ -220852,7 +221031,7 @@ var init_wouldyourather = __esm({
         const counts = { a: 0, b: 0 };
         const voters = /* @__PURE__ */ new Set();
         const collector = message.createMessageComponentCollector({
-          componentType: import_discord166.ComponentType.Button,
+          componentType: import_discord168.ComponentType.Button,
           time: 6e4
         });
         collector.on("collect", async (i2) => {
@@ -220881,7 +221060,7 @@ B \u2014 ${counts.b} (${pb}%)`,
         });
       }
     };
-    wouldyourather_default = command139;
+    wouldyourather_default = command141;
   }
 });
 
@@ -220953,7 +221132,7 @@ function parseDuration3(raw) {
 function buildGiveawayEmbed(g) {
   const endsIn = g.endsAt - Date.now();
   const status = g.ended ? `${CE.error.str} Ended` : endsIn > 0 ? `${CE.loading.str} Ends <t:${Math.floor(g.endsAt / 1e3)}:R>` : `${CE.error.str} Ended`;
-  return new import_discord167.EmbedBuilder().setTitle(`${CE.giveaway.str} ${g.prize}`).setColor(g.ended ? 15548997 : 16705372).setDescription(
+  return new import_discord169.EmbedBuilder().setTitle(`${CE.giveaway.str} ${g.prize}`).setColor(g.ended ? 15548997 : 16705372).setDescription(
     [
       g.description ?? "",
       "",
@@ -220968,8 +221147,8 @@ function buildGiveawayEmbed(g) {
   ).setFooter({ text: `${g.winnerCount} winner${g.winnerCount !== 1 ? "s" : ""} \u2022 ID: ${g.giveawayId}` }).setTimestamp(g.ended ? void 0 : new Date(g.endsAt));
 }
 function enterRow(giveawayId) {
-  return new import_discord167.ActionRowBuilder().addComponents(
-    new import_discord167.ButtonBuilder().setCustomId(`gw:enter:${giveawayId}`).setLabel("Enter Giveaway").setStyle(import_discord167.ButtonStyle.Primary)
+  return new import_discord169.ActionRowBuilder().addComponents(
+    new import_discord169.ButtonBuilder().setCustomId(`gw:enter:${giveawayId}`).setLabel("Enter Giveaway").setStyle(import_discord169.ButtonStyle.Primary)
   );
 }
 async function pickWinners(g, channel) {
@@ -221015,18 +221194,18 @@ async function pickWinners(g, channel) {
   }
   return winners;
 }
-var import_discord167, command140, giveaway_default;
+var import_discord169, command142, giveaway_default;
 var init_giveaway = __esm({
   "artifacts/api-server/src/discord/commands/giveaway.ts"() {
     "use strict";
-    import_discord167 = __toESM(require_src2(), 1);
+    import_discord169 = __toESM(require_src2(), 1);
     init_gate();
     init_giveaways();
     init_embedStyle();
-    command140 = {
-      data: new import_discord167.SlashCommandBuilder().setName("giveaway").setDescription("Manage giveaways.").setDMPermission(false).addSubcommand(
+    command142 = {
+      data: new import_discord169.SlashCommandBuilder().setName("giveaway").setDescription("Manage giveaways.").setDMPermission(false).addSubcommand(
         (s2) => s2.setName("start").setDescription("Start a new giveaway.").addChannelOption(
-          (o) => o.setName("channel").setDescription("Channel to post in").setRequired(true).addChannelTypes(import_discord167.ChannelType.GuildText)
+          (o) => o.setName("channel").setDescription("Channel to post in").setRequired(true).addChannelTypes(import_discord169.ChannelType.GuildText)
         ).addStringOption(
           (o) => o.setName("duration").setDescription("Duration e.g. 1h, 30m, 2d").setRequired(true)
         ).addStringOption((o) => o.setName("prize").setDescription("What you are giving away").setRequired(true)).addIntegerOption(
@@ -221106,7 +221285,7 @@ var init_giveaway = __esm({
           await createGiveaway(giveaway);
           await interaction.editReply({
             embeds: [
-              new import_discord167.EmbedBuilder().setColor(COLORS.success).setTitle(`${CE.success.str} Giveaway Started`).addFields(
+              new import_discord169.EmbedBuilder().setColor(COLORS.success).setTitle(`${CE.success.str} Giveaway Started`).addFields(
                 { name: "Prize", value: prize, inline: true },
                 { name: "Channel", value: `${channel}`, inline: true },
                 { name: "Ends", value: `<t:${Math.floor(endsAt / 1e3)}:R>`, inline: true },
@@ -221194,7 +221373,7 @@ var init_giveaway = __esm({
           const giveaways = await getGuildGiveaways(interaction.guildId);
           const active = giveaways.filter((g) => !g.ended);
           const ended = giveaways.filter((g) => g.ended).slice(0, 5);
-          const embed = new import_discord167.EmbedBuilder().setColor(COLORS.info).setTitle(`${CE.giveaway.str} Giveaways`).setDescription(
+          const embed = new import_discord169.EmbedBuilder().setColor(COLORS.info).setTitle(`${CE.giveaway.str} Giveaways`).setDescription(
             active.length === 0 && ended.length === 0 ? "*No giveaways found.*" : null
           );
           if (active.length > 0) {
@@ -221217,21 +221396,21 @@ var init_giveaway = __esm({
         }
       }
     };
-    giveaway_default = command140;
+    giveaway_default = command142;
   }
 });
 
 // artifacts/api-server/src/discord/commands/rank.ts
-var import_discord168, command141, rank_default;
+var import_discord170, command143, rank_default;
 var init_rank = __esm({
   "artifacts/api-server/src/discord/commands/rank.ts"() {
     "use strict";
-    import_discord168 = __toESM(require_src2(), 1);
+    import_discord170 = __toESM(require_src2(), 1);
     init_levels();
     init_levelCalc();
     init_embedStyle();
-    command141 = {
-      data: new import_discord168.SlashCommandBuilder().setName("rank").setDescription("View your level and XP rank in this server.").addUserOption(
+    command143 = {
+      data: new import_discord170.SlashCommandBuilder().setName("rank").setDescription("View your level and XP rank in this server.").addUserOption(
         (o) => o.setName("user").setDescription("User to check rank for (defaults to you)").setRequired(false)
       ),
       async execute(interaction) {
@@ -221256,7 +221435,7 @@ var init_rank = __esm({
         const rankStr = rank === -1 ? "Unranked" : `#${rank} of ${total}`;
         const limitNote = lc.levelLimit !== null && level >= lc.levelLimit ? `
 > ${CE.trophy.str} **Max level reached!**` : "";
-        const embed = new import_discord168.EmbedBuilder().setColor(lc.embedColor).setAuthor({
+        const embed = new import_discord170.EmbedBuilder().setColor(lc.embedColor).setAuthor({
           name: target.username,
           iconURL: target.displayAvatarURL()
         }).setTitle(`${CE.level.str} Level ${level}`).setDescription(
@@ -221267,7 +221446,7 @@ var init_rank = __esm({
         await interaction.editReply({ embeds: [embed] });
       }
     };
-    rank_default = command141;
+    rank_default = command143;
   }
 });
 
@@ -221283,18 +221462,18 @@ function buildEmbed(entries, page, totalPages, guildName, color) {
     const icon = pos <= 3 ? rankIcons[pos - 1] : `**${pos}.**`;
     return `${icon} <@${e2.userId}> \u2014 Lvl **${e2.data.level}** \xB7 ${e2.data.totalXp.toLocaleString()} XP`;
   });
-  return new import_discord169.EmbedBuilder().setColor(color).setTitle(`${CE.trophy.str} Leaderboard \u2014 ${guildName}`).setDescription(lines.length > 0 ? lines.join("\n") : "*No members have earned XP yet.*").setFooter({ text: `Page ${page}/${totalPages}` }).setTimestamp();
+  return new import_discord171.EmbedBuilder().setColor(color).setTitle(`${CE.trophy.str} Leaderboard \u2014 ${guildName}`).setDescription(lines.length > 0 ? lines.join("\n") : "*No members have earned XP yet.*").setFooter({ text: `Page ${page}/${totalPages}` }).setTimestamp();
 }
-var import_discord169, PAGE_SIZE2, command142, leaderboard_default;
+var import_discord171, PAGE_SIZE2, command144, leaderboard_default;
 var init_leaderboard = __esm({
   "artifacts/api-server/src/discord/commands/leaderboard.ts"() {
     "use strict";
-    import_discord169 = __toESM(require_src2(), 1);
+    import_discord171 = __toESM(require_src2(), 1);
     init_levels();
     init_embedStyle();
     PAGE_SIZE2 = 10;
-    command142 = {
-      data: new import_discord169.SlashCommandBuilder().setName("leaderboard").setDescription("View the top members by XP in this server.").addIntegerOption(
+    command144 = {
+      data: new import_discord171.SlashCommandBuilder().setName("leaderboard").setDescription("View the top members by XP in this server.").addIntegerOption(
         (o) => o.setName("page").setDescription("Page number").setMinValue(1).setRequired(false)
       ),
       async execute(interaction) {
@@ -221313,9 +221492,9 @@ var init_leaderboard = __esm({
         let page = Math.min(totalPages, Math.max(1, interaction.options.getInteger("page") ?? 1));
         const fetchPage = async (p) => getLeaderboard(interaction.guildId, PAGE_SIZE2, (p - 1) * PAGE_SIZE2);
         let entries = await fetchPage(page);
-        const navRow = () => new import_discord169.ActionRowBuilder().addComponents(
-          new import_discord169.ButtonBuilder().setCustomId("lb:prev").setLabel("\u2190 Prev").setStyle(import_discord169.ButtonStyle.Secondary).setDisabled(page <= 1),
-          new import_discord169.ButtonBuilder().setCustomId("lb:next").setLabel("Next \u2192").setStyle(import_discord169.ButtonStyle.Secondary).setDisabled(page >= totalPages)
+        const navRow = () => new import_discord171.ActionRowBuilder().addComponents(
+          new import_discord171.ButtonBuilder().setCustomId("lb:prev").setLabel("\u2190 Prev").setStyle(import_discord171.ButtonStyle.Secondary).setDisabled(page <= 1),
+          new import_discord171.ButtonBuilder().setCustomId("lb:next").setLabel("Next \u2192").setStyle(import_discord171.ButtonStyle.Secondary).setDisabled(page >= totalPages)
         );
         const reply = await interaction.editReply({
           embeds: [buildEmbed(entries, page, totalPages, interaction.guild.name, lc.embedColor)],
@@ -221323,7 +221502,7 @@ var init_leaderboard = __esm({
         });
         if (totalPages <= 1) return;
         const collector = reply.createMessageComponentCollector({
-          componentType: import_discord169.ComponentType.Button,
+          componentType: import_discord171.ComponentType.Button,
           filter: (b) => b.user.id === interaction.user.id && ["lb:prev", "lb:next"].includes(b.customId),
           time: 12e4
         });
@@ -221342,21 +221521,21 @@ var init_leaderboard = __esm({
         });
       }
     };
-    leaderboard_default = command142;
+    leaderboard_default = command144;
   }
 });
 
 // artifacts/api-server/src/discord/commands/give-xp.ts
-var import_discord170, command143, give_xp_default;
+var import_discord172, command145, give_xp_default;
 var init_give_xp = __esm({
   "artifacts/api-server/src/discord/commands/give-xp.ts"() {
     "use strict";
-    import_discord170 = __toESM(require_src2(), 1);
+    import_discord172 = __toESM(require_src2(), 1);
     init_levels();
     init_embedStyle();
     init_staffPerms();
-    command143 = {
-      data: new import_discord170.SlashCommandBuilder().setName("give-xp").setDescription("Admin: give or remove XP / set levels for any member.").addUserOption(
+    command145 = {
+      data: new import_discord172.SlashCommandBuilder().setName("give-xp").setDescription("Admin: give or remove XP / set levels for any member.").addUserOption(
         (o) => o.setName("user").setDescription("Member to modify").setRequired(true)
       ).addIntegerOption(
         (o) => o.setName("amount").setDescription("Amount of XP or levels to give (negative to remove)").setRequired(true)
@@ -221409,7 +221588,7 @@ var init_give_xp = __esm({
           if (toAdd.length) await member.roles.add(toAdd, `Level role sync (Level ${resultLevel})`).catch(() => {
           });
         }
-        const embed = new import_discord170.EmbedBuilder().setColor(lc.embedColor).setTitle(`${CE.success.str} Level data updated`).addFields(
+        const embed = new import_discord172.EmbedBuilder().setColor(lc.embedColor).setTitle(`${CE.success.str} Level data updated`).addFields(
           { name: "User", value: `${target} (${target.id})`, inline: true },
           { name: "New Level", value: String(resultLevel), inline: true },
           { name: "Total XP", value: resultTotalXp.toLocaleString(), inline: true },
@@ -221418,7 +221597,7 @@ var init_give_xp = __esm({
         await interaction.editReply({ embeds: [embed] });
       }
     };
-    give_xp_default = command143;
+    give_xp_default = command145;
   }
 });
 
@@ -221463,19 +221642,19 @@ var init_responseChannel = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/response-channel.ts
-var import_discord171, command144, response_channel_default;
+var import_discord173, command146, response_channel_default;
 var init_response_channel = __esm({
   "artifacts/api-server/src/discord/commands/response-channel.ts"() {
     "use strict";
-    import_discord171 = __toESM(require_src2(), 1);
+    import_discord173 = __toESM(require_src2(), 1);
     init_whitelist();
     init_staffPerms();
     init_embedStyle();
     init_responseChannel();
-    command144 = {
-      data: new import_discord171.SlashCommandBuilder().setName("response-channel").setDescription("Configure the channel where all bot DMs are forwarded.").setDefaultMemberPermissions(import_discord171.PermissionFlagsBits.Administrator).setDMPermission(false).addSubcommand(
+    command146 = {
+      data: new import_discord173.SlashCommandBuilder().setName("response-channel").setDescription("Configure the channel where all bot DMs are forwarded.").setDefaultMemberPermissions(import_discord173.PermissionFlagsBits.Administrator).setDMPermission(false).addSubcommand(
         (sub) => sub.setName("set").setDescription("Set the channel to forward DMs to.").addChannelOption(
-          (o) => o.setName("channel").setDescription("Text channel to receive DM notifications").addChannelTypes(import_discord171.ChannelType.GuildText).setRequired(true)
+          (o) => o.setName("channel").setDescription("Text channel to receive DM notifications").addChannelTypes(import_discord173.ChannelType.GuildText).setRequired(true)
         )
       ).addSubcommand(
         (sub) => sub.setName("clear").setDescription("Stop forwarding DMs (disable the response channel).")
@@ -221522,21 +221701,21 @@ var init_response_channel = __esm({
         }
       }
     };
-    response_channel_default = command144;
+    response_channel_default = command146;
   }
 });
 
 // artifacts/api-server/src/discord/commands/supabasestatus.ts
-var import_discord172, command145, supabasestatus_default;
+var import_discord174, command147, supabasestatus_default;
 var init_supabasestatus = __esm({
   "artifacts/api-server/src/discord/commands/supabasestatus.ts"() {
     "use strict";
-    import_discord172 = __toESM(require_src2(), 1);
+    import_discord174 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_persistentJson();
     init_premium();
-    command145 = {
-      data: new import_discord172.SlashCommandBuilder().setName("supabasestatus").setDescription("Check Supabase database persistence connection status and table state.").addStringOption(
+    command147 = {
+      data: new import_discord174.SlashCommandBuilder().setName("supabasestatus").setDescription("Check Supabase database persistence connection status and table state.").addStringOption(
         (opt) => opt.setName("action").setDescription("Action to perform: 'check' or 'sync' (syncs local stores to cloud)").setRequired(false).addChoices(
           { name: "Check Status", value: "check" },
           { name: "Sync Local Stores to Supabase", value: "sync" }
@@ -221674,20 +221853,20 @@ create table if not exists bot_json_store (
         });
       }
     };
-    supabasestatus_default = command145;
+    supabasestatus_default = command147;
   }
 });
 
 // artifacts/api-server/src/discord/commands/eval.ts
-var import_discord173, command146, eval_default;
+var import_discord175, command148, eval_default;
 var init_eval = __esm({
   "artifacts/api-server/src/discord/commands/eval.ts"() {
     "use strict";
-    import_discord173 = __toESM(require_src2(), 1);
+    import_discord175 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_premium();
-    command146 = {
-      data: new import_discord173.SlashCommandBuilder().setName("eval").setDescription("Bot Owner only: Evaluate JavaScript expressions live.").addStringOption(
+    command148 = {
+      data: new import_discord175.SlashCommandBuilder().setName("eval").setDescription("Bot Owner only: Evaluate JavaScript expressions live.").addStringOption(
         (opt) => opt.setName("code").setDescription("The code to evaluate").setRequired(true)
       ).setDMPermission(false),
       globalWhitelistOnly: true,
@@ -221745,20 +221924,20 @@ ${truncated}
         });
       }
     };
-    eval_default = command146;
+    eval_default = command148;
   }
 });
 
 // artifacts/api-server/src/discord/commands/serverlist.ts
-var import_discord174, command147, serverlist_default;
+var import_discord176, command149, serverlist_default;
 var init_serverlist = __esm({
   "artifacts/api-server/src/discord/commands/serverlist.ts"() {
     "use strict";
-    import_discord174 = __toESM(require_src2(), 1);
+    import_discord176 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_premium();
-    command147 = {
-      data: new import_discord174.SlashCommandBuilder().setName("serverlist").setDescription("Bot Owner only: List all servers the bot is currently in.").setDMPermission(false),
+    command149 = {
+      data: new import_discord176.SlashCommandBuilder().setName("serverlist").setDescription("Bot Owner only: List all servers the bot is currently in.").setDMPermission(false),
       globalWhitelistOnly: true,
       async execute(interaction) {
         const isOwner = isPermanentOwner(interaction.user.id) || await isBotAdmin(interaction.user.id);
@@ -221793,20 +221972,20 @@ var init_serverlist = __esm({
         });
       }
     };
-    serverlist_default = command147;
+    serverlist_default = command149;
   }
 });
 
 // artifacts/api-server/src/discord/commands/leaveserver.ts
-var import_discord175, command148, leaveserver_default;
+var import_discord177, command150, leaveserver_default;
 var init_leaveserver = __esm({
   "artifacts/api-server/src/discord/commands/leaveserver.ts"() {
     "use strict";
-    import_discord175 = __toESM(require_src2(), 1);
+    import_discord177 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_premium();
-    command148 = {
-      data: new import_discord175.SlashCommandBuilder().setName("leaveserver").setDescription("Bot Owner only: Force the bot to leave a specified server by ID.").addStringOption(
+    command150 = {
+      data: new import_discord177.SlashCommandBuilder().setName("leaveserver").setDescription("Bot Owner only: Force the bot to leave a specified server by ID.").addStringOption(
         (opt) => opt.setName("guild_id").setDescription("The ID of the server to leave").setRequired(true)
       ).setDMPermission(false),
       globalWhitelistOnly: true,
@@ -221850,20 +222029,20 @@ var init_leaveserver = __esm({
         }
       }
     };
-    leaveserver_default = command148;
+    leaveserver_default = command150;
   }
 });
 
 // artifacts/api-server/src/discord/commands/broadcast.ts
-var import_discord176, command149, broadcast_default;
+var import_discord178, command151, broadcast_default;
 var init_broadcast = __esm({
   "artifacts/api-server/src/discord/commands/broadcast.ts"() {
     "use strict";
-    import_discord176 = __toESM(require_src2(), 1);
+    import_discord178 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_premium();
-    command149 = {
-      data: new import_discord176.SlashCommandBuilder().setName("broadcast").setDescription("Bot Owner only: Broadcast an announcement embed to all servers.").addStringOption(
+    command151 = {
+      data: new import_discord178.SlashCommandBuilder().setName("broadcast").setDescription("Bot Owner only: Broadcast an announcement embed to all servers.").addStringOption(
         (opt) => opt.setName("message").setDescription("The message or announcement content to broadcast").setRequired(true)
       ).setDMPermission(false),
       globalWhitelistOnly: true,
@@ -221889,11 +222068,11 @@ var init_broadcast = __esm({
         for (const guild of guilds) {
           try {
             let targetChannel = null;
-            if (guild.systemChannel && guild.systemChannel.permissionsFor(guild.members.me)?.has(import_discord176.PermissionFlagsBits.SendMessages)) {
+            if (guild.systemChannel && guild.systemChannel.permissionsFor(guild.members.me)?.has(import_discord178.PermissionFlagsBits.SendMessages)) {
               targetChannel = guild.systemChannel;
             } else {
               targetChannel = guild.channels.cache.find(
-                (c) => c.type === import_discord176.ChannelType.GuildText && c.permissionsFor(guild.members.me)?.has(import_discord176.PermissionFlagsBits.SendMessages)
+                (c) => c.type === import_discord178.ChannelType.GuildText && c.permissionsFor(guild.members.me)?.has(import_discord178.PermissionFlagsBits.SendMessages)
               ) ?? null;
             }
             if (targetChannel) {
@@ -221918,7 +222097,7 @@ var init_broadcast = __esm({
         });
       }
     };
-    broadcast_default = command149;
+    broadcast_default = command151;
   }
 });
 
@@ -236620,11 +236799,11 @@ var require_socks5_client = __commonJS({
       /**
        * Build a SOCKS5 request
        */
-      buildConnectRequest(command151, address, port2) {
+      buildConnectRequest(command153, address, port2) {
         const { type: addressType, buffer: addressBuffer } = parseAddress(address);
         const request = Buffer4.alloc(4 + addressBuffer.length + 2);
         request[0] = SOCKS_VERSION;
-        request[1] = command151;
+        request[1] = command153;
         request[2] = 0;
         request[3] = addressType;
         addressBuffer.copy(request, 4);
@@ -259624,23 +259803,23 @@ async function handleMusicButton(interaction) {
   }
   if (customId === "music:eq" || customId === "btn:music:eq") {
     const eqOptions = [
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("8D Surround Audio").setValue("change_eq:8d").setDescription("360-degree dynamic spatial rotating audio").setDefault(manager.equalizer === "8d"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("High Treble Boost").setValue("change_eq:treble").setDescription("Crystal-clear high frequencies & vocals").setDefault(manager.equalizer === "treble"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Heavy Bass Boost").setValue("change_eq:bassboost").setDescription("Punchy low-end bass kick").setDefault(manager.equalizer === "bassboost"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Super Sub-Bass").setValue("change_eq:superbass").setDescription("Maximum sub-woofer rumble").setDefault(manager.equalizer === "superbass"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Nightcore").setValue("change_eq:nightcore").setDescription("1.25x speed with elevated vocal pitch").setDefault(manager.equalizer === "nightcore"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Vaporwave").setValue("change_eq:vaporwave").setDescription("Slowed aesthetic tempo with ambient reverb").setDefault(manager.equalizer === "vaporwave"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Karaoke").setValue("change_eq:karaoke").setDescription("Suppresses centered vocal track").setDefault(manager.equalizer === "karaoke"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("High Pitch").setValue("change_eq:highpitch").setDescription("Bright elevated vocal pitch").setDefault(manager.equalizer === "highpitch"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Low Pitch").setValue("change_eq:lowpitch").setDescription("Deepened acoustic timbre and lowered pitch").setDefault(manager.equalizer === "lowpitch"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Pop Music").setValue("change_eq:pop").setDescription("Brightened vocals & rhythmic pop presence").setDefault(manager.equalizer === "pop"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Rock & Metal").setValue("change_eq:rock").setDescription("Snappy drum transients and sharp guitars").setDefault(manager.equalizer === "rock"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("EDM & Electronic").setValue("change_eq:electronic").setDescription("Thumping kicks with glistening synths").setDefault(manager.equalizer === "electronic"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Acoustic / Soft").setValue("change_eq:soft").setDescription("Warm, gentle tone for acoustic & chill music").setDefault(manager.equalizer === "soft"),
-      new import_discord177.StringSelectMenuOptionBuilder().setLabel("Flat / Normal (Off)").setValue("change_eq:off").setDescription("Pure balanced studio output without filters").setDefault(manager.equalizer === "off")
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("8D Surround Audio").setValue("change_eq:8d").setDescription("360-degree dynamic spatial rotating audio").setDefault(manager.equalizer === "8d"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("High Treble Boost").setValue("change_eq:treble").setDescription("Crystal-clear high frequencies & vocals").setDefault(manager.equalizer === "treble"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Heavy Bass Boost").setValue("change_eq:bassboost").setDescription("Punchy low-end bass kick").setDefault(manager.equalizer === "bassboost"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Super Sub-Bass").setValue("change_eq:superbass").setDescription("Maximum sub-woofer rumble").setDefault(manager.equalizer === "superbass"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Nightcore").setValue("change_eq:nightcore").setDescription("1.25x speed with elevated vocal pitch").setDefault(manager.equalizer === "nightcore"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Vaporwave").setValue("change_eq:vaporwave").setDescription("Slowed aesthetic tempo with ambient reverb").setDefault(manager.equalizer === "vaporwave"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Karaoke").setValue("change_eq:karaoke").setDescription("Suppresses centered vocal track").setDefault(manager.equalizer === "karaoke"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("High Pitch").setValue("change_eq:highpitch").setDescription("Bright elevated vocal pitch").setDefault(manager.equalizer === "highpitch"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Low Pitch").setValue("change_eq:lowpitch").setDescription("Deepened acoustic timbre and lowered pitch").setDefault(manager.equalizer === "lowpitch"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Pop Music").setValue("change_eq:pop").setDescription("Brightened vocals & rhythmic pop presence").setDefault(manager.equalizer === "pop"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Rock & Metal").setValue("change_eq:rock").setDescription("Snappy drum transients and sharp guitars").setDefault(manager.equalizer === "rock"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("EDM & Electronic").setValue("change_eq:electronic").setDescription("Thumping kicks with glistening synths").setDefault(manager.equalizer === "electronic"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Acoustic / Soft").setValue("change_eq:soft").setDescription("Warm, gentle tone for acoustic & chill music").setDefault(manager.equalizer === "soft"),
+      new import_discord179.StringSelectMenuOptionBuilder().setLabel("Flat / Normal (Off)").setValue("change_eq:off").setDescription("Pure balanced studio output without filters").setDefault(manager.equalizer === "off")
     ];
-    const row2 = new import_discord177.ActionRowBuilder().addComponents(
-      new import_discord177.StringSelectMenuBuilder().setCustomId("select:music:change_eq").setPlaceholder("\u25BC Select Equalizer / Audio FX Preset...").addOptions(eqOptions)
+    const row2 = new import_discord179.ActionRowBuilder().addComponents(
+      new import_discord179.StringSelectMenuBuilder().setCustomId("select:music:change_eq").setPlaceholder("\u25BC Select Equalizer / Audio FX Preset...").addOptions(eqOptions)
     );
     const eqEmbed = prettyEmbed({
       title: `${CE.equalizer ? CE.equalizer.str : CE.music.str} Live Equalizer & Spatial Audio FX`,
@@ -259660,14 +259839,14 @@ async function handleMusicButton(interaction) {
     const sources = await resolveAllAudioSources(track.title, track.artist, track.streamUrl);
     sourceOptionCache.set(interaction.user.id, { track, options: sources });
     const selectOptions = sources.map((s2, i2) => {
-      const opt = new import_discord177.StringSelectMenuOptionBuilder().setLabel(s2.sourceName).setValue(`change_source:${i2}`).setDescription(s2.quality).setDefault(track.sourceName?.includes(s2.sourceName) ?? false);
+      const opt = new import_discord179.StringSelectMenuOptionBuilder().setLabel(s2.sourceName).setValue(`change_source:${i2}`).setDescription(s2.quality).setDefault(track.sourceName?.includes(s2.sourceName) ?? false);
       if (s2.emojiId) {
         opt.setEmoji(s2.emojiId);
       }
       return opt;
     });
-    const row2 = new import_discord177.ActionRowBuilder().addComponents(
-      new import_discord177.StringSelectMenuBuilder().setCustomId("select:music:change_source").setPlaceholder("\u25BC Select Audio Stream Source / Mirror...").addOptions(selectOptions)
+    const row2 = new import_discord179.ActionRowBuilder().addComponents(
+      new import_discord179.StringSelectMenuBuilder().setCustomId("select:music:change_source").setPlaceholder("\u25BC Select Audio Stream Source / Mirror...").addOptions(selectOptions)
     );
     const srcEmbed = prettyEmbed({
       title: `${CE.link.str} Audio Stream Details & Source Switcher`,
@@ -259712,14 +259891,14 @@ async function handleMusicButton(interaction) {
     searchResultCache.set(guildId, results);
     const selectOptions = results.slice(0, 10).map((t2, i2) => {
       const isCurrent = manager.currentTrack && (manager.currentTrack.url === t2.url || manager.currentTrack.title === t2.title);
-      const opt = new import_discord177.StringSelectMenuOptionBuilder().setLabel(`${i2 + 1}. ${t2.title}`.slice(0, 100)).setValue(`search_pick:${i2}`).setDescription(`${t2.artist} \u2022 ${formatTime(t2.durationSeconds)}`.slice(0, 100)).setDefault(Boolean(isCurrent));
+      const opt = new import_discord179.StringSelectMenuOptionBuilder().setLabel(`${i2 + 1}. ${t2.title}`.slice(0, 100)).setValue(`search_pick:${i2}`).setDescription(`${t2.artist} \u2022 ${formatTime(t2.durationSeconds)}`.slice(0, 100)).setDefault(Boolean(isCurrent));
       if (CE.music.id) {
         opt.setEmoji(CE.music.id);
       }
       return opt;
     });
-    const row2 = new import_discord177.ActionRowBuilder().addComponents(
-      new import_discord177.StringSelectMenuBuilder().setCustomId("select:music:search_pick").setPlaceholder("\u25BC Choose another track from search results...").addOptions(selectOptions)
+    const row2 = new import_discord179.ActionRowBuilder().addComponents(
+      new import_discord179.StringSelectMenuBuilder().setCustomId("select:music:search_pick").setPlaceholder("\u25BC Choose another track from search results...").addOptions(selectOptions)
     );
     const embed = prettyEmbed({
       title: `${CE.search ? CE.search.str : CE.music.str} Search Results for: ${manager.lastSearchQuery || manager.currentTrack?.title || "Search"}`,
@@ -259877,25 +260056,25 @@ async function handleMusicSelectMenu(interaction) {
 function buildPlayerActionRows(manager) {
   const isPaused = manager.isPaused;
   const is247 = manager.twentyFourSeven.enabled;
-  const row1 = new import_discord177.ActionRowBuilder().addComponents(
-    new import_discord177.ButtonBuilder().setCustomId("music:prev").setLabel("Previous").setEmoji(CE.white_previous.str).setStyle(import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:pause").setLabel(isPaused ? "Resume" : "Pause").setEmoji(isPaused ? CE.resume.str : CE.pause.str).setStyle(isPaused ? import_discord177.ButtonStyle.Success : import_discord177.ButtonStyle.Primary),
-    new import_discord177.ButtonBuilder().setCustomId("music:skip").setLabel("Skip").setEmoji(CE.white_skip.str).setStyle(import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:stop").setLabel("Stop").setEmoji(CE.white_cancel.str).setStyle(import_discord177.ButtonStyle.Danger),
-    new import_discord177.ButtonBuilder().setCustomId("music:queue").setLabel("Queue").setEmoji(CE.list.str).setStyle(import_discord177.ButtonStyle.Secondary)
+  const row1 = new import_discord179.ActionRowBuilder().addComponents(
+    new import_discord179.ButtonBuilder().setCustomId("music:prev").setLabel("Previous").setEmoji(CE.white_previous.str).setStyle(import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:pause").setLabel(isPaused ? "Resume" : "Pause").setEmoji(isPaused ? CE.resume.str : CE.pause.str).setStyle(isPaused ? import_discord179.ButtonStyle.Success : import_discord179.ButtonStyle.Primary),
+    new import_discord179.ButtonBuilder().setCustomId("music:skip").setLabel("Skip").setEmoji(CE.white_skip.str).setStyle(import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:stop").setLabel("Stop").setEmoji(CE.white_cancel.str).setStyle(import_discord179.ButtonStyle.Danger),
+    new import_discord179.ButtonBuilder().setCustomId("music:queue").setLabel("Queue").setEmoji(CE.list.str).setStyle(import_discord179.ButtonStyle.Secondary)
   );
-  const row2 = new import_discord177.ActionRowBuilder().addComponents(
-    new import_discord177.ButtonBuilder().setCustomId("music:loop").setLabel(`Loop: ${manager.loopMode.toUpperCase()}`).setEmoji(CE.loop.str).setStyle(manager.loopMode !== "off" ? import_discord177.ButtonStyle.Success : import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:shuffle").setLabel("Shuffle").setEmoji(CE.shuffle.str).setStyle(import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:speed_down").setLabel(`Speed - (${manager.speed}x)`).setEmoji(CE.Speed_more.str).setStyle(manager.speed !== 1 ? import_discord177.ButtonStyle.Primary : import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:speed_up").setLabel(`Speed + (${manager.speed}x)`).setEmoji(CE.Speed_more.str).setStyle(manager.speed !== 1 ? import_discord177.ButtonStyle.Primary : import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:247").setLabel(`24/7: ${is247 ? "ON" : "OFF"}`).setEmoji(CE.white_mic.str).setStyle(is247 ? import_discord177.ButtonStyle.Success : import_discord177.ButtonStyle.Secondary)
+  const row2 = new import_discord179.ActionRowBuilder().addComponents(
+    new import_discord179.ButtonBuilder().setCustomId("music:loop").setLabel(`Loop: ${manager.loopMode.toUpperCase()}`).setEmoji(CE.loop.str).setStyle(manager.loopMode !== "off" ? import_discord179.ButtonStyle.Success : import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:shuffle").setLabel("Shuffle").setEmoji(CE.shuffle.str).setStyle(import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:speed_down").setLabel(`Speed - (${manager.speed}x)`).setEmoji(CE.Speed_more.str).setStyle(manager.speed !== 1 ? import_discord179.ButtonStyle.Primary : import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:speed_up").setLabel(`Speed + (${manager.speed}x)`).setEmoji(CE.Speed_more.str).setStyle(manager.speed !== 1 ? import_discord179.ButtonStyle.Primary : import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:247").setLabel(`24/7: ${is247 ? "ON" : "OFF"}`).setEmoji(CE.white_mic.str).setStyle(is247 ? import_discord179.ButtonStyle.Success : import_discord179.ButtonStyle.Secondary)
   );
   const activeSourceLabel = manager.currentTrack?.sourceName ? manager.currentTrack.sourceName.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").slice(0, 20) : "Source";
-  const row3 = new import_discord177.ActionRowBuilder().addComponents(
-    new import_discord177.ButtonBuilder().setCustomId("music:eq").setLabel(`Equalizer FX: ${manager.equalizer.toUpperCase()}`).setEmoji(CE.equalizer ? CE.equalizer.str : CE.music.str).setStyle(manager.equalizer !== "off" ? import_discord177.ButtonStyle.Success : import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:source").setLabel(`Source: ${activeSourceLabel}`).setEmoji(CE.link.str).setStyle(import_discord177.ButtonStyle.Secondary),
-    new import_discord177.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord177.ButtonStyle.Secondary)
+  const row3 = new import_discord179.ActionRowBuilder().addComponents(
+    new import_discord179.ButtonBuilder().setCustomId("music:eq").setLabel(`Equalizer FX: ${manager.equalizer.toUpperCase()}`).setEmoji(CE.equalizer ? CE.equalizer.str : CE.music.str).setStyle(manager.equalizer !== "off" ? import_discord179.ButtonStyle.Success : import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:source").setLabel(`Source: ${activeSourceLabel}`).setEmoji(CE.link.str).setStyle(import_discord179.ButtonStyle.Secondary),
+    new import_discord179.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord179.ButtonStyle.Secondary)
   );
   return [row1, row2, row3];
 }
@@ -260093,11 +260272,11 @@ async function init247Sessions(client) {
     logger.warn({ err }, "Error restoring 24/7 & active music sessions");
   }
 }
-var import_discord177, EQUALIZER_PRESETS, musicManagers, MusicManager, GuildMusicPlayer, getMusicPlayer, getOrCreateMusicPlayer, searchResultCache, sourceOptionCache;
+var import_discord179, EQUALIZER_PRESETS, musicManagers, MusicManager, GuildMusicPlayer, getMusicPlayer, getOrCreateMusicPlayer, searchResultCache, sourceOptionCache;
 var init_musicManager = __esm({
   "artifacts/api-server/src/discord/music/musicManager.ts"() {
     "use strict";
-    import_discord177 = __toESM(require_src2(), 1);
+    import_discord179 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_logger();
     init_music247();
@@ -260899,7 +261078,7 @@ var init_musicManager = __esm({
             });
           }
           try {
-            await this.voiceChannel.client.rest.put(import_discord177.Routes.channelVoiceStatus(channelId), {
+            await this.voiceChannel.client.rest.put(import_discord179.Routes.channelVoiceStatus(channelId), {
               body: { status: sanitized }
             });
           } catch {
@@ -261050,16 +261229,16 @@ async function sendPaginatedEmbed(target, pages, options = {}) {
     }
   }
   const getNavRow = (pageIdx) => {
-    return new import_discord178.ActionRowBuilder().addComponents(
-      new import_discord178.ButtonBuilder().setCustomId("page_first").setLabel("First").setEmoji(CE.arrow_anim.id).setStyle(import_discord178.ButtonStyle.Secondary).setDisabled(pageIdx === 0),
-      new import_discord178.ButtonBuilder().setCustomId("page_prev").setLabel("Back").setEmoji(CE.arrow_yellow.id).setStyle(import_discord178.ButtonStyle.Primary).setDisabled(pageIdx === 0),
-      new import_discord178.ButtonBuilder().setCustomId("page_stop").setLabel("Close").setEmoji(CE.trash.id).setStyle(import_discord178.ButtonStyle.Danger),
-      new import_discord178.ButtonBuilder().setCustomId("page_next").setLabel("Next").setEmoji(CE.arrow_red.id).setStyle(import_discord178.ButtonStyle.Primary).setDisabled(pageIdx === pages.length - 1),
-      new import_discord178.ButtonBuilder().setCustomId("page_last").setLabel("Last").setEmoji(CE.arrow_anim.id).setStyle(import_discord178.ButtonStyle.Secondary).setDisabled(pageIdx === pages.length - 1)
+    return new import_discord180.ActionRowBuilder().addComponents(
+      new import_discord180.ButtonBuilder().setCustomId("page_first").setLabel("First").setEmoji(CE.arrow_anim.id).setStyle(import_discord180.ButtonStyle.Secondary).setDisabled(pageIdx === 0),
+      new import_discord180.ButtonBuilder().setCustomId("page_prev").setLabel("Back").setEmoji(CE.arrow_yellow.id).setStyle(import_discord180.ButtonStyle.Primary).setDisabled(pageIdx === 0),
+      new import_discord180.ButtonBuilder().setCustomId("page_stop").setLabel("Close").setEmoji(CE.trash.id).setStyle(import_discord180.ButtonStyle.Danger),
+      new import_discord180.ButtonBuilder().setCustomId("page_next").setLabel("Next").setEmoji(CE.arrow_red.id).setStyle(import_discord180.ButtonStyle.Primary).setDisabled(pageIdx === pages.length - 1),
+      new import_discord180.ButtonBuilder().setCustomId("page_last").setLabel("Last").setEmoji(CE.arrow_anim.id).setStyle(import_discord180.ButtonStyle.Secondary).setDisabled(pageIdx === pages.length - 1)
     );
   };
   const prepareEmbed = (pageIdx) => {
-    const page = import_discord178.EmbedBuilder.from(pages[pageIdx]);
+    const page = import_discord180.EmbedBuilder.from(pages[pageIdx]);
     const footerText = options.footerPrefix ? `${options.footerPrefix} \u2022 Page ${pageIdx + 1} of ${pages.length}` : `Page ${pageIdx + 1} of ${pages.length}`;
     page.setFooter({ text: footerText });
     return page;
@@ -261133,12 +261312,12 @@ async function sendPaginatedEmbed(target, pages, options = {}) {
         await replyMsg.delete().catch(() => {
         });
       } else {
-        const disabledRow = new import_discord178.ActionRowBuilder().addComponents(
-          new import_discord178.ButtonBuilder().setCustomId("page_first").setLabel("First").setEmoji(CE.arrow_anim.id).setStyle(import_discord178.ButtonStyle.Secondary).setDisabled(true),
-          new import_discord178.ButtonBuilder().setCustomId("page_prev").setLabel("Back").setEmoji(CE.arrow_yellow.id).setStyle(import_discord178.ButtonStyle.Primary).setDisabled(true),
-          new import_discord178.ButtonBuilder().setCustomId("page_stop").setLabel("Closed").setEmoji(CE.trash.id).setStyle(import_discord178.ButtonStyle.Secondary).setDisabled(true),
-          new import_discord178.ButtonBuilder().setCustomId("page_next").setLabel("Next").setEmoji(CE.arrow_red.id).setStyle(import_discord178.ButtonStyle.Primary).setDisabled(true),
-          new import_discord178.ButtonBuilder().setCustomId("page_last").setLabel("Last").setEmoji(CE.arrow_anim.id).setStyle(import_discord178.ButtonStyle.Secondary).setDisabled(true)
+        const disabledRow = new import_discord180.ActionRowBuilder().addComponents(
+          new import_discord180.ButtonBuilder().setCustomId("page_first").setLabel("First").setEmoji(CE.arrow_anim.id).setStyle(import_discord180.ButtonStyle.Secondary).setDisabled(true),
+          new import_discord180.ButtonBuilder().setCustomId("page_prev").setLabel("Back").setEmoji(CE.arrow_yellow.id).setStyle(import_discord180.ButtonStyle.Primary).setDisabled(true),
+          new import_discord180.ButtonBuilder().setCustomId("page_stop").setLabel("Closed").setEmoji(CE.trash.id).setStyle(import_discord180.ButtonStyle.Secondary).setDisabled(true),
+          new import_discord180.ButtonBuilder().setCustomId("page_next").setLabel("Next").setEmoji(CE.arrow_red.id).setStyle(import_discord180.ButtonStyle.Primary).setDisabled(true),
+          new import_discord180.ButtonBuilder().setCustomId("page_last").setLabel("Last").setEmoji(CE.arrow_anim.id).setStyle(import_discord180.ButtonStyle.Secondary).setDisabled(true)
         );
         await replyMsg.edit({
           components: [disabledRow, ...options.extraRows ?? []]
@@ -261151,11 +261330,11 @@ async function sendPaginatedEmbed(target, pages, options = {}) {
   });
   return replyMsg;
 }
-var import_discord178;
+var import_discord180;
 var init_paginator = __esm({
   "artifacts/api-server/src/discord/utils/paginator.ts"() {
     "use strict";
-    import_discord178 = __toESM(require_src2(), 1);
+    import_discord180 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_logger();
   }
@@ -261201,7 +261380,7 @@ async function hasDjPermission(member, guild) {
   if (isBotOwner(member.id)) {
     return { allowed: true };
   }
-  if (member.permissions.has(import_discord179.PermissionFlagsBits.Administrator) || member.permissions.has(import_discord179.PermissionFlagsBits.ManageGuild) || member.permissions.has(import_discord179.PermissionFlagsBits.MuteMembers)) {
+  if (member.permissions.has(import_discord181.PermissionFlagsBits.Administrator) || member.permissions.has(import_discord181.PermissionFlagsBits.ManageGuild) || member.permissions.has(import_discord181.PermissionFlagsBits.MuteMembers)) {
     return { allowed: true };
   }
   const djConfig = await getDjConfig(guild.id);
@@ -261223,14 +261402,14 @@ async function hasDjPermission(member, guild) {
     reason: `${CE.music.str} **DJ Role Required:** Only members with the <@&${djConfig.djRoleId}> role or server administrators can use destructive music controls on this server.`
   };
 }
-var import_discord179, STORE15, FILE14, cache41, writeQueue41;
+var import_discord181, STORE15, FILE14, cache41, writeQueue41;
 var init_musicDj = __esm({
   "artifacts/api-server/src/discord/storage/musicDj.ts"() {
     "use strict";
     init_paths();
     init_logger();
     init_persistentJson();
-    import_discord179 = __toESM(require_src2(), 1);
+    import_discord181 = __toESM(require_src2(), 1);
     init_ownerImmunity();
     init_musicManager();
     init_embedStyle();
@@ -261300,17 +261479,17 @@ function checkVoicePermissionsAndLimit(voiceChannel, guild) {
   if (!me) return { ok: false, reason: "Could not resolve bot member permissions." };
   const perms = voiceChannel.permissionsFor(me);
   if (!perms) return { ok: false, reason: "Could not inspect voice channel permissions." };
-  if (!perms.has(import_discord180.PermissionFlagsBits.ViewChannel)) {
+  if (!perms.has(import_discord182.PermissionFlagsBits.ViewChannel)) {
     return { ok: false, reason: "Missing **View Channel** permission for the target voice channel." };
   }
-  if (!perms.has(import_discord180.PermissionFlagsBits.Connect)) {
+  if (!perms.has(import_discord182.PermissionFlagsBits.Connect)) {
     return { ok: false, reason: "Missing **Connect** permission to join the target voice channel." };
   }
-  if (!perms.has(import_discord180.PermissionFlagsBits.Speak)) {
+  if (!perms.has(import_discord182.PermissionFlagsBits.Speak)) {
     return { ok: false, reason: "Missing **Speak** permission in the target voice channel." };
   }
   if (voiceChannel.userLimit > 0 && voiceChannel.members.size >= voiceChannel.userLimit) {
-    const canBypassLimit = perms.has(import_discord180.PermissionFlagsBits.MoveMembers) || perms.has(import_discord180.PermissionFlagsBits.Administrator);
+    const canBypassLimit = perms.has(import_discord182.PermissionFlagsBits.MoveMembers) || perms.has(import_discord182.PermissionFlagsBits.Administrator);
     if (!canBypassLimit) {
       return {
         ok: false,
@@ -261320,11 +261499,11 @@ function checkVoicePermissionsAndLimit(voiceChannel, guild) {
   }
   return { ok: true };
 }
-var import_discord180, playCommand, skipCommand, pauseCommand, resumeCommand, stopCommand, seekCommand, skipToCommand, shuffleCommand, removeCommand2, moveCommand, queueCommand, sourceCommand, clearQueueCommand, volumeCommand, loopCommand, autoplayCommand, equalizerCommand, bassboostCommand, nowPlayingCommand, speedCommand, twentyFourSevenCommand, musicPanelCommand, panelCommand, searchCommand;
+var import_discord182, playCommand, skipCommand, pauseCommand, resumeCommand, stopCommand, seekCommand, skipToCommand, shuffleCommand, removeCommand2, moveCommand, queueCommand, sourceCommand, clearQueueCommand, volumeCommand, loopCommand, autoplayCommand, equalizerCommand, bassboostCommand, nowPlayingCommand, speedCommand, twentyFourSevenCommand, musicPanelCommand, panelCommand, searchCommand;
 var init_music = __esm({
   "artifacts/api-server/src/discord/commands/music.ts"() {
     "use strict";
-    import_discord180 = __toESM(require_src2(), 1);
+    import_discord182 = __toESM(require_src2(), 1);
     init_musicManager();
     init_sourceResolver();
     init_paginator();
@@ -261332,7 +261511,7 @@ var init_music = __esm({
     init_premium();
     init_musicDj();
     playCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("play").setDescription("Play any song, artist, album, direct URL, or web radio in your voice channel").addStringOption(
+      data: new import_discord182.SlashCommandBuilder().setName("play").setDescription("Play any song, artist, album, direct URL, or web radio in your voice channel").addStringOption(
         (o) => o.setName("query").setDescription("Song title, artist name, or audio URL").setRequired(true)
       ).addStringOption(
         (o) => o.setName("target").setDescription("Voice Channel ID/mention or User ID/mention [Premium Remote Summon]").setRequired(false)
@@ -261475,9 +261654,9 @@ ${CE.crown.str} **Join elite communities:** [Claim VIP Access](https://discord.g
               color: COLORS.primary,
               footer: "Zenith High-Fidelity Audio \u2022 Upgrade: discord.gg/gFgAfpSYdp"
             });
-            const actionRow = new import_discord180.ActionRowBuilder().addComponents(
-              new import_discord180.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord180.ButtonStyle.Secondary),
-              new import_discord180.ButtonBuilder().setCustomId("music:queue").setLabel("View Queue").setEmoji(CE.list.str).setStyle(import_discord180.ButtonStyle.Secondary)
+            const actionRow = new import_discord182.ActionRowBuilder().addComponents(
+              new import_discord182.ButtonBuilder().setCustomId("music:search_results").setLabel("Other Results").setEmoji(CE.search ? CE.search.str : CE.list.str).setStyle(import_discord182.ButtonStyle.Secondary),
+              new import_discord182.ButtonBuilder().setCustomId("music:queue").setLabel("View Queue").setEmoji(CE.list.str).setStyle(import_discord182.ButtonStyle.Secondary)
             );
             await interaction.editReply({
               embeds: [queuedEmbed],
@@ -261494,7 +261673,7 @@ ${CE.crown.str} **Join elite communities:** [Claim VIP Access](https://discord.g
       }
     };
     skipCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("skip").setDescription("Skip the currently playing track"),
+      data: new import_discord182.SlashCommandBuilder().setName("skip").setDescription("Skip the currently playing track"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261525,7 +261704,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     pauseCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("pause").setDescription("Pause audio playback"),
+      data: new import_discord182.SlashCommandBuilder().setName("pause").setDescription("Pause audio playback"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261549,7 +261728,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     resumeCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("resume").setDescription("Resume paused audio playback"),
+      data: new import_discord182.SlashCommandBuilder().setName("resume").setDescription("Resume paused audio playback"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261573,7 +261752,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     stopCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("stop").setDescription("Stop playback, clear queue, and leave the voice channel"),
+      data: new import_discord182.SlashCommandBuilder().setName("stop").setDescription("Stop playback, clear queue, and leave the voice channel"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261600,7 +261779,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     seekCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("seek").setDescription("Seek to a specific timestamp in the current track").addStringOption(
+      data: new import_discord182.SlashCommandBuilder().setName("seek").setDescription("Seek to a specific timestamp in the current track").addStringOption(
         (o) => o.setName("timestamp").setDescription("Timestamp to seek to (e.g. 1:30 or 90 for seconds)").setRequired(true)
       ),
       async execute(interaction) {
@@ -261638,7 +261817,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     skipToCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("skipto").setDescription("Skip directly to a specific track number in the queue").addIntegerOption((o) => o.setName("position").setDescription("Track position number in queue").setRequired(true)),
+      data: new import_discord182.SlashCommandBuilder().setName("skipto").setDescription("Skip directly to a specific track number in the queue").addIntegerOption((o) => o.setName("position").setDescription("Track position number in queue").setRequired(true)),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261663,7 +261842,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     shuffleCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("shuffle").setDescription("Randomly shuffle all tracks in the queue"),
+      data: new import_discord182.SlashCommandBuilder().setName("shuffle").setDescription("Randomly shuffle all tracks in the queue"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261683,7 +261862,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     removeCommand2 = {
-      data: new import_discord180.SlashCommandBuilder().setName("remove").setDescription("Remove a track from the queue by its number").addIntegerOption((o) => o.setName("position").setDescription("Track position number in queue").setRequired(true)),
+      data: new import_discord182.SlashCommandBuilder().setName("remove").setDescription("Remove a track from the queue by its number").addIntegerOption((o) => o.setName("position").setDescription("Track position number in queue").setRequired(true)),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261708,7 +261887,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     moveCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("move").setDescription("Move a track to a different position in the queue").addIntegerOption((o) => o.setName("from").setDescription("Current position number").setRequired(true)).addIntegerOption((o) => o.setName("to").setDescription("New target position number").setRequired(true)),
+      data: new import_discord182.SlashCommandBuilder().setName("move").setDescription("Move a track to a different position in the queue").addIntegerOption((o) => o.setName("from").setDescription("Current position number").setRequired(true)).addIntegerOption((o) => o.setName("to").setDescription("New target position number").setRequired(true)),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261734,7 +261913,7 @@ Skipped **${skipped?.title || "Current Track"}**.
       }
     };
     queueCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("queue").setDescription("View the current music queue with interactive multi-page navigation").addIntegerOption((o) => o.setName("page").setDescription("Initial page number").setRequired(false)),
+      data: new import_discord182.SlashCommandBuilder().setName("queue").setDescription("View the current music queue with interactive multi-page navigation").addIntegerOption((o) => o.setName("page").setDescription("Initial page number").setRequired(false)),
       async execute(interaction) {
         if (!interaction.guildId) return;
         const player = getMusicPlayer(interaction.guildId);
@@ -261805,7 +261984,7 @@ Use \`/play <song>\` or \`.play <song>\` to add tracks!`,
       }
     };
     sourceCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("source").setDescription("View available audio sources / mirrors and switch streams in real-time"),
+      data: new import_discord182.SlashCommandBuilder().setName("source").setDescription("View available audio sources / mirrors and switch streams in real-time"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261827,14 +262006,14 @@ Use \`/play <song>\` or \`.play <song>\` to add tracks!`,
         }
         sourceOptionCache.set(interaction.user.id, { track, options: sources });
         const selectOptions = sources.map((s2, i2) => {
-          const opt = new import_discord180.StringSelectMenuOptionBuilder().setLabel(s2.sourceName).setValue(`change_source:${i2}`).setDescription(s2.quality).setDefault(track.sourceName?.includes(s2.sourceName) ?? false);
+          const opt = new import_discord182.StringSelectMenuOptionBuilder().setLabel(s2.sourceName).setValue(`change_source:${i2}`).setDescription(s2.quality).setDefault(track.sourceName?.includes(s2.sourceName) ?? false);
           if (s2.emojiId) {
             opt.setEmoji(s2.emojiId);
           }
           return opt;
         });
-        const row2 = new import_discord180.ActionRowBuilder().addComponents(
-          new import_discord180.StringSelectMenuBuilder().setCustomId("select:music:change_source").setPlaceholder("Select audio source / mirror for current song...").addOptions(selectOptions)
+        const row2 = new import_discord182.ActionRowBuilder().addComponents(
+          new import_discord182.StringSelectMenuBuilder().setCustomId("select:music:change_source").setPlaceholder("Select audio source / mirror for current song...").addOptions(selectOptions)
         );
         const embed = prettyEmbed({
           title: "Audio Source & Mirror Selector",
@@ -261849,7 +262028,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     clearQueueCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("clearqueue").setDescription("Clear all tracks from the music queue"),
+      data: new import_discord182.SlashCommandBuilder().setName("clearqueue").setDescription("Clear all tracks from the music queue"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261869,7 +262048,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     volumeCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("volume").setDescription("Adjust the music playback volume (1% - 100%)").addIntegerOption(
+      data: new import_discord182.SlashCommandBuilder().setName("volume").setDescription("Adjust the music playback volume (1% - 100%)").addIntegerOption(
         (o) => o.setName("level").setDescription("Volume percentage between 1 and 100").setRequired(true).setMinValue(1).setMaxValue(100)
       ),
       async execute(interaction) {
@@ -261892,7 +262071,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     loopCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("loop").setDescription("Set loop mode (off, track, queue)").addStringOption(
+      data: new import_discord182.SlashCommandBuilder().setName("loop").setDescription("Set loop mode (off, track, queue)").addStringOption(
         (o) => o.setName("mode").setDescription("Loop mode to apply").setRequired(false).addChoices(
           { name: "Off", value: "off" },
           { name: "Current Track", value: "track" },
@@ -261923,7 +262102,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     autoplayCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("autoplay").setDescription("Toggle continuous intelligent music autoplay"),
+      data: new import_discord182.SlashCommandBuilder().setName("autoplay").setDescription("Toggle continuous intelligent music autoplay"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -261943,7 +262122,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     equalizerCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("equalizer").setDescription("Apply studio equalizer & DSP audio filters in real-time").addStringOption(
+      data: new import_discord182.SlashCommandBuilder().setName("equalizer").setDescription("Apply studio equalizer & DSP audio filters in real-time").addStringOption(
         (o) => o.setName("preset").setDescription("Equalizer preset profile").setRequired(true).addChoices(
           ...Object.values(EQUALIZER_PRESETS).map((p) => ({
             name: `${p.label} - ${p.description.slice(0, 50)}`,
@@ -261982,7 +262161,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     bassboostCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("bassboost").setDescription("Quickly toggle heavy bass boost filter").addBooleanOption((o) => o.setName("enabled").setDescription("Enable or disable bass boost").setRequired(false)),
+      data: new import_discord182.SlashCommandBuilder().setName("bassboost").setDescription("Quickly toggle heavy bass boost filter").addBooleanOption((o) => o.setName("enabled").setDescription("Enable or disable bass boost").setRequired(false)),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) return;
         const dj = await hasDjPermission(interaction.member, interaction.guild);
@@ -262004,7 +262183,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     nowPlayingCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("nowplaying").setDescription("Display currently playing track with interactive controls"),
+      data: new import_discord182.SlashCommandBuilder().setName("nowplaying").setDescription("Display currently playing track with interactive controls"),
       async execute(interaction) {
         if (!interaction.guildId) return;
         const player = getMusicPlayer(interaction.guildId);
@@ -262018,7 +262197,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     speedCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("speed").setDescription("Set playback tempo/speed multiplier (0.5x - 2.0x)").addNumberOption(
+      data: new import_discord182.SlashCommandBuilder().setName("speed").setDescription("Set playback tempo/speed multiplier (0.5x - 2.0x)").addNumberOption(
         (o) => o.setName("speed").setDescription("Speed multiplier (e.g. 1.25, 0.8, 1.5)").setRequired(true).setMinValue(0.5).setMaxValue(2)
       ),
       async execute(interaction) {
@@ -262042,7 +262221,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
       }
     };
     twentyFourSevenCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("twentyfourseven").setDescription("Premium Only: Enable 24/7 radio playback in voice channel (plays continuously even if empty)").addStringOption(
+      data: new import_discord182.SlashCommandBuilder().setName("twentyfourseven").setDescription("Premium Only: Enable 24/7 radio playback in voice channel (plays continuously even if empty)").addStringOption(
         (o) => o.setName("target").setDescription("Voice Channel ID/mention or User ID/mention [Premium]").setRequired(false)
       ).addStringOption(
         (o) => o.setName("query").setDescription("Singer name (plays all songs), album, or song to loop 24/7").setRequired(false)
@@ -262248,7 +262427,7 @@ Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
       }
     };
     musicPanelCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("musicpanel").setDescription("Open the interactive music control studio and live audio dashboard"),
+      data: new import_discord182.SlashCommandBuilder().setName("musicpanel").setDescription("Open the interactive music control studio and live audio dashboard"),
       async execute(interaction) {
         if (!interaction.guildId || !interaction.guild) {
           await interaction.reply({ content: `${CE.failure.str} This command can only be used in a server.`, ephemeral: true });
@@ -262272,13 +262451,13 @@ Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
       }
     };
     panelCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("panel").setDescription("Open the interactive music control studio and live audio dashboard"),
+      data: new import_discord182.SlashCommandBuilder().setName("panel").setDescription("Open the interactive music control studio and live audio dashboard"),
       async execute(interaction) {
         return musicPanelCommand.execute(interaction);
       }
     };
     searchCommand = {
-      data: new import_discord180.SlashCommandBuilder().setName("search").setDescription("Search top songs from YouTube, Spotify, SoundCloud, Apple Music and pick a track to play").addStringOption(
+      data: new import_discord182.SlashCommandBuilder().setName("search").setDescription("Search top songs from YouTube, Spotify, SoundCloud, Apple Music and pick a track to play").addStringOption(
         (o) => o.setName("query").setDescription("Song name, artist, or keywords").setRequired(true)
       ),
       async execute(interaction) {
@@ -262327,7 +262506,7 @@ Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
           footer: "Zenith Search Picker \u2022 Select below within 60 seconds"
         });
         const selectOptions = results.slice(0, 10).map((t2, idx) => {
-          const opt = new import_discord180.StringSelectMenuOptionBuilder().setLabel(`${idx + 1}. ${t2.title.slice(0, 75)}`).setValue(`search_pick:${idx}:${encodeURIComponent(t2.title.slice(0, 30))}`).setDescription(`by ${t2.artist.slice(0, 45)} (${formatTime(t2.durationSeconds)})`);
+          const opt = new import_discord182.StringSelectMenuOptionBuilder().setLabel(`${idx + 1}. ${t2.title.slice(0, 75)}`).setValue(`search_pick:${idx}:${encodeURIComponent(t2.title.slice(0, 30))}`).setDescription(`by ${t2.artist.slice(0, 45)} (${formatTime(t2.durationSeconds)})`);
           let sourceEmoji = CE.youtube_music;
           if (t2.url.includes("spotify")) sourceEmoji = CE.spotify;
           else if (t2.url.includes("apple") || t2.url.includes("itunes")) sourceEmoji = CE.apple_music;
@@ -262337,8 +262516,8 @@ Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
           return opt;
         });
         searchResultCache.set(interaction.user.id, results);
-        const row2 = new import_discord180.ActionRowBuilder().addComponents(
-          new import_discord180.StringSelectMenuBuilder().setCustomId("select:music:search_pick").setPlaceholder("\u25BC Choose a track from the top search results...").addOptions(selectOptions)
+        const row2 = new import_discord182.ActionRowBuilder().addComponents(
+          new import_discord182.StringSelectMenuBuilder().setCustomId("select:music:search_pick").setPlaceholder("\u25BC Choose a track from the top search results...").addOptions(selectOptions)
         );
         await interaction.editReply({ embeds: [embed], components: [row2] });
       }
@@ -262407,16 +262586,16 @@ var init_lyricsService = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/lyrics.ts
-var import_discord181, lyricsCommand;
+var import_discord183, lyricsCommand;
 var init_lyrics = __esm({
   "artifacts/api-server/src/discord/commands/lyrics.ts"() {
     "use strict";
-    import_discord181 = __toESM(require_src2(), 1);
+    import_discord183 = __toESM(require_src2(), 1);
     init_musicManager();
     init_lyricsService();
     init_embedStyle();
     lyricsCommand = {
-      data: new import_discord181.SlashCommandBuilder().setName("lyrics").setDescription("Fetch and display formatted lyrics for current song or a search query").addStringOption(
+      data: new import_discord183.SlashCommandBuilder().setName("lyrics").setDescription("Fetch and display formatted lyrics for current song or a search query").addStringOption(
         (o) => o.setName("query").setDescription("Song title and artist (optional, defaults to now playing)").setRequired(false)
       ),
       async execute(interaction) {
@@ -262442,7 +262621,7 @@ var init_lyrics = __esm({
         if (!result || !result.plainLyrics && !result.syncedLyrics) {
           await interaction.editReply({
             embeds: [
-              new import_discord181.EmbedBuilder().setTitle(`${CE.failure.str} Lyrics Not Found`).setDescription(`Could not find lyrics for **${targetTitle}**${targetArtist ? ` by **${targetArtist}**` : ""}. Try specifying the exact artist name!`).setColor(15548997)
+              new import_discord183.EmbedBuilder().setTitle(`${CE.failure.str} Lyrics Not Found`).setDescription(`Could not find lyrics for **${targetTitle}**${targetArtist ? ` by **${targetArtist}**` : ""}. Try specifying the exact artist name!`).setColor(15548997)
             ]
           });
           return;
@@ -262461,7 +262640,7 @@ var init_lyrics = __esm({
           }
         }
         if (currentChunk) chunks.push(currentChunk);
-        const embed = new import_discord181.EmbedBuilder().setTitle(`${CE.white_musicnote.str} Lyrics: ${result.title}`).setAuthor({ name: result.artist }).setColor(COLORS.primary).setDescription(chunks[0]).setFooter({ text: `Source: ${result.source} \u2022 ${isSynced ? "Synced Timestamps" : "Plain Lyrics"}` }).setTimestamp();
+        const embed = new import_discord183.EmbedBuilder().setTitle(`${CE.white_musicnote.str} Lyrics: ${result.title}`).setAuthor({ name: result.artist }).setColor(COLORS.primary).setDescription(chunks[0]).setFooter({ text: `Source: ${result.source} \u2022 ${isSynced ? "Synced Timestamps" : "Plain Lyrics"}` }).setTimestamp();
         if (player?.currentTrack?.thumbnailUrl) {
           embed.setThumbnail(player.currentTrack.thumbnailUrl);
         }
@@ -262593,17 +262772,17 @@ var init_playlists = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/playlist.ts
-var import_discord182, playlistCommand;
+var import_discord184, playlistCommand;
 var init_playlist = __esm({
   "artifacts/api-server/src/discord/commands/playlist.ts"() {
     "use strict";
-    import_discord182 = __toESM(require_src2(), 1);
+    import_discord184 = __toESM(require_src2(), 1);
     init_playlists();
     init_musicManager();
     init_music();
     init_embedStyle();
     playlistCommand = {
-      data: new import_discord182.SlashCommandBuilder().setName("playlist").setDescription("Create, manage, and play your personalized custom music playlists").addSubcommand(
+      data: new import_discord184.SlashCommandBuilder().setName("playlist").setDescription("Create, manage, and play your personalized custom music playlists").addSubcommand(
         (sub) => sub.setName("play").setDescription("Load and play all songs from a custom playlist").addStringOption((o) => o.setName("name").setDescription("Playlist name").setRequired(true))
       ).addSubcommand(
         (sub) => sub.setName("create").setDescription("Create a new personalized playlist").addStringOption((o) => o.setName("name").setDescription("Name for your new playlist").setRequired(true))
@@ -262627,7 +262806,7 @@ var init_playlist = __esm({
           if (res.success) {
             await interaction.reply({
               embeds: [
-                new import_discord182.EmbedBuilder().setTitle(`${CE.check.str} Playlist Created`).setDescription(`Created playlist **${res.playlist?.name}**!
+                new import_discord184.EmbedBuilder().setTitle(`${CE.check.str} Playlist Created`).setDescription(`Created playlist **${res.playlist?.name}**!
 
 Use \`/playlist add ${res.playlist?.name}\` while playing a song or \`/playlist add ${res.playlist?.name} <song>\` to add tracks.`).setColor(5763719)
               ]
@@ -262642,7 +262821,7 @@ Use \`/playlist add ${res.playlist?.name}\` while playing a song or \`/playlist 
           if (playlists.length === 0) {
             await interaction.reply({
               embeds: [
-                new import_discord182.EmbedBuilder().setTitle(`${CE.folder.str} Your Custom Playlists`).setDescription("You haven't created any playlists yet!\n\nUse `/playlist create <name>` to start your first collection.").setColor(COLORS.primary)
+                new import_discord184.EmbedBuilder().setTitle(`${CE.folder.str} Your Custom Playlists`).setDescription("You haven't created any playlists yet!\n\nUse `/playlist create <name>` to start your first collection.").setColor(COLORS.primary)
               ]
             });
             return;
@@ -262653,7 +262832,7 @@ Use \`/playlist add ${res.playlist?.name}\` while playing a song or \`/playlist 
           }).join("\n");
           await interaction.reply({
             embeds: [
-              new import_discord182.EmbedBuilder().setTitle(`${CE.folder.str} Your Custom Playlists (${playlists.length}/25)`).setDescription(listStr).setFooter({ text: "Use /playlist play <name> to queue any playlist" }).setColor(COLORS.primary)
+              new import_discord184.EmbedBuilder().setTitle(`${CE.folder.str} Your Custom Playlists (${playlists.length}/25)`).setDescription(listStr).setFooter({ text: "Use /playlist play <name> to queue any playlist" }).setColor(COLORS.primary)
             ]
           });
           return;
@@ -262668,7 +262847,7 @@ Use \`/playlist add ${res.playlist?.name}\` while playing a song or \`/playlist 
           if (pl.tracks.length === 0) {
             await interaction.reply({
               embeds: [
-                new import_discord182.EmbedBuilder().setTitle(`${CE.folder.str} Playlist: ${pl.name}`).setDescription("This playlist is currently empty. Use `/playlist add` to save songs!").setColor(COLORS.primary)
+                new import_discord184.EmbedBuilder().setTitle(`${CE.folder.str} Playlist: ${pl.name}`).setDescription("This playlist is currently empty. Use `/playlist add` to save songs!").setColor(COLORS.primary)
               ]
             });
             return;
@@ -262679,7 +262858,7 @@ Use \`/playlist add ${res.playlist?.name}\` while playing a song or \`/playlist 
           const totalDuration = pl.tracks.reduce((a, t2) => a + t2.durationSeconds, 0);
           await interaction.reply({
             embeds: [
-              new import_discord182.EmbedBuilder().setTitle(`${CE.folder.str} Playlist: ${pl.name}`).setDescription(trackList.join("\n")).addFields(
+              new import_discord184.EmbedBuilder().setTitle(`${CE.folder.str} Playlist: ${pl.name}`).setDescription(trackList.join("\n")).addFields(
                 { name: "Total Songs", value: `\`${pl.tracks.length}\``, inline: true },
                 { name: "Total Duration", value: `\`${formatTime(totalDuration)}\``, inline: true }
               ).setFooter({ text: pl.tracks.length > 15 ? `...and ${pl.tracks.length - 15} more track(s)` : "Run /playlist play to start" }).setColor(COLORS.primary)
@@ -262716,7 +262895,7 @@ Use \`/playlist add ${res.playlist?.name}\` while playing a song or \`/playlist 
           }
           const res = await addTrackToPlaylist(userId, name2, targetTrack);
           if (res.success) {
-            const embed = new import_discord182.EmbedBuilder().setTitle(`${CE.check.str} Track Added to Playlist`).setDescription(`Added **${targetTrack.title}** by **${targetTrack.artist}** to playlist **${name2}**!
+            const embed = new import_discord184.EmbedBuilder().setTitle(`${CE.check.str} Track Added to Playlist`).setDescription(`Added **${targetTrack.title}** by **${targetTrack.artist}** to playlist **${name2}**!
 Total songs: \`${res.count}\``).setColor(5763719);
             if (interaction.deferred) await interaction.editReply({ embeds: [embed] });
             else await interaction.reply({ embeds: [embed] });
@@ -262733,7 +262912,7 @@ Total songs: \`${res.count}\``).setColor(5763719);
           if (res.success) {
             await interaction.reply({
               embeds: [
-                new import_discord182.EmbedBuilder().setTitle(`${CE.check.str} Track Removed`).setDescription(res.message).setColor(5763719)
+                new import_discord184.EmbedBuilder().setTitle(`${CE.check.str} Track Removed`).setDescription(res.message).setColor(5763719)
               ]
             });
           } else {
@@ -262747,7 +262926,7 @@ Total songs: \`${res.count}\``).setColor(5763719);
           if (res.success) {
             await interaction.reply({
               embeds: [
-                new import_discord182.EmbedBuilder().setTitle(`${CE.check.str} Playlist Deleted`).setDescription(res.message).setColor(15548997)
+                new import_discord184.EmbedBuilder().setTitle(`${CE.check.str} Playlist Deleted`).setDescription(res.message).setColor(15548997)
               ]
             });
           } else {
@@ -262791,7 +262970,7 @@ Total songs: \`${res.count}\``).setColor(5763719);
           }
           await interaction.editReply({
             embeds: [
-              new import_discord182.EmbedBuilder().setTitle(`${CE.music.str} Loaded Custom Playlist: ${pl.name}`).setDescription(`Queued **${pl.tracks.length} track(s)** in <#${callerVoice.id}>!
+              new import_discord184.EmbedBuilder().setTitle(`${CE.music.str} Loaded Custom Playlist: ${pl.name}`).setDescription(`Queued **${pl.tracks.length} track(s)** in <#${callerVoice.id}>!
 
 Use \`/queue\` to view your upcoming tracks.`).setColor(COLORS.primary)
             ]
@@ -262804,15 +262983,15 @@ Use \`/queue\` to view your upcoming tracks.`).setColor(COLORS.primary)
 });
 
 // artifacts/api-server/src/discord/commands/dj.ts
-var import_discord183, djCommand;
+var import_discord185, djCommand;
 var init_dj = __esm({
   "artifacts/api-server/src/discord/commands/dj.ts"() {
     "use strict";
-    import_discord183 = __toESM(require_src2(), 1);
+    import_discord185 = __toESM(require_src2(), 1);
     init_musicDj();
     init_embedStyle();
     djCommand = {
-      data: new import_discord183.SlashCommandBuilder().setName("dj").setDescription("Configure DJ role permissions for destructive music commands").setDefaultMemberPermissions(import_discord183.PermissionFlagsBits.ManageGuild).addSubcommand(
+      data: new import_discord185.SlashCommandBuilder().setName("dj").setDescription("Configure DJ role permissions for destructive music commands").setDefaultMemberPermissions(import_discord185.PermissionFlagsBits.ManageGuild).addSubcommand(
         (sub) => sub.setName("role").setDescription("Set or change the server's designated DJ role").addRoleOption((o) => o.setName("target_role").setDescription("The role to grant DJ authority").setRequired(true))
       ).addSubcommand(
         (sub) => sub.setName("toggle").setDescription("Enable or disable the DJ role requirement for music commands")
@@ -262832,7 +263011,7 @@ var init_dj = __esm({
         }
         const config2 = await getDjConfig(interaction.guildId);
         if (!sub || sub === "status") {
-          const embed = new import_discord183.EmbedBuilder().setTitle(`${CE.music.str} Server DJ System Status`).setColor(COLORS.primary).setDescription(
+          const embed = new import_discord185.EmbedBuilder().setTitle(`${CE.music.str} Server DJ System Status`).setColor(COLORS.primary).setDescription(
             `**DJ Enforcement:** ${config2.enabled ? `${CE.check.str} **Enabled**` : `${CE.error.str} **Disabled (Anyone in VC can control music)**`}
 **DJ Role:** ${config2.djRoleId ? `<@&${config2.djRoleId}>` : "*No role configured*"}
 
@@ -262846,7 +263025,7 @@ var init_dj = __esm({
           await setDjConfig(interaction.guildId, { enabled: newEnabled });
           await interaction.reply({
             embeds: [
-              new import_discord183.EmbedBuilder().setTitle(`${CE.music.str} DJ Enforcement ${newEnabled ? "ENABLED" : "DISABLED"}`).setColor(newEnabled ? 5763719 : 15548997).setDescription(
+              new import_discord185.EmbedBuilder().setTitle(`${CE.music.str} DJ Enforcement ${newEnabled ? "ENABLED" : "DISABLED"}`).setColor(newEnabled ? 5763719 : 15548997).setDescription(
                 newEnabled ? `DJ role restriction is now **ACTIVE**.${config2.djRoleId ? ` Members require <@&${config2.djRoleId}> to use destructive music controls.` : " Please assign a role with `/dj role <role>`!"}` : "DJ role restriction is now **DISABLED**. All users connected to the voice channel can control playback."
               )
             ]
@@ -262873,7 +263052,7 @@ var init_dj = __esm({
           await setDjConfig(interaction.guildId, { djRoleId: role.id, enabled: true });
           await interaction.reply({
             embeds: [
-              new import_discord183.EmbedBuilder().setTitle(`${CE.music.str} DJ Role Configured`).setColor(5763719).setDescription(
+              new import_discord185.EmbedBuilder().setTitle(`${CE.music.str} DJ Role Configured`).setColor(5763719).setDescription(
                 `Successfully set **${role.name}** (<@&${role.id}>) as the server's **DJ Role**!
 
 DJ enforcement has been automatically enabled. Users with this role can skip, stop, alter volume, and manage audio filters.`
@@ -262888,17 +263067,17 @@ DJ enforcement has been automatically enabled. Users with this role can skip, st
 });
 
 // artifacts/api-server/src/discord/commands/profile.ts
-var import_discord184, profileCommand, setbioCommand, noprefixCommand;
+var import_discord186, profileCommand, setbioCommand, noprefixCommand;
 var init_profile2 = __esm({
   "artifacts/api-server/src/discord/commands/profile.ts"() {
     "use strict";
-    import_discord184 = __toESM(require_src2(), 1);
+    import_discord186 = __toESM(require_src2(), 1);
     init_profile();
     init_botStaff();
     init_embedStyle();
     init_logger();
     profileCommand = {
-      data: new import_discord184.SlashCommandBuilder().setName("profile").setDescription("View user profile card with Premium Tier, No-Prefix status, and bio").addUserOption((o) => o.setName("target").setDescription("User profile to view").setRequired(false)),
+      data: new import_discord186.SlashCommandBuilder().setName("profile").setDescription("View user profile card with Premium Tier, No-Prefix status, and bio").addUserOption((o) => o.setName("target").setDescription("User profile to view").setRequired(false)),
       async execute(interaction) {
         await interaction.deferReply();
         const targetUser = interaction.options.getUser("target") || interaction.user;
@@ -262946,7 +263125,7 @@ var init_profile2 = __esm({
             progressPercent,
             serverRank
           });
-          const attachment = new import_discord184.AttachmentBuilder(cardBuffer, { name: "profile.png" });
+          const attachment = new import_discord186.AttachmentBuilder(cardBuffer, { name: "profile.png" });
           await interaction.editReply({ files: [attachment] });
         } catch (err) {
           logger.error({ err, userId: targetUser.id }, "Error rendering profile card");
@@ -262965,7 +263144,7 @@ var init_profile2 = __esm({
       }
     };
     setbioCommand = {
-      data: new import_discord184.SlashCommandBuilder().setName("setbio").setDescription("Update your custom bio quote on your profile card").addStringOption(
+      data: new import_discord186.SlashCommandBuilder().setName("setbio").setDescription("Update your custom bio quote on your profile card").addStringOption(
         (o) => o.setName("bio").setDescription("Your new bio text (up to 160 characters)").setRequired(true)
       ),
       async execute(interaction) {
@@ -262984,7 +263163,7 @@ Run \`/profile\` or \`.profile\` to view your updated card graphics!`,
       }
     };
     noprefixCommand = {
-      data: new import_discord184.SlashCommandBuilder().setName("noprefix").setDescription("Toggle No-Prefix command execution for yourself or server").addStringOption(
+      data: new import_discord186.SlashCommandBuilder().setName("noprefix").setDescription("Toggle No-Prefix command execution for yourself or server").addStringOption(
         (o) => o.setName("mode").setDescription("Enable, disable or toggle No-Prefix mode").setRequired(false).addChoices(
           { name: "Enable No-Prefix", value: "on" },
           { name: "Disable No-Prefix", value: "off" }
@@ -263047,11 +263226,11 @@ You can now run commands ${mode ? "directly without typing a prefix" : "using th
 });
 
 // artifacts/api-server/src/discord/commands/ginfo.ts
-var import_discord185, ginfoCommand;
+var import_discord187, ginfoCommand;
 var init_ginfo = __esm({
   "artifacts/api-server/src/discord/commands/ginfo.ts"() {
     "use strict";
-    import_discord185 = __toESM(require_src2(), 1);
+    import_discord187 = __toESM(require_src2(), 1);
     init_musicManager();
     init_premium();
     init_botStaff();
@@ -263059,7 +263238,7 @@ var init_ginfo = __esm({
     init_paginator();
     init_embedStyle();
     ginfoCommand = {
-      data: new import_discord185.SlashCommandBuilder().setName("ginfo").setDescription("Deep Global Intelligence Inspector & Multi-Page Audit Report for User or Server").addStringOption(
+      data: new import_discord187.SlashCommandBuilder().setName("ginfo").setDescription("Deep Global Intelligence Inspector & Multi-Page Audit Report for User or Server").addStringOption(
         (o) => o.setName("target").setDescription("User ID, @mention, Server ID, or 'server' / 'user'").setRequired(false)
       ),
       async execute(interaction) {
@@ -263223,16 +263402,16 @@ var init_ginfo = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/checkstaff.ts
-var import_discord186, checkstaffCommand;
+var import_discord188, checkstaffCommand;
 var init_checkstaff = __esm({
   "artifacts/api-server/src/discord/commands/checkstaff.ts"() {
     "use strict";
-    import_discord186 = __toESM(require_src2(), 1);
+    import_discord188 = __toESM(require_src2(), 1);
     init_botStaff();
     init_premium();
     init_embedStyle();
     checkstaffCommand = {
-      data: new import_discord186.SlashCommandBuilder().setName("checkstaff").setDescription("Check and verify if a user is an official Zenith Bot Staff member").addUserOption(
+      data: new import_discord188.SlashCommandBuilder().setName("checkstaff").setDescription("Check and verify if a user is an official Zenith Bot Staff member").addUserOption(
         (o) => o.setName("target").setDescription("User to check staff verification status").setRequired(false)
       ),
       async execute(interaction) {
@@ -263332,11 +263511,11 @@ async function getActiveBadgesForUser(userId, guildId) {
   const { sortBadgesByPriority: sortBadgesByPriority2 } = await Promise.resolve().then(() => (init_profile(), profile_exports));
   return sortBadgesByPriority2(badges);
 }
-var import_discord187, BADGE_DEFINITIONS, badgesListCommand, badgesAddCommand, badgesRemoveCommand, badgesAllCommand, badgesRemoveAllCommand, badgesCommand;
+var import_discord189, BADGE_DEFINITIONS, badgesListCommand, badgesAddCommand, badgesRemoveCommand, badgesAllCommand, badgesRemoveAllCommand, badgesCommand;
 var init_badges = __esm({
   "artifacts/api-server/src/discord/commands/badges.ts"() {
     "use strict";
-    import_discord187 = __toESM(require_src2(), 1);
+    import_discord189 = __toESM(require_src2(), 1);
     init_bugReports();
     init_botStaff();
     init_premium();
@@ -263369,7 +263548,7 @@ var init_badges = __esm({
       bug_hunter_5: { name: "Bug Master", emoji: "<:white_award:1555133575165124638>", desc: "50+ bug reports verified" }
     };
     badgesListCommand = {
-      data: new import_discord187.SlashCommandBuilder().setName("badgeslist").setDescription("List all available badges, custom emojis, and requirements"),
+      data: new import_discord189.SlashCommandBuilder().setName("badgeslist").setDescription("List all available badges, custom emojis, and requirements"),
       async execute(interaction) {
         await interaction.deferReply();
         const lines = Object.entries(BADGE_DEFINITIONS).map(([key3, def]) => {
@@ -263393,7 +263572,7 @@ var init_badges = __esm({
       }
     };
     badgesAddCommand = {
-      data: new import_discord187.SlashCommandBuilder().setName("badgesadd").setDescription("Grant a custom badge to a user").addUserOption((o) => o.setName("target").setDescription("User to receive badge").setRequired(true)).addStringOption(
+      data: new import_discord189.SlashCommandBuilder().setName("badgesadd").setDescription("Grant a custom badge to a user").addUserOption((o) => o.setName("target").setDescription("User to receive badge").setRequired(true)).addStringOption(
         (o) => o.setName("badge").setDescription("Badge key to grant").setRequired(true).addChoices(
           ...Object.keys(BADGE_DEFINITIONS).slice(0, 25).map((k) => ({
             name: `${BADGE_DEFINITIONS[k].name} (${k})`,
@@ -263434,7 +263613,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics!`,
       }
     };
     badgesRemoveCommand = {
-      data: new import_discord187.SlashCommandBuilder().setName("badgesremove").setDescription("Remove a custom badge from a user").addUserOption((o) => o.setName("target").setDescription("User to remove badge from").setRequired(true)).addStringOption(
+      data: new import_discord189.SlashCommandBuilder().setName("badgesremove").setDescription("Remove a custom badge from a user").addUserOption((o) => o.setName("target").setDescription("User to remove badge from").setRequired(true)).addStringOption(
         (o) => o.setName("badge").setDescription("Badge key to remove").setRequired(true).addChoices(
           ...Object.keys(BADGE_DEFINITIONS).slice(0, 25).map((k) => ({
             name: `${BADGE_DEFINITIONS[k].name} (${k})`,
@@ -263467,7 +263646,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
       }
     };
     badgesAllCommand = {
-      data: new import_discord187.SlashCommandBuilder().setName("badgesall").setDescription("Grant all badges to a target user").addUserOption((o) => o.setName("target").setDescription("User to grant all badges").setRequired(true)),
+      data: new import_discord189.SlashCommandBuilder().setName("badgesall").setDescription("Grant all badges to a target user").addUserOption((o) => o.setName("target").setDescription("User to grant all badges").setRequired(true)),
       async execute(interaction) {
         if (!isAdminOrOwner(interaction)) {
           await interaction.reply({
@@ -263490,7 +263669,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
       }
     };
     badgesRemoveAllCommand = {
-      data: new import_discord187.SlashCommandBuilder().setName("badgesremoveall").setDescription("Remove all custom badges from a target user").addUserOption((o) => o.setName("target").setDescription("User to remove all badges from").setRequired(true)),
+      data: new import_discord189.SlashCommandBuilder().setName("badgesremoveall").setDescription("Remove all custom badges from a target user").addUserOption((o) => o.setName("target").setDescription("User to remove all badges from").setRequired(true)),
       async execute(interaction) {
         if (!isAdminOrOwner(interaction)) {
           await interaction.reply({
@@ -263512,7 +263691,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
       }
     };
     badgesCommand = {
-      data: new import_discord187.SlashCommandBuilder().setName("badges").setDescription("Badges management: view, list, add, remove, grant all, or remove all badges").addSubcommand(
+      data: new import_discord189.SlashCommandBuilder().setName("badges").setDescription("Badges management: view, list, add, remove, grant all, or remove all badges").addSubcommand(
         (sub) => sub.setName("view").setDescription("View unlocked badges of a person").addUserOption((o) => o.setName("target").setDescription("User whose badges to view").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("list").setDescription("List all available badges and custom icons in the bot")
@@ -263747,7 +263926,7 @@ async function applyServerPremiumBranding(guild, force = false) {
     if (!token2) return;
     const cfg = await getGuildConfig(guild.id).catch(() => ({}));
     const customProfile = cfg?.customBotProfile;
-    const rest = new import_discord188.REST({ version: "10" }).setToken(token2);
+    const rest = new import_discord190.REST({ version: "10" }).setToken(token2);
     if (isPremium) {
       const targetName = customProfile?.name || "Zenith Prime";
       let targetAvatar = null;
@@ -263761,7 +263940,7 @@ async function applyServerPremiumBranding(guild, force = false) {
         await guild.members.me.setNickname(targetName).catch(() => {
         });
       }
-      await rest.patch(import_discord188.Routes.guildMember(guild.id, "@me"), {
+      await rest.patch(import_discord190.Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: targetName
         }
@@ -263769,7 +263948,7 @@ async function applyServerPremiumBranding(guild, force = false) {
         logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me premium nickname attempt failed");
       });
       if (targetAvatar) {
-        await rest.patch(import_discord188.Routes.guildMember(guild.id, "@me"), {
+        await rest.patch(import_discord190.Routes.guildMember(guild.id, "@me"), {
           body: {
             avatar: targetAvatar
           }
@@ -263784,14 +263963,14 @@ async function applyServerPremiumBranding(guild, force = false) {
         await guild.members.me.setNickname(defaultNick).catch(() => {
         });
       }
-      await rest.patch(import_discord188.Routes.guildMember(guild.id, "@me"), {
+      await rest.patch(import_discord190.Routes.guildMember(guild.id, "@me"), {
         body: {
           nick: defaultNick
         }
       }).catch((err) => {
         logger.debug({ err: err?.message, guildId: guild.id }, "REST guildMember @me default nickname reset attempt failed");
       });
-      await rest.patch(import_discord188.Routes.guildMember(guild.id, "@me"), {
+      await rest.patch(import_discord190.Routes.guildMember(guild.id, "@me"), {
         body: {
           avatar: null
         }
@@ -263804,11 +263983,11 @@ async function applyServerPremiumBranding(guild, force = false) {
     logger.debug({ err: err?.message, guildId: guild.id }, "Error applying server premium branding");
   }
 }
-var import_discord188, GOLDEN_ZENITH_AVATAR_URL, NORMAL_ZENITH_AVATAR_URL, cachedGoldenAvatarBase64, cachedNormalAvatarBase64, appliedGuildBranding;
+var import_discord190, GOLDEN_ZENITH_AVATAR_URL, NORMAL_ZENITH_AVATAR_URL, cachedGoldenAvatarBase64, cachedNormalAvatarBase64, appliedGuildBranding;
 var init_premiumBranding = __esm({
   "artifacts/api-server/src/discord/utils/premiumBranding.ts"() {
     "use strict";
-    import_discord188 = __toESM(require_src2(), 1);
+    import_discord190 = __toESM(require_src2(), 1);
     init_premium();
     init_config();
     init_logger();
@@ -263854,9 +264033,9 @@ async function handlePremiumInteraction(interaction) {
       return;
     }
     if (interaction.customId === "btn:prem:redeem_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:redeem").setTitle("Redeem Premium Code");
-      const codeInput = new import_discord189.TextInputBuilder().setCustomId("code").setLabel("Enter License Code").setPlaceholder("e.g. ZENITH-XXXX-XXXX-XXXX").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(codeInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:redeem").setTitle("Redeem Premium Code");
+      const codeInput = new import_discord191.TextInputBuilder().setCustomId("code").setLabel("Enter License Code").setPlaceholder("e.g. ZENITH-XXXX-XXXX-XXXX").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(codeInput));
       await interaction.showModal(modal);
       return;
     }
@@ -263886,11 +264065,11 @@ async function handlePremiumInteraction(interaction) {
         });
         return;
       }
-      const row2 = new import_discord189.ActionRowBuilder().addComponents(
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:give_user").setLabel("Give User Premium").setEmoji(CE.star.id).setStyle(import_discord189.ButtonStyle.Success),
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:give_server").setLabel("Give Server Premium").setEmoji(CE.admin.id).setStyle(import_discord189.ButtonStyle.Primary),
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:give_user_lifetime").setLabel("Quick Lifetime User (Apex)").setEmoji(CE.star.id).setStyle(import_discord189.ButtonStyle.Success),
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:give_server_lifetime").setLabel("Quick Lifetime Server (Apex)").setEmoji(CE.owner.id).setStyle(import_discord189.ButtonStyle.Primary)
+      const row2 = new import_discord191.ActionRowBuilder().addComponents(
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:give_user").setLabel("Give User Premium").setEmoji(CE.star.id).setStyle(import_discord191.ButtonStyle.Success),
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:give_server").setLabel("Give Server Premium").setEmoji(CE.admin.id).setStyle(import_discord191.ButtonStyle.Primary),
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:give_user_lifetime").setLabel("Quick Lifetime User (Apex)").setEmoji(CE.star.id).setStyle(import_discord191.ButtonStyle.Success),
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:give_server_lifetime").setLabel("Quick Lifetime Server (Apex)").setEmoji(CE.owner.id).setStyle(import_discord191.ButtonStyle.Primary)
       );
       await interaction.reply({
         content: `### \u{1F451} **Grant Premium Subscription**
@@ -263901,9 +264080,9 @@ Select the target classification and subscription parameters:`,
       return;
     }
     if (interaction.customId === "prem:panel:remove_menu") {
-      const row2 = new import_discord189.ActionRowBuilder().addComponents(
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:rm_user_modal").setLabel("Remove User Premium").setEmoji(CE.trash.id).setStyle(import_discord189.ButtonStyle.Danger),
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:rm_guild_modal").setLabel("Remove Server Premium").setEmoji(CE.trash.id).setStyle(import_discord189.ButtonStyle.Danger)
+      const row2 = new import_discord191.ActionRowBuilder().addComponents(
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:rm_user_modal").setLabel("Remove User Premium").setEmoji(CE.trash.id).setStyle(import_discord191.ButtonStyle.Danger),
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:rm_guild_modal").setLabel("Remove Server Premium").setEmoji(CE.trash.id).setStyle(import_discord191.ButtonStyle.Danger)
       );
       await interaction.reply({
         content: `### \u{1F5D1}\uFE0F **Revoke Premium Subscription**
@@ -263914,9 +264093,9 @@ Select target classification to revoke privileges from:`,
       return;
     }
     if (interaction.customId === "prem:panel:give_noprefix_menu") {
-      const row2 = new import_discord189.ActionRowBuilder().addComponents(
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:np_user_modal").setLabel("Enable User No-Prefix").setEmoji(CE.check.id).setStyle(import_discord189.ButtonStyle.Success),
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:np_guild_modal").setLabel("Enable Server No-Prefix").setEmoji(CE.check.id).setStyle(import_discord189.ButtonStyle.Primary)
+      const row2 = new import_discord191.ActionRowBuilder().addComponents(
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:np_user_modal").setLabel("Enable User No-Prefix").setEmoji(CE.check.id).setStyle(import_discord191.ButtonStyle.Success),
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:np_guild_modal").setLabel("Enable Server No-Prefix").setEmoji(CE.check.id).setStyle(import_discord191.ButtonStyle.Primary)
       );
       await interaction.reply({
         content: `### \u{1F7E2} **Enable Direct No-Prefix Execution**
@@ -263927,9 +264106,9 @@ Select target classification to grant No-Prefix command execution:`,
       return;
     }
     if (interaction.customId === "prem:panel:remove_noprefix_menu") {
-      const row2 = new import_discord189.ActionRowBuilder().addComponents(
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:rm_np_user_modal").setLabel("Disable User No-Prefix").setEmoji(CE.demotion.id).setStyle(import_discord189.ButtonStyle.Danger),
-        new import_discord189.ButtonBuilder().setCustomId("prem:panel:rm_np_guild_modal").setLabel("Disable Server No-Prefix").setEmoji(CE.demotion.id).setStyle(import_discord189.ButtonStyle.Danger)
+      const row2 = new import_discord191.ActionRowBuilder().addComponents(
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:rm_np_user_modal").setLabel("Disable User No-Prefix").setEmoji(CE.demotion.id).setStyle(import_discord191.ButtonStyle.Danger),
+        new import_discord191.ButtonBuilder().setCustomId("prem:panel:rm_np_guild_modal").setLabel("Disable Server No-Prefix").setEmoji(CE.demotion.id).setStyle(import_discord191.ButtonStyle.Danger)
       );
       await interaction.reply({
         content: `### \u{1F534} **Disable No-Prefix Execution**
@@ -263940,126 +264119,126 @@ Select target classification to revoke No-Prefix command execution:`,
       return;
     }
     if (interaction.customId === "prem:panel:give_user") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:give_user").setTitle("Grant User VIP Premium");
-      const userInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      const daysInput = new import_discord189.TextInputBuilder().setCustomId("duration_days").setLabel("Duration in Days (9999 for Lifetime)").setPlaceholder("30").setValue("30").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      const tierInput = new import_discord189.TextInputBuilder().setCustomId("tier").setLabel("Tier (1: Supporter, 2: Pro, 3: God, 4: Apex)").setPlaceholder("1, 2, 3, or 4 (Default: 4)").setValue("4").setStyle(import_discord189.TextInputStyle.Short).setRequired(false);
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:give_user").setTitle("Grant User VIP Premium");
+      const userInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      const daysInput = new import_discord191.TextInputBuilder().setCustomId("duration_days").setLabel("Duration in Days (9999 for Lifetime)").setPlaceholder("30").setValue("30").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      const tierInput = new import_discord191.TextInputBuilder().setCustomId("tier").setLabel("Tier (1: Supporter, 2: Pro, 3: God, 4: Apex)").setPlaceholder("1, 2, 3, or 4 (Default: 4)").setValue("4").setStyle(import_discord191.TextInputStyle.Short).setRequired(false);
       modal.addComponents(
-        new import_discord189.ActionRowBuilder().addComponents(userInput),
-        new import_discord189.ActionRowBuilder().addComponents(daysInput),
-        new import_discord189.ActionRowBuilder().addComponents(tierInput)
+        new import_discord191.ActionRowBuilder().addComponents(userInput),
+        new import_discord191.ActionRowBuilder().addComponents(daysInput),
+        new import_discord191.ActionRowBuilder().addComponents(tierInput)
       );
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:give_server") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:give_server").setTitle("Grant Server VIP Premium");
-      const serverInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("Server / Guild ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      const daysInput = new import_discord189.TextInputBuilder().setCustomId("duration_days").setLabel("Duration in Days (9999 for Lifetime)").setPlaceholder("30").setValue("30").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      const tierInput = new import_discord189.TextInputBuilder().setCustomId("tier").setLabel("Tier (1: Supporter, 2: Pro, 3: God, 4: Apex)").setPlaceholder("1, 2, 3, or 4 (Default: 4)").setValue("4").setStyle(import_discord189.TextInputStyle.Short).setRequired(false);
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:give_server").setTitle("Grant Server VIP Premium");
+      const serverInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("Server / Guild ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      const daysInput = new import_discord191.TextInputBuilder().setCustomId("duration_days").setLabel("Duration in Days (9999 for Lifetime)").setPlaceholder("30").setValue("30").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      const tierInput = new import_discord191.TextInputBuilder().setCustomId("tier").setLabel("Tier (1: Supporter, 2: Pro, 3: God, 4: Apex)").setPlaceholder("1, 2, 3, or 4 (Default: 4)").setValue("4").setStyle(import_discord191.TextInputStyle.Short).setRequired(false);
       modal.addComponents(
-        new import_discord189.ActionRowBuilder().addComponents(serverInput),
-        new import_discord189.ActionRowBuilder().addComponents(daysInput),
-        new import_discord189.ActionRowBuilder().addComponents(tierInput)
+        new import_discord191.ActionRowBuilder().addComponents(serverInput),
+        new import_discord191.ActionRowBuilder().addComponents(daysInput),
+        new import_discord191.ActionRowBuilder().addComponents(tierInput)
       );
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:give_user_lifetime") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:give_user_lifetime").setTitle("Grant Lifetime User (Apex Tier 4)");
-      const userInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(userInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:give_user_lifetime").setTitle("Grant Lifetime User (Apex Tier 4)");
+      const userInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(userInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:give_server_lifetime") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:give_server_lifetime").setTitle("Grant Lifetime Server (Apex Tier 4)");
-      const serverInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("Server / Guild ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(serverInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:give_server_lifetime").setTitle("Grant Lifetime Server (Apex Tier 4)");
+      const serverInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("Server / Guild ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(serverInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:rm_user_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:rm_user").setTitle("Remove User Premium");
-      const userInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(userInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:rm_user").setTitle("Remove User Premium");
+      const userInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(userInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:rm_guild_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:rm_guild").setTitle("Remove Server Premium");
-      const serverInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(serverInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:rm_guild").setTitle("Remove Server Premium");
+      const serverInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(serverInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:np_user_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:np_user").setTitle("Enable User No-Prefix");
-      const userInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(userInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:np_user").setTitle("Enable User No-Prefix");
+      const userInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(userInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:np_guild_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:np_guild").setTitle("Enable Server No-Prefix");
-      const serverInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(serverInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:np_guild").setTitle("Enable Server No-Prefix");
+      const serverInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(serverInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:rm_np_user_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:rm_np_user").setTitle("Disable User No-Prefix");
-      const userInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(userInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:rm_np_user").setTitle("Disable User No-Prefix");
+      const userInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID or @Mention").setPlaceholder("e.g. 1181221352393420856").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(userInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:rm_np_guild_modal") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:rm_np_guild").setTitle("Disable Server No-Prefix");
-      const serverInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(serverInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:rm_np_guild").setTitle("Disable Server No-Prefix");
+      const serverInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(serverInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:check") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:check").setTitle("Verify Premium Status");
-      const targetInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID, @Mention, or Server ID").setPlaceholder("e.g. 1181221352393420856").setValue(interaction.user.id).setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(targetInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:check").setTitle("Verify Premium Status");
+      const targetInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID, @Mention, or Server ID").setPlaceholder("e.g. 1181221352393420856").setValue(interaction.user.id).setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(targetInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:check_noprefix") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:check_noprefix").setTitle("Check No-Prefix Status");
-      const targetInput = new import_discord189.TextInputBuilder().setCustomId("target_id").setLabel("User ID, @Mention, or Server ID").setPlaceholder("e.g. 1181221352393420856").setValue(interaction.user.id).setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(targetInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:check_noprefix").setTitle("Check No-Prefix Status");
+      const targetInput = new import_discord191.TextInputBuilder().setCustomId("target_id").setLabel("User ID, @Mention, or Server ID").setPlaceholder("e.g. 1181221352393420856").setValue(interaction.user.id).setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(targetInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:redeem") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:redeem").setTitle("Redeem Premium License Code");
-      const codeInput = new import_discord189.TextInputBuilder().setCustomId("code").setLabel("License Code").setPlaceholder("e.g. ZENITH-XXXX-XXXX-XXXX").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      modal.addComponents(new import_discord189.ActionRowBuilder().addComponents(codeInput));
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:redeem").setTitle("Redeem Premium License Code");
+      const codeInput = new import_discord191.TextInputBuilder().setCustomId("code").setLabel("License Code").setPlaceholder("e.g. ZENITH-XXXX-XXXX-XXXX").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      modal.addComponents(new import_discord191.ActionRowBuilder().addComponents(codeInput));
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:set_role") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:set_role").setTitle("Set Server Premium Role");
-      const guildInput = new import_discord189.TextInputBuilder().setCustomId("guild_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setValue(interaction.guildId ?? "").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      const roleInput = new import_discord189.TextInputBuilder().setCustomId("role_id").setLabel("Role ID or Role Mention").setPlaceholder("e.g. 123456789012345678 or @VIP").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:set_role").setTitle("Set Server Premium Role");
+      const guildInput = new import_discord191.TextInputBuilder().setCustomId("guild_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setValue(interaction.guildId ?? "").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      const roleInput = new import_discord191.TextInputBuilder().setCustomId("role_id").setLabel("Role ID or Role Mention").setPlaceholder("e.g. 123456789012345678 or @VIP").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
       modal.addComponents(
-        new import_discord189.ActionRowBuilder().addComponents(guildInput),
-        new import_discord189.ActionRowBuilder().addComponents(roleInput)
+        new import_discord191.ActionRowBuilder().addComponents(guildInput),
+        new import_discord191.ActionRowBuilder().addComponents(roleInput)
       );
       await interaction.showModal(modal);
       return;
     }
     if (interaction.customId === "prem:panel:remove_role") {
-      const modal = new import_discord189.ModalBuilder().setCustomId("prem:modal:remove_role").setTitle("Remove Server Premium Role");
-      const guildInput = new import_discord189.TextInputBuilder().setCustomId("guild_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setValue(interaction.guildId ?? "").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
-      const roleInput = new import_discord189.TextInputBuilder().setCustomId("role_id").setLabel("Role ID or Role Mention to remove").setPlaceholder("e.g. 123456789012345678").setStyle(import_discord189.TextInputStyle.Short).setRequired(true);
+      const modal = new import_discord191.ModalBuilder().setCustomId("prem:modal:remove_role").setTitle("Remove Server Premium Role");
+      const guildInput = new import_discord191.TextInputBuilder().setCustomId("guild_id").setLabel("Server ID").setPlaceholder("e.g. 1488637779305955413").setValue(interaction.guildId ?? "").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+      const roleInput = new import_discord191.TextInputBuilder().setCustomId("role_id").setLabel("Role ID or Role Mention to remove").setPlaceholder("e.g. 123456789012345678").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
       modal.addComponents(
-        new import_discord189.ActionRowBuilder().addComponents(guildInput),
-        new import_discord189.ActionRowBuilder().addComponents(roleInput)
+        new import_discord191.ActionRowBuilder().addComponents(guildInput),
+        new import_discord191.ActionRowBuilder().addComponents(roleInput)
       );
       await interaction.showModal(modal);
       return;
@@ -264070,7 +264249,7 @@ Select target classification to revoke No-Prefix command execution:`,
       const userLines = users.length > 0 ? users.slice(0, 15).map((u) => `\u2022 <@${u.id}> (\`${u.id}\`) \u2014 ${u.expiresAt >= 41e11 ? `${CE.star.str} **Lifetime**` : `Expires: <t:${Math.floor(u.expiresAt / 1e3)}:R>`}`).join("\n") : "*No active user subscriptions.*";
       const guildLines = guilds.length > 0 ? guilds.slice(0, 15).map((g) => `\u2022 Server \`${g.id}\` \u2014 ${g.expiresAt >= 41e11 ? `${CE.star.str} **Lifetime**` : `Expires: <t:${Math.floor(g.expiresAt / 1e3)}:R>`}`).join("\n") : "*No active server subscriptions.*";
       const roleLines = roles && roles.length > 0 ? roles.slice(0, 15).map((r2) => `\u2022 Server \`${r2.guildId}\` \u2794 <@&${r2.roleId}> (\`${r2.roleId}\`)`).join("\n") : "*No premium roles configured.*";
-      const listEmbed = new import_discord189.EmbedBuilder().setTitle(`${CE.information.str} Active Premium Registry`).setColor(15844367).addFields(
+      const listEmbed = new import_discord191.EmbedBuilder().setTitle(`${CE.information.str} Active Premium Registry`).setColor(15844367).addFields(
         { name: `${CE.star.str} Active Users (${users.length})`, value: userLines },
         { name: `${CE.admin.str} Active Servers (${guilds.length})`, value: guildLines },
         { name: `${CE.owner.str} Premium Roles (${roles?.length ?? 0})`, value: roleLines }
@@ -264105,7 +264284,7 @@ Select target classification to revoke No-Prefix command execution:`,
         }
       } catch {
       }
-      const embed = new import_discord189.EmbedBuilder().setTitle(`\u{1F451} Premium Status Verification`).setTimestamp().setFooter({ text: `Zenith Executive Registry \u2022 Checked by ${interaction.user.tag}` });
+      const embed = new import_discord191.EmbedBuilder().setTitle(`\u{1F451} Premium Status Verification`).setTimestamp().setFooter({ text: `Zenith Executive Registry \u2022 Checked by ${interaction.user.tag}` });
       if (info.isActive) {
         embed.setColor(15844367);
         embed.setDescription(
@@ -264157,7 +264336,7 @@ This user or server does not currently hold an active premium subscription, life
       const targetId = match2 ? match2[0] : rawTarget;
       const userNp = await isNoPrefixEnabled(targetId, void 0);
       const guildNp = await isNoPrefixEnabled("", targetId);
-      const embed = new import_discord189.EmbedBuilder().setTitle(`\u26A1 No-Prefix Status Check`).setColor(userNp || guildNp ? 5763719 : 2829617).setDescription(
+      const embed = new import_discord191.EmbedBuilder().setTitle(`\u26A1 No-Prefix Status Check`).setColor(userNp || guildNp ? 5763719 : 2829617).setDescription(
         `### Target: \`${targetId}\`
 
 \u2022 **User No-Prefix:** ${userNp ? "\u{1F7E2} `ENABLED`" : "\u{1F534} `DISABLED`"}
@@ -264177,7 +264356,7 @@ This user or server does not currently hold an active premium subscription, life
       const roleId = roleIdMatch ? roleIdMatch[0] : rawRole;
       await interaction.deferReply();
       const result = await setPremiumRole(guildId, roleId, interaction.user.id);
-      const embed = new import_discord189.EmbedBuilder().setTitle(`${CE.success.str} Premium Role Configured`).setColor(5763719).setDescription(result.message).addFields(
+      const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.success.str} Premium Role Configured`).setColor(5763719).setDescription(result.message).addFields(
         { name: "Server ID", value: `\`${guildId}\``, inline: true },
         { name: "Role", value: `<@&${roleId}> (\`${roleId}\`)`, inline: true }
       ).setFooter({ text: `Set by Bot Owner: ${interaction.user.tag}` }).setTimestamp();
@@ -264193,7 +264372,7 @@ This user or server does not currently hold an active premium subscription, life
       const roleId = roleIdMatch ? roleIdMatch[0] : rawRole;
       await interaction.deferReply();
       const result = await removePremiumRole(guildId, roleId);
-      const embed = new import_discord189.EmbedBuilder().setTitle(result.removed ? `${CE.success.str} Premium Role Removed` : `${CE.warning.str} Premium Role`).setColor(result.removed ? 5763719 : 16705372).setDescription(result.message).setFooter({ text: `Action by Bot Owner: ${interaction.user.tag}` }).setTimestamp();
+      const embed = new import_discord191.EmbedBuilder().setTitle(result.removed ? `${CE.success.str} Premium Role Removed` : `${CE.warning.str} Premium Role`).setColor(result.removed ? 5763719 : 16705372).setDescription(result.message).setFooter({ text: `Action by Bot Owner: ${interaction.user.tag}` }).setTimestamp();
       await interaction.editReply({ embeds: [embed] });
       return;
     }
@@ -264299,7 +264478,7 @@ This user or server does not currently hold an active premium subscription, life
         try {
           const userObj = await interaction.client.users.fetch(targetId).catch(() => null);
           if (userObj) {
-            const dmEmbed = new import_discord189.EmbedBuilder().setTitle(`\u{1F389} You Have Been Granted Zenith Premium (${tierTitle})!`).setColor(15844367).setDescription(
+            const dmEmbed = new import_discord191.EmbedBuilder().setTitle(`\u{1F389} You Have Been Granted Zenith Premium (${tierTitle})!`).setColor(15844367).setDescription(
               `Hello **${userObj.username}**! You have been granted **Zenith Premium (${tierTitle})** by the bot owner (<@${interaction.user.id}>)!
 
 \u2022 **Tier Rank:** \`${tierTitle}\`
@@ -264331,7 +264510,7 @@ Thank you for being a valued part of the Zenith ecosystem!`
             if (guildObj.ownerId) {
               const ownerUser = await interaction.client.users.fetch(guildObj.ownerId).catch(() => null);
               if (ownerUser) {
-                const guildDmEmbed = new import_discord189.EmbedBuilder().setTitle(`\u{1F389} Your Server Has Been Upgraded to Zenith Server Premium!`).setColor(15844367).setDescription(
+                const guildDmEmbed = new import_discord191.EmbedBuilder().setTitle(`\u{1F389} Your Server Has Been Upgraded to Zenith Server Premium!`).setColor(15844367).setDescription(
                   `Greetings! Your Discord server **${guildObj.name}** (\`${guildObj.id}\`) has been granted **Zenith Server Premium (${tierTitle})** by the bot owner (<@${interaction.user.id}>)!
 
 \u2022 **Server Name:** **${guildObj.name}**
@@ -264356,7 +264535,7 @@ Thank you for powering **${guildObj.name}** with Zenith Bot!`
           dmSent = false;
         }
       }
-      const embed = new import_discord189.EmbedBuilder().setTitle(`${CE.success.str} Premium Granted Successfully!`).setColor(5763719).setDescription(
+      const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.success.str} Premium Granted Successfully!`).setColor(5763719).setDescription(
         `Successfully granted **${isLifetime ? `${CE.star.str} Lifetime` : `${days} days`}** of **${type.toUpperCase()}** Premium (\`${tierTitle}\`) to ${isUser2 ? `<@${targetId}> (\`${targetId}\`)` : `Server \`${targetId}\``}!
 
 \u2022 **Tier Rank:** \`${tierTitle}\`
@@ -264368,18 +264547,18 @@ Thank you for powering **${guildObj.name}** with Zenith Bot!`
     }
   }
 }
-var import_discord189, premiumCommand, premiumPanelCommand, premiumGiveCommand, premiumUserCommand, premiumServerCommand, premiumGenerateCommand, premiumListCommand, premium_default;
+var import_discord191, premiumCommand, premiumPanelCommand, premiumGiveCommand, premiumUserCommand, premiumServerCommand, premiumGenerateCommand, premiumListCommand, premium_default;
 var init_premium2 = __esm({
   "artifacts/api-server/src/discord/commands/premium.ts"() {
     "use strict";
-    import_discord189 = __toESM(require_src2(), 1);
+    import_discord191 = __toESM(require_src2(), 1);
     init_premium();
     init_profile();
     init_botStaff();
     init_embedStyle();
     init_dmWebhook();
     premiumCommand = {
-      data: new import_discord189.SlashCommandBuilder().setName("premium").setDescription("View Zenith Premium perks, tier breakdown, and manage your status").addSubcommand(
+      data: new import_discord191.SlashCommandBuilder().setName("premium").setDescription("View Zenith Premium perks, tier breakdown, and manage your status").addSubcommand(
         (sub) => sub.setName("status").setDescription("Check your personal and server VIP status")
       ).addSubcommand(
         (sub) => sub.setName("tiers").setDescription("View breakdown of VIP Tiers 1 through 4")
@@ -264395,7 +264574,7 @@ var init_premium2 = __esm({
         const userId = interaction.user.id;
         const guildId = interaction.guildId;
         if (sub === "tiers") {
-          const embed2 = new import_discord189.EmbedBuilder().setTitle(`${CE.white_premium.str} Zenith VIP Tiers & Feature Breakdown`).setColor(15844367).setDescription(
+          const embed2 = new import_discord191.EmbedBuilder().setTitle(`${CE.white_premium.str} Zenith VIP Tiers & Feature Breakdown`).setColor(15844367).setDescription(
             `Below is the complete breakdown of all 4 **Zenith Premium Tiers**.
 
 ### ${CE.premium1.str} **Tier 1: VIP Supporter**
@@ -264446,7 +264625,7 @@ var init_premium2 = __esm({
         }
         const info = await checkTargetPremium(userId, interaction.client);
         const npActive = await isNoPrefixEnabled(userId, guildId || void 0);
-        const embed = new import_discord189.EmbedBuilder().setTitle(`${CE.white_premium.str} Your Zenith VIP Status`).setColor(info.isActive ? 15844367 : 2829617).setDescription(
+        const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.white_premium.str} Your Zenith VIP Status`).setColor(info.isActive ? 15844367 : 2829617).setDescription(
           `### Account: <@${userId}> (\`${userId}\`)
 \u2022 **Subscription Status:** ${info.isActive ? `${CE.white_premium.str} **Active (${info.overallPlan})**` : `${CE.white_award.str} **Standard Free Tier**`}
 \u2022 **Global No-Prefix Mode:** ${npActive ? `${CE.no_prefix.str} \`ENABLED\` (Run commands without prefix)` : `${CE.white_cancel.str} \`DISABLED\``}
@@ -264456,16 +264635,16 @@ var init_premium2 = __esm({
 ### ${CE.white_premium.str} Quick Actions & Controls
 \u2022 Use the buttons below to toggle No-Prefix mode, check perks, or redeem codes.`
         ).setFooter({ text: "Zenith VIP Experience" }).setTimestamp();
-        const row2 = new import_discord189.ActionRowBuilder().addComponents(
-          new import_discord189.ButtonBuilder().setCustomId("btn:prem:toggle_noprefix").setLabel(npActive ? "Disable No-Prefix" : "Enable No-Prefix").setEmoji(npActive ? CE.button_off.id : CE.button_on.id).setStyle(npActive ? import_discord189.ButtonStyle.Danger : import_discord189.ButtonStyle.Success),
-          new import_discord189.ButtonBuilder().setCustomId("btn:prem:redeem_modal").setLabel("Redeem Code").setEmoji(CE.white_gift.id).setStyle(import_discord189.ButtonStyle.Primary),
-          new import_discord189.ButtonBuilder().setLabel("Support Server").setEmoji(CE.Support.id).setStyle(import_discord189.ButtonStyle.Link).setURL(SUPPORT_SERVER_URL)
+        const row2 = new import_discord191.ActionRowBuilder().addComponents(
+          new import_discord191.ButtonBuilder().setCustomId("btn:prem:toggle_noprefix").setLabel(npActive ? "Disable No-Prefix" : "Enable No-Prefix").setEmoji(npActive ? CE.button_off.id : CE.button_on.id).setStyle(npActive ? import_discord191.ButtonStyle.Danger : import_discord191.ButtonStyle.Success),
+          new import_discord191.ButtonBuilder().setCustomId("btn:prem:redeem_modal").setLabel("Redeem Code").setEmoji(CE.white_gift.id).setStyle(import_discord191.ButtonStyle.Primary),
+          new import_discord191.ButtonBuilder().setLabel("Support Server").setEmoji(CE.Support.id).setStyle(import_discord191.ButtonStyle.Link).setURL(SUPPORT_SERVER_URL)
         );
         await interaction.reply({ embeds: [embed], components: [row2] });
       }
     };
     premiumPanelCommand = {
-      data: new import_discord189.SlashCommandBuilder().setName("premiumpanel").setDescription("Executive Premium & No-Prefix Control Panel (Hardcoded Owner Only)").setDefaultMemberPermissions(import_discord189.PermissionFlagsBits.Administrator),
+      data: new import_discord191.SlashCommandBuilder().setName("premiumpanel").setDescription("Executive Premium & No-Prefix Control Panel (Hardcoded Owner Only)").setDefaultMemberPermissions(import_discord191.PermissionFlagsBits.Administrator),
       async execute(interaction) {
         const allowed = await canAccessPremiumPanel2(interaction.user.id, interaction.guild?.ownerId);
         if (!allowed) {
@@ -264485,7 +264664,7 @@ To view your personal VIP status, run \`/premium\`.`
         }
         const now = /* @__PURE__ */ new Date();
         const timeStr = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
-        const embed = new import_discord189.EmbedBuilder().setTitle("Executive Premium & No-Prefix Control Panel").setColor(15844367).setDescription(
+        const embed = new import_discord191.EmbedBuilder().setTitle("Executive Premium & No-Prefix Control Panel").setColor(15844367).setDescription(
           `Welcome to the **Zenith Premium Executive Control Panel**.
 
 Directly manage premium subscriptions, grant or revoke No-Prefix execution, and check status in real-time.
@@ -264500,23 +264679,23 @@ Directly manage premium subscriptions, grant or revoke No-Prefix execution, and 
 \u2022 **Set Premium Role**: Auto-grants global premium to role holders
 \u2022 **Redeem Code**: Activate license code`
         ).setImage("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop").setFooter({ text: `Zenith Owner Dashboard \u2022 Operator: ${interaction.user.username} | Today at ${timeStr}` });
-        const row1 = new import_discord189.ActionRowBuilder().addComponents(
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:list").setLabel("Premium List").setEmoji(CE.clipboard.id).setStyle(import_discord189.ButtonStyle.Secondary),
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:give_menu").setLabel("Give Premium").setEmoji(CE.star.id).setStyle(import_discord189.ButtonStyle.Success),
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:check").setLabel("Check Premium").setEmoji(CE.staff.id).setStyle(import_discord189.ButtonStyle.Primary),
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:remove_menu").setLabel("Remove Premium").setEmoji(CE.trash.id).setStyle(import_discord189.ButtonStyle.Danger)
+        const row1 = new import_discord191.ActionRowBuilder().addComponents(
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:list").setLabel("Premium List").setEmoji(CE.clipboard.id).setStyle(import_discord191.ButtonStyle.Secondary),
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:give_menu").setLabel("Give Premium").setEmoji(CE.star.id).setStyle(import_discord191.ButtonStyle.Success),
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:check").setLabel("Check Premium").setEmoji(CE.staff.id).setStyle(import_discord191.ButtonStyle.Primary),
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:remove_menu").setLabel("Remove Premium").setEmoji(CE.trash.id).setStyle(import_discord191.ButtonStyle.Danger)
         );
-        const row2 = new import_discord189.ActionRowBuilder().addComponents(
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:redeem").setLabel("Redeem Code").setEmoji(CE.giveaway.id).setStyle(import_discord189.ButtonStyle.Danger)
+        const row2 = new import_discord191.ActionRowBuilder().addComponents(
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:redeem").setLabel("Redeem Code").setEmoji(CE.giveaway.id).setStyle(import_discord191.ButtonStyle.Danger)
         );
-        const row3 = new import_discord189.ActionRowBuilder().addComponents(
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:give_noprefix_menu").setLabel("Give No-Prefix").setEmoji(CE.check.id).setStyle(import_discord189.ButtonStyle.Success),
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:remove_noprefix_menu").setLabel("Remove No-Prefix").setEmoji(CE.demotion.id).setStyle(import_discord189.ButtonStyle.Danger),
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:check_noprefix").setLabel("Check No-Prefix").setEmoji(CE.clipboard.id).setStyle(import_discord189.ButtonStyle.Secondary)
+        const row3 = new import_discord191.ActionRowBuilder().addComponents(
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:give_noprefix_menu").setLabel("Give No-Prefix").setEmoji(CE.check.id).setStyle(import_discord191.ButtonStyle.Success),
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:remove_noprefix_menu").setLabel("Remove No-Prefix").setEmoji(CE.demotion.id).setStyle(import_discord191.ButtonStyle.Danger),
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:check_noprefix").setLabel("Check No-Prefix").setEmoji(CE.clipboard.id).setStyle(import_discord191.ButtonStyle.Secondary)
         );
-        const row4 = new import_discord189.ActionRowBuilder().addComponents(
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:set_role").setLabel("Set Premium Role").setEmoji(CE.owner.id).setStyle(import_discord189.ButtonStyle.Primary),
-          new import_discord189.ButtonBuilder().setCustomId("prem:panel:remove_role").setLabel("Remove Role").setEmoji(CE.failure.id).setStyle(import_discord189.ButtonStyle.Secondary)
+        const row4 = new import_discord191.ActionRowBuilder().addComponents(
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:set_role").setLabel("Set Premium Role").setEmoji(CE.owner.id).setStyle(import_discord191.ButtonStyle.Primary),
+          new import_discord191.ButtonBuilder().setCustomId("prem:panel:remove_role").setLabel("Remove Role").setEmoji(CE.failure.id).setStyle(import_discord191.ButtonStyle.Secondary)
         );
         await interaction.reply({ embeds: [embed], components: [row1, row2, row3, row4] });
       }
@@ -264526,7 +264705,7 @@ Directly manage premium subscriptions, grant or revoke No-Prefix execution, and 
     premiumServerCommand = premiumCommand;
     premiumGenerateCommand = premiumCommand;
     premiumListCommand = {
-      data: new import_discord189.SlashCommandBuilder().setName("premiumlist").setDescription("List active Premium Users and/or Premium Servers").addStringOption(
+      data: new import_discord191.SlashCommandBuilder().setName("premiumlist").setDescription("List active Premium Users and/or Premium Servers").addStringOption(
         (o) => o.setName("type").setDescription("Filter list by user, server, or both").setRequired(false).addChoices(
           { name: "Both Users & Servers", value: "both" },
           { name: "Users Only", value: "user" },
@@ -264611,16 +264790,16 @@ function parseUserToken(interaction) {
   }
   return null;
 }
-var import_discord190, serverOwnerCommand, serverAdminCommand, trustedCommand;
+var import_discord192, serverOwnerCommand, serverAdminCommand, trustedCommand;
 var init_serverWhitelist = __esm({
   "artifacts/api-server/src/discord/commands/serverWhitelist.ts"() {
     "use strict";
-    import_discord190 = __toESM(require_src2(), 1);
+    import_discord192 = __toESM(require_src2(), 1);
     init_config();
     init_premium();
     init_embedStyle();
     serverOwnerCommand = {
-      data: new import_discord190.SlashCommandBuilder().setName("serverowner").setDescription("Give or manage Server Owner level whitelist (Server Owner & Bot Owner only)").setDefaultMemberPermissions(import_discord190.PermissionFlagsBits.Administrator).addUserOption(
+      data: new import_discord192.SlashCommandBuilder().setName("serverowner").setDescription("Give or manage Server Owner level whitelist (Server Owner & Bot Owner only)").setDefaultMemberPermissions(import_discord192.PermissionFlagsBits.Administrator).addUserOption(
         (o) => o.setName("user").setDescription("User to grant or revoke server owner whitelist").setRequired(false)
       ).addStringOption(
         (o) => o.setName("action").setDescription("Action to perform").setRequired(false).addChoices(
@@ -264647,7 +264826,7 @@ var init_serverWhitelist = __esm({
         const targetUser = parseUserToken(interaction);
         if (action === "list" || !targetUser && action !== "add" && action !== "remove") {
           const owners = cfg.serverOwnerWhitelistUserIds ?? [];
-          const embed2 = new import_discord190.EmbedBuilder().setTitle(`${CE.owner.str} Server Owner Level Whitelist`).setColor(15844367).setDescription(
+          const embed2 = new import_discord192.EmbedBuilder().setTitle(`${CE.owner.str} Server Owner Level Whitelist`).setColor(15844367).setDescription(
             `**Server Owner:** <@${interaction.guild.ownerId}> (\`${interaction.guild.ownerId}\`)
 
 **Whitelisted Server Owners:**
@@ -264683,7 +264862,7 @@ var init_serverWhitelist = __esm({
             antiNukeConfig: c.antiNukeConfig ? { ...c.antiNukeConfig, globalWhitelistUserIds: updatedAn } : void 0
           };
         });
-        const embed = new import_discord190.EmbedBuilder().setTitle(`${shouldAdd ? CE.success.str : CE.failure.str} Server Owner Whitelist ${shouldAdd ? "Granted" : "Revoked"}`).setColor(shouldAdd ? 5763719 : 15548997).setDescription(
+        const embed = new import_discord192.EmbedBuilder().setTitle(`${shouldAdd ? CE.success.str : CE.failure.str} Server Owner Whitelist ${shouldAdd ? "Granted" : "Revoked"}`).setColor(shouldAdd ? 5763719 : 15548997).setDescription(
           shouldAdd ? `${CE.owner.str} Successfully granted **Server Owner Level Whitelist** to <@${targetUser.id}>!
 
 \u2022 **Anti-Nuke Access**: Authorized to view, configure, and manage Anti-Nuke rules
@@ -264695,7 +264874,7 @@ var init_serverWhitelist = __esm({
       }
     };
     serverAdminCommand = {
-      data: new import_discord190.SlashCommandBuilder().setName("serveradmin").setDescription("Give or manage Server Admin level whitelist").setDefaultMemberPermissions(import_discord190.PermissionFlagsBits.Administrator).addUserOption(
+      data: new import_discord192.SlashCommandBuilder().setName("serveradmin").setDescription("Give or manage Server Admin level whitelist").setDefaultMemberPermissions(import_discord192.PermissionFlagsBits.Administrator).addUserOption(
         (o) => o.setName("user").setDescription("User to grant or revoke server admin whitelist").setRequired(false)
       ).addStringOption(
         (o) => o.setName("action").setDescription("Action to perform").setRequired(false).addChoices(
@@ -264722,7 +264901,7 @@ var init_serverWhitelist = __esm({
         const targetUser = parseUserToken(interaction);
         if (action === "list" || !targetUser && action !== "add" && action !== "remove") {
           const admins = cfg.serverAdminWhitelistUserIds ?? [];
-          const embed2 = new import_discord190.EmbedBuilder().setTitle(`${CE.admin.str} Server Admin Level Whitelist`).setColor(5793266).setDescription(
+          const embed2 = new import_discord192.EmbedBuilder().setTitle(`${CE.admin.str} Server Admin Level Whitelist`).setColor(5793266).setDescription(
             `**Whitelisted Server Admins:**
 ` + (admins.length > 0 ? admins.map((id) => `\u2022 <@${id}> (\`${id}\`)`).join("\n") : "*No server admins whitelisted yet. Use `.serveradmin @user` to add.*") + `
 
@@ -264747,7 +264926,7 @@ var init_serverWhitelist = __esm({
           serverAdminWhitelistUserIds: updatedList,
           noPrefixUserIds: shouldAdd ? Array.from(/* @__PURE__ */ new Set([...c.noPrefixUserIds ?? [], targetUser.id])) : c.noPrefixUserIds
         }));
-        const embed = new import_discord190.EmbedBuilder().setTitle(`${shouldAdd ? CE.success.str : CE.failure.str} Server Admin Whitelist ${shouldAdd ? "Granted" : "Revoked"}`).setColor(shouldAdd ? 5793266 : 15548997).setDescription(
+        const embed = new import_discord192.EmbedBuilder().setTitle(`${shouldAdd ? CE.success.str : CE.failure.str} Server Admin Whitelist ${shouldAdd ? "Granted" : "Revoked"}`).setColor(shouldAdd ? 5793266 : 15548997).setDescription(
           shouldAdd ? `${CE.admin.str} Successfully granted **Server Admin Level Whitelist** to <@${targetUser.id}>!
 
 \u2022 **Action Immunity**: The bot will never execute moderation commands on this user
@@ -264759,7 +264938,7 @@ var init_serverWhitelist = __esm({
       }
     };
     trustedCommand = {
-      data: new import_discord190.SlashCommandBuilder().setName("trusted").setDescription("Give or manage Trusted level whitelist").setDefaultMemberPermissions(import_discord190.PermissionFlagsBits.ManageGuild).addUserOption(
+      data: new import_discord192.SlashCommandBuilder().setName("trusted").setDescription("Give or manage Trusted level whitelist").setDefaultMemberPermissions(import_discord192.PermissionFlagsBits.ManageGuild).addUserOption(
         (o) => o.setName("user").setDescription("User to grant or revoke trusted whitelist").setRequired(false)
       ).addStringOption(
         (o) => o.setName("action").setDescription("Action to perform").setRequired(false).addChoices(
@@ -264787,7 +264966,7 @@ var init_serverWhitelist = __esm({
         const targetUser = parseUserToken(interaction);
         if (action === "list" || !targetUser && action !== "add" && action !== "remove") {
           const trusted = cfg.trustedWhitelistUserIds ?? [];
-          const embed2 = new import_discord190.EmbedBuilder().setTitle(`${CE.manager.str} Trusted Level Whitelist`).setColor(5763719).setDescription(
+          const embed2 = new import_discord192.EmbedBuilder().setTitle(`${CE.manager.str} Trusted Level Whitelist`).setColor(5763719).setDescription(
             `**Trusted Members:**
 ` + (trusted.length > 0 ? trusted.map((id) => `\u2022 <@${id}> (\`${id}\`)`).join("\n") : "*No members marked as trusted yet. Use `.trusted @user` to add.*") + `
 
@@ -264812,7 +264991,7 @@ var init_serverWhitelist = __esm({
           trustedWhitelistUserIds: updatedList,
           noPrefixUserIds: shouldAdd ? Array.from(/* @__PURE__ */ new Set([...c.noPrefixUserIds ?? [], targetUser.id])) : c.noPrefixUserIds
         }));
-        const embed = new import_discord190.EmbedBuilder().setTitle(`${shouldAdd ? CE.success.str : CE.failure.str} Trusted Whitelist ${shouldAdd ? "Granted" : "Revoked"}`).setColor(shouldAdd ? 5763719 : 15548997).setDescription(
+        const embed = new import_discord192.EmbedBuilder().setTitle(`${shouldAdd ? CE.success.str : CE.failure.str} Trusted Whitelist ${shouldAdd ? "Granted" : "Revoked"}`).setColor(shouldAdd ? 5763719 : 15548997).setDescription(
           shouldAdd ? `${CE.star.str} Successfully granted **Trusted Whitelist** to <@${targetUser.id}>!
 
 \u2022 **Moderation Immunity**: The bot will never execute moderation commands against this user
@@ -264891,7 +265070,7 @@ async function buildStaffPanelEmbed() {
   const homies = staffList.filter((s2) => s2.role === "homies");
   const supporters = staffList.filter((s2) => s2.role === "supporter");
   const supportTeams = staffList.filter((s2) => s2.role === "support_team");
-  const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.white_owner.str} Official Bot Staff & Tester Control Panel`).setColor(15844367).setDescription(
+  const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.white_owner.str} Official Bot Staff & Tester Control Panel`).setColor(15844367).setDescription(
     `Welcome to the **Bot Staff & QA Tester Management Center**.
 *Authorized Access: Hardcoded Bot Owner (<@${PERMANENT_BOT_OWNER_ID}>)*
 
@@ -264942,16 +265121,16 @@ async function buildStaffPanelEmbed() {
 \u2022 **Non-Staff Ranks**: Assign Non-Staff or Remove Non-Staff buttons (Partners, Homies, VIP, Supporter, Support Team)
 \u2022 Or run: \`.botstaff set @user <role>\``
   ).setFooter({ text: "Zenith Bot Official Roster \u2022 Real-time Sync" }).setTimestamp();
-  const row1 = new import_discord191.ActionRowBuilder().addComponents(
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:add").setLabel("Appoint Staff").setEmoji(CE.success.id).setStyle(import_discord191.ButtonStyle.Success),
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:remove").setLabel("Remove Staff").setEmoji(CE.demotion.id).setStyle(import_discord191.ButtonStyle.Danger),
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:add_nonstaff").setLabel("Assign Non-Staff Role").setEmoji(CE.white_vip.id).setStyle(import_discord191.ButtonStyle.Primary),
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:remove_nonstaff").setLabel("Remove Non-Staff Role").setEmoji(CE.white_cancel.id).setStyle(import_discord191.ButtonStyle.Secondary)
+  const row1 = new import_discord193.ActionRowBuilder().addComponents(
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:add").setLabel("Appoint Staff").setEmoji(CE.success.id).setStyle(import_discord193.ButtonStyle.Success),
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:remove").setLabel("Remove Staff").setEmoji(CE.demotion.id).setStyle(import_discord193.ButtonStyle.Danger),
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:add_nonstaff").setLabel("Assign Non-Staff Role").setEmoji(CE.white_vip.id).setStyle(import_discord193.ButtonStyle.Primary),
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:remove_nonstaff").setLabel("Remove Non-Staff Role").setEmoji(CE.white_cancel.id).setStyle(import_discord193.ButtonStyle.Secondary)
   );
-  const row2 = new import_discord191.ActionRowBuilder().addComponents(
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:breakdown").setLabel("Role Benefits & Badges").setEmoji(CE.information.id).setStyle(import_discord191.ButtonStyle.Secondary),
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:refresh").setLabel("Refresh Roster").setEmoji(CE.loading.id).setStyle(import_discord191.ButtonStyle.Secondary),
-    new import_discord191.ButtonBuilder().setCustomId("btn:bsp:dismiss").setLabel("Close Panel").setStyle(import_discord191.ButtonStyle.Secondary)
+  const row2 = new import_discord193.ActionRowBuilder().addComponents(
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:breakdown").setLabel("Role Benefits & Badges").setEmoji(CE.information.id).setStyle(import_discord193.ButtonStyle.Secondary),
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:refresh").setLabel("Refresh Roster").setEmoji(CE.loading.id).setStyle(import_discord193.ButtonStyle.Secondary),
+    new import_discord193.ButtonBuilder().setCustomId("btn:bsp:dismiss").setLabel("Close Panel").setStyle(import_discord193.ButtonStyle.Secondary)
   );
   return { embed, rows: [row1, row2] };
 }
@@ -264966,32 +265145,32 @@ async function handleBotStaffButton(interaction) {
   }
   const customId = interaction.customId;
   if (customId === "btn:bsp:add") {
-    const modal = new import_discord191.ModalBuilder().setCustomId("modal:bsp:add").setTitle("Appoint Bot Staff Member");
-    const userInput = new import_discord191.TextInputBuilder().setCustomId("bsp_add_user").setLabel("User Mention or ID").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
-    const roleInput = new import_discord191.TextInputBuilder().setCustomId("bsp_add_role").setLabel("Staff Role").setPlaceholder("admin | manager | head_tester | tester | mod | help").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+    const modal = new import_discord193.ModalBuilder().setCustomId("modal:bsp:add").setTitle("Appoint Bot Staff Member");
+    const userInput = new import_discord193.TextInputBuilder().setCustomId("bsp_add_user").setLabel("User Mention or ID").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord193.TextInputStyle.Short).setRequired(true);
+    const roleInput = new import_discord193.TextInputBuilder().setCustomId("bsp_add_role").setLabel("Staff Role").setPlaceholder("admin | manager | head_tester | tester | mod | help").setStyle(import_discord193.TextInputStyle.Short).setRequired(true);
     modal.addComponents(
-      new import_discord191.ActionRowBuilder().addComponents(userInput),
-      new import_discord191.ActionRowBuilder().addComponents(roleInput)
+      new import_discord193.ActionRowBuilder().addComponents(userInput),
+      new import_discord193.ActionRowBuilder().addComponents(roleInput)
     );
     await interaction.showModal(modal);
     return;
   }
   if (customId === "btn:bsp:add_nonstaff") {
-    const modal = new import_discord191.ModalBuilder().setCustomId("modal:bsp:add").setTitle("Assign Non-Staff Role");
-    const userInput = new import_discord191.TextInputBuilder().setCustomId("bsp_add_user").setLabel("User Mention or ID").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
-    const roleInput = new import_discord191.TextInputBuilder().setCustomId("bsp_add_role").setLabel("Non-Staff Role: vip, homies, partner...").setPlaceholder("vip | homies | partner | supporter | support_team").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+    const modal = new import_discord193.ModalBuilder().setCustomId("modal:bsp:add").setTitle("Assign Non-Staff Role");
+    const userInput = new import_discord193.TextInputBuilder().setCustomId("bsp_add_user").setLabel("User Mention or ID").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord193.TextInputStyle.Short).setRequired(true);
+    const roleInput = new import_discord193.TextInputBuilder().setCustomId("bsp_add_role").setLabel("Non-Staff Role: vip, homies, partner...").setPlaceholder("vip | homies | partner | supporter | support_team").setStyle(import_discord193.TextInputStyle.Short).setRequired(true);
     modal.addComponents(
-      new import_discord191.ActionRowBuilder().addComponents(userInput),
-      new import_discord191.ActionRowBuilder().addComponents(roleInput)
+      new import_discord193.ActionRowBuilder().addComponents(userInput),
+      new import_discord193.ActionRowBuilder().addComponents(roleInput)
     );
     await interaction.showModal(modal);
     return;
   }
   if (customId === "btn:bsp:remove" || customId === "btn:bsp:remove_nonstaff") {
-    const modal = new import_discord191.ModalBuilder().setCustomId("modal:bsp:remove").setTitle("Remove Role / Rank");
-    const userInput = new import_discord191.TextInputBuilder().setCustomId("bsp_remove_user").setLabel("User Mention or ID").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord191.TextInputStyle.Short).setRequired(true);
+    const modal = new import_discord193.ModalBuilder().setCustomId("modal:bsp:remove").setTitle("Remove Role / Rank");
+    const userInput = new import_discord193.TextInputBuilder().setCustomId("bsp_remove_user").setLabel("User Mention or ID").setPlaceholder("e.g. 1181221352393420856 or @user").setStyle(import_discord193.TextInputStyle.Short).setRequired(true);
     modal.addComponents(
-      new import_discord191.ActionRowBuilder().addComponents(userInput)
+      new import_discord193.ActionRowBuilder().addComponents(userInput)
     );
     await interaction.showModal(modal);
     return;
@@ -265004,7 +265183,7 @@ async function handleBotStaffButton(interaction) {
       inline: false
     }));
     const inviteUrl = await getTestingServerInvite(interaction.client);
-    const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.admin.str} Official Bot Staff & Role Privileges`).setColor(COLORS.primary).setDescription(
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.admin.str} Official Bot Staff & Role Privileges`).setColor(COLORS.primary).setDescription(
       `Below is the complete hierarchy and unlocked benefits for official **Zenith Bot Staff, Testers & Non-Staff Ranks**.
 
 \u2022 **Official Bot Testing Server:** [Click to Join Testing Server](${inviteUrl})
@@ -265071,7 +265250,7 @@ Available roles: \`owner\`, \`co_owner\`, \`admin\`, \`manager\`, \`head_tester\
     const meta = BOT_STAFF_ROLES[resolvedRole];
     const { getUserAllBadges: getUserAllBadges2 } = await Promise.resolve().then(() => (init_profile(), profile_exports));
     const { badgeEmojisStr, topBadgesStr } = await getUserAllBadges2(targetUserId, interaction.guildId || void 0);
-    const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.success.str} Role Appointed Successfully`).setColor(meta.color).setDescription(
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.success.str} Role Appointed Successfully`).setColor(meta.color).setDescription(
       `Successfully appointed <@${targetUserId}> (\`${targetUserId}\`) as **${meta.title}** ${meta.badge}!
 
 \u2022 **Role**: \`${meta.name}\`
@@ -265101,7 +265280,7 @@ Available roles: \`owner\`, \`co_owner\`, \`admin\`, \`manager\`, \`head_tester\
     }
     const targetUserId = idMatch[0];
     const removed = await removeBotStaffRole(targetUserId);
-    const embed = new import_discord191.EmbedBuilder().setTitle(`${removed ? CE.success.str : CE.failure.str} Member ${removed ? "Removed" : "Not Found"}`).setColor(removed ? 15548997 : 2829617).setDescription(
+    const embed = new import_discord193.EmbedBuilder().setTitle(`${removed ? CE.success.str : CE.failure.str} Member ${removed ? "Removed" : "Not Found"}`).setColor(removed ? 15548997 : 2829617).setDescription(
       removed ? `Successfully removed <@${targetUserId}> (\`${targetUserId}\`) from the official roster.` : `<@${targetUserId}> was not found in the roster.`
     ).setFooter({ text: "Zenith Bot Directory" }).setTimestamp();
     await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -265113,16 +265292,16 @@ Available roles: \`owner\`, \`co_owner\`, \`admin\`, \`manager\`, \`head_tester\
     return;
   }
 }
-var import_discord191, botStaffCommand, botStaff_default;
+var import_discord193, botStaffCommand, botStaff_default;
 var init_botStaff2 = __esm({
   "artifacts/api-server/src/discord/commands/botStaff.ts"() {
     "use strict";
-    import_discord191 = __toESM(require_src2(), 1);
+    import_discord193 = __toESM(require_src2(), 1);
     init_premium();
     init_botStaff();
     init_embedStyle();
     botStaffCommand = {
-      data: new import_discord191.SlashCommandBuilder().setName("botstaff").setDescription("Bot Staff Management Panel (Hardcoded Owner Only)").addSubcommand(
+      data: new import_discord193.SlashCommandBuilder().setName("botstaff").setDescription("Bot Staff Management Panel (Hardcoded Owner Only)").addSubcommand(
         (sub) => sub.setName("panel").setDescription("Display the interactive Bot Staff & Tester Panel")
       ).addSubcommand(
         (sub) => sub.setName("set").setDescription("Assign or update a bot staff member or QA tester").addUserOption((o) => o.setName("user").setDescription("User to assign").setRequired(true)).addStringOption(
@@ -265148,7 +265327,7 @@ var init_botStaff2 = __esm({
         if (!allowed) {
           await interaction.reply({
             embeds: [
-              new import_discord191.EmbedBuilder().setTitle("Access Restricted").setColor(COLORS.danger).setDescription(
+              new import_discord193.EmbedBuilder().setTitle("Access Restricted").setColor(COLORS.danger).setDescription(
                 `${CE.failure.str} You do not have permission to access the **Bot Staff Management Panel**.
 *Authorized: Bot Owner, Bot Administrators, or Appointed Staff.*`
               )
@@ -265214,7 +265393,7 @@ var init_botStaff2 = __esm({
           );
           const { getUserAllBadges: getUserAllBadges2 } = await Promise.resolve().then(() => (init_profile(), profile_exports));
           const { badgeEmojisStr, topBadgesStr } = await getUserAllBadges2(targetUser.id, interaction.guildId || void 0);
-          const embed = new import_discord191.EmbedBuilder().setTitle(`${CE.success.str} Bot Staff / Tester Appointed Successfully`).setColor(meta.color).setDescription(
+          const embed = new import_discord193.EmbedBuilder().setTitle(`${CE.success.str} Bot Staff / Tester Appointed Successfully`).setColor(meta.color).setDescription(
             `Successfully appointed <@${targetUser.id}> (\`${targetUser.id}\`) as **${meta.title}** ${meta.badge}!
 
 \u2022 **Role**: \`${meta.name}\`
@@ -265246,7 +265425,7 @@ var init_botStaff2 = __esm({
             return;
           }
           const removed = await removeBotStaffRole(targetUser.id);
-          const embed = new import_discord191.EmbedBuilder().setTitle(`${removed ? CE.success.str : CE.failure.str} Staff Member ${removed ? "Removed" : "Not Found"}`).setColor(removed ? 15548997 : 2829617).setDescription(
+          const embed = new import_discord193.EmbedBuilder().setTitle(`${removed ? CE.success.str : CE.failure.str} Staff Member ${removed ? "Removed" : "Not Found"}`).setColor(removed ? 15548997 : 2829617).setDescription(
             removed ? `Successfully removed <@${targetUser.id}> (\`${targetUser.id}\`) from the official bot staff team.` : `<@${targetUser.id}> was not found in the bot staff roster.`
           ).setFooter({ text: "Zenith Bot Staff Directory" }).setTimestamp();
           await interaction.reply({ embeds: [embed] });
@@ -265282,7 +265461,7 @@ async function hasWhitelistManagementPerms(userId, guildOwnerId, cfg, member) {
   }
   if (cfg.serverOwnerWhitelistUserIds?.includes(userId)) return true;
   if (cfg.serverAdminWhitelistUserIds?.includes(userId)) return true;
-  if (member && member.permissions?.has(import_discord192.PermissionFlagsBits.Administrator)) return true;
+  if (member && member.permissions?.has(import_discord194.PermissionFlagsBits.Administrator)) return true;
   return false;
 }
 function resolveCategory(invokedName) {
@@ -265307,7 +265486,7 @@ function buildOverviewEmbed2(cfg) {
 \u2022 **Perms**: ${cat.permissionsGranted[0]}`
     );
   }
-  const embed = new import_discord192.EmbedBuilder().setTitle(`${EMOJI.shield} Specialized Bots & Roles Whitelist Hub`).setColor(2829617).setDescription(
+  const embed = new import_discord194.EmbedBuilder().setTitle(`${EMOJI.shield} Specialized Bots & Roles Whitelist Hub`).setColor(2829617).setDescription(
     `Configure specific bots or roles with customized permission tiers without giving full root admin access.
 
 ` + lines.join("\n\n") + `
@@ -265322,11 +265501,11 @@ function buildOverviewEmbed2(cfg) {
 \u2022 \`.moderationbot @Carl-bot\`
 \u2022 \`.antinukebot @SecurityBot\``
   ).setFooter({ text: "Specialized Bot Matrix \u2022 Granular Security Clearance" }).setTimestamp();
-  const row2 = new import_discord192.ActionRowBuilder().addComponents(
-    new import_discord192.ButtonBuilder().setCustomId("btn:bw:refresh").setLabel("Refresh").setEmoji(CE.loop.id).setStyle(import_discord192.ButtonStyle.Secondary),
-    new import_discord192.ButtonBuilder().setCustomId("btn:bw:admin").setLabel("Admin Bots").setStyle(import_discord192.ButtonStyle.Primary),
-    new import_discord192.ButtonBuilder().setCustomId("btn:bw:ticket").setLabel("Ticket Bots").setStyle(import_discord192.ButtonStyle.Primary),
-    new import_discord192.ButtonBuilder().setCustomId("btn:bw:dismiss").setLabel("Close").setStyle(import_discord192.ButtonStyle.Danger)
+  const row2 = new import_discord194.ActionRowBuilder().addComponents(
+    new import_discord194.ButtonBuilder().setCustomId("btn:bw:refresh").setLabel("Refresh").setEmoji(CE.loop.id).setStyle(import_discord194.ButtonStyle.Secondary),
+    new import_discord194.ButtonBuilder().setCustomId("btn:bw:admin").setLabel("Admin Bots").setStyle(import_discord194.ButtonStyle.Primary),
+    new import_discord194.ButtonBuilder().setCustomId("btn:bw:ticket").setLabel("Ticket Bots").setStyle(import_discord194.ButtonStyle.Primary),
+    new import_discord194.ButtonBuilder().setCustomId("btn:bw:dismiss").setLabel("Close").setStyle(import_discord194.ButtonStyle.Danger)
   );
   return { embed, row: row2 };
 }
@@ -265349,7 +265528,7 @@ function buildCategoryEmbed2(category, cfg, _guild) {
 ` + roleEntries.map((r2) => `\u2022 <@&${r2.id}> (\`${r2.id}\`) \u2014 added by <@${r2.addedBy}>`).join("\n") + "\n";
     }
   }
-  const embed = new import_discord192.EmbedBuilder().setTitle(`${cat.emojiStr} ${cat.name} (${cat.badge})`).setColor(cat.color).setDescription(
+  const embed = new import_discord194.EmbedBuilder().setTitle(`${cat.emojiStr} ${cat.name} (${cat.badge})`).setColor(cat.color).setDescription(
     `*${cat.description}*
 
 ### Specific Permissions & Clearances Granted
@@ -265398,11 +265577,11 @@ async function handleBotWhitelistButton(interaction) {
     return;
   }
 }
-var import_discord192, SPECIALIZED_CATEGORIES, botWhitelistCommand;
+var import_discord194, SPECIALIZED_CATEGORIES, botWhitelistCommand;
 var init_botWhitelist = __esm({
   "artifacts/api-server/src/discord/commands/botWhitelist.ts"() {
     "use strict";
-    import_discord192 = __toESM(require_src2(), 1);
+    import_discord194 = __toESM(require_src2(), 1);
     init_config();
     init_premium();
     init_embedStyle();
@@ -265544,7 +265723,7 @@ var init_botWhitelist = __esm({
       }
     };
     botWhitelistCommand = {
-      data: new import_discord192.SlashCommandBuilder().setName("botwhitelist").setDescription("Manage specialized bot & role categories for granular permissions").addSubcommand(
+      data: new import_discord194.SlashCommandBuilder().setName("botwhitelist").setDescription("Manage specialized bot & role categories for granular permissions").addSubcommand(
         (sub) => sub.setName("panel").setDescription("Display the Specialized Bot Whitelist overview panel")
       ).addSubcommand(
         (sub) => sub.setName("manage").setDescription("Add, remove, or toggle a bot or role in a specialized category").addStringOption(
@@ -265670,7 +265849,7 @@ var init_botWhitelist = __esm({
           const res = await toggleSpecializedBot(interaction.guildId, category, targetId, targetType, interaction.user.id);
           isNowAdded = res.added;
         }
-        const resultEmbed = new import_discord192.EmbedBuilder().setTitle(`${isNowAdded ? CE.success.str : CE.failure.str} ${cat.name} ${isNowAdded ? "Granted" : "Revoked"}`).setColor(isNowAdded ? cat.color : 15548997).setDescription(
+        const resultEmbed = new import_discord194.EmbedBuilder().setTitle(`${isNowAdded ? CE.success.str : CE.failure.str} ${cat.name} ${isNowAdded ? "Granted" : "Revoked"}`).setColor(isNowAdded ? cat.color : 15548997).setDescription(
           isNowAdded ? `Successfully whitelisted ${targetType === "role" ? `<@&${targetId}>` : `<@${targetId}>`} (\`${targetId}\`) under **${cat.name}**!
 
 ### Active Clearances & Permissions:
@@ -265742,15 +265921,15 @@ var init_gatewayHealth = __esm({
 });
 
 // artifacts/api-server/src/discord/commands/hosting.ts
-var import_discord193, command150, hosting_default;
+var import_discord195, command152, hosting_default;
 var init_hosting = __esm({
   "artifacts/api-server/src/discord/commands/hosting.ts"() {
     "use strict";
-    import_discord193 = __toESM(require_src2(), 1);
+    import_discord195 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_gatewayHealth();
-    command150 = {
-      data: new import_discord193.SlashCommandBuilder().setName("hosting").setDescription("Inspect hosting health, gateway reconnect logs, and multi-instance token collisions."),
+    command152 = {
+      data: new import_discord195.SlashCommandBuilder().setName("hosting").setDescription("Inspect hosting health, gateway reconnect logs, and multi-instance token collisions."),
       async execute(interaction) {
         try {
           const report = getGatewayHealthReport();
@@ -265803,7 +265982,7 @@ var init_hosting = __esm({
         }
       }
     };
-    hosting_default = command150;
+    hosting_default = command152;
   }
 });
 
@@ -265969,7 +266148,7 @@ function buildGlobalAutoReactPanel(store) {
     previewText = sample.join("\n") + (rules.length > 8 ? `
 *...and ${rules.length - 8} more rules.*` : "");
   }
-  const embed = new import_discord194.EmbedBuilder().setTitle(`${CE.owner.str} Global Auto-React Matrix`).setColor(isEnabled2 ? COLORS.premium : 15548997).setDescription(
+  const embed = new import_discord196.EmbedBuilder().setTitle(`${CE.owner.str} Global Auto-React Matrix`).setColor(isEnabled2 ? COLORS.premium : 15548997).setDescription(
     `Cross-server global auto-reactions configured by **Bot Owner** and **Bot Co-Owner**.
 When active, the bot automatically reacts to matching triggers across **all servers** the bot operates in.
 
@@ -265990,18 +266169,18 @@ When active, the bot automatically reacts to matching triggers across **all serv
 \u2022 \`.gar list\` \u2014 View full details of all active rules
 \u2022 \`.gar clear\` \u2014 Clear all global auto-reaction rules`
   ).setFooter({ text: "Zenith Global Infrastructure \u2022 Owner & Co-Owner Exclusive" }).setTimestamp();
-  const row2 = new import_discord194.ActionRowBuilder().addComponents(
-    new import_discord194.ButtonBuilder().setCustomId("btn:gar:refresh").setLabel("Refresh").setEmoji(CE.loading.id).setStyle(import_discord194.ButtonStyle.Secondary),
-    new import_discord194.ButtonBuilder().setCustomId("btn:gar:toggle_master").setLabel(isEnabled2 ? "Disable Global" : "Enable Global").setStyle(isEnabled2 ? import_discord194.ButtonStyle.Danger : import_discord194.ButtonStyle.Success),
-    new import_discord194.ButtonBuilder().setCustomId("btn:gar:list").setLabel("View All Rules").setStyle(import_discord194.ButtonStyle.Primary),
-    new import_discord194.ButtonBuilder().setCustomId("btn:gar:dismiss").setLabel("Close").setStyle(import_discord194.ButtonStyle.Secondary)
+  const row2 = new import_discord196.ActionRowBuilder().addComponents(
+    new import_discord196.ButtonBuilder().setCustomId("btn:gar:refresh").setLabel("Refresh").setEmoji(CE.loading.id).setStyle(import_discord196.ButtonStyle.Secondary),
+    new import_discord196.ButtonBuilder().setCustomId("btn:gar:toggle_master").setLabel(isEnabled2 ? "Disable Global" : "Enable Global").setStyle(isEnabled2 ? import_discord196.ButtonStyle.Danger : import_discord196.ButtonStyle.Success),
+    new import_discord196.ButtonBuilder().setCustomId("btn:gar:list").setLabel("View All Rules").setStyle(import_discord196.ButtonStyle.Primary),
+    new import_discord196.ButtonBuilder().setCustomId("btn:gar:dismiss").setLabel("Close").setStyle(import_discord196.ButtonStyle.Secondary)
   );
   return { embed, row: row2 };
 }
 function buildGlobalAutoReactList(store) {
   const rules = store.rules;
   if (rules.length === 0) {
-    return new import_discord194.EmbedBuilder().setTitle(`${CE.owner.str} Global Auto-React Rules`).setColor(2829617).setDescription(
+    return new import_discord196.EmbedBuilder().setTitle(`${CE.owner.str} Global Auto-React Rules`).setColor(2829617).setDescription(
       `*No global auto-reactions currently configured.*
 
 **Add one now with:**
@@ -266019,7 +266198,7 @@ function buildGlobalAutoReactList(store) {
     return `\u2022 **ID:** \`${r2.id}\` | **Type:** \`${r2.targetType.toUpperCase()}\` | ${statusBadge}
   **Target:** ${targetDisplay} \u2794 **Emoji:** ${r2.emoji}${authorTag}`;
   });
-  return new import_discord194.EmbedBuilder().setTitle(`${CE.owner.str} Global Auto-React Rules (${rules.length})`).setColor(store.enabled ? COLORS.premium : 15548997).setDescription(
+  return new import_discord196.EmbedBuilder().setTitle(`${CE.owner.str} Global Auto-React Rules (${rules.length})`).setColor(store.enabled ? COLORS.premium : 15548997).setDescription(
     `Master Switch: ${store.enabled ? `${CE.check.str} **ONLINE**` : `${CE.failure.str} **PAUSED**`}
 
 ` + lines.join("\n\n")
@@ -266061,15 +266240,15 @@ async function handleGlobalAutoReactButton(interaction) {
     return;
   }
 }
-var import_discord194, globalAutoReactCommand;
+var import_discord196, globalAutoReactCommand;
 var init_globalAutoReact2 = __esm({
   "artifacts/api-server/src/discord/commands/globalAutoReact.ts"() {
     "use strict";
-    import_discord194 = __toESM(require_src2(), 1);
+    import_discord196 = __toESM(require_src2(), 1);
     init_globalAutoReact();
     init_embedStyle();
     globalAutoReactCommand = {
-      data: new import_discord194.SlashCommandBuilder().setName("globalautoreact").setDescription("[Owner & Co-Owner] Configure cross-server global auto-reactions").addSubcommand(
+      data: new import_discord196.SlashCommandBuilder().setName("globalautoreact").setDescription("[Owner & Co-Owner] Configure cross-server global auto-reactions").addSubcommand(
         (sub) => sub.setName("panel").setDescription("Display the Global Auto-React management panel")
       ).addSubcommand(
         (sub) => sub.setName("add").setDescription("Add or update a global auto-reaction rule").addStringOption(
@@ -266139,7 +266318,7 @@ var init_globalAutoReact2 = __esm({
           await setGlobalAutoReactMasterEnabled(true);
           await interaction.reply({
             embeds: [
-              new import_discord194.EmbedBuilder().setTitle(`${CE.success.str} Global Auto-React Enabled`).setColor(5763719).setDescription(`Global Auto-Reaction system is now **ONLINE** across all servers.`).setTimestamp()
+              new import_discord196.EmbedBuilder().setTitle(`${CE.success.str} Global Auto-React Enabled`).setColor(5763719).setDescription(`Global Auto-Reaction system is now **ONLINE** across all servers.`).setTimestamp()
             ]
           });
           return;
@@ -266148,7 +266327,7 @@ var init_globalAutoReact2 = __esm({
           await setGlobalAutoReactMasterEnabled(false);
           await interaction.reply({
             embeds: [
-              new import_discord194.EmbedBuilder().setTitle(`${CE.failure.str} Global Auto-React Disabled`).setColor(15548997).setDescription(`Global Auto-Reaction system is now **PAUSED** across all servers.`).setTimestamp()
+              new import_discord196.EmbedBuilder().setTitle(`${CE.failure.str} Global Auto-React Disabled`).setColor(15548997).setDescription(`Global Auto-Reaction system is now **PAUSED** across all servers.`).setTimestamp()
             ]
           });
           return;
@@ -266157,7 +266336,7 @@ var init_globalAutoReact2 = __esm({
           const count = await clearGlobalAutoReactRules();
           await interaction.reply({
             embeds: [
-              new import_discord194.EmbedBuilder().setTitle(`${CE.success.str} Global Auto-Reactions Cleared`).setColor(5763719).setDescription(`Successfully removed all **${count}** global auto-reaction rules.`).setFooter({ text: `Cleared by ${interaction.user.tag}` }).setTimestamp()
+              new import_discord196.EmbedBuilder().setTitle(`${CE.success.str} Global Auto-Reactions Cleared`).setColor(5763719).setDescription(`Successfully removed all **${count}** global auto-reaction rules.`).setFooter({ text: `Cleared by ${interaction.user.tag}` }).setTimestamp()
             ]
           });
           return;
@@ -266171,7 +266350,7 @@ var init_globalAutoReact2 = __esm({
             const nextState = await toggleGlobalAutoReactMaster();
             await interaction.reply({
               embeds: [
-                new import_discord194.EmbedBuilder().setTitle(`${nextState ? CE.success.str : CE.failure.str} Global Auto-React Master Switch`).setColor(nextState ? 5763719 : 15548997).setDescription(`Global Auto-React is now **${nextState ? "ENABLED" : "PAUSED"}** globally.`).setTimestamp()
+                new import_discord196.EmbedBuilder().setTitle(`${nextState ? CE.success.str : CE.failure.str} Global Auto-React Master Switch`).setColor(nextState ? 5763719 : 15548997).setDescription(`Global Auto-React is now **${nextState ? "ENABLED" : "PAUSED"}** globally.`).setTimestamp()
               ]
             });
             return;
@@ -266186,7 +266365,7 @@ var init_globalAutoReact2 = __esm({
           }
           await interaction.reply({
             embeds: [
-              new import_discord194.EmbedBuilder().setTitle(`${updated.enabled ? CE.success.str : CE.warning.str} Global Rule Toggled`).setColor(updated.enabled ? 5763719 : 15548997).setDescription(
+              new import_discord196.EmbedBuilder().setTitle(`${updated.enabled ? CE.success.str : CE.warning.str} Global Rule Toggled`).setColor(updated.enabled ? 5763719 : 15548997).setDescription(
                 `Rule \`[${updated.id}]\` (${updated.targetType}: \`${updated.target}\` \u2794 ${updated.emoji}) is now **${updated.enabled ? "ACTIVE" : "PAUSED"}**.`
               ).setTimestamp()
             ]
@@ -266215,7 +266394,7 @@ var init_globalAutoReact2 = __esm({
           }
           await interaction.reply({
             embeds: [
-              new import_discord194.EmbedBuilder().setTitle(`${CE.success.str} Global Rule Removed`).setColor(5763719).setDescription(`Successfully deleted global auto-reaction rule \`${targetId}\`.`).setFooter({ text: `Removed by ${interaction.user.tag}` }).setTimestamp()
+              new import_discord196.EmbedBuilder().setTitle(`${CE.success.str} Global Rule Removed`).setColor(5763719).setDescription(`Successfully deleted global auto-reaction rule \`${targetId}\`.`).setFooter({ text: `Removed by ${interaction.user.tag}` }).setTimestamp()
             ]
           });
           return;
@@ -266285,7 +266464,7 @@ var init_globalAutoReact2 = __esm({
         if (targetType === "user") displayTarget = `<@${target}> (\`${target}\`)`;
         else if (targetType === "channel") displayTarget = `<#${target}>`;
         else if (targetType === "role") displayTarget = `<@&${target}>`;
-        const embed = new import_discord194.EmbedBuilder().setTitle(`${CE.success.str} Global Auto-Reaction ${isNew ? "Created" : "Updated"}`).setColor(COLORS.premium).setDescription(
+        const embed = new import_discord196.EmbedBuilder().setTitle(`${CE.success.str} Global Auto-Reaction ${isNew ? "Created" : "Updated"}`).setColor(COLORS.premium).setDescription(
           `Successfully configured global auto-reaction across all servers!
 
 \u2022 **Rule ID:** \`${rule.id}\`
@@ -266309,15 +266488,15 @@ function parseHexColor(input) {
   }
   return null;
 }
-var import_discord195, roleCommand;
+var import_discord197, roleCommand;
 var init_role = __esm({
   "artifacts/api-server/src/discord/commands/role.ts"() {
     "use strict";
-    import_discord195 = __toESM(require_src2(), 1);
+    import_discord197 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_ownerPermissionPrompt();
     roleCommand = {
-      data: new import_discord195.SlashCommandBuilder().setName("role").setDescription("Create, edit, delete, assign, remove, or list server roles").setDefaultMemberPermissions(import_discord195.PermissionFlagsBits.ManageRoles).addSubcommand(
+      data: new import_discord197.SlashCommandBuilder().setName("role").setDescription("Create, edit, delete, assign, remove, or list server roles").setDefaultMemberPermissions(import_discord197.PermissionFlagsBits.ManageRoles).addSubcommand(
         (sub) => sub.setName("create").setDescription("Create a new server role").addStringOption((o) => o.setName("name").setDescription("Role name").setRequired(true)).addStringOption((o) => o.setName("color").setDescription("Role hex color (e.g. #57f287)").setRequired(false)).addBooleanOption((o) => o.setName("hoist").setDescription("Display role separately in member list").setRequired(false)).addBooleanOption((o) => o.setName("mentionable").setDescription("Allow anyone to mention this role").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("edit").setDescription("Edit an existing server role").addRoleOption((o) => o.setName("role").setDescription("The role to edit").setRequired(true)).addStringOption((o) => o.setName("name").setDescription("New role name").setRequired(false)).addStringOption((o) => o.setName("color").setDescription("New role hex color (e.g. #ff0000)").setRequired(false)).addBooleanOption((o) => o.setName("hoist").setDescription("Display separately").setRequired(false)).addBooleanOption((o) => o.setName("mentionable").setDescription("Allow mentioning").setRequired(false))
@@ -266345,7 +266524,7 @@ var init_role = __esm({
           return;
         }
         const member = interaction.member;
-        if (!member.permissions.has(import_discord195.PermissionFlagsBits.ManageRoles) && interaction.guild.ownerId !== interaction.user.id) {
+        if (!member.permissions.has(import_discord197.PermissionFlagsBits.ManageRoles) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -266360,7 +266539,7 @@ var init_role = __esm({
         }
         const hasPerms = await ensureBotPermissions(
           interaction,
-          [import_discord195.PermissionFlagsBits.ManageRoles],
+          [import_discord197.PermissionFlagsBits.ManageRoles],
           ["ManageRoles"],
           "create, edit, delete, or assign server roles"
         );
@@ -266716,15 +266895,15 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
 });
 
 // artifacts/api-server/src/discord/commands/channel.ts
-var import_discord196, channelCommand;
+var import_discord198, channelCommand;
 var init_channel = __esm({
   "artifacts/api-server/src/discord/commands/channel.ts"() {
     "use strict";
-    import_discord196 = __toESM(require_src2(), 1);
+    import_discord198 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_ownerPermissionPrompt();
     channelCommand = {
-      data: new import_discord196.SlashCommandBuilder().setName("channel").setDescription("Create, edit, delete, or list server channels").setDefaultMemberPermissions(import_discord196.PermissionFlagsBits.ManageChannels).addSubcommand(
+      data: new import_discord198.SlashCommandBuilder().setName("channel").setDescription("Create, edit, delete, or list server channels").setDefaultMemberPermissions(import_discord198.PermissionFlagsBits.ManageChannels).addSubcommand(
         (sub) => sub.setName("create").setDescription("Create a new channel").addStringOption((o) => o.setName("name").setDescription("Channel name").setRequired(true)).addStringOption(
           (o) => o.setName("type").setDescription("Channel type").setRequired(false).addChoices(
             { name: "Text Channel", value: "text" },
@@ -266733,37 +266912,37 @@ var init_channel = __esm({
             { name: "Announcement Channel", value: "announcement" }
           )
         ).addChannelOption(
-          (o) => o.setName("category").setDescription("Category to place channel in").addChannelTypes(import_discord196.ChannelType.GuildCategory).setRequired(false)
+          (o) => o.setName("category").setDescription("Category to place channel in").addChannelTypes(import_discord198.ChannelType.GuildCategory).setRequired(false)
         ).addStringOption((o) => o.setName("topic").setDescription("Channel topic").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("edit").setDescription("Edit an existing channel").addChannelOption(
           (o) => o.setName("channel").setDescription("Channel to edit").addChannelTypes(
-            import_discord196.ChannelType.GuildText,
-            import_discord196.ChannelType.GuildVoice,
-            import_discord196.ChannelType.GuildAnnouncement,
-            import_discord196.ChannelType.GuildStageVoice
+            import_discord198.ChannelType.GuildText,
+            import_discord198.ChannelType.GuildVoice,
+            import_discord198.ChannelType.GuildAnnouncement,
+            import_discord198.ChannelType.GuildStageVoice
           ).setRequired(true)
         ).addStringOption((o) => o.setName("name").setDescription("New channel name").setRequired(false)).addStringOption((o) => o.setName("topic").setDescription("New topic description").setRequired(false)).addIntegerOption(
           (o) => o.setName("slowmode").setDescription("Slowmode delay in seconds (0 to 21600)").setMinValue(0).setMaxValue(21600).setRequired(false)
         ).addChannelOption(
-          (o) => o.setName("category").setDescription("Move to category").addChannelTypes(import_discord196.ChannelType.GuildCategory).setRequired(false)
+          (o) => o.setName("category").setDescription("Move to category").addChannelTypes(import_discord198.ChannelType.GuildCategory).setRequired(false)
         )
       ).addSubcommand(
         (sub) => sub.setName("delete").setDescription("Delete a channel").addChannelOption(
           (o) => o.setName("channel").setDescription("Channel to delete").addChannelTypes(
-            import_discord196.ChannelType.GuildText,
-            import_discord196.ChannelType.GuildVoice,
-            import_discord196.ChannelType.GuildAnnouncement,
-            import_discord196.ChannelType.GuildStageVoice
+            import_discord198.ChannelType.GuildText,
+            import_discord198.ChannelType.GuildVoice,
+            import_discord198.ChannelType.GuildAnnouncement,
+            import_discord198.ChannelType.GuildStageVoice
           ).setRequired(true)
         ).addStringOption((o) => o.setName("reason").setDescription("Reason for deletion").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("remove").setDescription("Remove / delete a channel").addChannelOption(
           (o) => o.setName("channel").setDescription("Channel to remove").addChannelTypes(
-            import_discord196.ChannelType.GuildText,
-            import_discord196.ChannelType.GuildVoice,
-            import_discord196.ChannelType.GuildAnnouncement,
-            import_discord196.ChannelType.GuildStageVoice
+            import_discord198.ChannelType.GuildText,
+            import_discord198.ChannelType.GuildVoice,
+            import_discord198.ChannelType.GuildAnnouncement,
+            import_discord198.ChannelType.GuildStageVoice
           ).setRequired(true)
         ).addStringOption((o) => o.setName("reason").setDescription("Reason for deletion").setRequired(false))
       ).addSubcommand(
@@ -266775,7 +266954,7 @@ var init_channel = __esm({
           return;
         }
         const member = interaction.member;
-        if (!member.permissions.has(import_discord196.PermissionFlagsBits.ManageChannels) && interaction.guild.ownerId !== interaction.user.id) {
+        if (!member.permissions.has(import_discord198.PermissionFlagsBits.ManageChannels) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -266790,7 +266969,7 @@ var init_channel = __esm({
         }
         const hasPerms = await ensureBotPermissions(
           interaction,
-          [import_discord196.PermissionFlagsBits.ManageChannels],
+          [import_discord198.PermissionFlagsBits.ManageChannels],
           ["ManageChannels"],
           "create, edit, delete, or modify server channels"
         );
@@ -266801,10 +266980,10 @@ var init_channel = __esm({
           const typeStr = interaction.options.getString("type") || "text";
           const category = interaction.options.getChannel("category");
           const topic = interaction.options.getString("topic");
-          let channelType = import_discord196.ChannelType.GuildText;
-          if (typeStr === "voice") channelType = import_discord196.ChannelType.GuildVoice;
-          else if (typeStr === "stage") channelType = import_discord196.ChannelType.GuildStageVoice;
-          else if (typeStr === "announcement") channelType = import_discord196.ChannelType.GuildAnnouncement;
+          let channelType = import_discord198.ChannelType.GuildText;
+          if (typeStr === "voice") channelType = import_discord198.ChannelType.GuildVoice;
+          else if (typeStr === "stage") channelType = import_discord198.ChannelType.GuildStageVoice;
+          else if (typeStr === "announcement") channelType = import_discord198.ChannelType.GuildAnnouncement;
           try {
             const created = await interaction.guild.channels.create({
               name: name2,
@@ -266923,7 +267102,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
           }
           return;
         }
-        const channels = [...interaction.guild.channels.cache.values()].filter((c) => c.type !== import_discord196.ChannelType.GuildCategory).sort((a, b) => (a.rawPosition ?? 0) - (b.rawPosition ?? 0));
+        const channels = [...interaction.guild.channels.cache.values()].filter((c) => c.type !== import_discord198.ChannelType.GuildCategory).sort((a, b) => (a.rawPosition ?? 0) - (b.rawPosition ?? 0));
         const page = Math.max(1, interaction.options.getInteger("page") || 1);
         const pageSize = 15;
         const totalPages = Math.max(1, Math.ceil(channels.length / pageSize));
@@ -266931,7 +267110,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
         const currentChannels = channels.slice(startIdx, startIdx + pageSize);
         const listLines = currentChannels.map((c, i2) => {
           const idx = startIdx + i2 + 1;
-          const typeIcon = c.type === import_discord196.ChannelType.GuildVoice ? CE.music.str : c.type === import_discord196.ChannelType.GuildStageVoice ? CE.music_bot.str : c.type === import_discord196.ChannelType.GuildAnnouncement ? CE.notifications.str : CE.clipboard.str;
+          const typeIcon = c.type === import_discord198.ChannelType.GuildVoice ? CE.music.str : c.type === import_discord198.ChannelType.GuildStageVoice ? CE.music_bot.str : c.type === import_discord198.ChannelType.GuildAnnouncement ? CE.notifications.str : CE.clipboard.str;
           return `\`${idx}.\` ${typeIcon} <#${c.id}> (\`${c.name}\`)`;
         });
         await interaction.reply({
@@ -266959,27 +267138,27 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
 });
 
 // artifacts/api-server/src/discord/commands/category.ts
-var import_discord197, categoryCommand;
+var import_discord199, categoryCommand;
 var init_category = __esm({
   "artifacts/api-server/src/discord/commands/category.ts"() {
     "use strict";
-    import_discord197 = __toESM(require_src2(), 1);
+    import_discord199 = __toESM(require_src2(), 1);
     init_embedStyle();
     init_ownerPermissionPrompt();
     categoryCommand = {
-      data: new import_discord197.SlashCommandBuilder().setName("category").setDescription("Create, edit, delete, or list server categories").setDefaultMemberPermissions(import_discord197.PermissionFlagsBits.ManageChannels).addSubcommand(
+      data: new import_discord199.SlashCommandBuilder().setName("category").setDescription("Create, edit, delete, or list server categories").setDefaultMemberPermissions(import_discord199.PermissionFlagsBits.ManageChannels).addSubcommand(
         (sub) => sub.setName("create").setDescription("Create a new channel category").addStringOption((o) => o.setName("name").setDescription("Category name").setRequired(true))
       ).addSubcommand(
         (sub) => sub.setName("edit").setDescription("Rename an existing channel category").addChannelOption(
-          (o) => o.setName("category").setDescription("The category to edit").addChannelTypes(import_discord197.ChannelType.GuildCategory).setRequired(true)
+          (o) => o.setName("category").setDescription("The category to edit").addChannelTypes(import_discord199.ChannelType.GuildCategory).setRequired(true)
         ).addStringOption((o) => o.setName("name").setDescription("New category name").setRequired(true))
       ).addSubcommand(
         (sub) => sub.setName("delete").setDescription("Delete a category (does not delete child channels)").addChannelOption(
-          (o) => o.setName("category").setDescription("The category to delete").addChannelTypes(import_discord197.ChannelType.GuildCategory).setRequired(true)
+          (o) => o.setName("category").setDescription("The category to delete").addChannelTypes(import_discord199.ChannelType.GuildCategory).setRequired(true)
         ).addStringOption((o) => o.setName("reason").setDescription("Reason for deletion").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("remove").setDescription("Remove / delete a category (does not delete child channels)").addChannelOption(
-          (o) => o.setName("category").setDescription("The category to remove").addChannelTypes(import_discord197.ChannelType.GuildCategory).setRequired(true)
+          (o) => o.setName("category").setDescription("The category to remove").addChannelTypes(import_discord199.ChannelType.GuildCategory).setRequired(true)
         ).addStringOption((o) => o.setName("reason").setDescription("Reason for deletion").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("list").setDescription("List all categories and child channel counts in this server")
@@ -266990,7 +267169,7 @@ var init_category = __esm({
           return;
         }
         const member = interaction.member;
-        if (!member.permissions.has(import_discord197.PermissionFlagsBits.ManageChannels) && interaction.guild.ownerId !== interaction.user.id) {
+        if (!member.permissions.has(import_discord199.PermissionFlagsBits.ManageChannels) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -267005,7 +267184,7 @@ var init_category = __esm({
         }
         const hasPerms = await ensureBotPermissions(
           interaction,
-          [import_discord197.PermissionFlagsBits.ManageChannels],
+          [import_discord199.PermissionFlagsBits.ManageChannels],
           ["ManageChannels"],
           "create, edit, delete, or manage server categories"
         );
@@ -267016,7 +267195,7 @@ var init_category = __esm({
           try {
             const created = await interaction.guild.channels.create({
               name: name2,
-              type: import_discord197.ChannelType.GuildCategory,
+              type: import_discord199.ChannelType.GuildCategory,
               reason: `Created by ${interaction.user.tag} (${interaction.user.id})`
             });
             await interaction.reply({
@@ -267102,7 +267281,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated category templates
           }
           return;
         }
-        const categories = [...interaction.guild.channels.cache.values()].filter((c) => c.type === import_discord197.ChannelType.GuildCategory).sort((a, b) => a.rawPosition - b.rawPosition);
+        const categories = [...interaction.guild.channels.cache.values()].filter((c) => c.type === import_discord199.ChannelType.GuildCategory).sort((a, b) => a.rawPosition - b.rawPosition);
         const catLines = categories.map((cat, i2) => {
           const children = cat.children.cache.size;
           return `\`${i2 + 1}.\` **${cat.name}** (\`${cat.id}\`) \u2014 \`${children}\` channels`;
@@ -267139,14 +267318,14 @@ function parseEmojiIdentifier(input) {
   }
   return { name: input.trim() };
 }
-var import_discord198, emojiCommand;
+var import_discord200, emojiCommand;
 var init_emoji = __esm({
   "artifacts/api-server/src/discord/commands/emoji.ts"() {
     "use strict";
-    import_discord198 = __toESM(require_src2(), 1);
+    import_discord200 = __toESM(require_src2(), 1);
     init_embedStyle();
     emojiCommand = {
-      data: new import_discord198.SlashCommandBuilder().setName("emoji").setDescription("Create, edit, delete, or list custom server emojis").setDefaultMemberPermissions(import_discord198.PermissionFlagsBits.ManageGuildExpressions).addSubcommand(
+      data: new import_discord200.SlashCommandBuilder().setName("emoji").setDescription("Create, edit, delete, or list custom server emojis").setDefaultMemberPermissions(import_discord200.PermissionFlagsBits.ManageGuildExpressions).addSubcommand(
         (sub) => sub.setName("create").setDescription("Add a new custom emoji to the server").addStringOption((o) => o.setName("name").setDescription("Name for the emoji").setRequired(true)).addAttachmentOption((o) => o.setName("file").setDescription("Image file for the emoji").setRequired(false)).addStringOption((o) => o.setName("url").setDescription("Image URL for the emoji").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("edit").setDescription("Rename an existing custom emoji").addStringOption((o) => o.setName("emoji").setDescription("The emoji, name, or ID to edit").setRequired(true)).addStringOption((o) => o.setName("name").setDescription("New name for the emoji").setRequired(true))
@@ -267163,7 +267342,7 @@ var init_emoji = __esm({
           return;
         }
         const member = interaction.member;
-        if (!member.permissions.has(import_discord198.PermissionFlagsBits.ManageGuildExpressions) && !member.permissions.has(import_discord198.PermissionFlagsBits.ManageEmojisAndStickers) && interaction.guild.ownerId !== interaction.user.id) {
+        if (!member.permissions.has(import_discord200.PermissionFlagsBits.ManageGuildExpressions) && !member.permissions.has(import_discord200.PermissionFlagsBits.ManageEmojisAndStickers) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -267177,7 +267356,7 @@ var init_emoji = __esm({
           return;
         }
         const botMember = interaction.guild.members.me;
-        if (!botMember || !botMember.permissions.has(import_discord198.PermissionFlagsBits.ManageGuildExpressions) && !botMember.permissions.has(import_discord198.PermissionFlagsBits.ManageEmojisAndStickers)) {
+        if (!botMember || !botMember.permissions.has(import_discord200.PermissionFlagsBits.ManageGuildExpressions) && !botMember.permissions.has(import_discord200.PermissionFlagsBits.ManageEmojisAndStickers)) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -267366,14 +267545,14 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited emoji slots, globa
 });
 
 // artifacts/api-server/src/discord/commands/sticker.ts
-var import_discord199, stickerCommand;
+var import_discord201, stickerCommand;
 var init_sticker = __esm({
   "artifacts/api-server/src/discord/commands/sticker.ts"() {
     "use strict";
-    import_discord199 = __toESM(require_src2(), 1);
+    import_discord201 = __toESM(require_src2(), 1);
     init_embedStyle();
     stickerCommand = {
-      data: new import_discord199.SlashCommandBuilder().setName("sticker").setDescription("Create, edit, delete, or list custom server stickers").setDefaultMemberPermissions(import_discord199.PermissionFlagsBits.ManageGuildExpressions).addSubcommand(
+      data: new import_discord201.SlashCommandBuilder().setName("sticker").setDescription("Create, edit, delete, or list custom server stickers").setDefaultMemberPermissions(import_discord201.PermissionFlagsBits.ManageGuildExpressions).addSubcommand(
         (sub) => sub.setName("create").setDescription("Create a new custom sticker").addStringOption((o) => o.setName("name").setDescription("Sticker name").setRequired(true)).addStringOption((o) => o.setName("tags").setDescription("Related emoji tag (e.g. tada or star)").setRequired(true)).addAttachmentOption((o) => o.setName("file").setDescription("Sticker image (PNG or APNG)").setRequired(false)).addStringOption((o) => o.setName("url").setDescription("Sticker image URL (PNG/APNG)").setRequired(false)).addStringOption((o) => o.setName("description").setDescription("Sticker description").setRequired(false))
       ).addSubcommand(
         (sub) => sub.setName("edit").setDescription("Edit an existing custom sticker").addStringOption((o) => o.setName("sticker").setDescription("Sticker name or ID").setRequired(true)).addStringOption((o) => o.setName("name").setDescription("New sticker name").setRequired(false)).addStringOption((o) => o.setName("description").setDescription("New description").setRequired(false)).addStringOption((o) => o.setName("tags").setDescription("New emoji tags").setRequired(false))
@@ -267390,7 +267569,7 @@ var init_sticker = __esm({
           return;
         }
         const member = interaction.member;
-        if (!member.permissions.has(import_discord199.PermissionFlagsBits.ManageGuildExpressions) && !member.permissions.has(import_discord199.PermissionFlagsBits.ManageEmojisAndStickers) && interaction.guild.ownerId !== interaction.user.id) {
+        if (!member.permissions.has(import_discord201.PermissionFlagsBits.ManageGuildExpressions) && !member.permissions.has(import_discord201.PermissionFlagsBits.ManageEmojisAndStickers) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -267404,7 +267583,7 @@ var init_sticker = __esm({
           return;
         }
         const botMember = interaction.guild.members.me;
-        if (!botMember || !botMember.permissions.has(import_discord199.PermissionFlagsBits.ManageGuildExpressions) && !botMember.permissions.has(import_discord199.PermissionFlagsBits.ManageEmojisAndStickers)) {
+        if (!botMember || !botMember.permissions.has(import_discord201.PermissionFlagsBits.ManageGuildExpressions) && !botMember.permissions.has(import_discord201.PermissionFlagsBits.ManageEmojisAndStickers)) {
           await interaction.reply({
             embeds: [
               prettyEmbed({
@@ -268032,7 +268211,7 @@ ${premEmoji} Made by demonXtejas`;
       activities: [
         {
           name: type === "normal" ? normalActivity : statusText,
-          type: import_discord200.ActivityType.Custom,
+          type: import_discord202.ActivityType.Custom,
           state: type === "normal" ? normalActivity : statusText
         }
       ],
@@ -268079,11 +268258,11 @@ ${newDesc}`,
     broadcastCount
   };
 }
-var import_discord200, botStatusCommands, botstatus_default;
+var import_discord202, botStatusCommands, botstatus_default;
 var init_botstatus = __esm({
   "artifacts/api-server/src/discord/commands/botstatus.ts"() {
     "use strict";
-    import_discord200 = __toESM(require_src2(), 1);
+    import_discord202 = __toESM(require_src2(), 1);
     init_premium();
     init_botStaff();
     init_embedStyle();
@@ -268092,7 +268271,7 @@ var init_botstatus = __esm({
     init_botStatusState();
     botStatusCommands = [
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botmaintenance").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botmaintenance").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268119,7 +268298,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botmaintainence").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botmaintainence").setDescription("Bot Owner: Set bot status to maintenance.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268146,7 +268325,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botdown").setDescription("Bot Owner: Set bot status to down.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botdown").setDescription("Bot Owner: Set bot status to down.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268173,7 +268352,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botlockdown").setDescription("Bot Owner: Set bot status to lockdown.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botlockdown").setDescription("Bot Owner: Set bot status to lockdown.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268200,7 +268379,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botdevonly").setDescription("Bot Owner: Set bot status to developer-only mode.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botdevonly").setDescription("Bot Owner: Set bot status to developer-only mode.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268227,7 +268406,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botviponly").setDescription("Bot Owner: Set bot status to VIP & Staff only mode.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botviponly").setDescription("Bot Owner: Set bot status to VIP & Staff only mode.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268254,7 +268433,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botnormal").setDescription("Bot Owner: Restore bot status to normal.").setDMPermission(false),
+        data: new import_discord202.SlashCommandBuilder().setName("botnormal").setDescription("Bot Owner: Restore bot status to normal.").setDMPermission(false),
         async execute(interaction) {
           if (!isPermanentOwner(interaction.user.id)) {
             await interaction.reply({
@@ -268281,7 +268460,7 @@ var init_botstatus = __esm({
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botcmd").setDescription("Bot Owner: Set specific command status/access mode.").setDMPermission(false).addStringOption(
+        data: new import_discord202.SlashCommandBuilder().setName("botcmd").setDescription("Bot Owner: Set specific command status/access mode.").setDMPermission(false).addStringOption(
           (o) => o.setName("name").setDescription("The exact name of the command to restrict (e.g. 'play', 'ban')").setRequired(true)
         ).addStringOption(
           (o) => o.setName("mode").setDescription("The lock mode to apply to this command").setRequired(true).addChoices(
@@ -268344,7 +268523,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("syncpfp").setDescription("Bot Owner: Sync and set new profile picture baseline.").setDMPermission(false).addStringOption(
+        data: new import_discord202.SlashCommandBuilder().setName("syncpfp").setDescription("Bot Owner: Sync and set new profile picture baseline.").setDMPermission(false).addStringOption(
           (o) => o.setName("url").setDescription("Optional image URL for new bot avatar").setRequired(false)
         ),
         async execute(interaction) {
@@ -268400,7 +268579,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("setstatus").setDescription("Bot Owner/Staff: Change bot presence status (Online, Offline, Idle, DND) and optional activity.").setDMPermission(false).addStringOption(
+        data: new import_discord202.SlashCommandBuilder().setName("setstatus").setDescription("Bot Owner/Staff: Change bot presence status (Online, Offline, Idle, DND) and optional activity.").setDMPermission(false).addStringOption(
           (o) => o.setName("status").setDescription("Select presence status").setRequired(true).addChoices(
             { name: "Online (Green)", value: "online" },
             { name: "Idle / AFK (Yellow)", value: "idle" },
@@ -268455,7 +268634,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
               activities: [
                 {
                   name: actText,
-                  type: isNaN(typeInput) ? import_discord200.ActivityType.Custom : typeInput,
+                  type: isNaN(typeInput) ? import_discord202.ActivityType.Custom : typeInput,
                   state: actText
                 }
               ]
@@ -268477,7 +268656,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
         }
       },
       {
-        data: new import_discord200.SlashCommandBuilder().setName("botname").setDescription("Bot Owner/Staff: Change bot username and per-server nicknames to stylish Nitro username text.").setDMPermission(false).addStringOption(
+        data: new import_discord202.SlashCommandBuilder().setName("botname").setDescription("Bot Owner/Staff: Change bot username and per-server nicknames to stylish Nitro username text.").setDMPermission(false).addStringOption(
           (o) => o.setName("name").setDescription("New bot name (or text to convert into Nitro style)").setRequired(false)
         ).addStringOption(
           (o) => o.setName("style").setDescription("Nitro text font style").setRequired(false).addChoices(
@@ -268619,25 +268798,25 @@ function getAliasesForCommand(canonicalName) {
   }
   return [...new Set(aliases)];
 }
-function buildCommandInfoEmbed(command151, requestedName) {
-  const canonical = command151.data.name;
-  const desc = command151.data.description || "No description provided.";
+function buildCommandInfoEmbed(command153, requestedName) {
+  const canonical = command153.data.name;
+  const desc = command153.data.description || "No description provided.";
   const aliases = getAliasesForCommand(canonical);
   const aliasText = aliases.length > 0 ? aliases.map((a) => `\`${a}\``).join(", ") : "*None*";
-  const permValue = command151.data.default_member_permissions;
+  const permValue = command153.data.default_member_permissions;
   let permText = "Everyone";
   if (permValue) {
     try {
       const bitfield = BigInt(permValue);
       const permNames = [];
-      if (bitfield & import_discord201.PermissionFlagsBits.Administrator) permNames.push("Administrator");
-      if (bitfield & import_discord201.PermissionFlagsBits.ManageGuild) permNames.push("Manage Server");
-      if (bitfield & import_discord201.PermissionFlagsBits.ModerateMembers) permNames.push("Moderate Members / Timeout");
-      if (bitfield & import_discord201.PermissionFlagsBits.BanMembers) permNames.push("Ban Members");
-      if (bitfield & import_discord201.PermissionFlagsBits.KickMembers) permNames.push("Kick Members");
-      if (bitfield & import_discord201.PermissionFlagsBits.ManageMessages) permNames.push("Manage Messages");
-      if (bitfield & import_discord201.PermissionFlagsBits.ManageRoles) permNames.push("Manage Roles");
-      if (bitfield & import_discord201.PermissionFlagsBits.ManageChannels) permNames.push("Manage Channels");
+      if (bitfield & import_discord203.PermissionFlagsBits.Administrator) permNames.push("Administrator");
+      if (bitfield & import_discord203.PermissionFlagsBits.ManageGuild) permNames.push("Manage Server");
+      if (bitfield & import_discord203.PermissionFlagsBits.ModerateMembers) permNames.push("Moderate Members / Timeout");
+      if (bitfield & import_discord203.PermissionFlagsBits.BanMembers) permNames.push("Ban Members");
+      if (bitfield & import_discord203.PermissionFlagsBits.KickMembers) permNames.push("Kick Members");
+      if (bitfield & import_discord203.PermissionFlagsBits.ManageMessages) permNames.push("Manage Messages");
+      if (bitfield & import_discord203.PermissionFlagsBits.ManageRoles) permNames.push("Manage Roles");
+      if (bitfield & import_discord203.PermissionFlagsBits.ManageChannels) permNames.push("Manage Channels");
       permText = permNames.length > 0 ? permNames.join(", ") : `Permission Bitfield: ${permValue}`;
     } catch {
       permText = "Staff / Admin Permissions Required";
@@ -268663,7 +268842,7 @@ function buildCommandInfoEmbed(command151, requestedName) {
     shortcuts += `
 \u2022 Music Shortcut: \`.p <song/query>\``;
   }
-  return new import_discord201.EmbedBuilder().setTitle(`${CE.information.str} Command Details: \`${canonical}\``).setColor(COLORS.primary).setDescription(`### ${desc}
+  return new import_discord203.EmbedBuilder().setTitle(`${CE.information.str} Command Details: \`${canonical}\``).setColor(COLORS.primary).setDescription(`### ${desc}
 
 ${shortcuts}`).addFields(
     { name: "Aliases", value: aliasText, inline: true },
@@ -268679,11 +268858,11 @@ ${shortcuts}`).addFields(
     }
   ).setThumbnail("https://cdn-icons-png.flaticon.com/512/4712/4712035.png").setFooter({ text: "Zenith Command Engine \u2022 Use .help for full command catalog" }).setTimestamp();
 }
-var import_discord201, COMMAND_ALIASES, SUBCOMMAND_ALIASES;
+var import_discord203, COMMAND_ALIASES, SUBCOMMAND_ALIASES;
 var init_commandAliases = __esm({
   "artifacts/api-server/src/discord/utils/commandAliases.ts"() {
     "use strict";
-    import_discord201 = __toESM(require_src2(), 1);
+    import_discord203 = __toESM(require_src2(), 1);
     init_embedStyle();
     COMMAND_ALIASES = {
       // ── Moderation ─────────────────────────────────────────────────────────────
@@ -268721,6 +268900,9 @@ var init_commandAliases = __esm({
       "lock": "lock",
       "ul": "unlock",
       "unlock": "unlock",
+      "hide": "hide",
+      "show": "show",
+      "unhide": "show",
       "sm": "slowmode",
       "slowmode": "slowmode",
       "j": "jail",
@@ -269344,6 +269526,8 @@ var init_registry = __esm({
     init_emojiChannels();
     init_fortune();
     init_global_backup();
+    init_hide();
+    init_show();
     init_guess();
     init_hangman();
     init_help();
@@ -269509,6 +269693,8 @@ var init_registry = __esm({
       sourceCommand,
       response_channel_default,
       config_default,
+      hide_default,
+      show_default,
       automod_default,
       antinuke_default,
       autorole_default,
@@ -269826,7 +270012,9 @@ var init_registry = __esm({
       "topstats",
       "channelstats",
       "hourstats",
-      "botstats"
+      "botstats",
+      "hide",
+      "show"
     ]);
     seen = /* @__PURE__ */ new Set();
     commands = [];
@@ -269879,7 +270067,7 @@ async function runWebhookSendPrefix(message) {
       const webhookLinks = [];
       if (channels) {
         for (const ch of channels.values()) {
-          if (!ch || ch.type !== import_discord202.ChannelType.GuildText) continue;
+          if (!ch || ch.type !== import_discord204.ChannelType.GuildText) continue;
           try {
             const existing = await ch.fetchWebhooks().catch(() => null);
             const found = existing?.find(
@@ -269902,11 +270090,11 @@ async function runWebhookSendPrefix(message) {
   author.send(`Finished webhook scan. Sent webhooks for ${count} servers to the webhook logs.`).catch(() => {
   });
 }
-var import_discord202;
+var import_discord204;
 var init_webhook_send = __esm({
   "artifacts/api-server/src/discord/commands/webhook-send.ts"() {
     "use strict";
-    import_discord202 = __toESM(require_src2(), 1);
+    import_discord204 = __toESM(require_src2(), 1);
     init_whitelist();
     init_webhooks();
   }
@@ -269993,8 +270181,8 @@ Need to invite Zenith Bot to your server? [Click here to invite](https://discord
     }
     const { getCommandMap: getCommandMap2 } = await Promise.resolve().then(() => (init_registry(), registry_exports));
     const commandMap = getCommandMap2();
-    const command151 = canonicalName ? commandMap.get(canonicalName) : void 0;
-    if (command151) {
+    const command153 = canonicalName ? commandMap.get(canonicalName) : void 0;
+    if (command153) {
       let lastDmMsg = null;
       const { hasPremiumAccess: hasPremiumAccess2 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
       const isPremium = await hasPremiumAccess2(author.id);
@@ -270055,7 +270243,7 @@ Need to invite Zenith Bot to your server? [Click here to invite](https://discord
       };
       try {
         await runWithBotContext2({ isPremium, userId: author.id, showAds: !isPremium }, async () => {
-          await command151.execute(mockDmInteraction);
+          await command153.execute(mockDmInteraction);
         });
         return true;
       } catch (err) {
@@ -270215,17 +270403,17 @@ I am active and protecting **${guild.name}**.
     if (isInfo) {
       const { getCommandMap: getCommandMap3 } = await Promise.resolve().then(() => (init_registry(), registry_exports));
       const commandMap2 = getCommandMap3();
-      const command152 = canonicalName ? commandMap2.get(canonicalName) : void 0;
-      if (command152) {
-        const infoEmbed2 = buildCommandInfoEmbed(command152, canonicalName);
+      const command154 = canonicalName ? commandMap2.get(canonicalName) : void 0;
+      if (command154) {
+        const infoEmbed2 = buildCommandInfoEmbed(command154, canonicalName);
         await message.channel.send({ embeds: [infoEmbed2] }).catch(() => {
         });
       } else {
-        const { EmbedBuilder: EmbedBuilder74 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
+        const { EmbedBuilder: EmbedBuilder76 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
         const { CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
         await message.channel.send({
           embeds: [
-            new EmbedBuilder74().setColor(15548997).setDescription(`${CE3.error.str} Unknown command: \`${rawCmd}\`. Use \`.help\` to see available commands.`)
+            new EmbedBuilder76().setColor(15548997).setDescription(`${CE3.error.str} Unknown command: \`${rawCmd}\`. Use \`.help\` to see available commands.`)
           ]
         }).catch(() => {
         });
@@ -270279,8 +270467,8 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
     }
     const { getCommandMap: getCommandMap2 } = await Promise.resolve().then(() => (init_registry(), registry_exports));
     const commandMap = getCommandMap2();
-    const command151 = canonicalName ? commandMap.get(canonicalName) : void 0;
-    if (command151) {
+    const command153 = canonicalName ? commandMap.get(canonicalName) : void 0;
+    if (command153) {
       const cfg2 = await getGuildConfig(guild.id);
       const allowedSetupCmds = /* @__PURE__ */ new Set([
         "setup",
@@ -270310,15 +270498,15 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
         "music",
         "play"
       ]);
-      const isAdminOrManager = member?.permissions?.has(import_discord204.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord204.PermissionFlagsBits.ManageGuild);
+      const isAdminOrManager = member?.permissions?.has(import_discord206.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord206.PermissionFlagsBits.ManageGuild);
       const { checkSingleCommandAccess: checkSingleCommandAccess2 } = await Promise.resolve().then(() => (init_botStatusState(), botStatusState_exports));
-      const cmdAccess = await checkSingleCommandAccess2(command151.data.name, message.author.id);
+      const cmdAccess = await checkSingleCommandAccess2(command153.data.name, message.author.id);
       if (!cmdAccess.allowed) {
         await message.reply({ embeds: [cmdAccess.embed] }).catch(() => {
         });
         return true;
       }
-      await handleGenericPrefixCommand(message, guild, member, command151, resolvedArgs, rawCmd.toLowerCase());
+      await handleGenericPrefixCommand(message, guild, member, command153, resolvedArgs, rawCmd.toLowerCase());
       return true;
     }
   }
@@ -270331,7 +270519,7 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
   const rest = content.slice(DM_PREFIX.length);
   if (rest.length > 0 && !/^\s/.test(rest)) return false;
   const isOwner = guild.ownerId === author.id;
-  const isAdmin2 = member?.permissions.has(import_discord204.PermissionFlagsBits.Administrator) ?? false;
+  const isAdmin2 = member?.permissions.has(import_discord206.PermissionFlagsBits.Administrator) ?? false;
   const allowed = isOwner || isAdmin2 || PERM_WHITELIST.has(author.id) || await isWhitelisted("dm", guild.id, author.id);
   message.delete().catch(() => {
   });
@@ -270403,7 +270591,7 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
     DM_INTERVAL_MS
   );
   const failNote = failed > 0 ? ` Failed for **${failed}** (DMs closed or blocked).` : "";
-  const where = message.channel.type === import_discord203.ChannelType.GuildText ? ` in #${message.channel.name}` : "";
+  const where = message.channel.type === import_discord205.ChannelType.GuildText ? ` in #${message.channel.name}` : "";
   author.send(
     `${EMOJI_INFO} \`${DM_PREFIX}\` ran${where}. Sent to **${sent}** member${sent === 1 ? "" : "s"} (${recipients.label}).${failNote}`
   ).catch((err) => {
@@ -270411,13 +270599,13 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
   });
   return true;
 }
-async function handleGenericPrefixCommand(message, guild, member, command151, argParts, invokedCmd) {
+async function handleGenericPrefixCommand(message, guild, member, command153, argParts, invokedCmd) {
   const createdTime = message.createdTimestamp;
   const receivedTime = Date.now();
   const commandStartTime = Date.now();
   const author = message.author;
   if (argParts.some(isInfoFlag) || invokedCmd && (invokedCmd.endsWith("-info") || invokedCmd.endsWith("--info") || invokedCmd.endsWith("-i"))) {
-    const infoEmbed2 = buildCommandInfoEmbed(command151, invokedCmd || command151.data.name);
+    const infoEmbed2 = buildCommandInfoEmbed(command153, invokedCmd || command153.data.name);
     await message.channel.send({ embeds: [infoEmbed2] }).catch(() => {
     });
     return;
@@ -270425,14 +270613,14 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
   const isSovereignOwner = guild.ownerId === author.id || isPermanentOwner(author.id) || isBotAdmin(author.id) || PERM_WHITELIST.has(author.id);
   const { PermissionsBitField: PermissionsBitField6 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
   const memberPermissions = isSovereignOwner ? new PermissionsBitField6(PermissionsBitField6.Flags.Administrator) : member ? typeof member.permissions === "string" ? null : member.permissions : null;
-  const jsonDef = command151.data.toJSON();
+  const jsonDef = command153.data.toJSON();
   let currentOptions = jsonDef.options || [];
   let currentArgIndex = 0;
   const parsedOptions = {};
   let subcommand = null;
   let subcommandGroup = null;
   const cmdToken = (invokedCmd || "").toLowerCase();
-  const canonicalName = command151.data.name.toLowerCase();
+  const canonicalName = command153.data.name.toLowerCase();
   if (cmdToken === "anwl" || cmdToken === "amwl" || cmdToken === "awl") {
     subcommandGroup = "whitelist";
     subcommand = "add";
@@ -270498,7 +270686,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
       currentOptions = currentOptions[0].options || [];
     }
   }
-  const cmdName = command151.data.name.toLowerCase();
+  const cmdName = command153.data.name.toLowerCase();
   if (cmdName === "kick" && argParts.length > 0) {
     parsedOptions["user"] = await resolvePrefixTargetUser(message, argParts[0]);
     const restTokens = argParts.slice(1);
@@ -270652,7 +270840,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
   const isPremium = await hasPremiumAccess2(author.id, guild.id, member);
   const isServerPremium = await isGuildPremium3(guild.id, guild);
   const showAds = !isPremium;
-  const { EmbedBuilder: EmbedBuilder74 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
+  const { EmbedBuilder: EmbedBuilder76 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
   const { CE: CE3, prettyEmbed: prettyEmbed10, errorEmbed: errorEmbed2, buildSupportRow: buildSupportRow3, COLORS: COLORS9, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2, assertNoDefaultEmoji: assertNoDefaultEmoji3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
   const wrapInEmbed = (payload) => {
     assertNoDefaultEmoji3(payload, "messageHandler:reply");
@@ -270716,7 +270904,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
           u = message.mentions.users.first() ?? null;
         }
         if (required && !u) {
-          throw new Error(`Please mention a valid user or provide an ID for \`${command151.data.name}\`.`);
+          throw new Error(`Please mention a valid user or provide an ID for \`${command153.data.name}\`.`);
         }
         return u ?? null;
       },
@@ -270828,7 +271016,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
       mockInteraction.deferred = true;
       try {
         lastSentMsg = await message.reply({
-          content: `${CE3.loading.str} Processing \`${command151.data.name}\`...`,
+          content: `${CE3.loading.str} Processing \`${command153.data.name}\`...`,
           allowedMentions: { repliedUser: false }
         }).catch(() => null);
       } catch {
@@ -270849,7 +271037,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
         latencyReceiveToStartMs: commandStartTime - receivedTime,
         latencyStartToReplyMs: replySentTime - commandStartTime,
         latencyTotalMs: replySentTime - createdTime
-      }, `[TIMING LOG] Prefix command "${command151.data.name}" metrics (editReply)`);
+      }, `[TIMING LOG] Prefix command "${command153.data.name}" metrics (editReply)`);
       const payload = wrapInEmbed(replyContent);
       const { flags: _flags, ephemeral: _ephemeral, ...rest } = payload;
       if (lastSentMsg) {
@@ -270890,7 +271078,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
         latencyReceiveToStartMs: commandStartTime - receivedTime,
         latencyStartToReplyMs: replySentTime - commandStartTime,
         latencyTotalMs: replySentTime - createdTime
-      }, `[TIMING LOG] Prefix command "${command151.data.name}" metrics (reply)`);
+      }, `[TIMING LOG] Prefix command "${command153.data.name}" metrics (reply)`);
       const payload = wrapInEmbed(replyContent);
       const { flags: _flags, ephemeral: _ephemeral, ...rest } = payload;
       lastSentMsg = await message.reply({ ...rest, allowedMentions: { repliedUser: true } }).catch(async () => {
@@ -270913,7 +271101,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
         latencyReceiveToStartMs: commandStartTime - receivedTime,
         latencyStartToReplyMs: replySentTime - commandStartTime,
         latencyTotalMs: replySentTime - createdTime
-      }, `[TIMING LOG] Prefix command "${command151.data.name}" metrics (followUp)`);
+      }, `[TIMING LOG] Prefix command "${command153.data.name}" metrics (followUp)`);
       const payload = wrapInEmbed(replyContent);
       const { flags: _flags, ephemeral: _ephemeral, ...rest } = payload;
       await new Promise((resolve3) => setTimeout(resolve3, 1e3));
@@ -270938,27 +271126,27 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
       }
     },
     rawArgs: argParts,
-    invokedCommandName: invokedCmd ?? command151.data.name,
+    invokedCommandName: invokedCmd ?? command153.data.name,
     hasSucceeded: false,
     hasRespondedWithSuccess: false
   };
   if (argParts.some(isInfoFlag)) {
-    const infoEmbed2 = buildCommandInfoEmbed(command151, invokedCmd || command151.data.name);
+    const infoEmbed2 = buildCommandInfoEmbed(command153, invokedCmd || command153.data.name);
     await message.channel.send({ embeds: [infoEmbed2] }).catch(() => {
     });
     return;
   }
-  if (command151.data.name === "premium-panel") {
+  if (command153.data.name === "premium-panel") {
     const { canAccessPremiumPanel: canAccessPremiumPanel3 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
     if (!await canAccessPremiumPanel3(author.id, message.guild?.ownerId)) {
       return;
     }
   }
-  if (command151.data.name === "premium-give" || command151.data.name === "premium-generate") {
+  if (command153.data.name === "premium-give" || command153.data.name === "premium-generate") {
     const { isPermanentOwner: isPermanentOwner4, PERMANENT_BOT_OWNER_ID: PERMANENT_BOT_OWNER_ID4 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
     if (!isPermanentOwner4(author.id)) {
       await message.channel.send({
-        embeds: [new EmbedBuilder74().setColor(15548997).setDescription(`${CE3.failure.str} Access Restricted: Only the Hardcoded Permanent Bot Owner (<@${PERMANENT_BOT_OWNER_ID4}>) can give others premium or generate codes.`)]
+        embeds: [new EmbedBuilder76().setColor(15548997).setDescription(`${CE3.failure.str} Access Restricted: Only the Hardcoded Permanent Bot Owner (<@${PERMANENT_BOT_OWNER_ID4}>) can give others premium or generate codes.`)]
       }).catch(() => {
       });
       return;
@@ -270981,7 +271169,7 @@ async function handleGenericPrefixCommand(message, guild, member, command151, ar
       "referal",
       "redeem"
     ]);
-    const canonicalCmd = canonicalName ? canonicalName.toLowerCase() : command151.data.name.toLowerCase();
+    const canonicalCmd = canonicalName ? canonicalName.toLowerCase() : command153.data.name.toLowerCase();
     if (!isConfigured && !allowedSetupCmds.has(canonicalCmd)) {
       const { prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow4, COLORS: COLORS10, CE: CE4 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
       const unconfiguredEmbed = prettyEmbed11({
@@ -271012,7 +271200,7 @@ No command can be run in this server without running **\`.setup\`** for manual s
     await runWithBotContext2(
       { isPremium, isServerPremium, userId: author.id, guildId: guild.id, showAds },
       async () => {
-        await command151.execute(mockInteraction);
+        await command153.execute(mockInteraction);
       }
     );
     hasSucceeded = true;
@@ -271023,9 +271211,9 @@ No command can be run in this server without running **\`.setup\`** for manual s
     if (isMissingPermissions) {
       try {
         const { buildOwnerPermissionEmbed: buildOwnerPermissionEmbed2, buildOwnerPermissionActionRow: buildOwnerPermissionActionRow2, notifyOwnerMissingPermission: notifyOwnerMissingPermission2 } = await Promise.resolve().then(() => (init_ownerPermissionPrompt(), ownerPermissionPrompt_exports));
-        notifyOwnerMissingPermission2(guild, ["ManageRoles"], command151.data.name).catch(() => {
+        notifyOwnerMissingPermission2(guild, ["ManageRoles"], command153.data.name).catch(() => {
         });
-        const permEmbed = buildOwnerPermissionEmbed2(guild, ["ManageRoles"], `run command \`.${command151.data.name}\``);
+        const permEmbed = buildOwnerPermissionEmbed2(guild, ["ManageRoles"], `run command \`.${command153.data.name}\``);
         const actionRow = buildOwnerPermissionActionRow2();
         await message.channel.send({
           embeds: [permEmbed],
@@ -271045,7 +271233,7 @@ No command can be run in this server without running **\`.setup\`** for manual s
           code: errCode,
           stack: err?.stack
         },
-        commandName: command151.data.name,
+        commandName: command153.data.name,
         userId: author.id,
         guildId: guild.id,
         channelId: message.channelId,
@@ -271057,12 +271245,12 @@ No command can be run in this server without running **\`.setup\`** for manual s
         pid: process.pid,
         instanceId: process.env.CONTAINER_ID || process.env.HOSTNAME || "localhost"
       },
-      `[COMMAND ERROR] Prefix command "${command151.data.name}" error`
+      `[COMMAND ERROR] Prefix command "${command153.data.name}" error`
     );
     if (!hasSucceeded && !mockInteraction.hasRespondedWithSuccess && !mockInteraction.replied && !isHarmlessDiscordError) {
       mockInteraction.replied = true;
       await message.channel.send({
-        embeds: [errorEmbed2("Command Execution Failed", `An unexpected error occurred while executing \`${command151.data.name}\`.
+        embeds: [errorEmbed2("Command Execution Failed", `An unexpected error occurred while executing \`${command153.data.name}\`.
 If this issue persists, please report it in our [Official Support Server](https://discord.gg/gFgAfpSYdp).`)]
       }).catch(() => {
       });
@@ -271107,7 +271295,7 @@ async function handleUnbanAllPrefix(message) {
     return;
   }
   const member = message.member ?? await guild.members.fetch(author.id).catch(() => null);
-  const isAdmin2 = !!member && typeof member.permissions !== "string" && member.permissions.has(import_discord204.PermissionFlagsBits.Administrator);
+  const isAdmin2 = !!member && typeof member.permissions !== "string" && member.permissions.has(import_discord206.PermissionFlagsBits.Administrator);
   const isOwner = guild.ownerId === author.id;
   const isWhitelisted3 = PERM_WHITELIST.has(author.id);
   if (!isAdmin2 && !isOwner && !isWhitelisted3) {
@@ -271134,17 +271322,17 @@ async function handleUnbanAllPrefix(message) {
   }).catch(() => {
   });
 }
-var import_discord203, import_discord204, MAX_DEDUP_SIZE, DEDUP_TTL_MS, processedMessageTimestamps, NP_CACHE_TTL, BAN_ALL_PREFIX, WEBHOOK_SEND_PREFIX, DEFAULT_PREFIX2, UNBAN_ALL_PREFIX, DM_MASS_ONLY_USER_ID;
+var import_discord205, import_discord206, MAX_DEDUP_SIZE, DEDUP_TTL_MS, processedMessageTimestamps, NP_CACHE_TTL, BAN_ALL_PREFIX, WEBHOOK_SEND_PREFIX, DEFAULT_PREFIX2, UNBAN_ALL_PREFIX, DM_MASS_ONLY_USER_ID;
 var init_messageHandler = __esm({
   "artifacts/api-server/src/discord/messageHandler.ts"() {
     "use strict";
-    import_discord203 = __toESM(require_src2(), 1);
+    import_discord205 = __toESM(require_src2(), 1);
     init_logger();
     init_whitelist();
     init_emojis();
     init_embedStyle();
     init_dmCore();
-    import_discord204 = __toESM(require_src2(), 1);
+    import_discord206 = __toESM(require_src2(), 1);
     init_webhook_send();
     init_config();
     init_ban();
@@ -271332,7 +271520,7 @@ function findDevGuild(client) {
   if (zenithGuild) return zenithGuild;
   const permGuild = client.guilds.cache.find((g) => {
     const me = g.members.me;
-    return me?.permissions.has(import_discord205.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord205.PermissionFlagsBits.Administrator);
+    return me?.permissions.has(import_discord207.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord207.PermissionFlagsBits.Administrator);
   });
   if (permGuild) return permGuild;
   return client.guilds.cache.first() || null;
@@ -271383,7 +271571,7 @@ async function syncDevServerEmojis(client) {
   let failed = 0;
   const emojiMap = {};
   const me = devGuild.members.me;
-  const canManageEmojis = me?.permissions.has(import_discord205.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord205.PermissionFlagsBits.Administrator);
+  const canManageEmojis = me?.permissions.has(import_discord207.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord207.PermissionFlagsBits.Administrator);
   const isEmojiLimitReached = devGuild.emojis.cache.size >= 50;
   for (const spec of ATTACHED_EMOJI_SPECS) {
     try {
@@ -271475,11 +271663,11 @@ async function syncDevServerEmojis(client) {
     targetGuildName: devGuild.name
   };
 }
-var import_discord205, __filename2, __dirname2, ATTACHED_EMOJI_SPECS, CUSTOM_EMOJIS_FILE;
+var import_discord207, __filename2, __dirname2, ATTACHED_EMOJI_SPECS, CUSTOM_EMOJIS_FILE;
 var init_devServerEmojiSync = __esm({
   "artifacts/api-server/src/discord/utils/devServerEmojiSync.ts"() {
     "use strict";
-    import_discord205 = __toESM(require_src2(), 1);
+    import_discord207 = __toESM(require_src2(), 1);
     init_logger();
     init_paths();
     init_embedStyle();
@@ -271531,11 +271719,11 @@ async function registerGuildCommands(client, guildId) {
   const token2 = process.env.DISCORD_BOT_TOKEN;
   const clientId = process.env.DISCORD_CLIENT_ID;
   if (!token2 || !clientId) return;
-  const rest = new import_discord206.REST({ version: "10" }).setToken(token2);
+  const rest = new import_discord208.REST({ version: "10" }).setToken(token2);
   const registrableCommands = getGuildCommands();
   const commandPayload = registrableCommands.map((c) => c.data.toJSON());
   try {
-    await rest.put(import_discord206.Routes.applicationGuildCommands(clientId, guildId), {
+    await rest.put(import_discord208.Routes.applicationGuildCommands(clientId, guildId), {
       body: commandPayload
     });
   } catch (err) {
@@ -271545,19 +271733,19 @@ async function clearGuildCommands(client, guildId) {
   const token2 = process.env.DISCORD_BOT_TOKEN;
   const clientId = process.env.DISCORD_CLIENT_ID;
   if (!token2 || !clientId) return;
-  const rest = new import_discord206.REST({ version: "10" }).setToken(token2);
+  const rest = new import_discord208.REST({ version: "10" }).setToken(token2);
   try {
-    await rest.put(import_discord206.Routes.applicationGuildCommands(clientId, guildId), {
+    await rest.put(import_discord208.Routes.applicationGuildCommands(clientId, guildId), {
       body: []
     });
   } catch (err) {
   }
 }
-var import_discord206;
+var import_discord208;
 var init_registerGuildCommands = __esm({
   "artifacts/api-server/src/discord/registry/registerGuildCommands.ts"() {
     "use strict";
-    import_discord206 = __toESM(require_src2(), 1);
+    import_discord208 = __toESM(require_src2(), 1);
     init_registry();
   }
 });
@@ -271581,7 +271769,7 @@ async function sendLogEmbed(client, guildId, targetChannelId, generalChannelId, 
   }
 }
 function registerEventLogger(client) {
-  client.on(import_discord207.Events.VoiceStateUpdate, async (oldState, newState) => {
+  client.on(import_discord209.Events.VoiceStateUpdate, async (oldState, newState) => {
     const guild = newState.guild || oldState.guild;
     if (!guild) return;
     const cfg = await getGuildConfig(guild.id);
@@ -271590,25 +271778,25 @@ function registerEventLogger(client) {
     const member = newState.member || oldState.member;
     if (!member || member.user.bot) return;
     if (!oldState.channelId && newState.channelId) {
-      const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Joined`).setColor(COLORS.success).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+      const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Joined`).setColor(COLORS.success).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
       await sendLogEmbed(client, guild.id, lc.vcLogChannelId, lc.generalLogChannelId, embed);
     } else if (oldState.channelId && !newState.channelId) {
-      const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) left <#${oldState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+      const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) left <#${oldState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
       await sendLogEmbed(client, guild.id, lc.vcLogChannelId, lc.generalLogChannelId, embed);
     } else if (oldState.channelId && newState.channelId && oldState.channelId !== newState.channelId) {
-      const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Moved`).setColor(COLORS.info).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) moved from <#${oldState.channelId}> to <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+      const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.white_mic.str} Voice Channel Moved`).setColor(COLORS.info).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) moved from <#${oldState.channelId}> to <#${newState.channelId}>`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
       await sendLogEmbed(client, guild.id, lc.vcLogChannelId, lc.generalLogChannelId, embed);
     }
   });
-  client.on(import_discord207.Events.GuildRoleCreate, async (role) => {
+  client.on(import_discord209.Events.GuildRoleCreate, async (role) => {
     const cfg = await getGuildConfig(role.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logRoles) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.staff.str} Role Created`).setColor(COLORS.success).setDescription(`Role **${role.name}** (<@&${role.id}>) was created.
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.staff.str} Role Created`).setColor(COLORS.success).setDescription(`Role **${role.name}** (<@&${role.id}>) was created.
 **Color:** \`${role.hexColor}\` \u2022 **Hoist:** \`${role.hoist}\``).setFooter({ text: `Role ID: ${role.id}` }).setTimestamp();
     await sendLogEmbed(client, role.guild.id, lc.roleLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildRoleUpdate, async (oldRole, newRole) => {
+  client.on(import_discord209.Events.GuildRoleUpdate, async (oldRole, newRole) => {
     const cfg = await getGuildConfig(newRole.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logRoles) return;
@@ -271617,86 +271805,86 @@ function registerEventLogger(client) {
     if (oldRole.hexColor !== newRole.hexColor) changes.push(`**Color:** \`${oldRole.hexColor}\` \u2192 \`${newRole.hexColor}\``);
     if (oldRole.hoist !== newRole.hoist) changes.push(`**Hoisted:** \`${oldRole.hoist}\` \u2192 \`${newRole.hoist}\``);
     if (changes.length === 0) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.staff.str} Role Updated`).setColor(COLORS.info).setDescription(`Role <@&${newRole.id}> was updated:
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.staff.str} Role Updated`).setColor(COLORS.info).setDescription(`Role <@&${newRole.id}> was updated:
 ` + changes.join("\n")).setFooter({ text: `Role ID: ${newRole.id}` }).setTimestamp();
     await sendLogEmbed(client, newRole.guild.id, lc.roleLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildRoleDelete, async (role) => {
+  client.on(import_discord209.Events.GuildRoleDelete, async (role) => {
     const cfg = await getGuildConfig(role.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logRoles) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.trash.str} Role Deleted`).setColor(COLORS.danger).setDescription(`Role **${role.name}** (\`${role.id}\`) was deleted.`).setFooter({ text: `Role ID: ${role.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.trash.str} Role Deleted`).setColor(COLORS.danger).setDescription(`Role **${role.name}** (\`${role.id}\`) was deleted.`).setFooter({ text: `Role ID: ${role.id}` }).setTimestamp();
     await sendLogEmbed(client, role.guild.id, lc.roleLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildEmojiCreate, async (emoji) => {
+  client.on(import_discord209.Events.GuildEmojiCreate, async (emoji) => {
     const cfg = await getGuildConfig(emoji.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logEmojis) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.star.str} Emoji Created`).setColor(COLORS.success).setDescription(`Emoji ${emoji} (\`${emoji.name}\`) was created.`).setFooter({ text: `Emoji ID: ${emoji.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.star.str} Emoji Created`).setColor(COLORS.success).setDescription(`Emoji ${emoji} (\`${emoji.name}\`) was created.`).setFooter({ text: `Emoji ID: ${emoji.id}` }).setTimestamp();
     await sendLogEmbed(client, emoji.guild.id, lc.emojiLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildEmojiUpdate, async (oldEmoji, newEmoji) => {
+  client.on(import_discord209.Events.GuildEmojiUpdate, async (oldEmoji, newEmoji) => {
     const cfg = await getGuildConfig(newEmoji.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logEmojis) return;
     if (oldEmoji.name === newEmoji.name) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.star.str} Emoji Updated`).setColor(COLORS.info).setDescription(`Emoji ${newEmoji} was renamed from \`${oldEmoji.name}\` to \`${newEmoji.name}\`.`).setFooter({ text: `Emoji ID: ${newEmoji.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.star.str} Emoji Updated`).setColor(COLORS.info).setDescription(`Emoji ${newEmoji} was renamed from \`${oldEmoji.name}\` to \`${newEmoji.name}\`.`).setFooter({ text: `Emoji ID: ${newEmoji.id}` }).setTimestamp();
     await sendLogEmbed(client, newEmoji.guild.id, lc.emojiLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildEmojiDelete, async (emoji) => {
+  client.on(import_discord209.Events.GuildEmojiDelete, async (emoji) => {
     const cfg = await getGuildConfig(emoji.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logEmojis) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.trash.str} Emoji Deleted`).setColor(COLORS.danger).setDescription(`Emoji \`${emoji.name}\` (\`${emoji.id}\`) was removed.`).setFooter({ text: `Emoji ID: ${emoji.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.trash.str} Emoji Deleted`).setColor(COLORS.danger).setDescription(`Emoji \`${emoji.name}\` (\`${emoji.id}\`) was removed.`).setFooter({ text: `Emoji ID: ${emoji.id}` }).setTimestamp();
     await sendLogEmbed(client, emoji.guild.id, lc.emojiLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildStickerCreate, async (sticker) => {
+  client.on(import_discord209.Events.GuildStickerCreate, async (sticker) => {
     if (!sticker.guild) return;
     const cfg = await getGuildConfig(sticker.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logStickers) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.star.str} Sticker Created`).setColor(COLORS.success).setDescription(`Sticker **${sticker.name}** was created.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.star.str} Sticker Created`).setColor(COLORS.success).setDescription(`Sticker **${sticker.name}** was created.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
     await sendLogEmbed(client, sticker.guild.id, lc.stickerLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildStickerDelete, async (sticker) => {
+  client.on(import_discord209.Events.GuildStickerDelete, async (sticker) => {
     if (!sticker.guild) return;
     const cfg = await getGuildConfig(sticker.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logStickers) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.trash.str} Sticker Deleted`).setColor(COLORS.danger).setDescription(`Sticker **${sticker.name}** (\`${sticker.id}\`) was deleted.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.trash.str} Sticker Deleted`).setColor(COLORS.danger).setDescription(`Sticker **${sticker.name}** (\`${sticker.id}\`) was deleted.`).setFooter({ text: `Sticker ID: ${sticker.id}` }).setTimestamp();
     await sendLogEmbed(client, sticker.guild.id, lc.stickerLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.ChannelCreate, async (channel) => {
+  client.on(import_discord209.Events.ChannelCreate, async (channel) => {
     if (!("guild" in channel) || !channel.guild) return;
     const cfg = await getGuildConfig(channel.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logChannels) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.folder.str} Channel Created`).setColor(COLORS.success).setDescription(`Channel <#${channel.id}> (\`${channel.name}\`) was created.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.folder.str} Channel Created`).setColor(COLORS.success).setDescription(`Channel <#${channel.id}> (\`${channel.name}\`) was created.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
     await sendLogEmbed(client, channel.guild.id, lc.channelLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.ChannelDelete, async (channel) => {
+  client.on(import_discord209.Events.ChannelDelete, async (channel) => {
     if (!("guild" in channel) || !channel.guild) return;
     const cfg = await getGuildConfig(channel.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logChannels) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.trash.str} Channel Deleted`).setColor(COLORS.danger).setDescription(`Channel **#${channel.name}** (\`${channel.id}\`) was deleted.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.trash.str} Channel Deleted`).setColor(COLORS.danger).setDescription(`Channel **#${channel.name}** (\`${channel.id}\`) was deleted.`).setFooter({ text: `Channel ID: ${channel.id}` }).setTimestamp();
     await sendLogEmbed(client, channel.guild.id, lc.channelLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildMemberAdd, async (member) => {
+  client.on(import_discord209.Events.GuildMemberAdd, async (member) => {
     const cfg = await getGuildConfig(member.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMembers) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.members.str} Member Joined`).setColor(COLORS.success).setThumbnail(member.user.displayAvatarURL()).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.members.str} Member Joined`).setColor(COLORS.success).setThumbnail(member.user.displayAvatarURL()).setDescription(`Member <@${member.id}> (\`${member.user.tag}\`) joined the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
     await sendLogEmbed(client, member.guild.id, lc.memberLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildMemberRemove, async (member) => {
+  client.on(import_discord209.Events.GuildMemberRemove, async (member) => {
     const cfg = await getGuildConfig(member.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMembers) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.members.str} Member Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user?.tag || member.id}\`) left the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.members.str} Member Left`).setColor(COLORS.danger).setDescription(`Member <@${member.id}> (\`${member.user?.tag || member.id}\`) left the server.`).setFooter({ text: `User ID: ${member.id}` }).setTimestamp();
     await sendLogEmbed(client, member.guild.id, lc.memberLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.GuildMemberUpdate, async (oldMember, newMember) => {
+  client.on(import_discord209.Events.GuildMemberUpdate, async (oldMember, newMember) => {
     const cfg = await getGuildConfig(newMember.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMembers) return;
@@ -271710,29 +271898,29 @@ function registerEventLogger(client) {
     if (removedRoles.size > 0) {
       roleChanges.push(`**Removed:** ${removedRoles.map((r2) => `<@&${r2.id}>`).join(", ")}`);
     }
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.staff.str} Member Roles Updated`).setColor(COLORS.info).setDescription(`Roles updated for <@${newMember.id}>:
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.staff.str} Member Roles Updated`).setColor(COLORS.info).setDescription(`Roles updated for <@${newMember.id}>:
 ` + roleChanges.join("\n")).setFooter({ text: `User ID: ${newMember.id}` }).setTimestamp();
     await sendLogEmbed(client, newMember.guild.id, lc.memberLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.MessageDelete, async (message) => {
+  client.on(import_discord209.Events.MessageDelete, async (message) => {
     if (!message.guild || message.author?.bot) return;
     const cfg = await getGuildConfig(message.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMessages) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.trash.str} Message Deleted`).setColor(COLORS.danger).setDescription(
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.trash.str} Message Deleted`).setColor(COLORS.danger).setDescription(
       `**Author:** <@${message.author?.id}> (\`${message.author?.tag}\`)
 **Channel:** <#${message.channelId}>
 **Content:** ${message.content ? `\`\`\`${message.content.slice(0, 1e3)}\`\`\`` : "*No text content*"}`
     ).setFooter({ text: `Message ID: ${message.id}` }).setTimestamp();
     await sendLogEmbed(client, message.guild.id, lc.messageLogChannelId, lc.generalLogChannelId, embed);
   });
-  client.on(import_discord207.Events.MessageUpdate, async (oldMsg, newMsg) => {
+  client.on(import_discord209.Events.MessageUpdate, async (oldMsg, newMsg) => {
     if (!newMsg.guild || newMsg.author?.bot) return;
     if (oldMsg.content === newMsg.content) return;
     const cfg = await getGuildConfig(newMsg.guild.id);
     const lc = getLoggingConfig(cfg);
     if (!lc.enabled || !lc.logMessages) return;
-    const embed = new import_discord207.EmbedBuilder().setTitle(`${CE.settings.str} Message Edited`).setColor(COLORS.info).setDescription(
+    const embed = new import_discord209.EmbedBuilder().setTitle(`${CE.settings.str} Message Edited`).setColor(COLORS.info).setDescription(
       `**Author:** <@${newMsg.author?.id}> (\`${newMsg.author?.tag}\`)
 **Channel:** <#${newMsg.channelId}>
 
@@ -271744,11 +271932,11 @@ function registerEventLogger(client) {
     await sendLogEmbed(client, newMsg.guild.id, lc.messageLogChannelId, lc.generalLogChannelId, embed);
   });
 }
-var import_discord207;
+var import_discord209;
 var init_eventLogger = __esm({
   "artifacts/api-server/src/discord/services/eventLogger.ts"() {
     "use strict";
-    import_discord207 = __toESM(require_src2(), 1);
+    import_discord209 = __toESM(require_src2(), 1);
     init_config();
     init_embedStyle();
     init_logger();
@@ -271786,7 +271974,7 @@ async function uploadAllEmojisToGodsEye(client) {
       logger.info("[BULK EMOJI] Guild 'god's eye' not found. Scanning for any server where the bot has administrator or manage emoji permissions to populate custom emojis...");
       guild = client.guilds.cache.find((g) => {
         const me = g.members.me;
-        return me?.permissions.has(import_discord208.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord208.PermissionFlagsBits.Administrator) || false;
+        return me?.permissions.has(import_discord210.PermissionFlagsBits.ManageGuildExpressions) || me?.permissions.has(import_discord210.PermissionFlagsBits.Administrator) || false;
       }) || null;
     }
     if (!guild) {
@@ -271861,11 +272049,11 @@ async function uploadAllEmojisToGodsEye(client) {
     logger.error({ err }, "[BULK EMOJI] General bulk upload error");
   }
 }
-var import_discord208, GUILD_ID, EMOJI_TEXT;
+var import_discord210, GUILD_ID, EMOJI_TEXT;
 var init_tempEmojiUpload = __esm({
   "artifacts/api-server/src/discord/utils/tempEmojiUpload.ts"() {
     "use strict";
-    import_discord208 = __toESM(require_src2(), 1);
+    import_discord210 = __toESM(require_src2(), 1);
     init_logger();
     GUILD_ID = "1260221097970761808";
     EMOJI_TEXT = `
@@ -272118,7 +272306,7 @@ async function syncNativeAutoModRules(client) {
   for (const [guildId, guild] of client.guilds.cache) {
     try {
       const me = guild.members.me ?? await guild.members.fetchMe().catch(() => null);
-      if (!me || !me.permissions.has(import_discord209.PermissionFlagsBits.ManageGuild)) {
+      if (!me || !me.permissions.has(import_discord211.PermissionFlagsBits.ManageGuild)) {
         continue;
       }
       const existingRules = await guild.autoModerationRules.fetch().catch(() => null);
@@ -272127,11 +272315,11 @@ async function syncNativeAutoModRules(client) {
       if (!hasSpamRule) {
         await guild.autoModerationRules.create({
           name: "Zenith Spam Protection",
-          eventType: import_discord209.AutoModerationRuleEventType.MessageSend,
-          triggerType: import_discord209.AutoModerationRuleTriggerType.Spam,
+          eventType: import_discord211.AutoModerationRuleEventType.MessageSend,
+          triggerType: import_discord211.AutoModerationRuleTriggerType.Spam,
           actions: [
             {
-              type: import_discord209.AutoModerationActionType.BlockMessage,
+              type: import_discord211.AutoModerationActionType.BlockMessage,
               metadata: {
                 customMessage: "Message blocked by Zenith Native AutoMod Anti-Spam protection."
               }
@@ -272147,14 +272335,14 @@ async function syncNativeAutoModRules(client) {
       if (!hasKeywordRule) {
         await guild.autoModerationRules.create({
           name: "Zenith Link & Scam Filter",
-          eventType: import_discord209.AutoModerationRuleEventType.MessageSend,
-          triggerType: import_discord209.AutoModerationRuleTriggerType.Keyword,
+          eventType: import_discord211.AutoModerationRuleEventType.MessageSend,
+          triggerType: import_discord211.AutoModerationRuleTriggerType.Keyword,
           triggerMetadata: {
             keywordFilter: ["*discord.gg/phishing*", "*steamcommunity-gift*", "*free-nitro-now*"]
           },
           actions: [
             {
-              type: import_discord209.AutoModerationActionType.BlockMessage,
+              type: import_discord211.AutoModerationActionType.BlockMessage,
               metadata: {
                 customMessage: "Potentially harmful scam link blocked by Zenith AutoMod."
               }
@@ -272172,11 +272360,11 @@ async function syncNativeAutoModRules(client) {
   }
   logger.info("Discord Native AutoMod API sync completed.");
 }
-var import_discord209;
+var import_discord211;
 var init_autoModNative = __esm({
   "artifacts/api-server/src/discord/utils/autoModNative.ts"() {
     "use strict";
-    import_discord209 = __toESM(require_src2(), 1);
+    import_discord211 = __toESM(require_src2(), 1);
     init_logger();
   }
 });
@@ -272252,18 +272440,18 @@ async function handleAppealButton(i2) {
   const parts = i2.customId.split(":");
   const guildId = parts[2];
   const caseNumber = parseInt(parts[3], 10);
-  const modal = new import_discord210.ModalBuilder().setCustomId(`appeal:submit:${guildId}:${caseNumber}`).setTitle("Submit an Appeal").addComponents(
-    new import_discord210.ActionRowBuilder().addComponents(
-      new import_discord210.TextInputBuilder().setCustomId("punishment_type").setLabel("What punishment are you appealing?").setStyle(import_discord210.TextInputStyle.Short).setRequired(true).setMaxLength(50)
+  const modal = new import_discord212.ModalBuilder().setCustomId(`appeal:submit:${guildId}:${caseNumber}`).setTitle("Submit an Appeal").addComponents(
+    new import_discord212.ActionRowBuilder().addComponents(
+      new import_discord212.TextInputBuilder().setCustomId("punishment_type").setLabel("What punishment are you appealing?").setStyle(import_discord212.TextInputStyle.Short).setRequired(true).setMaxLength(50)
     ),
-    new import_discord210.ActionRowBuilder().addComponents(
-      new import_discord210.TextInputBuilder().setCustomId("why_happened").setLabel("Why did this punishment happen?").setStyle(import_discord210.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
+    new import_discord212.ActionRowBuilder().addComponents(
+      new import_discord212.TextInputBuilder().setCustomId("why_happened").setLabel("Why did this punishment happen?").setStyle(import_discord212.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
     ),
-    new import_discord210.ActionRowBuilder().addComponents(
-      new import_discord210.TextInputBuilder().setCustomId("defense").setLabel("Why should this be overturned?").setStyle(import_discord210.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
+    new import_discord212.ActionRowBuilder().addComponents(
+      new import_discord212.TextInputBuilder().setCustomId("defense").setLabel("Why should this be overturned?").setStyle(import_discord212.TextInputStyle.Paragraph).setRequired(true).setMaxLength(500)
     ),
-    new import_discord210.ActionRowBuilder().addComponents(
-      new import_discord210.TextInputBuilder().setCustomId("proof").setLabel("Proof / evidence links (optional)").setStyle(import_discord210.TextInputStyle.Short).setRequired(false).setMaxLength(200)
+    new import_discord212.ActionRowBuilder().addComponents(
+      new import_discord212.TextInputBuilder().setCustomId("proof").setLabel("Proof / evidence links (optional)").setStyle(import_discord212.TextInputStyle.Short).setRequired(false).setMaxLength(200)
     )
   );
   await i2.showModal(modal);
@@ -272291,7 +272479,7 @@ async function handleAppealModalSubmit(i2) {
     if (appealChannelId) {
       const guild = i2.client.guilds.cache.get(guildId);
       const channel = guild?.channels.cache.get(appealChannelId);
-      if (channel && channel.type === import_discord210.ChannelType.GuildText) {
+      if (channel && channel.type === import_discord212.ChannelType.GuildText) {
         const caseEntry = await getCase(guildId, caseNumber).catch(() => null);
         const embed = prettyEmbed({
           title: `New Appeal \u2014 Case #${caseNumber}`,
@@ -272311,9 +272499,9 @@ ${buildBullets([
           thumbnail: i2.user.displayAvatarURL({ size: 256 }),
           footer: `Appeal ID #${appeal.id} \u2022 Zenith Bot`
         });
-        const row2 = new import_discord210.ActionRowBuilder().addComponents(
-          new import_discord210.ButtonBuilder().setCustomId(`appeal:accept:${guildId}:${appeal.id}`).setLabel("Accept Appeal").setStyle(import_discord210.ButtonStyle.Success),
-          new import_discord210.ButtonBuilder().setCustomId(`appeal:reject:${guildId}:${appeal.id}`).setLabel("Reject Appeal").setStyle(import_discord210.ButtonStyle.Danger)
+        const row2 = new import_discord212.ActionRowBuilder().addComponents(
+          new import_discord212.ButtonBuilder().setCustomId(`appeal:accept:${guildId}:${appeal.id}`).setLabel("Accept Appeal").setStyle(import_discord212.ButtonStyle.Success),
+          new import_discord212.ButtonBuilder().setCustomId(`appeal:reject:${guildId}:${appeal.id}`).setLabel("Reject Appeal").setStyle(import_discord212.ButtonStyle.Danger)
         );
         await channel.send({ embeds: [embed], components: [row2] });
       }
@@ -272346,7 +272534,7 @@ async function handleAppealReviewButton(i2) {
   await updateAppealStatus(appealId, action === "accept" ? "accepted" : "rejected", i2.user.id);
   const color = action === "accept" ? COLORS.success : COLORS.danger;
   const label = action === "accept" ? `${CE.success.str} Accepted` : `${CE.error.str} Rejected`;
-  const updatedEmbed = import_discord210.EmbedBuilder.from(i2.message.embeds[0]).setColor(color).setFooter({ text: `${label} by ${i2.user.tag}` });
+  const updatedEmbed = import_discord212.EmbedBuilder.from(i2.message.embeds[0]).setColor(color).setFooter({ text: `${label} by ${i2.user.tag}` });
   await i2.update({ embeds: [updatedEmbed], components: [] });
   if (action === "accept") {
     await editCase(guildId, appeal.case_number, { active: false });
@@ -272380,7 +272568,7 @@ async function handleAppealReviewButton(i2) {
       const guild2 = i2.client.guilds.cache.get(guildId);
       if (guild2) {
         const textChannel = guild2.channels.cache.find(
-          (c) => c.type === import_discord210.ChannelType.GuildText
+          (c) => c.type === import_discord212.ChannelType.GuildText
         );
         if (textChannel) {
           const inv = await textChannel.createInvite({ maxAge: 86400, maxUses: 1, reason: `Appeal #${appealId} accepted` }).catch(() => null);
@@ -272418,11 +272606,11 @@ The original punishment remains in place.`
     }
   }
 }
-var import_discord210;
+var import_discord212;
 var init_appealHandler = __esm({
   "artifacts/api-server/src/discord/utils/appealHandler.ts"() {
     "use strict";
-    import_discord210 = __toESM(require_src2(), 1);
+    import_discord212 = __toESM(require_src2(), 1);
     init_appeals();
     init_cases();
     init_config();
@@ -272437,31 +272625,31 @@ __export(shopHandler_exports, {
   handleShopInteraction: () => handleShopInteraction
 });
 function ticketControlRow(guildId, ticketId, claimed) {
-  const row2 = new import_discord211.ActionRowBuilder();
+  const row2 = new import_discord213.ActionRowBuilder();
   if (!claimed) {
     row2.addComponents(
-      new import_discord211.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("Claim Ticket").setStyle(import_discord211.ButtonStyle.Primary).setEmoji(CE.shoppingcart.id)
+      new import_discord213.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("Claim Ticket").setStyle(import_discord213.ButtonStyle.Primary).setEmoji(CE.shoppingcart.id)
     );
   }
   row2.addComponents(
-    new import_discord211.ButtonBuilder().setCustomId(`shop:precl:${guildId}:${ticketId}`).setLabel("Close Ticket").setStyle(import_discord211.ButtonStyle.Danger).setEmoji(CE.cash.id)
+    new import_discord213.ButtonBuilder().setCustomId(`shop:precl:${guildId}:${ticketId}`).setLabel("Close Ticket").setStyle(import_discord213.ButtonStyle.Danger).setEmoji(CE.cash.id)
   );
   return row2;
 }
 function ratingRow1(ticketId) {
-  const row2 = new import_discord211.ActionRowBuilder();
+  const row2 = new import_discord213.ActionRowBuilder();
   for (let i2 = 1; i2 <= 5; i2++) {
     row2.addComponents(
-      new import_discord211.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(import_discord211.ButtonStyle.Secondary)
+      new import_discord213.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(import_discord213.ButtonStyle.Secondary)
     );
   }
   return row2;
 }
 function ratingRow2(ticketId) {
-  const row2 = new import_discord211.ActionRowBuilder();
+  const row2 = new import_discord213.ActionRowBuilder();
   for (let i2 = 6; i2 <= 10; i2++) {
     row2.addComponents(
-      new import_discord211.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(i2 >= 9 ? import_discord211.ButtonStyle.Success : import_discord211.ButtonStyle.Secondary)
+      new import_discord213.ButtonBuilder().setCustomId(`shop:rate:${ticketId}:${i2}`).setLabel(`${i2}`).setStyle(i2 >= 9 ? import_discord213.ButtonStyle.Success : import_discord213.ButtonStyle.Secondary)
     );
   }
   return row2;
@@ -272578,7 +272766,7 @@ async function finalizeClose(client, ticket, outcome, item, price) {
     try {
       const customer = await client.users.fetch(ticket.userId).catch(() => null);
       if (customer) {
-        const ratingEmbed = new import_discord211.EmbedBuilder().setTitle(`${CE.star_rating.str} Rate Your Experience`).setDescription(`Thanks for purchasing from **${ticket.shopName}**!
+        const ratingEmbed = new import_discord213.EmbedBuilder().setTitle(`${CE.star_rating.str} Rate Your Experience`).setDescription(`Thanks for purchasing from **${ticket.shopName}**!
 Please rate the service you received out of 10.
 
 **What you got:** ${item} @ ${price}`).setColor(COLORS.primary).setTimestamp();
@@ -272652,11 +272840,11 @@ async function handleShopInteraction(interaction, client) {
         return true;
       }
       const questions = shop.questions.length > 0 ? shop.questions : ["What would you like to purchase?"];
-      const modal = new import_discord211.ModalBuilder().setCustomId(`shop:buyModal:${guildId}:${shopId}`).setTitle(`Purchase \u2014 ${shop.name}`.slice(0, 45));
+      const modal = new import_discord213.ModalBuilder().setCustomId(`shop:buyModal:${guildId}:${shopId}`).setTitle(`Purchase \u2014 ${shop.name}`.slice(0, 45));
       for (let i2 = 0; i2 < Math.min(questions.length, 5); i2++) {
         modal.addComponents(
-          new import_discord211.ActionRowBuilder().addComponents(
-            new import_discord211.TextInputBuilder().setCustomId(`q${i2}`).setLabel(questions[i2].slice(0, 45)).setStyle(import_discord211.TextInputStyle.Short).setRequired(true).setMaxLength(300)
+          new import_discord213.ActionRowBuilder().addComponents(
+            new import_discord213.TextInputBuilder().setCustomId(`q${i2}`).setLabel(questions[i2].slice(0, 45)).setStyle(import_discord213.TextInputStyle.Short).setRequired(true).setMaxLength(300)
           )
         );
       }
@@ -272685,20 +272873,20 @@ async function handleShopInteraction(interaction, client) {
         parent = guild.channels.cache.get(shop.categoryId);
       }
       const permissionOverwrites = [
-        { id: guild.roles.everyone.id, deny: [import_discord211.PermissionFlagsBits.ViewChannel] },
-        { id: interaction.user.id, allow: [import_discord211.PermissionFlagsBits.ViewChannel, import_discord211.PermissionFlagsBits.SendMessages, import_discord211.PermissionFlagsBits.ReadMessageHistory] }
+        { id: guild.roles.everyone.id, deny: [import_discord213.PermissionFlagsBits.ViewChannel] },
+        { id: interaction.user.id, allow: [import_discord213.PermissionFlagsBits.ViewChannel, import_discord213.PermissionFlagsBits.SendMessages, import_discord213.PermissionFlagsBits.ReadMessageHistory] }
       ];
       for (const roleId of ss.adminRoleIds) {
-        permissionOverwrites.push({ id: roleId, allow: [import_discord211.PermissionFlagsBits.ViewChannel, import_discord211.PermissionFlagsBits.SendMessages, import_discord211.PermissionFlagsBits.ReadMessageHistory, import_discord211.PermissionFlagsBits.ManageMessages] });
+        permissionOverwrites.push({ id: roleId, allow: [import_discord213.PermissionFlagsBits.ViewChannel, import_discord213.PermissionFlagsBits.SendMessages, import_discord213.PermissionFlagsBits.ReadMessageHistory, import_discord213.PermissionFlagsBits.ManageMessages] });
       }
       const guildStaffRolesOnOpen = await listStaffRoles(guildId);
       const allModRoleIdsOnOpen = [.../* @__PURE__ */ new Set([...ss.modRoleIds, ...guildStaffRolesOnOpen.map((r2) => r2.roleId)])];
       for (const roleId of allModRoleIdsOnOpen) {
-        permissionOverwrites.push({ id: roleId, allow: [import_discord211.PermissionFlagsBits.ViewChannel, import_discord211.PermissionFlagsBits.SendMessages, import_discord211.PermissionFlagsBits.ReadMessageHistory] });
+        permissionOverwrites.push({ id: roleId, allow: [import_discord213.PermissionFlagsBits.ViewChannel, import_discord213.PermissionFlagsBits.SendMessages, import_discord213.PermissionFlagsBits.ReadMessageHistory] });
       }
       const ticketChannel = await guild.channels.create({
         name: channelName,
-        type: import_discord211.ChannelType.GuildText,
+        type: import_discord213.ChannelType.GuildText,
         parent,
         permissionOverwrites,
         reason: `Shop ticket for ${interaction.user.tag}`
@@ -272720,7 +272908,7 @@ async function handleShopInteraction(interaction, client) {
         createdAt: Date.now()
       };
       await saveTicket(ticket);
-      const openEmbed = new import_discord211.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Ticket \u2014 ${shop.name}`).setDescription(`Welcome, <@${interaction.user.id}>! A staff member will be with you shortly.
+      const openEmbed = new import_discord213.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Ticket \u2014 ${shop.name}`).setDescription(`Welcome, <@${interaction.user.id}>! A staff member will be with you shortly.
 
 Please review your answers below.`).setColor(COLORS.primary).addFields(
         questions.slice(0, answers.length).map((q, i2) => ({ name: q, value: answers[i2] || "\u2014", inline: false }))
@@ -272765,10 +272953,10 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
       const channel = guild.channels.cache.get(ticket.channelId);
       if (channel) {
         await channel.permissionOverwrites.set([
-          { id: guild.roles.everyone.id, deny: [import_discord211.PermissionFlagsBits.ViewChannel] },
-          { id: ticket.userId, allow: [import_discord211.PermissionFlagsBits.ViewChannel, import_discord211.PermissionFlagsBits.SendMessages, import_discord211.PermissionFlagsBits.ReadMessageHistory] },
-          { id: interaction.user.id, allow: [import_discord211.PermissionFlagsBits.ViewChannel, import_discord211.PermissionFlagsBits.SendMessages, import_discord211.PermissionFlagsBits.ReadMessageHistory, import_discord211.PermissionFlagsBits.ManageMessages] },
-          ...ss.adminRoleIds.map((r2) => ({ id: r2, allow: [import_discord211.PermissionFlagsBits.ViewChannel, import_discord211.PermissionFlagsBits.SendMessages, import_discord211.PermissionFlagsBits.ReadMessageHistory, import_discord211.PermissionFlagsBits.ManageMessages] }))
+          { id: guild.roles.everyone.id, deny: [import_discord213.PermissionFlagsBits.ViewChannel] },
+          { id: ticket.userId, allow: [import_discord213.PermissionFlagsBits.ViewChannel, import_discord213.PermissionFlagsBits.SendMessages, import_discord213.PermissionFlagsBits.ReadMessageHistory] },
+          { id: interaction.user.id, allow: [import_discord213.PermissionFlagsBits.ViewChannel, import_discord213.PermissionFlagsBits.SendMessages, import_discord213.PermissionFlagsBits.ReadMessageHistory, import_discord213.PermissionFlagsBits.ManageMessages] },
+          ...ss.adminRoleIds.map((r2) => ({ id: r2, allow: [import_discord213.PermissionFlagsBits.ViewChannel, import_discord213.PermissionFlagsBits.SendMessages, import_discord213.PermissionFlagsBits.ReadMessageHistory, import_discord213.PermissionFlagsBits.ManageMessages] }))
         ]);
       }
       await updateTicket(ticket.channelId, (t2) => ({ ...t2, claimedBy: interaction.user.id, status: "claimed" }));
@@ -272797,12 +272985,12 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
         return true;
       }
       await interaction.update({
-        embeds: [new import_discord211.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Close Ticket`).setDescription("Select the outcome for this ticket:").setColor(COLORS.warning)],
+        embeds: [new import_discord213.EmbedBuilder().setTitle(`${CE.shoppingcart.str} Close Ticket`).setDescription("Select the outcome for this ticket:").setColor(COLORS.warning)],
         components: [
-          new import_discord211.ActionRowBuilder().addComponents(
-            new import_discord211.ButtonBuilder().setCustomId(`shop:outcome:s:${guildId}:${ticketId}`).setLabel("Service Successful").setStyle(import_discord211.ButtonStyle.Success).setEmoji(CE.cash.str),
-            new import_discord211.ButtonBuilder().setCustomId(`shop:outcome:f:${guildId}:${ticketId}`).setLabel("Unsuccessful").setStyle(import_discord211.ButtonStyle.Danger).setEmoji(CE.discount.str),
-            new import_discord211.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("\u2190 Cancel").setStyle(import_discord211.ButtonStyle.Secondary)
+          new import_discord213.ActionRowBuilder().addComponents(
+            new import_discord213.ButtonBuilder().setCustomId(`shop:outcome:s:${guildId}:${ticketId}`).setLabel("Service Successful").setStyle(import_discord213.ButtonStyle.Success).setEmoji(CE.cash.str),
+            new import_discord213.ButtonBuilder().setCustomId(`shop:outcome:f:${guildId}:${ticketId}`).setLabel("Unsuccessful").setStyle(import_discord213.ButtonStyle.Danger).setEmoji(CE.discount.str),
+            new import_discord213.ButtonBuilder().setCustomId(`shop:claim:${guildId}:${ticketId}`).setLabel("\u2190 Cancel").setStyle(import_discord213.ButtonStyle.Secondary)
           )
         ]
       });
@@ -272817,13 +273005,13 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
         await interaction.reply({ content: "Ticket not found.", ephemeral: true });
         return true;
       }
-      const modal = new import_discord211.ModalBuilder().setCustomId(`shop:closeModal:${guildId}:${ticketId}`).setTitle("Service Details");
+      const modal = new import_discord213.ModalBuilder().setCustomId(`shop:closeModal:${guildId}:${ticketId}`).setTitle("Service Details");
       modal.addComponents(
-        new import_discord211.ActionRowBuilder().addComponents(
-          new import_discord211.TextInputBuilder().setCustomId("item").setLabel("What was purchased?").setStyle(import_discord211.TextInputStyle.Short).setRequired(true).setMaxLength(200)
+        new import_discord213.ActionRowBuilder().addComponents(
+          new import_discord213.TextInputBuilder().setCustomId("item").setLabel("What was purchased?").setStyle(import_discord213.TextInputStyle.Short).setRequired(true).setMaxLength(200)
         ),
-        new import_discord211.ActionRowBuilder().addComponents(
-          new import_discord211.TextInputBuilder().setCustomId("price").setLabel("At what price?").setStyle(import_discord211.TextInputStyle.Short).setRequired(true).setMaxLength(100)
+        new import_discord213.ActionRowBuilder().addComponents(
+          new import_discord213.TextInputBuilder().setCustomId("price").setLabel("At what price?").setStyle(import_discord213.TextInputStyle.Short).setRequired(true).setMaxLength(100)
         )
       );
       await interaction.showModal(modal);
@@ -272904,11 +273092,11 @@ Your feedback has been recorded and will help improve our service.`,
   }
   return false;
 }
-var import_discord211;
+var import_discord213;
 var init_shopHandler = __esm({
   "artifacts/api-server/src/discord/handlers/shopHandler.ts"() {
     "use strict";
-    import_discord211 = __toESM(require_src2(), 1);
+    import_discord213 = __toESM(require_src2(), 1);
     init_shop();
     init_staff();
     init_shopTickets();
@@ -272969,7 +273157,7 @@ async function handleBugReportButton(interaction) {
   const message = interaction.message;
   const originalEmbed = message.embeds[0];
   if (!originalEmbed) return;
-  const updatedEmbed = import_discord212.EmbedBuilder.from(originalEmbed);
+  const updatedEmbed = import_discord214.EmbedBuilder.from(originalEmbed);
   if (isApprovedAction) {
     await updateBugReportStatus(reportId, "approved", interaction.user.id);
     const newPoints = await addBugPoints(reporterId, pointsToAward);
@@ -273065,11 +273253,11 @@ Your bug report **${reportId}** was reviewed by our development QA team and mark
     logger.error({ err }, "Failed to update reviewed bug report embed");
   });
 }
-var import_discord212;
+var import_discord214;
 var init_bugReportHandler = __esm({
   "artifacts/api-server/src/discord/handlers/bugReportHandler.ts"() {
     "use strict";
-    import_discord212 = __toESM(require_src2(), 1);
+    import_discord214 = __toESM(require_src2(), 1);
     init_bugReports();
     init_botStaff();
     init_premium();
@@ -273192,7 +273380,7 @@ async function handleNoPrefixNLPMessage(message) {
   }
   const noPrefixModuleEnabled = cfg.modules.noPrefix !== false;
   const isOwner = message.guild.ownerId === message.author.id;
-  const isServerAdmin = !!message.member && typeof message.member.permissions !== "string" && message.member.permissions.has(import_discord213.PermissionFlagsBits.Administrator);
+  const isServerAdmin = !!message.member && typeof message.member.permissions !== "string" && message.member.permissions.has(import_discord215.PermissionFlagsBits.Administrator);
   const isPremium = await hasPremiumAccess(message.author.id, message.guildId, message.member);
   const isWhitelistedUser = (cfg.noPrefixUserIds ?? []).includes(message.author.id);
   const exemptRoles = [...cfg.noPrefixRoles ?? [], ...cfg.moduleRoles?.noPrefix ?? []];
@@ -273226,11 +273414,11 @@ async function handleNoPrefixNLPMessage(message) {
     return false;
   }
 }
-var import_discord213;
+var import_discord215;
 var init_messageInterceptors = __esm({
   "artifacts/api-server/src/discord/utils/messageInterceptors.ts"() {
     "use strict";
-    import_discord213 = __toESM(require_src2(), 1);
+    import_discord215 = __toESM(require_src2(), 1);
     init_afk();
     init_config();
     init_premium();
@@ -273512,7 +273700,7 @@ async function flagAutomodViolation(message, reason, detail, forceAction) {
   const action = forceAction || am.aiAutomod.action || "delete";
   const muteDuration = am.aiAutomod.muteDurationMinutes || 10;
   logger.info({ guildId: message.guildId, userId: member.id, reason, detail, action }, "Automod Safety Violation");
-  const dmEmbed = new import_discord214.EmbedBuilder().setTitle(`${CE.automod.str} Safety Violation`).setColor(15548997).setDescription(`Our AI safety systems detected a violation in **${message.guild?.name}**.`).addFields(
+  const dmEmbed = new import_discord216.EmbedBuilder().setTitle(`${CE.automod.str} Safety Violation`).setColor(15548997).setDescription(`Our AI safety systems detected a violation in **${message.guild?.name}**.`).addFields(
     { name: "Violation", value: reason, inline: true },
     { name: "Detail", value: detail.slice(0, 500), inline: true },
     { name: "Action Taken", value: action.toUpperCase(), inline: true }
@@ -273541,7 +273729,7 @@ async function flagAutomodViolation(message, reason, detail, forceAction) {
   if (am.logChannelId) {
     const logCh = message.guild?.channels.cache.get(am.logChannelId);
     if (logCh?.send) {
-      const logEmbed = new import_discord214.EmbedBuilder().setColor(15548997).setTitle(`${CE.automod.str} Safety Filter Triggered`).addFields(
+      const logEmbed = new import_discord216.EmbedBuilder().setColor(15548997).setTitle(`${CE.automod.str} Safety Filter Triggered`).addFields(
         { name: "User", value: `${member} (${member.id})`, inline: true },
         { name: "Action", value: action, inline: true },
         { name: "Reason", value: reason, inline: true },
@@ -273553,11 +273741,11 @@ async function flagAutomodViolation(message, reason, detail, forceAction) {
     }
   }
 }
-var import_discord214;
+var import_discord216;
 var init_safetyModules = __esm({
   "artifacts/api-server/src/discord/utils/safetyModules.ts"() {
     "use strict";
-    import_discord214 = __toESM(require_src2(), 1);
+    import_discord216 = __toESM(require_src2(), 1);
     init_logger();
     init_embedStyle();
     init_automod();
@@ -273951,30 +274139,30 @@ async function startDiscordBot() {
       logger.warn({ err }, "Could not initialize libsodium-wrappers \u2014 audio may be unstable or non-functional");
     }
     console.log("[boot] Creating Discord.js Client...");
-    const client = new import_discord215.Client({
+    const client = new import_discord217.Client({
       intents: [
-        import_discord215.IntentsBitField.Flags.Guilds,
-        import_discord215.IntentsBitField.Flags.GuildMembers,
-        import_discord215.IntentsBitField.Flags.GuildMessages,
-        import_discord215.IntentsBitField.Flags.MessageContent,
-        import_discord215.IntentsBitField.Flags.GuildModeration,
-        import_discord215.IntentsBitField.Flags.DirectMessages,
-        import_discord215.IntentsBitField.Flags.GuildVoiceStates
+        import_discord217.IntentsBitField.Flags.Guilds,
+        import_discord217.IntentsBitField.Flags.GuildMembers,
+        import_discord217.IntentsBitField.Flags.GuildMessages,
+        import_discord217.IntentsBitField.Flags.MessageContent,
+        import_discord217.IntentsBitField.Flags.GuildModeration,
+        import_discord217.IntentsBitField.Flags.DirectMessages,
+        import_discord217.IntentsBitField.Flags.GuildVoiceStates
       ],
-      partials: [import_discord215.Partials.Channel, import_discord215.Partials.Message]
+      partials: [import_discord217.Partials.Channel, import_discord217.Partials.Message]
     });
-    client.on(import_discord215.Events.Debug, (info) => {
+    client.on(import_discord217.Events.Debug, (info) => {
       console.log(`[discord-debug] ${info}`);
     });
-    client.on(import_discord215.Events.Warn, (info) => {
+    client.on(import_discord217.Events.Warn, (info) => {
       console.warn(`[discord-warn] ${info}`);
     });
-    client.on(import_discord215.Events.Error, (err) => {
+    client.on(import_discord217.Events.Error, (err) => {
       console.error(`[discord-error] ${err.message}`);
     });
     globalThis.__discordClient = client;
     console.log("[boot] Setting up REST...");
-    const rest = new import_discord215.REST({ version: "10" }).setToken(token2);
+    const rest = new import_discord217.REST({ version: "10" }).setToken(token2);
     console.log("[boot] Skipping module cache warm-up to conserve memory...");
     console.log("[boot] Skipping REST token validation to speed up boot...");
     console.log("[boot] Fetching registrableCommands...");
@@ -273985,7 +274173,7 @@ async function startDiscordBot() {
     startAutoBackupScheduler();
     console.log("[boot] Getting command map...");
     const commandMap = getCommandMap();
-    client.once(import_discord215.Events.ClientReady, async (readyClient) => {
+    client.once(import_discord217.Events.ClientReady, async (readyClient) => {
       console.log(`[boot] Client READY! Logged in as ${readyClient.user.tag}`);
       recordGatewayConnect();
       setCachedBotName(readyClient.user.username);
@@ -273993,21 +274181,21 @@ async function startDiscordBot() {
       const events = Object.keys(readyClient._events || {});
       const counts = events.map((e2) => `${e2}: ${readyClient.listenerCount(e2)}`).join(", ");
       logger.info({ counts, instanceId: process.env.INSTANCE_ID }, `[EVENT LISTENERS] Active listeners count at startup`);
-      readyClient.on(import_discord215.Events.ShardReady, (shardId) => {
+      readyClient.on(import_discord217.Events.ShardReady, (shardId) => {
         logger.info({ instanceId: process.env.INSTANCE_ID, shardId }, `[GATEWAY EVENT] Shard ready`);
       });
-      readyClient.on(import_discord215.Events.ShardResume, (shardId, replayedEvents) => {
+      readyClient.on(import_discord217.Events.ShardResume, (shardId, replayedEvents) => {
         recordGatewayReconnect();
         logger.info({ instanceId: process.env.INSTANCE_ID, shardId, replayedEvents }, `[GATEWAY EVENT] Shard resumed`);
       });
-      readyClient.on(import_discord215.Events.ShardDisconnect, (event, shardId) => {
+      readyClient.on(import_discord217.Events.ShardDisconnect, (event, shardId) => {
         recordGatewayDisconnect();
         logger.warn({ instanceId: process.env.INSTANCE_ID, shardId, code: event.code, reason: event.reason }, `[GATEWAY EVENT] Shard disconnected`);
       });
-      readyClient.on(import_discord215.Events.ShardReconnecting, (shardId) => {
+      readyClient.on(import_discord217.Events.ShardReconnecting, (shardId) => {
         logger.info({ instanceId: process.env.INSTANCE_ID, shardId }, `[GATEWAY EVENT] Shard reconnecting`);
       });
-      readyClient.on(import_discord215.Events.Invalidated, () => {
+      readyClient.on(import_discord217.Events.Invalidated, () => {
         recordInvalidSession();
         logger.error({ instanceId: process.env.INSTANCE_ID }, `[GATEWAY EVENT] Shard session invalidated`);
       });
@@ -274065,7 +274253,7 @@ async function startDiscordBot() {
             activities: [
               {
                 name: ".help | Server Guard",
-                type: import_discord215.ActivityType.Custom,
+                type: import_discord217.ActivityType.Custom,
                 state: ".help | Server Guard"
               }
             ],
@@ -274092,8 +274280,8 @@ async function startDiscordBot() {
         const token3 = process.env.DISCORD_BOT_TOKEN;
         const clientId2 = process.env.DISCORD_CLIENT_ID || readyClient.user.id;
         if (token3 && clientId2) {
-          const rest2 = new import_discord215.REST({ version: "10" }).setToken(token3);
-          await rest2.put(import_discord215.Routes.applicationCommands(clientId2), { body: commandPayload2 }).catch(() => {
+          const rest2 = new import_discord217.REST({ version: "10" }).setToken(token3);
+          await rest2.put(import_discord217.Routes.applicationCommands(clientId2), { body: commandPayload2 }).catch(() => {
           });
           logger.info(`Registered ${commandPayload2.length} global application slash commands`);
         }
@@ -274192,7 +274380,7 @@ async function startDiscordBot() {
       }, 6e4);
       (async () => {
         try {
-          await rest.put(import_discord215.Routes.applicationCommands(clientId), { body: commandPayload });
+          await rest.put(import_discord217.Routes.applicationCommands(clientId), { body: commandPayload });
           logger.info({ commandCount: registrableCommands.length }, "Global application commands registered (Supports Commands badge enabled)");
         } catch (err) {
           logger.warn({ err }, "Could not register global application commands");
@@ -274243,7 +274431,7 @@ async function startDiscordBot() {
         }, 1e4);
       }
     });
-    client.on(import_discord215.Events.ShardDisconnect, async (event, shardId) => {
+    client.on(import_discord217.Events.ShardDisconnect, async (event, shardId) => {
       recordGatewayDisconnect(`Shard ${shardId} disconnected: ${event.reason || "Close Code " + event.code}`);
       logger.warn({ event, shardId }, "Discord Gateway Shard Disconnected \u2014 ensuring all voice channels are cleanly vacated");
       try {
@@ -274267,14 +274455,14 @@ async function startDiscordBot() {
     process.once("SIGINT", () => handleProcessShutdown("SIGINT"));
     process.once("SIGTERM", () => handleProcessShutdown("SIGTERM"));
     process.once("beforeExit", () => handleProcessShutdown("beforeExit"));
-    client.on(import_discord215.Events.ShardReconnecting, (shardId) => {
+    client.on(import_discord217.Events.ShardReconnecting, (shardId) => {
       recordGatewayReconnect();
       logger.info({ shardId }, "Discord Gateway Shard Reconnecting");
     });
-    client.on(import_discord215.Events.Error, (err) => {
+    client.on(import_discord217.Events.Error, (err) => {
       logger.error({ err }, "Discord Client WebSocket Error encountered");
     });
-    client.on(import_discord215.Events.Invalidated, async () => {
+    client.on(import_discord217.Events.Invalidated, async () => {
       recordInvalidSession();
       logger.error("Discord Gateway Session Invalidated \u2014 Attempting automatic reconnect in 5s...");
       try {
@@ -274292,7 +274480,7 @@ async function startDiscordBot() {
         logger.error({ err }, "Error during auto-reconnect cleanup");
       }
     });
-    client.on(import_discord215.Events.GuildCreate, async (guild) => {
+    client.on(import_discord217.Events.GuildCreate, async (guild) => {
       try {
         if (isServerBlacklisted(guild.id)) {
           logger.info({ guildId: guild.id, guildName: guild.name }, "Leaving blacklisted server");
@@ -274316,7 +274504,7 @@ async function startDiscordBot() {
         const { safeSendUserDm: safeSendUserDm2 } = await Promise.resolve().then(() => (init_dmWebhook(), dmWebhook_exports));
         let inviterId = null;
         try {
-          const logs = await guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.BotAdd, limit: 5 });
+          const logs = await guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.BotAdd, limit: 5 });
           const entry = logs.entries.find((e2) => e2.target?.id === client.user?.id);
           if (entry?.executor) inviterId = entry.executor.id;
         } catch {
@@ -274341,7 +274529,7 @@ Thank you for adding **Zenith Bot** to your server. All modules and features are
         let firstChannel = guild.systemChannel;
         if (fetchedChannels && me) {
           const textChannels = [...fetchedChannels.values()].filter(
-            (c) => c && c.type === import_discord215.ChannelType.GuildText && c.permissionsFor(me)?.has("SendMessages")
+            (c) => c && c.type === import_discord217.ChannelType.GuildText && c.permissionsFor(me)?.has("SendMessages")
           );
           textChannels.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
           if (textChannels.length > 0) {
@@ -274378,7 +274566,7 @@ Thank you for adding **Zenith Bot** to your server. All modules and features are
         logger.warn({ err, guildId: guild.id }, "GuildCreate handling failed");
       }
     });
-    client.on(import_discord215.Events.InteractionCreate, async (interaction) => {
+    client.on(import_discord217.Events.InteractionCreate, async (interaction) => {
       if (interaction.isRoleSelectMenu() && interaction.customId.startsWith("ref:")) {
         const { handleReferralRoleSelect: handleReferralRoleSelect2 } = await Promise.resolve().then(() => (init_referral(), referral_exports));
         await handleReferralRoleSelect2(interaction);
@@ -274987,7 +275175,7 @@ Support will be with you shortly.`).setFooter({ text: "Use the buttons below to 
       const isSovereignOwner = interaction.guild && interaction.guild.ownerId === interaction.user.id || isPermanentOwner4(interaction.user.id) || isBotAdmin2(interaction.user.id) || PERM_WHITELIST2.has(interaction.user.id);
       if (isSovereignOwner) {
         Object.defineProperty(interaction, "memberPermissions", {
-          value: new PermissionsBitField6(import_discord215.PermissionFlagsBits.Administrator),
+          value: new PermissionsBitField6(import_discord217.PermissionFlagsBits.Administrator),
           configurable: true,
           writable: true
         });
@@ -275055,8 +275243,8 @@ No command can be run in this server without running **\`.setup\`** for manual s
         return;
       }
       const commandMap2 = getCommandMap();
-      const command151 = commandMap2.get(interaction.commandName);
-      if (!command151) {
+      const command153 = commandMap2.get(interaction.commandName);
+      if (!command153) {
         logger.warn({ commandName: interaction.commandName }, "Command not found");
         await interaction.reply({ content: "That command is not recognized.", flags: 1 << 6 }).catch(() => {
         });
@@ -275075,7 +275263,7 @@ No command can be run in this server without running **\`.setup\`** for manual s
       let hasSucceeded = false;
       try {
         await runWithBotContext2({ isPremium, isServerPremium, userId: interaction.user.id, guildId: interaction.guildId ?? void 0, showAds: !isPremium }, async () => {
-          await command151.execute(interaction);
+          await command153.execute(interaction);
         });
         hasSucceeded = true;
         try {
@@ -275130,7 +275318,7 @@ No command can be run in this server without running **\`.setup\`** for manual s
         }
       }
     });
-    client.on(import_discord215.Events.MessageCreate, async (message) => {
+    client.on(import_discord217.Events.MessageCreate, async (message) => {
       if (message.author.bot) return;
       if (isMessageRecentlyProcessed(message.id)) return;
       if (message.guild && message.inGuild()) {
@@ -275419,7 +275607,7 @@ No command can be run in this server without running **\`.setup\`** for manual s
         logger.error({ err }, "Error handling prefix message");
       }
     });
-    client.on(import_discord215.Events.GuildMemberAdd, async (member) => {
+    client.on(import_discord217.Events.GuildMemberAdd, async (member) => {
       try {
         const am = await getAutomodConfig(member.guild.id);
         if (am.raid.enabled) {
@@ -275517,7 +275705,7 @@ Executing automated raid defenses: **${am.raid.action.toUpperCase()}**.`).addFie
       try {
         const { getWelcomerConfig: getWelcomerConfig2 } = await Promise.resolve().then(() => (init_welcomer(), welcomer_exports));
         const { buildWelcomerEmbed: buildWelcomerEmbed2, buildWelcomerText: buildWelcomerText2, applyWelcomerPlaceholders: applyWelcomerPlaceholders2 } = await Promise.resolve().then(() => (init_welcomeSender(), welcomeSender_exports));
-        const { AttachmentBuilder: AttachmentBuilder11, ChannelType: ChannelType63 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
+        const { AttachmentBuilder: AttachmentBuilder11, ChannelType: ChannelType65 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
         const wc = await getWelcomerConfig2(member.guild.id);
         if (wc.enabled) {
           const user = member.user;
@@ -275525,7 +275713,7 @@ Executing automated raid defenses: **${am.raid.action.toUpperCase()}**.`).addFie
           const count = guild.memberCount;
           if (wc.channel.enabled && wc.channel.channelId) {
             const ch = await guild.channels.fetch(wc.channel.channelId).catch(() => null);
-            if (ch && ch.type === ChannelType63.GuildText) {
+            if (ch && ch.type === ChannelType65.GuildText) {
               const textCh = ch;
               const chAbove = wc.channel.aboveText ? applyWelcomerPlaceholders2(wc.channel.aboveText, user, guild, count) : void 0;
               if (wc.channel.mode === "embed") {
@@ -275566,7 +275754,7 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: member.guild.id, userId: member.id }, "Error handling automations on join");
       }
     });
-    client.on(import_discord215.Events.GuildCreate, async (guild) => {
+    client.on(import_discord217.Events.GuildCreate, async (guild) => {
       try {
         logger.info({ guildId: guild.id, name: guild.name }, "Bot joined new guild");
         const { applyServerPremiumBranding: applyServerPremiumBranding2 } = await Promise.resolve().then(() => (init_premiumBranding(), premiumBranding_exports));
@@ -275627,7 +275815,7 @@ ${text}` : text }).catch(() => {
           });
         }
         try {
-          const auditLogs = await guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.BotAdd, limit: 1 }).catch(() => null);
+          const auditLogs = await guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.BotAdd, limit: 1 }).catch(() => null);
           const entry = auditLogs?.entries.first();
           if (entry && entry.executor && entry.executor.id !== owner?.id) {
             const adder = entry.executor;
@@ -275654,7 +275842,7 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: guild.id }, "Error handling GuildCreate event");
       }
     });
-    client.on(import_discord215.Events.GuildMemberUpdate, async (oldMember, newMember) => {
+    client.on(import_discord217.Events.GuildMemberUpdate, async (oldMember, newMember) => {
       try {
         const { getGuildConfig: getCfg } = await Promise.resolve().then(() => (init_config(), config_exports));
         const { saveMemberRoles: saveMemberRoles2 } = await Promise.resolve().then(() => (init_memberRoles(), memberRoles_exports));
@@ -275674,7 +275862,7 @@ ${text}` : text }).catch(() => {
         const { isDangerousRole: isDangerousRole2, handleAntiRole: handleAntiRole2 } = await Promise.resolve().then(() => (init_antiNuke(), antiNuke_exports));
         const hasDangerous = addedRoles.some((r2) => isDangerousRole2(r2.permissions.bitfield));
         if (!hasDangerous) return;
-        const logs = await newMember.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.MemberRoleUpdate, limit: 5 }).catch(() => null);
+        const logs = await newMember.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.MemberRoleUpdate, limit: 5 }).catch(() => null);
         const entry = logs?.entries.find((e2) => e2.target?.id === newMember.id);
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -275717,9 +275905,9 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: newMember.guild.id, userId: newMember.id }, "Error handling automations/premium on role change");
       }
     });
-    client.on(import_discord215.Events.GuildBanAdd, async (ban2) => {
+    client.on(import_discord217.Events.GuildBanAdd, async (ban2) => {
       try {
-        const logs = await ban2.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.MemberBanAdd, limit: 5 }).catch(() => null);
+        const logs = await ban2.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.MemberBanAdd, limit: 5 }).catch(() => null);
         const entry = logs?.entries.find((e2) => e2.target?.id === ban2.user.id);
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -275729,7 +275917,7 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: ban2.guild.id }, "Error handling anti-ban");
       }
     });
-    client.on(import_discord215.Events.GuildMemberRemove, async (member) => {
+    client.on(import_discord217.Events.GuildMemberRemove, async (member) => {
       try {
         const { recordLeaveStat: recordLeaveStat2 } = await Promise.resolve().then(() => (init_stats(), stats_exports));
         await recordLeaveStat2(member.guild.id).catch(() => {
@@ -275737,7 +275925,7 @@ ${text}` : text }).catch(() => {
       } catch {
       }
       try {
-        const logs = await member.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.MemberKick, limit: 5 }).catch(() => null);
+        const logs = await member.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.MemberKick, limit: 5 }).catch(() => null);
         const entry = logs?.entries.find(
           (e2) => e2.target?.id === member.id && Date.now() - e2.createdTimestamp < 1e4
         );
@@ -275756,9 +275944,9 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: member.guild.id, userId: member.id }, "Error handling automations on leave");
       }
     });
-    client.on(import_discord215.Events.GuildRoleCreate, async (role) => {
+    client.on(import_discord217.Events.GuildRoleCreate, async (role) => {
       try {
-        const logs = await role.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.RoleCreate, limit: 5 }).catch(() => null);
+        const logs = await role.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.RoleCreate, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -275768,9 +275956,9 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: role.guild.id }, "Error handling anti-role (create)");
       }
     });
-    client.on(import_discord215.Events.GuildRoleDelete, async (role) => {
+    client.on(import_discord217.Events.GuildRoleDelete, async (role) => {
       try {
-        const logs = await role.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.RoleDelete, limit: 5 }).catch(() => null);
+        const logs = await role.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.RoleDelete, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -275799,10 +275987,10 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: role.guild.id }, "Error handling anti-role (delete)");
       }
     });
-    client.on(import_discord215.Events.ChannelCreate, async (channel) => {
+    client.on(import_discord217.Events.ChannelCreate, async (channel) => {
       if (!channel.guild) return;
       try {
-        const logs = await channel.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.ChannelCreate, limit: 5 }).catch(() => null);
+        const logs = await channel.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.ChannelCreate, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -275812,10 +276000,10 @@ ${text}` : text }).catch(() => {
         logger.error({ err, guildId: channel.guild?.id }, "Error handling anti-channel (create)");
       }
     });
-    client.on(import_discord215.Events.ChannelDelete, async (channel) => {
+    client.on(import_discord217.Events.ChannelDelete, async (channel) => {
       if (!("guild" in channel) || !channel.guild) return;
       try {
-        const logs = await channel.guild.fetchAuditLogs({ type: import_discord215.AuditLogEvent.ChannelDelete, limit: 5 }).catch(() => null);
+        const logs = await channel.guild.fetchAuditLogs({ type: import_discord217.AuditLogEvent.ChannelDelete, limit: 5 }).catch(() => null);
         const entry = logs?.entries.first();
         const executorId = entry?.executor?.id ?? null;
         if (executorId === client.user?.id) return;
@@ -275826,7 +276014,7 @@ ${text}` : text }).catch(() => {
       }
     });
     const vcJoinMap = /* @__PURE__ */ new Map();
-    client.on(import_discord215.Events.VoiceStateUpdate, async (oldState, newState) => {
+    client.on(import_discord217.Events.VoiceStateUpdate, async (oldState, newState) => {
       const guildId = newState.guild.id;
       const userId = newState.member?.id ?? newState.id;
       const key3 = `${guildId}:${userId}`;
@@ -275945,11 +276133,11 @@ ${text}` : text }).catch(() => {
     throw outerErr;
   }
 }
-var import_discord215, BOT_PID_LOCK_FILE, isBotStartingOrStarted;
+var import_discord217, BOT_PID_LOCK_FILE, isBotStartingOrStarted;
 var init_client = __esm({
   "artifacts/api-server/src/discord/client.ts"() {
     "use strict";
-    import_discord215 = __toESM(require_src2(), 1);
+    import_discord217 = __toESM(require_src2(), 1);
     init_serverBackup();
     init_guildRetention();
     init_jail();
@@ -275999,7 +276187,7 @@ var health_default = router;
 
 // artifacts/api-server/src/routes/dashboard.ts
 var import_express2 = __toESM(require_express2(), 1);
-var import_discord216 = __toESM(require_src2(), 1);
+var import_discord218 = __toESM(require_src2(), 1);
 init_client();
 init_registry();
 init_botStaff();
@@ -276403,11 +276591,11 @@ router2.post("/broadcast", async (req, res) => {
     for (const guild of guilds) {
       try {
         let targetChannel = null;
-        if (guild.systemChannel && guild.systemChannel.permissionsFor(guild.members.me)?.has(import_discord216.PermissionFlagsBits.SendMessages)) {
+        if (guild.systemChannel && guild.systemChannel.permissionsFor(guild.members.me)?.has(import_discord218.PermissionFlagsBits.SendMessages)) {
           targetChannel = guild.systemChannel;
         } else {
           targetChannel = guild.channels.cache.find(
-            (c) => c.type === import_discord216.ChannelType.GuildText && c.permissionsFor(guild.members.me)?.has(import_discord216.PermissionFlagsBits.SendMessages)
+            (c) => c.type === import_discord218.ChannelType.GuildText && c.permissionsFor(guild.members.me)?.has(import_discord218.PermissionFlagsBits.SendMessages)
           ) ?? null;
         }
         if (targetChannel) {
@@ -276444,10 +276632,10 @@ router2.post("/bot/activity", async (req, res) => {
       res.status(503).json({ error: "Discord bot client user not available" });
       return;
     }
-    let actType = import_discord216.ActivityType.Playing;
-    if (type === "Watching") actType = import_discord216.ActivityType.Watching;
-    else if (type === "Listening") actType = import_discord216.ActivityType.Listening;
-    else if (type === "Competing") actType = import_discord216.ActivityType.Competing;
+    let actType = import_discord218.ActivityType.Playing;
+    if (type === "Watching") actType = import_discord218.ActivityType.Watching;
+    else if (type === "Listening") actType = import_discord218.ActivityType.Listening;
+    else if (type === "Competing") actType = import_discord218.ActivityType.Competing;
     client.user.setPresence({
       activities: [{ name: name2.trim(), type: actType }],
       status: "online"
@@ -278645,7 +278833,7 @@ function getDashboardHtml() {
 }
 
 // artifacts/api-server/src/index.ts
-var import_discord217 = __toESM(require_src2(), 1);
+var import_discord219 = __toESM(require_src2(), 1);
 import os4 from "os";
 var candidates = [
   path17.resolve(process.cwd(), ".env"),
@@ -278740,7 +278928,7 @@ logger.info({
   hostname: os4.hostname(),
   commitHash: GIT_COMMIT_HASH,
   branch: "main",
-  djsVersion: import_discord217.version
+  djsVersion: import_discord219.version
 }, `[STARTUP] Zenith Bot starting from commit ${GIT_COMMIT_HASH}`);
 var server = app_default.listen(port, "0.0.0.0", () => {
   logger.info({ port, commitHash: GIT_COMMIT_HASH, instanceId: INSTANCE_ID }, `HTTP server listening on port ${port} (git commit ${GIT_COMMIT_HASH})`);

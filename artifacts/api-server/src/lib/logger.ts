@@ -36,12 +36,22 @@ const baseLogger = pino({
   ],
 });
 
+function safeStringify(obj: any): string {
+  try {
+    return JSON.stringify(obj, (_key, value) =>
+      typeof value === "bigint" ? value.toString() : value
+    );
+  } catch {
+    return "[Unserializable Object]";
+  }
+}
+
 export const logger = new Proxy(baseLogger, {
   get(target, prop, receiver) {
     if (prop === "info") {
       return (arg1: any, arg2?: string) => {
         baseLogger.info(arg1, arg2);
-        const msg = typeof arg1 === "string" ? arg1 : (arg2 || JSON.stringify(arg1));
+        const msg = typeof arg1 === "string" ? arg1 : (arg2 || safeStringify(arg1));
         const meta = typeof arg1 === "object" ? arg1 : undefined;
         addLogEntry("info", msg, meta);
       };
@@ -49,7 +59,7 @@ export const logger = new Proxy(baseLogger, {
     if (prop === "warn") {
       return (arg1: any, arg2?: string) => {
         baseLogger.warn(arg1, arg2);
-        const msg = typeof arg1 === "string" ? arg1 : (arg2 || JSON.stringify(arg1));
+        const msg = typeof arg1 === "string" ? arg1 : (arg2 || safeStringify(arg1));
         const meta = typeof arg1 === "object" ? arg1 : undefined;
         addLogEntry("warn", msg, meta);
       };
@@ -57,7 +67,7 @@ export const logger = new Proxy(baseLogger, {
     if (prop === "error") {
       return (arg1: any, arg2?: string) => {
         baseLogger.error(arg1, arg2);
-        const msg = typeof arg1 === "string" ? arg1 : (arg2 || (arg1?.err?.message ?? JSON.stringify(arg1)));
+        const msg = typeof arg1 === "string" ? arg1 : (arg2 || (arg1?.err?.message ?? safeStringify(arg1)));
         const meta = typeof arg1 === "object" ? arg1 : undefined;
         addLogEntry("error", msg, meta);
       };
@@ -65,7 +75,7 @@ export const logger = new Proxy(baseLogger, {
     if (prop === "debug") {
       return (arg1: any, arg2?: string) => {
         baseLogger.debug(arg1, arg2);
-        const msg = typeof arg1 === "string" ? arg1 : (arg2 || JSON.stringify(arg1));
+        const msg = typeof arg1 === "string" ? arg1 : (arg2 || safeStringify(arg1));
         const meta = typeof arg1 === "object" ? arg1 : undefined;
         addLogEntry("debug", msg, meta);
       };

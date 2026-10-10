@@ -47,6 +47,8 @@ import eightball from "./commands/eightball";
 import emojiChannels from "./commands/emojiChannels";
 import fortune from "./commands/fortune";
 import globalBackup from "./commands/global-backup";
+import hide from "./commands/hide";
+import show from "./commands/show";
 import guess from "./commands/guess";
 import hangman from "./commands/hangman";
 import help from "./commands/help";
@@ -249,6 +251,8 @@ const allCommands: SlashCommand[] = [
   sourceCommand,
   responseChannel,
   config,
+  hide,
+  show,
   automod,
   antinuke,
   autorole,
@@ -571,6 +575,8 @@ const REGISTRATION_EXCLUDED_COMMAND_NAMES = new Set([
   "channelstats",
   "hourstats",
   "botstats",
+  "hide",
+  "show",
 ]);
 
 // Dedupe by command name as a safety net: Discord rejects the entire bulk

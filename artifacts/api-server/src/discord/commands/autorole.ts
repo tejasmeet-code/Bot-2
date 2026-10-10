@@ -136,7 +136,71 @@ const command: SlashCommand = {
       const arc = getAutoRoleConfig(cfg);
       const embed = buildAutoRoleEmbed(interaction.guild.name, arc);
       const rows = buildAutoRoleRows(arc);
-      await interaction.reply({ embeds: [embed], components: rows as any });
+      const reply = await interaction.reply({ embeds: [embed], components: rows as any, fetchReply: true });
+
+      const collector = reply.createMessageComponentCollector({
+        filter: (i) => i.user.id === interaction.user.id,
+        idle: 60_000,
+      });
+
+      collector.on("collect", async (i) => {
+        try {
+          const id = i.customId;
+          const currentCfg = await getGuildConfig(guildId);
+          const currentArc = getAutoRoleConfig(currentCfg);
+
+          if (id === "cfg:autorole:toggle") {
+            const updated = await updateGuildConfig(guildId, (c) => {
+              const arc = getAutoRoleConfig(c);
+              c.autoRoleConfig = { ...arc, enabled: !arc.enabled };
+              return c;
+            });
+            const arc = getAutoRoleConfig(updated);
+            await i.update({ embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          } else if (id === "cfg:autorole:clearMembers") {
+            const updated = await updateGuildConfig(guildId, (c) => {
+              const arc = getAutoRoleConfig(c);
+              c.autoRoleConfig = { ...arc, memberRoleIds: [] };
+              return c;
+            });
+            const arc = getAutoRoleConfig(updated);
+            await i.update({ embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          } else if (id === "cfg:autorole:clearBots") {
+            const updated = await updateGuildConfig(guildId, (c) => {
+              const arc = getAutoRoleConfig(c);
+              c.autoRoleConfig = { ...arc, botRoleIds: [] };
+              return c;
+            });
+            const arc = getAutoRoleConfig(updated);
+            await i.update({ embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          } else if (id === "cfg:autorole:setMemberRoles" && i.isRoleSelectMenu()) {
+            const selectedRoleIds = i.values;
+            const updated = await updateGuildConfig(guildId, (c) => {
+              const arc = getAutoRoleConfig(c);
+              c.autoRoleConfig = { ...arc, memberRoleIds: selectedRoleIds, enabled: true };
+              return c;
+            });
+            const arc = getAutoRoleConfig(updated);
+            await i.update({ embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          } else if (id === "cfg:autorole:setBotRoles" && i.isRoleSelectMenu()) {
+            const selectedRoleIds = i.values;
+            const updated = await updateGuildConfig(guildId, (c) => {
+              const arc = getAutoRoleConfig(c);
+              c.autoRoleConfig = { ...arc, botRoleIds: selectedRoleIds, enabled: true };
+              return c;
+            });
+            const arc = getAutoRoleConfig(updated);
+            await i.update({ embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          }
+        } catch (err) {
+          const { logger } = await import("../../lib/logger");
+          logger.error({ err }, "AutoRole collector error");
+          if (!i.replied && !i.deferred) {
+            await i.reply({ content: "An error occurred while processing your request.", ephemeral: true }).catch(() => {});
+          }
+        }
+      });
+
       return;
     }
 

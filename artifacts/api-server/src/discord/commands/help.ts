@@ -64,6 +64,14 @@ const CATEGORIES: HelpCategory[] = [
       "setupwizard",
       "autorole",
       "stats",
+      "serverstats",
+      "userstats",
+      "rolestats",
+      "flowstats",
+      "topstats",
+      "channelstats",
+      "hourstats",
+      "botstats",
       "logging",
       "preset",
       "template",
@@ -88,7 +96,7 @@ const CATEGORIES: HelpCategory[] = [
     label: "Anti-Nuke & Protection",
     emojiId: CE.white_antinuke.id,
     emojiStr: CE.white_antinuke.str,
-    desc: "Anti-Nuke, AutoMod, and security whitelists",
+    desc: "Anti-Nuke, AutoMod, Anti-Scam, Anti-NSFW, and Anti-Modules defense shields.",
     commands: [
       "antinuke",
       "automod",
@@ -136,6 +144,9 @@ const CATEGORIES: HelpCategory[] = [
       "purge",
       "lock",
       "unlock",
+      "hide",
+      "show",
+      "unhide",
       "channellock",
       "channel-lock",
       "slowmode",
@@ -365,8 +376,8 @@ const command: SlashCommand = {
     const { getCommandModesMap } = await import("../storage/botStatusState");
     const commandModes = await getCommandModesMap();
 
-    const { getGuildCommands } = await import("../registry");
-    const allCommands = getGuildCommands();
+    const { getCommands } = await import("../registry");
+    const allCommands = getCommands().filter(cmd => !cmd.globalOnly && !cmd.globalWhitelistOnly);
     
     // Map commands to categories
     const categoryMap = new Map<string, SlashCommand[]>();
