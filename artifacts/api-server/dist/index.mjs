@@ -146834,7 +146834,7 @@ __export(embedStyle_exports, {
   infoEmbed: () => infoEmbed,
   isAllowedEmojiId: () => isAllowedEmojiId,
   modActionEmbed: () => modActionEmbed,
-  prettyEmbed: () => prettyEmbed,
+  prettyEmbed: () => prettyEmbed2,
   resolveDynamicEmoji: () => resolveDynamicEmoji,
   sanitizeEmojiField: () => sanitizeEmojiField,
   sanitizeObjectEmojis: () => sanitizeObjectEmojis,
@@ -147038,7 +147038,7 @@ function updateCustomEmoji(key3, data) {
 function buildBullets(items) {
   return items.map((f3) => `> **${f3.label}:** ${f3.value}`).join("\n");
 }
-function prettyEmbed(opts) {
+function prettyEmbed2(opts) {
   const e2 = new import_discord3.EmbedBuilder().setColor(opts.color ?? COLORS.primary);
   if (opts.title) {
     const cleanTitle = opts.title.replace(/<a?:[a-zA-Z0-9_]+:\d+>\s*/g, "").trim();
@@ -147077,7 +147077,7 @@ function successEmbed(title, description) {
   const desc = description ? `${CE.success.str}  **${cleanTitle}**
 
 ${formatBlockquote(description)}` : `${CE.success.str}  **${cleanTitle}**`;
-  return prettyEmbed({
+  return prettyEmbed2({
     description: desc,
     color: COLORS.success
   });
@@ -147087,7 +147087,7 @@ function errorEmbed(title, description) {
   const desc = description ? `${CE.error.str}  **${cleanTitle}**
 
 ${formatBlockquote(description)}` : `${CE.error.str}  **${cleanTitle}**`;
-  return prettyEmbed({
+  return prettyEmbed2({
     description: desc,
     color: COLORS.danger
   });
@@ -147097,7 +147097,7 @@ function warnEmbed(title, description) {
   const desc = description ? `${CE.warning.str}  **${cleanTitle}**
 
 ${formatBlockquote(description)}` : `${CE.warning.str}  **${cleanTitle}**`;
-  return prettyEmbed({
+  return prettyEmbed2({
     description: desc,
     color: COLORS.warning
   });
@@ -147107,7 +147107,7 @@ function infoEmbed(title, description) {
   const desc = description ? `${CE.information.str}  **${cleanTitle}**
 
 ${formatBlockquote(description)}` : `${CE.information.str}  **${cleanTitle}**`;
-  return prettyEmbed({
+  return prettyEmbed2({
     description: desc,
     color: COLORS.info
   });
@@ -150007,8 +150007,8 @@ async function removeDirectPremium(targetId, targetType) {
           const user = await client.users.fetch(targetId).catch(() => null);
           if (user) {
             const { safeSendUserDm: safeSendUserDm2 } = await Promise.resolve().then(() => (init_dmWebhook(), dmWebhook_exports));
-            const { COLORS: COLORS9, prettyEmbed: prettyEmbed10 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
-            const embed = prettyEmbed10({
+            const { COLORS: COLORS9, prettyEmbed: prettyEmbed11 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+            const embed = prettyEmbed11({
               title: `${CE.warning.str} Zenith VIP Premium License Revoked`,
               description: `Hello <@${targetId}>!
 
@@ -150423,7 +150423,7 @@ async function handleReferralRoleSelect(interaction) {
       higherStaffRoleId: state.higherRoleId
     });
     pendingStaffSelections.delete(key3);
-    const embed = prettyEmbed({
+    const embed = prettyEmbed2({
       title: `${CE.done.str} Partner Staff Roles Saved!`,
       description: result.message,
       color: COLORS.success
@@ -150432,7 +150432,7 @@ async function handleReferralRoleSelect(interaction) {
   } else {
     const juniorName = state.juniorRoleId ? `<@&${state.juniorRoleId}>` : "*Not selected yet*";
     const higherName = state.higherRoleId ? `<@&${state.higherRoleId}>` : "*Not selected yet*";
-    const embed = prettyEmbed({
+    const embed = prettyEmbed2({
       title: `${CE.roles.str} Partner Staff Role Selection`,
       description: `Select both roles to complete partner staff setup:
 
@@ -150490,7 +150490,7 @@ var init_referral = __esm({
           const stats2 = await getUserReferralStats(targetUser.id);
           const userCodes = await listReferralCodes(targetUser.id);
           const codeListText = userCodes.length > 0 ? userCodes.map((c) => `\u2022 \`${c.code}\` (${c.type.toUpperCase()} \u2022 ${c.usesCount} uses)`).join("\n") : "*No referral codes assigned yet.*";
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.award.str} Referral Statistics \u2014 ${targetUser.username}`,
             description: `### ${CE.award.str} Overview for **${targetUser.username}**
 
@@ -150523,7 +150523,7 @@ ${codeListText}`,
             return;
           }
           if (result.requiresStaffRoleSetup && guild) {
-            const embed2 = prettyEmbed({
+            const embed2 = prettyEmbed2({
               title: `${CE.vip.str} Partner Referral Activated!`,
               description: result.message,
               color: COLORS.success,
@@ -150539,7 +150539,7 @@ ${codeListText}`,
             });
             return;
           }
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.gift.str} Referral Code Redeemed!`,
             description: result.message,
             color: COLORS.success
@@ -150568,7 +150568,7 @@ ${codeListText}`,
               createdBy: user.id,
               maxUses
             });
-            const embed = prettyEmbed({
+            const embed = prettyEmbed2({
               title: `${CE.done.str} Referral Code Created!`,
               description: `Successfully created **${codeType.toUpperCase()}** referral code!
 
@@ -150595,7 +150595,7 @@ ${codeListText}`,
           const higherSelect = new import_discord6.RoleSelectMenuBuilder().setCustomId(`ref:select_higher:${guild.id}`).setPlaceholder("Select Higher Staff Role (LIFETIME User Premium)...").setMinValues(1).setMaxValues(1);
           const row1 = new import_discord6.ActionRowBuilder().addComponents(juniorSelect);
           const row2 = new import_discord6.ActionRowBuilder().addComponents(higherSelect);
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.roles.str} Partner Staff Role Configuration`,
             description: `Configure or update your server's **Junior Staff** and **Higher Staff** roles for **${guild.name}**.
 
@@ -150614,7 +150614,7 @@ Select both roles below using the dropdown menus:`,
           if (codes.length === 0) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.info.str} Referral Codes List`,
                   description: targetUser ? `No referral codes found for <@${targetUser.id}>.` : "No referral codes have been created yet.",
                   color: COLORS.info
@@ -150626,7 +150626,7 @@ Select both roles below using the dropdown menus:`,
           const listText = codes.slice(0, 15).map(
             (c) => `\u2022 **\`${c.code}\`** \u2014 Type: \`${c.type.toUpperCase()}\` | Owner: <@${c.ownerId}> | Uses: \`${c.usesCount}\``
           ).join("\n");
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.gift.str} Active Referral Codes (${codes.length})`,
             description: listText,
             color: COLORS.primary
@@ -150639,7 +150639,7 @@ Select both roles below using the dropdown menus:`,
           if (leaderboard.length === 0) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.award.str} Referral Leaderboard`,
                   description: "No referral points recorded yet! Be the first to share referral codes.",
                   color: COLORS.info
@@ -150651,7 +150651,7 @@ Select both roles below using the dropdown menus:`,
           const rowsText = leaderboard.map(
             (u, index) => `**#${index + 1}** <@${u.userId}> \u2014 **${u.points} Points** (${u.partnerRedeems} Partner, ${u.serverRedeems} Server, ${u.userRedeems} User)`
           ).join("\n");
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.award.str} Top Referral Leaderboard`,
             description: `### ${CE.award.str} Top Performers:
 
@@ -194307,7 +194307,7 @@ var init_announce = __esm({
           try {
             await channel.send({
               content: pingEveryone ? "@everyone" : void 0,
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title,
                 description: message,
                 color,
@@ -194318,7 +194318,7 @@ var init_announce = __esm({
             await postSubmit.editReply({ embeds: [errorEmbed("Failed", "Could not post to that channel \u2014 check my permissions.")] });
             return;
           }
-          await postSubmit.editReply({ embeds: [prettyEmbed({
+          await postSubmit.editReply({ embeds: [prettyEmbed2({
             title: "Announcement posted",
             description: `${CE.success.str}
 
@@ -194383,7 +194383,7 @@ ${buildBullets([
           const sendAt = new Date(scheduledFor);
           const readableUtc = sendAt.toUTCString();
           const tzLabel = TIMEZONES.find((t2) => t2.value === tz)?.name ?? tz;
-          await schedSubmit.editReply({ embeds: [prettyEmbed({
+          await schedSubmit.editReply({ embeds: [prettyEmbed2({
             title: "Announcement scheduled",
             description: `${CE.success.str}
 
@@ -194412,7 +194412,7 @@ ${buildBullets([
             return `\u2022 \`${e2.id}\` \u2014 **${e2.title.slice(0, 40)}** in <#${e2.channelId}>
   \u21B3 ${d.toUTCString()} (${tzLabel})`;
           });
-          await interaction.editReply({ embeds: [prettyEmbed({
+          await interaction.editReply({ embeds: [prettyEmbed2({
             title: `Scheduled Announcements \u2014 ${all.length}`,
             description: lines.join("\n\n"),
             color: COLORS.info,
@@ -194428,7 +194428,7 @@ ${buildBullets([
             await interaction.editReply({ embeds: [errorEmbed("Not found", `No scheduled announcement with ID \`${id}\` exists in this server.`)] });
             return;
           }
-          await interaction.editReply({ embeds: [prettyEmbed({
+          await interaction.editReply({ embeds: [prettyEmbed2({
             title: "Announcement cancelled",
             description: `${CE.success.str} Scheduled announcement \`${id}\` has been removed.`,
             color: COLORS.success,
@@ -194989,7 +194989,7 @@ function buildAutoRoleEmbed(guildName, arc) {
   const statusStr = arc.enabled ? `${CE.button_on.str} **ENABLED**` : `${CE.button_off.str} **DISABLED**`;
   const memberRolesStr = arc.memberRoleIds.length > 0 ? arc.memberRoleIds.map((rId) => `<@&${rId}>`).join(", ") : "*No member roles assigned*";
   const botRolesStr = arc.botRoleIds.length > 0 ? arc.botRoleIds.map((rId) => `<@&${rId}>`).join(", ") : "*No bot roles assigned*";
-  return prettyEmbed({
+  return prettyEmbed2({
     title: `${CE.staff.str} AutoRole Configuration \u2014 ${guildName}`,
     description: `Automatically grant specific roles when new **members** or **bots** join the server.
 
@@ -195129,7 +195129,7 @@ var init_autorole = __esm({
           const arc = getAutoRoleConfig(updated);
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.success.str} AutoRole Updated`,
                 description: `AutoRole is now ${arc.enabled ? `${CE.button_on.str} **ENABLED**` : `${CE.button_off.str} **DISABLED**`}.`,
                 color: arc.enabled ? COLORS.success : COLORS.neutral
@@ -195153,7 +195153,7 @@ var init_autorole = __esm({
           const arc = getAutoRoleConfig(updated);
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.success.str} Member AutoRole Added`,
                 description: `Added <@&${role.id}> to member autoroles!
 AutoRole is currently **${arc.enabled ? "ENABLED" : "DISABLED"}**.`,
@@ -195178,7 +195178,7 @@ AutoRole is currently **${arc.enabled ? "ENABLED" : "DISABLED"}**.`,
           const arc = getAutoRoleConfig(updated);
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.success.str} Bot AutoRole Added`,
                 description: `Added <@&${role.id}> to bot autoroles!
 AutoRole is currently **${arc.enabled ? "ENABLED" : "DISABLED"}**.`,
@@ -195199,7 +195199,7 @@ AutoRole is currently **${arc.enabled ? "ENABLED" : "DISABLED"}**.`,
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.trash.str} AutoRole Cleared`,
                 description: `Successfully cleared autorole entries for **${target}**.`,
                 color: COLORS.danger
@@ -195558,7 +195558,7 @@ var init_stats2 = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is currently disabled on **${guild.name}**.
 Enable it in the **.config** menu to activate real-time server tracking and analytics commands!`,
@@ -195856,7 +195856,7 @@ var init_userstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -195927,7 +195927,7 @@ var init_rolestats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -195999,7 +195999,7 @@ var init_serverstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -196070,7 +196070,7 @@ var init_flowstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -196140,7 +196140,7 @@ var init_topstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -196207,7 +196207,7 @@ var init_channelstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -196277,7 +196277,7 @@ var init_hourstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -196352,7 +196352,7 @@ var init_botstats = __esm({
         if (!isStatsEnabled) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Stats Module Disabled`,
                 description: `The **Stats Module** is disabled on **${guild.name}**.
 Enable it in **.config** under **Analytics & Stats** to use this command!`,
@@ -196568,7 +196568,7 @@ var init_automations2 = __esm({
   \u21B3 Then: ${describeAction(a.action)}`;
           });
           await interaction.reply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Automations",
               description: lines.join("\n\n"),
               color: COLORS.neutral,
@@ -197108,7 +197108,7 @@ var init_ban_request = __esm({
           await interaction.editReply({ embeds: [errorEmbed("Channel not found", "The configured ban request channel is invalid.")] });
           return;
         }
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Ban Request",
           color: COLORS.danger,
           description: `${CE.moderation.str}
@@ -197166,7 +197166,7 @@ ${CE.information.str} Click the button below to appeal this punishment before le
 
 ${CE.information.str} Click the button below to appeal this punishment.`;
   }
-  const embed = prettyEmbed({
+  const embed = prettyEmbed2({
     title: `You have been ${label}`,
     description: `${emoji}
 
@@ -197566,7 +197566,7 @@ function buildOwnerPermissionEmbed(guild, requiredPerms, actionContext) {
   const permList = Array.isArray(requiredPerms) ? requiredPerms : [requiredPerms];
   const formattedPerms = permList.map((p) => `\u2022 ${CE.settings.str} **${PERMISSION_NAMES[p] || p}**`).join("\n");
   const ownerMention = guild.ownerId ? `<@${guild.ownerId}>` : "Server Owner";
-  return prettyEmbed({
+  return prettyEmbed2({
     title: `${CE.warning.str} Bot Permission Required \u2022 Action for Server Owner`,
     description: `### Attention ${ownerMention} (Server Owner)
 Zenith Bot was requested to execute **${actionContext || "a server action"}** in **${guild.name}**, but is currently missing required Discord permissions.
@@ -197977,7 +197977,7 @@ var init_ban = __esm({
             const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
             if (modChannel && modChannel.type === import_discord34.ChannelType.GuildText) {
               await modChannel.send({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: `Ban${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
                   description: `${CE.moderation.str}
 
@@ -198643,7 +198643,7 @@ var init_botavatar = __esm({
         const isGuildOwner = guild.ownerId === authorId;
         const isAdmin2 = member?.permissions?.has(import_discord39.PermissionFlagsBits.Administrator) ?? false;
         if (!isPremium && !isPermOwner) {
-          const upgradeEmbed = prettyEmbed({
+          const upgradeEmbed = prettyEmbed2({
             title: "Zenith Premium Feature Required",
             color: 15844367,
             description: `### ${CE.star.str} **Custom Server Bot Avatar & Identity**
@@ -198713,7 +198713,7 @@ ${CE.white_premium.str} **Upgrade to Premium:** [Claim VIP Access](https://disco
               delete next.customBotProfile;
               return next;
             });
-            const resetEmbed = prettyEmbed({
+            const resetEmbed = prettyEmbed2({
               title: "Server Bot Identity Reset",
               color: COLORS.success,
               description: `### ${CE.check.str} **Bot Identity Restored to Default**
@@ -198732,7 +198732,7 @@ The bot's server avatar and nickname for **${guild.name}** have been reset to gl
           }
         }
         if (!targetImageUrl && !newName) {
-          const usageEmbed = prettyEmbed({
+          const usageEmbed = prettyEmbed2({
             title: "Custom Server Bot Profile & Avatar",
             color: COLORS.primary,
             description: `### ${CE.owner.str} **How to customize the bot's server appearance:**
@@ -198826,7 +198826,7 @@ The bot's server avatar and nickname for **${guild.name}** have been reset to gl
           }
           return { ...cfg, customBotProfile: nextProfile };
         });
-        const confirmEmbed = prettyEmbed({
+        const confirmEmbed = prettyEmbed2({
           title: "Server Bot Identity Updated",
           color: COLORS.success,
           description: `### ${CE.check.str} **Custom Appearance Activated**
@@ -198906,7 +198906,7 @@ var init_gbotavatar = __esm({
           }
         }
         if (!targetImageUrl && !finalGlobalName) {
-          const usageEmbed = prettyEmbed({
+          const usageEmbed = prettyEmbed2({
             title: "Global Bot Identity Usage",
             color: COLORS.primary,
             description: `### \u{1F6E0}\uFE0F **How to customize globally:**
@@ -198979,7 +198979,7 @@ var init_gbotavatar = __esm({
             return;
           }
         }
-        const confirmEmbed = prettyEmbed({
+        const confirmEmbed = prettyEmbed2({
           title: "Global Bot Identity Updated",
           color: COLORS.success,
           description: `### ${CE.check.str} **Global Custom Appearance Activated**
@@ -199048,7 +199048,7 @@ var init_botinfo = __esm({
         const hostHours = Math.floor(hostUptimeSec % 86400 / 3600);
         const hostMins = Math.floor(hostUptimeSec % 3600 / 60);
         const hostUptimeStr = `${hostDays > 0 ? `${hostDays}d ` : ""}${hostHours}h ${hostMins}m`;
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Zenith Intelligence \u2014 Verified Bot Infrastructure",
           description: `### ${CE.bot.str} **Zenith Bot Overview**
 **Badges:** <:sk_automations:1551170176882835497> \`Uses AutoMod\` \u2022 <:sk_connect:1551170269559951381> \`Supports Commands\` \u2022 <:sk_badge_owner:1551170151322746971> \`Verified Bot\`
@@ -199168,7 +199168,7 @@ var init_case = __esm({
             return;
           }
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `Case #${c.case_number} \u2014 ${c.action.toUpperCase()}`,
               description: buildBullets([
                 { label: "Target", value: `<@${c.target_id}>` },
@@ -199192,7 +199192,7 @@ var init_case = __esm({
             (c) => `\u2022 \`#${c.case_number}\` **${c.action.toUpperCase()}** \u2014 ${c.reason.slice(0, 60)}${c.reason.length > 60 ? "\u2026" : ""} ${c.active ? "" : "*(void)*"}`
           );
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `Cases \u2014 ${target.tag}`,
               description: lines.join("\n"),
               thumbnail: target.displayAvatarURL({ size: 256 }),
@@ -199761,7 +199761,7 @@ var init_choice = __esm({
         }
         const picked = items[Math.floor(Math.random() * items.length)];
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "The choice is...",
             description: `${CE.success.str}
 
@@ -201353,7 +201353,7 @@ __export(tickets_exports, {
   getOpenTicketByChannel: () => getOpenTicketByChannel,
   getOpenTicketsByUser: () => getOpenTicketsByUser,
   getTicketsConfig: () => getTicketsConfig,
-  updateTicketsConfig: () => updateTicketsConfig
+  updateTicketsConfig: () => updateTicketsConfig2
 });
 async function load25() {
   if (cache26) return cache26;
@@ -201381,7 +201381,7 @@ async function getTicketsConfig(guildId) {
   const data = await load25();
   return data[guildId]?.config ?? emptyGuild().config;
 }
-async function updateTicketsConfig(guildId, fn) {
+async function updateTicketsConfig2(guildId, fn) {
   const data = await load25();
   if (!data[guildId]) data[guildId] = emptyGuild();
   data[guildId].config = fn(data[guildId].config);
@@ -204370,7 +204370,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:toggle") {
-              const tc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: !c.enabled }));
+              const tc = await updateTicketsConfig2(guildId, (c) => ({ ...c, enabled: !c.enabled }));
               await safeUpdate(i2, { embeds: [buildTicketsOverviewEmbed(tc)], components: ticketsOverviewRows(tc) });
               return;
             }
@@ -204382,7 +204382,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:supportRoleResult" && i2.isRoleSelectMenu()) {
-              const tc = await updateTicketsConfig(guildId, (c) => ({ ...c, supportRoleId: i2.values[0] }));
+              const tc = await updateTicketsConfig2(guildId, (c) => ({ ...c, supportRoleId: i2.values[0] }));
               await safeUpdate(i2, { embeds: [buildTicketsOverviewEmbed(tc)], components: ticketsOverviewRows(tc) });
               return;
             }
@@ -204394,7 +204394,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:adminRoleResult" && i2.isRoleSelectMenu()) {
-              const tc = await updateTicketsConfig(guildId, (c) => ({ ...c, adminRoleId: i2.values[0] }));
+              const tc = await updateTicketsConfig2(guildId, (c) => ({ ...c, adminRoleId: i2.values[0] }));
               await safeUpdate(i2, { embeds: [buildTicketsOverviewEmbed(tc)], components: ticketsOverviewRows(tc) });
               return;
             }
@@ -204406,7 +204406,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:logChResult" && i2.isChannelSelectMenu()) {
-              const tc = await updateTicketsConfig(guildId, (c) => ({ ...c, logChannelId: i2.values[0] }));
+              const tc = await updateTicketsConfig2(guildId, (c) => ({ ...c, logChannelId: i2.values[0] }));
               await safeUpdate(i2, { embeds: [buildTicketsOverviewEmbed(tc)], components: ticketsOverviewRows(tc) });
               return;
             }
@@ -204418,7 +204418,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:transcriptChResult" && i2.isChannelSelectMenu()) {
-              const tc = await updateTicketsConfig(guildId, (c) => ({ ...c, transcriptChannelId: i2.values[0] }));
+              const tc = await updateTicketsConfig2(guildId, (c) => ({ ...c, transcriptChannelId: i2.values[0] }));
               await safeUpdate(i2, { embeds: [buildTicketsOverviewEmbed(tc)], components: ticketsOverviewRows(tc) });
               return;
             }
@@ -204443,7 +204443,7 @@ var init_config2 = __esm({
                   buttonLabel: submit.fields.getTextInputValue("buttonLabel"),
                   buttonEmoji: submit.fields.getTextInputValue("buttonEmoji") || void 0
                 };
-                await updateTicketsConfig(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: panel } }));
+                await updateTicketsConfig2(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: panel } }));
                 if (submit.isFromMessage()) {
                   await safeSubmitUpdate(submit, { embeds: [buildTicketPanelEmbed(panel)], components: ticketPanelRows(panel) });
                 } else {
@@ -204476,7 +204476,7 @@ var init_config2 = __esm({
               try {
                 const submit = await i2.awaitModalSubmit({ filter: (s2) => s2.customId === `cfg:tickets:panel:editModal:${panelId}` && s2.user.id === i2.user.id, time: 5 * 60 * 1e3 });
                 const updated = { ...panel, embedTitle: submit.fields.getTextInputValue("embedTitle"), embedDescription: submit.fields.getTextInputValue("embedDescription") || "", buttonLabel: submit.fields.getTextInputValue("buttonLabel"), buttonEmoji: submit.fields.getTextInputValue("buttonEmoji") || void 0 };
-                await updateTicketsConfig(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: updated } }));
+                await updateTicketsConfig2(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: updated } }));
                 if (submit.isFromMessage()) {
                   await safeSubmitUpdate(submit, { embeds: [buildTicketPanelEmbed(updated)], components: ticketPanelRows(updated) });
                 } else {
@@ -204496,7 +204496,7 @@ var init_config2 = __esm({
             }
             if (id.startsWith("cfg:tickets:panel:supportRoleRes:") && i2.isRoleSelectMenu()) {
               const panelId = id.slice("cfg:tickets:panel:supportRoleRes:".length);
-              const tc = await updateTicketsConfig(guildId, (c) => {
+              const tc = await updateTicketsConfig2(guildId, (c) => {
                 if (!c.panels[panelId]) return c;
                 return { ...c, panels: { ...c.panels, [panelId]: { ...c.panels[panelId], supportRoleId: i2.values[0] } } };
               });
@@ -204515,7 +204515,7 @@ var init_config2 = __esm({
             }
             if (id.startsWith("cfg:tickets:panel:categoryRes:") && i2.isChannelSelectMenu()) {
               const panelId = id.slice("cfg:tickets:panel:categoryRes:".length);
-              const tc = await updateTicketsConfig(guildId, (c) => {
+              const tc = await updateTicketsConfig2(guildId, (c) => {
                 if (!c.panels[panelId]) return c;
                 return { ...c, panels: { ...c.panels, [panelId]: { ...c.panels[panelId], categoryId: i2.values[0] } } };
               });
@@ -204534,7 +204534,7 @@ var init_config2 = __esm({
             }
             if (id.startsWith("cfg:tickets:panel:channelRes:") && i2.isChannelSelectMenu()) {
               const panelId = id.slice("cfg:tickets:panel:channelRes:".length);
-              const tc = await updateTicketsConfig(guildId, (c) => {
+              const tc = await updateTicketsConfig2(guildId, (c) => {
                 if (!c.panels[panelId]) return c;
                 return { ...c, panels: { ...c.panels, [panelId]: { ...c.panels[panelId], panelChannelId: i2.values[0] } } };
               });
@@ -204572,29 +204572,32 @@ var init_config2 = __esm({
                 await ch.messages.fetch(panel.panelMessageId).then((m2) => m2.delete()).catch(() => {
                 });
               }
-              const panelEmbed = new import_discord55.EmbedBuilder().setTitle(panel.embedTitle).setDescription(panel.embedDescription || null).setColor(panel.embedColor || 2829617);
+              const panelEmbed = prettyEmbed({ title: panel.embedTitle, description: panel.embedDescription || void 0, color: panel.embedColor || 2829617 });
               const btnB = new import_discord55.ButtonBuilder().setCustomId(`ticket:open:${panelId}:${guildId}`).setLabel(panel.buttonLabel).setStyle(import_discord55.ButtonStyle.Primary);
               if (panel.buttonEmoji) {
                 const cm = panel.buttonEmoji.match(/^<a?:(\w+):(\d+)>$/);
                 if (cm) {
-                  btnB.setEmoji({ name: cm[1], id: cm[2] });
+                  btnB.setEmoji({ name: cm[1], id: cm[2], animated: panel.buttonEmoji.startsWith("<a:") });
                 } else {
                   btnB.setEmoji(panel.buttonEmoji);
                 }
+              } else {
+                btnB.setEmoji({ id: CE.ticket.id, name: CE.ticket.name, animated: CE.ticket.animated });
               }
-              const msg = await ch.send({ embeds: [panelEmbed], components: [new import_discord55.ActionRowBuilder().addComponents(btnB)] }).catch(() => null);
+              const row2 = new import_discord55.ActionRowBuilder().addComponents(btnB);
+              const msg = await ch.send({ embeds: [panelEmbed], components: [row2] }).catch(() => null);
               if (!msg) {
                 await i2.reply({ content: "Failed to post. Check my permissions.", ephemeral: true });
                 return;
               }
-              const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: { ...c.panels[panelId], panelMessageId: msg.id } } }));
+              const updatedTc = await updateTicketsConfig2(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: { ...c.panels[panelId], panelMessageId: msg.id } } }));
               const updatedPanel = updatedTc.panels[panelId];
               await safeUpdate(i2, { embeds: [buildTicketPanelEmbed(updatedPanel)], components: ticketPanelRows(updatedPanel) });
               return;
             }
             if (id.startsWith("cfg:tickets:panel:delete:")) {
               const panelId = id.slice("cfg:tickets:panel:delete:".length);
-              const tc = await updateTicketsConfig(guildId, (c) => {
+              const tc = await updateTicketsConfig2(guildId, (c) => {
                 const panels = { ...c.panels };
                 delete panels[panelId];
                 return { ...c, panels };
@@ -204629,7 +204632,7 @@ var init_config2 = __esm({
                   embedDescription: submit.fields.getTextInputValue("embedDescription"),
                   useButtons: rawStyle !== "dropdown"
                 };
-                const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, multiPanel: newMp }));
+                const updatedTc = await updateTicketsConfig2(guildId, (c) => ({ ...c, multiPanel: newMp }));
                 if (submit.isFromMessage()) {
                   await safeSubmitUpdate(submit, { embeds: [buildMultiPanelEmbed(updatedTc)], components: multiPanelRows(updatedTc) });
                 } else {
@@ -204654,7 +204657,7 @@ var init_config2 = __esm({
               await i2.showModal(modal);
               try {
                 const submit = await i2.awaitModalSubmit({ filter: (s2) => s2.customId === "cfg:tickets:multiPanel:editModal" && s2.user.id === i2.user.id, time: 5 * 60 * 1e3 });
-                const updatedTc = await updateTicketsConfig(guildId, (c) => ({
+                const updatedTc = await updateTicketsConfig2(guildId, (c) => ({
                   ...c,
                   multiPanel: c.multiPanel ? { ...c.multiPanel, embedTitle: submit.fields.getTextInputValue("embedTitle"), embedDescription: submit.fields.getTextInputValue("embedDescription") } : c.multiPanel
                 }));
@@ -204668,7 +204671,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:multiPanel:toggleStyle") {
-              const tc = await updateTicketsConfig(guildId, (c) => ({
+              const tc = await updateTicketsConfig2(guildId, (c) => ({
                 ...c,
                 multiPanel: c.multiPanel ? { ...c.multiPanel, useButtons: !c.multiPanel.useButtons } : c.multiPanel
               }));
@@ -204676,7 +204679,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:multiPanel:setPanelsRes" && i2.isStringSelectMenu()) {
-              const tc = await updateTicketsConfig(guildId, (c) => ({
+              const tc = await updateTicketsConfig2(guildId, (c) => ({
                 ...c,
                 multiPanel: c.multiPanel ? { ...c.multiPanel, panelIds: i2.values } : c.multiPanel
               }));
@@ -204694,7 +204697,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:multiPanel:channelRes" && i2.isChannelSelectMenu()) {
-              const tc = await updateTicketsConfig(guildId, (c) => ({
+              const tc = await updateTicketsConfig2(guildId, (c) => ({
                 ...c,
                 multiPanel: c.multiPanel ? { ...c.multiPanel, channelId: i2.values[0] } : c.multiPanel
               }));
@@ -204729,7 +204732,7 @@ var init_config2 = __esm({
                 await postCh.messages.fetch(mp.messageId).then((m2) => m2.delete()).catch(() => {
                 });
               }
-              const panelEmbed = new import_discord55.EmbedBuilder().setTitle(mp.embedTitle).setDescription(mp.embedDescription || null).setColor(2829617);
+              const panelEmbed = prettyEmbed({ title: mp.embedTitle, description: mp.embedDescription || void 0, color: 5793266 });
               const includedPanels = mp.panelIds.map((pid) => tc.panels[pid]).filter(Boolean);
               let msgComponents;
               if (mp.useButtons) {
@@ -204741,8 +204744,10 @@ var init_config2 = __esm({
                       const btn = new import_discord55.ButtonBuilder().setCustomId(`ticket:open:${p.id}:${guildId}`).setLabel(p.buttonLabel).setStyle(import_discord55.ButtonStyle.Primary);
                       if (p.buttonEmoji) {
                         const cm = p.buttonEmoji.match(/^<a?:(\w+):(\d+)>$/);
-                        if (cm) btn.setEmoji({ name: cm[1], id: cm[2] });
+                        if (cm) btn.setEmoji({ name: cm[1], id: cm[2], animated: p.buttonEmoji.startsWith("<a:") });
                         else btn.setEmoji(p.buttonEmoji);
+                      } else {
+                        btn.setEmoji({ id: CE.ticket.id, name: CE.ticket.name, animated: CE.ticket.animated });
                       }
                       return btn;
                     })
@@ -204750,12 +204755,19 @@ var init_config2 = __esm({
                 }
                 msgComponents = btnRows;
               } else {
-                const select = new import_discord55.StringSelectMenuBuilder().setCustomId(`ticket:multipanel:select:${guildId}`).setPlaceholder("Choose a ticket category\u2026").addOptions(
-                  includedPanels.map((p) => ({
-                    label: p.buttonLabel.slice(0, 25),
-                    value: p.id,
-                    description: p.name.slice(0, 50)
-                  }))
+                const select = new import_discord55.StringSelectMenuBuilder().setCustomId(`ticket:multipanel:select:${guildId}`).setPlaceholder("Click to choose a ticket category...").addOptions(
+                  includedPanels.map((p) => {
+                    const opt = {
+                      label: p.buttonLabel.slice(0, 25),
+                      value: p.id,
+                      description: p.name.slice(0, 50)
+                    };
+                    if (p.buttonEmoji) {
+                      const cm = p.buttonEmoji.match(/^<a?:(\w+):(\d+)>$/);
+                      if (cm) opt.emoji = { name: cm[1], id: cm[2] };
+                    }
+                    return opt;
+                  })
                 );
                 msgComponents = [new import_discord55.ActionRowBuilder().addComponents(select)];
               }
@@ -204764,7 +204776,7 @@ var init_config2 = __esm({
                 await i2.reply({ content: "Failed to post. Check my permissions.", ephemeral: true });
                 return;
               }
-              const updatedTc = await updateTicketsConfig(guildId, (c) => ({
+              const updatedTc = await updateTicketsConfig2(guildId, (c) => ({
                 ...c,
                 multiPanel: c.multiPanel ? { ...c.multiPanel, messageId: msg.id } : c.multiPanel
               }));
@@ -204772,7 +204784,7 @@ var init_config2 = __esm({
               return;
             }
             if (id === "cfg:tickets:multiPanel:delete") {
-              const tc = await updateTicketsConfig(guildId, (c) => ({ ...c, multiPanel: void 0 }));
+              const tc = await updateTicketsConfig2(guildId, (c) => ({ ...c, multiPanel: void 0 }));
               await safeUpdate(i2, { embeds: [buildTicketsOverviewEmbed(tc)], components: ticketsOverviewRows(tc) });
               return;
             }
@@ -204813,7 +204825,7 @@ var init_config2 = __esm({
                 const style = rawStyle === "paragraph" ? "paragraph" : "short";
                 const required = rawRequired !== "no";
                 const newQuestion = { label, style, required };
-                const updatedTc = await updateTicketsConfig(guildId, (c) => {
+                const updatedTc = await updateTicketsConfig2(guildId, (c) => {
                   const p = c.panels[panelId];
                   if (!p) return c;
                   return { ...c, panels: { ...c.panels, [panelId]: { ...p, questions: [...p.questions ?? [], newQuestion] } } };
@@ -204833,7 +204845,7 @@ var init_config2 = __esm({
               const lastColon = rest.lastIndexOf(":");
               const panelId = rest.slice(0, lastColon);
               const idx = parseInt(rest.slice(lastColon + 1), 10);
-              const updatedTc = await updateTicketsConfig(guildId, (c) => {
+              const updatedTc = await updateTicketsConfig2(guildId, (c) => {
                 const p = c.panels[panelId];
                 if (!p) return c;
                 const qs = [...p.questions ?? []];
@@ -207891,7 +207903,7 @@ var init_customer_points = __esm({
           const purchaseLines = record.purchases.slice(-10).reverse().map(
             (p, i2) => `**${i2 + 1}.** ${p.item} @ ${p.price} \u2014 <t:${Math.floor(p.date / 1e3)}:d> (Staff: <@${p.staffId}>)`
           );
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.ltc.str} Customer Points \u2014 ${user.tag}`,
             color: COLORS.primary,
             fields: [
@@ -208594,7 +208606,7 @@ var init_edit_case = __esm({
         if (Object.keys(updates).length === 0) {
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `Case #${caseNumber} \u2014 ${existing.action}`,
                 color: COLORS.info,
                 fields: [
@@ -208876,7 +208888,7 @@ Explicit content filter: ${backup.settings.explicitContentFilter}`, inline: fals
             const result = await restoreBackup(interaction.guild, backup);
             const errSnippet = result.errors.slice(0, 5).map((e2) => `\u2022 ${e2}`).join("\n");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: `${result.errors.length === 0 ? CE.success.str : CE.warning.str} Restore Complete \u2014 Backup ${id}`,
                 description: `Restored backup from **${backup.guildName}** taken <t:${Math.floor(backup.takenAt / 1e3)}:R>.
 
@@ -208927,7 +208939,7 @@ var init_hide = __esm({
           );
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.locked.str} Channel Hidden`,
                 description: `Successfully hidden <#${channel.id}> from **@everyone**.
 Only members with explicit access or administrator bypass can see it now.`,
@@ -208976,7 +208988,7 @@ var init_show = __esm({
           );
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.success.str} Channel Visible`,
                 description: `Successfully restored visibility for <#${channel.id}> to **@everyone**.`,
                 color: COLORS.success
@@ -209242,7 +209254,7 @@ async function checkBotStatusCommandAccess(userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Developer-Only Access Mode",
         description: `Zenith Bot is currently locked in **Developer-Only Access Mode** for direct system debugging.
 
@@ -209258,7 +209270,7 @@ async function checkBotStatusCommandAccess(userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "System Lockdown Active",
         description: `Zenith Bot is currently in **Emergency Lockdown Mode**.
 
@@ -209274,7 +209286,7 @@ async function checkBotStatusCommandAccess(userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Undergoing Scheduled Maintenance",
         description: `Zenith Bot is currently undergoing **Scheduled Core Maintenance**.
 
@@ -209290,7 +209302,7 @@ async function checkBotStatusCommandAccess(userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Service Temporarily Offline",
         description: `Zenith Bot is currently **Service Offline** due to system or database issues.
 
@@ -209307,7 +209319,7 @@ async function checkBotStatusCommandAccess(userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "VIP-Only Access Mode",
         description: `Zenith Bot is currently operating in **VIP-Only Access Mode**.
 
@@ -209363,7 +209375,7 @@ async function checkSingleCommandAccess(commandName, userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Developer-Only Command Access",
         description: `The command \`/${commandName}\` is currently locked in **Developer-Only Access Mode**.
 
@@ -209378,7 +209390,7 @@ async function checkSingleCommandAccess(commandName, userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Command Locked Down",
         description: `The command \`/${commandName}\` is currently in **Emergency Lockdown Mode**.
 
@@ -209393,7 +209405,7 @@ async function checkSingleCommandAccess(commandName, userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Command Under Maintenance",
         description: `The command \`/${commandName}\` is currently undergoing **Scheduled Maintenance**.
 
@@ -209408,7 +209420,7 @@ async function checkSingleCommandAccess(commandName, userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "Command Temporarily Offline",
         description: `The command \`/${commandName}\` is currently **Offline** due to an active service outage.
 
@@ -209424,7 +209436,7 @@ async function checkSingleCommandAccess(commandName, userId) {
     }
     return {
       allowed: false,
-      embed: prettyEmbed({
+      embed: prettyEmbed2({
         title: "VIP-Only Command",
         description: `The command \`/${commandName}\` is currently restricted to **VIP & Staff Only**.
 
@@ -209836,7 +209848,7 @@ var init_help = __esm({
         const buildEmbed2 = (categoryId) => {
           const cat = localCategories.find((c) => c.id === categoryId);
           if (categoryId === "overview") {
-            return prettyEmbed({
+            return prettyEmbed2({
               title: "Zenith Tester \u2022 Feature Staging & Systems Hub",
               description: `### ${CE.white_bot.str}  **Official Testing & Staging Environment**
 
@@ -209858,7 +209870,7 @@ This instance is used to test and refine the Zenith Bot ecosystem before product
             });
           }
           if (categoryId === "setup") {
-            return prettyEmbed({
+            return prettyEmbed2({
               title: "Zenith Bot \u2014 Server Setup Guide",
               description: `### ${CE.white_settings.str}  **Quick Setup Walkthrough**
 
@@ -209880,7 +209892,7 @@ Follow these essential steps to configure Zenith for maximum security:
             });
           }
           if (categoryId === "faq") {
-            return prettyEmbed({
+            return prettyEmbed2({
               title: "Zenith Bot \u2014 Frequently Asked Questions",
               description: `### ${CE.list.str}  **Frequently Asked Questions**
 
@@ -209900,7 +209912,7 @@ Follow these essential steps to configure Zenith for maximum security:
             });
           }
           if (categoryId === "premium") {
-            return prettyEmbed({
+            return prettyEmbed2({
               title: "Zenith Bot \u2014 Premium VIP Tier & Perks",
               description: `### ${CE.white_premium.str}  **Take Your Server to the Top Tier**
 
@@ -209937,7 +209949,7 @@ Tired of bots crashing, laggy music, and server raids? Zenith Premium delivers e
             if (mode === "vip_only") return ` ${CE.white_premium.str} \`VIP ONLY\``;
             return "";
           };
-          return prettyEmbed({
+          return prettyEmbed2({
             title: `${cat?.label || "Command"} Suite`,
             description: `### ${cat?.emojiStr || CE.list.str}  **${cat?.label || "Category"} Commands (${cmds.length})**
 
@@ -210297,7 +210309,7 @@ var init_infractions = __esm({
           if (infractionCfg.dmOnInfraction) {
             const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
             target.send({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: `Staff infraction logged: ${typeLabel}`,
                 description: `${CE.warning.str}
 
@@ -210845,7 +210857,7 @@ var init_loa2 = __esm({
             return;
           }
           const loa = await createLOA(interaction.guildId, interaction.user.id, finalReason, returnDate);
-          const requestEmbed = prettyEmbed({
+          const requestEmbed = prettyEmbed2({
             title: "Leave of Absence Request",
             description: `${CE.information.str}
 
@@ -210861,7 +210873,7 @@ ${buildBullets([
             footer: `Submitted \u2022 Zenith Bot`
           });
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "LOA request submitted",
               description: `${CE.success.str}
 
@@ -210876,7 +210888,7 @@ ${buildBullets([
             })]
           });
           interaction.user.send({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "LOA Request Submitted",
               description: `${CE.information.str}
 
@@ -210922,7 +210934,7 @@ ${buildBullets([
             return `\u2022 ${statusEmoji(r2.status)} <@${r2.userId}> \u2014 ${truncated}${r2.returnDate ? ` *(returns ${r2.returnDate})*` : ""}`;
           });
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `LOA Requests \u2014 ${statusFilter === "all" ? "All" : statusFilter.charAt(0).toUpperCase() + statusFilter.slice(1)}`,
               description: lines.join("\n"),
               color: COLORS.info,
@@ -210938,7 +210950,7 @@ ${buildBullets([
           }
           await updateLOAStatus(interaction.guildId, pending.id, "approved", interaction.user.tag);
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "LOA approved",
               description: `${CE.success.str}
 
@@ -210954,7 +210966,7 @@ ${buildBullets([
             })]
           });
           target.send({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Your LOA has been approved",
               description: `${CE.success.str}
 
@@ -210974,7 +210986,7 @@ ${buildBullets([
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
             if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: "LOA Approved",
                   description: buildBullets([
                     { label: "Staff Member", value: `<@${target.id}> \u2014 ${target.tag}` },
@@ -211000,7 +211012,7 @@ ${buildBullets([
           }
           await updateLOAStatus(interaction.guildId, pending.id, "denied", interaction.user.tag);
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "LOA denied",
               description: `${CE.error.str}
 
@@ -211015,7 +211027,7 @@ ${buildBullets([
             })]
           });
           target.send({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Your LOA request was denied",
               description: `${CE.error.str}
 
@@ -211034,7 +211046,7 @@ ${buildBullets([
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
             if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: "LOA Denied",
                   description: buildBullets([
                     { label: "Staff Member", value: `<@${target.id}> \u2014 ${target.tag}` },
@@ -211059,7 +211071,7 @@ ${buildBullets([
             embeds: [successEmbed("Welcome back!", `Your LOA has been marked as ended. Good to have you back, <@${interaction.user.id}>!`)]
           });
           interaction.user.send({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Your LOA has ended",
               description: `${CE.success.str}
 
@@ -211078,7 +211090,7 @@ ${buildBullets([
             const ch = await interaction.guild.channels.fetch(loaChannelId).catch(() => null);
             if (ch && ch.type === import_discord80.ChannelType.GuildText) {
               await ch.send({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: "Staff Member Returned from LOA",
                   description: buildBullets([
                     { label: "Staff Member", value: `<@${interaction.user.id}> \u2014 ${interaction.user.tag}` },
@@ -211145,7 +211157,7 @@ ${buildBullets([
           for (const r2 of all) counts[r2.status]++;
           const summary = `${CE.success.str} ${counts.approved + counts.ended} approved  \u2022  ${CE.error.str} ${counts.denied} denied  \u2022  ${CE.loading.str} ${counts.pending} pending`;
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `LOA History \u2014 ${subject.tag}`,
               description: `${summary}
 
@@ -211193,7 +211205,7 @@ var init_lock = __esm({
           await interaction.reply({ embeds: [errorEmbed("Failed", "Could not lock the channel \u2014 check my permissions.")], ephemeral: true });
           return;
         }
-        const lockEmbed = prettyEmbed({
+        const lockEmbed = prettyEmbed2({
           title: "Channel locked",
           description: `${CE.admin.str}
 
@@ -211514,7 +211526,7 @@ var init_maintenance = __esm({
           ].filter(Boolean).join("\n");
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.settings.str} Maintenance Setup Complete`,
                 description: lines + "\n\nRun `/maintenance panel` to post the Start/End control panel.",
                 color: COLORS.success ?? 3066993
@@ -211591,7 +211603,7 @@ Custom Text: "${text}"` : ""}`,
           ].join("\n");
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.settings.str} Maintenance Status`,
                 description: lines,
                 color: active ? 15158332 : COLORS.success ?? 3066993
@@ -211686,7 +211698,7 @@ var init_modhistory = __esm({
           (c) => `\u2022 \`#${c.case_number}\` **${c.action.toUpperCase()}** \u2192 <@${c.target_id}> \u2014 ${c.reason.slice(0, 50)}${c.reason.length > 50 ? "\u2026" : ""}`
         );
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: `Mod history \u2014 ${target.tag}`,
             description: `${buildBullets([{ label: "Summary", value: summary }])}
 
@@ -211767,7 +211779,7 @@ var init_modstats2 = __esm({
             scope,
             weekStartDay
           );
-          return prettyEmbed({
+          return prettyEmbed2({
             title: `Modstats \u2014 ${target.tag}`,
             description: renderSingle(summary),
             color: COLORS.staff,
@@ -211941,7 +211953,7 @@ var init_mute = __esm({
           await recordModStat({ guildId: interaction.guildId, modId: interaction.user.id, targetId: target.id, action: "mute", delta: 1, reason });
           await bumpModAction(interaction.guildId, interaction.user.id, cfg?.quotaConfig?.weekStartDay ?? 0);
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: caseNumber ? `Muted \u2014 Case #${caseNumber}` : "Muted",
               description: `${CE.mute.str}
 
@@ -211961,7 +211973,7 @@ ${buildBullets([
             const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
             if (modChannel && modChannel.type === import_discord86.ChannelType.GuildText) {
               await modChannel.send({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: `Mute${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
                   description: `${CE.mute.str}
 
@@ -212018,7 +212030,7 @@ var init_nickname = __esm({
           return;
         }
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: nickname ? "Nickname changed" : "Nickname reset",
             description: `${CE.success.str}
 
@@ -212065,7 +212077,7 @@ var init_noprefix = __esm({
         const isPremium = await isUserPremium(user.id, guildId, member);
         if (action === "enable" || action === "on") {
           if (!isOwner && !isAdmin2 && !isPremium) {
-            const premiumEmbed = prettyEmbed({
+            const premiumEmbed = prettyEmbed2({
               title: "Zenith Premium Feature Required",
               color: COLORS.premium,
               description: `### ${CE.boost.str} **User-Level No-Prefix Execution**
@@ -212086,7 +212098,7 @@ ${CE.crown.str} **Upgrade today:** [Claim VIP Access](https://discord.gg/gFgAfpS
             return;
           }
           setNoPrefix(user.id, "user", true);
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.success.str} No-Prefix Mode Enabled`,
             description: `### ${CE.check.str} **No-Prefix Execution is now ENABLED!**
 
@@ -212100,7 +212112,7 @@ You can now run commands across servers without typing any prefix (e.g. \`play <
         }
         if (action === "disable" || action === "off") {
           setNoPrefix(user.id, "user", false);
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.white_cancel.str} No-Prefix Mode Disabled`,
             description: `### ${CE.check.str} **No-Prefix Execution is now DISABLED.**
 
@@ -212113,7 +212125,7 @@ The bot will now only respond to messages starting with your server prefix (e.g.
           return;
         }
         const isCurrentlyEnabled = await isNoPrefixEnabled(user.id, guildId);
-        const statusEmbed = prettyEmbed({
+        const statusEmbed = prettyEmbed2({
           title: `${CE.settings.str} User No-Prefix Configuration`,
           description: `### Current Status: **${isCurrentlyEnabled ? `${CE.check.str} ENABLED` : `${CE.white_cancel.str} DISABLED`}**
 
@@ -212216,7 +212228,7 @@ var init_note = __esm({
           const text = interaction.options.getString("note", true);
           const entry = await addNote(interaction.guildId, target.id, text, interaction.user.tag);
           await interaction.reply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Note added",
               description: `${CE.information.str}
 
@@ -212243,7 +212255,7 @@ ${buildBullets([
   *by ${n.addedBy} \u2022 <t:${Math.floor(n.addedAt / 1e3)}:R>*`
           );
           await interaction.reply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `Notes \u2014 ${target.tag}`,
               description: lines.join("\n\n"),
               thumbnail: target.displayAvatarURL({ size: 256 }),
@@ -213248,7 +213260,7 @@ var init_ping = __esm({
         const displayRoundTrip = Math.min(actualRoundTrip, 24 + Math.floor(Math.random() * 5));
         const wsPing = 15 + Math.floor(Math.random() * 3);
         const statusEmoji = CE.success.str;
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Zenith Network Latency & Gateway Response",
           description: `### ${CE.notifications.str}  **WebSocket & Gateway Connectivity**
 
@@ -213328,7 +213340,7 @@ var init_oping = __esm({
         if (!isBotOwner(interaction.user.id)) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Owner Access Required`,
                 description: "The `.oping` / `/oping` command provides raw internal diagnostic metrics and is strictly restricted to the **Bot Owner**.",
                 color: COLORS.danger
@@ -213357,7 +213369,7 @@ var init_oping = __esm({
         let pingEmoji = CE.success.str;
         if (realWsPing > 300) pingEmoji = CE.error.str;
         else if (realWsPing > 150) pingEmoji = CE.warning.str;
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${CE.owner.str} Real Network & Gateway Diagnostics (Owner Only)`,
           description: `### ${CE.notifications.str} **Unmasked Live Metrics**
 
@@ -214641,7 +214653,7 @@ var init_purge = __esm({
         const deleted = await channel.bulkDelete(toDelete, true).catch(() => null);
         const count = deleted?.size ?? toDelete.length;
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "Purge complete",
             description: `${CE.success.str}
 
@@ -215000,7 +215012,7 @@ var init_rolegive = __esm({
           return;
         }
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "Role added",
             description: `${CE.success.str}
 
@@ -215039,7 +215051,7 @@ var init_roleinfo = __esm({
         const createdTs = "createdTimestamp" in role ? role.createdTimestamp : parseInt(((BigInt(role.id) >> 22n) + 1420070400000n).toString());
         const created = Math.floor(createdTs / 1e3);
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: `@${role.name}`,
             description: buildBullets([
               { label: "ID", value: `\`${role.id}\`` },
@@ -215094,7 +215106,7 @@ var init_roleremove = __esm({
           return;
         }
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "Role removed",
             description: `${CE.success.str}
 
@@ -215429,7 +215441,7 @@ async function handleServerBackupTakeModalSubmit(interaction) {
   try {
     const backup = await takeBackup(interaction.guild, "manual", { includeMessages });
     await interaction.editReply({
-      embeds: [prettyEmbed({
+      embeds: [prettyEmbed2({
         title: `${CE.success.str} Backup ${backup.id} Saved`,
         description: `A full snapshot of **${interaction.guild.name}** has been saved.
 
@@ -215493,7 +215505,7 @@ var init_server_backup = __esm({
           const backups = await listBackups(interaction.guildId);
           if (backups.length === 0) {
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "No Backups",
                 description: "No backups found for this server. Use `/server-backup take` to create one.\n\nBackups are also taken automatically each time the bot joins the server.",
                 color: COLORS.neutral
@@ -215506,7 +215518,7 @@ var init_server_backup = __esm({
             return `**${b.id}** \u2014 <t:${Math.floor(b.takenAt / 1e3)}:D> \xB7 ${triggerLabel} \xB7 ${b.roles.length} roles \xB7 ${b.channels.length} channels`;
           });
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `Server Backups \u2014 ${interaction.guild.name}`,
               description: lines.join("\n"),
               color: COLORS.info ?? 2829617,
@@ -215566,7 +215578,7 @@ Explicit content filter: ${backup.settings.explicitContentFilter}`, inline: fals
 ${botList}` : "\nAll bots are already in the server.");
             }
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: `${result.errors.length === 0 ? CE.success.str : CE.warning.str} Restore Complete \u2014 Backup ${id}`,
                 description: `Restored from snapshot taken <t:${Math.floor(backup.takenAt / 1e3)}:R>.
 
@@ -215639,7 +215651,7 @@ var init_servercount = __esm({
         for (let i2 = 0; i2 < lines.length; i2 += PAGE_SIZE3) {
           chunks.push(lines.slice(i2, i2 + PAGE_SIZE3));
         }
-        const header = prettyEmbed({
+        const header = prettyEmbed2({
           title: "Server List",
           description: `${CE.information.str} **Currently in:** ${guilds.size} servers
 **Total Users:** ${totalMembers.toLocaleString()}
@@ -215653,7 +215665,7 @@ var init_servercount = __esm({
         for (let i2 = 1; i2 < chunks.length; i2++) {
           await interaction.followUp({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 description: chunks[i2].join("\n"),
                 color: COLORS.info,
                 footer: `Page ${i2 + 1}/${chunks.length}`
@@ -215687,7 +215699,7 @@ var init_serverinfo = __esm({
         const owner = await guild.fetchOwner().catch(() => null);
         const createdTimestamp = Math.floor(guild.createdTimestamp / 1e3);
         const verificationLevel = guild.verificationLevel.toString();
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${guild.name} \u2014 Server Information`,
           description: `### ${CE.admin.str}  **Guild Overview**
 
@@ -215777,7 +215789,7 @@ async function applyAvatar(interaction, imageUrl, label) {
   }
   const newAvatarUrl = interaction.client.user?.displayAvatarURL({ size: 512 }) ?? imageUrl;
   await interaction.editReply({
-    embeds: [prettyEmbed({
+    embeds: [prettyEmbed2({
       title: `${CE.success.str} Avatar Updated`,
       description: `The bot's avatar has been updated globally \u2014 it now appears everywhere.
 
@@ -215935,7 +215947,7 @@ var init_shop_top_staff = __esm({
         const sort = interaction.options.getString("sort") ?? "rating";
         const allStats = await getAllStaffStats(interaction.guildId);
         if (allStats.length === 0) {
-          await interaction.editReply({ embeds: [prettyEmbed({ title: `${CE.shoppingcart.str} Shop Top Staff`, description: "No sales recorded yet.", color: COLORS.neutral })] });
+          await interaction.editReply({ embeds: [prettyEmbed2({ title: `${CE.shoppingcart.str} Shop Top Staff`, description: "No sales recorded yet.", color: COLORS.neutral })] });
           return;
         }
         const ranked = allStats.map((s2) => ({ ...s2, avg: avgRating(s2), salesCount: s2.sales.length })).filter((s2) => s2.salesCount > 0).sort((a, b) => {
@@ -215951,7 +215963,7 @@ var init_shop_top_staff = __esm({
           const avgStr = s2.avg != null ? `${CE.star_rating.str} ${s2.avg.toFixed(1)}/10` : "No ratings";
           return `${medal} <@${s2.staffId}> \u2014 ${avgStr} \xB7 **${s2.salesCount}** sale${s2.salesCount === 1 ? "" : "s"}`;
         });
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${CE.shoppingcart.str} Shop Top Staff`,
           description: lines.join("\n"),
           color: COLORS.premium,
@@ -216029,7 +216041,7 @@ var init_slowmode = __esm({
         }
         const label = seconds === 0 ? "Slowmode disabled" : `Slowmode set`;
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: label,
             description: `${CE.settings.str}
 
@@ -216807,7 +216819,7 @@ var init_staff_shop_score = __esm({
           const salesLines = stats2.sales.slice(-10).reverse().map(
             (s2, i2) => `**${i2 + 1}.** ${s2.item} @ ${s2.price}${s2.rating != null ? ` ${CE.star_rating.str}${s2.rating}/10` : ""} \u2014 <t:${Math.floor(s2.date / 1e3)}:d> (Ticket: \`${s2.ticketId}\`)`
           );
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.cash.str} Shop Score \u2014 ${staffUser.tag}`,
             color: COLORS.primary,
             fields: [
@@ -217438,7 +217450,7 @@ var init_unban = __esm({
         ).catch(() => null);
         const caseNumber = caseData?.case_number ?? 0;
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: caseNumber ? `Unbanned \u2014 Case #${caseNumber}` : "Unbanned",
             description: `${CE.success.str}
 
@@ -217456,7 +217468,7 @@ ${buildBullets([
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
           if (modChannel && modChannel.type === import_discord139.ChannelType.GuildText) {
             await modChannel.send({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: `Unban${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
                 description: `${CE.success.str}
 
@@ -217677,7 +217689,7 @@ var init_unjail = __esm({
         }).catch(() => null);
         const caseNumber = caseData?.case_number ?? 0;
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: caseNumber ? `Unjailed \u2014 Case #${caseNumber}` : "Unjailed",
             description: `${CE.success.str}
 
@@ -217696,7 +217708,7 @@ ${buildBullets([
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
           if (modChannel && modChannel.type === import_discord141.ChannelType.GuildText) {
             await modChannel.send({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: `Unjail${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
                 description: `${CE.success.str}
 
@@ -217749,7 +217761,7 @@ var init_unlock = __esm({
           await interaction.reply({ embeds: [errorEmbed("Failed", "Could not unlock the channel \u2014 check my permissions.")], ephemeral: true });
           return;
         }
-        const unlockEmbed = prettyEmbed({
+        const unlockEmbed = prettyEmbed2({
           title: "Channel unlocked",
           description: `${CE.success.str}
 
@@ -217824,7 +217836,7 @@ var init_unmute = __esm({
           await member.timeout(null, `Unmuted by ${interaction.user.tag}`);
           await recordModStat({ guildId: interaction.guildId, modId: interaction.user.id, targetId: target.id, action: "unmute", delta: -1, reason: "Unmuted" });
           await interaction.reply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: caseNumber ? `Unmuted \u2014 Case #${caseNumber}` : "Unmuted",
               description: `${CE.success.str}
 
@@ -217841,7 +217853,7 @@ ${buildBullets([
             const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
             if (modChannel && modChannel.type === import_discord143.ChannelType.GuildText) {
               await modChannel.send({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: `Unmute${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
                   description: `${CE.success.str}
 
@@ -217910,7 +217922,7 @@ var init_untimeout = __esm({
         const caseNumber = caseData?.case_number ?? 0;
         await recordModStat({ guildId: interaction.guildId, modId: interaction.user.id, targetId: target.id, action: "untimeout", delta: -1, reason });
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: caseNumber ? `Timeout Removed \u2014 Case #${caseNumber}` : "Timeout Removed",
             description: `${CE.success.str}
 
@@ -217929,7 +217941,7 @@ ${buildBullets([
           const modChannel = await interaction.guild.channels.fetch(modChannelId).catch(() => null);
           if (modChannel && modChannel.type === import_discord144.ChannelType.GuildText) {
             await modChannel.send({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: `Untimeout${caseNumber ? ` \u2014 Case #${caseNumber}` : ""}`,
                 description: `${CE.success.str}
 
@@ -218192,7 +218204,7 @@ var init_userinfo = __esm({
         }
         const { getUserAllBadges: getUserAllBadges2 } = await Promise.resolve().then(() => (init_profile(), profile_exports));
         const { badgeEmojisStr } = await getUserAllBadges2(target.id, interaction.guildId ?? void 0);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${target.tag} \u2014 Identity Dossier`,
           description: `### ${CE.members.str}  **User Profile**
 
@@ -218266,7 +218278,7 @@ var init_vcdeafen = __esm({
           return;
         }
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: deafen ? "VC Deafened" : "VC Undeafened",
             description: `${CE.success.str}
 
@@ -218318,7 +218330,7 @@ var init_vckick = __esm({
           return;
         }
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "Disconnected from voice",
             description: `${CE.success.str}
 
@@ -218371,7 +218383,7 @@ var init_vcmove = __esm({
           return;
         }
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "Moved to voice channel",
             description: `${CE.success.str}
 
@@ -218993,7 +219005,7 @@ var init_welcomer2 = __esm({
         if (!interaction.memberPermissions?.has(import_discord155.PermissionFlagsBits.ManageGuild)) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Permission Denied`,
                 description: "You require the **Manage Server** permission to configure the Welcomer module.",
                 color: COLORS.danger
@@ -219007,7 +219019,7 @@ var init_welcomer2 = __esm({
         const cfg = await getWelcomerConfig(guildId);
         if (sub === "status") {
           const channelMention = cfg.channel.channelId ? `<#${cfg.channel.channelId}>` : "`Not Configured`";
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.members.str} Welcomer Module Configuration`,
             description: `### ${CE.settings.str} **Current Settings**
 
@@ -219030,7 +219042,7 @@ var init_welcomer2 = __esm({
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Welcomer Module Updated`,
                 description: `Welcome announcements have been **${enabled ? "ENABLED" : "DISABLED"}**.`,
                 color: enabled ? COLORS.success : COLORS.danger
@@ -219048,7 +219060,7 @@ var init_welcomer2 = __esm({
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Welcome Channel Configured`,
                 description: `Welcome announcements will now be delivered to <#${ch.id}>.`,
                 color: COLORS.success
@@ -219067,7 +219079,7 @@ var init_welcomer2 = __esm({
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Welcome Message Updated`,
                 description: `Welcome message template updated to:
 
@@ -219085,7 +219097,7 @@ var init_welcomer2 = __esm({
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Welcome Display Mode Updated`,
                 description: `Welcome display format set to **\`${format.toUpperCase()}\`**.`,
                 color: COLORS.success
@@ -219098,7 +219110,7 @@ var init_welcomer2 = __esm({
           if (!cfg.channel.channelId) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.error.str} Welcome Channel Missing`,
                   description: "Please set a welcome channel first using `/welcomer channel` or `.welcomer channel <#channel>`.",
                   color: COLORS.danger
@@ -219112,7 +219124,7 @@ var init_welcomer2 = __esm({
           if (!targetChannel) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.error.str} Channel Not Found`,
                   description: "The configured welcome channel could not be found or fetched.",
                   color: COLORS.danger
@@ -219122,7 +219134,7 @@ var init_welcomer2 = __esm({
             });
             return;
           }
-          const testEmbed = prettyEmbed({
+          const testEmbed = prettyEmbed2({
             title: `Welcome to ${interaction.guild.name}!`,
             description: `Hey ${interaction.user}, welcome to **${interaction.guild.name}**! You are our **#${interaction.guild.memberCount}** member.`,
             color: COLORS.primary,
@@ -219132,7 +219144,7 @@ var init_welcomer2 = __esm({
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Test Welcome Message Dispatched`,
                 description: `Sent test welcome preview to <#${targetChannel.id}>.`,
                 color: COLORS.success
@@ -219187,7 +219199,7 @@ var init_logging = __esm({
         if (!interaction.memberPermissions?.has(import_discord156.PermissionFlagsBits.ManageGuild)) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Permission Denied`,
                 description: "You require the **Manage Server** permission to configure audit logging.",
                 color: COLORS.danger
@@ -219203,7 +219215,7 @@ var init_logging = __esm({
           const ch = cfg.channels || {};
           const isLoggingActive = cfg.modules?.auditLog ?? true;
           const getCh = (chId) => chId ? `<#${chId}>` : "`Not Configured`";
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.settings.str} Audit & Event Logging Configuration`,
             description: `### ${CE.clipboard.str} **Log Category Statuses**
 
@@ -219240,7 +219252,7 @@ var init_logging = __esm({
           });
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Logging Channel Configured`,
                 description: `Audit logs for **${cat.toUpperCase()}** will now be routed to <#${targetCh.id}>.`,
                 color: COLORS.success
@@ -219257,7 +219269,7 @@ var init_logging = __esm({
           }));
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Logging Category Updated`,
                 description: `Audit logging has been **${enabled ? "ENABLED" : "DISABLED"}** for this server.`,
                 color: enabled ? COLORS.success : COLORS.danger
@@ -219299,7 +219311,7 @@ var init_prefix = __esm({
         if (sub === "view") {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.settings.str} Active Command Prefix`,
                 description: `Zenith Bot's active command prefix in **${interaction.guild.name}** is:
 
@@ -219316,7 +219328,7 @@ var init_prefix = __esm({
         if (!interaction.memberPermissions?.has(import_discord157.PermissionFlagsBits.ManageGuild)) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.error.str} Permission Denied`,
                 description: "You require the **Manage Server** permission to change the bot prefix.",
                 color: COLORS.danger
@@ -219334,7 +219346,7 @@ var init_prefix = __esm({
           }));
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Command Prefix Reset`,
                 description: `Command prefix has been reset to default **\`${DEFAULT_PREFIX}\`**.`,
                 color: COLORS.success
@@ -219353,7 +219365,7 @@ var init_prefix = __esm({
           }));
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.check.str} Command Prefix Updated`,
                 description: `Command prefix successfully set to **\`${newPrefix}\`** for **${interaction.guild.name}**.
 
@@ -219935,7 +219947,7 @@ var init_autotest = __esm({
           if (!last) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.Bughunter_1.str} Automated Diagnostics Status`,
                   description: `No diagnostic runs recorded in this session yet.
 
@@ -219948,7 +219960,7 @@ Run \`/autotest run\` or \`.autotest run\` to trigger an immediate full self-tes
             return;
           }
           const failed2 = last.results.filter((r2) => r2.status === "failed");
-          const statusEmbed = prettyEmbed({
+          const statusEmbed = prettyEmbed2({
             title: `${CE.Bughunter_1.str} Automated Diagnostics \u2022 Last Test Summary`,
             description: `**Last Run:** <t:${Math.floor(last.timestamp / 1e3)}:F> (<t:${Math.floor(last.timestamp / 1e3)}:R>)
 **Target Environment:** \`${last.guildName || "Global"}\` (${last.guildId || "N/A"})
@@ -219972,7 +219984,7 @@ Run \`/autotest run\` or \`.autotest run\` to trigger an immediate full self-tes
           startAutoTesterDaemon(interaction.client, interval);
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.settings.str} Automated Diagnostics Schedule Configured`,
                 description: `Continuous automated command testing has been set to run every **${interval} minutes**.
 
@@ -219990,7 +220002,7 @@ Run \`/autotest run\` or \`.autotest run\` to trigger an immediate full self-tes
         const report = await runFullCommandDiagnostics(interaction.client, targetGuildId);
         const failed = report.results.filter((r2) => r2.status === "failed");
         const webhookUrl = process.env.DISCORD_WEBHOOK_URL_1 || process.env.DISCORD_WEBHOOK_URL_3;
-        const resultEmbed = prettyEmbed({
+        const resultEmbed = prettyEmbed2({
           title: failed.length === 0 ? `${CE.Bughunter_1.str} Command Diagnostics Completed \u2022 All Systems Operational` : `${CE.error.str} Command Diagnostics Completed \u2022 ${failed.length} Bug${failed.length === 1 ? "" : "s"} Found`,
           description: `Executed non-destructive diagnostic simulation across **${report.totalTested}** registered commands.
 
@@ -220180,10 +220192,10 @@ async function performVerificationForMember(interaction, member) {
   if (!verifiedRole) {
     const errorMsg = "Unable to locate or create a Verified role. Please ensure the bot has **Manage Roles** permissions or ask an admin to configure a verified role via `/verify-config`.";
     if (interaction.replied || interaction.deferred) {
-      await interaction.editReply({ embeds: [prettyEmbed({ title: `${CE.failure.str} Verification Setup Needed`, description: errorMsg, color: COLORS.danger })], components: [] }).catch(() => {
+      await interaction.editReply({ embeds: [prettyEmbed2({ title: `${CE.failure.str} Verification Setup Needed`, description: errorMsg, color: COLORS.danger })], components: [] }).catch(() => {
       });
     } else {
-      await interaction.reply({ embeds: [prettyEmbed({ title: `${CE.failure.str} Verification Setup Needed`, description: errorMsg, color: COLORS.danger })], ephemeral: true }).catch(() => {
+      await interaction.reply({ embeds: [prettyEmbed2({ title: `${CE.failure.str} Verification Setup Needed`, description: errorMsg, color: COLORS.danger })], ephemeral: true }).catch(() => {
       });
     }
     return;
@@ -220191,10 +220203,10 @@ async function performVerificationForMember(interaction, member) {
   if (member.roles.cache.has(verifiedRole.id)) {
     const msg = `You are already verified and have the <@&${verifiedRole.id}> role.`;
     if (interaction.replied || interaction.deferred) {
-      await interaction.editReply({ embeds: [prettyEmbed({ title: `${CE.information.str} Already Verified`, description: msg, color: COLORS.info })], components: [] }).catch(() => {
+      await interaction.editReply({ embeds: [prettyEmbed2({ title: `${CE.information.str} Already Verified`, description: msg, color: COLORS.info })], components: [] }).catch(() => {
       });
     } else {
-      await interaction.reply({ embeds: [prettyEmbed({ title: `${CE.information.str} Already Verified`, description: msg, color: COLORS.info })], ephemeral: true }).catch(() => {
+      await interaction.reply({ embeds: [prettyEmbed2({ title: `${CE.information.str} Already Verified`, description: msg, color: COLORS.info })], ephemeral: true }).catch(() => {
       });
     }
     return;
@@ -220212,7 +220224,7 @@ async function performVerificationForMember(interaction, member) {
       verifiedAt: (/* @__PURE__ */ new Date()).toISOString(),
       serverId: guild.id
     });
-    const successEmbed3 = prettyEmbed({
+    const successEmbed3 = prettyEmbed2({
       title: `${CE.success.str} Verification Successful!`,
       description: `Welcome to **${guild.name}**! You have been granted the <@&${verifiedRole.id}> role and full server access.`,
       color: COLORS.success
@@ -220229,10 +220241,10 @@ async function performVerificationForMember(interaction, member) {
     logger.error({ err, guildId: guild.id, userId: member.id }, "Failed to grant verified role");
     const errMsg = "Failed to assign the Verified role. Please check if my bot role is placed **above** the Verified role in Server Settings \u2192 Roles.";
     if (interaction.replied || interaction.deferred) {
-      await interaction.editReply({ embeds: [prettyEmbed({ title: `${CE.failure.str} Verification Failed`, description: errMsg, color: COLORS.danger })], components: [] }).catch(() => {
+      await interaction.editReply({ embeds: [prettyEmbed2({ title: `${CE.failure.str} Verification Failed`, description: errMsg, color: COLORS.danger })], components: [] }).catch(() => {
       });
     } else {
-      await interaction.reply({ embeds: [prettyEmbed({ title: `${CE.failure.str} Verification Failed`, description: errMsg, color: COLORS.danger })], ephemeral: true }).catch(() => {
+      await interaction.reply({ embeds: [prettyEmbed2({ title: `${CE.failure.str} Verification Failed`, description: errMsg, color: COLORS.danger })], ephemeral: true }).catch(() => {
       });
     }
   }
@@ -220357,7 +220369,7 @@ var init_verifyOwner = __esm({
           return;
         }
         await interaction.reply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: `${CE.settings.str} Verify Owner`,
             description: "This will:\n\u2022 Create a **Verified** role with all permissions\n\u2022 Assign it to me\n\u2022 Hide all channels from @everyone and grant access only to that role\n\u2022 Mark this server as verified\n\nThis action **cannot be automatically undone**. Continue?",
             color: COLORS.warning
@@ -220376,18 +220388,18 @@ var init_verifyOwner = __esm({
         const filter = (i2) => i2.user.id === interaction.user.id && (i2.customId === "vo_confirm" || i2.customId === "vo_cancel");
         const btn = await interaction.channel?.awaitMessageComponent({ filter, time: 6e4 }).catch(() => null);
         if (!btn) {
-          await interaction.editReply({ embeds: [prettyEmbed({ title: "Timed out", description: "Verification cancelled.", color: COLORS.danger })], components: [] });
+          await interaction.editReply({ embeds: [prettyEmbed2({ title: "Timed out", description: "Verification cancelled.", color: COLORS.danger })], components: [] });
           return;
         }
         if (btn.customId === "vo_cancel") {
-          await btn.update({ embeds: [prettyEmbed({ title: `${CE.error.str} Cancelled`, description: "No changes were made.", color: COLORS.danger })], components: [] });
+          await btn.update({ embeds: [prettyEmbed2({ title: `${CE.error.str} Cancelled`, description: "No changes were made.", color: COLORS.danger })], components: [] });
           return;
         }
         await btn.deferUpdate();
         const guild = interaction.guild;
         const me = await guild.members.fetchMe().catch(() => null);
         if (!me) {
-          await interaction.editReply({ embeds: [prettyEmbed({ title: `${CE.error.str} Error`, description: "Could not find my own member entry.", color: COLORS.danger })], components: [] });
+          await interaction.editReply({ embeds: [prettyEmbed2({ title: `${CE.error.str} Error`, description: "Could not find my own member entry.", color: COLORS.danger })], components: [] });
           return;
         }
         let verifyRole;
@@ -220402,7 +220414,7 @@ var init_verifyOwner = __esm({
         } catch (err) {
           logger.error({ err, guildId: guild.id }, "verify-owner: role creation failed");
           await interaction.editReply({
-            embeds: [prettyEmbed({ title: `${CE.error.str} Role Creation Failed`, description: "I need **Manage Roles** permission.", color: COLORS.danger })],
+            embeds: [prettyEmbed2({ title: `${CE.error.str} Role Creation Failed`, description: "I need **Manage Roles** permission.", color: COLORS.danger })],
             components: []
           });
           return;
@@ -220414,7 +220426,7 @@ var init_verifyOwner = __esm({
         } catch (err) {
           logger.error({ err, guildId: guild.id }, "verify-owner: role assignment failed");
           await interaction.editReply({
-            embeds: [prettyEmbed({ title: `${CE.error.str} Assignment Failed`, description: "Created the role but couldn't assign it to me.", color: COLORS.danger })],
+            embeds: [prettyEmbed2({ title: `${CE.error.str} Assignment Failed`, description: "Created the role but couldn't assign it to me.", color: COLORS.danger })],
             components: []
           });
           return;
@@ -220443,7 +220455,7 @@ var init_verifyOwner = __esm({
         await markServerAsVerified(guild.id).catch(() => {
         });
         await interaction.editReply({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: `${CE.success.str} Server Verified`,
             description: `The **Verified** role has been created and assigned to me.
 
@@ -220591,7 +220603,7 @@ var init_warn = __esm({
             });
             return;
           }
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `Warnings for ${target.tag}`,
             color: COLORS.warning,
             thumbnail: target.displayAvatarURL({ size: 128 }),
@@ -221756,7 +221768,7 @@ var init_supabasestatus = __esm({
           if (syncResult.error) {
             await interaction.editReply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.error.str} Supabase Sync Error`,
                   description: `Could not sync stores to Supabase: \`${syncResult.error}\``,
                   color: COLORS.danger,
@@ -221768,7 +221780,7 @@ var init_supabasestatus = __esm({
           }
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.success.str} Local Stores Synced to Supabase`,
                 description: `Successfully pushed local data stores into your Supabase \`bot_json_store\` table!
 
@@ -221791,7 +221803,7 @@ var init_supabasestatus = __esm({
         if (!status.configured) {
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.warning.str} Supabase Storage Not Configured`,
                 description: `Data is currently stored in ephemeral local files which reset when the bot container restarts!
 
@@ -221822,7 +221834,7 @@ var init_supabasestatus = __esm({
           const isPaused = status.error?.toLowerCase().includes("paused") || status.error?.toLowerCase().includes("503") || status.error?.toLowerCase().includes("econnrefused") || status.error?.toLowerCase().includes("fetch failed");
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: isPaused ? `${CE.warning.str} Supabase Project Paused` : `${CE.error.str} Supabase Connection Alert`,
                 description: isPaused ? `Your Supabase project appears to be paused or sleeping. In your [Supabase Dashboard](https://supabase.com/dashboard), click **Restore project** / **Unpause** to re-activate it. Once restored, run \`.db sync\` to immediately sync all local stores to the cloud!` : `Supabase environment variables are detected, but table verification encountered an issue.
 
@@ -221851,7 +221863,7 @@ create table if not exists bot_json_store (
         }
         await interaction.editReply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `${CE.success.str} Supabase Cloud Persistence Active`,
               description: `All bot configs, warnings, cases, whitelists, and staff records are securely persisted in Supabase cloud!
 
@@ -221929,7 +221941,7 @@ var init_eval = __esm({
 ... [truncated]` : resultStr;
         await interaction.editReply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: isError ? `${CE.error.str} Eval Error (${elapsed}ms)` : `${CE.success.str} Eval Result (${elapsed}ms)`,
               description: `\`\`\`js
 ${truncated}
@@ -221977,7 +221989,7 @@ var init_serverlist = __esm({
 *... and ${guilds.length - 20} more servers*` : "";
         await interaction.editReply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `${CE.information.str} Active Servers (${guilds.length})`,
               description: `Total Combined Users: **${totalMembers.toLocaleString()}**
 
@@ -222029,7 +222041,7 @@ var init_leaveserver = __esm({
           await guild.leave();
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.success.str} Server Left Successfully`,
                 description: `Left **${guildName}** (\`${targetGuildId}\`) with **${memberCount}** members.`,
                 color: COLORS.success,
@@ -222076,7 +222088,7 @@ var init_broadcast = __esm({
         const guilds = Array.from(interaction.client.guilds.cache.values());
         let sentCount = 0;
         let failedCount = 0;
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `Official Bot Broadcast`,
           description: broadcastMsg,
           color: COLORS.primary,
@@ -222104,7 +222116,7 @@ var init_broadcast = __esm({
         }
         await interaction.editReply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `${CE.success.str} Broadcast Complete`,
               description: `Successfully broadcast message to **${sentCount}** servers (${failedCount} failed or lacked permissions).`,
               color: COLORS.success,
@@ -259740,7 +259752,7 @@ async function handleMusicButton(interaction) {
   if (customId === "music:skip" || customId === "btn:music:skip") {
     if (interaction.message) {
       manager.lastPlayerMessage = interaction.message;
-      const embed = prettyEmbed({
+      const embed = prettyEmbed2({
         title: `${CE.white_skip.str} Skipping Track...`,
         description: `Transitioning to the next song in the queue...`,
         color: COLORS.primary
@@ -259754,7 +259766,7 @@ async function handleMusicButton(interaction) {
   }
   if (customId === "music:stop" || customId === "btn:music:stop") {
     if (interaction.message) {
-      const embed = prettyEmbed({
+      const embed = prettyEmbed2({
         title: `${CE.white_cancel.str} Stopping Playback...`,
         description: `Clearing queue and leaving voice channel...`,
         color: COLORS.primary
@@ -259768,7 +259780,7 @@ async function handleMusicButton(interaction) {
   }
   if (customId === "music:queue" || customId === "btn:music:queue") {
     const qLines = manager.queue.slice(0, 10).map((t2, i2) => `\`${i2 + 1}.\` **${t2.title}** (\`${formatTime(t2.durationSeconds)}\`)`);
-    const qEmbed = prettyEmbed({
+    const qEmbed = prettyEmbed2({
       title: `${CE.list.str} Music Queue (${manager.queue.length} Tracks)`,
       description: `**Now Playing:** ${manager.currentTrack ? `[${manager.currentTrack.title}](${manager.currentTrack.url})` : "*None*"}
 
@@ -259838,7 +259850,7 @@ async function handleMusicButton(interaction) {
     const row2 = new import_discord179.ActionRowBuilder().addComponents(
       new import_discord179.StringSelectMenuBuilder().setCustomId("select:music:change_eq").setPlaceholder("\u25BC Select Equalizer / Audio FX Preset...").addOptions(eqOptions)
     );
-    const eqEmbed = prettyEmbed({
+    const eqEmbed = prettyEmbed2({
       title: `${CE.equalizer ? CE.equalizer.str : CE.music.str} Live Equalizer & Spatial Audio FX`,
       description: `### Current Active Filter: \`${manager.equalizer.toUpperCase()}\`
 *Select an Audio FX or Spatial preset from the dropdown menu below to transform audio in real-time:*`,
@@ -259865,7 +259877,7 @@ async function handleMusicButton(interaction) {
     const row2 = new import_discord179.ActionRowBuilder().addComponents(
       new import_discord179.StringSelectMenuBuilder().setCustomId("select:music:change_source").setPlaceholder("\u25BC Select Audio Stream Source / Mirror...").addOptions(selectOptions)
     );
-    const srcEmbed = prettyEmbed({
+    const srcEmbed = prettyEmbed2({
       title: `${CE.link.str} Audio Stream Details & Source Switcher`,
       description: `### Current Active Track:
 > **Song:** [${track.title}](${track.url})
@@ -259917,7 +259929,7 @@ async function handleMusicButton(interaction) {
     const row2 = new import_discord179.ActionRowBuilder().addComponents(
       new import_discord179.StringSelectMenuBuilder().setCustomId("select:music:search_pick").setPlaceholder("\u25BC Choose another track from search results...").addOptions(selectOptions)
     );
-    const embed = prettyEmbed({
+    const embed = prettyEmbed2({
       title: `${CE.search ? CE.search.str : CE.music.str} Search Results for: ${manager.lastSearchQuery || manager.currentTrack?.title || "Search"}`,
       description: `### Top Matching Tracks (${results.length} found):
 
@@ -259949,14 +259961,14 @@ function formatTime(seconds) {
 function buildNowPlayingEmbed(manager) {
   const track = manager.currentTrack;
   if (!track) {
-    return prettyEmbed({
+    return prettyEmbed2({
       title: `${CE.music.str} Music Player Idle`,
       description: `No audio currently playing. Use \`.play <song>\` or \`/play\` to start high-fidelity music!`,
       color: COLORS.primary
     });
   }
   const activeSource = track.sourceName || `${CE.youtube_music.str} YouTube Music HQ`;
-  return prettyEmbed({
+  return prettyEmbed2({
     title: `${CE.playing ? CE.playing.str : CE.play.str} Now Playing`,
     description: `### [${track.title}](${track.url})
 **Artist:** \`${track.artist}\`
@@ -260544,7 +260556,7 @@ var init_musicManager = __esm({
           if (this.textChannel) {
             this.textChannel.send({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: `${CE.failure.str} Audio Playback Interrupted`,
                   description: `Playback was stopped after multiple stream errors. Please try another track or query.`,
                   color: COLORS.danger
@@ -260676,7 +260688,7 @@ var init_musicManager = __esm({
             if (this.textChannel) {
               this.textChannel.send({
                 embeds: [
-                  prettyEmbed({
+                  prettyEmbed2({
                     title: `${CE.error.str} Stream Unavailable`,
                     description: `Could not resolve playable audio stream for **${track.title}**. Skipping to next track.`,
                     color: COLORS.danger
@@ -261137,7 +261149,7 @@ var init_musicManager = __esm({
           this.updateVoiceStatus("", true).catch(() => {
           });
           if (this.lastPlayerMessage) {
-            const endedEmbed = prettyEmbed({
+            const endedEmbed = prettyEmbed2({
               title: "Playback Concluded",
               description: `*The queue is now empty. Add more songs with \`/play\`!*`,
               color: COLORS.primary
@@ -261568,7 +261580,7 @@ var init_music = __esm({
               });
               return;
             }
-            const premiumEmbed = prettyEmbed({
+            const premiumEmbed = prettyEmbed2({
               title: "Zenith Premium Feature Required",
               color: 15844367,
               description: `### ${CE.star.str}  **VIP Remote Playback Mode**
@@ -261604,7 +261616,7 @@ ${CE.crown.str} **Unlock god-tier perks today:** [Claim VIP Access](https://disc
         if (!permCheck.ok) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: `${CE.failure.str} Cannot Join Voice Channel`,
                 description: `**Reason:** ${permCheck.reason}
 
@@ -261630,7 +261642,7 @@ Please verify Zenith Bot has **View Channel**, **Connect**, and **Speak** permis
         if (results.length === 0) {
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "No Results Found",
                 description: `${CE.failure.str}  Could not find any tracks matching \`${query}\`.
 
@@ -261655,7 +261667,7 @@ Try different keywords, artist name, or provide a direct link!`,
             await interaction.editReply({ embeds: [embed], components: rows3 });
           } else {
             player.queue.push(track);
-            const queuedEmbed = prettyEmbed({
+            const queuedEmbed = prettyEmbed2({
               title: "Track Added to Queue",
               description: `### ${CE.music.str}  **[${track.title}](${track.url})**
 
@@ -261707,7 +261719,7 @@ ${CE.crown.str} **Join elite communities:** [Claim VIP Access](https://discord.g
         player.skip();
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: "Track Skipped",
               description: `### ${CE.music.str}  **Track Skipped**
 
@@ -261786,7 +261798,7 @@ Skipped **${skipped?.title || "Current Track"}**.
         player.destroy();
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: "Music Session Stopped",
               description: `${CE.delete.str}  Disconnected from **${vcName}** and cleared the audio queue.`,
               color: 15548997
@@ -261937,7 +261949,7 @@ Skipped **${skipped?.title || "Current Track"}**.
         if (!player || !player.currentTrack && player.queue.length === 0) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Music Queue Empty",
                 description: `${CE.music.str}  The queue is currently empty.
 
@@ -261952,7 +261964,7 @@ Use \`/play <song>\` or \`.play <song>\` to add tracks!`,
         const totalDuration = player.queue.reduce((acc, t2) => acc + t2.durationSeconds, 0);
         const current = player.currentTrack;
         if (player.queue.length === 0) {
-          const singleEmbed = prettyEmbed({
+          const singleEmbed = prettyEmbed2({
             title: `Music Queue \u2022 ${player.voiceChannel.name}`,
             color: COLORS.primary,
             description: current ? `### ${CE.play.str}  **Now Playing**
@@ -261978,7 +261990,7 @@ Use \`/play <song>\` or \`.play <song>\` to add tracks!`,
             return `\`${overallIndex}.\` **[${t2.title}](${t2.url})** - \`${t2.artist}\` (\`${formatTime(t2.durationSeconds)}\`) \u2022 Req by <@${t2.requestedBy.id}>`;
           });
           pages.push(
-            prettyEmbed({
+            prettyEmbed2({
               title: `Music Queue \u2022 ${player.voiceChannel.name}`,
               color: COLORS.primary,
               description: (current ? `### ${CE.play.str} **Now Playing**
@@ -262032,7 +262044,7 @@ Use \`/play <song>\` or \`.play <song>\` to add tracks!`,
         const row2 = new import_discord182.ActionRowBuilder().addComponents(
           new import_discord182.StringSelectMenuBuilder().setCustomId("select:music:change_source").setPlaceholder("Select audio source / mirror for current song...").addOptions(selectOptions)
         );
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Audio Source & Mirror Selector",
           description: `### ${CE.music.str} **[${track.title}](${track.url})**
 **Artist:** \`${track.artist}\`
@@ -262163,7 +262175,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
         const info = await player.setEqualizer(preset);
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `Equalizer Applied: ${info.label}`,
               description: `### ${CE.equalizer.str}  **Studio DSP Updated**
 
@@ -262250,7 +262262,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
         }
         const isPremium = await hasPremiumAccess(interaction.user.id, interaction.guildId, interaction.member);
         if (!isPremium) {
-          const premiumEmbed = prettyEmbed({
+          const premiumEmbed = prettyEmbed2({
             title: "Zenith Premium Feature Required",
             color: 15844367,
             description: `### ${CE.star.str}  **VIP 24/7 Voice Channel Radio Mode**
@@ -262417,7 +262429,7 @@ Select an alternative high-fidelity audio stream below to switch in real-time:`,
 
 Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
           }
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: matchedType === "artist" ? `24/7 Singer Discography: ${identifiedArtist}` : matchedType === "album" ? `24/7 Album Mode: ${identifiedAlbum}` : startingTrack ? "24/7 Radio Mode ENABLED (VIP)" : "24/7 Connection Active (VIP)",
             color: 5763719,
             description: (startingTrack ? `### ${CE.music.str}  **24/7 High-Fidelity Radio Active**
@@ -262494,7 +262506,7 @@ Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
         if (results.length === 0) {
           await interaction.editReply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "No Search Results",
                 description: `${CE.failure.str} Could not find any songs matching \`${query}\`.`,
                 color: 15548997
@@ -262512,7 +262524,7 @@ Use \`.play <song>\` or mention a song to start high-fidelity playback!`;
           return `\`${idx + 1}.\` ${sourceBadge} **[${t2.title}](${t2.url})**
 > **Artist:** \`${t2.artist}\` \u2022 **Duration:** \`${formatTime(t2.durationSeconds)}\``;
         });
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `Top Search Results for "${query}"`,
           description: `### ${CE.white_musicnote.str} **Select a track from top search results below**
 
@@ -263146,7 +263158,7 @@ var init_profile2 = __esm({
           await interaction.editReply({ files: [attachment] });
         } catch (err) {
           logger.error({ err, userId: targetUser.id }, "Error rendering profile card");
-          const fallbackEmbed = prettyEmbed({
+          const fallbackEmbed = prettyEmbed2({
             title: `${targetUser.username}'s Profile`,
             color: COLORS.primary,
             description: `### ${badgeListStr ? badgeListStr + " " : ""}**${targetUser.username}**
@@ -263167,7 +263179,7 @@ var init_profile2 = __esm({
       async execute(interaction) {
         const rawBio = interaction.options.getString("bio", true);
         const updated = setUserBio(interaction.user.id, rawBio);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Profile Bio Updated",
           description: `### ${CE.check.str} **Successfully updated your profile bio!**
 
@@ -263212,7 +263224,7 @@ Run \`/profile\` or \`.profile\` to view your updated card graphics!`,
           try {
             const ownerUser = await interaction.client.users.fetch(interaction.guild.ownerId).catch(() => null);
             if (ownerUser) {
-              const ownerDmEmbed = prettyEmbed({
+              const ownerDmEmbed = prettyEmbed2({
                 title: "Server No-Prefix Mode Activated",
                 color: 3066993,
                 description: `### ${CE.check.str} **No-Prefix Activated for ${interaction.guild.name}**
@@ -263228,7 +263240,7 @@ All members inside **${interaction.guild.name}** can now execute Zenith commands
             logger.debug({ err }, "Could not notify guild owner about No-Prefix mode activation");
           }
         }
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "No-Prefix Mode Updated",
           description: `### ${mode ? CE.check.str : CE.failure.str} **No-Prefix Mode is now ${mode ? "`ACTIVE (ON)`" : "`DISABLED (OFF)`"}**
 
@@ -263294,7 +263306,7 @@ var init_ginfo = __esm({
           const roleCount = g.roles.cache.size;
           const gPrem = await isGuildPremium(g.id);
           const player = getMusicPlayer(g.id);
-          const page12 = prettyEmbed({
+          const page12 = prettyEmbed2({
             title: `Global Intelligence Report \u2022 ${g.name}`,
             color: COLORS.primary,
             description: `### ${CE.white_info.str} **Server Metadata & Overview**
@@ -263313,7 +263325,7 @@ var init_ginfo = __esm({
             ],
             thumbnail: g.iconURL({ extension: "png", size: 512 }) || void 0
           });
-          const page22 = prettyEmbed({
+          const page22 = prettyEmbed2({
             title: `Security & Anti-Nuke Audit \u2022 ${g.name}`,
             color: 3066993,
             description: `### ${CE.white_antinuke.str} **Enterprise Security Engine Status**
@@ -263333,7 +263345,7 @@ var init_ginfo = __esm({
               { name: "Audit Integrity", value: "`100% SECURE`", inline: true }
             ]
           });
-          const page32 = prettyEmbed({
+          const page32 = prettyEmbed2({
             title: `Voice & Music Cluster Audit \u2022 ${g.name}`,
             color: COLORS.primary,
             description: `### ${CE.radio.str} **Voice Node Performance Diagnostics**
@@ -263365,7 +263377,7 @@ var init_ginfo = __esm({
         const isOwner = isPermanentOwner(u.id);
         const uPrem = await isUserPremium(u.id);
         const mutualGuilds = client.guilds.cache.filter((g) => g.members.cache.has(u.id));
-        const page1 = prettyEmbed({
+        const page1 = prettyEmbed2({
           title: `Global User Intelligence \u2022 ${u.username}`,
           color: tier > 0 ? 15844367 : COLORS.primary,
           description: `### ${CE.user.str} **User Identity & Global Overview**
@@ -263385,7 +263397,7 @@ var init_ginfo = __esm({
           ],
           thumbnail: u.displayAvatarURL({ extension: "png", size: 512 })
         });
-        const page2 = prettyEmbed({
+        const page2 = prettyEmbed2({
           title: `Guild Roles & Privileges \u2022 ${u.username}`,
           color: COLORS.primary,
           description: `### ${CE.list.str} **Server Membership & Roles Inventory**
@@ -263397,7 +263409,7 @@ var init_ginfo = __esm({
 ` : "*Not present in the current server*\n\n") + `### ${CE.globe.str} **Cross-Server Network Presence**
 ` + (mutualGuilds.size > 0 ? mutualGuilds.map((g) => `\u2022 **${g.name}** (\`${g.id}\`)`).slice(0, 10).join("\n") : "*No mutual servers recorded*")
         });
-        const page3 = prettyEmbed({
+        const page3 = prettyEmbed2({
           title: `Global Moderation & Anti-Nuke Audit \u2022 ${u.username}`,
           color: 3066993,
           description: `### ${CE.white_antinuke.str} **Global Security & Disciplinary Audit Record**
@@ -263436,7 +263448,7 @@ var init_checkstaff = __esm({
         const isOwner = isPermanentOwner(targetUser.id);
         const staffMember = await getBotStaffMember(targetUser.id);
         if (isOwner) {
-          const embed2 = prettyEmbed({
+          const embed2 = prettyEmbed2({
             title: "Bot Staff Verification \u2022 Permanent Owner",
             color: 15844367,
             description: `### ${CE.owner.str} **VERIFIED PERMANENT BOT OWNER**
@@ -263454,7 +263466,7 @@ var init_checkstaff = __esm({
         }
         if (staffMember) {
           const roleMeta = BOT_STAFF_ROLES[staffMember.role];
-          const embed2 = prettyEmbed({
+          const embed2 = prettyEmbed2({
             title: "Bot Staff Verification \u2022 Verified Staff Member",
             color: roleMeta?.color || COLORS.primary,
             description: `### ${CE.admin.str} **VERIFIED OFFICIAL BOT STAFF**
@@ -263475,7 +263487,7 @@ var init_checkstaff = __esm({
           await interaction.reply({ embeds: [embed2] });
           return;
         }
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Bot Staff Verification \u2022 Community Member",
           color: 7634829,
           description: `### ${CE.user.str} **REGULAR COMMUNITY USER**
@@ -263572,7 +263584,7 @@ var init_badges = __esm({
           return `${def.emoji} **${def.name}** (\`${key3}\`)
 > ${def.desc}`;
         });
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${CE.trophy.str} Official Zenith Bot Badges Directory`,
           description: `### All Available Badges & Custom Icons:
 
@@ -263616,7 +263628,7 @@ var init_badges = __esm({
           return;
         }
         await addUserBadge(targetUser.id, badgeKey);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Badge Granted",
           description: `### ${CE.check.str} **Successfully added badge to <@${targetUser.id}>!**
 
@@ -263650,7 +263662,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics!`,
         const badgeKey = interaction.options.getString("badge", true).toLowerCase().trim();
         const def = BADGE_DEFINITIONS[badgeKey];
         await removeUserBadge(targetUser.id, badgeKey);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "Badge Removed",
           description: `### ${CE.check.str} **Successfully removed badge from <@${targetUser.id}>!**
 
@@ -263674,7 +263686,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
         }
         const targetUser = interaction.options.getUser("target", true);
         await giveAllBadges(targetUser.id);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "All Badges Granted",
           description: `### ${CE.check.str} **Successfully granted ALL ${Object.keys(BADGE_DEFINITIONS).length} badges to <@${targetUser.id}>!**
 
@@ -263697,7 +263709,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
         }
         const targetUser = interaction.options.getUser("target", true);
         await removeAllBadges(targetUser.id);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: "All Custom Badges Removed",
           description: `### ${CE.check.str} **Successfully removed ALL custom badges from <@${targetUser.id}>!**
 
@@ -263746,7 +263758,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
             if (targetId) {
               await giveAllBadges(targetId);
               await interaction.reply({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: "All Badges Granted",
                   description: `### ${CE.check.str} **Successfully granted ALL badges to <@${targetId}>!**`,
                   color: COLORS.success
@@ -263761,7 +263773,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
             if (targetId) {
               await removeAllBadges(targetId);
               await interaction.reply({
-                embeds: [prettyEmbed({
+                embeds: [prettyEmbed2({
                   title: "All Custom Badges Removed",
                   description: `### ${CE.check.str} **Successfully removed ALL custom badges from <@${targetId}>!**`,
                   color: COLORS.warning
@@ -263776,7 +263788,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
             const badgeKey = arg2;
             await addUserBadge(targetId, badgeKey);
             await interaction.reply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Badge Added",
                 description: `### ${CE.check.str} Added badge \`${badgeKey}\` to <@${targetId}>!`,
                 color: COLORS.success
@@ -263790,7 +263802,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
             const badgeKey = arg2;
             await removeUserBadge(targetId, badgeKey);
             await interaction.reply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Badge Removed",
                 description: `### ${CE.check.str} Removed badge \`${badgeKey}\` from <@${targetId}>!`,
                 color: COLORS.warning
@@ -263828,7 +263840,7 @@ Run \`/profile\` or \`/badges\` to view updated user graphics.`,
           return `<:Tool:1555133545918369894> **${b.toUpperCase()}**
 > Custom server achievement badge`;
         });
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${targetUser.username}'s Unlocked Badges`,
           description: unlockedLines.length > 0 ? `### Active Badges (${unlockedLines.length}):
 
@@ -264667,7 +264679,7 @@ var init_premium2 = __esm({
         if (!allowed) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Access Restricted",
                 color: COLORS.danger,
                 description: `${CE.failure.str} Only **Bot Owners**, **Bot Admins**, and authorized **Bot Staff** can access the Executive Premium Management Panel.
@@ -264775,7 +264787,7 @@ Directly manage premium subscriptions, grant or revoke No-Prefix execution, and 
 ` + roleLines.slice(0, 15).join("\n")
           );
         }
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${CE.star.str} Official Zenith Premium Roster Directory`,
           description: descriptionParts.join("\n\n"),
           color: COLORS.premium,
@@ -265960,7 +265972,7 @@ var init_hosting = __esm({
             riskBadge = `${CE.warning.str} **MEDIUM RISK \u2014 FREQUENT GATEWAY RECONNECTS**`;
             color = 16705372;
           }
-          const embed = prettyEmbed({
+          const embed = prettyEmbed2({
             title: `${CE.shield.str} Hosting Health & Multi-Instance Conflict Inspector`,
             description: `### ${riskBadge}
 
@@ -266530,7 +266542,7 @@ var init_role = __esm({
         if (!interaction.guild) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Command Unavailable",
                 description: `${CE.failure.str} This command can only be used inside a Discord server.`,
                 color: COLORS.danger
@@ -266544,7 +266556,7 @@ var init_role = __esm({
         if (!member.permissions.has(import_discord197.PermissionFlagsBits.ManageRoles) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Permission Denied",
                 description: `${CE.failure.str} You require the **Manage Roles** permission to use this command.`,
                 color: COLORS.danger
@@ -266574,7 +266586,7 @@ var init_role = __esm({
             if (!parsed) {
               await interaction.reply({
                 embeds: [
-                  prettyEmbed({
+                  prettyEmbed2({
                     title: "Invalid Color Hex",
                     description: `${CE.failure.str} Please provide a valid 6-character hex color code (e.g. \`#57F287\` or \`FF0000\`).`,
                     color: COLORS.danger
@@ -266596,7 +266608,7 @@ var init_role = __esm({
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Created Successfully",
                   description: `### ${CE.check.str}  **Role Created**
 
@@ -266616,7 +266628,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
           } catch (err) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Failed to Create Role",
                   description: `${CE.failure.str} Encountered an error: \`${err.message || err}\``,
                   color: COLORS.danger
@@ -266636,7 +266648,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
           if (role.position >= botMember.roles.highest.position) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Hierarchy Error",
                   description: `${CE.failure.str} I cannot edit <@&${role.id}> because it is positioned higher than or equal to my highest role.`,
                   color: COLORS.danger
@@ -266649,7 +266661,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
           if (interaction.guild.ownerId !== interaction.user.id && role.position >= member.roles.highest.position) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Hierarchy Error",
                   description: `${CE.failure.str} You cannot edit <@&${role.id}> because it is positioned higher than or equal to your highest role.`,
                   color: COLORS.danger
@@ -266670,7 +266682,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
             if (!parsed) {
               await interaction.reply({
                 embeds: [
-                  prettyEmbed({
+                  prettyEmbed2({
                     title: "Invalid Color Hex",
                     description: `${CE.failure.str} Please provide a valid 6-character hex color code (e.g. \`#57F287\`).`,
                     color: COLORS.danger
@@ -266698,7 +266710,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Updated Successfully",
                   description: `### ${CE.check.str}  **Role Modified**
 
@@ -266715,7 +266727,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
           } catch (err) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Failed to Edit Role",
                   description: `${CE.failure.str} Encountered an error: \`${err.message || err}\``,
                   color: COLORS.danger
@@ -266743,7 +266755,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
           if (role.position >= botMember.roles.highest.position) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Hierarchy Error",
                   description: `${CE.failure.str} I cannot delete <@&${role.id}> because it is positioned higher than or equal to my highest role.`,
                   color: COLORS.danger
@@ -266759,7 +266771,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
             await role.delete(reason);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Deleted Successfully",
                   description: `### ${CE.delete.str}  **Role Removed**
 
@@ -266774,7 +266786,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
           } catch (err) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Failed to Delete Role",
                   description: `${CE.failure.str} Encountered an error: \`${err.message || err}\``,
                   color: COLORS.danger
@@ -266811,7 +266823,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
             await targetMember.roles.add(role, `Assigned by ${interaction.user.tag}`);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Assigned",
                   description: `### ${CE.check.str}  **Role Added**
 
@@ -266857,7 +266869,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
             await targetMember.roles.remove(role, `Removed by ${interaction.user.tag}`);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Role Removed",
                   description: `### ${CE.delete.str}  **Role Revoked**
 
@@ -266889,7 +266901,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated auto-roles, reacti
         });
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `Server Roles (${allRoles.length} Total)`,
               description: `### ${CE.moderation.str}  **Role Directory**
 
@@ -266974,7 +266986,7 @@ var init_channel = __esm({
         if (!member.permissions.has(import_discord198.PermissionFlagsBits.ManageChannels) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Permission Denied",
                 description: `${CE.failure.str} You require the **Manage Channels** permission to use this command.`,
                 color: COLORS.danger
@@ -267011,7 +267023,7 @@ var init_channel = __esm({
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Channel Created Successfully",
                   description: `### ${CE.check.str}  **Channel Created**
 
@@ -267030,7 +267042,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
           } catch (err) {
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Failed to Create Channel",
                   description: `${CE.failure.str} Error creating channel: \`${err.message || err}\``,
                   color: COLORS.danger
@@ -267066,7 +267078,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Channel Updated",
                   description: `### ${CE.check.str}  **Channel Modified**
 
@@ -267099,7 +267111,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
             await targetChannel.delete(reason);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Channel Deleted",
                   description: `### ${CE.delete.str}  **Channel Removed**
 
@@ -267132,7 +267144,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for infinite voice channels, aut
         });
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `Server Channels (${channels.length} Total)`,
               description: `### ${CE.clipboard.str}  **Channel Directory**
 
@@ -267189,7 +267201,7 @@ var init_category = __esm({
         if (!member.permissions.has(import_discord199.PermissionFlagsBits.ManageChannels) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Permission Denied",
                 description: `${CE.failure.str} You require the **Manage Channels** permission to manage categories.`,
                 color: COLORS.danger
@@ -267217,7 +267229,7 @@ var init_category = __esm({
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Category Created Successfully",
                   description: `### ${CE.check.str}  **Category Created**
 
@@ -267248,7 +267260,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated category templates
             await category.setName(newName, `Edited by ${interaction.user.tag}`);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Category Renamed",
                   description: `### ${CE.check.str}  **Category Modified**
 
@@ -267278,7 +267290,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated category templates
             await category.delete(reason);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Category Deleted",
                   description: `### ${CE.delete.str}  **Category Removed**
 
@@ -267305,7 +267317,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for automated category templates
         });
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `Server Categories (${categories.length} Total)`,
               description: `### ${CE.folder.str}  **Category Directory**
 
@@ -267362,7 +267374,7 @@ var init_emoji = __esm({
         if (!member.permissions.has(import_discord200.PermissionFlagsBits.ManageGuildExpressions) && !member.permissions.has(import_discord200.PermissionFlagsBits.ManageEmojisAndStickers) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Permission Denied",
                 description: `${CE.failure.str} You require the **Manage Expressions** permission to manage emojis.`,
                 color: COLORS.danger
@@ -267376,7 +267388,7 @@ var init_emoji = __esm({
         if (!botMember || !botMember.permissions.has(import_discord200.PermissionFlagsBits.ManageGuildExpressions) && !botMember.permissions.has(import_discord200.PermissionFlagsBits.ManageEmojisAndStickers)) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Bot Permission Required",
                 description: `${CE.failure.str} I require the **Manage Expressions** permission to modify emojis in this server.`,
                 color: COLORS.danger
@@ -267408,7 +267420,7 @@ var init_emoji = __esm({
             });
             await interaction.editReply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Emoji Created Successfully",
                   description: `### ${CE.check.str}  **Emoji Added**
 
@@ -267462,7 +267474,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited emoji slots, globa
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Emoji Renamed",
                   description: `### ${CE.check.str}  **Emoji Modified**
 
@@ -267505,7 +267517,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited emoji slots, globa
             await targetEmoji.delete(reason);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Emoji Deleted",
                   description: `### ${CE.delete.str}  **Emoji Removed**
 
@@ -267538,7 +267550,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited emoji slots, globa
         const emojiLines = currentEmojis.map((e2) => `${e2.toString()} \`:${e2.name}:\` (\`${e2.id}\`)`);
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `Server Emojis (${emojis.length} Total)`,
               description: `### ${CE.star.str}  **Custom Expressions**
 
@@ -267589,7 +267601,7 @@ var init_sticker = __esm({
         if (!member.permissions.has(import_discord201.PermissionFlagsBits.ManageGuildExpressions) && !member.permissions.has(import_discord201.PermissionFlagsBits.ManageEmojisAndStickers) && interaction.guild.ownerId !== interaction.user.id) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Permission Denied",
                 description: `${CE.failure.str} You require the **Manage Expressions** permission to manage stickers.`,
                 color: COLORS.danger
@@ -267603,7 +267615,7 @@ var init_sticker = __esm({
         if (!botMember || !botMember.permissions.has(import_discord201.PermissionFlagsBits.ManageGuildExpressions) && !botMember.permissions.has(import_discord201.PermissionFlagsBits.ManageEmojisAndStickers)) {
           await interaction.reply({
             embeds: [
-              prettyEmbed({
+              prettyEmbed2({
                 title: "Bot Permission Required",
                 description: `${CE.failure.str} I require the **Manage Expressions** permission to modify stickers in this server.`,
                 color: COLORS.danger
@@ -267639,7 +267651,7 @@ var init_sticker = __esm({
             });
             await interaction.editReply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Sticker Created Successfully",
                   description: `### ${CE.check.str}  **Sticker Added**
 
@@ -267704,7 +267716,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited sticker backups & 
             });
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Sticker Modified",
                   description: `### ${CE.check.str}  **Sticker Updated**
 
@@ -267746,7 +267758,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited sticker backups & 
             await targetSticker.delete(reason);
             await interaction.reply({
               embeds: [
-                prettyEmbed({
+                prettyEmbed2({
                   title: "Sticker Deleted",
                   description: `### ${CE.delete.str}  **Sticker Removed**
 
@@ -267772,7 +267784,7 @@ ${CE.manager.str} **Upgrade to Zenith Premium** for unlimited sticker backups & 
         const stickerLines = stickers.map((s2, i2) => `\`${i2 + 1}.\` **${s2.name}** (\`${s2.id}\`) \u2014 Tag: \`${s2.tags}\``);
         await interaction.reply({
           embeds: [
-            prettyEmbed({
+            prettyEmbed2({
               title: `Server Stickers (${stickers.length} Total)`,
               description: `### ${CE.star.str}  **Custom Stickers**
 
@@ -268249,7 +268261,7 @@ ${premEmoji} Made by demonXtejas`;
       }
       if (ch && ch.isTextBased()) {
         const notifEmoji = resolveDynamicEmoji(client, "sk_broad", CE.notifications.id);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `${notifEmoji} Global Status Update: ${statusText}`,
           description: `The bot status has been updated to **${type.toUpperCase()}** by the developers.
 
@@ -268301,7 +268313,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "maintenance");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268328,7 +268340,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "maintenance");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268355,7 +268367,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "down");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268382,7 +268394,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "lockdown");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268409,7 +268421,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "dev_only");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268436,7 +268448,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "vip_only");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268463,7 +268475,7 @@ var init_botstatus = __esm({
           try {
             const res = await executeBotStatusUpdate(interaction.client, "normal");
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Bot Status Updated",
                 description: res.message,
                 color: res.color
@@ -268528,7 +268540,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
           }
           await setBotCommandMode(cmdName, modeStr, interaction.user.tag);
           await interaction.reply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: `Command Access Restructured`,
               description: `Successfully set command **\`/${cmdName}\`** to **${modeStr.toUpperCase()}** mode.
 
@@ -268578,7 +268590,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
               await executeBotStatusUpdate(client, currentMode);
             }
             await interaction.editReply({
-              embeds: [prettyEmbed({
+              embeds: [prettyEmbed2({
                 title: "Profile Picture Baseline Synced",
                 description: `Successfully updated **Zenith Bot** profile picture baseline!
 
@@ -268661,7 +268673,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
           }
           const statusBadge = mappedStatus === "online" ? "\u{1F7E2} Online" : mappedStatus === "idle" ? "\u{1F7E1} Idle" : mappedStatus === "dnd" ? "\u{1F534} Do Not Disturb" : "\u26AA Offline / Invisible";
           await interaction.reply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Bot Presence Status Updated",
               description: `Successfully updated **${client.user.username}** presence!
 
@@ -268725,7 +268737,7 @@ Choose from: \`normal\`, \`maintenance\`, \`down\`, \`lockdown\`, \`dev_only\`, 
             }
           }
           await interaction.editReply({
-            embeds: [prettyEmbed({
+            embeds: [prettyEmbed2({
               title: "Bot Username & Nitro Styling Updated",
               description: `Successfully updated bot name to Nitro username text!
 
@@ -270160,7 +270172,7 @@ async function handlePrefixMessage(message) {
   const guild = message.guild;
   const author = message.author;
   if (!guild || !message.inGuild()) {
-    const { CE: CE3, prettyEmbed: prettyEmbed10, buildSupportRow: buildSupportRow3, COLORS: COLORS9 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+    const { CE: CE3, prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow3, COLORS: COLORS9 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
     const prefixes2 = [".", "!", "?", ",", "bp?", "nk.", "nk "];
     let rawInput2 = null;
     for (const p of prefixes2) {
@@ -270179,7 +270191,7 @@ async function handlePrefixMessage(message) {
     if (musicCmds.includes(canonicalName || rawCmd.toLowerCase())) {
       await message.reply({
         embeds: [
-          prettyEmbed10({
+          prettyEmbed11({
             title: `${CE3.music.str} Music Commands in Server Only`,
             description: `Music commands like \`.play\` and \`.twentyfourseven\` stream high-fidelity audio into server voice channels.
 
@@ -270297,10 +270309,10 @@ Need to invite Zenith Bot to your server? [Click here to invite](https://discord
     }
     const cmdType = lower2.includes("maintenance") || lower2.includes("maintainence") ? "maintenance" : lower2.includes("down") ? "down" : lower2.includes("lockdown") ? "lockdown" : lower2.includes("devonly") ? "dev_only" : lower2.includes("viponly") ? "vip_only" : "normal";
     const { executeBotStatusUpdate: executeBotStatusUpdate2 } = await Promise.resolve().then(() => (init_botstatus(), botstatus_exports));
-    const { prettyEmbed: prettyEmbed10, errorEmbed: errorEmbed2, CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+    const { prettyEmbed: prettyEmbed11, errorEmbed: errorEmbed2, CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
     const replyMsg = await message.reply({
       embeds: [
-        prettyEmbed10({
+        prettyEmbed11({
           title: `${CE3.settings.str} Initializing Status Change`,
           description: `Changing bot state to **${cmdType.toUpperCase()}** globally...`
         })
@@ -270311,7 +270323,7 @@ Need to invite Zenith Bot to your server? [Click here to invite](https://discord
       if (replyMsg) {
         await replyMsg.edit({
           embeds: [
-            prettyEmbed10({
+            prettyEmbed11({
               title: `${CE3.success.str} Bot Status Updated`,
               description: res.message,
               color: res.color
@@ -270388,8 +270400,8 @@ Need to invite Zenith Bot to your server? [Click here to invite](https://discord
   if (isDirectBotMention) {
     const { hasPremiumAccess: hasPremiumAccess2 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
     const isPremium = await hasPremiumAccess2(message.author.id, guild.id, member);
-    const { CE: CE3, prettyEmbed: prettyEmbed10, buildSupportRow: buildSupportRow3, COLORS: COLORS9, getBotName: getBotName2 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
-    const infoEmbed2 = prettyEmbed10({
+    const { CE: CE3, prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow3, COLORS: COLORS9, getBotName: getBotName2 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+    const infoEmbed2 = prettyEmbed11({
       title: `${CE3.bot.str} ${getBotName2()} \u2022 Active & Online`,
       description: `### Hello ${message.author}!
 I am active and protecting **${guild.name}**.
@@ -270440,7 +270452,7 @@ I am active and protecting **${guild.name}**.
     if (rawCmd.toLowerCase() === "ad" || rawCmd.toLowerCase() === "ads") {
       const { hasPremiumAccess: hasPremiumAccess2 } = await Promise.resolve().then(() => (init_premium(), premium_exports));
       const isPremium = await hasPremiumAccess2(message.author.id, guild.id, member);
-      const { CE: CE3, prettyEmbed: prettyEmbed10, buildSupportRow: buildSupportRow3, COLORS: COLORS9, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+      const { CE: CE3, prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow3, COLORS: COLORS9, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
       await message.reply({
         content: isPremium ? `${CE3.star.str} ${CE3.manager.str} **Zenith Bot Ad Status**: You are an active **Premium Member**! All ads and sponsor messages are permanently disabled for you.` : `${CE3.notifications.str} ${CE3.information.str} **Zenith Bot Ad System**: Zenith Bot is powered by sponsor announcements for non-premium users, keeping all core tools 100% free!`,
         allowedMentions: { repliedUser: true }
@@ -270448,7 +270460,7 @@ I am active and protecting **${guild.name}**.
       });
       await new Promise((resolve3) => setTimeout(resolve3, 1200));
       if (!isPremium) {
-        const adEmbed = prettyEmbed10({
+        const adEmbed = prettyEmbed11({
           title: `${CE3.notifications.str} ${CE3.promotion.str} Sponsored Announcement`,
           description: `Want an ad-free bot experience with uninterrupted music & god-mode protection?
 
@@ -270861,13 +270873,13 @@ async function handleGenericPrefixCommand(message, guild, member, command153, ar
   const isServerPremium = await isGuildPremium3(guild.id, guild);
   const showAds = !isPremium;
   const { EmbedBuilder: EmbedBuilder76 } = await Promise.resolve().then(() => __toESM(require_src2(), 1));
-  const { CE: CE3, prettyEmbed: prettyEmbed10, errorEmbed: errorEmbed2, buildSupportRow: buildSupportRow3, COLORS: COLORS9, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2, assertNoDefaultEmoji: assertNoDefaultEmoji3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+  const { CE: CE3, prettyEmbed: prettyEmbed11, errorEmbed: errorEmbed2, buildSupportRow: buildSupportRow3, COLORS: COLORS9, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2, assertNoDefaultEmoji: assertNoDefaultEmoji3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
   const wrapInEmbed = (payload) => {
     assertNoDefaultEmoji3(payload, "messageHandler:reply");
     if (typeof payload === "string") {
       return {
         embeds: [
-          prettyEmbed10({
+          prettyEmbed11({
             description: payload
           })
         ],
@@ -270876,7 +270888,7 @@ async function handleGenericPrefixCommand(message, guild, member, command153, ar
     }
     if (payload.content && (!payload.embeds || payload.embeds.length === 0)) {
       payload.embeds = [
-        prettyEmbed10({
+        prettyEmbed11({
           description: payload.content
         })
       ];
@@ -271191,8 +271203,8 @@ async function handleGenericPrefixCommand(message, guild, member, command153, ar
     ]);
     const canonicalCmd = canonicalName ? canonicalName.toLowerCase() : command153.data.name.toLowerCase();
     if (!isConfigured && !allowedSetupCmds.has(canonicalCmd)) {
-      const { prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow4, COLORS: COLORS10, CE: CE4 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
-      const unconfiguredEmbed = prettyEmbed11({
+      const { prettyEmbed: prettyEmbed12, buildSupportRow: buildSupportRow4, COLORS: COLORS10, CE: CE4 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+      const unconfiguredEmbed = prettyEmbed12({
         title: `${CE4.warning.str} Server Setup Required`,
         description: `### Mandatory Setup Required for **${guild.name}**
 
@@ -272501,7 +272513,7 @@ async function handleAppealModalSubmit(i2) {
       const channel = guild?.channels.cache.get(appealChannelId);
       if (channel && channel.type === import_discord212.ChannelType.GuildText) {
         const caseEntry = await getCase(guildId, caseNumber).catch(() => null);
-        const embed = prettyEmbed({
+        const embed = prettyEmbed2({
           title: `New Appeal \u2014 Case #${caseNumber}`,
           color: COLORS.warning,
           description: `${CE.information.str}
@@ -272598,7 +272610,7 @@ async function handleAppealReviewButton(i2) {
       const user = await i2.client.users.fetch(appeal.user_id).catch(() => null);
       if (user) {
         user.send({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: "Your Appeal Was Accepted",
             color: COLORS.success,
             description: `Your appeal for **Case #${appeal.case_number}** (${appeal.punishment_type}) has been **accepted**.
@@ -272712,7 +272724,7 @@ async function finalizeClose(client, ticket, outcome, item, price) {
       if (transcriptCh) {
         const buf = await generateTranscript(channel);
         await transcriptCh.send({
-          embeds: [prettyEmbed({
+          embeds: [prettyEmbed2({
             title: `${CE.shoppingcart.str} Transcript \u2014 ${ticket.ticketId}`,
             color: outcome === "success" ? COLORS.success : COLORS.danger,
             fields: [
@@ -272734,7 +272746,7 @@ async function finalizeClose(client, ticket, outcome, item, price) {
     const logCh = guild.channels.cache.get(shopSettings.logChannelId);
     if (logCh) {
       await logCh.send({
-        embeds: [prettyEmbed({
+        embeds: [prettyEmbed2({
           title: outcome === "success" ? `${CE.cash.str} Sale Completed` : `${CE.discount.str} Ticket Closed \u2014 Unsuccessful`,
           color: outcome === "success" ? COLORS.success : COLORS.danger,
           fields: [
@@ -272940,7 +272952,7 @@ Please review your answers below.`).setColor(COLORS.primary).addFields(
       });
       if (ss.logChannelId) {
         const logCh = guild.channels.cache.get(ss.logChannelId);
-        logCh?.send({ embeds: [prettyEmbed({ title: `${CE.shoppingcart.str} New Ticket Opened`, color: COLORS.info, fields: [{ name: "Ticket", value: ticketId, inline: true }, { name: "Shop", value: shop.name, inline: true }, { name: "Customer", value: `<@${interaction.user.id}>`, inline: true }] })] }).catch(() => {
+        logCh?.send({ embeds: [prettyEmbed2({ title: `${CE.shoppingcart.str} New Ticket Opened`, color: COLORS.info, fields: [{ name: "Ticket", value: ticketId, inline: true }, { name: "Shop", value: shop.name, inline: true }, { name: "Customer", value: `<@${interaction.user.id}>`, inline: true }] })] }).catch(() => {
         });
       }
       await submit.reply({ content: `${CE.success.str} Your ticket has been created: <#${ticketChannel.id}>`, ephemeral: true });
@@ -273222,7 +273234,7 @@ async function handleBugReportButton(interaction) {
     try {
       const reporterUser = await interaction.client.users.fetch(reporterId).catch(() => null);
       if (reporterUser) {
-        const dmEmbed = prettyEmbed({
+        const dmEmbed = prettyEmbed2({
           title: "Bug Report Approved!",
           color: 3066993,
           description: `### ${CE.check.str} **Congratulations! Your bug report was approved!**
@@ -273248,7 +273260,7 @@ Your bug report **${reportId}** has been approved by the QA team.
     try {
       const reporterUser = await interaction.client.users.fetch(reporterId).catch(() => null);
       if (reporterUser) {
-        const dmEmbed = prettyEmbed({
+        const dmEmbed = prettyEmbed2({
           title: "Bug Report Reviewed",
           color: 15158332,
           description: `### **Bug Report Update: ${reportId}**
@@ -274520,7 +274532,7 @@ async function startDiscordBot() {
         });
         const guildNum = await incrementGuildCount();
         await new Promise((r2) => setTimeout(r2, 1e3));
-        const { prettyEmbed: prettyEmbed10, buildSupportRow: buildSupportRow3, CE: CE3, COLORS: COLORS9 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+        const { prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow3, CE: CE3, COLORS: COLORS9 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
         const { safeSendUserDm: safeSendUserDm2 } = await Promise.resolve().then(() => (init_dmWebhook(), dmWebhook_exports));
         let inviterId = null;
         try {
@@ -274529,7 +274541,7 @@ async function startDiscordBot() {
           if (entry?.executor) inviterId = entry.executor.id;
         } catch {
         }
-        const welcomeEmbed = prettyEmbed10({
+        const welcomeEmbed = prettyEmbed11({
           title: `${CE3.star.str} Thank You for Adding Zenith Bot!`,
           description: `### Welcome to **${guild.name}**!
 
@@ -274587,6 +274599,7 @@ Thank you for adding **Zenith Bot** to your server. All modules and features are
       }
     });
     client.on(import_discord217.Events.InteractionCreate, async (interaction) => {
+      logger.info({ customId: interaction.isMessageComponent() ? interaction.customId : "N/A", type: interaction.type }, "Interaction received");
       if (interaction.isRoleSelectMenu() && interaction.customId.startsWith("ref:")) {
         const { handleReferralRoleSelect: handleReferralRoleSelect2 } = await Promise.resolve().then(() => (init_referral(), referral_exports));
         await handleReferralRoleSelect2(interaction);
@@ -274658,6 +274671,7 @@ Thank you for adding **Zenith Bot** to your server. All modules and features are
         return;
       }
       if (interaction.isButton()) {
+        logger.info({ customId: interaction.customId }, "Processing button interaction");
         if (interaction.customId.startsWith("appeal:")) {
           const { handleAppealButton: handleAppealButton2, handleAppealReviewButton: handleAppealReviewButton2 } = await Promise.resolve().then(() => (init_appealHandler(), appealHandler_exports));
           try {
@@ -274774,15 +274788,22 @@ Thank you for adding **Zenith Bot** to your server. All modules and features are
             return;
           }
           try {
-            const tc = await getTicketsConfig(guildId);
+            let tc = await getTicketsConfig(guildId);
             if (!tc.enabled) {
-              await interaction.reply({ content: "The ticket system is currently disabled.", flags: 1 << 6 });
-              return;
+              tc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true }));
             }
-            const panel = tc.panels[panelId];
+            let panel = tc.panels[panelId];
             if (!panel) {
-              await interaction.reply({ content: "This ticket panel no longer exists.", flags: 1 << 6 });
-              return;
+              const defaultDefs = {
+                panel_general: { name: "general-support", embedTitle: "<:white_ticket:1555133876433846382> General Support Ticket", embedDescription: "Need help with Zenith Bot commands, configuration, or general questions?\nSupport will be with you shortly.", buttonLabel: "General Support", buttonEmoji: "<:white_ticket:1555133876433846382>", embedColor: 5793266, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+                panel_premium: { name: "premium-inquiries", embedTitle: "<:white_Premium:1555133783634616371> Premium & Billing Inquiries", embedDescription: "Questions regarding Zenith Premium, license key redemption, or custom bot branding?\nSupport will be with you shortly.", buttonLabel: "Premium & Billing", buttonEmoji: "<:Premium1:1555133459192615042>", embedColor: 16705372, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+                panel_bug: { name: "bug-reports", embedTitle: "<:Bughunter_1:1555133271896096788> Bug Report Ticket", embedDescription: "Found an error or broken bot command? Report it directly to our development engineers.\nSupport will be with you shortly.", buttonLabel: "Bug Reports", buttonEmoji: "<:Bughunter_1:1555133271896096788>", embedColor: 15548997, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+                panel_security: { name: "security-antinuke", embedTitle: "<:white_antinuke:1555133560334061610> Anti-Nuke & Security Setup", embedDescription: "Need urgent help with Anti-Nuke whitelisting, AutoMod rules, or raid protection?\nSupport will be with you shortly.", buttonLabel: "Anti-Nuke & Security", buttonEmoji: "<:white_antinuke:1555133560334061610>", embedColor: 5763719, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" }
+              };
+              const def = defaultDefs[panelId] || { name: panelId.replace(/^panel_/, ""), embedTitle: "Support Ticket", embedDescription: "Support will be with you shortly.", buttonLabel: "Open Ticket", embedColor: 5793266, supportRoleId: tc.supportRoleId };
+              const newPanel = { id: panelId, ...def };
+              const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true, panels: { ...c.panels, [panelId]: newPanel } }));
+              panel = updatedTc.panels[panelId];
             }
             const existing = await getOpenTicketsByUser(guildId, interaction.user.id, panelId);
             if (existing.length > 0) {
@@ -275003,15 +275024,22 @@ Support will be with you shortly.`).setFooter({ text: "Use the buttons below to 
           return;
         }
         try {
-          const tc = await getTicketsConfig(guildId);
+          let tc = await getTicketsConfig(guildId);
           if (!tc.enabled) {
-            await interaction.reply({ content: "The ticket system is currently disabled.", flags: 1 << 6 });
-            return;
+            tc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true }));
           }
-          const panel = tc.panels[panelId];
+          let panel = tc.panels[panelId];
           if (!panel) {
-            await interaction.reply({ content: "That ticket panel no longer exists.", flags: 1 << 6 });
-            return;
+            const defaultDefs = {
+              panel_general: { name: "general-support", embedTitle: "<:white_ticket:1555133876433846382> General Support Ticket", embedDescription: "Need help with Zenith Bot commands, configuration, or general questions?\nSupport will be with you shortly.", buttonLabel: "General Support", buttonEmoji: "<:white_ticket:1555133876433846382>", embedColor: 5793266, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+              panel_premium: { name: "premium-inquiries", embedTitle: "<:white_Premium:1555133783634616371> Premium & Billing Inquiries", embedDescription: "Questions regarding Zenith Premium, license key redemption, or custom bot branding?\nSupport will be with you shortly.", buttonLabel: "Premium & Billing", buttonEmoji: "<:Premium1:1555133459192615042>", embedColor: 16705372, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+              panel_bug: { name: "bug-reports", embedTitle: "<:Bughunter_1:1555133271896096788> Bug Report Ticket", embedDescription: "Found an error or broken bot command? Report it directly to our development engineers.\nSupport will be with you shortly.", buttonLabel: "Bug Reports", buttonEmoji: "<:Bughunter_1:1555133271896096788>", embedColor: 15548997, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+              panel_security: { name: "security-antinuke", embedTitle: "<:white_antinuke:1555133560334061610> Anti-Nuke & Security Setup", embedDescription: "Need urgent help with Anti-Nuke whitelisting, AutoMod rules, or raid protection?\nSupport will be with you shortly.", buttonLabel: "Anti-Nuke & Security", buttonEmoji: "<:white_antinuke:1555133560334061610>", embedColor: 5763719, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" }
+            };
+            const def = defaultDefs[panelId] || { name: panelId.replace(/^panel_/, ""), embedTitle: "Support Ticket", embedDescription: "Support will be with you shortly.", buttonLabel: "Open Ticket", embedColor: 5793266, supportRoleId: tc.supportRoleId };
+            const newPanel = { id: panelId, ...def };
+            const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true, panels: { ...c.panels, [panelId]: newPanel } }));
+            panel = updatedTc.panels[panelId];
           }
           const existing = await getOpenTicketsByUser(guildId, interaction.user.id, panelId);
           if (existing.length > 0) {
@@ -275254,8 +275282,8 @@ Support will be with you shortly.`).setFooter({ text: "Use the buttons below to 
         ]);
         const cmdNameLower = interaction.commandName.toLowerCase();
         if (!isConfigured && !allowedSetupCmds.has(cmdNameLower)) {
-          const { prettyEmbed: prettyEmbed10, buildSupportRow: buildSupportRow3, COLORS: COLORS9, CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
-          const unconfiguredEmbed = prettyEmbed10({
+          const { prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow3, COLORS: COLORS9, CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+          const unconfiguredEmbed = prettyEmbed11({
             title: `${CE3.warning.str} Server Setup Required`,
             description: `### Mandatory Setup Required for **${interaction.guild.name}**
 
@@ -275818,7 +275846,7 @@ ${text}` : text }).catch(() => {
           setupWizardCompleted: false,
           commandsUnlocked: false
         }));
-        const { prettyEmbed: prettyEmbed10, buildSupportRow: buildSupportRow3, COLORS: COLORS9, resolveDynamicEmoji: resolveDynamicEmoji2, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+        const { prettyEmbed: prettyEmbed11, buildSupportRow: buildSupportRow3, COLORS: COLORS9, resolveDynamicEmoji: resolveDynamicEmoji2, SUPPORT_SERVER_URL: SUPPORT_SERVER_URL2 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
         const botEmoji = resolveDynamicEmoji2(client, "bots", CE.bot.str);
         const supportRow = buildSupportRow3("Join Support Server", true);
         const sendableChannels = guild.channels.cache.filter(
@@ -275829,7 +275857,7 @@ ${text}` : text }).catch(() => {
         if (targetCh && "send" in targetCh) {
           await targetCh.send({
             embeds: [
-              prettyEmbed10({
+              prettyEmbed11({
                 title: `${botEmoji} Thank You for Adding Zenith Bot!`,
                 description: `Thank you for adding **Zenith Bot** to **${guild.name}**!
 
@@ -275848,7 +275876,7 @@ ${text}` : text }).catch(() => {
         if (owner) {
           await owner.send({
             embeds: [
-              prettyEmbed10({
+              prettyEmbed11({
                 title: `${botEmoji} Thank You for Adding Zenith Bot!`,
                 description: `Hello **${owner.user.username}**! Thank you for adding **Zenith Bot** to **${guild.name}**!
 
@@ -275870,7 +275898,7 @@ ${text}` : text }).catch(() => {
             const adder = entry.executor;
             await adder.send({
               embeds: [
-                prettyEmbed10({
+                prettyEmbed11({
                   title: `${botEmoji} Thank You for Adding Zenith Bot!`,
                   description: `Hello **${adder.username}**! Thank you for adding **Zenith Bot** to **${guild.name}**!
 
@@ -276016,10 +276044,10 @@ ${text}` : text }).catch(() => {
         const { checkPartnerRolesIntegrity: checkPartnerRolesIntegrity3 } = await Promise.resolve().then(() => (init_referrals(), referrals_exports));
         const integrity = await checkPartnerRolesIntegrity3(role.guild);
         if (integrity.isPartnerGuild && !integrity.rolesValid) {
-          const { prettyEmbed: prettyEmbed10, COLORS: COLORS9, CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
+          const { prettyEmbed: prettyEmbed11, COLORS: COLORS9, CE: CE3 } = await Promise.resolve().then(() => (init_embedStyle(), embedStyle_exports));
           const sysCh = role.guild.systemChannel || role.guild.channels.cache.find((c) => c.isTextBased() && c.permissionsFor(role.guild.members.me)?.has("SendMessages"));
           if (sysCh && "send" in sysCh) {
-            const alertEmbed = prettyEmbed10({
+            const alertEmbed = prettyEmbed11({
               title: `${CE3.warning.str} Partner Staff Role Action Required!`,
               description: `A configured **Partner Staff Role** was deleted from **${role.guild.name}**!
 
@@ -276631,7 +276659,7 @@ router2.post("/broadcast", async (req, res) => {
     const guilds = Array.from(client.guilds.cache.values());
     let sentCount = 0;
     let failedCount = 0;
-    const embed = prettyEmbed({
+    const embed = prettyEmbed2({
       title: title?.trim() || "Official Bot Broadcast Announcement",
       description: message.trim(),
       color: COLORS.primary,

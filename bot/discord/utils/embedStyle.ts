@@ -451,7 +451,7 @@ const RAW_CE: Record<string, CustomEmojiEntry> = {
   clipboard:     { str: "<:0white_pm:1551170015774900294>",   id: "1551170015774900294", name: "0white_pm",     animated: false },
   delete:        { str: "<:sk_ban:1551170098042372179>",      id: "1551170098042372179", name: "sk_ban",        animated: false },
   trash:         { str: "<:sk_ban:1551170098042372179>",      id: "1551170098042372179", name: "sk_ban",        animated: false },
-  ticket:        { str: "<:sk_appeal:1551170214220337162>",    id: "1551170214220337162", name: "sk_appeal",     animated: false },
+  ticket:        { str: "<:white_ticket:1555133876433846382>",    id: "1555133876433846382", name: "white_ticket",     animated: false },
   calendar:      { str: "<:botCalendarLight:1551170019226947625>",id: "1551170019226947625", name: "botCalendarLight",animated: false},
   level:         { str: "<:sk_promote:1551170113271791771>",   id: "1551170113271791771", name: "sk_promote",    animated: false },
   chart:         { str: "<:botinfo:1551170025732313109>",     id: "1551170025732313109", name: "botinfo",       animated: false },

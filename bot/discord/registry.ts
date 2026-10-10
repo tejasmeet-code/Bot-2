@@ -23,7 +23,7 @@ import channelShuffle from "./commands/channelShuffle";
 import choice from "./commands/choice";
 import closeTicket from "./commands/close-ticket";
 import coinflip from "./commands/coinflip";
-import config from "./commands/config";
+import { config } from "./commands/config";
 import intro from "./commands/intro";
 import connectServers from "./commands/connect-servers";
 import connect4 from "./commands/connect4";
@@ -127,6 +127,7 @@ import whitelist from "./commands/whitelist";
 import whitelistAll from "./commands/whitelistAll";
 import wordscramble from "./commands/wordscramble";
 import wouldyourather from "./commands/wouldyourather";
+import autorole from "./commands/autorole";
 import giveaway from "./commands/giveaway";
 import rank from "./commands/rank";
 import leaderboard from "./commands/leaderboard";
@@ -381,6 +382,7 @@ const allCommands: SlashCommand[] = [
   serverlist,
   leaveserver,
   broadcast,
+  autorole,
 ];
 
 // Discord allows max 100 application commands per scope. The old registry was

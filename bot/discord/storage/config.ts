@@ -186,10 +186,16 @@ export interface VerifyConfig {
   unverifiedRoleId?: string;
 }
 
+export interface AutoroleConfig {
+  enabled: boolean;
+  roleIds: string[];
+}
+
 export interface GuildConfig {
   managers: GuildManagers;
   modules: GuildModules;
   channels: GuildChannels;
+  autorole?: AutoroleConfig;
   moduleRoles?: Record<string, string[]>;
   roleQuotas?: Record<string, RoleQuota>;
   quotaWhitelistRoles?: string[];

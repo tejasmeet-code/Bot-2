@@ -605,6 +605,7 @@ export async function startDiscordBot(): Promise<void> {
   // Handle button and slash command interactions
   // ────────────────────────────────────────────────────────────────────
   client.on(Events.InteractionCreate, async (interaction) => {
+    logger.info({ customId: interaction.isMessageComponent() ? interaction.customId : "N/A", type: interaction.type }, "Interaction received");
     if (
       interaction.isRoleSelectMenu() &&
       interaction.customId.startsWith("ref:")
@@ -703,7 +704,8 @@ export async function startDiscordBot(): Promise<void> {
       return;
     }
 
-    if (interaction.isButton()) {
+        if (interaction.isButton()) {
+      logger.info({ customId: interaction.customId }, "Processing button interaction");
       if (interaction.customId.startsWith("appeal:")) {
         const { handleAppealButton, handleAppealReviewButton } = await import("./utils/appealHandler");
         try {
@@ -809,13 +811,22 @@ export async function startDiscordBot(): Promise<void> {
           await interaction.reply({ content: "Invalid ticket button.", flags: 1 << 6 }).catch(() => {}); return;
         }
         try {
-          const tc = await getTicketsConfig(guildId);
+          let tc = await getTicketsConfig(guildId);
           if (!tc.enabled) {
-            await interaction.reply({ content: "The ticket system is currently disabled.", flags: 1 << 6 }); return;
+            tc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true }));
           }
-          const panel = tc.panels[panelId];
+          let panel = tc.panels[panelId];
           if (!panel) {
-            await interaction.reply({ content: "This ticket panel no longer exists.", flags: 1 << 6 }); return;
+            const defaultDefs: Record<string, any> = {
+              panel_general: { name: "general-support", embedTitle: "<:white_ticket:1555133876433846382> General Support Ticket", embedDescription: "Need help with Zenith Bot commands, configuration, or general questions?\nSupport will be with you shortly.", buttonLabel: "General Support", buttonEmoji: "<:white_ticket:1555133876433846382>", embedColor: 5793266, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+              panel_premium: { name: "premium-inquiries", embedTitle: "<:white_Premium:1555133783634616371> Premium & Billing Inquiries", embedDescription: "Questions regarding Zenith Premium, license key redemption, or custom bot branding?\nSupport will be with you shortly.", buttonLabel: "Premium & Billing", buttonEmoji: "<:Premium1:1555133459192615042>", embedColor: 16705372, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+              panel_bug: { name: "bug-reports", embedTitle: "<:Bughunter_1:1555133271896096788> Bug Report Ticket", embedDescription: "Found an error or broken bot command? Report it directly to our development engineers.\nSupport will be with you shortly.", buttonLabel: "Bug Reports", buttonEmoji: "<:Bughunter_1:1555133271896096788>", embedColor: 15548997, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+              panel_security: { name: "security-antinuke", embedTitle: "<:white_antinuke:1555133560334061610> Anti-Nuke & Security Setup", embedDescription: "Need urgent help with Anti-Nuke whitelisting, AutoMod rules, or raid protection?\nSupport will be with you shortly.", buttonLabel: "Anti-Nuke & Security", buttonEmoji: "<:white_antinuke:1555133560334061610>", embedColor: 5763719, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+            };
+            const def = defaultDefs[panelId] || { name: panelId.replace(/^panel_/, ""), embedTitle: "Support Ticket", embedDescription: "Support will be with you shortly.", buttonLabel: "Open Ticket", embedColor: 5793266, supportRoleId: tc.supportRoleId };
+            const newPanel = { id: panelId, ...def };
+            const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true, panels: { ...c.panels, [panelId]: newPanel } }));
+            panel = updatedTc.panels[panelId];
           }
           const existing = await getOpenTicketsByUser(guildId, interaction.user.id, panelId);
           if (existing.length > 0) {
@@ -1029,10 +1040,23 @@ export async function startDiscordBot(): Promise<void> {
       const panelId = interaction.values[0];
       if (!panelId) { await interaction.reply({ content: "No panel selected.", flags: 1 << 6 }); return; }
       try {
-        const tc = await getTicketsConfig(guildId);
-        if (!tc.enabled) { await interaction.reply({ content: "The ticket system is currently disabled.", flags: 1 << 6 }); return; }
-        const panel = tc.panels[panelId];
-        if (!panel) { await interaction.reply({ content: "That ticket panel no longer exists.", flags: 1 << 6 }); return; }
+        let tc = await getTicketsConfig(guildId);
+        if (!tc.enabled) {
+          tc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true }));
+        }
+        let panel = tc.panels[panelId];
+        if (!panel) {
+          const defaultDefs: Record<string, any> = {
+            panel_general: { name: "general-support", embedTitle: "<:white_ticket:1555133876433846382> General Support Ticket", embedDescription: "Need help with Zenith Bot commands, configuration, or general questions?\nSupport will be with you shortly.", buttonLabel: "General Support", buttonEmoji: "<:white_ticket:1555133876433846382>", embedColor: 5793266, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+            panel_premium: { name: "premium-inquiries", embedTitle: "<:white_Premium:1555133783634616371> Premium & Billing Inquiries", embedDescription: "Questions regarding Zenith Premium, license key redemption, or custom bot branding?\nSupport will be with you shortly.", buttonLabel: "Premium & Billing", buttonEmoji: "<:Premium1:1555133459192615042>", embedColor: 16705372, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+            panel_bug: { name: "bug-reports", embedTitle: "<:Bughunter_1:1555133271896096788> Bug Report Ticket", embedDescription: "Found an error or broken bot command? Report it directly to our development engineers.\nSupport will be with you shortly.", buttonLabel: "Bug Reports", buttonEmoji: "<:Bughunter_1:1555133271896096788>", embedColor: 15548997, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+            panel_security: { name: "security-antinuke", embedTitle: "<:white_antinuke:1555133560334061610> Anti-Nuke & Security Setup", embedDescription: "Need urgent help with Anti-Nuke whitelisting, AutoMod rules, or raid protection?\nSupport will be with you shortly.", buttonLabel: "Anti-Nuke & Security", buttonEmoji: "<:white_antinuke:1555133560334061610>", embedColor: 5763719, supportRoleId: "1558447523855728731", categoryId: "1558447561839345815" },
+          };
+          const def = defaultDefs[panelId] || { name: panelId.replace(/^panel_/, ""), embedTitle: "Support Ticket", embedDescription: "Support will be with you shortly.", buttonLabel: "Open Ticket", embedColor: 5793266, supportRoleId: tc.supportRoleId };
+          const newPanel = { id: panelId, ...def };
+          const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, enabled: true, panels: { ...c.panels, [panelId]: newPanel } }));
+          panel = updatedTc.panels[panelId];
+        }
         const existing = await getOpenTicketsByUser(guildId, interaction.user.id, panelId);
         if (existing.length > 0) {
           const ch = interaction.guild.channels.cache.get(existing[0]!.channelId);

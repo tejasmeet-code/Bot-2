@@ -4070,13 +4070,16 @@ const command: SlashCommand = {
           const ch = i.guild?.channels.cache.get(panel.panelChannelId) as any;
           if (!ch || !ch.send) { await i.reply({ content: "Channel not found.", ephemeral: true }); return; }
           if (panel.panelMessageId) { await ch.messages.fetch(panel.panelMessageId).then((m: any) => m.delete()).catch(() => {}); }
-          const panelEmbed = new EmbedBuilder().setTitle(panel.embedTitle).setDescription(panel.embedDescription || null).setColor(panel.embedColor || 0x2b2d31);
+          const panelEmbed = prettyEmbed({ title: panel.embedTitle, description: panel.embedDescription || undefined, color: panel.embedColor || 0x2b2d31 });
           const btnB = new ButtonBuilder().setCustomId(`ticket:open:${panelId}:${guildId}`).setLabel(panel.buttonLabel).setStyle(ButtonStyle.Primary);
           if (panel.buttonEmoji) {
             const cm = panel.buttonEmoji.match(/^<a?:(\w+):(\d+)>$/);
-            if (cm) { btnB.setEmoji({ name: cm[1], id: cm[2] }); } else { btnB.setEmoji(panel.buttonEmoji); }
+            if (cm) { btnB.setEmoji({ name: cm[1]!, id: cm[2]!, animated: panel.buttonEmoji.startsWith("<a:") }); } else { btnB.setEmoji(panel.buttonEmoji); }
+          } else {
+            btnB.setEmoji({ id: CE.ticket.id, name: CE.ticket.name, animated: CE.ticket.animated });
           }
-          const msg = await ch.send({ embeds: [panelEmbed], components: [new ActionRowBuilder().addComponents(btnB)] as any }).catch(() => null);
+          const row = new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(btnB);
+          const msg = await ch.send({ embeds: [panelEmbed], components: [row] }).catch(() => null);
           if (!msg) { await i.reply({ content: "Failed to post. Check my permissions.", ephemeral: true }); return; }
           const updatedTc = await updateTicketsConfig(guildId, (c) => ({ ...c, panels: { ...c.panels, [panelId]: { ...c.panels[panelId]!, panelMessageId: msg.id } } }));
           const updatedPanel = updatedTc.panels[panelId]!;
@@ -4203,7 +4206,7 @@ const command: SlashCommand = {
             await postCh.messages.fetch(mp.messageId).then((m: any) => m.delete()).catch(() => {});
           }
 
-          const panelEmbed = new EmbedBuilder().setTitle(mp.embedTitle).setDescription(mp.embedDescription || null).setColor(0x2b2d31);
+          const panelEmbed = prettyEmbed({ title: mp.embedTitle, description: mp.embedDescription || undefined, color: 0x5865F2 });
           const includedPanels = mp.panelIds.map((pid) => tc.panels[pid]).filter(Boolean) as TicketPanel[];
 
           let msgComponents: any[];
@@ -4211,7 +4214,7 @@ const command: SlashCommand = {
             const btnRows: any[] = [];
             for (let b = 0; b < includedPanels.length; b += 5) {
               const chunk = includedPanels.slice(b, b + 5);
-              btnRows.push(new ActionRowBuilder().addComponents(
+              btnRows.push(new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
                 chunk.map((p) => {
                   const btn = new ButtonBuilder()
                     .setCustomId(`ticket:open:${p.id}:${guildId}`)
@@ -4219,7 +4222,9 @@ const command: SlashCommand = {
                     .setStyle(ButtonStyle.Primary);
                   if (p.buttonEmoji) {
                     const cm = p.buttonEmoji.match(/^<a?:(\w+):(\d+)>$/);
-                    if (cm) btn.setEmoji({ name: cm[1]!, id: cm[2]! }); else btn.setEmoji(p.buttonEmoji);
+                    if (cm) btn.setEmoji({ name: cm[1]!, id: cm[2]!, animated: p.buttonEmoji.startsWith("<a:") }); else btn.setEmoji(p.buttonEmoji);
+                  } else {
+                    btn.setEmoji({ id: CE.ticket.id, name: CE.ticket.name, animated: CE.ticket.animated });
                   }
                   return btn;
                 }),
@@ -4229,15 +4234,22 @@ const command: SlashCommand = {
           } else {
             const select = new StringSelectMenuBuilder()
               .setCustomId(`ticket:multipanel:select:${guildId}`)
-              .setPlaceholder("Choose a ticket category…")
+              .setPlaceholder("Click to choose a ticket category...")
               .addOptions(
-                includedPanels.map((p) => ({
-                  label: p.buttonLabel.slice(0, 25),
-                  value: p.id,
-                  description: p.name.slice(0, 50),
-                })),
+                includedPanels.map((p) => {
+                  const opt: any = {
+                    label: p.buttonLabel.slice(0, 25),
+                    value: p.id,
+                    description: p.name.slice(0, 50),
+                  };
+                  if (p.buttonEmoji) {
+                    const cm = p.buttonEmoji.match(/^<a?:(\w+):(\d+)>$/);
+                    if (cm) opt.emoji = { name: cm[1]!, id: cm[2]! };
+                  }
+                  return opt;
+                }),
               );
-            msgComponents = [new ActionRowBuilder().addComponents(select)];
+            msgComponents = [new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(select)];
           }
 
           const msg = await postCh.send({ embeds: [panelEmbed], components: msgComponents }).catch(() => null);
