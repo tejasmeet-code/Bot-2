@@ -88,8 +88,85 @@ function emptyGuild(): GuildTickets {
 }
 
 export async function getTicketsConfig(guildId: string): Promise<TicketsModuleConfig> {
-  const data = await load();
-  return data[guildId]?.config ?? emptyGuild().config;
+  let data = await load();
+  let conf = data[guildId]?.config;
+  if (!conf || !conf.panels || Object.keys(conf.panels).length === 0) {
+    if (guildId === "1554479885760856076") {
+      conf = {
+        enabled: true,
+        supportRoleId: "1558447523855728731",
+        adminRoleId: "1558447522500841613",
+        logChannelId: "1558447596467650651",
+        transcriptChannelId: "1558447565366628402",
+        panels: {
+          panel_general: {
+            id: "panel_general",
+            name: "general-support",
+            embedTitle: "<:white_ticket:1555133876433846382> General Support Ticket",
+            embedDescription: "Need help with Zenith Bot commands, configuration, or general questions?\nSupport will be with you shortly.",
+            embedColor: 5793266,
+            buttonLabel: "General Support",
+            buttonEmoji: "<:white_ticket:1555133876433846382>",
+            supportRoleId: "1558447523855728731",
+            panelChannelId: "1558447563529785416",
+            categoryId: "1558459182464761971",
+            panelMessageId: "1558449145042178122",
+          },
+          panel_premium: {
+            id: "panel_premium",
+            name: "premium-inquiries",
+            embedTitle: "<:white_Premium:1555133783634616371> Premium & Billing Inquiries",
+            embedDescription: "Questions regarding Zenith Premium, license key redemption, or custom bot branding?\nSupport will be with you shortly.",
+            embedColor: 16705372,
+            buttonLabel: "Premium & Billing",
+            buttonEmoji: "<:Premium1:1555133459192615042>",
+            supportRoleId: "1558447523855728731",
+            panelChannelId: "1558447563529785416",
+            categoryId: "1558459184071049246",
+            panelMessageId: "1558449145042178122",
+          },
+          panel_bug: {
+            id: "panel_bug",
+            name: "bug-reports",
+            embedTitle: "<:Bughunter_1:1555133271896096788> Bug Report Ticket",
+            embedDescription: "Found an error or broken bot command? Report it directly to our development engineers.\nSupport will be with you shortly.",
+            embedColor: 15548997,
+            buttonLabel: "Bug Reports",
+            buttonEmoji: "<:Bughunter_1:1555133271896096788>",
+            supportRoleId: "1558447523855728731",
+            panelChannelId: "1558447563529785416",
+            categoryId: "1558459186172526592",
+            panelMessageId: "1558449145042178122",
+          },
+          panel_security: {
+            id: "panel_security",
+            name: "security-antinuke",
+            embedTitle: "<:white_antinuke:1555133560334061610> Anti-Nuke & Security Setup",
+            embedDescription: "Need urgent help with Anti-Nuke whitelisting, AutoMod rules, or raid protection?\nSupport will be with you shortly.",
+            embedColor: 5763719,
+            buttonLabel: "Anti-Nuke & Security",
+            buttonEmoji: "<:white_antinuke:1555133560334061610>",
+            supportRoleId: "1558447523855728731",
+            panelChannelId: "1558447563529785416",
+            categoryId: "1558459188638916771",
+            panelMessageId: "1558449145042178122",
+          },
+        },
+        multiPanel: {
+          channelId: "1558447563529785416",
+          messageId: "1558449145042178122",
+          panelIds: ["panel_general", "panel_premium", "panel_bug", "panel_security"],
+          embedTitle: "<:white_ticket:1555133876433846382> Zenith Support Desk ━━ Official Help Portal",
+          embedDescription: "Welcome to **Zenith Support**! Please select the category below that best describes your inquiry. Our support team is available to assist you.\n\n**Available Support Categories:**\n• <:white_ticket:1555133876433846382> **General Support** ◦ Command help, permissions, and server setup\n• <:Premium1:1555133459192615042> **Premium & Billing** ◦ Key redemption, tiers, and invoice assistance\n• <:Bughunter_1:1555133271896096788> **Bug Reports** ◦ Error reports and bot malfunctions\n• <:white_antinuke:1555133560334061610> **Anti-Nuke & Security** ◦ Raid recovery, whitelist setup, and bypasses\n\n*Select a category from the dropdown menu below to open your ticket.*",
+          useButtons: false,
+        },
+      };
+      if (!data[guildId]) data[guildId] = emptyGuild();
+      data[guildId]!.config = conf;
+      queueWrite(data);
+    }
+  }
+  return conf ?? emptyGuild().config;
 }
 
 export async function updateTicketsConfig(

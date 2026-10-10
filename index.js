@@ -5,6 +5,16 @@ import path from 'node:path';
 
 console.log('⚡ Starting Zenith Bot service...');
 
+// Auto-pull latest updates from GitHub if running in git repository
+if (process.env.AUTO_UPDATE !== 'false' && existsSync('.git')) {
+  try {
+    console.log('🔄 Checking for remote GitHub updates on startup...');
+    execSync('git pull --rebase origin main || git pull origin main || true', { stdio: 'inherit' });
+  } catch {
+    // Non-fatal if offline or detached
+  }
+}
+
 const distFile = path.resolve('./artifacts/api-server/dist/index.mjs');
 if (!existsSync(distFile)) {
   console.log('🔨 Build output missing. Running automatic build via esbuild...');
