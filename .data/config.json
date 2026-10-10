@@ -1810,7 +1810,7 @@
       "quota": true,
       "verify": true,
       "appeals": true,
-      "antiNuke": false,
+      "antiNuke": true,
       "auditLog": true,
       "noPrefix": true,
       "staffMgmt": true,
@@ -1820,7 +1820,10 @@
       "infractions": true,
       "partnership": true,
       "staffDirectory": false,
-      "serverMaintenance": false
+      "serverMaintenance": false,
+      "automod": true,
+      "logging": true,
+      "welcomer": true
     },
     "channels": {},
     "managers": {
@@ -2002,7 +2005,28 @@
     "setupWizardCompleted": true,
     "trustedWhitelistUserIds": [],
     "serverAdminWhitelistUserIds": [],
-    "serverOwnerWhitelistUserIds": []
+    "serverOwnerWhitelistUserIds": [],
+    "autoRoleConfig": {
+      "enabled": true,
+      "memberRoleIds": [
+        "1558447531661332500"
+      ],
+      "botRoleIds": [
+        "1558447529455263785"
+      ]
+    },
+    "loggingConfig": {
+      "enabled": true,
+      "logServer": true,
+      "logMembers": true,
+      "logChannels": true,
+      "logRoles": true,
+      "logMod": true,
+      "logTickets": true,
+      "channelId": "1558447590947815466",
+      "modLogChannelId": "1558447599428829186",
+      "ticketLogChannelId": "1558447596467650651"
+    }
   },
   "1555111481505218583": {
     "guildId": "",

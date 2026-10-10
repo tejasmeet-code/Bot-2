@@ -1,0 +1,59 @@
+{
+  "1554479885760856076": {
+    "config": {
+      "enabled": true,
+      "panels": {
+        "panel_general": {
+          "id": "panel_general",
+          "name": "general-support",
+          "embedTitle": "🎫 General Support Ticket",
+          "embedDescription": "Need help with Zenith Bot commands, configuration, or general questions?\nClick **Open General Ticket** below.",
+          "embedColor": 5793266,
+          "buttonLabel": "General Support",
+          "buttonEmoji": "🎫",
+          "supportRoleId": "1558447523855728731",
+          "panelChannelId": "1558447563529785416"
+        },
+        "panel_premium": {
+          "id": "panel_premium",
+          "name": "premium-inquiries",
+          "embedTitle": "💎 Premium & Billing Inquiries",
+          "embedDescription": "Questions regarding Zenith Premium, license key redemption, or custom bot branding?\nClick **Open Premium Ticket** below.",
+          "embedColor": 16705372,
+          "buttonLabel": "Premium & Billing",
+          "buttonEmoji": "💎",
+          "supportRoleId": "1558447523855728731",
+          "panelChannelId": "1558447563529785416"
+        },
+        "panel_bug": {
+          "id": "panel_bug",
+          "name": "bug-reports",
+          "embedTitle": "🐛 Bug Report Ticket",
+          "embedDescription": "Found an error or broken bot command? Report it directly to our development engineers.\nClick **Open Bug Report** below.",
+          "embedColor": 15548997,
+          "buttonLabel": "Bug Reports",
+          "buttonEmoji": "🐛",
+          "supportRoleId": "1558447523855728731",
+          "panelChannelId": "1558447563529785416"
+        },
+        "panel_security": {
+          "id": "panel_security",
+          "name": "security-antinuke",
+          "embedTitle": "🛡️ Anti-Nuke & Security Setup",
+          "embedDescription": "Need urgent help with Anti-Nuke whitelisting, AutoMod rules, or raid protection?\nClick **Open Security Ticket** below.",
+          "embedColor": 5763719,
+          "buttonLabel": "Anti-Nuke & Security",
+          "buttonEmoji": "🛡️",
+          "supportRoleId": "1558447523855728731",
+          "panelChannelId": "1558447563529785416"
+        }
+      },
+      "supportRoleId": "1558447523855728731",
+      "adminRoleId": "1558447522500841613",
+      "logChannelId": "1558447596467650651",
+      "transcriptChannelId": "1558447565366628402"
+    },
+    "counters": {},
+    "openTickets": {}
+  }
+}

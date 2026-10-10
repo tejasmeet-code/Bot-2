@@ -776,11 +776,35 @@ export async function startDiscordBot(): Promise<void> {
         } catch (err) {
           logger.error({ err }, "Error handling bug report button interaction");
         }
-      } else if (interaction.customId.startsWith("ticket:open:")) {
-        // Format: ticket:open:{panelId}:{guildId}
-        const parts = interaction.customId.split(":");
-        const panelId = parts[2];
-        const guildId = parts[3];
+      } else if (interaction.customId === "ticket_open" || interaction.customId.startsWith("ticket:open:")) {
+        let panelId: string | undefined;
+        let guildId = interaction.guildId;
+        if (interaction.customId === "ticket_open") {
+          if (!guildId) { await interaction.reply({ content: "Guild not found.", flags: 1 << 6 }).catch(() => {}); return; }
+          const { getTicketsConfig: gtc, updateTicketsConfig: utc } = await import("./storage/tickets");
+          let tc = await gtc(guildId);
+          if (!tc.panels || Object.keys(tc.panels).length === 0) {
+            tc = await utc(guildId, (c) => ({
+              ...c,
+              enabled: true,
+              panels: {
+                general: {
+                  id: "general",
+                  name: "support",
+                  embedTitle: "Support Ticket",
+                  embedDescription: "Support will be with you shortly.",
+                  buttonLabel: "Create Ticket",
+                }
+              }
+            }));
+          }
+          const firstPanel = Object.values(tc.panels)[0];
+          panelId = firstPanel?.id ?? "general";
+        } else {
+          const parts = interaction.customId.split(":");
+          panelId = parts[2];
+          guildId = parts[3] || interaction.guildId;
+        }
         if (!panelId || !guildId || !interaction.guild || !interaction.guildId) {
           await interaction.reply({ content: "Invalid ticket button.", flags: 1 << 6 }).catch(() => {}); return;
         }

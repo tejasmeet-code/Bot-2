@@ -201344,6 +201344,17 @@ var init_portalHandler = __esm({
 });
 
 // artifacts/api-server/src/discord/storage/tickets.ts
+var tickets_exports = {};
+__export(tickets_exports, {
+  claimTicket: () => claimTicket,
+  closeOpenTicket: () => closeOpenTicket,
+  createOpenTicket: () => createOpenTicket,
+  getNextTicketNumber: () => getNextTicketNumber,
+  getOpenTicketByChannel: () => getOpenTicketByChannel,
+  getOpenTicketsByUser: () => getOpenTicketsByUser,
+  getTicketsConfig: () => getTicketsConfig,
+  updateTicketsConfig: () => updateTicketsConfig
+});
 async function load25() {
   if (cache26) return cache26;
   cache26 = await loadPersistentJson("tickets.json", FILE_PATH18, {});
@@ -208925,8 +208936,11 @@ Only members with explicit access or administrator bypass can see it now.`,
             ]
           });
         } catch (err) {
+          const { logger: logger2 } = await Promise.resolve().then(() => (init_logger(), logger_exports));
+          logger2.error({ err }, "Failed to hide channel");
           await interaction.reply({
-            content: `${CE.error.str} Failed to hide channel. Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
+            content: `${CE.error.str} Failed to hide channel. Error: ${err.message || "Unknown"}
+Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
             ephemeral: true
           });
         }
@@ -208970,8 +208984,11 @@ var init_show = __esm({
             ]
           });
         } catch (err) {
+          const { logger: logger2 } = await Promise.resolve().then(() => (init_logger(), logger_exports));
+          logger2.error({ err }, "Failed to show channel");
           await interaction.reply({
-            content: `${CE.error.str} Failed to show channel. Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
+            content: `${CE.error.str} Failed to show channel. Error: ${err.message || "Unknown"}
+Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
             ephemeral: true
           });
         }
@@ -270496,7 +270513,10 @@ Run \`.premium\` or visit our [Official Support Server](${SUPPORT_SERVER_URL2})!
         "botstaff",
         "ticket",
         "music",
-        "play"
+        "play",
+        "hide",
+        "show",
+        "autorole"
       ]);
       const isAdminOrManager = member?.permissions?.has(import_discord206.PermissionFlagsBits.Administrator) || member?.permissions?.has(import_discord206.PermissionFlagsBits.ManageGuild);
       const { checkSingleCommandAccess: checkSingleCommandAccess2 } = await Promise.resolve().then(() => (init_botStatusState(), botStatusState_exports));
@@ -274715,10 +274735,39 @@ Thank you for adding **Zenith Bot** to your server. All modules and features are
           } catch (err) {
             logger.error({ err }, "Error handling bug report button interaction");
           }
-        } else if (interaction.customId.startsWith("ticket:open:")) {
-          const parts = interaction.customId.split(":");
-          const panelId = parts[2];
-          const guildId = parts[3];
+        } else if (interaction.customId === "ticket_open" || interaction.customId.startsWith("ticket:open:")) {
+          let panelId;
+          let guildId = interaction.guildId;
+          if (interaction.customId === "ticket_open") {
+            if (!guildId) {
+              await interaction.reply({ content: "Guild not found.", flags: 1 << 6 }).catch(() => {
+              });
+              return;
+            }
+            const { getTicketsConfig: gtc, updateTicketsConfig: utc } = await Promise.resolve().then(() => (init_tickets(), tickets_exports));
+            let tc = await gtc(guildId);
+            if (!tc.panels || Object.keys(tc.panels).length === 0) {
+              tc = await utc(guildId, (c) => ({
+                ...c,
+                enabled: true,
+                panels: {
+                  general: {
+                    id: "general",
+                    name: "support",
+                    embedTitle: "Support Ticket",
+                    embedDescription: "Support will be with you shortly.",
+                    buttonLabel: "Create Ticket"
+                  }
+                }
+              }));
+            }
+            const firstPanel = Object.values(tc.panels)[0];
+            panelId = firstPanel?.id ?? "general";
+          } else {
+            const parts = interaction.customId.split(":");
+            panelId = parts[2];
+            guildId = parts[3] || interaction.guildId;
+          }
           if (!panelId || !guildId || !interaction.guild || !interaction.guildId) {
             await interaction.reply({ content: "Invalid ticket button.", flags: 1 << 6 }).catch(() => {
             });
