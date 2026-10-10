@@ -43,7 +43,10 @@ import {
   type RoleQuota,
   type AntiNukePunishment,
   type AntiNukeMiniId,
+  getAutoRoleConfig,
 } from "../storage/config";
+import { getGuildStats, setStatsModuleEnabled } from "../storage/stats";
+import { buildAutoRoleEmbed, buildAutoRoleRows } from "./autorole";
 import { CE } from "../utils/embedStyle";
 import { startSetupWizard } from "./setupWizard";
 import { isAdminOrOwner } from "../utils/staffPerms";
@@ -513,22 +516,30 @@ function shopMiniRows(shop: ShopMiniConfig): Row[] {
 // ── Utility rows ─────────────────────────────────────────────────────────────
 
 const CONFIG_CATEGORIES = [
-  { id: "setup", label: "General & Setup", emojiObj: { id: CE.settings.id, name: CE.settings.name }, emojiStr: CE.settings.str, desc: "Prefix, Bot Profile, Welcomer, Levels", items: ["prefix", "botProfile", "welcomer", "levels"] },
-  { id: "logging", label: "Server & Event Logging", emojiObj: { id: CE.logging.id, name: CE.logging.name }, emojiStr: CE.logging.str, desc: "VC, Roles, Emojis, Stickers, Channels & Events", items: ["logging"] },
-  { id: "mod", label: "Moderation & Security", emojiObj: { id: CE.moderation.id, name: CE.moderation.name }, emojiStr: CE.moderation.str, desc: "Automod, Infractions, Anti-Nuke, Role Memory", items: ["moderation", "infractions", "automod", "antiNuke", "banRequest", "roleMemory", "appeals"] },
+  { id: "setup", label: "General & Setup", emojiObj: { id: CE.settings.id, name: CE.settings.name }, emojiStr: CE.settings.str, desc: "Prefix, Bot Profile, Welcomer, Levels, AutoRole", items: ["prefix", "botProfile", "welcomer", "levels", "autorole"] },
+  { id: "security", label: "Security & Defense", emojiObj: { id: CE.nuke.id, name: CE.nuke.name }, emojiStr: CE.nuke.str, desc: "Antinuke, Automod, Anti Scam, Anti NSFW, Anti Modules", items: ["antiNuke", "automod", "antiScam", "antiNsfw", "antiModules"] },
+  { id: "logging", label: "Server & Event Logging", emojiObj: { id: CE.logging.id, name: CE.logging.name }, emojiStr: CE.logging.str, desc: "Off/On switch toggles & dedicated channels for all events", items: ["logging"] },
+  { id: "mod", label: "Moderation & Rules", emojiObj: { id: CE.moderation.id, name: CE.moderation.name }, emojiStr: CE.moderation.str, desc: "Infractions, Appeals, Ban Requests, Role Memory", items: ["moderation", "infractions", "banRequest", "roleMemory", "appeals"] },
+  { id: "stats", label: "Server Analytics & Stats", emojiObj: { id: CE.chart.id, name: CE.chart.name }, emojiStr: CE.chart.str, desc: "Messages by users/roles, server activity & join/leave graphs", items: ["stats"] },
   { id: "staff", label: "Staff Management", emojiObj: { id: CE.staff.id, name: CE.staff.name }, emojiStr: CE.staff.str, desc: "Staff tracking, Promotions, Demotions, LOA", items: ["staff", "promotions", "demotions", "performance", "staffReport", "quota", "loa", "staffDirectory"] },
   { id: "utils", label: "Utilities & Features", emojiObj: { id: CE.folder.id, name: CE.folder.name }, emojiStr: CE.folder.str, desc: "Tickets, Shop, Verify, Server Maintenance", items: ["tickets", "shop", "partnership", "verify", "serverMaintenance", "botNotifications"] },
 ];
 
 const STANDALONE_OPTS: Record<string, { label: string; emoji: { id?: string; name?: string; str?: string }; desc: string }> = {
-  logging: { label: "Server & Event Logging", emoji: CE.logging, desc: "Configure dedicated logging channels and toggles for VC, roles, emojis, stickers, channels, and member events." },
+  logging: { label: "Server & Event Logging", emoji: CE.logging, desc: "Configure dedicated logging channels and switch on/off toggles for all server events." },
   shop: { label: "Shop", emoji: CE.shoppingcart, desc: "Sell services via ticketed shops with ratings and stats." },
   prefix: { label: "Custom Prefix", emoji: CE.settings, desc: "Set a custom command prefix for this server." },
   botProfile: { label: "Bot Profile", emoji: CE.admin, desc: "Change the bot's nickname and avatar in this server." },
   tickets: { label: "Tickets", emoji: CE.ticket, desc: "Set up support ticket panels for your server." },
   welcomer: { label: "Welcomer", emoji: CE.members, desc: "Greet new members with embeds, image banners, and DMs." },
-  automod: { label: "Automod", emoji: CE.automod, desc: "Automated moderation: spam, bad words, links, caps and more." },
+  automod: { label: "AutoMod System", emoji: CE.automod, desc: "Automated chat moderation, anti-spam, links, bad words, and caps protection." },
   levels: { label: "Levels", emoji: CE.trophy, desc: "XP-based leveling: chat and VC rewards, roles, leaderboard." },
+  antiNuke: { label: "Anti-Nuke Core", emoji: CE.nuke, desc: "Four-wall defense system against mass bans, kicks, deletions, and webhooks." },
+  antiScam: { label: "Anti Scam Protection", emoji: CE.warning, desc: "Detect and block phishing links, token grabbers, and suspicious scam domains." },
+  antiNsfw: { label: "Anti NSFW Guard", emoji: CE.lock, desc: "Block NSFW imagery, invite links to explicit servers, and adult content." },
+  antiModules: { label: "Anti Modules Defense", emoji: CE.moderation, desc: "Anti-Spam, Anti-MassMention, Anti-GhostPing, and Anti-Raid automated protection." },
+  autorole: { label: "AutoRole System", emoji: CE.staff, desc: "Automatically grant configured roles to newly joined members and bots." },
+  stats: { label: "Server Stats & Analytics", emoji: CE.chart, desc: "Track messages by user/role, server activity heatmaps, and join/leave graphs." },
 };
 
 function categoryDropdownRow(): Row {
@@ -2548,7 +2559,218 @@ function antiNukeGlobalWLRows(): Row[] {
   ];
 }
 
-// ── Tickets UI ────────────────────────────────────────────────────────────────
+// ── Security & Defense UI ─────────────────────────────────────────────────────
+
+function buildSecurityOverviewEmbed(cfg: GuildConfig): EmbedBuilder {
+  const an = getAntiNukeConfig(cfg);
+  const amEnabled = cfg.modules.moderation ?? true;
+  const scamEnabled = cfg.modules.antiScam ?? true;
+  const nsfwEnabled = cfg.modules.antiNsfw ?? true;
+  const modulesEnabled = cfg.modules.antiModules ?? true;
+
+  const fmtSwitch = (val: boolean) =>
+    val ? `${CE.button_on.str} **ON**` : `${CE.button_off.str} **OFF**`;
+
+  return new EmbedBuilder()
+    .setTitle(`${CE.nuke.str} Security & Protection Center`)
+    .setColor(0x2b2d31)
+    .setDescription(
+      `Enterprise-grade protection suite for **Guild Defense & Automated Moderation**.\n` +
+      `Click the dropdown menu below to open any sub-module and configure all settings inside!`
+    )
+    .addFields(
+      {
+        name: `${CE.nuke.str} Anti-Nuke`,
+        value: `${fmtSwitch(an.enabled)}\nFour-wall defense system for server bans, channels & roles`,
+        inline: true,
+      },
+      {
+        name: `${CE.automod.str} AutoMod`,
+        value: `${fmtSwitch(amEnabled)}\nAutomated chat filters for spam, links, bad words & caps`,
+        inline: true,
+      },
+      {
+        name: `${CE.warning.str} Anti Scam`,
+        value: `${fmtSwitch(scamEnabled)}\nReal-time detection of phishing links and token grabbers`,
+        inline: true,
+      },
+      {
+        name: `${CE.locked.str} Anti NSFW`,
+        value: `${fmtSwitch(nsfwEnabled)}\nAutomated blocking of explicit media & adult invite links`,
+        inline: true,
+      },
+      {
+        name: `${CE.moderation.str} Anti Modules`,
+        value: `${fmtSwitch(modulesEnabled)}\nMass-mention, ghost-ping, and rapid raid bursts defense`,
+        inline: true,
+      },
+    )
+    .setFooter({ text: "Use the menu below to open full settings or switch modules on/off" });
+}
+
+function securityOverviewRows(cfg: GuildConfig): Row[] {
+  const an = getAntiNukeConfig(cfg);
+  const amEnabled = cfg.modules.moderation ?? true;
+  const scamEnabled = cfg.modules.antiScam ?? true;
+  const nsfwEnabled = cfg.modules.antiNsfw ?? true;
+  const modulesEnabled = cfg.modules.antiModules ?? true;
+
+  const sel = new StringSelectMenuBuilder()
+    .setCustomId("cfg:security:openModule")
+    .setPlaceholder("Click Open Menu: Select Security Module to Configure")
+    .addOptions([
+      {
+        label: "Anti-Nuke Protection",
+        value: "antiNuke",
+        description: `Status: ${an.enabled ? "ON" : "OFF"} — Four-Wall Whitelists & Defenses`,
+        emoji: an.enabled ? { id: CE.button_on.id, name: CE.button_on.name } : { id: CE.button_off.id, name: CE.button_off.name },
+      },
+      {
+        label: "AutoMod Protection",
+        value: "automod",
+        description: `Status: ${amEnabled ? "ON" : "OFF"} — Spam, Bad Words, Links & Filters`,
+        emoji: amEnabled ? { id: CE.button_on.id, name: CE.button_on.name } : { id: CE.button_off.id, name: CE.button_off.name },
+      },
+      {
+        label: "Anti Scam Protection",
+        value: "antiScam",
+        description: `Status: ${scamEnabled ? "ON" : "OFF"} — Phishing & Malicious Link Blocker`,
+        emoji: scamEnabled ? { id: CE.button_on.id, name: CE.button_on.name } : { id: CE.button_off.id, name: CE.button_off.name },
+      },
+      {
+        label: "Anti NSFW Guard",
+        value: "antiNsfw",
+        description: `Status: ${nsfwEnabled ? "ON" : "OFF"} — Explicit Media & Adult Links Blocker`,
+        emoji: nsfwEnabled ? { id: CE.button_on.id, name: CE.button_on.name } : { id: CE.button_off.id, name: CE.button_off.name },
+      },
+      {
+        label: "Anti Modules Defense",
+        value: "antiModules",
+        description: `Status: ${modulesEnabled ? "ON" : "OFF"} — Anti-Raid, Anti-Spam & Ping Defense`,
+        emoji: modulesEnabled ? { id: CE.button_on.id, name: CE.button_on.name } : { id: CE.button_off.id, name: CE.button_off.name },
+      },
+    ]);
+
+  return [
+    new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(sel),
+    backRow(),
+  ];
+}
+
+function buildSecuritySubmoduleEmbed(subId: string, cfg: GuildConfig): EmbedBuilder {
+  let title = "Security Module";
+  let desc = "";
+  let isEnabled = false;
+
+  if (subId === "antiScam") {
+    title = `${CE.warning.str} Anti Scam Protection`;
+    isEnabled = cfg.modules.antiScam ?? true;
+    desc =
+      `**Phishing & Malicious Link Protection**\n\n` +
+      `Automatically scans and deletes messages containing:\n` +
+      `• Known Discord Nitro phishing domains and free gift scams\n` +
+      `• Token grabber download links and suspicious shortened URLs\n` +
+      `• Steam, Roblox, and game trading malicious redirects\n\n` +
+      `> **Current Status:** ${isEnabled ? `${CE.button_on.str} **ENABLED (SWITCH ON)**` : `${CE.button_off.str} **DISABLED (SWITCH OFF)**`}`;
+  } else if (subId === "antiNsfw") {
+    title = `${CE.locked.str} Anti NSFW Guard`;
+    isEnabled = cfg.modules.antiNsfw ?? true;
+    desc =
+      `**Explicit Content & NSFW Blocker**\n\n` +
+      `Maintains a clean PG-13 community by filtering:\n` +
+      `• Explicit image uploads and suspicious media attachments in non-NSFW channels\n` +
+      `• Discord invite links to known adult/NSFW servers\n` +
+      `• Vulgar sexual keywords and NSFW search queries\n\n` +
+      `> **Current Status:** ${isEnabled ? `${CE.button_on.str} **ENABLED (SWITCH ON)**` : `${CE.button_off.str} **DISABLED (SWITCH OFF)**`}`;
+  } else if (subId === "antiModules") {
+    title = `${CE.moderation.str} Anti Modules Defense Suite`;
+    isEnabled = cfg.modules.antiModules ?? true;
+    desc =
+      `**Automated Aggression & Raid Defense**\n\n` +
+      `Automated shields against destructive behaviors:\n` +
+      `• **Anti-GhostPing:** Alerts when a user tags staff or members and quickly deletes their message\n` +
+      `• **Anti-MassMention:** Blocks messages mentioning more than 4 roles or users simultaneously\n` +
+      `• **Anti-Raid Bursts:** Triggers lockdown when more than 10 accounts join within 15 seconds\n` +
+      `• **Anti-Spam Flooding:** Auto-mutes users sending more than 5 messages in 3 seconds\n\n` +
+      `> **Current Status:** ${isEnabled ? `${CE.button_on.str} **ENABLED (SWITCH ON)**` : `${CE.button_off.str} **DISABLED (SWITCH OFF)**`}`;
+  }
+
+  return new EmbedBuilder()
+    .setTitle(title)
+    .setColor(isEnabled ? 0x57f287 : 0xed4245)
+    .setDescription(desc)
+    .setFooter({ text: "Use the switch button below to turn this security feature on or off" });
+}
+
+function securitySubmoduleRows(subId: string, cfg: GuildConfig): Row[] {
+  let isEnabled = false;
+  if (subId === "antiScam") isEnabled = cfg.modules.antiScam ?? true;
+  else if (subId === "antiNsfw") isEnabled = cfg.modules.antiNsfw ?? true;
+  else if (subId === "antiModules") isEnabled = cfg.modules.antiModules ?? true;
+
+  const toggleBtn = new ButtonBuilder()
+    .setCustomId(`cfg:sec:toggle:${subId}`)
+    .setLabel(isEnabled ? "Status: ON (Switch Active)" : "Status: OFF (Switch Inactive)")
+    .setEmoji(isEnabled ? CE.button_on.id : CE.button_off.id)
+    .setStyle(isEnabled ? ButtonStyle.Success : ButtonStyle.Secondary);
+
+  const backToSec = new ButtonBuilder()
+    .setCustomId("cfg:sec:overview")
+    .setLabel("← Back to Security Menu")
+    .setStyle(ButtonStyle.Secondary);
+
+  return [
+    new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(toggleBtn, backToSec),
+  ];
+}
+
+function buildStatsOverviewEmbed(cfg: GuildConfig, statsData: any): EmbedBuilder {
+  const isEnabled = cfg.modules.stats ?? statsData.enabled ?? true;
+  const totalMsgs = Object.values(statsData.userMessages || {}).reduce((a: any, b: any) => a + b, 0);
+  const totalUsers = Object.keys(statsData.userMessages || {}).length;
+
+  return new EmbedBuilder()
+    .setTitle(`${CE.chart.str} Server Stats & Analytics Module`)
+    .setColor(isEnabled ? 0x57f287 : 0xed4245)
+    .setDescription(
+      `Real-time server tracking and graphical image template generation:\n` +
+      `Generates clean graphical template cards with numbers, graphs, user breakdowns, and role distributions!`
+    )
+    .addFields(
+      {
+        name: "Module Status",
+        value: isEnabled ? `${CE.button_on.str} **ENABLED (Active)**` : `${CE.button_off.str} **DISABLED (Inactive)**`,
+        inline: true,
+      },
+      { name: "Tracked Messages", value: `**${totalMsgs.toLocaleString()}** messages`, inline: true },
+      { name: "Active Contributors", value: `**${totalUsers.toLocaleString()}** members`, inline: true },
+      {
+        name: `${CE.commands.str} Available Analytics Commands`,
+        value:
+          `• \`/stats server\` — Server activity breakdown & 24h heatmap image\n` +
+          `• \`/stats user [@user]\` — Messages sent by user, rank & 7-day bar chart\n` +
+          `• \`/stats role [@role]\` — Total messages sent by members with that role\n` +
+          `• \`/stats flow\` — 7-day join & leave retention trajectory graph\n` +
+          `• \`/stats top\` — Top community contributors message ranking`,
+        inline: false,
+      },
+    )
+    .setFooter({ text: "Toggle module state below or run any of the stats commands" });
+}
+
+function statsOverviewRows(cfg: GuildConfig, statsData: any): Row[] {
+  const isEnabled = cfg.modules.stats ?? statsData.enabled ?? true;
+  const toggleBtn = new ButtonBuilder()
+    .setCustomId("cfg:stats:toggle")
+    .setLabel(isEnabled ? "Stats: Active" : "Stats: Inactive")
+    .setEmoji(isEnabled ? CE.button_on.id : CE.button_off.id)
+    .setStyle(isEnabled ? ButtonStyle.Success : ButtonStyle.Secondary);
+
+  return [
+    new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(toggleBtn),
+    backRow(),
+  ];
+}
 
 function buildTicketsOverviewEmbed(tc: TicketsModuleConfig): EmbedBuilder {
   const panelList = Object.values(tc.panels);
@@ -3007,13 +3229,14 @@ function loggingRows(cfg: GuildConfig, selectedTarget = "general"): Row[] {
   const row1 = new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
     new ButtonBuilder()
       .setCustomId("cfg:logging:toggle")
-      .setLabel(lc.enabled ? "Enabled — Click to Disable" : "Disabled — Click to Enable")
-      .setStyle(lc.enabled ? ButtonStyle.Success : ButtonStyle.Danger),
+      .setLabel(lc.enabled ? "Logging: Active" : "Logging: Inactive")
+      .setEmoji(lc.enabled ? CE.button_on.id : CE.button_off.id)
+      .setStyle(lc.enabled ? ButtonStyle.Success : ButtonStyle.Secondary),
     new ButtonBuilder()
       .setCustomId(`cfg:logging:toggleEvent:${selectedTarget}`)
-      .setLabel(`Toggle ${selectedTarget.toUpperCase()} Events`)
-      .setStyle(ButtonStyle.Primary)
-      .setEmoji({ id: CE.settings.id, name: CE.settings.name }),
+      .setLabel(`Toggle ${selectedTarget.toUpperCase()}`)
+      .setEmoji(CE.settings.id ? { id: CE.settings.id, name: CE.settings.name } : CE.settings.str)
+      .setStyle(ButtonStyle.Primary),
   );
   rows.push(row1);
 
@@ -3290,6 +3513,21 @@ const command: SlashCommand = {
           const catIdRaw = i.values[0]!;
           const catId = catIdRaw.replace("cat_", "");
           cfg = await getGuildConfig(guildId);
+
+          if (catId === "security") {
+            await safeUpdate(i, { embeds: [buildSecurityOverviewEmbed(cfg)], components: securityOverviewRows(cfg) as any });
+            return;
+          }
+          if (catId === "logging") {
+            await safeUpdate(i, { embeds: [buildLoggingEmbed(cfg)], components: loggingRows(cfg, "general") as any });
+            return;
+          }
+          if (catId === "stats") {
+            const statsData = await getGuildStats(guildId);
+            await safeUpdate(i, { embeds: [buildStatsOverviewEmbed(cfg, statsData)], components: statsOverviewRows(cfg, statsData) as any });
+            return;
+          }
+
           await safeUpdate(i, { embeds: [buildCategoryEmbed(catId, cfg)], components: [moduleDropdownRow(catId), backRow()] as any });
           return;
         }
@@ -3360,6 +3598,24 @@ const command: SlashCommand = {
           }
           if (modId === "logging") {
             await safeUpdate(i, { embeds: [buildLoggingEmbed(cfg)], components: loggingRows(cfg, "general") as any });
+            return;
+          }
+          if (modId === "security") {
+            await safeUpdate(i, { embeds: [buildSecurityOverviewEmbed(cfg)], components: securityOverviewRows(cfg) as any });
+            return;
+          }
+          if (modId === "antiScam" || modId === "antiNsfw" || modId === "antiModules") {
+            await safeUpdate(i, { embeds: [buildSecuritySubmoduleEmbed(modId, cfg)], components: securitySubmoduleRows(modId, cfg) as any });
+            return;
+          }
+          if (modId === "stats") {
+            const statsData = await getGuildStats(guildId);
+            await safeUpdate(i, { embeds: [buildStatsOverviewEmbed(cfg, statsData)], components: statsOverviewRows(cfg, statsData) as any });
+            return;
+          }
+          if (modId === "autorole") {
+            const arc = getAutoRoleConfig(cfg);
+            await safeUpdate(i, { embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
             return;
           }
           const mod = MODULE_DEFS.find((m) => m.id === modId);
@@ -3438,6 +3694,114 @@ const command: SlashCommand = {
           return;
         }
 
+
+        // ── Security & Stats & AutoRole Handlers ─────────────────────────────
+
+        if (id === "cfg:sec:overview") {
+          cfg = await getGuildConfig(guildId);
+          await safeUpdate(i, { embeds: [buildSecurityOverviewEmbed(cfg)], components: securityOverviewRows(cfg) as any });
+          return;
+        }
+
+        if (id === "cfg:security:openModule" && i.isStringSelectMenu()) {
+          const selected = i.values[0]!;
+          cfg = await getGuildConfig(guildId);
+
+          if (selected === "antiNuke") {
+            await i.update({ embeds: [buildAntiNukeOverviewEmbed(cfg)], components: antiNukeOverviewRows(cfg) as any });
+            return;
+          }
+          if (selected === "automod") {
+            const am = await getAutomodConfig(guildId);
+            await safeUpdate(i, { embeds: [buildAutomodEmbed(am)], components: automodRows(am) as any });
+            return;
+          }
+          if (selected === "antiScam" || selected === "antiNsfw" || selected === "antiModules") {
+            await safeUpdate(i, { embeds: [buildSecuritySubmoduleEmbed(selected, cfg)], components: securitySubmoduleRows(selected, cfg) as any });
+            return;
+          }
+        }
+
+        if (id.startsWith("cfg:sec:toggle:")) {
+          const subId = id.replace("cfg:sec:toggle:", "");
+          cfg = await updateGuildConfig(guildId, (c) => {
+            if (subId === "antiScam") c.modules.antiScam = !(c.modules.antiScam ?? true);
+            else if (subId === "antiNsfw") c.modules.antiNsfw = !(c.modules.antiNsfw ?? true);
+            else if (subId === "antiModules") c.modules.antiModules = !(c.modules.antiModules ?? true);
+            return c;
+          });
+          await safeUpdate(i, { embeds: [buildSecuritySubmoduleEmbed(subId, cfg)], components: securitySubmoduleRows(subId, cfg) as any });
+          return;
+        }
+
+        if (id === "cfg:stats:toggle") {
+          cfg = await updateGuildConfig(guildId, (c) => {
+            const cur = c.modules.stats ?? true;
+            c.modules.stats = !cur;
+            return c;
+          });
+          await setStatsModuleEnabled(guildId, cfg.modules.stats ?? true);
+          const statsData = await getGuildStats(guildId);
+          await safeUpdate(i, { embeds: [buildStatsOverviewEmbed(cfg, statsData)], components: statsOverviewRows(cfg, statsData) as any });
+          return;
+        }
+
+        if (id === "cfg:autorole:toggle") {
+          cfg = await updateGuildConfig(guildId, (c) => {
+            const arc = getAutoRoleConfig(c);
+            c.autoRoleConfig = { ...arc, enabled: !arc.enabled };
+            return c;
+          });
+          const arc = getAutoRoleConfig(cfg);
+          await safeUpdate(i, { embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          return;
+        }
+
+        if (id === "cfg:autorole:clearMembers") {
+          cfg = await updateGuildConfig(guildId, (c) => {
+            const arc = getAutoRoleConfig(c);
+            c.autoRoleConfig = { ...arc, memberRoleIds: [] };
+            return c;
+          });
+          const arc = getAutoRoleConfig(cfg);
+          await safeUpdate(i, { embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          return;
+        }
+
+        if (id === "cfg:autorole:clearBots") {
+          cfg = await updateGuildConfig(guildId, (c) => {
+            const arc = getAutoRoleConfig(c);
+            c.autoRoleConfig = { ...arc, botRoleIds: [] };
+            return c;
+          });
+          const arc = getAutoRoleConfig(cfg);
+          await safeUpdate(i, { embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          return;
+        }
+
+        if (id === "cfg:autorole:setMemberRoles" && i.isRoleSelectMenu()) {
+          const selectedRoleIds = i.values;
+          cfg = await updateGuildConfig(guildId, (c) => {
+            const arc = getAutoRoleConfig(c);
+            c.autoRoleConfig = { ...arc, memberRoleIds: selectedRoleIds, enabled: true };
+            return c;
+          });
+          const arc = getAutoRoleConfig(cfg);
+          await safeUpdate(i, { embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          return;
+        }
+
+        if (id === "cfg:autorole:setBotRoles" && i.isRoleSelectMenu()) {
+          const selectedRoleIds = i.values;
+          cfg = await updateGuildConfig(guildId, (c) => {
+            const arc = getAutoRoleConfig(c);
+            c.autoRoleConfig = { ...arc, botRoleIds: selectedRoleIds, enabled: true };
+            return c;
+          });
+          const arc = getAutoRoleConfig(cfg);
+          await safeUpdate(i, { embeds: [buildAutoRoleEmbed(i.guild?.name || "Server", arc)], components: buildAutoRoleRows(arc) as any });
+          return;
+        }
 
         // ── Logging handlers ─────────────────────────────────────────────────
 

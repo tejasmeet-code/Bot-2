@@ -777,6 +777,31 @@ async function executeAction(
         }
       }
 
+      case "create_ticket_panel": {
+        const ch = resolveChannel(guild, String(p.channel_id), state);
+        if (!ch || !ch.isTextBased()) return { success: false, message: `Channel \`${p.channel_id}\` not found or not text-based` };
+        
+        // This is a simplified ticket panel creation. 
+        // Real implementation would require more complex storage and row handling.
+        await (ch as any).send({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(String(p.embed_title || "Support Tickets"))
+              .setDescription(String(p.embed_description || "Click the button below to open a ticket."))
+              .setColor(0x00ffcc)
+          ],
+          components: [
+            new ActionRowBuilder<ButtonBuilder>().addComponents(
+              new ButtonBuilder()
+                .setCustomId("ticket_open")
+                .setLabel(String(p.button_label || "Open Ticket"))
+                .setStyle(ButtonStyle.Primary)
+            )
+          ]
+        });
+        return { success: true, message: `Created ticket panel in <#${ch.id}>` };
+      }
+
       case "set_bot_nickname": {
         const nick = String(p.nickname || "Zenith Bot").trim();
         const me = guild.members.me || await guild.members.fetchMe().catch(() => null);
@@ -884,6 +909,7 @@ AVAILABLE ACTIONS SCHEMA:
 execute_command  → { command: string, args: string, channel_id?: string } // Execute ANY bot command or music playback! (e.g. command: "play", args: "lofi 24/7", command: "antinuke", args: "enable")
 set_bot_nickname → { nickname: string } // Set bot server nickname (e.g. nickname: "Zenith Bot")
 create_channel   → { name, type: "text"|"voice"|"category", topic?, slowmode?, parent_id? }
+create_ticket_panel → { channel_id, embed_title?, embed_description?, button_label? }
 delete_channel   → { channel_id, reason? }
 edit_channel     → { channel_id, name?, topic?, slowmode?, parent_id? }
 lock_channel     → { channel_id }

@@ -712,13 +712,43 @@ export class MusicManager {
   }
 
   public async skip(): Promise<boolean> {
-    if (this.lavalinkPlayer) {
-      await this.lavalinkPlayer.stopTrack();
+    if (this.queue.length > 0) {
+      const next = this.queue.shift()!;
+      this.isEnding = true;
+      try {
+        if (this.lavalinkPlayer) {
+          await this.lavalinkPlayer.stopTrack().catch(() => {});
+        }
+        if (this.fallbackAudioPlayer) {
+          this.fallbackAudioPlayer.stop();
+        }
+      } finally {
+        this.isEnding = false;
+      }
+      await this.playTrack(next);
+      return true;
+    } else {
+      this.isEnding = true;
+      try {
+        if (this.lavalinkPlayer) {
+          await this.lavalinkPlayer.stopTrack().catch(() => {});
+        }
+        if (this.fallbackAudioPlayer) {
+          this.fallbackAudioPlayer.stop();
+        }
+      } finally {
+        this.isEnding = false;
+      }
+
+      if (this.twentyFourSeven.enabled) {
+        this.currentTrack = null;
+        this.isPlaying = false;
+        await this.resume247Stream().catch(() => {});
+      } else {
+        await this.stop();
+      }
+      return true;
     }
-    if (this.fallbackAudioPlayer) {
-      this.fallbackAudioPlayer.stop();
-    }
-    return true;
   }
 
   public async previous(): Promise<Track | null> {
@@ -1184,6 +1214,7 @@ export async function handleMusicButton(interaction: ButtonInteraction): Promise
   // 3. Skip
   if (customId === "music:skip" || customId === "btn:music:skip") {
     if (interaction.message) {
+      manager.lastPlayerMessage = interaction.message as any;
       const embed = prettyEmbed({
         title: `${CE.white_skip.str} Skipping Track...`,
         description: `Transitioning to the next song in the queue...`,

@@ -1753,6 +1753,36 @@ Executing automated raid defenses: **${am.raid.action.toUpperCase()}**.`)
       logger.error({ err, guildId: member.guild.id, userId: member.id }, "Error handling role memory restore");
     }
 
+    // ── AutoRole Feature & Join Stats ──────────────────────────────────
+    try {
+      const { recordJoinStat } = await import("./storage/stats");
+      await recordJoinStat(member.guild.id).catch(() => {});
+
+      const { getGuildConfig: getCfg, getAutoRoleConfig } = await import("./storage/config");
+      const cfg = await getCfg(member.guild.id);
+      const arc = getAutoRoleConfig(cfg);
+
+      if (arc.enabled) {
+        const targetRoles = member.user.bot ? arc.botRoleIds : arc.memberRoleIds;
+        if (targetRoles && targetRoles.length > 0) {
+          const validRoles: string[] = [];
+          for (const rId of targetRoles) {
+            const r = member.guild.roles.cache.get(rId);
+            if (r && !member.roles.cache.has(rId)) {
+              validRoles.push(rId);
+            }
+          }
+          if (validRoles.length > 0) {
+            await member.roles.add(validRoles, `AutoRole: Granted to new ${member.user.bot ? "bot" : "member"}`).catch((err) => {
+              logger.warn({ err, guildId: member.guild.id, userId: member.id }, "Failed to assign autorole");
+            });
+          }
+        }
+      }
+    } catch (err) {
+      logger.error({ err, guildId: member.guild.id, userId: member.id }, "Error executing autorole");
+    }
+
     // Welcomer
     try {
       const { getWelcomerConfig } = await import("./storage/welcomer");
@@ -2012,6 +2042,11 @@ Executing automated raid defenses: **${am.raid.action.toUpperCase()}**.`)
   });
 
   client.on(Events.GuildMemberRemove, async (member) => {
+    try {
+      const { recordLeaveStat } = await import("./storage/stats");
+      await recordLeaveStat(member.guild.id).catch(() => {});
+    } catch {}
+
     try {
       const logs = await member.guild.fetchAuditLogs({ type: AuditLogEvent.MemberKick, limit: 5 }).catch(() => null);
       const entry = logs?.entries.find(

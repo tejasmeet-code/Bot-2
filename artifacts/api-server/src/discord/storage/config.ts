@@ -34,6 +34,10 @@ export interface GuildModules {
   welcome?: boolean;
   giveaway?: boolean;
   backup?: boolean;
+  stats?: boolean;
+  antiScam?: boolean;
+  antiNsfw?: boolean;
+  antiModules?: boolean;
 }
 
 export interface GuildChannels {
@@ -258,6 +262,12 @@ export interface VerifyConfig {
   unverifiedRoleId?: string;
 }
 
+export interface AutoRoleConfig {
+  enabled: boolean;
+  memberRoleIds: string[];
+  botRoleIds: string[];
+}
+
 export interface LoggingModuleConfig {
   enabled?: boolean;
   generalLogChannelId?: string;
@@ -298,6 +308,7 @@ export interface GuildConfig {
   partnershipConfig?: PartnershipConfig;
   verifyConfig?: VerifyConfig;
   verifiedRoleId?: string;
+  autoRoleConfig?: AutoRoleConfig;
   antiNukeConfig?: AntiNukeConfig;
   maintenanceConfig?: MaintenanceModuleConfig;
   loggingConfig?: LoggingModuleConfig;
@@ -446,6 +457,15 @@ export function getPartnershipConfig(cfg: GuildConfig): Required<PartnershipConf
 
 export function getStaffReportConfig(cfg: GuildConfig): Required<StaffReportConfig> {
   return { refreshIntervalHours: cfg.staffReportConfig?.refreshIntervalHours ?? 2 };
+}
+
+export function getAutoRoleConfig(cfg: GuildConfig): AutoRoleConfig {
+  const arc = cfg.autoRoleConfig;
+  return {
+    enabled: arc?.enabled ?? false,
+    memberRoleIds: arc?.memberRoleIds ?? [],
+    botRoleIds: arc?.botRoleIds ?? [],
+  };
 }
 
 export function getLoggingConfig(cfg: GuildConfig): Required<LoggingModuleConfig> {

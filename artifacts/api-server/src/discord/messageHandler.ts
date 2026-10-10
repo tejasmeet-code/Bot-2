@@ -35,6 +35,8 @@ import { isPermanentOwner, isBotAdmin } from "./storage/premium";
 const MAX_DEDUP_SIZE = 25000;
 const DEDUP_TTL_MS = 15 * 60 * 1000; // 15 minutes
 const processedMessageTimestamps = new Map<string, number>();
+const npCache = new Map<string, { enabled: boolean; timestamp: number }>();
+const NP_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 export function isMessageRecentlyProcessed(id: string): boolean {
   if (!id) return false;
@@ -236,6 +238,13 @@ export async function handlePrefixMessage(message: Message): Promise<boolean> {
   }
 
   const member = message.member ?? await guild.members.fetch(message.author.id).catch(() => null);
+
+  // Track server message stats for stats module
+  try {
+    const { recordMessageStat } = await import("./storage/stats");
+    const roleIds = member?.roles?.cache ? Array.from(member.roles.cache.keys()) : [];
+    recordMessageStat(guild.id, message.author.id, message.channel.id, roleIds).catch(() => {});
+  } catch {}
 
   // Message tokens to detect help or info requests
   const msgTokens = lower.split(/\s+/);

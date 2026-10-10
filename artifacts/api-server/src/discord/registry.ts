@@ -6,6 +6,16 @@ import aiAdmin from "./commands/ai-admin";
 import botCheck from "./commands/bot-check";
 import announce from "./commands/announce";
 import automod from "./commands/automod";
+import autorole from "./commands/autorole";
+import stats from "./commands/stats";
+import userstats from "./commands/userstats";
+import rolestats from "./commands/rolestats";
+import serverstats from "./commands/serverstats";
+import flowstats from "./commands/flowstats";
+import topstats from "./commands/topstats";
+import channelstats from "./commands/channelstats";
+import hourstats from "./commands/hourstats";
+import botstats from "./commands/botstats";
 import automations from "./commands/automations";
 import appeal from "./commands/appeal";
 import avatar from "./commands/avatar";
@@ -241,6 +251,16 @@ const allCommands: SlashCommand[] = [
   config,
   automod,
   antinuke,
+  autorole,
+  stats,
+  userstats,
+  rolestats,
+  serverstats,
+  flowstats,
+  topstats,
+  channelstats,
+  hourstats,
+  botstats,
   maintenance,
   giveaway,
   help,
@@ -542,6 +562,15 @@ const REGISTRATION_EXCLUDED_COMMAND_NAMES = new Set([
   "serverlist",
   "leaveserver",
   "broadcast",
+  // Standalone prefix-executable stats suite (never inflate slash limit)
+  "userstats",
+  "rolestats",
+  "serverstats",
+  "flowstats",
+  "topstats",
+  "channelstats",
+  "hourstats",
+  "botstats",
 ]);
 
 // Dedupe by command name as a safety net: Discord rejects the entire bulk
