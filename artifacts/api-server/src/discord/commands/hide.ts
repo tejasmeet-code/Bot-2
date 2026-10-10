@@ -49,9 +49,11 @@ const command: SlashCommand = {
           }),
         ],
       });
-    } catch (err) {
+    } catch (err: any) {
+      const { logger } = await import("../../lib/logger");
+      logger.error({ err }, "Failed to hide channel");
       await interaction.reply({
-        content: `${CE.error.str} Failed to hide channel. Ensure I have **Manage Channels** and my role is above the channel's existing overrides.`,
+        content: `${CE.error.str} Failed to hide channel. Error: ${err.message || "Unknown"}\nEnsure I have **Manage Channels** and my role is above the channel's existing overrides.`,
         ephemeral: true,
       });
     }
