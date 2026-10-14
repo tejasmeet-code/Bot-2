@@ -402,8 +402,11 @@ class Music(commands.Cog):
         else:
             uri = f"http://{host}:{port}" if port else f"http://{host}"
 
-        nodes = [wavelink.Node(uri=uri, password=password)]
-        await wavelink.Pool.connect(nodes=nodes, client=self.client, cache_capacity=None)
+        try:
+            nodes = [wavelink.Node(uri=uri, password=password)]
+            await wavelink.Pool.connect(nodes=nodes, client=self.client, cache_capacity=None)
+        except Exception as e:
+            print(f"[Music] Warning: Could not connect to Lavalink node at {uri}: {e}")
 
 
     async def display_player_embed(self, player, track, ctx, autoplay=False):
@@ -447,9 +450,12 @@ class Music(commands.Cog):
             await ctx.send(view=CV2(f"{WARNING} you need to be in a voice channel to use this command."))
             return
 
-        vc = ctx.voice_client or await ctx.author.voice.channel.connect(cls=wavelink.Player)
-        vc.ctx = ctx
-        
+        try:
+            vc = ctx.voice_client or await ctx.author.voice.channel.connect(cls=wavelink.Player)
+            vc.ctx = ctx
+        except Exception as e:
+            await ctx.send(view=CV2(f"{WARNING} Music node unavailable or offline. Please try again later."))
+            return
         
         if vc.playing:
             if ctx.voice_client and ctx.voice_client.channel != ctx.author.voice.channel:
@@ -466,7 +472,11 @@ class Music(commands.Cog):
         
             return"""
             
-        tracks = await wavelink.Playable.search(query)
+        try:
+            tracks = await wavelink.Playable.search(query)
+        except Exception as e:
+            await ctx.send(view=CV2(f"{WARNING} Could not find tracks: {e}"))
+            return
         if not tracks:
             await ctx.send(view=CV2("No results found."))
             return
