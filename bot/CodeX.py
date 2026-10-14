@@ -358,10 +358,15 @@ async def main():
         os.system("clear")
         await client.load_extension("jishaku")
         
+        max_retries = 5
         try:
             for attempt in range(max_retries):
                 try:
                     await client.start(TOKEN)
+                    break
+                except discord.LoginFailure:
+                    print("✖ Discord LoginFailure: The bot token is invalid or was revoked.")
+                    print("✖ Please reset the bot token in Discord Developer Portal and update TOKEN in .env.")
                     break
                 except discord.HTTPException as e:
                     if e.status == 429: # Rate limited
@@ -372,6 +377,7 @@ async def main():
                         raise
             else:
                 raise Exception("Bot failed to start after multiple retries due to rate limiting.")
+
         finally:
             try:
                 print("★ Supabase Storage: Performing shutdown backup...")
