@@ -137,7 +137,10 @@ class SupabaseStorageManager:
         """Lists files in the Supabase Storage bucket."""
         try:
             endpoint = f"{self.url}/storage/v1/object/list/{self.bucket}"
-            payload = json.dumps({"prefix": prefix, "limit": limit}).encode("utf-8")
+            norm_prefix = prefix.strip()
+            if norm_prefix and not norm_prefix.endswith("/"):
+                norm_prefix = f"{norm_prefix}/"
+            payload = json.dumps({"prefix": norm_prefix, "limit": limit}).encode("utf-8")
             req = urllib.request.Request(
                 endpoint,
                 data=payload,
