@@ -83,6 +83,8 @@ from .commands.Birthday import Birthdays
 from .commands.nitro import Nitro
 from .commands.image import ImageCommands
 from .commands.youtube import Youtube
+from .commands.imagine import AiStuffCog
+from .commands.msgpack import Messagespack
 #____________ Events _____________
 
 #from .events.autoblacklist import AutoBlacklist
@@ -262,6 +264,8 @@ async def setup(bot: zyrox):
   await bot.add_cog(Nitro(bot))
   await bot.add_cog(ImageCommands(bot))
   await bot.add_cog(Youtube(bot))
+  await bot.add_cog(AiStuffCog(bot))
+  await bot.add_cog(Messagespack(bot))
 
   await bot.add_cog(_antinuke(bot))
   await bot.add_cog(_extra(bot))

@@ -26,6 +26,10 @@ export const authOptions: AuthOptions = {
       authorization: { params: { scope: "identify guilds" } },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
+  debug: process.env.NODE_ENV === "development",
   callbacks: {
     async jwt({ token, account }) {
       if (account) {

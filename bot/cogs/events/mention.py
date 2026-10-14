@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+# ║   discord  ──  https://discord.gg/codexdev                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -87,8 +87,8 @@ class MentionSelectView(LayoutView):
             )
         elif selected == "Links":
             content = (
-                f"**[Invite {BotName}](https://discord.com/oauth2/authorize?client_id=1553292201835102278)**\n"
-                "**[Join Support Server](https://discord.gg/WqJGXrQX4)**"
+                f"**[Invite {BotName}](https://discord.com/oauth2/authorize?client_id=1396114795102470196)**\n"
+                "**[Join Support Server](https://discord.gg/codexdev)**"
             )
 
         new_container = Container(

@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+# ║   discord  ──  https://discord.gg/codexdev                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -22,15 +22,15 @@ BRAND_NAME = os.environ.get("brand_name", "Zenith")
 NAME       = BRAND_NAME
 BotName    = BRAND_NAME
 
-server     = "https://discord.gg/WqJGXrQX4"
-serverLink = "https://discord.gg/WqJGXrQX4"
+server     = os.environ.get("SUPPORT_SERVER", "https://discord.gg/WqJGXrQX4")
+serverLink = os.environ.get("SUPPORT_SERVER", "https://discord.gg/WqJGXrQX4")
 ch         = "https://discord.com/channels/699587669059174461/1271825678710476911"
 
 CMD_WEBHOOK_URL = os.getenv("CMD_WEBHOOK_URL")
 
 # ── Owner / Staff IDs ─────────────────────────────────────────────────────────
 # Edit OWNER_IDS in .env — comma-separated, no spaces needed.
-# Example:  OWNER_IDS = 870179991462236170,767979794411028491,1432771000629596225
+# Example:  OWNER_IDS = 1181221352393420856
 
 def _parse_ids(env_key: str, defaults: list[int]) -> list[int]:
     raw = os.getenv(env_key, "").strip()
@@ -47,5 +47,3 @@ BOT_OWNER_IDS     = OWNER_IDS
 BOT_OWNER_IDS_STR = OWNER_IDS_STR
 STAFF_IDS         = OWNER_IDS
 STAFF_IDS_STR     = OWNER_IDS_STR
-MAIN_DEV_ID = 1181221352393420856
-MAIN_DEV_NAME = "Tejas"
