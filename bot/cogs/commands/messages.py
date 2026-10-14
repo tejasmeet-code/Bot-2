@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/codexdev                      ║
+# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -34,7 +34,7 @@ class MessagesView(LayoutView):
                     f"**Daily Messages**: {daily_average}\n"
                     f"**Today Messages**: {today_count}\n"
                     f"**Total Messages**: {total}\n\n"
-                    f"**{ARROWRED}Upgrade Your Experience With [{BRAND_NAME} Noprefix](https://discord.gg/codexdev)**"
+                    f"**{ARROWRED}Upgrade Your Experience With [{BRAND_NAME} Noprefix](https://discord.gg/WqJGXrQX4)**"
                 ),
             )
         )

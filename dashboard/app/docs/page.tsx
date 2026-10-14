@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/codexdev                      ║
+ * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -80,7 +80,7 @@ export default function DocsPage() {
             <div className="h-8 w-8 rounded-lg bg-red-600 flex items-center justify-center mr-3">
               <Bot className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter hidden md:block">ZyroX Docs</span>
+            <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter hidden md:block">Zenith Docs</span>
           </Link>
           
           <div className="hidden lg:flex items-center w-80 relative group">
@@ -156,7 +156,7 @@ export default function DocsPage() {
 
           <div className="prose prose-invert max-w-none">
              <p className="text-lg text-slate-400 mb-12 leading-relaxed">
-               Welcome to the {activeTab} section of the ZyroX Engine documentation. Our engine is designed for communities that demand absolute performance and cinematic management tools.
+               Welcome to the {activeTab} section of the Zenith Engine documentation. Our engine is designed for communities that demand absolute performance and cinematic management tools.
              </p>
 
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,10 +179,10 @@ export default function DocsPage() {
                 <h2 className="text-2xl font-bold text-white font-outfit uppercase tracking-tight mb-4">Neural Architecture</h2>
                   <h3 className="text-white font-bold">Protocol Overview</h3>
                 <p className="text-slate-500 font-bold leading-relaxed mb-8">
-                  The ZyroX Engine utilizes a decentralized event stream processing model. When a Discord event is received, it is instantly routed to the nearest edge cluster.
+                  The Zenith Engine utilizes a decentralized event stream processing model. When a Discord event is received, it is instantly routed to the nearest edge cluster.
                 </p>
                 <div className="bg-black/40 p-6 rounded-2xl border border-white/5 font-mono text-sm text-red-500 mb-8">
-                  $ zyrox initialize --cluster-shard [neural_07] --mode enterprise
+                  $ zenith initialize --cluster-shard [neural_07] --mode enterprise
                 </div>
              </div>
           </div>

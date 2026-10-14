@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/codexdev                      ║
+ * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -202,7 +202,7 @@ export function VerificationForm({ initialConfig, channels, roles, guildId }: Ve
           </div>
           <h3 className="text-sm font-bold text-primary mb-2">How It Works</h3>
           <p className="text-xs text-slate-400 leading-relaxed mb-4">
-            Zyrox Verification ensures that no unauthorized bots or malicious users enter your server unverified.
+            Zenith Verification ensures that no unauthorized bots or malicious users enter your server unverified.
           </p>
           <ul className="text-xs text-slate-500 space-y-2">
              <li>• The bot will create a panel in your Verification Channel.</li>

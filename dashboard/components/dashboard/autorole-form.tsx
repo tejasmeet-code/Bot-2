@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/codexdev                      ║
+ * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -197,7 +197,7 @@ export function AutoRoleForm({ initialConfig, roles, guildId }: AutoRoleFormProp
             <div className="flex gap-3">
               <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
               <p className="text-[11px] text-slate-400 leading-relaxed">
-                <span className="text-slate-200 font-bold">Hierarchy Matter:</span> Ensure ZyroX&apos;s top role is <span className="text-primary italic">higher</span> than any role you select here.
+                <span className="text-slate-200 font-bold">Hierarchy Matter:</span> Ensure Zenith&apos;s top role is <span className="text-primary italic">higher</span> than any role you select here.
               </p>
             </div>
             <div className="flex gap-3">

@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/codexdev                      ║
+# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -44,7 +44,7 @@ class Nitro(commands.Cog):
         claim_button = Button(
             style=discord.ButtonStyle.primary,
             label="Click me!",
-            url="https://discord.gg/codexdev",
+            url="https://discord.gg/WqJGXrQX4",
             disabled=False,
         )
 

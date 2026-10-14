@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/codexdev                      ║
+ * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -39,7 +39,7 @@ export default async function DashboardPage() {
     error = err.message || "Failed to connect to the bot API.";
     // Fallback data for UI structure if API fails
     botInfo = {
-      name: "ZyroX Bot",
+      name: "Zenith Bot",
       guilds: 0,
       users: 0,
       commands: 0,
@@ -112,7 +112,7 @@ export default async function DashboardPage() {
               { title: "Manage Servers", desc: "View and configure your Discord guilds.", icon: ServerIcon, href: "/dashboard/guilds" },
               { title: "Global Settings", desc: "Adjust your personal dashboard preferences.", icon: Settings, href: "/dashboard" },
               { title: "Support Matrix", desc: "Get help from our neural support team.", icon: LifeBuoy, href: "#" },
-              { title: "Documentation", desc: "Learn how to master the ZyroX engine.", icon: FileText, href: "#" },
+              { title: "Documentation", desc: "Learn how to master the Zenith engine.", icon: FileText, href: "#" },
             ].map((item) => (
               <a key={item.title} href={item.href} className="flex items-center gap-5 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.03] group/item hover:bg-white/[0.05] hover:border-red-500/20 transition-all">
                 <div className="h-12 w-12 rounded-2xl bg-red-500/5 border border-red-500/10 flex items-center justify-center group-hover/item:bg-red-500/10 transition-colors">
@@ -132,7 +132,7 @@ export default async function DashboardPage() {
           
           <div className="relative z-10">
             <h2 className="text-2xl font-bold text-white mb-3 font-outfit">Module Status</h2>
-            <p className="text-slate-500 text-sm mb-10 font-medium">Global operational health of ZyroX core.</p>
+            <p className="text-slate-500 text-sm mb-10 font-medium">Global operational health of Zenith core.</p>
             
             <div className="space-y-4">
               {[

@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/codexdev                      ║
+# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -157,7 +157,7 @@ class HelpCommand(commands.HelpCommand):
     )
 
     embed.set_footer(
-      text=f"Requested By {self.context.author} | [Support](https://discord.gg/codexdev)",
+      text=f"Requested By {self.context.author} | [Support](https://discord.gg/WqJGXrQX4)",
     )
     
     view = vhelp.View(mapping=mapping, ctx=self.context, homeembed=embed, ui=2)

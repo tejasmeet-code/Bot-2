@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/codexdev                      ║
+# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -157,7 +157,7 @@ class Tracking(commands.Cog):
             f"**Fake:** `{fake}`\n"
             f"**Left:** `{left}`\n"
             f"**Rejoins:** `{rejoin}`\n\n"
-            f"{EMOJI_INVITE} **Get {BotName} Premium Lifetime [Join Support Here](https://discord.gg/codexdev)**"
+            f"{EMOJI_INVITE} **Get {BotName} Premium Lifetime [Join Support Here](https://discord.gg/WqJGXrQX4)**"
         )
         await ctx.send(view=CV2(f"Invite Log - {member.name}", desc))
 

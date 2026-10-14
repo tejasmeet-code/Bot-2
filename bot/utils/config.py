@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/codexdev                      ║
+# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -18,12 +18,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 TOKEN      = os.environ.get("TOKEN")
-BRAND_NAME = os.environ.get("brand_name", "Zyrox X")
+BRAND_NAME = os.environ.get("brand_name", "Zenith")
 NAME       = BRAND_NAME
 BotName    = BRAND_NAME
 
-server     = "https://discord.gg/codexdev"
-serverLink = "https://discord.gg/codexdev"
+server     = "https://discord.gg/WqJGXrQX4"
+serverLink = "https://discord.gg/WqJGXrQX4"
 ch         = "https://discord.com/channels/699587669059174461/1271825678710476911"
 
 CMD_WEBHOOK_URL = os.getenv("CMD_WEBHOOK_URL")
