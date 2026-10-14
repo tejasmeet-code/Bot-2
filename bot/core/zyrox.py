@@ -111,23 +111,31 @@ class zyrox(commands.AutoShardedBot):
     async def get_prefix(self, message: discord.Message):
         if message.guild:
             guild_id = message.guild.id
-            async with aiosqlite.connect('db/np.db') as db:
-                async with db.execute("SELECT id FROM np WHERE id = ?", (message.author.id,)) as cursor:
-                    row = await cursor.fetchone()
-            data = await getConfig(guild_id)
-            prefix = data["prefix"]
-            if row:
-                return commands.when_mentioned_or(prefix, '')(self, message)
-            else:
-                return commands.when_mentioned_or(prefix)(self, message)
+            is_np = False
+            try:
+                async with aiosqlite.connect('db/np.db') as db:
+                    async with db.execute("SELECT id FROM np WHERE id = ?", (message.author.id,)) as cursor:
+                        is_np = await cursor.fetchone() is not None
+            except Exception:
+                pass
+
+            try:
+                data = await getConfig(guild_id)
+                guild_p = data.get("prefix", ">")
+            except Exception:
+                guild_p = ">"
+
+            # Support configured prefix as well as common discord prefixes
+            prefix_candidates = [guild_p, ">", "!", "?", "+", "."]
+            seen = set()
+            valid_prefixes = [p for p in prefix_candidates if p and not (p in seen or seen.add(p))]
+
+            if is_np:
+                valid_prefixes.append('')
+            return commands.when_mentioned_or(*valid_prefixes)(self, message)
         else:
-            async with aiosqlite.connect('db/np.db') as db:
-                async with db.execute("SELECT id FROM np WHERE id = ?", (message.author.id,)) as cursor:
-                    row = await cursor.fetchone()
-            if row:
-                return commands.when_mentioned_or('?', '')(self, message)
-            else:
-                return commands.when_mentioned_or('')(self, message)
+            return commands.when_mentioned_or('>', '!', '?', '+', '')(self, message)
+
 
     async def on_message_edit(self, before, after):
         ctx: Context = await self.get_context(after, cls=Context)

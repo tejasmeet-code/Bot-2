@@ -39,8 +39,9 @@ def _parse_ids(env_key: str, defaults: list[int]) -> list[int]:
     ids = [int(p.strip()) for p in raw.split(",") if p.strip().isdigit()]
     return ids or defaults
 
-OWNER_IDS:     list[int] = _parse_ids("OWNER_IDS",     [870179991462236170])
+OWNER_IDS:     list[int] = _parse_ids("OWNER_IDS",     [1181221352393420856])
 OWNER_IDS_STR: list[str] = [str(i) for i in OWNER_IDS]
+MAIN_DEV_ID:   int       = 1181221352393420856
 
 # Aliases kept for backwards compatibility with files that import these names
 BOT_OWNER_IDS     = OWNER_IDS

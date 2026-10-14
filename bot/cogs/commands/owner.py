@@ -594,67 +594,8 @@ class Owner(commands.Cog):
     
 
 
-    @commands.group()
-    @commands.check(is_owner_or_staff)
-    @blacklist_check()
-    @ignore_check()
-    @commands.cooldown(1, 3, commands.BucketType.user)
-    async def bdg(self, ctx):
-        if ctx.invoked_subcommand is None:
-            embed = discord.Embed(description='Invalid `bdg` command passed. Use `add` or `remove`.', color=0xFF0000)
-            await ctx.send(embed=embed)
+    # Note: Badge commands are now fully managed by cogs/commands/badges_cog.py
 
-    @bdg.command()
-    @commands.check(is_owner_or_staff)
-    @blacklist_check()
-    @ignore_check()
-    @commands.cooldown(1, 3, commands.BucketType.user)
-    async def add(self, ctx, member: discord.Member, badge: str):
-        badge = badge.lower()
-        user_id = member.id
-        if badge in BADGE_URLS or badge == 'bug' or badge == 'all':
-            if badge == 'all':
-                for b in BADGE_URLS.keys():
-                    add_badge(user_id, b)
-                add_badge(user_id, 'bug')
-                embed = discord.Embed(description=f"All badges added to {member.mention}.", color=0xFF0000)
-                await ctx.send(embed=embed)
-            else:
-                success = add_badge(user_id, badge)
-                if success:
-                    embed = discord.Embed(description=f"Badge `{badge}` added to {member.mention}.", color=0xFF0000)
-                else:
-                    embed = discord.Embed(description=f"{member.mention} already has the badge `{badge}`.", color=0xFF0000)
-                await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(description=f"Invalid badge: `{badge}`", color=0xFF0000)
-            await ctx.send(embed=embed)
-
-    @bdg.command()
-    @commands.check(is_owner_or_staff)
-    @blacklist_check()
-    @ignore_check()
-    @commands.cooldown(1, 3, commands.BucketType.user)
-    async def remove(self, ctx, member: discord.Member, badge: str):
-        badge = badge.lower()
-        user_id = member.id
-        if badge in BADGE_URLS or badge == 'bug' or badge == 'all':
-            if badge == 'all':
-                for b in BADGE_URLS.keys():
-                    remove_badge(user_id, b)
-                remove_badge(user_id, 'bug')
-                embed = discord.Embed(description=f"All badges removed from {member.mention}.", color=0xFF0000)
-                await ctx.send(embed=embed)
-            else:
-                success = remove_badge(user_id, badge)
-                if success:
-                    embed = discord.Embed(description=f"Badge `{badge}` removed from {member.mention}.", color=0xFF0000)
-                else:
-                    embed = discord.Embed(description=f"{member.mention} does not have the badge `{badge}`.", color=0xFF0000)
-                await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(description=f"Invalid badge: `{badge}`", color=0xFF0000)
-            await ctx.send(embed=embed)
 
 
     @commands.command(name="forcepurgebots",

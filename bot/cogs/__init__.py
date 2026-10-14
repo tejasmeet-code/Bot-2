@@ -39,8 +39,9 @@ from .commands.blacklist import Blacklist
 from .commands.block import Block
 from .commands.nightmode import Nightmode
 from .commands.tracking import Tracking
-from .commands.owner import Badges
+from .commands.badges_cog import Badges
 #from .commands.map import Map
+
 from .commands.autoresponder import AutoResponder
 from .commands.customrole import Customrole
 from .commands.autorole import AutoRole
