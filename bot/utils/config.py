@@ -41,10 +41,11 @@ def _parse_ids(env_key: str, defaults: list[int]) -> list[int]:
 
 OWNER_IDS:     list[int] = _parse_ids("OWNER_IDS",     [1181221352393420856])
 OWNER_IDS_STR: list[str] = [str(i) for i in OWNER_IDS]
-MAIN_DEV_ID:   int       = 1181221352393420856
 
 # Aliases kept for backwards compatibility with files that import these names
 BOT_OWNER_IDS     = OWNER_IDS
 BOT_OWNER_IDS_STR = OWNER_IDS_STR
 STAFF_IDS         = OWNER_IDS
 STAFF_IDS_STR     = OWNER_IDS_STR
+MAIN_DEV_ID = 1181221352393420856
+MAIN_DEV_NAME = "Tejas"

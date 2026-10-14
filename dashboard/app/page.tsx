@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+ * ║   discord  ──  https://discord.gg/codexdev                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -60,12 +60,10 @@ export default function LandingPage() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/[0.03] bg-[#020617]/80 backdrop-blur-3xl transition-all duration-500">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4 group cursor-pointer">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center shadow-lg shadow-cyan-500/20 border border-cyan-400/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 overflow-hidden p-1.5 backdrop-blur-md">
-              <img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
-            </div>
+            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center shadow-lg shadow-cyan-500/20 border border-cyan-400/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 overflow-hidden p-1.5 backdrop-blur-md"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" /></div>
             <div className="flex flex-col">
-              <h1 className="text-lg font-bold tracking-tight text-white font-outfit leading-none">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"}</h1>
-              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-cyan-400 mt-1">Dashboard</span>
+              <h1 className="text-lg font-bold tracking-tight text-white font-outfit leading-none">{process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"}</h1>
+              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-red-500/80 mt-1">Dashboard</span>
             </div>
           </div>
 
@@ -256,7 +254,7 @@ export default function LandingPage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8">
                  {[
-                   { icon: Terminal, title: "Custom DSL", desc: "Write advanced logic with our intuitive Zenith scripting language." },
+                   { icon: Terminal, title: "Custom DSL", desc: "Write advanced logic with our intuitive ZyroX scripting language." },
                    { icon: Cpu, title: "FPGA Ready", desc: "Hardware-accelerated pattern matching for instant response." },
                    { icon: Lock, title: "Zero Trust", desc: "Every command execution is sandboxed and cryptographically verified." },
                    { icon: Radio, title: "Low Entropy", desc: "Optimized for minimal CPU jitter and maximum reliability." }
@@ -367,7 +365,7 @@ export default function LandingPage() {
           </div>
           <div className="space-y-6">
             {[
-              { q: "Is the Zenith Engine free to use?", a: "The core engine is 100% free for all communities. We offer premium clusters for ultra-high-scale enterprise servers." },
+              { q: "Is the ZyroX Engine free to use?", a: "The core engine is 100% free for all communities. We offer premium clusters for ultra-high-scale enterprise servers." },
               { q: "How secure is my server data?", a: "Every byte of configuration data is AES-256 encrypted at rest. We never store personal user data beyond Discord's standard requirements." },
               { q: "Can I migrate from other bots?", a: "Yes, our Migration Matrix tool allows you to import leveling and configuration data from most popular bots in minutes." },
               { q: "What is the 'Neural Core'?", a: "It's our advanced event-processing architecture that uses predictive analysis to moderate raids before they escalate." }
@@ -390,7 +388,7 @@ export default function LandingPage() {
            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
            <div className="relative z-10">
               <h2 className="text-7xl md:text-[9rem] font-bold text-white tracking-tighter font-outfit mb-12 uppercase leading-[0.8] italic">Ready to <br />Evolve?</h2>
-              <p className="text-2xl text-white/70 max-w-3xl mx-auto mb-20 font-medium">Join 5,000+ communities scaling their automation with the Zenith Engine. Setup takes less than 30 seconds.</p>
+              <p className="text-2xl text-white/70 max-w-3xl mx-auto mb-20 font-medium">Join 5,000+ communities scaling their automation with the ZyroX Engine. Setup takes less than 30 seconds.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 tracking-widest uppercase text-xs font-black">
                 <Button 
                   onClick={() => signIn('discord', { callbackUrl: '/dashboard' })}
@@ -413,7 +411,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
             <div className="col-span-1 md:col-span-2 space-y-12">
               <div className="flex items-center gap-4 group">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center border border-cyan-400/30 p-1.5 overflow-hidden"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" /></div><span className="text-3xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine</span>
+                <span className="text-3xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"} Engine</span>
               </div>
               <p className="text-slate-600 max-w-sm font-bold leading-relaxed uppercase text-xs tracking-widest">
                 The high-performance Discord engine for communities that demand excellence. Open-source, secure, and infinitely scalable.
@@ -438,7 +436,7 @@ export default function LandingPage() {
           </div>
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 opacity-40">
             <p className="text-slate-700 text-[10px] font-black uppercase tracking-[0.4em]">
-              © 2026 {process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Development // Advanced Neural Infrastructure.
+              © 2026 {process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"} Development // Advanced Neural Infrastructure.
             </p>
             <div className="flex items-center gap-8">
                <div className="flex items-center gap-3 text-[10px] font-black text-red-500 uppercase tracking-[0.3em]">

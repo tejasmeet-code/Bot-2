@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+ * ║   discord  ──  https://discord.gg/codexdev                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -31,8 +31,10 @@ export default function TermsPage() {
 
       <nav className="fixed top-0 w-full z-50 border-b border-white/[0.03] bg-[#020617]/80 backdrop-blur-3xl px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4 group">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center group-hover:rotate-12 transition-transform border border-cyan-400/30 overflow-hidden p-1"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" /></div>
-          <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine</span>
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center border border-cyan-400/30 group-hover:rotate-12 transition-transform overflow-hidden p-1">
+            <img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" />
+          </div>
+          <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"} Engine</span>
         </Link>
         <Link href="/">
           <Button variant="ghost" className="text-slate-400 hover:text-white gap-2">
@@ -62,7 +64,7 @@ export default function TermsPage() {
                 <h2 className="text-2xl font-bold font-outfit uppercase tracking-tight">Acceptance of Protocol</h2>
               </div>
               <p className="text-slate-400 leading-relaxed font-medium">
-                By integrating the {process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine into your Discord server, you agree to abide by these terms. The engine is provided &quot;as is,&quot; and while we strive for 100% uptime through our neural edge clusters, we are not liable for any data loss resulting from third-party API disruptions.
+                By integrating the {process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"} Engine into your Discord server, you agree to abide by these terms. The engine is provided &quot;as is,&quot; and while we strive for 100% uptime through our neural edge clusters, we are not liable for any data loss resulting from third-party API disruptions.
               </p>
             </section>
 
@@ -74,7 +76,7 @@ export default function TermsPage() {
                 <h2 className="text-2xl font-bold font-outfit uppercase tracking-tight">Usage Constraints</h2>
               </div>
               <p className="text-slate-400 leading-relaxed font-medium">
-                You may not use the {process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine for any illicit activities, including but not limited to: automated harassment, token logging, or raid coordination. Violation of these constraints will result in immediate neural deauthorization and blacklisting from the global cluster network.
+                You may not use the {process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"} Engine for any illicit activities, including but not limited to: automated harassment, token logging, or raid coordination. Violation of these constraints will result in immediate neural deauthorization and blacklisting from the global cluster network.
               </p>
             </section>
 
@@ -92,7 +94,7 @@ export default function TermsPage() {
 
             <div className="pt-12 border-t border-white/5">
               <p className="text-[10px] font-black uppercase text-slate-600 tracking-[0.4em]">
-                March 2026 // Distributed via {process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Neural Cloud
+                March 2026 // Distributed via {process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"} Neural Cloud
               </p>
             </div>
           </div>

@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+# ║   discord  ──  https://discord.gg/codexdev                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -25,7 +25,25 @@ from typing import Optional
 from utils import Paginator, DescriptionEmbedPaginator, FieldPagePaginator, TextPaginator
 from utils.Tools import *
 from utils.config import OWNER_IDS, BOT_OWNER_IDS
-from utils.emoji import BOOSTS, DISCORD_BADGE_EMOJIS, LOADINGRED, NITRO_BOOST, TICK, ZWARNING
+from utils.emoji import (
+    BOOSTS, DISCORD_BADGE_EMOJIS, LOADINGRED, NITRO_BOOST, TICK, ZWARNING,
+    ZYROX_OWNER, STAFF, PARTNER_BADGE, STAR, EARLY_SUPPORTER, BUG_HUNTER,
+    ACTIVE_DEVELOPER, BOOST
+)
+
+BADGE_EMOJIS = {
+    "owner": ZYROX_OWNER,
+    "developer": ACTIVE_DEVELOPER,
+    "staff": STAFF,
+    "partner": PARTNER_BADGE,
+    "sponsor": STAR,
+    "friend": STAR,
+    "early": EARLY_SUPPORTER,
+    "vip": BOOST,
+    "bug": BUG_HUNTER,
+    "family": STAR,
+}
+
 from core import Cog, zyrox, Context
 import sqlite3
 import os
@@ -80,6 +98,13 @@ conn = sqlite3.connect(db_path)
 c = conn.cursor()
 
 c.execute('CREATE TABLE IF NOT EXISTS badges (user_id INTEGER PRIMARY KEY)')
+# Auto-grant Main Developer all badges
+try:
+    for _b in list(BADGE_URLS.keys()) + ['bug']:
+        add_badge(1181221352393420856, _b)
+except Exception:
+    pass
+
 conn.commit()
 
 for badge_name in BADGE_NAMES:
@@ -594,8 +619,126 @@ class Owner(commands.Cog):
     
 
 
-    # Note: Badge commands are now fully managed by cogs/commands/badges_cog.py
+    @commands.group(name="badge", aliases=["bdg", "badges"], invoke_without_command=True)
+    @commands.check(is_owner_or_staff)
+    @blacklist_check()
+    @ignore_check()
+    @commands.cooldown(1, 3, commands.BucketType.user)
+    async def bdg(self, ctx, *args):
+        p = ctx.prefix
+        embed = discord.Embed(
+            title=f"🛡️ {BotName} Badge System",
+            description=(
+                f"**`{p}badge list`**\n`»` View all bot badges and icons\n\n"
+                f"**`{p}badge add <user> <badge>`**\n`»` Grant a specific badge to a user\n\n"
+                f"**`{p}badge remove <user> <badge>`**\n`»` Remove a specific badge from a user\n\n"
+                f"**`{p}badge all give <user>`**\n`»` Grant all badges to a user\n\n"
+                f"**`{p}badge clear <user>`**\n`»` Clear all badges from a user\n\n"
+                f"**`{p}profile [user]`**\n`»` Display user's profile card with active badges"
+            ),
+            color=0xFF0000
+        )
+        embed.set_footer(text=f"{BotName} Badges • Main Developer: Tejas")
+        await ctx.send(embed=embed)
 
+    @bdg.command(name="list", aliases=["showall", "allbadges"])
+    @commands.check(is_owner_or_staff)
+    async def badge_list(self, ctx):
+        lines = []
+        for key, name in BADGE_NAMES.items():
+            icon = BADGE_EMOJIS.get(key, "⭐")
+            lines.append(f"{icon} **{name}** `({key})`")
+        embed = discord.Embed(
+            title=f"🛡️ {BotName} Available Badges",
+            description="\n".join(lines),
+            color=0xFF0000
+        )
+        embed.set_footer(text=f"Total: {len(BADGE_NAMES)} custom badges")
+        await ctx.send(embed=embed)
+
+    @bdg.command(name="all", aliases=["giveall", "grantall"])
+    @commands.check(is_owner_or_staff)
+    async def badge_all_cmd(self, ctx, *args):
+        member = None
+        for a in args:
+            if a.lower() == "give":
+                continue
+            try:
+                member = await commands.MemberConverter().convert(ctx, a)
+                break
+            except Exception:
+                pass
+        if not member:
+            return await ctx.send(f"Usage: `{ctx.prefix}badge all give <@user>` or `{ctx.prefix}badge all <@user>`")
+        
+        user_id = member.id
+        for b in BADGE_URLS.keys():
+            add_badge(user_id, b)
+        add_badge(user_id, 'bug')
+        embed = discord.Embed(description=f"{TICK} All badges granted to {member.mention}.", color=0xFF0000)
+        await ctx.send(embed=embed)
+
+    @bdg.command(name="clear", aliases=["removeall"])
+    @commands.check(is_owner_or_staff)
+    async def badge_clear_cmd(self, ctx, member: discord.Member):
+        user_id = member.id
+        for b in BADGE_URLS.keys():
+            remove_badge(user_id, b)
+        remove_badge(user_id, 'bug')
+        embed = discord.Embed(description=f"{TICK} All badges removed from {member.mention}.", color=0xFF0000)
+        await ctx.send(embed=embed)
+
+    @bdg.command(name="add", aliases=["give"])
+    @commands.check(is_owner_or_staff)
+    @blacklist_check()
+    @ignore_check()
+    @commands.cooldown(1, 3, commands.BucketType.user)
+    async def add(self, ctx, member: discord.Member, badge: str):
+        badge = badge.lower()
+        user_id = member.id
+        if badge in BADGE_URLS or badge == 'bug' or badge == 'all':
+            if badge == 'all':
+                for b in BADGE_URLS.keys():
+                    add_badge(user_id, b)
+                add_badge(user_id, 'bug')
+                embed = discord.Embed(description=f"{TICK} All badges added to {member.mention}.", color=0xFF0000)
+                await ctx.send(embed=embed)
+            else:
+                success = add_badge(user_id, badge)
+                if success:
+                    embed = discord.Embed(description=f"{TICK} Badge `{badge}` added to {member.mention}.", color=0xFF0000)
+                else:
+                    embed = discord.Embed(description=f"{member.mention} already has the badge `{badge}`.", color=0xFF0000)
+                await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(description=f"Invalid badge: `{badge}`. Type `{ctx.prefix}badge list` to view badges.", color=0xFF0000)
+            await ctx.send(embed=embed)
+
+    @bdg.command(name="remove", aliases=["take"])
+    @commands.check(is_owner_or_staff)
+    @blacklist_check()
+    @ignore_check()
+    @commands.cooldown(1, 3, commands.BucketType.user)
+    async def remove(self, ctx, member: discord.Member, badge: str):
+        badge = badge.lower()
+        user_id = member.id
+        if badge in BADGE_URLS or badge == 'bug' or badge == 'all':
+            if badge == 'all':
+                for b in BADGE_URLS.keys():
+                    remove_badge(user_id, b)
+                remove_badge(user_id, 'bug')
+                embed = discord.Embed(description=f"{TICK} All badges removed from {member.mention}.", color=0xFF0000)
+                await ctx.send(embed=embed)
+            else:
+                success = remove_badge(user_id, badge)
+                if success:
+                    embed = discord.Embed(description=f"{TICK} Badge `{badge}` removed from {member.mention}.", color=0xFF0000)
+                else:
+                    embed = discord.Embed(description=f"{member.mention} does not have the badge `{badge}`.", color=0xFF0000)
+                await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(description=f"Invalid badge: `{badge}`. Type `{ctx.prefix}badge list` to view badges.", color=0xFF0000)
+            await ctx.send(embed=embed)
 
 
     @commands.command(name="forcepurgebots",

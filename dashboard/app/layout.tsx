@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+ * ║   discord  ──  https://discord.gg/codexdev                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -24,7 +24,7 @@ import { AuthProvider } from "@/components/auth-provider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
-const brandName = process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith";
+const brandName = process.env.NEXT_PUBLIC_BRAND_NAME || "Zyrox";
 
 export const metadata: Metadata = {
   title: `${brandName} - Ultimate Discord Bot`,

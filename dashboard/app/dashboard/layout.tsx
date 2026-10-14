@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+ * ║   discord  ──  https://discord.gg/codexdev                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -187,7 +187,7 @@ export default function DashboardLayout({
             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform border border-cyan-400/30 overflow-hidden p-1"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain filter drop-shadow-[0_0_6px_rgba(56,189,248,0.4)]" /></div>
             <div className="flex flex-col">
               <h1 className="text-lg font-bold tracking-tight text-white font-outfit leading-none">
-                {process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"}
+                {process.env.NEXT_PUBLIC_BRAND_NAME || "ZyroX"}
               </h1>
               <span className="text-[9px] font-black uppercase tracking-[0.2em] text-red-500/80 mt-1">
                 Dashboard

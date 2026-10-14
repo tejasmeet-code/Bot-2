@@ -7,7 +7,7 @@
  * ║                                                                  ║
  * ║           © 2026 CodeX Devs — All Rights Reserved               ║
  * ║                                                                  ║
- * ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+ * ║   discord  ──  https://discord.gg/codexdev                      ║
  * ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
  * ║   github   ──  https://github.com/RayExo                        ║
  * ║                                                                  ║
@@ -31,8 +31,10 @@ export default function PrivacyPage() {
 
       <nav className="fixed top-0 w-full z-50 border-b border-white/[0.03] bg-[#020617]/80 backdrop-blur-3xl px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4 group">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center border border-cyan-400/30 overflow-hidden p-1 mr-4"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" /></div>
-          <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter">Zenith Engine</span>
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center border border-cyan-400/30 overflow-hidden p-1 mr-4">
+            <img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" />
+          </div>
+          <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine</span>
         </Link>
         <Link href="/">
           <Button variant="ghost" className="text-slate-400 hover:text-white gap-2">
@@ -62,7 +64,7 @@ export default function PrivacyPage() {
                 <h2 className="text-2xl font-bold font-outfit uppercase tracking-tight">Data Collection</h2>
               </div>
               <p className="text-slate-400 leading-relaxed font-medium">
-                The Zenith Engine collects only the minimum necessary data to function within Discord. This includes your Discord User ID, Server (Guild) ID, and configuration settings provided during setup. We do not store message content unless explicitly configured for logging purposes by server administrators.
+                The ZyroX Engine collects only the minimum necessary data to function within Discord. This includes your Discord User ID, Server (Guild) ID, and configuration settings provided during setup. We do not store message content unless explicitly configured for logging purposes by server administrators.
               </p>
             </section>
 

@@ -333,3 +333,15 @@ async def run_periodic_backup(interval_minutes: int = 15, base_dir: str = "."):
         except Exception as e:
             logger.error(f"[Supabase] Periodic backup error: {e}")
         await asyncio.sleep(interval_minutes * 60)
+
+async def init_supabase_storage(client=None, base_dir: str = "."):
+    """Restores databases from Supabase on startup and starts the periodic sync task."""
+    try:
+        print("\033[36m★ Supabase Storage: Initializing cloud persistence engine...\033[0m")
+        res = await asyncio.to_thread(supabase_storage.restore_databases, base_dir)
+        restored = len(res.get("restored", []))
+        verified = len(res.get("verified", []))
+        print(f"\033[32m◈ Supabase Storage: {restored} restored, {verified} cloud verified.\033[0m")
+        asyncio.create_task(run_periodic_backup(15, base_dir))
+    except Exception as e:
+        print(f"\033[31m✖ Supabase Storage initialization error: {e}\033[0m")

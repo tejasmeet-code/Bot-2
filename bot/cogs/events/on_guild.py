@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+# ║   discord  ──  https://discord.gg/codexdev                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -100,7 +100,7 @@ Threads : {len(guild.threads)}
                 await guild.chunk()
 
             embed = discord.Embed(
-                description=f"{ARROWRED} Prefix For This Server is `>`\n{ARROWRED} Get Started with `>help`\n{ARROWRED} For detailed guides, FAQ & information, visit our **[Support Server](https://discord.gg/WqJGXrQX4)**",
+                description=f"{ARROWRED} Prefix For This Server is `>`\n{ARROWRED} Get Started with `>help`\n{ARROWRED} For detailed guides, FAQ & information, visit our **[Support Server](https://discord.gg/codexdev)**",
                 color=0xFF0000,
             )
             embed.set_author(
@@ -115,7 +115,7 @@ Threads : {len(guild.threads)}
             support = Button(
                 label="Support",
                 style=discord.ButtonStyle.link,
-                url=f"https://discord.gg/WqJGXrQX4",
+                url=f"https://discord.gg/codexdev",
             )
 
             view = View()

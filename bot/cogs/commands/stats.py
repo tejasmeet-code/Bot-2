@@ -6,7 +6,7 @@
 # ║                                                                  ║
 # ║            © 2026 CodeX Devs — All Rights Reserved              ║
 # ║                                                                  ║
-# ║   discord  ──  https://discord.gg/WqJGXrQX4                      ║
+# ║   discord  ──  https://discord.gg/codexdev                      ║
 # ║   youtube  ──  https://youtube.com/@CodeXDevs                   ║
 # ║   github   ──  https://github.com/RayExo                        ║
 # ║                                                                  ║
@@ -74,10 +74,11 @@ def create_stats_content(stats_data, selected):
             f"Slash Commands: **{stats_data['slash_cmds']}**"
         ),
         "Team Info": (
-            f"**{ZYROX_OWNER} Main Developer & Founder**\n"
-            "[01]. [Tejas](https://discord.com/users/1181221352393420856)\n"
+            "There is only one person who made me. Thanks to him ❤️.\n\n"
+            f"**{ZYROX_OWNER} Main Owner**\n"
+            "[01]. [runxking](https://discord.com/users/767979794411028491)\n"
+            "[02]. [Ray](https://discord.com/users/870179991462236170)"
         ),
-
         "Code Info": (
             f"**{ZYROX_SEARCH} Codebase Overview**\n\n"
             f"Files: **{stats_data['files']}**\n"
