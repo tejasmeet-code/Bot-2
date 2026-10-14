@@ -34,9 +34,11 @@ from utils.Tools import *
 from utils.config import *
 from utils.emoji import SUCCESS, ERROR, TICK, CROSS, REACTION_TEST_EMOJIS
 from utils.sync_emojis import run_sync
+from utils.supabase_storage import supabase_storage, run_periodic_backup
 
 import jishaku
 import cogs
+
 
 
 os.environ["JISHAKU_NO_DM_TRACEBACK"] = "False"
@@ -104,7 +106,19 @@ async def on_ready():
     # Sync application emojis on startup
     await run_sync(TOKEN)
 
+    # Supabase Storage Persistence Integration
+    try:
+        if supabase_storage.key:
+            print("★ Supabase Storage: Initializing cloud persistence engine...")
+            supabase_storage.ensure_bucket()
+            restored = supabase_storage.restore_databases(".")
+            print(f"◈ Supabase Storage: {len(restored.get('restored', []))} restored, {len(restored.get('skipped', []))} cloud verified.")
+            client.loop.create_task(run_periodic_backup(interval_minutes=15, base_dir="."))
+    except Exception as e:
+        print(f"✖ Supabase Storage: Persistence init notice: {e}")
+
     async def sync_commands():
+
         try:
             synced = await client.tree.sync()
             all_commands = list(client.commands)
@@ -344,20 +358,27 @@ async def main():
         os.system("clear")
         await client.load_extension("jishaku")
         
-        max_retries = 5
-        for attempt in range(max_retries):
+        try:
+            for attempt in range(max_retries):
+                try:
+                    await client.start(TOKEN)
+                    break
+                except discord.HTTPException as e:
+                    if e.status == 429: # Rate limited
+                        wait_time = min((2 ** attempt) + random.random(), 60)
+                        print(f"Rate limited. Retrying in {wait_time:.2f} seconds...")
+                        await asyncio.sleep(wait_time)
+                    else:
+                        raise
+            else:
+                raise Exception("Bot failed to start after multiple retries due to rate limiting.")
+        finally:
             try:
-                await client.start(TOKEN)
-                break
-            except discord.HTTPException as e:
-                if e.status == 429: # Rate limited
-                    wait_time = min((2 ** attempt) + random.random(), 60)
-                    print(f"Rate limited. Retrying in {wait_time:.2f} seconds...")
-                    await asyncio.sleep(wait_time)
-                else:
-                    raise
-        else:
-            raise Exception("Bot failed to start after multiple retries due to rate limiting.")
+                print("★ Supabase Storage: Performing shutdown backup...")
+                supabase_storage.backup_databases(".")
+            except Exception:
+                pass
 
 if __name__ == "__main__":
     asyncio.run(main())
+

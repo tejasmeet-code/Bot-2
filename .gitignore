@@ -64,3 +64,6 @@ __pycache__/
 *.rar
 
 
+
+# Local Netlify folder
+.netlify

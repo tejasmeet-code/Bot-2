@@ -1,0 +1,43 @@
+{
+  "configs": {
+    "1466728565352435847": {
+      "query": "Karan Aujla",
+      "enabled": true,
+      "guildId": "1466728565352435847",
+      "updatedAt": 1791209839549,
+      "textChannelId": "1505247898122584245",
+      "voiceChannelId": "1505247898122584245"
+    },
+    "1496877352276332685": {
+      "query": "Eminem",
+      "enabled": true,
+      "guildId": "1496877352276332685",
+      "updatedAt": 1791296211865,
+      "textChannelId": "1553342487328718968",
+      "voiceChannelId": "1553342487328718968"
+    },
+    "1510975690068070501": {
+      "query": "Aujla Szn 1",
+      "enabled": true,
+      "guildId": "1510975690068070501",
+      "updatedAt": 1791032381365,
+      "textChannelId": "1531591176950513779",
+      "voiceChannelId": "1531591176950513779"
+    },
+    "1537500368290717698": {
+      "query": "karan aujla",
+      "enabled": true,
+      "guildId": "1537500368290717698",
+      "updatedAt": 1791552079996,
+      "textChannelId": "1537500369221980225",
+      "voiceChannelId": "1537500369221980225"
+    },
+    "1555111481505218583": {
+      "enabled": true,
+      "guildId": "1555111481505218583",
+      "updatedAt": 1790845215213,
+      "textChannelId": "1555111482721828887",
+      "voiceChannelId": "1555111482721828887"
+    }
+  }
+}

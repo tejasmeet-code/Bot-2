@@ -83,7 +83,9 @@ from .commands.Birthday import Birthdays
 from .commands.nitro import Nitro
 from .commands.image import ImageCommands
 from .commands.youtube import Youtube
+from .commands.supabase_cog import SupabaseCog
 #____________ Events _____________
+
 
 #from .events.autoblacklist import AutoBlacklist
 from .events.Errors import Errors
@@ -262,6 +264,8 @@ async def setup(bot: zyrox):
   await bot.add_cog(Nitro(bot))
   await bot.add_cog(ImageCommands(bot))
   await bot.add_cog(Youtube(bot))
+  await bot.add_cog(SupabaseCog(bot))
+
 
   await bot.add_cog(_antinuke(bot))
   await bot.add_cog(_extra(bot))

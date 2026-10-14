@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[functions]
+  directory = ".netlify/functions-internal"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_PUBLIC_BRAND_NAME = "Zenith"
+  NEXT_PUBLIC_BRAND_NAME_WORD = "ZN"
+  NEXTAUTH_URL = "https://demonzenith.netlify.app"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/___netlify-server-handler"
+  status = 200
+  force = false
