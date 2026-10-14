@@ -31,9 +31,7 @@ export default function PrivacyPage() {
 
       <nav className="fixed top-0 w-full z-50 border-b border-white/[0.03] bg-[#020617]/80 backdrop-blur-3xl px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4 group">
-          <div className="h-9 w-9 rounded-xl bg-red-600 flex items-center justify-center mr-4">
-            <Bot className="h-5 w-5 text-white" />
-          </div>
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center border border-cyan-400/30 overflow-hidden p-1 mr-4"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" /></div>
           <span className="text-xl font-bold text-white font-outfit uppercase tracking-tighter">Zenith Engine</span>
         </Link>
         <Link href="/">

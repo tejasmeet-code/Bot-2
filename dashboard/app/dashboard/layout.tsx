@@ -87,9 +87,7 @@ export default function DashboardLayout({
     return (
       <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
         <div className="animate-pulse flex flex-col items-center gap-4">
-          <div className="h-12 w-12 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
-            <span className="font-black text-white italic text-xl">{process.env.NEXT_PUBLIC_BRAND_NAME_WORD || "ZX"}</span>
-          </div>
+          <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center shadow-lg shadow-cyan-500/20 border border-cyan-400/30 p-2"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" /></div>
           <p className="text-slate-400 font-bold tracking-widest uppercase text-xs">
             Authenticating...
           </p>
@@ -186,9 +184,7 @@ export default function DashboardLayout({
         {/* Header */}
         <div className="flex h-16 items-center px-6 mt-4 flex-shrink-0">
           <div className="flex items-center gap-3 group">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center shadow-lg shadow-red-500/20 group-hover:scale-110 transition-transform border border-white/10">
-              <Bot className="h-5 w-5 text-white" />
-            </div>
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform border border-cyan-400/30 overflow-hidden p-1"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain filter drop-shadow-[0_0_6px_rgba(56,189,248,0.4)]" /></div>
             <div className="flex flex-col">
               <h1 className="text-lg font-bold tracking-tight text-white font-outfit leading-none">
                 {process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"}

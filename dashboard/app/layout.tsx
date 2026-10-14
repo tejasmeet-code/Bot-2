@@ -29,6 +29,11 @@ const brandName = process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith";
 export const metadata: Metadata = {
   title: `${brandName} - Ultimate Discord Bot`,
   description: "Advanced Discord community management and security.",
+  icons: {
+    icon: "/bot-avatar.png",
+    shortcut: "/bot-avatar.png",
+    apple: "/bot-avatar.png",
+  },
 };
 
 export default function RootLayout({

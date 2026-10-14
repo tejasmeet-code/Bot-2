@@ -60,12 +60,12 @@ export default function LandingPage() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/[0.03] bg-[#020617]/80 backdrop-blur-3xl transition-all duration-500">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4 group cursor-pointer">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center shadow-lg shadow-red-500/25 border border-white/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-              <Bot className="h-6 w-6 text-white" />
+            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center shadow-lg shadow-cyan-500/20 border border-cyan-400/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 overflow-hidden p-1.5 backdrop-blur-md">
+              <img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-lg font-bold tracking-tight text-white font-outfit leading-none">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"}</h1>
-              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-red-500/80 mt-1">Dashboard</span>
+              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-cyan-400 mt-1">Dashboard</span>
             </div>
           </div>
 
@@ -276,7 +276,7 @@ export default function LandingPage() {
                  <div className="h-[70%] w-[70%] border border-white/[0.05] rounded-full animate-[spin_40s_linear_infinite_reverse] flex items-center justify-center">
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-white/20 shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
                     <div className="h-[60%] w-[60%] border border-white/[0.05] rounded-full animate-[spin_20s_linear_infinite] flex items-center justify-center">
-                       <Bot className="h-20 w-20 text-red-500/40 group-hover:text-red-500 transition-all duration-700 group-hover:scale-125" />
+                       <img src="/bot-avatar.png" alt="Zenith" className="h-20 w-20 object-contain group-hover:scale-125 transition-all duration-700 drop-shadow-[0_0_35px_rgba(56,189,248,0.7)]" />
                     </div>
                  </div>
               </div>
@@ -350,7 +350,7 @@ export default function LandingPage() {
                        <div className="h-32 w-32 bg-red-500/20 blur-[60px] rounded-full" />
                     </div>
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 space-y-12">
-                       <Bot className="h-20 w-20 text-red-500 shadow-[0_0_50px_rgba(239,68,68,0.5)] bg-[#020617] rounded-3xl p-4 border border-red-500/50" />
+                       <img src="/bot-avatar.png" alt="Zenith" className="h-24 w-24 object-contain shadow-[0_0_50px_rgba(56,189,248,0.5)] bg-[#020617] rounded-3xl p-3 border border-cyan-500/50" />
                     </div>
                  </div>
               </div>
@@ -413,7 +413,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
             <div className="col-span-1 md:col-span-2 space-y-12">
               <div className="flex items-center gap-4 group">
-                <span className="text-3xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine</span>
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 flex items-center justify-center border border-cyan-400/30 p-1.5 overflow-hidden"><img src="/bot-avatar.png" alt="Zenith" className="h-full w-full object-contain" /></div><span className="text-3xl font-bold text-white font-outfit uppercase tracking-tighter">{process.env.NEXT_PUBLIC_BRAND_NAME || "Zenith"} Engine</span>
               </div>
               <p className="text-slate-600 max-w-sm font-bold leading-relaxed uppercase text-xs tracking-widest">
                 The high-performance Discord engine for communities that demand excellence. Open-source, secure, and infinitely scalable.
