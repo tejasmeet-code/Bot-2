@@ -109,25 +109,39 @@ class zyrox(commands.AutoShardedBot):
             return msg
 
     async def get_prefix(self, message: discord.Message):
-        if message.guild:
-            guild_id = message.guild.id
-            async with aiosqlite.connect('db/np.db') as db:
-                async with db.execute("SELECT id FROM np WHERE id = ?", (message.author.id,)) as cursor:
-                    row = await cursor.fetchone()
-            data = await getConfig(guild_id)
-            prefix = data["prefix"]
-            if row:
-                return commands.when_mentioned_or(prefix, '')(self, message)
-            else:
-                return commands.when_mentioned_or(prefix)(self, message)
+        if not getattr(message, "author", None) or message.author.bot:
+            return commands.when_mentioned_or('>')(self, message)
+
+        is_np = False
+        author_id = message.author.id
+
+        if author_id in OWNER_IDS:
+            is_np = True
         else:
-            async with aiosqlite.connect('db/np.db') as db:
-                async with db.execute("SELECT id FROM np WHERE id = ?", (message.author.id,)) as cursor:
-                    row = await cursor.fetchone()
-            if row:
-                return commands.when_mentioned_or('?', '')(self, message)
-            else:
-                return commands.when_mentioned_or('')(self, message)
+            try:
+                async with aiosqlite.connect('db/np.db') as db:
+                    async with db.execute("SELECT id FROM np WHERE id = ?", (author_id,)) as cursor:
+                        if await cursor.fetchone():
+                            is_np = True
+                    if not is_np and message.guild:
+                        async with db.execute("SELECT 1 FROM autonp WHERE guild_id = ?", (message.guild.id,)) as cursor:
+                            if await cursor.fetchone():
+                                if getattr(message.author, "premium_since", None) is not None:
+                                    is_np = True
+            except Exception:
+                pass
+
+        prefix = '>'
+        if message.guild:
+            try:
+                data = await getConfig(message.guild.id)
+                prefix = data.get("prefix", ">")
+            except Exception:
+                prefix = '>'
+
+        if is_np:
+            return commands.when_mentioned_or(prefix, '')(self, message)
+        return commands.when_mentioned_or(prefix)(self, message)
 
     async def on_message_edit(self, before, after):
         ctx: Context = await self.get_context(after, cls=Context)

@@ -299,12 +299,90 @@ class NoPrefix(commands.Cog):
 
     @commands.group(
         name="np",
+        aliases=["noprefix", "no-prefix"],
         help="Allows you to add someone to the no-prefix list (owner-only command)",
     )
     @commands.check(is_owner_or_staff)
     async def _np(self, ctx):
         if ctx.invoked_subcommand is None:
             await ctx.send_help(ctx.command)
+
+    async def execute_np_add(self, ctx, user: discord.User, duration: str = "lifetime"):
+        duration_mapping = {
+            "10m": timedelta(minutes=10),
+            "1w": timedelta(weeks=1),
+            "3w": timedelta(weeks=3),
+            "1m": timedelta(days=30),
+            "3m": timedelta(days=90),
+            "6m": timedelta(days=180),
+            "1y": timedelta(days=365),
+            "3y": timedelta(days=365 * 3),
+            "lifetime": None,
+            "perm": None,
+            "permanent": None,
+        }
+        key = duration.lower()
+        if key not in duration_mapping:
+            key = "lifetime"
+
+        async with aiosqlite.connect(self.db_path) as db:
+            async with db.execute(
+                "SELECT id FROM np WHERE id = ?", (user.id,)
+            ) as cursor:
+                result = await cursor.fetchone()
+            if result:
+                embed = CV2Embed(
+                    description=f"**{user}** is Already in No prefix list\n\n **Requested By**: [{ctx.author.display_name}](https://discord.com/users/{ctx.author.id})\n",
+                    color=0xFF0000,
+                )
+                embed.set_author(name="Error")
+                await ctx.reply(view=embed)
+                return
+
+            delta = duration_mapping[key]
+            if delta is not None:
+                expiry_time = datetime.utcnow() + delta
+                expiry_str = expiry_time.isoformat()
+            else:
+                expiry_time = None
+                expiry_str = None
+
+            await db.execute(
+                "INSERT INTO np (id, expiry_time) VALUES (?, ?)",
+                (user.id, expiry_str),
+            )
+            await db.commit()
+
+        expiry_text = (
+            "**Lifetime**"
+            if expiry_time is None
+            else f"{expiry_time.strftime('%Y-%m-%d %H:%M:%S')} UTC"
+        )
+        expiry_timestamp = (
+            "None (Permanent)"
+            if expiry_time is None
+            else f"<t:{int(expiry_time.timestamp())}:f>"
+        )
+
+        embed = CV2Embed(
+            description=f"**Added Global No Prefix**:\n{ZHUMAN} User: **{user.mention}**\n{MENTION} User Mention: {user.mention}\n{ZYROXSYS} User ID: {user.id}\n\n__**Additional Info**__:\n{ZYROXHAMMER} Added By: **{ctx.author.display_name}**\n{TIME} Expiry Time: {expiry_text}\n{BOOST} Timestamp: {expiry_timestamp}",
+            color=0xFF0000,
+        )
+        embed.set_author(
+            name="Added No Prefix",
+            icon_url="https://cdn.discordapp.com/icons/1166303696263585852/eeb00b2cf541438e88cdf842394c5b30.png?size=1024",
+        )
+        await ctx.reply(view=embed)
+
+    @_np.command(name="enable", help="Enable no-prefix for a user (defaults to lifetime)")
+    @commands.check(is_owner_or_staff)
+    async def np_enable(self, ctx, user: discord.User, duration: Optional[str] = "lifetime"):
+        await self.execute_np_add(ctx, user, duration or "lifetime")
+
+    @_np.command(name="disable", help="Disable no-prefix for a user")
+    @commands.check(is_owner_or_staff)
+    async def np_disable(self, ctx, user: discord.User):
+        await self.np_remove(ctx, user)
 
     @_np.command(name="list", help="List of no-prefix users")
     @commands.check(is_owner_or_staff)
@@ -335,7 +413,10 @@ class NoPrefix(commands.Cog):
 
     @_np.command(name="add", help="Add user to no-prefix with time options")
     @commands.check(is_owner_or_staff)
-    async def np_add(self, ctx, user: discord.User):
+    async def np_add(self, ctx, user: discord.User, duration: Optional[str] = None):
+        if duration:
+            return await self.execute_np_add(ctx, user, duration)
+
         async with aiosqlite.connect(self.db_path) as db:
             async with db.execute(
                 "SELECT id FROM np WHERE id = ?", (user.id,)
@@ -472,6 +553,27 @@ class NoPrefix(commands.Cog):
     async def autonp(self, ctx):
         if ctx.invoked_subcommand is None:
             await ctx.send_help(ctx.command)
+
+    @autonp.command(name="enable", help="Enable auto no-prefix for current or specified guild")
+    @commands.is_owner()
+    async def autonp_enable(self, ctx, guild_id: Optional[int] = None):
+        target_id = guild_id or (ctx.guild.id if ctx.guild else None)
+        if not target_id:
+            return await ctx.reply("Please specify a guild ID or run this in a server.")
+        await self.add_guild(ctx, target_id)
+
+    @autonp.command(name="disable", help="Disable auto no-prefix for current or specified guild")
+    @commands.is_owner()
+    async def autonp_disable(self, ctx, guild_id: Optional[int] = None):
+        target_id = guild_id or (ctx.guild.id if ctx.guild else None)
+        if not target_id:
+            return await ctx.reply("Please specify a guild ID or run this in a server.")
+        await self.remove_guild(ctx, target_id)
+
+    @autonp.command(name="list", help="List all guilds in auto no-prefix")
+    @commands.check(is_owner_or_staff)
+    async def autonp_list(self, ctx):
+        await self.list_guilds(ctx)
 
     @autonp.group(name="guild", help="Manage partner guilds for auto no-prefix.")
     async def autonp_guild(self, ctx):

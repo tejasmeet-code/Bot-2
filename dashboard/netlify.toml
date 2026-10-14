@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_PUBLIC_BRAND_NAME = "Zenith"
+  NEXT_PUBLIC_BRAND_NAME_WORD = "ZN"
+  NEXTAUTH_URL = "https://demonzenith.netlify.app"
+  NEXTAUTH_SECRET = "zenith_nextauth_secret_key_super_secure_99214712894"
+  DISCORD_CLIENT_ID = "1553292201835102278"
+  DISCORD_CLIENT_SECRET = "WH6vMGhqBgb-GPsh1eCww6HXrtTuOvPO"
+  NEXT_PUBLIC_ADMIN_IDS = "1181221352393420856"
+  NEXT_PUBLIC_API_URL = "http://localhost:8000/api/v1"
